@@ -17,5 +17,6 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true
   },
-  "include": ["vite.config.ts", "package.json"]
+  "include": ["package.json"],
+  "exclude": ["vite.config.ts"]
 }

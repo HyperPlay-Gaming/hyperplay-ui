@@ -1,5 +1,6 @@
 import React from 'react'
-import ThemeProvider from '../src/theme'
+import '../src/index.scss'
+import '../src/fonts.css'
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -13,8 +14,6 @@ export const parameters = {
 
 export const decorators = [
   (Story) => (
-    <ThemeProvider>
-      <Story />
-    </ThemeProvider>
+    <Story />
   )
 ]

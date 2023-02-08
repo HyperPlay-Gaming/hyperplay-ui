@@ -1,0 +1,15 @@
+.txnPending {
+  display: inline-flex;
+  flex-direction: row;
+  background-color: var(--color-neutral-150);
+  padding: var(--space-lg);
+  border-radius: var(--space-xs);
+  gap: var(--space-md);
+  max-width: 420px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

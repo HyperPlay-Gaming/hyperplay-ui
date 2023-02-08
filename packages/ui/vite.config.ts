@@ -3,24 +3,24 @@ import { resolve } from 'node:path'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-import EsLint from 'vite-plugin-linter'
+// import { EsLinter, linterPlugin } from 'vite-plugin-linter'
 import tsConfigPaths from 'vite-tsconfig-paths'
 import packageJson from './package.json'
+import svgr from 'vite-plugin-svgr'
 
-const { EsLinter, linterPlugin } = EsLint
-
-export default defineConfig((configEnv) => ({
+export default defineConfig({
   publicDir: 'public',
   plugins: [
     react(),
     tsConfigPaths(),
-    linterPlugin({
-      include: ['./src}/**/*.{ts,tsx}'],
-      linters: [new EsLinter({ configEnv })],
-    }),
+    // linterPlugin({
+    //   include: ['./src}/**/*.{ts,tsx}'],
+    //   linters: [new EsLinter({ configEnv })],
+    // }),
     dts({
       include: ['src/'],
     }),
+    svgr()
   ],
   build: {
     copyPublicDir: true,
@@ -36,4 +36,4 @@ export default defineConfig((configEnv) => ({
       external: [...Object.keys(packageJson.peerDependencies)],
     },
   },
-}))
+})
