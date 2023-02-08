@@ -11,7 +11,8 @@ let config: StorybookViteConfig = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-interactions"
+    "@storybook/addon-interactions",
+    'storybook-dark-mode'
   ],
   "framework": "@storybook/react",
   "core": {
@@ -22,10 +23,8 @@ let config: StorybookViteConfig = {
   },
   async viteFinal(config, { configType }) {
     // return the customized config
-    console.log('hp config = ', JSON.stringify(HyperPlayViteConfig, null, 4))
     config.plugins?.push(svgr())
     const newConfig = mergeConfig(config, HyperPlayViteConfig);
-    console.log('new config = ', JSON.stringify(newConfig, null, 4))
     return config
   }
 }

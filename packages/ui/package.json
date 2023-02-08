@@ -33,6 +33,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.58.0",
+    "storybook-dark-mode": "^2.0.5",
     "typescript": "^4.9.3",
     "vite": "^4.1.1",
     "vite-plugin-dts": "^1.7.2",
@@ -56,6 +57,8 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@fontsource/barlow": "^4.5.9",
+    "@fontsource/rajdhani": "^4.5.10",
     "tiny-swiper": "^2.2.0"
   },
   "eslintConfig": {
