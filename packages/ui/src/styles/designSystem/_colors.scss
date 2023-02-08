@@ -1,36 +1,48 @@
 @mixin colorSystem {
   /* Semantic Naming */
-  // Brand
-  --color-primary: #7318fb;
-  --color-secondary: #c285ff;
-  --color-tertiary: #4B10A6;
+  // Primary
+  --color-primary-100: #f2bfff;
+  --color-primary-200: #D885FF;
+  --color-primary-300: #AB57FF;
+  --color-primary-400: #7318FB;
+  --color-primary-500: #5905D7;
+  --color-primary-600: #4A05A0;
+
+  // Secondary
+  --color-secondary-100: #8EEBFF;
+  --color-secondary-200: #11CFF9;
+  --color-secondary-300: #0098BA;
+  --color-secondary-400: #0078AC;
 
   // Neutrals
-  --color-neutral-0: #fcfcf9;
-  --color-neutral-20: #E0E2E2;
-  --color-neutral-50: #94A2B3;
-  --color-neutral-80: #7F8596;
-  --color-neutral-100: #5A5E6A;
-  --color-neutral-130: #1A1D25;
-  --color-neutral-150: #13141A;
-  --color-neutral-200: #0C0B0F;
+  --color-neutral-50: #fcfcf9;
+  --color-neutral-100: #E0E2E2;
+  --color-neutral-200: #B0C1D5;
+  --color-neutral-300: #8D93A6;
+  --color-neutral-400: #5A5E6A;
+  --color-neutral-500: #282B34;
+  --color-neutral-600: #1A1D25;
+  --color-neutral-700: #13141A;
+  --color-neutral-800: #0C0B0F;
 
   // Status
-  --color-status-success: #40FFD1;
-  --color-status-caution: #FFAB00;
-  --color-status-error: #FF9191;
+  --color-status-success: #40FFBA;
+  --color-status-alert: #FBAB4D;
+  --color-status-error: #FF6976;
 
   // Gradients
-  --color-gradient-primary: linear-gradient(180deg, #3c71f3 0%, #b923ff 100%);
-  --color-gradient-primary-hover: linear-gradient(
+  --color-gradient-01: linear-gradient(180deg, #3c71f3 0%, #b923ff 100%);
+  --color-gradient-02: linear-gradient(
     90deg,
     #3c71f3 0%,
     #b923ff 100%
   );
+  --color-gradient-03: linear-gradient(180deg, #B923FF 2.6%, #3C71F3 96.35%)
 
   // Stroke
-  --color-stroke-highlight: #40ffff;
-  --color-stroke-error: #f54163;
+  --color-stroke-01: linear-gradient(86.63deg, #4126E8 2.98%, #EA1ABA 38.52%, #10A6D6 89.36%);
+  --color-stroke-02: #F0397B;
+  --color-stroke-03: #292235;
 }
 
 :root {
