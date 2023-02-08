@@ -6,6 +6,7 @@ import dts from 'vite-plugin-dts'
 // import { EsLinter, linterPlugin } from 'vite-plugin-linter'
 import tsConfigPaths from 'vite-tsconfig-paths'
 import packageJson from './package.json'
+import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
   publicDir: 'public',
@@ -18,7 +19,8 @@ export default defineConfig({
     // }),
     dts({
       include: ['src/'],
-    })
+    }),
+    svgr()
   ],
   build: {
     copyPublicDir: true,
