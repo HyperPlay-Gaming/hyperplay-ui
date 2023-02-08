@@ -1,7 +1,6 @@
 import React from 'react'
 import '../src/index.scss'
-import '@fontsource/rajdhani'
-import '@fontsource/barlow'
+import '../src/fonts.css'
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
