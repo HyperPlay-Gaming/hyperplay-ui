@@ -1,3 +1,4 @@
+import './fonts.css'
 import * as UiTypography from './components/Typography'
 import * as UIToasts from './components/Toast'
 
