@@ -1,7 +1,7 @@
 .txnPending {
   display: inline-flex;
   flex-direction: row;
-  background-color: var(--color-neutral-150);
+  background-color: var(--color-neutral-700);
   padding: var(--space-lg);
   border-radius: var(--space-xs);
   gap: var(--space-md);
@@ -11,5 +11,9 @@
 .infoContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: start;
+}
+
+.txnTitle {
+  margin-bottom: var(--space-2xs);
 }

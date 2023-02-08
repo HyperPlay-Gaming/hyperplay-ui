@@ -1,6 +1,6 @@
 import './fonts.css'
 import * as UiTypography from './components/Typography'
-import * as UIToasts from './components/Toast'
+import * as UIToasts from './components/TransactionToasts'
 
 export const Typography = UiTypography
-export const Toasts = UIToasts
+export const TransactionToast = UIToasts
