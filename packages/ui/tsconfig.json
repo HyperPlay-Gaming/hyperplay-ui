@@ -21,8 +21,10 @@
     "paths": {
       "react-vite-library": ["src/index.ts"]
     },
-    "typeRoots": ["node_modules/@types", "src/global.d.ts"]
+    "typeRoots": ["node_modules/@types", "src/global.d.ts"],
+    "types": ["vite-plugin-svgr/client", "vite/client"]
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "exclude": ["vite.config.ts"]
 }
