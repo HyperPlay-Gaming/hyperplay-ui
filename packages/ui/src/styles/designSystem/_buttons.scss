@@ -9,18 +9,18 @@
   cursor: pointer;
 }
 
-button {
-  @include buttonDefaultStyle();
-}
+// button {
+//   @include buttonDefaultStyle();
+// }
 
-.button {
-  @include buttonDefaultStyle();
-  padding: var(--space-sm);
-  background: var(--primary);
-  font-style: normal;
-  transition: 500ms;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
+// .button {
+//   @include buttonDefaultStyle();
+//   padding: var(--space-sm);
+//   background: var(--primary);
+//   font-style: normal;
+//   transition: 500ms;
+//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+// }
 
 .ctaButton {
   background: var(--color-gradient-primary);

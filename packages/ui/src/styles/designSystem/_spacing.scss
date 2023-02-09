@@ -1,23 +1,34 @@
+@function em($px) {
+  @return #{calc($px / 16)}em;
+}
+
 @mixin spacingSystem {
   /* spacing values */
-  --space-3xs: 0.25em;
-  --space-2xs: 0.375em;
-  --space-xs: 0.5em;
-  --space-sm: 0.75em;
-  --space-md: 1em;
-  --space-lg: 1.5em;
-  --space-xl: 3em;
-  --space-2xl: 4.5em;
-  --space-3xl: 8.5em;
+  --space-3xs: #{em(4)};
+  --space-2xs: #{em(6)};
+  --space-xs: #{em(8)};
+  --space-sm: #{em(10)};
+  --space-md: #{em(12)};
+  --space-lg: #{em(16)};
+  --space-xl: #{em(18)};
+  --space-2xl: #{em(20)};
+  --space-3xl: #{em(24)};
+  --space-4xl: #{em(32)};
+  --space-5xl: #{em(48)};
+  --space-6xl: #{em(68)};
 
-  --space-unit-fixed: 16px;
-  --space-2xs-fixed: calc(0.25 * var(--space-unit-fixed));
-  --space-xs-fixed: calc(0.5 * var(--space-unit-fixed));
-  --space-sm-fixed: calc(0.75 * var(--space-unit-fixed));
-  --space-md-fixed: calc(1 * var(--space-unit-fixed));
-  --space-lg-fixed: calc(1.2 * var(--space-unit-fixed));
-  --space-xl-fixed: calc(2.5 * var(--space-unit-fixed));
-  --space-2xl-fixed: calc(4.5 * var(--space-unit-fixed));
+  --space-3xs-fixed: 4px;
+  --space-2xs-fixed: 6px;
+  --space-xs-fixed: 8px;
+  --space-sm-fixed: 10px;
+  --space-md-fixed: 12px;
+  --space-lg-fixed: 16px;
+  --space-xl-fixed: 18px;
+  --space-2xl-fixed: 20px;
+  --space-3xl-fixed: 24px;
+  --space-4xl-fixed: 32px;
+  --space-5xl-fixed: 48px;
+  --space-6xl-fixed: 68px;
 }
 
 h1,
@@ -31,6 +42,7 @@ h6 {
   margin-bottom: var(--space-2xs);
 }
 
-p, body {
+p,
+body {
   margin: 0;
 }
