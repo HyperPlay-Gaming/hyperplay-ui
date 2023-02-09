@@ -1,7 +1,7 @@
 {
   "name": "@hyperplay/ui",
-  "version": "0.0.0",
-  "license": "BSL",
+  "version": "0.0.3",
+  "license": "BUSL-1.1",
   "engines": {
     "node": ">=16.0.0 <17.0.0"
   },
@@ -52,11 +52,10 @@
     ".": {
       "import": "./dist/index.es.js"
     },
-    "./style.css": "./dist/style.css"
+    "./index.css": "./dist/index.css"
   },
   "types": "dist/index.d.ts",
   "dependencies": {
-    "classnames": "^2.3.2",
     "tiny-swiper": "^2.2.0"
   },
   "eslintConfig": {
