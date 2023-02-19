@@ -14,6 +14,10 @@
         "outputs": [],
         "inputs": ["src/**/*.ts", "src/**/*.tsx", "index.js"]
       },
+      "prettier": {
+        "outputs": [],
+        "inputs": ["src/**/*.ts", "src/**/*.tsx", "index.js"]
+      },
       "dev": {
         "cache": false
       },

@@ -9,7 +9,9 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json,.mdx ./src"
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json,.mdx ./src",
+    "prettier-fix": "prettier --write .",
+    "prettier": "prettier --check ."
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

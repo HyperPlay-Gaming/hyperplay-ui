@@ -5,11 +5,4 @@ import { ReactComponent as TxnSubmitted } from './TxnSubmitted.svg'
 import { ReactComponent as TxnSuccess } from './TxnSuccess.svg'
 import { ReactComponent as TxnError } from './TxnError.svg'
 
-export {
-  TxnPending,
-  CloseButton,
-  TxnAlert,
-  TxnSubmitted,
-  TxnSuccess,
-  TxnError
-}
+export { TxnPending, CloseButton, TxnAlert, TxnSubmitted, TxnSuccess, TxnError }
