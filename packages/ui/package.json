@@ -2,9 +2,6 @@
   "name": "@hyperplay/ui",
   "private": true,
   "version": "0.0.0",
-  "engines": {
-    "node": ">=16.0.0 <17.0.0"
-  },
   "scripts": {
     "dev": "vite",
     "build": "node scripts/unlinkFonts.cjs && vite build && node scripts/linkFonts.cjs",
