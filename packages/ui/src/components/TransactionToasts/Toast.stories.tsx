@@ -12,6 +12,7 @@ export const Pending = () => {
       title="Transaction request pending"
       subtext="A wallet confirmation is pending on your mobile wallet."
       onClick={() => console.log('pending clicked!')}
+      showCloseButton={true}
     />
   )
 }
@@ -34,6 +35,7 @@ export const Error = () => {
       title="Transaction interrupted"
       subtext="Transaction was canceled or not submitted, please try again."
       onClick={() => console.log('error clicked!')}
+      showCloseButton={true}
     />
   )
 }
@@ -56,6 +58,7 @@ export const Success = () => {
       title="Transaction confirmed"
       subtext="The transaction was successfully confirmed!"
       onClick={() => console.log('success clicked!')}
+      showCloseButton={true}
     />
   )
 }
