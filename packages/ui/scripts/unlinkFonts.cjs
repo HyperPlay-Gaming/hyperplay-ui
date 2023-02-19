@@ -4,7 +4,7 @@ const { unlinkSync } = require('fs')
 const from = join(__dirname, '../src/fonts')
 
 try {
-    unlinkSync(from)
+  unlinkSync(from)
 } catch (e) {
-    console.log(e)
+  console.log(e)
 }

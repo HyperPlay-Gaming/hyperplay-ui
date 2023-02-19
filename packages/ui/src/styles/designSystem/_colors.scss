@@ -2,46 +2,47 @@
   /* Semantic Naming */
   // Primary
   --color-primary-100: #f2bfff;
-  --color-primary-200: #D885FF;
-  --color-primary-300: #AB57FF;
-  --color-primary-400: #7318FB;
-  --color-primary-500: #5905D7;
-  --color-primary-600: #4A05A0;
+  --color-primary-200: #d885ff;
+  --color-primary-300: #ab57ff;
+  --color-primary-400: #7318fb;
+  --color-primary-500: #5905d7;
+  --color-primary-600: #4a05a0;
 
   // Secondary
-  --color-secondary-100: #8EEBFF;
-  --color-secondary-200: #11CFF9;
-  --color-secondary-300: #0098BA;
-  --color-secondary-400: #0078AC;
+  --color-secondary-100: #8eebff;
+  --color-secondary-200: #11cff9;
+  --color-secondary-300: #0098ba;
+  --color-secondary-400: #0078ac;
 
   // Neutrals
   --color-neutral-50: #fcfcf9;
-  --color-neutral-100: #E0E2E2;
-  --color-neutral-200: #B0C1D5;
-  --color-neutral-300: #8D93A6;
-  --color-neutral-400: #5A5E6A;
-  --color-neutral-500: #282B34;
-  --color-neutral-600: #1A1D25;
-  --color-neutral-700: #13141A;
-  --color-neutral-800: #0C0B0F;
+  --color-neutral-100: #e0e2e2;
+  --color-neutral-200: #b0c1d5;
+  --color-neutral-300: #8d93a6;
+  --color-neutral-400: #5a5e6a;
+  --color-neutral-500: #282b34;
+  --color-neutral-600: #1a1d25;
+  --color-neutral-700: #13141a;
+  --color-neutral-800: #0c0b0f;
 
   // Status
-  --color-status-success: #40FFBA;
-  --color-status-alert: #FBAB4D;
-  --color-status-error: #FF6976;
+  --color-status-success: #40ffba;
+  --color-status-alert: #fbab4d;
+  --color-status-error: #ff6976;
 
   // Gradients
   --color-gradient-01: linear-gradient(180deg, #3c71f3 0%, #b923ff 100%);
-  --color-gradient-02: linear-gradient(
-    90deg,
-    #3c71f3 0%,
-    #b923ff 100%
-  );
-  --color-gradient-03: linear-gradient(180deg, #B923FF 2.6%, #3C71F3 96.35%)
+  --color-gradient-02: linear-gradient(90deg, #3c71f3 0%, #b923ff 100%);
+  --color-gradient-03: linear-gradient(180deg, #b923ff 2.6%, #3c71f3 96.35%);
 
   // Stroke
-  --color-stroke-01: linear-gradient(86.63deg, #4126E8 2.98%, #EA1ABA 38.52%, #10A6D6 89.36%);
-  --color-stroke-02: #F0397B;
+  --color-stroke-01: linear-gradient(
+    86.63deg,
+    #4126e8 2.98%,
+    #ea1aba 38.52%,
+    #10a6d6 89.36%
+  );
+  --color-stroke-02: #f0397b;
   --color-stroke-03: #292235;
 }
 

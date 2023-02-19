@@ -18,7 +18,7 @@ export default defineConfig({
     //   linters: [new EsLinter({ configEnv })],
     // }),
     dts({
-      include: ['src/'],
+      include: ['src/']
     }),
     svgr()
   ],
@@ -30,10 +30,10 @@ export default defineConfig({
       entry: resolve('src', 'index.ts'),
       name: 'HyperplayUI',
       formats: ['es'],
-      fileName: (format) => `index.${format}.js`,
+      fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {
-      external: [...Object.keys(packageJson.peerDependencies)],
-    },
-  },
+      external: [...Object.keys(packageJson.peerDependencies)]
+    }
+  }
 })

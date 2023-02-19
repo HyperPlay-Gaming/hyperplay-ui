@@ -6,7 +6,7 @@ const from = join(__dirname, '../src/fonts')
 const to = join(__dirname, '../public/fonts')
 
 try {
-    symlinkSync(to, from, 'dir')
+  symlinkSync(to, from, 'dir')
 } catch (e) {
-    console.log(e)
+  console.log(e)
 }
