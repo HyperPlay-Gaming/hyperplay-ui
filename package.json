@@ -6,10 +6,11 @@
         "apps/*"
     ],
     "devDependencies": {
+        "semver": "^7.3.8",
         "turbo": "^1.7.0"
     },
     "scripts": {
-    	"lint": "turbo lint",
+        "lint": "turbo lint",
         "prettier": "turbo prettier"
     },
     "packageManager": "yarn@1.22.19"

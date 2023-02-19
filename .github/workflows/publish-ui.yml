@@ -19,13 +19,15 @@ jobs:
         cache: 'yarn'
         registry-url: 'https://registry.npmjs.org'
 
-    - name: Install semver
-      run: npm install -g semver
+    - name: Install dependencies
+      run: |
+        yarn install --immutable --frozen-lockfile
 
     - name: Get previous version
       id: get_previous_version
       run: |
-        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ./.npmrc
+        yarn info @hyperplay/ui version --verbose
         echo ::set-output name=previous_version::$(yarn info @hyperplay/ui version | sed -n 2p | tr -d '[:space:]')
 
     - name: Set current version
@@ -37,12 +39,7 @@ jobs:
       env:
         PREVIOUS_VERSION: ${{ steps.get_previous_version.outputs.previous_version }}
         CURRENT_VERSION: ${{ steps.set_current_version.outputs.current_version }}
-      run: echo ::set-output name=do_release::$(node -p "Number(process.env.INPUT_FORCE_RELEASE) || require('semver/functions/gt')(process.env.PREVIOUS_VERSION, process.env.CURRENT_VERSION)")
-
-    - name: Install dependencies
-      if: steps.compare_versions.outputs.do_release == 'true'
-      run: |
-        yarn install --immutable --frozen-lockfile
+      run: echo ::set-output name=do_release::$(node -p "Number(process.env.INPUT_FORCE_RELEASE) || require('semver/functions/gt')(process.env.CURRENT_VERSION, process.env.PREVIOUS_VERSION)")
 
     - name: Build @hyperplay/ui
       if: steps.compare_versions.outputs.do_release == 'true'
@@ -53,5 +50,5 @@ jobs:
       if: steps.compare_versions.outputs.do_release == 'true'
       run: |
         cd packages/ui
-        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ./.npmrc
         yarn publish
