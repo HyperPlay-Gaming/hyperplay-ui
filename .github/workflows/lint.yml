@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          submodules: 'recursive'
-          token: ${{ secrets.pat }}
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
