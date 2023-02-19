@@ -12,7 +12,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json,.mdx ./src",
-    "pub": "yarn build && yarn publish"
+    "pub": "yarn build && yarn publish",
+    "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -56,9 +57,6 @@
     "./index.css": "./dist/index.css"
   },
   "types": "dist/index.d.ts",
-  "dependencies": {
-    "tiny-swiper": "^2.2.0"
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
