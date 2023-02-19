@@ -2,10 +2,9 @@
 
 module.exports = {
   ...require('@hyperplay/eslintconfig'),
-  ignorePatterns: ['!src', "vite.config.ts", ".eslintrc.cjs"],
+  ignorePatterns: ['!src', 'vite.config.ts', '.eslintrc.cjs'],
   parserOptions: {
     project: './tsconfig.json',
-    tsconfigRootDir: __dirname,
+    tsconfigRootDir: __dirname
   }
 }
-

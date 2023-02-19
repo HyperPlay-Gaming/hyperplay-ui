@@ -1,11 +1,11 @@
 {
-    "extends": "./tsconfig.json",
-    "exclude": [
-      "node_modules",
-      // "build",
-      "dist",
-      "scripts",
-      "src/**/*.stories.tsx",
-      "vite.config.ts"
-    ]
-  }
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "node_modules",
+    // "build",
+    "dist",
+    "scripts",
+    "src/**/*.stories.tsx",
+    "vite.config.ts"
+  ]
+}

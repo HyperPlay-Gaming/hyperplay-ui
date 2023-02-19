@@ -14,7 +14,7 @@ the spacing system is first specified in em units. This means that it is a multi
 
 The fixed spacing system is intended for margins and paddings that shouldn't change based on the font size of the element. So if you want something to truly be 4px instead of 25% of a 1rem, use this.
 
-## Breakpoints 
+## Breakpoints
 
 Breakpoints can be added easily for different screen sizes. It is recommended to use the first of the following approaches to keep the breakpoints within the element it is affecting rather than at the end of the file with all the other elements' breakpoints.
 
@@ -47,6 +47,7 @@ Breakpoints can be added easily for different screen sizes. It is recommended to
 ```
 
 For Text
+
 ```
 /* EXAMPLE BREAKPOINTS */
 :root {
@@ -70,7 +71,8 @@ For Text
 }
 ```
 
-or if the text-scale-ratio method is not flexible enough to meet designer requirements, 
+or if the text-scale-ratio method is not flexible enough to meet designer requirements,
+
 ```
 :root {
   /* type scale */
