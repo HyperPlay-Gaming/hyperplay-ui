@@ -2,6 +2,8 @@ name: Release to npm
 
 on:
   push:
+    paths:
+      - 'packages/ui/package.json'
     branches:
       - main
 
