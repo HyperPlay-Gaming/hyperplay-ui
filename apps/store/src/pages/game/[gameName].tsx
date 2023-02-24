@@ -63,15 +63,10 @@ const Game = ({ title, description, media, info, platforms }: GameProps) => {
   )
 }
 
-{
-  /*  */
-}
-
 export default Game
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const games = await getGames({})
-
   const game = games.find(
     (game) => game.projectName === context.params?.gameName
   ) as Release
@@ -104,19 +99,19 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 export async function getStaticPaths() {
-  if (process.env.SKIP_STATIC_GENERATION) {
-    return {
-      paths: [],
-      fallback: 'blocking'
-    }
-  }
-
-  const games = await getGames({})
-
+  // if (process.env.SKIP_STATIC_GENERATION) {
   return {
-    paths: games.map((game) => `/game/${game.projectName}`),
-    fallback: true
+    paths: [],
+    fallback: 'blocking'
   }
+  // }
+
+  // const games = await getGames({})
+
+  // return {
+  //   paths: games.map((game) => `/game/${game.projectName}`),
+  //   fallback: true
+  // }
 }
 
 export const revalidate = 60 * 5
