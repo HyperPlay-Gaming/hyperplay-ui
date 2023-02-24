@@ -15,6 +15,14 @@ export const Link = () => <Button type="link">Test</Button>
 
 export const Danger = () => <Button type="danger">Test</Button>
 
+export const MenuButton = () => <Button type="menuItem">Test</Button>
+
+export const MenuButtonActive = () => (
+  <Button type="menuItem" active={true}>
+    Test
+  </Button>
+)
+
 export const SmallPrimary = () => <Button size="small">Test</Button>
 
 export const SmallSecondary = () => (

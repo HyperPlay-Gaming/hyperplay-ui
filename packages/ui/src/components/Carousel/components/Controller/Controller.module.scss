@@ -1,0 +1,19 @@
+.root {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  width: fit-content;
+  transition: transform 0.2s, opacity 0.2s;
+  transform: translateY(0px);
+  opacity: 1;
+  z-index: 1;
+}
+
+.hidden {
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+.displayNone {
+  display: none;
+}

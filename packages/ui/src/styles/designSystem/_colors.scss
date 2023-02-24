@@ -15,6 +15,7 @@
   --color-secondary-400: #0078ac;
 
   // Neutrals
+  --color-neutral-0: #ffffff;
   --color-neutral-50: #fcfcf9;
   --color-neutral-100: #e0e2e2;
   --color-neutral-200: #b0c1d5;
@@ -60,6 +61,8 @@
 
 :root {
   color: var(--color-neutral-50);
+
+  @include colorSystem;
 }
 
 .color-neutral-50 {

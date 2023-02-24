@@ -1,0 +1,32 @@
+@import '@hyperplay/ui/utilities/_variables.scss';
+
+.carouselContainer {
+  @include for-desktop-up {
+    display: flex;
+    justify-content: center;
+
+    & > div {
+      max-width: 1280px;
+      border-radius: var(--space-xs);
+      overflow: hidden;
+    }
+  }
+}
+
+.background {
+  position: fixed;
+  mask-image: radial-gradient(ellipse, rgba(0, 0, 0, 0.7), transparent 100%);
+  top: 120px;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+  justify-content: flex-start;
+  grid-gap: 16px;
+  justify-items: flex-start;
+}
+
+.items:not(:last-child) {
+  justify-content: flex-start;
+}

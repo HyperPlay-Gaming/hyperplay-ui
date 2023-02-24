@@ -1,0 +1,80 @@
+@import '../../../styles/utilities/_variables';
+
+.featuredCarousel {
+  width: 100%;
+  height: 466px;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter {
+  background: radial-gradient(
+    57.52% 57.51% at 49.33% 38.64%,
+    rgba(12, 11, 15, 0) 0%,
+    rgba(12, 11, 15, 1) 100%
+  );
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.controller {
+  right: var(--space-7xl);
+  bottom: var(--space-5xl);
+  position: absolute;
+  display: none;
+
+  @include for-tablet-landscape-up {
+    display: block;
+  }
+}
+
+.item {
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.content {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: end;
+  padding: var(--space-3xl);
+  flex-direction: column;
+
+  .description {
+    max-width: 524px;
+    margin-bottom: var(--space-lg);
+  }
+
+  .image-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+.image {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

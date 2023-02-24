@@ -171,3 +171,32 @@
     padding: var(--space-3xs-fixed) var(--space-lg-fixed);
   }
 }
+
+.menuItem {
+  padding: 0;
+  margin: 0;
+  color: var(--color-neutral-0);
+
+  &:hover .content {
+    color: var(--color-neutral-0);
+  }
+
+  .content:after {
+    background-color: white;
+    height: 2px;
+    bottom: 0px;
+  }
+
+  &:active,
+  &.active {
+    color: var(--color-secondary-100);
+
+    &:hover .content {
+      color: var(--color-secondary-100);
+
+      &:after {
+        background-color: var(--color-secondary-100);
+      }
+    }
+  }
+}

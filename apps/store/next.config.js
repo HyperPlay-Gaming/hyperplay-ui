@@ -1,8 +1,24 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
-  experimental: {
-    appDir: true,
+  reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'gateway.valist.io',
+        port: '',
+        pathname: '/ipfs/*'
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+        port: '',
+        pathname: '/vi/*/0.jpg'
+      }
+    ]
   },
+  sassOptions: {}
 }
 
 module.exports = nextConfig

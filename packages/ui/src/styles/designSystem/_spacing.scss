@@ -14,8 +14,10 @@
   --space-2xl: #{em(20)};
   --space-3xl: #{em(24)};
   --space-4xl: #{em(32)};
-  --space-5xl: #{em(48)};
-  --space-6xl: #{em(68)};
+  --space-5xl: #{em(40)};
+  --space-6xl: #{em(48)};
+  --space-7xl: #{em(59)};
+  --space-8xl: #{em(68)};
 
   --space-3xs-fixed: 4px;
   --space-2xs-fixed: 6px;
@@ -27,8 +29,14 @@
   --space-2xl-fixed: 20px;
   --space-3xl-fixed: 24px;
   --space-4xl-fixed: 32px;
-  --space-5xl-fixed: 48px;
-  --space-6xl-fixed: 68px;
+  --space-5xl-fixed: 40px;
+  --space-6xl-fixed: 48px;
+  --space-7xl-fixed: 59px;
+  --space-8xl-fixed: 68px;
+}
+
+:root {
+  @include spacingSystem;
 }
 
 h1,

@@ -1,15 +1,14 @@
-import { ReactComponent as TxnPending } from './TxnPending.svg'
-import { ReactComponent as CloseButton } from './CloseButton.svg'
-import { ReactComponent as TxnAlert } from './TxnAlert.svg'
-import { ReactComponent as TxnSubmitted } from './TxnSubmitted.svg'
-import { ReactComponent as TxnSuccess } from './TxnSuccess.svg'
-import { ReactComponent as TxnError } from './TxnError.svg'
-
-export {
-  TxnPending,
-  CloseButton,
-  TxnAlert,
-  TxnSubmitted,
-  TxnSuccess,
-  TxnError
-}
+export { ReactComponent as TxnPending } from './TxnPending.svg'
+export { ReactComponent as CloseButton } from './CloseButton.svg'
+export { ReactComponent as TxnAlert } from './TxnAlert.svg'
+export { ReactComponent as TxnSubmitted } from './TxnSubmitted.svg'
+export { ReactComponent as TxnSuccess } from './TxnSuccess.svg'
+export { ReactComponent as TxnError } from './TxnError.svg'
+export { ReactComponent as ChevronLeft } from './ChevronLeft.svg'
+export { ReactComponent as ChevronRight } from './ChevronRight.svg'
+export { ReactComponent as ArrowLeft } from './ArrowLeft.svg'
+export { ReactComponent as HyperplayStoreIcon } from './HyperplayStoreIcon.svg'
+export { ReactComponent as LinuxIcon } from './LinuxIcon.svg'
+export { ReactComponent as MacOSIcon } from './MacOSIcon.svg'
+export { ReactComponent as WindowsIcon } from './WindowsIcon.svg'
+export { ReactComponent as SteamDeckIcon } from './SteamDeckIcon.svg'

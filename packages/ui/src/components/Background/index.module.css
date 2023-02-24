@@ -1,0 +1,11 @@
+.backgroundMask {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../assets/background/pattern.svg');
+  background-repeat: repeat;
+  mask-image: linear-gradient(
+    to bottom,
+    blue,
+    red
+  ); /* Replace with your desired gradient */
+}

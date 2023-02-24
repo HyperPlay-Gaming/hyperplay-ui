@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import useCSSVariable from '../../../../src/utils/useCSSVariable'
 import { useEvent } from 'react-use'
@@ -14,6 +14,8 @@ const PrimaryBackground = ({
   height,
   buttonElement
 }: PrimaryBackgroundProps) => {
+  const randomId = Math.random().toString(36).substring(7)
+
   const primaryGradientColor = useCSSVariable('--color-gradient-primary')
   const secondaryGradientColor = useCSSVariable('--color-gradient-secondary')
   const defaultRotation = useCSSVariable('--color-gradient-default-rotation')
@@ -29,12 +31,15 @@ const PrimaryBackground = ({
   const [rotation, setRotationState] = useState(defaultRotation)
   const setRotation = (rotation: string) => setRotationState(rotation)
 
+  // modify the useEvents to use useEffect
   useEvent('mouseenter', () => setRotation(hoverRotation), buttonElement)
   useEvent('mouseleave', () => setRotation(defaultRotation), buttonElement)
   useEvent('mousedown', () => setRotation(activeRotation), buttonElement)
   useEvent('mouseup', () => setRotation(hoverRotation), buttonElement)
 
   const isActive = rotation === activeRotation
+
+  useEffect(() => console.log(buttonElement), [])
 
   return (
     <motion.svg
@@ -44,7 +49,7 @@ const PrimaryBackground = ({
       height={height}
     >
       <motion.linearGradient
-        id="test"
+        id={randomId}
         animate={{
           gradientTransform: `rotate(${rotation}, 0.5, 0.5)`
         }}
@@ -60,7 +65,7 @@ const PrimaryBackground = ({
         />
       </motion.linearGradient>
 
-      <motion.rect width={width} height={height} fill="url(#test)" />
+      <motion.rect width={width} height={height} fill={`url(#${randomId})`} />
     </motion.svg>
   )
 }

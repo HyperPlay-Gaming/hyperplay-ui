@@ -1,8 +1,12 @@
-import './fonts.css'
-import * as UiTypography from './components/Typography'
-import * as UIToasts from './components/TransactionToasts'
-import * as UiButton from './components/Button'
+import 'react-loading-skeleton/dist/skeleton.css'
 
-export const Typography = UiTypography
-export const TransactionToast = UIToasts
-export const Button = UiButton
+export { default as TransactionToast } from './components/TransactionToasts'
+export { default as Button } from './components/Button'
+export { default as NavBar } from './components/NavBar'
+export { default as GameCard } from './components/GameCard'
+export { FeaturedCarousel, ContentCarousel } from './components/Carousel'
+export { default as Background } from './components/Background'
+export { default as CircularButton } from './components/CircularButton'
+export { default as GameInfo } from './components/GameInfo'
+export * as Typography from './components/Typography'
+export * as Images from './assets/images'

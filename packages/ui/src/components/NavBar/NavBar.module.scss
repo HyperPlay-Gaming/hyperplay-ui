@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar {
+  width: 100%;
+  max-width: 1292px;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-5xl) calc(2 * var(--space-5xl));
+  // TODO: Mobile version
+}
+
+.links {
+  display: flex;
+  gap: 32px;
+}
+
+.socials {
+  display: flex;
+  gap: var(--space-3xl);
+}
+
+.menu {
+  display: flex;
+  gap: calc(2 * var(--space-5xl));
+}
