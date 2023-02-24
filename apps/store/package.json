@@ -24,6 +24,6 @@
     "typescript": "4.9.5"
   },
   "optionalDependencies": {
-    "@hyperplay/proprietary-fonts": "HyperPlay-Gaming/hyperplay-proprietary-fonts"
+    "@hyperplay/proprietary-fonts": "^0.1.0"
   }
 }
