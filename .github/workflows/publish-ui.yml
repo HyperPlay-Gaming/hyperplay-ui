@@ -23,6 +23,7 @@ jobs:
 
     - name: Install dependencies
       run: |
+        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ./.npmrc
         yarn install --immutable --frozen-lockfile --ignore-optional
 
     - name: Get previous version
