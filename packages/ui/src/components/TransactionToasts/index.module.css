@@ -2,16 +2,16 @@
   display: inline-flex;
   flex-direction: row;
   background-color: var(--color-neutral-700);
-  padding: var(--space-lg);
+  padding: var(--space-3xl);
   border-radius: var(--space-xs);
-  gap: var(--space-md);
+  gap: var(--space-lg);
   max-width: 420px;
 }
 
 .infoContainer {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .txnTitle {

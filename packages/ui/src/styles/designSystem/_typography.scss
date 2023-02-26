@@ -17,6 +17,7 @@ xl	23.04	1.44
 @mixin typeSystem {
   --default-primary-font-family: 'Rajdhani', normal;
   --default-secondary-font-family: 'Barlow', normal;
+  --default-tertiary-font-family: 'PP Fraktion Sans';
   --primary-font-family: var(--default-primary-font-family);
   --secondary-font-family: var(--default-secondary-font-family);
   --light: 300;
@@ -60,6 +61,10 @@ xl	23.04	1.44
       var(--text-scale-ratio) * var(--text-scale-ratio) *
       var(--text-scale-ratio)
   );
+}
+
+:root {
+  @include typeSystem;
 }
 
 body {
@@ -237,4 +242,12 @@ h6 {
   font-size: var(--text-sm);
   font-weight: var(--bold);
   line-height: calc(var(--text-sm) * 20 / 14);
+}
+
+.menu-item {
+  font-size: var(--text-sm);
+  font-weight: var(--bold);
+  line-height: var(--text-md);
+  text-transform: uppercase;
+  font-family: var(--default-tertiary-font-family);
 }

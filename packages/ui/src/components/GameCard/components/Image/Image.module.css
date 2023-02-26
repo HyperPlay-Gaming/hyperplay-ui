@@ -1,0 +1,7 @@
+.proportions {
+  width: 168;
+  height: 240px;
+  border-radius: var(--space-sm);
+  overflow: hidden;
+  position: relative;
+}

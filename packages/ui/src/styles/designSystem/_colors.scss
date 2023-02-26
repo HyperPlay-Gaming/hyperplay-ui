@@ -15,6 +15,7 @@
   --color-secondary-400: #0078ac;
 
   /* Neutrals */
+  --color-neutral-0: #ffffff;
   --color-neutral-50: #fcfcf9;
   --color-neutral-100: #e0e2e2;
   --color-neutral-200: #b0c1d5;
@@ -35,6 +36,18 @@
   --color-gradient-02: linear-gradient(90deg, #3c71f3 0%, #b923ff 100%);
   --color-gradient-03: linear-gradient(180deg, #b923ff 2.6%, #3c71f3 96.35%);
 
+  --color-gradient-01-border: linear-gradient(180deg, #648df6 0%, #b824ff 100%);
+  --color-gradient-02-border: linear-gradient(90deg, #c446ff 0%, #5a87f5 100%);
+  --color-gradient-03-border: linear-gradient(180deg, #b824ff 0%, #648df6 100%);
+
+  --color-gradient-primary: #3c71f3;
+  --color-gradient-secondary: #b923ff;
+  --color-gradient-default-rotation: 90;
+  --color-gradient-hover-rotation: 180;
+  --color-gradient-active-rotation: 270;
+  --color-gradient-active-primary-offset: 2.6%;
+  --color-gradient-active-secondary-offset: 96.35%;
+
   /* Stroke */
   --color-stroke-01: linear-gradient(
     86.63deg,
@@ -48,6 +61,8 @@
 
 :root {
   color: var(--color-neutral-50);
+
+  @include colorSystem;
 }
 
 .color-neutral-50 {

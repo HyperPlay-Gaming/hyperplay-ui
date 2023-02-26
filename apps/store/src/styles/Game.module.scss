@@ -1,0 +1,40 @@
+@import '@hyperplay/ui/utilities/_variables.scss';
+
+.carouselWrapper {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: var(--space-xs);
+}
+
+.contentLayout {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
+  gap: 156px;
+
+  @include for-desktop-up {
+    flex-direction: row;
+    gap: var(--space-7xl);
+  }
+}
+
+.info {
+  @include for-desktop-up {
+    min-width: 500px;
+  }
+}
+
+.content {
+  flex: 1;
+
+  @include for-desktop-up {
+    max-width: calc(100% - 500px);
+  }
+}
+
+.contentTitle {
+  margin-top: var(--space-4xl);
+  margin-bottom: var(--space-xs);
+  color: var(--color-neutral-200);
+}

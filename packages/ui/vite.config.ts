@@ -1,12 +1,13 @@
 import { resolve } from 'node:path'
 
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react-swc'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 // import { EsLinter, linterPlugin } from 'vite-plugin-linter'
 import tsConfigPaths from 'vite-tsconfig-paths'
 import packageJson from './package.json'
 import svgr from 'vite-plugin-svgr'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
   publicDir: 'public',
@@ -20,12 +21,23 @@ export default defineConfig({
     dts({
       include: ['src/']
     }),
-    svgr()
+    svgr(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'src/styles',
+          dest: ''
+        },
+        {
+          src: 'src/fonts.css',
+          dest: ''
+        }
+      ]
+    })
   ],
   build: {
     copyPublicDir: true,
     minify: 'esbuild',
-    cssCodeSplit: true,
     lib: {
       entry: resolve('src', 'index.ts'),
       name: 'HyperplayUI',
@@ -33,7 +45,11 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {
-      external: [...Object.keys(packageJson.peerDependencies)]
+      external: [...Object.keys(packageJson.peerDependencies)],
+      input: [
+        resolve(__dirname, './src/index.ts'),
+        resolve(__dirname, './src/assets/images/index.tsx')
+      ]
     }
   }
 })

@@ -19,7 +19,7 @@ interface TransactionToastProps {
   showCloseButton?: boolean
 }
 
-export const TransactionToast = function (props: TransactionToastProps) {
+const TransactionToast = function (props: TransactionToastProps) {
   function getTxnImage(status: statusType) {
     switch (status) {
       case 'pending':
@@ -59,3 +59,5 @@ export const TransactionToast = function (props: TransactionToastProps) {
     </div>
   )
 }
+
+export default TransactionToast

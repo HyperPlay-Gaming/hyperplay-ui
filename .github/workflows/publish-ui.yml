@@ -53,4 +53,9 @@ jobs:
       run: |
         cd packages/ui
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ./.npmrc
-        yarn publish
+        if [[ ${{ steps.set_current_version.outputs.current_version }} == *"-alpha"* ]]; then
+          yarn publish --tag alpha
+        elif [[ ${{ steps.set_current_version.outputs.current_version }} == *"-beta"* ]]; then
+          yarn publish --tag beta
+        else
+          yarn publish

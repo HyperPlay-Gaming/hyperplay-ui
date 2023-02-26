@@ -10,6 +10,7 @@
         "turbo": "^1.7.0"
     },
     "scripts": {
+	"build": "turbo build",
         "lint": "turbo lint",
         "prettier": "turbo prettier"
     },
