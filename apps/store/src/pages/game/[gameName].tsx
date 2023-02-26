@@ -55,6 +55,7 @@ const Game = ({ title, description, media, info, platforms }: GameProps) => {
               title={title}
               info={info}
               platforms={platforms}
+              onActionClick={() => alert()}
             />
           </div>
         </div>
