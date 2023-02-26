@@ -23,7 +23,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        yarn install --immutable --frozen-lockfile
+        yarn install --immutable --frozen-lockfile --ignore-optional
 
     - name: Get previous version
       id: get_previous_version
