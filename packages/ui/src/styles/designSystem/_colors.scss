@@ -1,6 +1,6 @@
 @mixin colorSystem {
   /* Semantic Naming */
-  // Primary
+  /* Primary */
   --color-primary-100: #f2bfff;
   --color-primary-200: #d885ff;
   --color-primary-300: #ab57ff;
@@ -8,13 +8,13 @@
   --color-primary-500: #5905d7;
   --color-primary-600: #4a05a0;
 
-  // Secondary
+  /* Secondary */
   --color-secondary-100: #8eebff;
   --color-secondary-200: #11cff9;
   --color-secondary-300: #0098ba;
   --color-secondary-400: #0078ac;
 
-  // Neutrals
+  /* Neutrals */
   --color-neutral-0: #ffffff;
   --color-neutral-50: #fcfcf9;
   --color-neutral-100: #e0e2e2;
@@ -26,12 +26,12 @@
   --color-neutral-700: #13141a;
   --color-neutral-800: #0c0b0f;
 
-  // Status
+  /* Status */
   --color-status-success: #40ffba;
   --color-status-alert: #fbab4d;
   --color-status-error: #ff6976;
 
-  // Gradients
+  /* Gradients */
   --color-gradient-01: linear-gradient(180deg, #3c71f3 0%, #b923ff 100%);
   --color-gradient-02: linear-gradient(90deg, #3c71f3 0%, #b923ff 100%);
   --color-gradient-03: linear-gradient(180deg, #b923ff 2.6%, #3c71f3 96.35%);
@@ -48,7 +48,7 @@
   --color-gradient-active-primary-offset: 2.6%;
   --color-gradient-active-secondary-offset: 96.35%;
 
-  // Stroke
+  /* Stroke */
   --color-stroke-01: linear-gradient(
     86.63deg,
     #4126e8 2.98%,

@@ -1,16 +1,18 @@
 {
   "name": "@hyperplay/ui",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0-alpha.1",
+  "license": "BUSL-1.1",
   "scripts": {
     "dev": "vite",
     "build": "node scripts/unlinkFonts.cjs && vite build && node scripts/linkFonts.cjs",
     "build:watch": "node scripts/unlinkFonts.cjs && vite build --watch && node scripts/linkFonts.cjs",
     "preview": "vite preview",
-    "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json,.mdx ./src"
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json,.mdx ./src",
+    "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
+    "prettier-fix": "prettier --write .",
+    "prettier": "prettier --check ."
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -33,6 +35,7 @@
     "framer-motion": "^9.0.2",
     "keen-slider": "^6.8.5",
     "next": "^13.1.6",
+    "json": "^11.0.0",
     "prettier": "^2.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -71,7 +74,8 @@
     "./designSystem/_spacing.scss": "./dist/styles/designSystem/_spacing.scss",
     "./designSystem/_typography.scss": "./dist/styles/designSystem/_typography.scss",
     "./utilities/_variables.scss": "./dist/styles/utilities/_variables.scss",
-    "./styles": "./dist/styles"
+    "./styles": "./dist/styles",
+    "./index.css": "./dist/index.css"
   },
   "types": "dist/index.d.ts",
   "eslintConfig": {

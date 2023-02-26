@@ -8,15 +8,15 @@ import {
   TxnSuccess,
   TxnSubmitted
 } from '../../assets/images'
-import classNames from 'classnames'
 
-type statusType = 'pending' | 'submitted' | 'error' | 'alert' | 'success'
+export type statusType = 'pending' | 'submitted' | 'error' | 'alert' | 'success'
 
 interface TransactionToastProps {
   title: string
   subtext: string
   status: statusType
   onClick: () => void
+  showCloseButton?: boolean
 }
 
 const TransactionToast = function (props: TransactionToastProps) {
@@ -45,14 +45,17 @@ const TransactionToast = function (props: TransactionToastProps) {
     <div className={styles.txnPending}>
       <div style={{ width: '80px' }}>{getTxnImage(props.status)}</div>
       <div className={styles.infoContainer}>
-        <div className={classNames('title', styles.txnTitle)}>
-          {props.title}
-        </div>
+        <div className={`title ${styles.txnTitle}`}>{props.title}</div>
         <div className="body color-neutral-50">{props.subtext}</div>
       </div>
-      <div style={{ width: '24px', cursor: 'pointer' }} onClick={props.onClick}>
-        <CloseButton />
-      </div>
+      {props.showCloseButton ? (
+        <div
+          style={{ width: '24px', cursor: 'pointer' }}
+          onClick={props.onClick}
+        >
+          <CloseButton />
+        </div>
+      ) : null}
     </div>
   )
 }
