@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: |
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ./.npmrc
-        yarn install --immutable --frozen-lockfile --ignore-optional
+        yarn install --immutable --frozen-lockfile
 
     - name: Get previous version
       id: get_previous_version
@@ -60,3 +60,4 @@ jobs:
           yarn publish --tag beta
         else
           yarn publish
+        fi;
