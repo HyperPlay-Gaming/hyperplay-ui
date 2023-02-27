@@ -8,6 +8,7 @@ export default {
 
 export const Default = () => (
   <GameInfo
+    onActionClick={() => console.log('clicked')}
     store="hyperplay"
     title="Hyperplay"
     info={{

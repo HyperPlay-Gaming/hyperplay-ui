@@ -23,7 +23,7 @@ export interface GameInfoProps {
   onActionClick?: () => void
 }
 
-const GameInfo = ({ store, title, info, platforms }: GameInfoProps) => {
+const GameInfo = ({ store, title, info, platforms, onActionClick }: GameInfoProps) => {
   return (
     <div className={styles.root}>
       <div className={styles.titleSection}>
@@ -34,7 +34,7 @@ const GameInfo = ({ store, title, info, platforms }: GameInfoProps) => {
       </div>
 
       <div className={styles.infoSection}>
-        <Button fullWidth={true}>Add to Library</Button>
+        <Button fullWidth={true} onClick={onActionClick}>Add to Library</Button>
 
         <div className={styles.info}>
           {Object.entries(info).map(([key, value]) => (
