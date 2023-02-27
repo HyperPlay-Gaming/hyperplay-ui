@@ -17,6 +17,7 @@ export interface Video {
 }
 
 interface GameProps {
+  id: string
   title: string
   description: string
   media: ReturnType<typeof getMediaFromRelease>
@@ -28,11 +29,15 @@ interface GameProps {
   }
 }
 
-const Game = ({ title, description, media, info, platforms }: GameProps) => {
+const Game = ({ id, title, description, media, info, platforms }: GameProps) => {
   const router = useRouter()
 
   const parsedMedia = parseMedia(media)
 
+  const onActionClick = () => {
+    //@ts-ignore
+    window.api && window.api.install(id)
+  }
   return (
     <div className="main">
       <div className="content">
@@ -55,7 +60,7 @@ const Game = ({ title, description, media, info, platforms }: GameProps) => {
               title={title}
               info={info}
               platforms={platforms}
-              onActionClick={() => alert()}
+              onActionClick={onActionClick}
             />
           </div>
         </div>
@@ -76,6 +81,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
+      id: game._id,
       title: game.projectMeta.name,
       description: game.projectMeta.description,
       media,
