@@ -1,9 +1,0 @@
-@import '@hyperplay/ui/utilities/_variables.scss';
-
-.root {
-  padding: var(--space-5xl) 0px var(--space-4xl);
-
-  @include for-mobile-only {
-    display: none;
-  }
-}
