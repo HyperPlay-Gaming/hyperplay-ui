@@ -4,7 +4,8 @@ import {
   LinuxIcon,
   MacOSIcon,
   SteamDeckIcon,
-  WindowsIcon
+  WindowsIcon,
+  WebIcon
 } from '../../assets/images'
 import Button from '../Button'
 import { CaptionSmall } from '../Typography'
@@ -19,11 +20,20 @@ export interface GameInfoProps {
     linux: boolean
     mac: boolean
     windows: boolean
+    web: boolean
   }
+  hideActionButton: boolean
   onActionClick?: () => void
 }
 
-const GameInfo = ({ store, title, info, platforms, onActionClick }: GameInfoProps) => {
+const GameInfo = ({
+  store,
+  title,
+  info,
+  platforms,
+  hideActionButton = false,
+  onActionClick
+}: GameInfoProps) => {
   return (
     <div className={styles.root}>
       <div className={styles.titleSection}>
@@ -34,9 +44,15 @@ const GameInfo = ({ store, title, info, platforms, onActionClick }: GameInfoProp
       </div>
 
       <div className={styles.infoSection}>
-        <Button fullWidth={true} onClick={onActionClick}>Add to Library</Button>
-
-        <div className={styles.info}>
+        {!hideActionButton && (
+          <Button fullWidth={true} onClick={onActionClick}>
+            Add to Library
+          </Button>
+        )}
+        <div
+          className={styles.info}
+          style={hideActionButton ? { paddingTop: 0 } : {}}
+        >
           {Object.entries(info).map(([key, value]) => (
             <div className={styles.infoItem} key={key}>
               <CaptionSmall className={styles.infoTitle}>{key}</CaptionSmall>
@@ -53,6 +69,9 @@ const GameInfo = ({ store, title, info, platforms, onActionClick }: GameInfoProp
                   <LinuxIcon />
                   <SteamDeckIcon style={{ marginLeft: -6 }} />
                 </>
+              )}
+              {platforms.web && (
+                <WebIcon width={20} height={20} style={{ marginLeft: 6 }} />
               )}
             </div>
           </div>
