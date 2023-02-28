@@ -29,7 +29,14 @@ interface GameProps {
   }
 }
 
-const Game = ({ id, title, description, media, info, platforms }: GameProps) => {
+const Game = ({
+  id,
+  title,
+  description,
+  media,
+  info,
+  platforms
+}: GameProps) => {
   const router = useRouter()
 
   const parsedMedia = parseMedia(media)

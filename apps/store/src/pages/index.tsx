@@ -7,6 +7,8 @@ import { getGames } from '@/api/games'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Background } from '@hyperplay/ui'
+import { Release } from '@/api/games.types'
+import fallbackCard from '../../public/fallback_card.jpg'
 
 const { Body } = Typography
 
@@ -95,16 +97,19 @@ export default function Home({ featuredItems, items }: HomeProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const games = await getGames({})
 
-  const featuredItems = games.map((game) => ({
+  const featuredItems = games.filter(featuredFilter).map((game) => ({
     title: game.projectMeta.name,
-    description: game.projectMeta.short_description,
-    image: game.projectMeta.image,
+    description: game.projectMeta.short_description || '',
+    image:
+      game.projectMeta.main_capsule ||
+      game.releaseMeta.image ||
+      game.projectMeta.image,
     link: `/game/${game.projectName}`
   }))
 
-  const items = games.map((game) => ({
+  const items = games.sort(alphabeticalSort).map((game) => ({
     title: game.projectMeta.name,
-    image: game.releaseMeta.image,
+    image: game.projectMeta.image || game.releaseMeta.image || fallbackCard,
     link: `/game/${game.projectName}`
   }))
 
@@ -116,3 +121,24 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60 * 5
   }
 }
+
+const featuredGames = [
+  'thesandbox',
+  'phantomgalaxies',
+  'darkthrone',
+  'thebornless',
+  'undeadblocks',
+  'thebeacon'
+]
+
+const featuredFilter = (game: Release) => {
+  for (const featuredGame of featuredGames) {
+    if (game.projectName === featuredGame) {
+      return true
+    }
+  }
+  return false
+}
+
+const alphabeticalSort = (gameA: Release, gameB: Release) =>
+  gameA.projectMeta.name.localeCompare(gameB.projectMeta.name)
