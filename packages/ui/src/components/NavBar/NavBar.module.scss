@@ -1,3 +1,5 @@
+@import '../../styles/utilities/_variables';
+
 .wrapper {
   display: flex;
   justify-content: center;
@@ -10,7 +12,49 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-5xl) calc(2 * var(--space-5xl));
+  position: relative;
+
+  // sorry not sorry
+  @media (max-width: 750px) {
+    padding: 22px var(--space-md);
+
+    .menu {
+      display: none;
+    }
+
+    .links {
+      display: none;
+    }
+
+    .socials {
+      display: none;
+    }
+
+    .desktopLogo {
+      display: none;
+    }
+  }
+
+  @media (min-width: 750px) {
+    padding: var(--space-2xl) calc(1 * var(--space-5xl));
+
+    .mobileLogo {
+      display: none;
+    }
+
+    .desktopLogo {
+      display: block;
+    }
+
+    .burger {
+      display: none;
+    }
+  }
+
+  @include for-tablet-landscape-up {
+    padding: var(--space-5xl) calc(2 * var(--space-5xl));
+  }
+  // padding: var(--space-5xl) calc(2 * var(--space-5xl));
   // TODO: Mobile version
 }
 
@@ -27,4 +71,23 @@
 .menu {
   display: flex;
   gap: calc(2 * var(--space-5xl));
+}
+
+.mobileMenu {
+  background: black;
+  position: absolute;
+  top: 104px;
+  left: 0px;
+  right: 0px;
+}
+
+.mobileMenuItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+
+  &:hover {
+    background: var(--color-neutral-700);
+  }
 }

@@ -18,10 +18,12 @@ export const Default = () => (
       Genre: 'Action',
       Language: 'English'
     }}
+    hideActionButton={true}
     platforms={{
       linux: true,
       mac: true,
-      windows: true
+      windows: true,
+      web: true
     }}
   />
 )
