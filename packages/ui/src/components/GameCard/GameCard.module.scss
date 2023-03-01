@@ -1,32 +1,13 @@
-@use 'sass:math';
+@import '../../styles/utilities/_variables';
 
-@function difference($a, $b) {
-  @return calc(abs($a - $b) / (($a + $b) / 2));
-}
-
-$card-height: 308px;
+$card-height: 300px;
 $card-width: 200px;
-
-$card-hover-height: $card-height - 2px;
-$card-hover-width: $card-width - 2px;
-
-$content-hover-height-scale: calc(
-  1 + difference($card-hover-height, $card-height)
-);
-$content-hover-width-scale: calc(
-  1 + difference($card-hover-width, $card-width)
-);
-
-$card-hover-height-scale: calc(
-  1 - difference($card-height, $card-hover-height)
-);
-$card-hover-width-scale: calc(1 - difference($card-width, $card-hover-width));
 
 .root {
   box-sizing: border-box;
   position: relative;
-  height: $card-height;
-  width: $card-width;
+  height: 300px;
+  width: 179px;
   cursor: pointer;
 
   &:hover .border {
@@ -37,6 +18,11 @@ $card-hover-width-scale: calc(1 - difference($card-width, $card-hover-width));
       0px 0px 16.128px rgba(61, 11, 111, 0.5),
       0px 0px 8.064px rgba(61, 11, 111, 0.5), 0px 0px 2.304px #3d0b6f,
       0px 0px 1.152px #3d0b6f;
+  }
+
+  @include for-tablet-portrait-up {
+    height: 308px;
+    width: 200px;
   }
 }
 
@@ -65,15 +51,14 @@ $card-hover-width-scale: calc(1 - difference($card-width, $card-hover-width));
   border-radius: var(--space-xs); // todo fix vars
   border: 1px solid var(--color-neutral-600);
   background: var(--color-neutral-700);
-  transform-origin: center;
-  transition: transform 0.2s ease-in-out, border 0.2s ease-in-out;
+  transition: inset 0.2s ease-in-out, border 0.2s ease-in-out;
 
   .content {
     box-sizing: border-box;
 
-    padding: 16px;
+    padding: 8px;
     transform-origin: center;
-    transition: transform 0.2s ease-in-out;
+    transition: inset 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -85,18 +70,26 @@ $card-hover-width-scale: calc(1 - difference($card-width, $card-hover-width));
     right: 0;
 
     h6 {
-      width: 166px;
+      // width: 163px;
       color: var(--color-neutral-50);
+    }
+
+    @include for-tablet-portrait-up {
+      padding: 16px;
+
+      h6 {
+        width: 180px;
+      }
     }
   }
 
   &:hover {
-    transform: scale($card-hover-width-scale, $card-hover-height-scale);
+    inset: 2px;
     border: 1px solid var(--color-neutral-700);
   }
 
   &:hover .content {
-    transform: scale($content-hover-width-scale, $content-hover-height-scale);
+    inset: -2px;
   }
 }
 
