@@ -2,7 +2,8 @@ import React from 'react'
 import Button from '.'
 
 export default {
-  title: 'Button'
+  title: 'Button',
+  component: Button
 }
 
 export const Primary = () => <Button>Test</Button>

@@ -14,6 +14,7 @@ export interface ButtonProps extends PropsWithChildren {
   fixedWidth?: number
   fullWidth?: boolean
   active?: boolean
+  disabled?: boolean
 }
 
 export default function Button({
@@ -25,6 +26,7 @@ export default function Button({
   fixedWidth,
   fullWidth,
   active,
+  disabled,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClick = () => {}
 }: ButtonProps) {
@@ -48,6 +50,7 @@ export default function Button({
       <button
         onClick={onClick}
         ref={buttonRef}
+        disabled={disabled}
         className={classNames(
           styles.base,
           styles[type],
