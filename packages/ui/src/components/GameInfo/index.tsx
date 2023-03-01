@@ -22,18 +22,10 @@ export interface GameInfoProps {
     windows: boolean
     web: boolean
   }
-  hideActionButton: boolean
-  onActionClick?: () => void
+  action?: JSX.Element
 }
 
-const GameInfo = ({
-  store,
-  title,
-  info,
-  platforms,
-  hideActionButton = false,
-  onActionClick
-}: GameInfoProps) => {
+const GameInfo = ({ store, title, info, platforms, action }: GameInfoProps) => {
   return (
     <div className={styles.root}>
       <div className={styles.titleSection}>
@@ -44,15 +36,8 @@ const GameInfo = ({
       </div>
 
       <div className={styles.infoSection}>
-        {!hideActionButton && (
-          <Button fullWidth={true} onClick={onActionClick}>
-            Add to Library
-          </Button>
-        )}
-        <div
-          className={styles.info}
-          style={hideActionButton ? { paddingTop: 0 } : {}}
-        >
+        {action && <div className={styles.action}>{action}</div>}
+        <div className={styles.info} style={{ paddingTop: 0 }}>
           {Object.entries(info).map(([key, value]) => (
             <div className={styles.infoItem} key={key}>
               <CaptionSmall className={styles.infoTitle}>{key}</CaptionSmall>

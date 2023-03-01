@@ -1,5 +1,6 @@
 import React from 'react'
 import GameInfo from '.'
+import Button from '../Button'
 
 export default {
   title: 'GameInfo',
@@ -8,7 +9,6 @@ export default {
 
 export const Default = () => (
   <GameInfo
-    onActionClick={() => console.log('clicked')}
     store="hyperplay"
     title="Hyperplay"
     info={{
@@ -18,12 +18,12 @@ export const Default = () => (
       Genre: 'Action',
       Language: 'English'
     }}
-    hideActionButton={true}
     platforms={{
       linux: true,
       mac: true,
       windows: true,
       web: true
     }}
+    action={<Button fullWidth={true}>Add to Library</Button>}
   />
 )
