@@ -7,7 +7,6 @@ import {
   WindowsIcon,
   WebIcon
 } from '../../assets/images'
-import Button from '../Button'
 import { CaptionSmall } from '../Typography'
 
 import styles from './GameInfo.module.scss'

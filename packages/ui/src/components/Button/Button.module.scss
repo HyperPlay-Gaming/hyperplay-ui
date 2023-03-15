@@ -131,6 +131,11 @@
   transition: transform 0.25s ease-out;
   border-radius: 0;
 
+  svg path {
+    fill: var(--color-primary-200);
+    transition: fill 0.25s ease-out;
+  }
+
   .content:after {
     content: '';
     position: absolute;
@@ -150,6 +155,10 @@
     &:after {
       transform: scaleX(1);
       transform-origin: bottom left;
+    }
+
+    svg path {
+      fill: #ff83e2;
     }
   }
 

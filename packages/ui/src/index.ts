@@ -10,5 +10,8 @@ export { FeaturedCarousel, ContentCarousel } from './components/Carousel'
 export { default as Background } from './components/Background'
 export { default as CircularButton } from './components/CircularButton'
 export { default as GameInfo } from './components/GameInfo'
+export { default as ModalAnimation } from './components/Modal/ModalAnimation'
+export { default as InfoAlert } from './components/Alerts/InfoAlert'
+
 export * as Typography from './components/Typography'
 export * as Images from './assets/images'

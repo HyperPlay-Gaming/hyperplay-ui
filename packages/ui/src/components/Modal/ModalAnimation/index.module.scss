@@ -1,0 +1,47 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+  opacity: 0;
+
+  &.open {
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+
+  &.disabled {
+    display: none;
+  }
+}
+
+.modal {
+  z-index: 1;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease-in-out;
+}
+.modalOpen {
+  transform: translateY(0px);
+}
