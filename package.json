@@ -54,7 +54,13 @@
     "vite-plugin-static-copy": "^0.13.0",
     "vite-plugin-svgr": "^2.4.0",
     "vite-tsconfig-paths": "^4.0.5",
-    "youtube-player": "^5.6.0"
+    "youtube-player": "^5.6.0",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "eslint": "^8.33.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-react": "^7.32.2"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
