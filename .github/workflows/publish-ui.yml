@@ -47,7 +47,7 @@ jobs:
       - name: Build @hyperplay/ui
         if: steps.compare_versions.outputs.do_release == 'true'
         run: |
-          npx turbo run build --filter=@hyperplay/ui
+          yarn build
 
       - name: Release to npm
         if: steps.compare_versions.outputs.do_release == 'true'
