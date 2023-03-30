@@ -1,5 +1,7 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react'
 
+import styles from './index.module.scss'
+
 export type TypographyProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>>
 
 export const Heading1 = (props: TypographyProps) => (
@@ -27,43 +29,49 @@ export const Heading6 = (props: TypographyProps) => (
 )
 
 export const Menu = (props: TypographyProps) => (
-  <div className="menu" {...props}>
+  <div {...props} className={`${styles.menu} ${props.className}`}>
     {props.children}
   </div>
 )
 
 export const Title = (props: TypographyProps) => (
-  <div className="title" {...props}>
+  <div {...props} className={`${styles.title} ${props.className}`}>
     {props.children}
   </div>
 )
 
 export const Caption = (props: TypographyProps) => (
-  <div className="caption" {...props}>
+  <div {...props} className={`${styles.caption} ${props.className}`}>
     {props.children}
   </div>
 )
 
 export const CaptionSmall = (props: TypographyProps) => (
-  <div className="caption-sm" {...props}>
+  <div {...props} className={`${styles.captionSm} ${props.className}`}>
     {props.children}
   </div>
 )
 
 export const Body = (props: TypographyProps) => (
-  <div className="body" {...props}>
+  <div {...props} className={`${styles.body} ${props.className}`}>
     {props.children}
   </div>
 )
 
 export const BodySmall = (props: TypographyProps) => (
-  <div className="body-sm" {...props}>
+  <div {...props} className={`${styles.bodySm} ${props.className}`}>
     {props.children}
   </div>
 )
 
-export const ButtonSmall = (props: TypographyProps) => (
-  <div className="button-sm" {...props}>
+export const ButtonSmallText = (props: TypographyProps) => (
+  <div {...props} className={`${styles.buttonSm} ${props.className}`}>
+    {props.children}
+  </div>
+)
+
+export const ButtonText = (props: TypographyProps) => (
+  <div {...props} className={`${styles.button} ${props.className}`}>
     {props.children}
   </div>
 )
