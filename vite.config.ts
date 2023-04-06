@@ -4,16 +4,18 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import svgr from 'vite-plugin-svgr'
-// import { EsLinter, linterPlugin } from 'vite-plugin-linter'
-import tsConfigPaths from 'vite-tsconfig-paths'
 
 import packageJson from './package.json'
 
 export default defineConfig({
   publicDir: 'public',
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
+  },
   plugins: [
     react(),
-    tsConfigPaths(),
     // linterPlugin({
     //   include: ['./src}/**/*.{ts,tsx}'],
     //   linters: [new EsLinter({ configEnv })],
