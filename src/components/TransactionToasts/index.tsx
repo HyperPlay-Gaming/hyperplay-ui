@@ -21,7 +21,7 @@ interface TransactionToastProps {
   showCloseButton?: boolean
 }
 
-export default function TransactionToast (props: TransactionToastProps) {
+export default function TransactionToast(props: TransactionToastProps) {
   function getTxnImage(status: statusType): JSX.Element {
     switch (status) {
       case 'pending':
