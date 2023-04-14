@@ -1,14 +1,15 @@
 import React from 'react'
 
-import * as Toasts from '.'
+import TransactionToast from '.'
 
 export default {
-  title: 'TransactionToasts'
+  title: 'TransactionToasts',
+  component: TransactionToast
 }
 
 export const Pending = () => {
   return (
-    <Toasts.TransactionToast
+    <TransactionToast
       status="pending"
       title="Transaction request pending"
       subtext="A wallet confirmation is pending on your mobile wallet."
@@ -20,7 +21,7 @@ export const Pending = () => {
 
 export const Submitted = () => {
   return (
-    <Toasts.TransactionToast
+    <TransactionToast
       status="submitted"
       title="Transaction submitted"
       subtext="We are waiting confirmation from the blockchain. We will let you know when it’s confirmed."
@@ -31,7 +32,7 @@ export const Submitted = () => {
 
 export const Error = () => {
   return (
-    <Toasts.TransactionToast
+    <TransactionToast
       status="error"
       title="Transaction interrupted"
       subtext="Transaction was canceled or not submitted, please try again."
@@ -43,7 +44,7 @@ export const Error = () => {
 
 export const Alert = () => {
   return (
-    <Toasts.TransactionToast
+    <TransactionToast
       status="alert"
       title="Reconnecting..."
       subtext="Re-open MetaMask Mobile to re-establish connection."
@@ -54,7 +55,7 @@ export const Alert = () => {
 
 export const Success = () => {
   return (
-    <Toasts.TransactionToast
+    <TransactionToast
       status="success"
       title="Transaction confirmed"
       subtext="The transaction was successfully confirmed!"
