@@ -1,42 +1,35 @@
 @function em($px) {
-  @return #{calc($px / 16)}em;
+  @return #{calc($px / 16)}rem;
 }
 
-@mixin spacingSystem {
-  /* spacing values */
-  --space-3xs: #{em(4)};
-  --space-2xs: #{em(6)};
-  --space-xs: #{em(8)};
-  --space-sm: #{em(10)};
-  --space-md: #{em(12)};
-  --space-lg: #{em(16)};
-  --space-xl: #{em(18)};
-  --space-2xl: #{em(20)};
-  --space-3xl: #{em(24)};
-  --space-4xl: #{em(32)};
-  --space-5xl: #{em(40)};
-  --space-6xl: #{em(48)};
-  --space-7xl: #{em(59)};
-  --space-8xl: #{em(68)};
+$spacing-map: (
+  'xxs': 2,
+  'xs': 4,
+  'sm': 8,
+  'md': 12,
+  'lg': 16,
+  'xl': 24,
+  'xxxl': 32,
+  '2xxl': 48,
+  '3xxl': 56,
+  '4xxl': 64,
+  '5xxl': 96,
+  '6xxl': 128,
+  '7xxl': 164,
+  '8xxl': 200,
+  '9xxl': 256,
+  '10xxl': 512
+);
 
-  --space-3xs-fixed: 4px;
-  --space-2xs-fixed: 6px;
-  --space-xs-fixed: 8px;
-  --space-sm-fixed: 10px;
-  --space-md-fixed: 12px;
-  --space-lg-fixed: 16px;
-  --space-xl-fixed: 18px;
-  --space-2xl-fixed: 20px;
-  --space-3xl-fixed: 24px;
-  --space-4xl-fixed: 32px;
-  --space-5xl-fixed: 40px;
-  --space-6xl-fixed: 48px;
-  --space-7xl-fixed: 59px;
-  --space-8xl-fixed: 68px;
+@mixin uiSpacing {
+  @each $key, $value in $spacing-map {
+    --ui-space--#{$key}: #{em($value)};
+    --ui-space--#{$key}-fixed: #{$value}px;
+  }
 }
 
 :root {
-  @include spacingSystem;
+  @include uiSpacing;
 }
 
 h1,

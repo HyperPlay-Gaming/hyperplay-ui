@@ -1,11 +1,12 @@
 @use './styles/designSystem/typography';
 @use './styles/designSystem/spacing';
 @use './styles/designSystem/colors';
-@use './styles/designSystem/buttons';
+@use './styles/designSystem/effects';
+
 :root {
-  @include typography.typeSystem;
-  @include spacing.spacingSystem;
-  @include colors.colorSystem;
+  @include typography.uiTypography;
+  @include spacing.uiSpacing;
+  @include colors.uiColors;
 
   overflow-y: overlay;
   /* Effects */

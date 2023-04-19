@@ -55,7 +55,7 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   width: 96px;
   height: 56px;
 
-  background: var(--color-stroke-01);
+  background: var(--ui-color-stroke-01);
   border-radius: 8px;
   transition: transform 0.3s ease-in-out;
   z-index: 1;

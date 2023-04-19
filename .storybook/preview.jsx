@@ -20,4 +20,11 @@ export const parameters = {
   }
 }
 
-export const decorators = [(Story) => <Story />]
+export const decorators = [
+  (Story) => (
+    <>
+      <style>{`body { background-color: black; }`}</style>
+      <Story />
+    </>
+  )
+]

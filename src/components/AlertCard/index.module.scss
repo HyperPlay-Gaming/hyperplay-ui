@@ -4,17 +4,17 @@
 
 .alert {
   .icon svg path {
-    fill: var(--color-status-alert);
+    fill: var(--ui-color-status-alert);
   }
 }
 
 .danger {
   .icon svg path {
-    fill: var(--color-status-error);
+    fill: var(--ui-color-status-error);
   }
 
   .title {
-    color: var(--color-status-error);
+    color: var(--ui-color-status-error);
   }
 }
 
@@ -23,7 +23,7 @@
   grid-template-columns: 24px 1fr 20px;
   grid-template-rows: auto auto;
   gap: 16px 12px;
-  background: var(--color-neutral-600);
+  background: var(--ui-color-neutral-600);
   padding: var(--space-lg);
   border-radius: var(--space-xs);
 }
@@ -31,7 +31,7 @@
   grid-area: 1 / 1 / 2 / 3;
 
   svg path {
-    fill: var(--color-status-alert);
+    fill: var(--ui-color-status-alert);
   }
 }
 .close {
@@ -42,7 +42,7 @@
     transition: fill 0.2s ease-in-out;
   }
   svg:hover path {
-    fill: var(--color-neutral-200);
+    fill: var(--ui-color-neutral-200);
   }
 }
 .text {

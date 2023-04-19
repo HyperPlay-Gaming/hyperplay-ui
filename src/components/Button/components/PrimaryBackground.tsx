@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useEvent } from 'react-use'
 
 import { motion } from 'framer-motion'
 
 import useCSSVariable from '@/utils/useCSSVariable'
+
+const ANIM_DURATION = 0.25
+const ANIM_DURATION_MS = ANIM_DURATION * 1000
 
 interface PrimaryBackgroundProps {
   width: number
@@ -17,31 +20,68 @@ const PrimaryBackground = ({
   buttonElement
 }: PrimaryBackgroundProps) => {
   const randomId = Math.random().toString(36).substring(7)
+  const pressedTime = useRef<null | number>()
 
-  const primaryGradientColor = useCSSVariable('--color-gradient-primary')
-  const secondaryGradientColor = useCSSVariable('--color-gradient-secondary')
-  const defaultRotation = useCSSVariable('--color-gradient-default-rotation')
-  const hoverRotation = useCSSVariable('--color-gradient-hover-rotation')
-  const activeRotation = useCSSVariable('--color-gradient-active-rotation')
-  const activePrimaryOffset = useCSSVariable(
-    '--color-gradient-active-primary-offset'
-  )
-  const activeSecondaryOffset = useCSSVariable(
-    '--color-gradient-active-secondary-offset'
-  )
+  const settings = {
+    default: {
+      primary: useCSSVariable('--ui-color-gradient-primary'),
+      secondary: useCSSVariable('--ui-color-gradient-secondary'),
+      primaryOffset: useCSSVariable('--ui-color-gradient-primary-offset'),
+      secondaryOffset: useCSSVariable('--ui-color-gradient-secondary-offset'),
+      rotation: useCSSVariable('--ui-color-gradient-rotation')
+    },
+    hover: {
+      primary: useCSSVariable('--ui-color-gradient-hover-primary'),
+      secondary: useCSSVariable('--ui-color-gradient-hover-secondary'),
+      primaryOffset: useCSSVariable('--ui-color-gradient-hover-primary-offset'),
+      secondaryOffset: useCSSVariable(
+        '--ui-color-gradient-hover-secondary-offset'
+      ),
+      rotation: useCSSVariable('--ui-color-gradient-hover-rotation')
+    },
+    active: {
+      primary: useCSSVariable('--ui-color-gradient-active-primary'),
+      secondary: useCSSVariable('--ui-color-gradient-active-secondary'),
+      primaryOffset: useCSSVariable(
+        '--ui-color-gradient-active-primary-offset'
+      ),
+      secondaryOffset: useCSSVariable(
+        '--ui-color-gradient-active-secondary-offset'
+      ),
+      rotation: useCSSVariable('--ui-color-gradient-active-rotation')
+    }
+  }
 
-  const [rotation, setRotationState] = useState(defaultRotation)
-  const setRotation = (rotation: string) => setRotationState(rotation)
+  const [state, setState] = useState<keyof typeof settings>('default')
 
   // modify the useEvents to use useEffect
-  useEvent('mouseenter', () => setRotation(hoverRotation), buttonElement)
-  useEvent('mouseleave', () => setRotation(defaultRotation), buttonElement)
-  useEvent('mousedown', () => setRotation(activeRotation), buttonElement)
-  useEvent('mouseup', () => setRotation(hoverRotation), buttonElement)
+  useEvent('mouseenter', () => setState('hover'), buttonElement)
+  useEvent('mouseleave', () => setState('default'), buttonElement)
+  useEvent(
+    'mousedown',
+    () => {
+      setState('active')
+      pressedTime.current = Date.now()
+    },
+    buttonElement
+  )
+  useEvent(
+    'mouseup',
+    () => {
+      if (Date.now() - pressedTime.current! < ANIM_DURATION_MS) {
+        // persist animation if mouseup is too fast
+        setTimeout(() => {
+          setState('hover')
+        }, pressedTime.current! + ANIM_DURATION_MS - Date.now())
+      } else {
+        // full animation has been played, return to normal
+        setState('hover')
+      }
+    },
+    buttonElement
+  )
 
-  const isActive = rotation === activeRotation
-
-  useEffect(() => console.log(buttonElement), [])
+  const currentSettings = settings[state]
 
   return (
     <motion.svg
@@ -53,17 +93,23 @@ const PrimaryBackground = ({
       <motion.linearGradient
         id={randomId}
         animate={{
-          gradientTransform: `rotate(${rotation}, 0.5, 0.5)`
+          gradientTransform: `rotate(${currentSettings.rotation}, 0.5, 0.5)`
         }}
-        transition={{ duration: 0.25, ease: 'easeInOut' }}
+        transition={{ duration: ANIM_DURATION, ease: 'easeInOut' }}
       >
         <motion.stop
-          stopColor={primaryGradientColor}
-          animate={{ offset: isActive ? activePrimaryOffset : '0%' }}
+          animate={{
+            stopColor: currentSettings.primary,
+            offset: currentSettings.primaryOffset
+          }}
+          transition={{ duration: ANIM_DURATION, ease: 'easeInOut' }}
         />
         <motion.stop
-          stopColor={secondaryGradientColor}
-          animate={{ offset: isActive ? activeSecondaryOffset : '100%' }}
+          animate={{
+            stopColor: currentSettings.secondary,
+            offset: currentSettings.secondaryOffset
+          }}
+          transition={{ duration: ANIM_DURATION, ease: 'easeInOut' }}
         />
       </motion.linearGradient>
 

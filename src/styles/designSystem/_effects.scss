@@ -1,0 +1,19 @@
+*[class^='ui-backgound-blur--'] {
+  transition: background-color 0.2s ease-in-out,
+    backdrop-filter 0.2s ease-in-out;
+}
+
+.ui-background-blur--soft {
+  backdrop-filter: blur(25px);
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.ui-background-blur--medium {
+  backdrop-filter: blur(50px);
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.ui-background-blur--intense {
+  backdrop-filter: blur(80px);
+  background-color: rgba(255, 255, 255, 0.01);
+}

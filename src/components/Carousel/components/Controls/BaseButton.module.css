@@ -4,7 +4,7 @@
   height: 24px;
   align-items: center;
   border-radius: 50%;
-  background: var(--color-primary-400);
+  background: var(--ui-color-primary-400);
   border: none;
   filter: drop-shadow(2px 0px 40px rgba(61, 11, 111, 0.5))
     drop-shadow(2px 0px 40px rgba(61, 11, 111, 0.4))

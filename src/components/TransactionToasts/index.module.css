@@ -1,7 +1,7 @@
 .txnPending {
   display: inline-flex;
   flex-direction: row;
-  background-color: var(--color-neutral-700);
+  background-color: var(--ui-color-neutral-700);
   padding: var(--space-3xl);
   border-radius: var(--space-xs);
   gap: var(--space-lg);

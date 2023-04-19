@@ -1,5 +1,5 @@
 .circularButton {
-  background: var(--color-primary-400);
+  background: var(--ui-color-primary-400);
   width: var(--space-6xl);
   height: var(--space-6xl);
   border: none;
@@ -18,6 +18,6 @@
   }
 
   &:active svg path {
-    fill: var(--color-neutral-200);
+    fill: var(--ui-color-neutral-200);
   }
 }

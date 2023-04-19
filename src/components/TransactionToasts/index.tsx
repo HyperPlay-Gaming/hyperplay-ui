@@ -26,29 +26,23 @@ const TransactionToast = function (props: TransactionToastProps) {
     switch (status) {
       case 'pending':
         return <TxnPending />
-        break
       case 'submitted':
         return <TxnSubmitted />
-        break
       case 'error':
         return <TxnError />
-        break
       case 'alert':
         return <TxnAlert />
-        break
       case 'success':
         return <TxnSuccess />
-        break
     }
-    return <></>
   }
 
   return (
     <div className={styles.txnPending}>
       <div style={{ width: '80px' }}>{getTxnImage(props.status)}</div>
       <div className={styles.infoContainer}>
-        <div className={`title ${styles.txnTitle}`}>{props.title}</div>
-        <div className="body color-neutral-50">{props.subtext}</div>
+        <div className={`ui-title ${styles.txnTitle}`}>{props.title}</div>
+        <div className="ui-body color-neutral-50">{props.subtext}</div>
       </div>
       {props.showCloseButton ? (
         <div

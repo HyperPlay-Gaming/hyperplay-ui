@@ -18,8 +18,8 @@ const ImageComponent = ({ src }: ImageProps) => {
 }
 
 const Image = (props: ImageProps) => {
-  const baseColor = useCSSVariable('--color-neutral-500')
-  const highlightColor = useCSSVariable('--color-neutral-400')
+  const baseColor = useCSSVariable('--ui-color-neutral-500')
+  const highlightColor = useCSSVariable('--ui-color-neutral-400')
 
   return (
     <Suspense

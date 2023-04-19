@@ -1,25 +1,24 @@
 @use '../utilities/variables';
-/*
-with 1.2 scale ratio and 16px root font size
-name px rem
-xs	11.11	0.69
-sm	13.33	0.83
-md	16.00	1.00
-lg	19.20	1.20
-xl	23.04	1.44
-2xl	27.65	1.73
-3xl	33.18	2.07
-4xl	39.81	2.49
-5xl	47.78	2.99
-6xl	57.33	3.58
-*/
+@use '../utilities/utils';
 
-@mixin typeSystem {
-  --default-primary-font-family: 'Rajdhani', normal;
-  --default-secondary-font-family: 'Barlow', normal;
-  --default-tertiary-font-family: 'PP Fraktion Sans';
-  --primary-font-family: var(--default-primary-font-family);
-  --secondary-font-family: var(--default-secondary-font-family);
+// Whilst I've done my best to mimick the previous design system, this functionality isn't used within the codebase whilst heavily decreasing the DX, maintainability and readability of the code
+// $ui-size-map: (
+//   'xxs': 12,
+//   'xs': 15,
+//   'sm': 16,
+//   'md': 18,
+//   'lg': 20,
+//   'xl': 24,
+//   '2xl': 32,
+//   '3xl': 40,
+//   '4xl': 48,
+//   '5xl': 56,
+//   '6xl': 64
+// );
+
+@mixin uiTypography {
+  --ui-primary-font: 'Rajdhani', normal;
+  --ui-secondary-font: 'Barlow', normal;
   --light: 300;
   --regular: 400;
   --medium: 500;
@@ -27,58 +26,57 @@ xl	23.04	1.44
   --bold: 700;
   --extrabold: 900;
 
-  /* set base values */
-  --text-scale-ratio: 1.2;
-  font-size: 16px;
-
-  /* type scale */
-  --text-xs: calc(1rem / (var(--text-scale-ratio) * var(--text-scale-ratio)));
-  --text-sm: calc(1rem / var(--text-scale-ratio));
-  --text-md: calc(1rem);
-  --text-lg: calc(1rem * var(--text-scale-ratio));
-  --text-xl: calc(1rem * var(--text-scale-ratio) * var(--text-scale-ratio));
-  --text-2xl: calc(
-    1rem * var(--text-scale-ratio) * var(--text-scale-ratio) *
-      var(--text-scale-ratio)
-  );
-  --text-3xl: calc(
-    1rem * var(--text-scale-ratio) * var(--text-scale-ratio) *
-      var(--text-scale-ratio) * var(--text-scale-ratio)
-  );
-  --text-4xl: calc(
-    1rem * var(--text-scale-ratio) * var(--text-scale-ratio) *
-      var(--text-scale-ratio) * var(--text-scale-ratio) *
-      var(--text-scale-ratio)
-  );
-  --text-5xl: calc(
-    1rem * var(--text-scale-ratio) * var(--text-scale-ratio) *
-      var(--text-scale-ratio) * var(--text-scale-ratio) *
-      var(--text-scale-ratio) * var(--text-scale-ratio)
-  );
-  --text-6xl: calc(
-    1rem * var(--text-scale-ratio) * var(--text-scale-ratio) *
-      var(--text-scale-ratio) * var(--text-scale-ratio) *
-      var(--text-scale-ratio) * var(--text-scale-ratio) *
-      var(--text-scale-ratio)
-  );
+  // @each $key, $value in $ui-size-map {
+  //   --ui-text-#{$key}: #{utils.pxToRem($value)};
+  // }
 }
 
-:root {
-  @include typeSystem;
+.light {
+  font-weight: var(--light);
 }
 
-body {
-  font-size: 1rem;
-  font-family: var(--secondary-font-family), -apple-system, BlinkMacSystemFont,
-    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
-  font-style: normal;
+.regular {
   font-weight: var(--regular);
 }
 
+.medium {
+  font-weight: var(--medium);
+}
+
+.semibold {
+  font-weight: var(--semibold);
+}
+
+.bold {
+  font-weight: var(--bold);
+}
+
+.extrabold {
+  font-weight: var(--extrabold);
+}
+
+body {
+  font-family: var(--ui-secondary-font), -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+// @each $key, $value in $ui-size-map {
+//   .text--#{$key} {
+//     font-size: var(--ui-text-#{$key});
+//   }
+// }
+
 /* FONT FAMILIES */
-code {
-  font-family: var(--secondary-font-family), source-code-pro, Menlo, Monaco,
+code,
+.ui-caption,
+.ui-caption--sm,
+.ui-eyebrow,
+.ui-body,
+.ui-body--sm,
+.ui-button,
+.ui-button--sm {
+  font-family: var(--ui-secondary-font), source-code-pro, Menlo, Monaco,
     Consolas, 'Courier New', monospace;
 }
 
@@ -88,206 +86,109 @@ h3,
 h4,
 h5,
 h6,
-.menu,
-.title {
+.ui-menu,
+.ui-title {
   font-family: var(--primary-font-family);
-}
-
-.caption,
-.caption-sm,
-.eyebrow,
-.body,
-.body-sm,
-button,
-.button,
-.button-sm {
-  font-family: var(--secondary-font-family);
-}
-
-/* SIZES */
-/* Helpers */
-.text--6xl {
-  font-size: var(--text-6xl);
-}
-
-.text--5xl {
-  font-size: var(--text-5xl);
-}
-
-.text--4xl {
-  font-size: var(--text-4xl);
-}
-
-.text--3xl {
-  font-size: var(--text-3xl);
-}
-
-.text--2xl {
-  font-size: var(--text-2xl);
-}
-
-.text--xl {
-  font-size: var(--text-xl);
-}
-
-.text--lg {
-  font-size: var(--text-xl);
-}
-
-.text--md {
-  font-size: var(--text-xl);
-}
-
-.text--sm {
-  font-size: var(--text-xl);
-}
-
-.text--xs {
-  font-size: var(--text-xl);
 }
 
 /* Elements */
 h1 {
-  font-size: var(--text-6xl);
-  font-weight: var(--semibold);
-  line-height: calc(var(--text-6xl) * 64 / 56);
-  letter-spacing: -1px;
+  font-size: utils.pxToRem(64);
+  line-height: utils.pxToRem(72);
+  letter-spacing: utils.pxToRem(-1);
 }
 
 h2 {
-  font-size: var(--text-5xl);
-  font-weight: var(--semibold);
-  line-height: calc(var(--text-5xl) * 1.24);
-  letter-spacing: -1px;
+  font-size: utils.pxToRem(56);
+  line-height: utils.pxToRem(64);
+  letter-spacing: utils.pxToRem(-1);
 }
 
 h3 {
-  font-size: var(--text-4xl);
-  font-weight: var(--semibold);
-  line-height: calc(var(--text-4xl) * 1.2);
-  letter-spacing: -1px;
+  font-size: utils.pxToRem(48);
+  line-height: utils.pxToRem(56);
+  letter-spacing: utils.pxToRem(-1);
 }
 
 h4 {
-  font-size: var(--text-3xl);
-  font-weight: var(--medium);
-  line-height: calc(var(--text-3xl) * 1.24);
-  letter-spacing: -0.5px;
+  font-size: utils.pxToRem(40);
+  line-height: utils.pxToRem(56);
+  letter-spacing: utils.pxToRem(-1);
 }
 
 h5 {
-  font-size: var(--text-xl);
+  font-size: utils.pxToRem(32);
   font-weight: var(--bold);
-  line-height: calc(var(--text-xl) * 1.24);
+  letter-spacing: utils.pxToRem(-0.5);
 }
 
 h6 {
-  font-size: var(--text-lg);
+  font-size: utils.pxToRem(24);
+  line-height: utils.pxToRem(40);
+  letter-spacing: utils.pxToRem(-0.5);
+}
+
+.ui-menu {
+  font-size: utils.pxToRem(16);
   font-weight: var(--semibold);
-  line-height: calc(var(--text-lg) * 1.32);
+  line-height: utils.pxToRem(24);
+  letter-spacing: utils.pxToRem(1);
 }
 
-@mixin menu {
-  font-size: var(--text-md);
-  font-weight: var(--semibold);
-  line-height: calc(var(--text-md) * 24 / 16);
-  letter-spacing: 1px;
+.ui-title {
+  font-size: utils.pxToRem(20);
+  font-weight: var(--bold);
+  line-height: utils.pxToRem(24);
 }
 
-.menu {
-  @include menu;
-}
-
-@mixin title {
-  font-size: var(--text-lg);
-  font-weight: var(--semibold);
-  line-height: calc(var(--text-lg) * 24 / 20);
-}
-
-.title {
-  @include title;
-}
-
-@mixin caption {
-  font-size: var(--text-md);
+.ui-title--sm {
+  font-size: utils.pxToRem(18);
   font-weight: var(--medium);
-  line-height: calc(var(--text-md) * 18 / 15);
+  line-height: utils.pxToRem(20);
 }
 
-.caption {
-  @include caption;
-}
-
-@mixin caption-sm {
-  font-size: var(--text-sm);
+.ui-body {
+  font-size: utils.pxToRem(16);
   font-weight: var(--regular);
-  line-height: calc(var(--text-sm) * 20 / 14);
-  letter-spacing: 0.25px;
+  line-height: utils.pxToRem(24);
+  letter-spacing: utils.pxToRem(0.25);
 }
 
-.caption-sm {
-  @include caption-sm;
+.ui-body--sm {
+  font-size: utils.pxToRem(14);
+  font-weight: var(--regular);
+  line-height: utils.pxToRem(20);
 }
 
-@mixin eyebrow {
-  font-size: var(--text-sm);
+.ui-caption {
+  font-size: utils.pxToRem(15);
+  font-weight: var(--medium);
+  line-height: utils.pxToRem(20);
+}
+
+.ui-caption--sm {
+  font-size: utils.pxToRem(12);
+  font-weight: var(--regular);
+  line-height: utils.pxToRem(16);
+  letter-spacing: utils.pxToRem(0.25);
+}
+
+.ui-eyebrow {
+  font-size: utils.pxToRem(12);
   font-weight: var(--semibold);
-  line-height: calc(var(--text-sm) * 24 / 14);
+  line-height: utils.pxToRem(16);
 }
 
-.eyebrow {
-  @include eyebrow;
-}
-
-@mixin body {
-  font-size: var(--text-md);
-  font-weight: var(--regular);
-  line-height: calc(var(--text-md) * 24 / 16);
-  letter-spacing: 0.25px;
-}
-
-.body {
-  @include body;
-}
-
-@mixin body-sm {
-  font-size: var(--text-sm);
-  font-weight: var(--regular);
-  line-height: calc(var(--text-sm) * 20 / 14);
-}
-
-.body-sm {
-  @include body-sm;
-}
-
-@mixin button {
-  font-size: var(--text-lg);
+.ui-button {
+  font-size: utils.pxToRem(18);
   font-weight: var(--semibold);
-  line-height: calc(var(--text-lg) * 24 / 18);
+  line-height: utils.pxToRem(24);
+  letter-spacing: utils.pxToRem(-1);
 }
 
-.button {
-  @include button;
-}
-
-@mixin button-sm {
-  font-size: var(--text-sm);
-  font-weight: var(--bold);
-  line-height: calc(var(--text-sm) * 20 / 14);
-}
-
-.button-sm {
-  @include button-sm;
-}
-
-@mixin menu-item {
-  font-size: var(--text-sm);
-  font-weight: var(--bold);
-  line-height: var(--text-md);
-  text-transform: uppercase;
-  font-family: var(--default-tertiary-font-family);
-}
-
-.menu-item {
-  @include menu-item;
+.ui-button--sm {
+  font-size: utils.pxToRem(16);
+  font-weight: var(--semibold);
+  line-height: utils.pxToRem(20);
+  letter-spacing: utils.pxToRem(-1);
 }

@@ -2,13 +2,18 @@ import React, { HTMLAttributes } from 'react'
 
 import pattern from '@/assets/background/pattern.svg?url'
 
-import './test.css'
+import variants, { Variants } from './variants'
 
-// allow things like className & style to be passed to the component
+export type BackgroundProps = HTMLAttributes<HTMLOrSVGElement> & {
+  variant?: Variants
+}
 
-export type BackgroundProps = HTMLAttributes<HTMLOrSVGElement>
+export default function Background({
+  variant = 'gradient1',
+  ...props
+}: BackgroundProps) {
+  const { gradientTransform, gradientStops } = variants[variant]
 
-export default function Background(props: BackgroundProps) {
   return (
     <svg width="100vw" height="100vh" {...props}>
       <defs>
@@ -41,13 +46,13 @@ export default function Background(props: BackgroundProps) {
         y1="0"
         x2="0"
         y2="1"
-        gradientTransform="rotate(80, 0.5, 0.5)"
+        gradientTransform={gradientTransform}
       >
-        {/* <stop offset="0%" stopColor="#282828" /> */}
-        <stop stopColor="#4126E8" offset="15%" />
-        <stop offset="40%" stopColor="#EA1ABA" />
-        <stop offset="70%" stopColor="#10A6D6" />
-        {/* <stop offset="100%" stopColor="#282828" /> */}
+        {gradientStops.map((stopOptions) => (
+          <>
+            <stop {...stopOptions} />
+          </>
+        ))}
       </linearGradient>
     </svg>
   )
