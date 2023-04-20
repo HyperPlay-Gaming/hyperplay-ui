@@ -1,40 +1,153 @@
 @mixin colorSystem {
-  /* Semantic Naming */
+  /* 
+  * Semantic Naming is used over declarative naming for ease of maintainability. 
+  * e.g. color-secondary-x can be changed from pink to red 
+  * without renaming every css variable.
+  * The figma designs should use semantic naming as well so frontend devs
+  * do not have to check this global scss file when picking every color.
+  */
   /* Primary */
-  --color-primary-100: #f2bfff;
-  --color-primary-200: #d885ff;
-  --color-primary-300: #ab57ff;
-  --color-primary-400: #7318fb;
-  --color-primary-500: #5905d7;
-  --color-primary-600: #4a05a0;
+  --color-primary-100: #e8d0fd;
+  --color-primary-200: #cea2fc;
+  --color-primary-300: #af73f6;
+  --color-primary-400: #9150ee;
+  --color-primary-500: #661ae3;
+  --color-primary-600: #4e13c3;
+  --color-primary-700: #3a0da3;
+  --color-primary-800: #280883;
+  --color-primary-900: #1c046c;
 
   /* Secondary */
-  --color-secondary-100: #8eebff;
-  --color-secondary-200: #11cff9;
-  --color-secondary-300: #0098ba;
-  --color-secondary-400: #0078ac;
+  --color-secondary-100: #fbd0fd;
+  --color-secondary-200: #f1a2fc;
+  --color-secondary-300: #de73f6;
+  --color-secondary-400: #c650ee;
+  --color-secondary-500: #a31ae3;
+  --color-secondary-600: #7f13c3;
+  --color-secondary-700: #5f0da3;
+  --color-secondary-800: #440883;
+  --color-secondary-900: #30046c;
+
+  /* Tertiary */
+  --color-tertiary-100: #d7faff;
+  --color-tertiary-200: #aff1ff;
+  --color-tertiary-300: #88e3ff;
+  --color-tertiary-400: #6ad2ff;
+  --color-tertiary-500: #39b8ff;
+  --color-tertiary-600: #2990db;
+  --color-tertiary-700: #1c6cb7;
+  --color-tertiary-800: #124d93;
+  --color-tertiary-900: #0a367a;
+
+  /* Quaternary */
+  --color-quaternary-100: #fdd0d7;
+  --color-quaternary-200: #fca2b8;
+  --color-quaternary-300: #f673a0;
+  --color-quaternary-400: #ee5095;
+  --color-quaternary-500: #f0397b;
+  --color-quaternary-600: #c31384;
+  --color-quaternary-700: #a30d7c;
+  --color-quaternary-800: #830870;
+  --color-quaternary-900: #6c0466;
+
+  /* Success */
+  --color-success-100: #cdfed9;
+  --color-success-200: #9bfdbd;
+  --color-success-300: #69faa9;
+  --color-success-400: #40ffba;
+  --color-success-500: #08ef9c;
+  --color-success-600: #05cd99;
+  --color-success-700: #04ac90;
+  --color-success-800: #028a82;
+  --color-success-900: #016e72;
+
+  /* Alert */
+  --color-alert-100: #ffedd3;
+  --color-alert-200: #ffd7a7;
+  --color-alert-300: #ffbb7b;
+  --color-alert-400: #fbab4d;
+  --color-alert-500: #ff7324;
+  --color-alert-600: #db531a;
+  --color-alert-700: #b73912;
+  --color-alert-800: #93230b;
+  --color-alert-900: #7a1306;
+
+  /* Error */
+  --color-error-100: #fde0d0;
+  --color-error-200: #fcbaa2;
+  --color-error-300: #f68a73;
+  --color-error-400: #ff6976;
+  --color-error-500: #e31a1a;
+  --color-error-600: #c31322;
+  --color-error-700: #a30d27;
+  --color-error-800: #830828;
+  --color-error-900: #6c0429;
 
   /* Neutrals */
   --color-neutral-100: #ffffff;
   --color-neutral-200: #fcfcf9;
   --color-neutral-300: #e0e2e2;
   --color-neutral-400: #b0c1d5;
-  --color-neutral-1000: #5a5e6a;
+  --color-neutral-500: #5a5e6a;
   --color-neutral-600: #282b34;
   --color-neutral-700: #1a1d25;
   --color-neutral-800: #13141a;
   --color-neutral-900: #0c0b0f;
 
   /* Status */
-  --color-status-success: #40ffba;
-  --color-status-alert: #fbab4d;
-  --color-status-error: #ff6976;
+  --color-status-success: var(--color-success-400);
+  --color-status-alert: var(--color-alert-400);
+  --color-status-error: var(--color-error-400);
 
   /* Gradients */
+  /* Color */
   --color-gradient-01: linear-gradient(180deg, #3c71f3 0%, #b923ff 100%);
-  --color-gradient-02: linear-gradient(90deg, #3c71f3 0%, #b923ff 100%);
-  --color-gradient-03: linear-gradient(180deg, #b923ff 2.6%, #3c71f3 96.35%);
+  --color-gradient-02: linear-gradient(
+    282.64deg,
+    #b923ff 9.95%,
+    #3c71f3 88.32%
+  );
+  --color-gradient-03: linear-gradient(284.72deg, #a11ede 3.43%, #2d5bcc 70.8%);
+  --color-gradient-04: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
+  --color-gradient-05: linear-gradient(294.78deg, #fc00ff 24.81%, #00dbde 100%);
+  --color-gradient-06: linear-gradient(111.16deg, #7f00ff 0%, #e100ff 77.52%);
+  --color-gradient-07: linear-gradient(
+    112.97deg,
+    #fc00ff 0%,
+    #504cf3 26.64%,
+    #1dbbed 52.48%,
+    #02ffd1 76.34%
+  );
 
+  /* Monochrome */
+  --ui-color-mono-gradient-01: linear-gradient(
+    109.16deg,
+    #f6f6f6 0%,
+    #000000 78.12%
+  );
+  --ui-color-mono-gradient-02: linear-gradient(
+    109.16deg,
+    #5f5f5f 0%,
+    #000000 78.12%
+  );
+  --ui-color-mono-gradient-03: linear-gradient(
+    111.16deg,
+    #2d2d2d 0%,
+    #bcbcbc 77.52%
+  );
+  --ui-color-mono-gradient-04: linear-gradient(
+    111.16deg,
+    #d3d3d3 0%,
+    #f9f9f9 77.52%
+  );
+  --ui-color-mono-gradient-04: linear-gradient(
+    294.25deg,
+    #818080 24.24%,
+    #000000 64.49%,
+    #e4e4e4 100%
+  );
+
+  /* OLD - UNSURE IF STILL NEEDED 4.20.23 - USED BY BUTTON COMPONENT */
   --color-gradient-01-border: linear-gradient(180deg, #648df6 0%, #b824ff 100%);
   --color-gradient-02-border: linear-gradient(90deg, #c446ff 0%, #5a87f5 100%);
   --color-gradient-03-border: linear-gradient(180deg, #b824ff 0%, #648df6 100%);
@@ -64,6 +177,6 @@
   @include colorSystem;
 }
 
-.color-neutral-50 {
+.color-neutral-100 {
   color: var(--color-neutral-100);
 }
