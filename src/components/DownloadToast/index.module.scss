@@ -1,16 +1,18 @@
+$toastPaddingTop: var(--space-lg);
+$toastPaddingSides: var(--space-xl);
 .downloadToastContainer {
-  width: 400px;
-  height: 200px;
+  max-width: 400px;
   background-color: var(--color-neutral-700);
-  padding: var(--space-xl);
+  padding: $toastPaddingTop $toastPaddingSides;
   border-radius: var(--space-sm);
   border: 1px solid var(--color-neutral-600);
+  box-shadow: 0px 10px 60px rgba(117, 81, 255, 0.24);
 }
 
 .topBar {
   display: flex;
   justify-content: space-between;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-xs);
 }
 
 .topBar svg {
@@ -20,23 +22,24 @@
 .contentContainer {
   display: flex;
   width: 100%;
+  gap: var(--space-md);
 }
 
 .gameImage {
-  height: 68px;
+  height: 100%;
   width: 80px;
   object-fit: cover;
   border-radius: 8px;
-  margin-right: var(--space-sm);
 }
 
 .gameTitle {
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-3xs);
 }
 
 .statusContainer {
   display: flex;
   justify-content: space-between;
+  margin-bottom: var(--space-2xs);
 }
 
 .detailsContainer {
@@ -46,17 +49,16 @@
 $progressBarBorderRadius: var(--space-2xs);
 
 .progressBar {
+  --download-progress-bar-percentage: 98%;
   height: var(--text-xl);
   width: 100%;
-  background-color: var(--color-neutral-1000);
+  background-image: linear-gradient(
+    90deg,
+    var(--color-status-success) var(--download-progress-bar-percentage),
+    var(--color-neutral-500) var(--download-progress-bar-percentage)
+  );
   position: relative;
   border-radius: $progressBarBorderRadius;
-}
-
-.progress {
-  height: 100%;
-  background-color: var(--color-status-success);
-  border-radius: $progressBarBorderRadius 0px 0px $progressBarBorderRadius;
 }
 
 .percentCompletedText {
@@ -67,14 +69,13 @@ $progressBarBorderRadius: var(--space-2xs);
 }
 
 .manageDownloadContainer {
-  margin: var(--space-lg) 0;
+  margin: var(--space-lg) 0 0 0;
   display: flex;
   justify-content: end;
 }
 
-.manageDownloadContainer svg {
-  height: 20px;
-  width: 20px;
+.manageDownloadContainer button {
+  padding: 0 var(--space-md);
 }
 
 .stopDownloadButton {
@@ -82,5 +83,22 @@ $progressBarBorderRadius: var(--space-2xs);
 }
 
 .pauseDownloadButton {
-  // color: var(--color-)//figma file is messed up not sure what to put here yet
+  color: var(--color-tertiary-400);
+}
+
+.downloadNumberContainer {
+  display: flex;
+}
+
+.downloadNumberContainer :first-child {
+  color: var(--color-success-400);
+}
+
+.downloadNumberContainer :nth-child(2) {
+  color: var(--color-neutral-400);
+  margin: 0px var(--space-3xs);
+}
+
+.downloadNumberContainer :nth-child(3) {
+  color: var(--color-neutral-400);
 }

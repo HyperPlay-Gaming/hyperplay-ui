@@ -1,17 +1,20 @@
 @use '../utilities/variables';
 /*
-with 1.2 scale ratio and 16px root font size
+with 1.154701 scale ratio and 16px root font size
 name px rem
-xs	11.11	0.69
-sm	13.33	0.83
-md	16.00	1.00
-lg	19.20	1.20
-xl	23.04	1.44
-2xl	27.65	1.73
-3xl	33.18	2.07
-4xl	39.81	2.49
-5xl	47.78	2.99
-6xl	57.33	3.58
+xs	11.99999539
+sm	13.8564038
+md	16
+lg	18.47521216
+xl	21.33334152
+2xl	24.63362567
+3xl	28.44446628
+4xl	32.84484683
+5xl	37.9259696
+6xl	43.79314592
+7xl	50.56797887
+8xl	58.39088364
+9xl	67.42399771
 */
 
 @mixin typeSystem {
@@ -191,16 +194,16 @@ h6 {
 
 .title {
   font-family: var(--primary-font-family);
-  font-size: var(--text-lg);
+  font-size: var(--text-2xl);
   font-weight: var(--semibold);
-  line-height: calc(var(--text-lg) * 24 / 20);
+  line-height: calc(var(--text-2xl) * 32 / 24);
 }
 
 .title-sm {
   font-family: var(--primary-font-family);
   font-weight: var(--medium);
-  font-size: var(--text-lg);
-  line-height: var(--text-lg);
+  font-size: var(--text-xl);
+  line-height: calc(var(--text-xl) * 28 / 21);
 }
 
 .caption {

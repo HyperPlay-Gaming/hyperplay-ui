@@ -13,6 +13,10 @@ button {
   @include buttonDefaultStyle();
 }
 
+button:hover {
+  opacity: 50%;
+}
+
 .ctaButton {
   background: var(--color-gradient-primary);
   cursor: pointer;
