@@ -3,7 +3,8 @@ import React from 'react'
 import TransactionToast from '.'
 
 export default {
-  title: 'TransactionToasts'
+  title: 'TransactionToasts',
+  component: TransactionToast
 }
 
 export const Pending = () => {
