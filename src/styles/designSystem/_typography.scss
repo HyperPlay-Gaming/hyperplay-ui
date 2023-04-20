@@ -63,10 +63,6 @@ xl	23.04	1.44
   );
 }
 
-:root {
-  @include typeSystem;
-}
-
 body {
   font-size: 1rem;
   font-family: var(--secondary-font-family), -apple-system, BlinkMacSystemFont,
@@ -190,7 +186,7 @@ h6 {
 .menu {
   font-size: var(--text-md);
   font-weight: var(--semibold);
-  line-height: calc(var(--text-md) * 24 / 16);
+  line-height: var(--text-xl);
   letter-spacing: 1px;
 }
 
@@ -198,6 +194,14 @@ h6 {
   font-size: var(--text-lg);
   font-weight: var(--semibold);
   line-height: calc(var(--text-lg) * 24 / 20);
+}
+
+.title-sm {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: var(--medium);
+  font-size: var(--text-lg);
+  line-height: var(--text-lg);
 }
 
 .caption {

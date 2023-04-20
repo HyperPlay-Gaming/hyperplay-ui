@@ -18,7 +18,7 @@ const ImageComponent = ({ src }: ImageProps) => {
 }
 
 const Image = (props: ImageProps) => {
-  const baseColor = useCSSVariable('--color-neutral-500')
+  const baseColor = useCSSVariable('--color-neutral-1000')
   const highlightColor = useCSSVariable('--color-neutral-400')
 
   return (

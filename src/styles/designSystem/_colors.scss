@@ -15,16 +15,15 @@
   --color-secondary-400: #0078ac;
 
   /* Neutrals */
-  --color-neutral-0: #ffffff;
-  --color-neutral-50: #fcfcf9;
-  --color-neutral-100: #e0e2e2;
-  --color-neutral-200: #b0c1d5;
-  --color-neutral-300: #8d93a6;
-  --color-neutral-400: #5a5e6a;
-  --color-neutral-500: #282b34;
-  --color-neutral-600: #1a1d25;
-  --color-neutral-700: #13141a;
-  --color-neutral-800: #0c0b0f;
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #fcfcf9;
+  --color-neutral-300: #e0e2e2;
+  --color-neutral-400: #b0c1d5;
+  --color-neutral-1000: #5a5e6a;
+  --color-neutral-600: #282b34;
+  --color-neutral-700: #1a1d25;
+  --color-neutral-800: #13141a;
+  --color-neutral-900: #0c0b0f;
 
   /* Status */
   --color-status-success: #40ffba;
@@ -60,11 +59,11 @@
 }
 
 :root {
-  color: var(--color-neutral-50);
+  color: var(--color-neutral-100);
 
   @include colorSystem;
 }
 
 .color-neutral-50 {
-  color: var(--color-neutral-50);
+  color: var(--color-neutral-100);
 }

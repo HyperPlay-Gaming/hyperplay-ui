@@ -1,0 +1,86 @@
+.downloadToastContainer {
+  width: 400px;
+  height: 200px;
+  background-color: var(--color-neutral-700);
+  padding: var(--space-xl);
+  border-radius: var(--space-sm);
+  border: 1px solid var(--color-neutral-600);
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.topBar svg {
+  color: var(--color-neutral-400);
+}
+
+.contentContainer {
+  display: flex;
+  width: 100%;
+}
+
+.gameImage {
+  height: 68px;
+  width: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: var(--space-sm);
+}
+
+.gameTitle {
+  margin-bottom: var(--space-sm);
+}
+
+.statusContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detailsContainer {
+  flex-grow: 1;
+}
+
+$progressBarBorderRadius: var(--space-2xs);
+
+.progressBar {
+  height: var(--text-xl);
+  width: 100%;
+  background-color: var(--color-neutral-1000);
+  position: relative;
+  border-radius: $progressBarBorderRadius;
+}
+
+.progress {
+  height: 100%;
+  background-color: var(--color-status-success);
+  border-radius: $progressBarBorderRadius 0px 0px $progressBarBorderRadius;
+}
+
+.percentCompletedText {
+  position: absolute;
+  left: 5%;
+  top: 0%;
+  color: var(--color-neutral-900);
+}
+
+.manageDownloadContainer {
+  margin: var(--space-lg) 0;
+  display: flex;
+  justify-content: end;
+}
+
+.manageDownloadContainer svg {
+  height: 20px;
+  width: 20px;
+}
+
+.stopDownloadButton {
+  color: var(--color-status-error);
+}
+
+.pauseDownloadButton {
+  // color: var(--color-)//figma file is messed up not sure what to put here yet
+}
