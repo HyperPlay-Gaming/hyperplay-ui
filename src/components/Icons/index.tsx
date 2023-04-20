@@ -27,6 +27,8 @@ export default function Icons() {
       <IconImages.RightArrow />
       <IconImages.DownloadIcon />
       <IconImages.PlayIcon />
+      <IconImages.XCircle />
+      <IconImages.PauseIcon />
     </div>
   )
 }
