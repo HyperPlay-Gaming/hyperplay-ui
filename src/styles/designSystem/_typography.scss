@@ -28,7 +28,7 @@ xl	23.04	1.44
   --extrabold: 900;
 
   /* set base values */
-  --text-scale-ratio: 1.2;
+  --text-scale-ratio: 1.154701;
   font-size: 16px;
 
   /* type scale */
@@ -84,8 +84,7 @@ h3,
 h4,
 h5,
 h6,
-.menu,
-.title {
+.menu {
   font-family: var(--primary-font-family);
 }
 
@@ -191,14 +190,14 @@ h6 {
 }
 
 .title {
+  font-family: var(--primary-font-family);
   font-size: var(--text-lg);
   font-weight: var(--semibold);
   line-height: calc(var(--text-lg) * 24 / 20);
 }
 
 .title-sm {
-  font-family: 'Rajdhani';
-  font-style: normal;
+  font-family: var(--primary-font-family);
   font-weight: var(--medium);
   font-size: var(--text-lg);
   line-height: var(--text-lg);
