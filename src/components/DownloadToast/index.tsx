@@ -7,6 +7,8 @@ import { CloseButton, PauseIcon, XCircle } from '@/assets/images'
 
 import DownloadToastStyles from './index.module.scss'
 
+export type downloadStatus = 'inProgress' | 'paused' | 'showOnlyCancel'
+
 interface DownloadToastType {
   imgUrl: string
   gameTitle: string
@@ -53,13 +55,12 @@ function getSizeStringFromBytes(bytes: number) {
   }
 }
 
-export type downloadStatus = 'inProgress' | 'paused'
-
 export default function DownloadToast(props: DownloadToastType) {
   // check that percent completed <= 100
-  let percentCompleted = Math.round(
-    (props.downloadedInBytes / props.downloadSizeInBytes) * 100
-  )
+  let percentCompleted =
+    props.downloadSizeInBytes > 0
+      ? Math.round((props.downloadedInBytes / props.downloadSizeInBytes) * 100)
+      : 0
   if (percentCompleted > 100) percentCompleted = 100
 
   // check download size isn't smaller than what has already been downloaded
@@ -100,6 +101,25 @@ export default function DownloadToast(props: DownloadToastType) {
   const progressBarStyle = {
     '--download-progress-bar-percentage': `${percentCompleted}%`
   } as React.CSSProperties
+
+  function getActionButton(status: downloadStatus) {
+    if (status === 'showOnlyCancel') return null
+    return status === 'inProgress' ? (
+      <button
+        className={DownloadToastStyles.pausePlayDownloadButton}
+        onClick={props.onPauseClick}
+      >
+        <PauseIcon />
+      </button>
+    ) : (
+      <button
+        className={DownloadToastStyles.pausePlayDownloadButton}
+        onClick={props.onStartClick}
+      >
+        <FontAwesomeIcon icon={faPlay} />
+      </button>
+    )
+  }
   return (
     <div className={DownloadToastStyles.downloadToastContainer}>
       <div className={DownloadToastStyles.topBar}>
@@ -142,21 +162,7 @@ export default function DownloadToast(props: DownloadToastType) {
         >
           <XCircle />
         </button>
-        {props.status === 'inProgress' ? (
-          <button
-            className={DownloadToastStyles.pauseDownloadButton}
-            onClick={props.onPauseClick}
-          >
-            <PauseIcon />
-          </button>
-        ) : (
-          <button
-            className={DownloadToastStyles.pauseDownloadButton}
-            onClick={props.onStartClick}
-          >
-            <FontAwesomeIcon icon={faPlay} />
-          </button>
-        )}
+        {getActionButton(props.status)}
       </div>
     </div>
   )

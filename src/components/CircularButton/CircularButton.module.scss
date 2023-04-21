@@ -1,7 +1,7 @@
 .circularButton {
-  background: var(--color-primary-400);
-  width: var(--space-6xl);
-  height: var(--space-6xl);
+  background: var(--color-primary-500);
+  padding: var(--space-lg);
+  aspect-ratio: 1/1;
   border: none;
   border-radius: 100%;
   display: flex;
@@ -10,14 +10,14 @@
   cursor: pointer;
   transition: filter 0.25s ease-in-out;
 
-  &:hover {
-    filter: drop-shadow(2px 0px 40px rgba(61, 11, 111, 0.5))
-      drop-shadow(2px 0px 40px rgba(61, 11, 111, 0.4))
-      drop-shadow(2px 0px 32px rgba(61, 11, 111, 0.7))
-      drop-shadow(2px 0px 8px rgba(61, 11, 111, 0.5));
-  }
+  // &:hover {
+  //   filter: drop-shadow(2px 0px 40px rgba(61, 11, 111, 0.5))
+  //     drop-shadow(2px 0px 40px rgba(61, 11, 111, 0.4))
+  //     drop-shadow(2px 0px 32px rgba(61, 11, 111, 0.7))
+  //     drop-shadow(2px 0px 8px rgba(61, 11, 111, 0.5));
+  // }
 
-  &:active svg path {
-    fill: var(--color-neutral-200);
-  }
+  // &:active svg path {
+  //   fill: var(--color-neutral-200);
+  // }
 }

@@ -49,7 +49,7 @@ $toastPaddingSides: var(--space-xl);
 $progressBarBorderRadius: var(--space-2xs);
 
 .progressBar {
-  --download-progress-bar-percentage: 98%;
+  --download-progress-bar-percentage: 0%;
   height: var(--text-xl);
   width: 100%;
   background-image: linear-gradient(
@@ -82,7 +82,7 @@ $progressBarBorderRadius: var(--space-2xs);
   color: var(--color-status-error);
 }
 
-.pauseDownloadButton {
+.pausePlayDownloadButton {
   color: var(--color-tertiary-400);
 }
 
