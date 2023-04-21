@@ -64,8 +64,8 @@ export const paused = () => (
     <DownloadToast
       imgUrl="src/assets/stories/TheWakeCover.png"
       gameTitle="Gods Unchained"
-      downloadedInBytes={543609664}
-      downloadSizeInBytes={550609664}
+      downloadedInBytes={560609664}
+      downloadSizeInBytes={0}
       estimatedCompletionTimeInMs={2710000}
       onCancelClick={() => console.log('cancel clicked')}
       onPauseClick={() => console.log('pause clicked')}
