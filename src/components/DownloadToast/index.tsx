@@ -31,6 +31,7 @@ function getETAStringFromMs(etaInMs: number) {
   if (hours !== 0) etaString += (etaString === '' ? '' : ':') + `${hours}h`
   if (minutes !== 0) etaString += (etaString === '' ? '' : ':') + `${minutes}m`
   if (seconds !== 0) etaString += (etaString === '' ? '' : ':') + `${seconds}s`
+  if (etaString === '') return '0s'
   return etaString
 }
 

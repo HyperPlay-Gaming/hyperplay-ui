@@ -28,7 +28,7 @@ export const zeroPercent = () => (
     gameTitle="Gods Unchained"
     downloadedInBytes={0}
     downloadSizeInBytes={550609664}
-    estimatedCompletionTimeInMs={10000000}
+    estimatedCompletionTimeInMs={0}
     onCancelClick={() => console.log('cancel clicked')}
     onPauseClick={() => console.log('pause clicked')}
     onStartClick={() => console.log('start clicked')}
@@ -43,7 +43,7 @@ export const hundredPercent = () => (
     gameTitle="Gods Unchained"
     downloadedInBytes={550609664}
     downloadSizeInBytes={550609664}
-    estimatedCompletionTimeInMs={10000000}
+    estimatedCompletionTimeInMs={3601000}
     onCancelClick={() => console.log('cancel clicked')}
     onPauseClick={() => console.log('pause clicked')}
     onStartClick={() => console.log('start clicked')}
@@ -58,7 +58,7 @@ export const paused = () => (
     gameTitle="Gods Unchained"
     downloadedInBytes={543609664}
     downloadSizeInBytes={550609664}
-    estimatedCompletionTimeInMs={10000000}
+    estimatedCompletionTimeInMs={2710000}
     onCancelClick={() => console.log('cancel clicked')}
     onPauseClick={() => console.log('pause clicked')}
     onStartClick={() => console.log('start clicked')}
