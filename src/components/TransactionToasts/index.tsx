@@ -42,7 +42,7 @@ export default function TransactionToast(props: TransactionToastProps) {
       <div style={{ width: '80px' }}>{getTxnImage(props.status)}</div>
       <div className={styles.infoContainer}>
         <div className={`title ${styles.txnTitle}`}>{props.title}</div>
-        <div className="body color-neutral-50">{props.subtext}</div>
+        <div className="body color-neutral-100">{props.subtext}</div>
       </div>
       {props.showCloseButton ? (
         <div

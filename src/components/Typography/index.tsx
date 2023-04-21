@@ -1,7 +1,5 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react'
 
-import styles from './index.module.scss'
-
 export type TypographyProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>>
 
 export const Heading1 = (props: TypographyProps) => (
@@ -29,49 +27,49 @@ export const Heading6 = (props: TypographyProps) => (
 )
 
 export const Menu = (props: TypographyProps) => (
-  <div {...props} className={`${styles.menu} ${props.className}`}>
+  <div {...props} className={`menu ${props.className}`}>
     {props.children}
   </div>
 )
 
 export const Title = (props: TypographyProps) => (
-  <div {...props} className={`${styles.title} ${props.className}`}>
+  <div {...props} className={`title ${props.className}`}>
     {props.children}
   </div>
 )
 
 export const Caption = (props: TypographyProps) => (
-  <div {...props} className={`${styles.caption} ${props.className}`}>
+  <div {...props} className={`caption ${props.className}`}>
     {props.children}
   </div>
 )
 
 export const CaptionSmall = (props: TypographyProps) => (
-  <div {...props} className={`${styles.captionSm} ${props.className}`}>
+  <div {...props} className={`captionSm ${props.className}`}>
     {props.children}
   </div>
 )
 
 export const Body = (props: TypographyProps) => (
-  <div {...props} className={`${styles.body} ${props.className}`}>
+  <div {...props} className={`body ${props.className}`}>
     {props.children}
   </div>
 )
 
 export const BodySmall = (props: TypographyProps) => (
-  <div {...props} className={`${styles.bodySm} ${props.className}`}>
+  <div {...props} className={`bodySm ${props.className}`}>
     {props.children}
   </div>
 )
 
 export const ButtonSmallText = (props: TypographyProps) => (
-  <div {...props} className={`${styles.buttonSm} ${props.className}`}>
+  <div {...props} className={`buttonSm ${props.className}`}>
     {props.children}
   </div>
 )
 
 export const ButtonText = (props: TypographyProps) => (
-  <div {...props} className={`${styles.button} ${props.className}`}>
+  <div {...props} className={`button ${props.className}`}>
     {props.children}
   </div>
 )

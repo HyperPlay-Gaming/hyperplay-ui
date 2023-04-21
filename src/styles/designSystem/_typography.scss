@@ -1,17 +1,20 @@
 @use '../utilities/variables';
 /*
-with 1.2 scale ratio and 16px root font size
+with 1.154701 scale ratio and 16px root font size
 name px rem
-xs	11.11	0.69
-sm	13.33	0.83
-md	16.00	1.00
-lg	19.20	1.20
-xl	23.04	1.44
-2xl	27.65	1.73
-3xl	33.18	2.07
-4xl	39.81	2.49
-5xl	47.78	2.99
-6xl	57.33	3.58
+xs	11.99999539
+sm	13.8564038
+md	16
+lg	18.47521216
+xl	21.33334152
+2xl	24.63362567
+3xl	28.44446628
+4xl	32.84484683
+5xl	37.9259696
+6xl	43.79314592
+7xl	50.56797887
+8xl	58.39088364
+9xl	67.42399771
 */
 
 @mixin typeSystem {
@@ -28,7 +31,7 @@ xl	23.04	1.44
   --extrabold: 900;
 
   /* set base values */
-  --text-scale-ratio: 1.2;
+  --text-scale-ratio: 1.154701;
   font-size: 16px;
 
   /* type scale */
@@ -63,10 +66,6 @@ xl	23.04	1.44
   );
 }
 
-:root {
-  @include typeSystem;
-}
-
 body {
   font-size: 1rem;
   font-family: var(--secondary-font-family), -apple-system, BlinkMacSystemFont,
@@ -88,8 +87,7 @@ h3,
 h4,
 h5,
 h6,
-.menu,
-.title {
+.menu {
   font-family: var(--primary-font-family);
 }
 
@@ -187,107 +185,75 @@ h6 {
   line-height: calc(var(--text-lg) * 1.32);
 }
 
-@mixin menu {
+.menu {
   font-size: var(--text-md);
   font-weight: var(--semibold);
-  line-height: calc(var(--text-md) * 24 / 16);
+  line-height: var(--text-xl);
   letter-spacing: 1px;
 }
 
-.menu {
-  @include menu;
-}
-
-@mixin title {
-  font-size: var(--text-lg);
-  font-weight: var(--semibold);
-  line-height: calc(var(--text-lg) * 24 / 20);
-}
-
 .title {
-  @include title;
+  font-family: var(--primary-font-family);
+  font-size: var(--text-2xl);
+  font-weight: var(--semibold);
+  line-height: calc(var(--text-2xl) * 32 / 24);
 }
 
-@mixin caption {
+.title-sm {
+  font-family: var(--primary-font-family);
+  font-weight: var(--medium);
+  font-size: var(--text-xl);
+  line-height: calc(var(--text-xl) * 28 / 21);
+}
+
+.caption {
   font-size: var(--text-md);
   font-weight: var(--medium);
   line-height: calc(var(--text-md) * 18 / 15);
 }
 
-.caption {
-  @include caption;
-}
-
-@mixin caption-sm {
+.caption-sm {
   font-size: var(--text-sm);
   font-weight: var(--regular);
   line-height: calc(var(--text-sm) * 20 / 14);
   letter-spacing: 0.25px;
 }
 
-.caption-sm {
-  @include caption-sm;
-}
-
-@mixin eyebrow {
+.eyebrow {
   font-size: var(--text-sm);
   font-weight: var(--semibold);
   line-height: calc(var(--text-sm) * 24 / 14);
 }
 
-.eyebrow {
-  @include eyebrow;
-}
-
-@mixin body {
+.body {
   font-size: var(--text-md);
   font-weight: var(--regular);
   line-height: calc(var(--text-md) * 24 / 16);
   letter-spacing: 0.25px;
 }
 
-.body {
-  @include body;
-}
-
-@mixin body-sm {
+.body-sm {
   font-size: var(--text-sm);
   font-weight: var(--regular);
   line-height: calc(var(--text-sm) * 20 / 14);
 }
 
-.body-sm {
-  @include body-sm;
-}
-
-@mixin button {
+.button {
   font-size: var(--text-lg);
   font-weight: var(--semibold);
   line-height: calc(var(--text-lg) * 24 / 18);
 }
 
-.button {
-  @include button;
-}
-
-@mixin button-sm {
+.button-sm {
   font-size: var(--text-sm);
   font-weight: var(--bold);
   line-height: calc(var(--text-sm) * 20 / 14);
 }
 
-.button-sm {
-  @include button-sm;
-}
-
-@mixin menu-item {
+.menu-item {
   font-size: var(--text-sm);
   font-weight: var(--bold);
   line-height: var(--text-md);
   text-transform: uppercase;
   font-family: var(--default-tertiary-font-family);
-}
-
-.menu-item {
-  @include menu-item;
 }

@@ -6,7 +6,6 @@ import classNames from 'classnames'
 import { CloseButton, RightArrow, WarningIcon } from '@/assets/images'
 import Button from '@/components/Button'
 
-import { ButtonText } from '../Typography'
 import styles from './index.module.scss'
 
 type Variants = 'warning' | 'danger'
@@ -42,7 +41,7 @@ export default function Alert({
         <WarningIcon />
       </div>
       <div className={styles.text}>
-        <ButtonText className={classNames(styles.title)}>{title}</ButtonText>
+        <div className={classNames('button', styles.title)}>{title}</div>
         <div
           className={classNames(
             {
