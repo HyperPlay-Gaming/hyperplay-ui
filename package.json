@@ -92,9 +92,6 @@
       "react-app/jest"
     ]
   },
-  "optionalDependencies": {
-    "@hyperplay/proprietary-fonts": "^0.1.0"
-  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
