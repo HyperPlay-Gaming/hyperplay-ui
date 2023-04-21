@@ -4,8 +4,8 @@
   "license": "BUSL-1.1",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/unlinkFonts.cjs && vite build && node scripts/linkFonts.cjs",
-    "build:watch": "node scripts/unlinkFonts.cjs && vite build --watch && node scripts/linkFonts.cjs",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

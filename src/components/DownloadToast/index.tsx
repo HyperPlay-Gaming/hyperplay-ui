@@ -7,6 +7,8 @@ import { CloseButton, PauseIcon, XCircle } from '@/assets/images'
 
 import DownloadToastStyles from './index.module.scss'
 
+export type downloadStatus = 'inProgress' | 'paused' | 'showOnlyCancel'
+
 interface DownloadToastType {
   imgUrl: string
   gameTitle: string
@@ -53,8 +55,6 @@ function getSizeStringFromBytes(bytes: number) {
   }
 }
 
-export type downloadStatus = 'inProgress' | 'paused'
-
 export default function DownloadToast(props: DownloadToastType) {
   // check that percent completed <= 100
   let percentCompleted = Math.round(
@@ -100,6 +100,25 @@ export default function DownloadToast(props: DownloadToastType) {
   const progressBarStyle = {
     '--download-progress-bar-percentage': `${percentCompleted}%`
   } as React.CSSProperties
+
+  function getActionButton() {
+    if (props.status === 'showOnlyCancel') return null
+    return props.status === 'inProgress' ? (
+      <button
+        className={DownloadToastStyles.pauseDownloadButton}
+        onClick={props.onPauseClick}
+      >
+        <PauseIcon />
+      </button>
+    ) : (
+      <button
+        className={DownloadToastStyles.pauseDownloadButton}
+        onClick={props.onStartClick}
+      >
+        <FontAwesomeIcon icon={faPlay} />
+      </button>
+    )
+  }
   return (
     <div className={DownloadToastStyles.downloadToastContainer}>
       <div className={DownloadToastStyles.topBar}>
@@ -142,21 +161,7 @@ export default function DownloadToast(props: DownloadToastType) {
         >
           <XCircle />
         </button>
-        {props.status === 'inProgress' ? (
-          <button
-            className={DownloadToastStyles.pauseDownloadButton}
-            onClick={props.onPauseClick}
-          >
-            <PauseIcon />
-          </button>
-        ) : (
-          <button
-            className={DownloadToastStyles.pauseDownloadButton}
-            onClick={props.onStartClick}
-          >
-            <FontAwesomeIcon icon={faPlay} />
-          </button>
-        )}
+        {getActionButton()}
       </div>
     </div>
   )

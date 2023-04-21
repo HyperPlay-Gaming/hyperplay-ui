@@ -1,7 +1,7 @@
 .circularButton {
-  background: var(--color-primary-400);
-  width: var(--space-6xl);
-  height: var(--space-6xl);
+  background: var(--color-primary-500);
+  padding: var(--space-lg);
+  aspect-ratio: 1/1;
   border: none;
   border-radius: 100%;
   display: flex;

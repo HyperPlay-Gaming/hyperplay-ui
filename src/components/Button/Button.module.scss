@@ -113,11 +113,11 @@
   color: var(--color-status-error);
 
   &:hover {
-    border: solid 1.5px var(--color-stroke-02);
+    border: solid 1.5px var(--color-quaternary-500);
   }
 
   &:active {
-    color: var(--color-stroke-02);
+    color: var(--color-quaternary-500);
   }
 }
 

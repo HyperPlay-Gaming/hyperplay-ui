@@ -53,16 +53,25 @@ export const hundredPercent = () => (
 )
 
 export const paused = () => (
-  <DownloadToast
-    imgUrl="src/assets/stories/TheWakeCover.png"
-    gameTitle="Gods Unchained"
-    downloadedInBytes={543609664}
-    downloadSizeInBytes={550609664}
-    estimatedCompletionTimeInMs={2710000}
-    onCancelClick={() => console.log('cancel clicked')}
-    onPauseClick={() => console.log('pause clicked')}
-    onStartClick={() => console.log('start clicked')}
-    onCloseClick={() => console.log('close clicked')}
-    status="paused"
-  />
+  <div
+    style={{
+      position: 'absolute',
+      right: '5%',
+      bottom: '5%',
+      width: '400px'
+    }}
+  >
+    <DownloadToast
+      imgUrl="src/assets/stories/TheWakeCover.png"
+      gameTitle="Gods Unchained"
+      downloadedInBytes={543609664}
+      downloadSizeInBytes={550609664}
+      estimatedCompletionTimeInMs={2710000}
+      onCancelClick={() => console.log('cancel clicked')}
+      onPauseClick={() => console.log('pause clicked')}
+      onStartClick={() => console.log('start clicked')}
+      onCloseClick={() => console.log('close clicked')}
+      status="showOnlyCancel"
+    />
+  </div>
 )
