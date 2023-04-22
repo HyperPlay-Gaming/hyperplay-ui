@@ -1,13 +1,10 @@
 import React from 'react'
 
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import { CloseButton, PauseIcon, XCircle } from '@/assets/images'
+import { CloseButton, PauseIcon, PlayIcon, XCircle } from '@/assets/images'
 
 import DownloadToastStyles from './index.module.scss'
 
-export type downloadStatus = 'inProgress' | 'paused' | 'showOnlyCancel'
+export type downloadStatus = 'inProgress' | 'paused' | 'showOnlyCancel' | 'done'
 
 interface DownloadToastType {
   imgUrl: string
@@ -19,6 +16,7 @@ interface DownloadToastType {
   onPauseClick: () => void
   onStartClick: () => void
   onCloseClick: () => void
+  onPlayClick: () => void
   status: downloadStatus
 }
 
@@ -62,15 +60,7 @@ export default function DownloadToast(props: DownloadToastType) {
       ? Math.round((props.downloadedInBytes / props.downloadSizeInBytes) * 100)
       : 0
   if (percentCompleted > 100) percentCompleted = 100
-
-  // check download size isn't smaller than what has already been downloaded
-  let downloadSize = props.downloadSizeInBytes
-  if (props.downloadSizeInBytes < props.downloadedInBytes) {
-    console.error(
-      'Download size passed to Download Toast was smaller than already downloaded bytes!'
-    )
-    downloadSize = props.downloadedInBytes
-  }
+  let percentCompletedStr = percentCompleted.toString()
 
   // check if negative
   let estCompleteTimeInMs = props.estimatedCompletionTimeInMs
@@ -85,40 +75,61 @@ export default function DownloadToast(props: DownloadToastType) {
     downloadedInBytes = 0
   }
 
+  let downloadSize = props.downloadSizeInBytes
   if (downloadSize < 0) {
     console.error('Download size was negative!')
     downloadSize = 0
   }
 
   // prevent string from being too long
-  const etaString =
+  let etaString =
     estCompleteTimeInMs < 86400000000
       ? getETAStringFromMs(estCompleteTimeInMs)
       : '1000d+'
   const downloadedString = getSizeStringFromBytes(downloadedInBytes)
-  const downloadSizeString = getSizeStringFromBytes(downloadSize)
+  let downloadSizeString = getSizeStringFromBytes(downloadSize)
+
+  // No download is 0 bytes so if 0 bytes is sent, it is because we don't know how big it is
+  // This will also handle the error case if downloadSize is negative from the if statement above
+  if (downloadSize === 0) {
+    etaString = '??'
+    downloadSizeString = '??'
+    percentCompletedStr = '??'
+  }
 
   const progressBarStyle = {
     '--download-progress-bar-percentage': `${percentCompleted}%`
   } as React.CSSProperties
 
   function getActionButton(status: downloadStatus) {
+    if (status === 'done')
+      return (
+        <button
+          className={DownloadToastStyles.playDownloadButton}
+          onClick={props.onPlayClick}
+        >
+          <PlayIcon fill="var(--color-success-400)" />
+        </button>
+      )
     if (status === 'showOnlyCancel') return null
-    return status === 'inProgress' ? (
-      <button
-        className={DownloadToastStyles.pausePlayDownloadButton}
-        onClick={props.onPauseClick}
-      >
-        <PauseIcon />
-      </button>
-    ) : (
-      <button
-        className={DownloadToastStyles.pausePlayDownloadButton}
-        onClick={props.onStartClick}
-      >
-        <FontAwesomeIcon icon={faPlay} />
-      </button>
-    )
+    if (status === 'inProgress')
+      return (
+        <button
+          className={DownloadToastStyles.pauseDownloadButton}
+          onClick={props.onPauseClick}
+        >
+          <PauseIcon fill="var(--color-tertiary-400)" />
+        </button>
+      )
+    if (status === 'paused')
+      return (
+        <button
+          className={DownloadToastStyles.playDownloadButton}
+          onClick={props.onStartClick}
+        >
+          <PlayIcon fill="var(--color-success-400)" />
+        </button>
+      )
   }
   return (
     <div className={DownloadToastStyles.downloadToastContainer}>
@@ -150,18 +161,20 @@ export default function DownloadToast(props: DownloadToastType) {
             style={progressBarStyle}
           >
             <div className={`menu ${DownloadToastStyles.percentCompletedText}`}>
-              {percentCompleted}%
+              {percentCompletedStr}%
             </div>
           </div>
         </div>
       </div>
       <div className={DownloadToastStyles.manageDownloadContainer}>
-        <button
-          className={DownloadToastStyles.stopDownloadButton}
-          onClick={props.onCancelClick}
-        >
-          <XCircle />
-        </button>
+        {props.status !== 'done' ? (
+          <button
+            className={DownloadToastStyles.stopDownloadButton}
+            onClick={props.onCancelClick}
+          >
+            <XCircle />
+          </button>
+        ) : null}
         {getActionButton(props.status)}
       </div>
     </div>

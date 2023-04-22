@@ -18,6 +18,7 @@ export const Default = () => (
     onPauseClick={() => console.log('pause clicked')}
     onStartClick={() => console.log('start clicked')}
     onCloseClick={() => console.log('close clicked')}
+    onPlayClick={() => console.log('play clicked')}
     status="inProgress"
   />
 )
@@ -33,6 +34,7 @@ export const zeroPercent = () => (
     onPauseClick={() => console.log('pause clicked')}
     onStartClick={() => console.log('start clicked')}
     onCloseClick={() => console.log('close clicked')}
+    onPlayClick={() => console.log('play clicked')}
     status="inProgress"
   />
 )
@@ -48,7 +50,8 @@ export const hundredPercent = () => (
     onPauseClick={() => console.log('pause clicked')}
     onStartClick={() => console.log('start clicked')}
     onCloseClick={() => console.log('close clicked')}
-    status="inProgress"
+    onPlayClick={() => console.log('play clicked')}
+    status="showOnlyCancel"
   />
 )
 
@@ -71,7 +74,33 @@ export const paused = () => (
       onPauseClick={() => console.log('pause clicked')}
       onStartClick={() => console.log('start clicked')}
       onCloseClick={() => console.log('close clicked')}
-      status="showOnlyCancel"
+      onPlayClick={() => console.log('play clicked')}
+      status="paused"
+    />
+  </div>
+)
+
+export const done = () => (
+  <div
+    style={{
+      position: 'absolute',
+      right: '5%',
+      bottom: '5%',
+      width: '400px'
+    }}
+  >
+    <DownloadToast
+      imgUrl="src/assets/stories/TheWakeCover.png"
+      gameTitle="Gods Unchained"
+      downloadedInBytes={560609664}
+      downloadSizeInBytes={1}
+      estimatedCompletionTimeInMs={2710000}
+      onCancelClick={() => console.log('cancel clicked')}
+      onPauseClick={() => console.log('pause clicked')}
+      onStartClick={() => console.log('start clicked')}
+      onCloseClick={() => console.log('close clicked')}
+      onPlayClick={() => console.log('play clicked')}
+      status="done"
     />
   </div>
 )
