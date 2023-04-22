@@ -5,6 +5,14 @@ import '../src/fonts.css'
 import '../src/index.scss'
 
 export const parameters = {
+  backgrounds: {
+    default: 'dark',
+    values: [
+      { name: 'dark', value: '#0C0B0F' },
+      { name: 'light', value: '#FFFFFF' },
+      { name: '600', value: '#282B34' }
+    ]
+  },
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
