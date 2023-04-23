@@ -81,24 +81,7 @@ code {
     Consolas, 'Courier New', monospace;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.menu {
-  font-family: var(--primary-font-family);
-}
-
-.caption,
-.caption-sm,
-.eyebrow,
-.body,
-.body-sm,
-button,
-.button,
-.button-sm {
+button {
   font-family: var(--secondary-font-family);
 }
 
@@ -146,46 +129,53 @@ button,
 
 /* Elements */
 h1 {
-  font-size: var(--text-6xl);
-  font-weight: var(--semibold);
+  font-family: var(--primary-font-family);
+  font-size: var(--text-9xl);
+  font-weight: var(--bold);
   line-height: calc(var(--text-6xl) * 64 / 56);
   letter-spacing: -1px;
 }
 
 h2 {
-  font-size: var(--text-5xl);
-  font-weight: var(--semibold);
+  font-family: var(--primary-font-family);
+  font-size: var(--text-8xl);
+  font-weight: var(--bold);
   line-height: calc(var(--text-5xl) * 1.24);
   letter-spacing: -1px;
 }
 
 h3 {
-  font-size: var(--text-4xl);
-  font-weight: var(--semibold);
+  font-family: var(--primary-font-family);
+  font-size: var(--text-7xl);
+  font-weight: var(--bold);
   line-height: calc(var(--text-4xl) * 1.2);
   letter-spacing: -1px;
 }
 
 h4 {
-  font-size: var(--text-3xl);
-  font-weight: var(--medium);
+  font-family: var(--primary-font-family);
+  font-size: var(--text-6xl);
+  font-weight: var(--bold);
   line-height: calc(var(--text-3xl) * 1.24);
   letter-spacing: -0.5px;
 }
 
 h5 {
-  font-size: var(--text-xl);
+  font-family: var(--primary-font-family);
+  font-size: var(--text-5xl);
   font-weight: var(--bold);
   line-height: calc(var(--text-xl) * 1.24);
 }
 
 h6 {
-  font-size: var(--text-lg);
-  font-weight: var(--semibold);
+  font-family: var(--primary-font-family);
+  font-size: var(--text-4xl);
+  font-weight: var(--medium);
   line-height: calc(var(--text-lg) * 1.32);
 }
 
 .menu {
+  font-family: var(--primary-font-family);
   font-size: var(--text-md);
   font-weight: var(--semibold);
   line-height: var(--text-xl);
@@ -206,48 +196,64 @@ h6 {
   line-height: calc(var(--text-xl) * 28 / 21);
 }
 
+.header {
+  font-family: var(--primary-font-family);
+  font-size: var(--text-3xl);
+  font-weight: var(--bold);
+  line-height: calc(var(--text-3xl) * 32 / 28);
+}
+
 .caption {
-  font-size: var(--text-md);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-sm);
   font-weight: var(--medium);
   line-height: calc(var(--text-md) * 18 / 15);
 }
 
 .caption-sm {
-  font-size: var(--text-sm);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-xs);
   font-weight: var(--regular);
   line-height: calc(var(--text-sm) * 20 / 14);
   letter-spacing: 0.25px;
 }
 
 .eyebrow {
-  font-size: var(--text-sm);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-xs);
   font-weight: var(--semibold);
   line-height: calc(var(--text-sm) * 24 / 14);
 }
 
 .body {
-  font-size: var(--text-md);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-lg);
   font-weight: var(--regular);
   line-height: calc(var(--text-md) * 24 / 16);
   letter-spacing: 0.25px;
 }
 
 .body-sm {
-  font-size: var(--text-sm);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-md);
   font-weight: var(--regular);
   line-height: calc(var(--text-sm) * 20 / 14);
 }
 
 .button {
-  font-size: var(--text-lg);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-xl);
   font-weight: var(--semibold);
   line-height: calc(var(--text-lg) * 24 / 18);
+  letter-spacing: -1%;
 }
 
 .button-sm {
-  font-size: var(--text-sm);
-  font-weight: var(--bold);
-  line-height: calc(var(--text-sm) * 20 / 14);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-md);
+  font-weight: var(--semibold);
+  line-height: calc(var(--text-md) * 20 / 16);
+  letter-spacing: -1%;
 }
 
 .menu-item {

@@ -10,7 +10,7 @@ import PrimaryBackground from './components/PrimaryBackground'
 
 export interface ButtonProps extends PropsWithChildren {
   type?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'danger' | 'menuItem'
-  size?: 'small' | 'medium'
+  size?: 'small' | 'medium' | 'large'
   leftIcon?: JSX.Element
   rightIcon?: React.ReactNode
   onClick?: () => void

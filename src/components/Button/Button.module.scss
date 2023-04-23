@@ -24,12 +24,16 @@
   );
 }
 
+.large {
+  padding: var(--space-md) var(--space-xl);
+}
+
 .medium {
-  padding: var(--space-xl-fixed) var(--space-3xl-fixed);
+  padding: var(--space-xs) var(--space-md);
 }
 
 .small {
-  padding: var(--space-md-fixed) var(--space-lg-fixed);
+  padding: var(--space-3xs) var(--space-md);
 }
 
 .content {
@@ -63,12 +67,7 @@
   color: var(--color-neutral-0);
   border: 1.5px solid transparent;
 
-  background: linear-gradient(
-        var(--color-primary-400),
-        var(--color-primary-400)
-      )
-      padding-box,
-    linear-gradient(180deg, #742de6 0%, #7319fb 100%) border-box;
+  background: var(--color-primary-500);
 
   &:hover {
     background-color: var(--color-primary-600);
