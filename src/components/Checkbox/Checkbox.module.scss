@@ -1,0 +1,126 @@
+/* The container */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.checkmark svg {
+  width: 55%;
+  height: 55%;
+  margin: auto 0px;
+}
+
+.checkmark.rounded {
+  border-radius: 100%;
+}
+
+/* Primary/Default */
+/* When the checkbox is checked */
+.container input:checked ~ .checkmark {
+  background-color: var(--color-primary-500);
+}
+
+/* Hide the checkmark svg when unchecked */
+.container input:not(:checked) ~ .checkmark svg {
+  display: none;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  background-color: var(--color-primary-500);
+  border-radius: var(--space-3xs);
+  border: 1px solid var(--color-primary-400);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  --checkbox-checkmark-color: var(--color-neutral-100);
+}
+
+/* On mouse hover */
+.container input:hover ~ .checkmark {
+  background-color: var(--color-primary-400);
+}
+
+/* Add a 1 px border so checkbox size doesn't change between enabled and disabled states */
+.container input:disabled ~ .checkmark {
+  background-color: var(--color-neutral-700);
+  border: 1px solid var(--color-neutral-700);
+  --checkbox-checkmark-color: var(--color-neutral-400);
+}
+
+/* Secondary */
+.container input:checked ~ .checkmark.secondary {
+  background-color: var(--color-neutral-800);
+  border: 1px solid var(--color-primary-500);
+}
+
+.container input:not(:checked) ~ .checkmark.secondary {
+  background-color: var(--color-neutral-800);
+  border: 1px solid var(--color-neutral-500);
+}
+
+.container input:hover ~ .checkmark.secondary {
+  background-color: var(--color-neutral-700);
+  border: 1px solid var(--color-secondary-400);
+
+  --checkbox-checkmark-color: var(--color-secondary-200);
+}
+
+.container input:disabled ~ .checkmark.secondary {
+  background-color: var(--color-neutral-900);
+  border: 1px solid var(--color-neutral-700);
+  --checkbox-checkmark-color: var(--color-neutral-400);
+}
+
+/* Icon */
+.container input:checked ~ .checkmark.icon {
+  background-color: transparent;
+  border: 1px solid transparent;
+  --checkbox-checkmark-color: var(--color-primary-200);
+}
+
+.container input:not(:checked) ~ .checkmark.icon {
+  background-color: var(--color-neutral-800);
+  border: 1px solid var(--color-neutral-600);
+}
+
+.container input:hover ~ .checkmark.icon {
+  background-color: transparent;
+  border: 1px solid var(--color-secondary-400);
+
+  --checkbox-checkmark-color: var(--color-secondary-200);
+}
+
+.container input:disabled ~ .checkmark.icon {
+  background-color: transparent;
+  border: 1px solid transparent;
+  --checkbox-checkmark-color: var(--color-neutral-400);
+}

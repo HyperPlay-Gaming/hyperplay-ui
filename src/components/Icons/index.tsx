@@ -25,10 +25,14 @@ export default function Icons() {
       <IconImages.MobileHpLogo />
       <IconImages.WarningIcon />
       <IconImages.RightArrow />
-      <IconImages.DownloadIcon />
-      <IconImages.PlayIcon />
+      <IconImages.DownloadIcon fill="#FFFFFF" />
+      <IconImages.PlayIcon fill="#FFFFFF" />
       <IconImages.XCircle />
-      <IconImages.PauseIcon />
+      <IconImages.PauseIcon fill="#FFFFFF" />
+      <IconImages.Checkmark
+        fill="#FFFFFF"
+        style={{ width: '24px', height: '24px' }}
+      />
     </div>
   )
 }
