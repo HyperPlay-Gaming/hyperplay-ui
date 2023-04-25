@@ -1,19 +1,15 @@
-import React, { PropsWithChildren, useRef } from 'react'
-import { useMeasure } from 'react-use'
+import React, { HTMLAttributes, PropsWithChildren, useRef } from 'react'
 
 import classNames from 'classnames'
 
-import useIsBrowser from '@/utils/useIsBrowser'
-
 import styles from './Button.module.scss'
-import PrimaryBackground from './components/PrimaryBackground'
 
-export interface ButtonProps extends PropsWithChildren {
+export interface ButtonProps
+  extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
   type?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'danger' | 'menuItem'
   size?: 'small' | 'medium' | 'large'
   leftIcon?: JSX.Element
   rightIcon?: React.ReactNode
-  onClick?: () => void
   fixedWidth?: number
   fullWidth?: boolean
   active?: boolean
@@ -26,67 +22,34 @@ export default function Button({
   leftIcon,
   rightIcon,
   children,
-  fixedWidth,
-  fullWidth,
   active,
   disabled,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onClick = () => {}
+  ...props
 }: ButtonProps) {
-  const [ref, { width, height }] = useMeasure<HTMLDivElement>()
-  const widthStyle = fullWidth
-    ? '100%'
-    : fixedWidth
-    ? fixedWidth
-    : 'fit-content'
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const isBrowser = useIsBrowser()
 
   return (
-    <div
-      ref={ref}
-      style={{
-        width: widthStyle,
-        height: 'fit-content'
-      }}
+    <button
+      disabled={disabled}
+      ref={buttonRef}
+      className={classNames(
+        styles.base,
+        styles[type],
+        styles[size],
+        size === 'small' ? 'button-sm' : 'button',
+        {
+          [styles.link]: type === 'menuItem',
+          'menu-item': type === 'menuItem',
+          [styles.active]: active
+        }
+      )}
+      {...props}
     >
-      <button
-        onClick={onClick}
-        ref={buttonRef}
-        disabled={disabled}
-        className={classNames(
-          styles.base,
-          styles[type],
-          styles[size],
-          size === 'small' ? 'button-sm' : 'button',
-          {
-            [styles.link]: type === 'menuItem',
-            'menu-item': type === 'menuItem',
-            [styles.active]: active
-          }
-        )}
-        style={{ width: widthStyle }}
-      >
-        <div className={styles.content}>
-          {leftIcon}
-          <div className={styles.text}>{children}</div>
-          {rightIcon}
-        </div>
-        {isBrowser && type === 'primary' && (
-          <PrimaryBackground
-            width={width}
-            height={height}
-            buttonElement={buttonRef.current}
-          />
-        )}
-        {/* {type === 'primary' && background.value && (
-          <background.value.default
-            height={height}
-            width={width}
-            buttonElement={buttonRef.current}
-          />
-        )} */}
-      </button>
-    </div>
+      <div className={styles.content}>
+        {leftIcon}
+        <div className={styles.text}>{children}</div>
+        {rightIcon}
+      </div>
+    </button>
   )
 }
