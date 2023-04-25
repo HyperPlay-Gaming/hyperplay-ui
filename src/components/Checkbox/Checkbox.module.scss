@@ -4,18 +4,21 @@
   position: relative;
   padding-left: 35px;
   margin-bottom: 12px;
-  cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  cursor: pointer;
+}
+
+.container:has(> input:disabled) {
+  cursor: default;
 }
 
 /* Hide the browser's default checkbox */
 .container input {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
   height: 0;
   width: 0;
 }
@@ -66,7 +69,8 @@
 
 /* On mouse hover */
 .container input:hover ~ .checkmark {
-  background-color: var(--color-primary-400);
+  background-color: var(--color-secondary-400);
+  border: 1px solid var(--color-secondary-200);
 }
 
 /* Add a 1 px border so checkbox size doesn't change between enabled and disabled states */
@@ -88,8 +92,8 @@
 }
 
 .container input:hover ~ .checkmark.secondary {
-  background-color: var(--color-neutral-700);
-  border: 1px solid var(--color-secondary-400);
+  background-color: var(--color-neutral-600);
+  border: 1px solid var(--color-secondary-200);
 
   --checkbox-checkmark-color: var(--color-secondary-200);
 }
@@ -114,7 +118,7 @@
 
 .container input:hover ~ .checkmark.icon {
   background-color: transparent;
-  border: 1px solid var(--color-secondary-400);
+  border: 1px solid var(--color-secondary-200);
 
   --checkbox-checkmark-color: var(--color-secondary-200);
 }
