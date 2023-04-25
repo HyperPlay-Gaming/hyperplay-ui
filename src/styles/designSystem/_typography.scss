@@ -64,6 +64,26 @@ xl	21.33334152
       var(--text-scale-ratio) * var(--text-scale-ratio) *
       var(--text-scale-ratio)
   );
+  --text-7xl: calc(
+    1rem * var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio)
+  );
+  --text-8xl: calc(
+    1rem * var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio)
+  );
+  --text-9xl: calc(
+    1rem * var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio)
+  );
 }
 
 body {
@@ -128,138 +148,156 @@ button {
 }
 
 /* Elements */
+$h1FontSize: --text-9xl;
 h1 {
   font-family: var(--primary-font-family);
-  font-size: var(--text-9xl);
+  font-size: var($h1FontSize);
   font-weight: var(--bold);
-  line-height: calc(var(--text-6xl) * 64 / 56);
+  line-height: calc(var($h1FontSize) * 76 / 67);
   letter-spacing: -1px;
 }
 
+$h2FontSize: --text-8xl;
 h2 {
   font-family: var(--primary-font-family);
-  font-size: var(--text-8xl);
+  font-size: var($h2FontSize);
   font-weight: var(--bold);
-  line-height: calc(var(--text-5xl) * 1.24);
+  line-height: calc(var($h2FontSize) * 64 / 58);
   letter-spacing: -1px;
 }
 
+$h3FontSize: --text-7xl;
 h3 {
   font-family: var(--primary-font-family);
-  font-size: var(--text-7xl);
+  font-size: var($h3FontSize);
   font-weight: var(--bold);
-  line-height: calc(var(--text-4xl) * 1.2);
+  line-height: calc(var($h3FontSize) * 56 / 50);
   letter-spacing: -1px;
 }
 
+$h4FontSize: --text-6xl;
 h4 {
   font-family: var(--primary-font-family);
-  font-size: var(--text-6xl);
+  font-size: var($h4FontSize);
   font-weight: var(--bold);
-  line-height: calc(var(--text-3xl) * 1.24);
+  line-height: calc(var($h4FontSize) * 48 / 43);
   letter-spacing: -0.5px;
 }
 
+$h5FontSize: --text-5xl;
 h5 {
   font-family: var(--primary-font-family);
-  font-size: var(--text-5xl);
+  font-size: var($h5FontSize);
   font-weight: var(--bold);
-  line-height: calc(var(--text-xl) * 1.24);
+  line-height: calc(var($h5FontSize) * 40 / 37);
 }
 
+$h6FontSize: --text-4xl;
 h6 {
   font-family: var(--primary-font-family);
-  font-size: var(--text-4xl);
+  font-size: var($h6FontSize);
   font-weight: var(--medium);
-  line-height: calc(var(--text-lg) * 1.32);
+  line-height: calc(var($h6FontSize) * 40 / 32);
 }
 
+$menuFontSize: --text-md;
 .menu {
   font-family: var(--primary-font-family);
-  font-size: var(--text-md);
+  font-size: var($menuFontSize);
   font-weight: var(--semibold);
-  line-height: var(--text-xl);
+  line-height: calc(var($menuFontSize) * 24 / 16);
   letter-spacing: 1px;
 }
 
+$titleFontSize: --text-2xl;
 .title {
   font-family: var(--primary-font-family);
-  font-size: var(--text-2xl);
+  font-size: var($titleFontSize);
   font-weight: var(--semibold);
-  line-height: calc(var(--text-2xl) * 32 / 24);
+  line-height: calc(var($titleFontSize) * 32 / 24);
 }
 
+$titleSmFontSize: --text-xl;
 .title-sm {
   font-family: var(--primary-font-family);
   font-weight: var(--medium);
-  font-size: var(--text-xl);
-  line-height: calc(var(--text-xl) * 28 / 21);
+  font-size: var($titleSmFontSize);
+  line-height: calc(var($titleSmFontSize) * 28 / 21);
 }
 
+$headerFontSize: --text-3xl;
 .header {
   font-family: var(--primary-font-family);
-  font-size: var(--text-3xl);
+  font-size: var($headerFontSize);
   font-weight: var(--bold);
-  line-height: calc(var(--text-3xl) * 32 / 28);
+  line-height: calc(var($headerFontSize) * 32 / 28);
 }
 
+$headerFontSize: --text-sm;
 .caption {
   font-family: var(--secondary-font-family);
-  font-size: var(--text-sm);
+  font-size: var($headerFontSize);
   font-weight: var(--medium);
-  line-height: calc(var(--text-md) * 18 / 15);
+  line-height: calc(var($headerFontSize) * 20 / 14);
 }
 
+$captionSmFontSize: --text-xs;
 .caption-sm {
   font-family: var(--secondary-font-family);
-  font-size: var(--text-xs);
+  font-size: var($captionSmFontSize);
   font-weight: var(--regular);
-  line-height: calc(var(--text-sm) * 20 / 14);
+  line-height: calc(var($captionSmFontSize) * 16 / 12);
   letter-spacing: 0.25px;
 }
 
+$eyebrowFontSize: --text-xs;
 .eyebrow {
   font-family: var(--secondary-font-family);
-  font-size: var(--text-xs);
+  font-size: var($eyebrowFontSize);
   font-weight: var(--semibold);
-  line-height: calc(var(--text-sm) * 24 / 14);
+  line-height: calc(var($eyebrowFontSize) * 16 / 12);
 }
 
+$bodyFontSize: --text-lg;
 .body {
   font-family: var(--secondary-font-family);
-  font-size: var(--text-lg);
+  font-size: var($bodyFontSize);
   font-weight: var(--regular);
-  line-height: calc(var(--text-md) * 24 / 16);
+  line-height: calc(var($bodyFontSize) * 24 / 18);
   letter-spacing: 0.25px;
 }
 
+$bodySmFontSize: --text-md;
 .body-sm {
   font-family: var(--secondary-font-family);
-  font-size: var(--text-md);
+  font-size: var($bodySmFontSize);
   font-weight: var(--regular);
-  line-height: calc(var(--text-sm) * 20 / 14);
+  line-height: calc(var($bodySmFontSize) * 24 / 16);
 }
 
+$buttonFontSize: --text-xl;
 .button {
   font-family: var(--secondary-font-family);
-  font-size: var(--text-xl);
+  font-size: var($buttonFontSize);
   font-weight: var(--semibold);
-  line-height: calc(var(--text-lg) * 24 / 18);
+  line-height: calc(var($buttonFontSize) * 24 / 21);
   letter-spacing: -1%;
 }
 
+$buttonSmFontSize: --text-md;
 .button-sm {
   font-family: var(--secondary-font-family);
-  font-size: var(--text-md);
+  font-size: var($buttonSmFontSize);
   font-weight: var(--semibold);
-  line-height: calc(var(--text-md) * 20 / 16);
+  line-height: calc(var($buttonSmFontSize) * 20 / 16);
   letter-spacing: -1%;
 }
 
+$menuItemFontSize: --text-sm;
 .menu-item {
-  font-size: var(--text-sm);
+  font-size: var($menuItemFontSize);
   font-weight: var(--bold);
-  line-height: var(--text-md);
+  line-height: calc(var($menuItemFontSize) * 1.154);
   text-transform: uppercase;
   font-family: var(--default-tertiary-font-family);
 }
