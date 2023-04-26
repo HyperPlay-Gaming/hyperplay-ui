@@ -154,7 +154,7 @@ h1 {
   font-size: var($h1FontSize);
   font-weight: var(--bold);
   line-height: calc(var($h1FontSize) * 76 / 67);
-  letter-spacing: -1px;
+  letter-spacing: -1%;
 }
 
 $h2FontSize: --text-8xl;
@@ -163,7 +163,7 @@ h2 {
   font-size: var($h2FontSize);
   font-weight: var(--bold);
   line-height: calc(var($h2FontSize) * 64 / 58);
-  letter-spacing: -1px;
+  letter-spacing: -1%;
 }
 
 $h3FontSize: --text-7xl;
@@ -172,7 +172,7 @@ h3 {
   font-size: var($h3FontSize);
   font-weight: var(--bold);
   line-height: calc(var($h3FontSize) * 56 / 50);
-  letter-spacing: -1px;
+  letter-spacing: -1%;
 }
 
 $h4FontSize: --text-6xl;
@@ -181,7 +181,7 @@ h4 {
   font-size: var($h4FontSize);
   font-weight: var(--bold);
   line-height: calc(var($h4FontSize) * 48 / 43);
-  letter-spacing: -0.5px;
+  letter-spacing: -1%;
 }
 
 $h5FontSize: --text-5xl;
@@ -206,7 +206,7 @@ $menuFontSize: --text-md;
   font-size: var($menuFontSize);
   font-weight: var(--semibold);
   line-height: calc(var($menuFontSize) * 24 / 16);
-  letter-spacing: 1px;
+  letter-spacing: 1%;
 }
 
 $titleFontSize: --text-2xl;
@@ -247,7 +247,7 @@ $captionSmFontSize: --text-xs;
   font-size: var($captionSmFontSize);
   font-weight: var(--regular);
   line-height: calc(var($captionSmFontSize) * 16 / 12);
-  letter-spacing: 0.25px;
+  letter-spacing: 0.25%;
 }
 
 $eyebrowFontSize: --text-xs;
@@ -264,7 +264,7 @@ $bodyFontSize: --text-lg;
   font-size: var($bodyFontSize);
   font-weight: var(--regular);
   line-height: calc(var($bodyFontSize) * 24 / 18);
-  letter-spacing: 0.25px;
+  letter-spacing: 0.25%;
 }
 
 $bodySmFontSize: --text-md;
