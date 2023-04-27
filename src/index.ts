@@ -16,6 +16,7 @@ export { default as AlertCard } from './components/AlertCard'
 export { default as DownloadToast } from './components/DownloadToast'
 export { default as Checkbox } from './components/Checkbox'
 export { default as Tabs } from './components/Tabs'
+export { default as Toggle } from './components/Toggle'
 
 export * as Typography from './components/Typography'
 export * as Images from './assets/images'
