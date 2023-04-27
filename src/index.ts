@@ -15,6 +15,7 @@ export { default as ModalAnimation } from './components/Modal/ModalAnimation'
 export { default as AlertCard } from './components/AlertCard'
 export { default as DownloadToast } from './components/DownloadToast'
 export { default as Checkbox } from './components/Checkbox'
+export { default as Tabs } from './components/Tabs'
 
 export * as Typography from './components/Typography'
 export * as Images from './assets/images'
