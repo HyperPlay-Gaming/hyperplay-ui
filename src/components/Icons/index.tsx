@@ -7,7 +7,16 @@ const IconFill: { [key: string]: string } = {
   PlayIcon: '#FFFFFF',
   PauseIcon: '#FFFFFF',
   Checkmark: '#FFFFFF',
-  DownArrow: '#FFFFFF'
+  DownArrow: '#FFFFFF',
+  Home: '#FFFFFF',
+  Controller: '#FFFFFF',
+  Settings: '#FFFFFF',
+  Page: '#FFFFFF'
+}
+
+const IconStroke: { [key: string]: string } = {
+  Discord: '#FFFFFF',
+  Twitter: '#FFFFFF'
 }
 
 export default function Icons() {
@@ -17,12 +26,20 @@ export default function Icons() {
       [key: string]: React.FunctionComponent<React.SVGAttributes<SVGElement>>
     }
     for (const key of Object.keys(allImages)) {
-      const props: { width: string; height: string; fill?: string } = {
+      const props: {
+        width: string
+        height: string
+        fill?: string
+        stroke?: string
+      } = {
         width: '36px',
         height: '36px'
       }
       if (Object.hasOwn(IconFill, key)) {
         props.fill = IconFill[key]
+      }
+      if (Object.hasOwn(IconStroke, key)) {
+        props.stroke = IconStroke[key]
       }
       icons.push(allImages[key](props))
     }
