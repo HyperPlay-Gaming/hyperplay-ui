@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, PropsWithChildren, useRef } from 'react'
+import React, { HTMLAttributes, PropsWithChildren, forwardRef } from 'react'
 
 import classNames from 'classnames'
 
@@ -16,22 +16,23 @@ export interface ButtonProps
   disabled?: boolean
 }
 
-export default function Button({
-  type = 'primary',
-  size = 'medium',
-  leftIcon,
-  rightIcon,
-  children,
-  active,
-  disabled,
-  ...props
-}: ButtonProps) {
-  const buttonRef = useRef<HTMLButtonElement>(null)
-
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  {
+    type = 'primary',
+    size = 'medium',
+    leftIcon,
+    rightIcon,
+    children,
+    active,
+    disabled,
+    ...props
+  }: ButtonProps,
+  ref
+) {
   return (
     <button
       disabled={disabled}
-      ref={buttonRef}
+      ref={ref}
       className={classNames(
         styles.base,
         styles[type],
@@ -52,4 +53,6 @@ export default function Button({
       </div>
     </button>
   )
-}
+})
+
+export default Button
