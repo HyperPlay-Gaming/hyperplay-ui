@@ -11,12 +11,17 @@ const IconFill: { [key: string]: string } = {
   Home: '#FFFFFF',
   Controller: '#FFFFFF',
   Settings: '#FFFFFF',
-  Page: '#FFFFFF'
+  Page: '#FFFFFF',
+  HyperPlayTextLogo: '#FFFFFF',
+  MagnifyingGlass: '#FFFFFF',
+  Twitter: '#FFFFFF',
+  Heart: '#FFFFFF',
+  Grid: '#FFFFFF',
+  List: '#FFFFFF'
 }
 
 const IconStroke: { [key: string]: string } = {
-  Discord: '#FFFFFF',
-  Twitter: '#FFFFFF'
+  Discord: '#FFFFFF'
 }
 
 export default function Icons() {
