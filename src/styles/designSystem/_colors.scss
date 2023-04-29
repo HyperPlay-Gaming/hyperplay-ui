@@ -147,6 +147,9 @@
     #e4e4e4 100%
   );
 
+  /* For components that share styles */
+  --app-background: var(--color-neutral-900);
+
   /* OLD - UNSURE IF STILL NEEDED 4.20.23 - USED BY BUTTON COMPONENT */
   --color-gradient-01-border: linear-gradient(180deg, #648df6 0%, #b824ff 100%);
   --color-gradient-02-border: linear-gradient(90deg, #c446ff 0%, #5a87f5 100%);

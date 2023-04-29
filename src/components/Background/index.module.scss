@@ -9,3 +9,18 @@
     red
   ); /* Replace with your desired gradient */
 }
+
+.svgPattern {
+  position: absolute;
+}
+
+.mask {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(
+    41.71% 53.31% at 55.47% 56.27%,
+    rgba(12, 11, 15, 0) 0%,
+    var(--app-background) 100%
+  );
+}
