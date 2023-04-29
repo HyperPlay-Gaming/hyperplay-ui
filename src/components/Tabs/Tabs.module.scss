@@ -5,29 +5,29 @@
     opacity: 1;
   }
 
-  > * {
+  > button.tab {
     border-radius: 0px;
   }
 
-  > button:first-of-type {
+  > button.tab:first-of-type {
     border-radius: var(--space-xs) 0px 0px var(--space-xs);
   }
 
-  > button:last-of-type {
+  > button.tab:last-of-type {
     border-radius: 0px var(--space-xs) var(--space-xs) 0px;
   }
 }
 
-.list.outline > * {
+.list.outline > button.tab {
   border-top: 1px solid var(--color-neutral-600);
   border-bottom: 1px solid var(--color-neutral-600);
 }
 
-.list.outline > button:first-of-type {
+.list.outline > button.tab:first-of-type {
   border-left: 1px solid var(--color-neutral-600);
 }
 
-.list.outline > button:last-of-type {
+.list.outline > button.tab:last-of-type {
   border-right: 1px solid var(--color-neutral-600);
 }
 

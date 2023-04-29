@@ -25,6 +25,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     children,
     active,
     disabled,
+    className,
     ...props
   }: ButtonProps,
   ref
@@ -42,7 +43,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
           [styles.link]: type === 'menuItem',
           'menu-item': type === 'menuItem',
           [styles.active]: active
-        }
+        },
+        className
       )}
       {...props}
     >
