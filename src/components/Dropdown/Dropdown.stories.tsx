@@ -14,5 +14,12 @@ const data = [
 ]
 export const Default = () => {
   const [selected, setSelected] = useState(data[0])
-  return <Dropdown options={data} onChange={setSelected} selected={selected} />
+  return (
+    <Dropdown
+      options={data}
+      onChange={setSelected}
+      selected={selected}
+      targetWidth={300}
+    />
+  )
 }

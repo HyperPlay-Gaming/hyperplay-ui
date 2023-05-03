@@ -9,7 +9,7 @@ export default {
 
 export const Default = () => {
   return (
-    <Toggle>
+    <Toggle onChange={(e) => console.log('toggle changed', e.target.checked)}>
       <h6>Downloaded</h6>
     </Toggle>
   )

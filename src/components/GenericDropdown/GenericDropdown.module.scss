@@ -1,0 +1,57 @@
+.menuDropdown > div > div > * {
+  color: var(--color-neutral-400);
+}
+
+// cannot put this padding in .menuDropdown without breaking the dropdown = target width mantine calcs
+// i.e. setting width="target" on Menu element
+.menuDropdown > div {
+  padding: var(--space-sm);
+}
+
+.menuDropdown *:hover {
+  opacity: 1;
+}
+
+.menuDropdown *[data-hovered='true'] {
+  background-color: var(--color-neutral-600);
+}
+
+.menuDropdown *[data-hovered='true'] * {
+  color: var(--color-neutral-100);
+}
+
+.menuDropdown {
+  background-color: var(--color-neutral-800);
+  color: var(--color-neutral-400);
+  border: none;
+  padding: 0px;
+  border-radius: 0 0 var(--space-sm) var(--space-sm);
+}
+
+.menuDropdown > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: baseline;
+}
+
+.menuDropdown > div > div > * {
+  padding: var(--space-sm);
+  border-radius: var(--space-sm);
+  width: 100%;
+  text-align: left;
+}
+
+.selected {
+  color: var(--color-secondary-200);
+}
+
+.genericButton {
+  width: '100%';
+  text-align: left;
+}
+
+.genericButton[aria-expanded='true'] {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}

@@ -2,35 +2,33 @@ import React from 'react'
 
 import { Group, Menu } from '@mantine/core'
 
-import { DownArrow } from '@/assets/images'
-
-import Button from '../Button'
+import GenericDropdown from '../GenericDropdown'
 import styles from './Dropdown.module.scss'
 
 export interface itemType {
   text: string
+  selected?: boolean
+  id?: string
 }
 
 export interface DropdownProps {
   options: itemType[]
   selected: itemType
   onChange: (item: itemType) => void
+  targetWidth?: number
 }
 
 export default function Dropdown({
   options,
   selected,
-  onChange
+  onChange,
+  targetWidth
 }: DropdownProps) {
   const items = options.map((val, index) => (
-    <Menu.Item
-      key={'filterIndex' + index}
-      onClick={() => onChange(val)}
-      className={`${styles.menuItem} `}
-    >
+    <Menu.Item key={'filterIndex' + index} onClick={() => onChange(val)}>
       <div
-        className={`body ${styles.itemContents} ${
-          val.text === selected.text ? styles.selected : ''
+        className={`body  ${
+          val.text === selected.text || val.selected ? styles.selected : ''
         }`}
       >
         {val.text}
@@ -39,19 +37,16 @@ export default function Dropdown({
   ))
   return (
     <Group>
-      <Menu position="bottom">
-        <Menu.Target>
-          <div>
-            <Button
-              type="tertiary"
-              rightIcon={<DownArrow fill="var(--color-neutral-400)" />}
-            >
-              <div className="title">{selected.text}</div>
-            </Button>
-          </div>
-        </Menu.Target>
-        <Menu.Dropdown className={styles.menuDropdown}>{items}</Menu.Dropdown>
-      </Menu>
+      <GenericDropdown
+        target={
+          <GenericDropdown.GenericButton
+            text={selected.text}
+            style={{ width: targetWidth }}
+          ></GenericDropdown.GenericButton>
+        }
+      >
+        {items}
+      </GenericDropdown>
     </Group>
   )
 }

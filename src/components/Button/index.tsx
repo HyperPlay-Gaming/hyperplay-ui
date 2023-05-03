@@ -25,7 +25,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     children,
     active,
     disabled,
-    className,
+    className: propClassName,
     ...props
   }: ButtonProps,
   ref
@@ -44,13 +44,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
           'menu-item': type === 'menuItem',
           [styles.active]: active
         },
-        className
+        propClassName
       )}
       {...props}
     >
       <div className={styles.content}>
         {leftIcon}
-        <div className={styles.text}>{children}</div>
+        {children}
         {rightIcon}
       </div>
     </button>
