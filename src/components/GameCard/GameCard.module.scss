@@ -3,6 +3,15 @@
 $card-height: 300px;
 $card-width: 200px;
 
+@mixin hiddenElement {
+  visibility: hidden;
+  opacity: 0;
+}
+@mixin visibleElement {
+  visibility: visible;
+  opacity: 1;
+}
+
 .root {
   box-sizing: border-box;
   position: relative;
@@ -18,6 +27,14 @@ $card-width: 200px;
       0px 0px 16.128px rgba(61, 11, 111, 0.5),
       0px 0px 8.064px rgba(61, 11, 111, 0.5), 0px 0px 2.304px #3d0b6f,
       0px 0px 1.152px #3d0b6f;
+  }
+
+  &:hover .actionButtonContainer {
+    @include visibleElement();
+  }
+
+  &:hover .title {
+    @include hiddenElement();
   }
 
   @include for-tablet-portrait-up {
@@ -93,7 +110,39 @@ $card-width: 200px;
   }
 }
 
+@mixin bottomElement {
+  transition: 0.2s;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .title {
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
+  @include bottomElement();
+  @include visibleElement();
+  transition: 0.1s;
+}
+
+.actionButtonContainer {
+  @include hiddenElement();
+  @include bottomElement();
+  display: flex;
+  align-items: start;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-3xs) 0px;
+}
+
+.endActionButtonContainer {
+  margin: 0 0 0 auto;
+}
+
+.bottomContainer {
+  position: relative;
+  height: 10%;
 }

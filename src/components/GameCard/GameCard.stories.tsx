@@ -6,9 +6,7 @@ export default {
   title: 'GameCard'
 }
 
-export const Default = () => (
-  <GameCard
-    title="Test Game"
-    imageUrl="https://picsum.photos/168/240"
-  ></GameCard>
+export const Default = () => <GameCard title="Test Game"></GameCard>
+export const LongTitle = () => (
+  <GameCard title="Test Game with a Really Long Title"></GameCard>
 )
