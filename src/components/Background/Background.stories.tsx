@@ -8,8 +8,7 @@ export default {
 }
 
 export const Default = () => (
-  <div style={{ position: 'relative' }}>
+  <div style={{ position: 'relative', height: '100vh', width: '100vw' }}>
     <Background></Background>
   </div>
 )
-// create story for ./index.tsx

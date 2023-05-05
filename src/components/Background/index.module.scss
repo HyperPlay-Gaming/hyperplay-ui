@@ -1,26 +1,26 @@
-.backgroundMask {
-  width: 100vw;
-  height: 100vh;
-  background-image: url('../../assets/background/pattern.svg');
-  background-repeat: repeat;
-  mask-image: linear-gradient(
-    to bottom,
-    blue,
-    red
-  ); /* Replace with your desired gradient */
-}
-
 .svgPattern {
   position: absolute;
 }
 
 .mask {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
   background: radial-gradient(
     41.71% 53.31% at 55.47% 56.27%,
     rgba(12, 11, 15, 0) 0%,
     var(--app-background) 100%
   );
+  overflow: hidden;
+}
+
+.svgContainer {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  overflow: hidden;
 }
