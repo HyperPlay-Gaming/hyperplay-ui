@@ -4,6 +4,7 @@ import { getChainMetadata } from '@hyperplay/chains'
 
 import { Blockchain, DownArrow, Token } from '@/assets/images'
 
+import Button from '../Button'
 import styles from './TokenTable.module.scss'
 
 interface NetworkRequirements {
@@ -55,7 +56,11 @@ export default function TokenTable({ networkReqs }: TokenTableProps) {
           <td>
             <Token fill="var(--color-neutral-100)" />
           </td>
-          <td>{address}</td>
+          <td>
+            <Button type="link" size="small">
+              {address}
+            </Button>
+          </td>
           <td>{address}</td>
         </tr>
       )
@@ -85,11 +90,14 @@ export default function TokenTable({ networkReqs }: TokenTableProps) {
       const hasTokens = networkReq_i.address.length > 0
 
       const rowStyle = { cursor: 'default' }
+      const showDropdown = hasTokens && expandedRows[i]
       if (hasTokens) rowStyle.cursor = 'pointer'
       allRows.push(
         <>
           <tr
-            className={`caption`}
+            className={`caption ${hasTokens ? styles.chainRow : ''} ${
+              showDropdown ? styles.expanded : ''
+            }`}
             style={rowStyle}
             onClick={() => toggleExpanded(i)}
           >
@@ -110,7 +118,11 @@ export default function TokenTable({ networkReqs }: TokenTableProps) {
             ) : (
               <td>
                 <div>
-                  <div>Click to see all tokens</div>
+                  <div>
+                    {showDropdown
+                      ? `Click to hide all tokens`
+                      : `Click to see all tokens`}
+                  </div>
                   <span
                     style={{
                       margin: '0 0 0 auto',
@@ -123,8 +135,12 @@ export default function TokenTable({ networkReqs }: TokenTableProps) {
               </td>
             )}
           </tr>
-          {hasTokens && expandedRows[i] ? (
-            <tr>
+          {showDropdown ? (
+            <tr
+              style={rowStyle}
+              className={`${styles.chainRow}`}
+              onClick={() => toggleExpanded(i)}
+            >
               <td colSpan={3}>
                 <table className={styles.tokenTable}>
                   <tr className={`${styles.headerRow} eyebrow`}>

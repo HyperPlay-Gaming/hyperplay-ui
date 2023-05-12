@@ -54,6 +54,21 @@
     }
   }
 
+  // style chain row if hovered or dropdown is hovered
+  tr:not(:first-child).chainRow:hover,
+  tr:not(:first-child).chainRow.expanded:has(+ tr.chainRow:hover) {
+    td {
+      background-color: var(--color-neutral-700);
+    }
+  }
+
+  // style dropdown on chain row hover
+  tr:not(:first-child).chainRow.expanded:hover + tr {
+    td {
+      background-color: var(--color-neutral-700);
+    }
+  }
+
   tr:not(:first-child) {
     td {
       padding: calc(1.85 * var(--space-md));
@@ -104,4 +119,14 @@
 
 .tokenTable {
   border-spacing: 0 var(--space-3xs-fixed);
+
+  th {
+    background-color: var(--color-neutral-600);
+  }
+
+  tr:not(:first-child) {
+    td {
+      background-color: var(--color-neutral-700);
+    }
+  }
 }
