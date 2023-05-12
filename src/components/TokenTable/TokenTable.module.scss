@@ -1,0 +1,107 @@
+.icon {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-bottom-left-radius: 10px;
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+}
+
+.headerRow {
+  background-color: var(--color-neutral-700);
+  width: 100%;
+  // border: solid var(--space-lg) var(--color-neutral-700);
+  color: var(--color-neutral-400);
+  th:first-child {
+    border-radius: var(--space-md) 0 0 var(--space-md);
+  }
+  th:last-child {
+    border-radius: 0 var(--space-md) var(--space-md) 0;
+    padding-left: 0px;
+  }
+}
+
+.chainTable {
+  columns: 3 auto;
+  gap: 0px;
+  column-rule-width: 0px;
+  column-rule: none;
+  grid-template-rows: auto;
+  -webkit-border-vertical-spacing: 0px;
+  -webkit-border-horizontal-spacing: 0px;
+  text-align: left;
+  border-spacing: 0 var(--space-3xs-fixed);
+  width: 100%;
+
+  th {
+    padding: var(--space-lg) var(--space-xl);
+    border-radius: var(--space-md);
+    background-color: var(--color-neutral-700);
+    font-weight: inherit;
+  }
+
+  > tr:not(:first-child) {
+    > td:nth-child(3) > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  tr:not(:first-child) {
+    td {
+      padding: calc(1.85 * var(--space-md));
+      background-color: var(--color-neutral-800);
+      padding-left: 0px;
+    }
+
+    td:nth-child(2) {
+      width: 50%;
+    }
+
+    td:nth-child(3) {
+      width: 50%;
+      min-width: 50%;
+    }
+
+    .tokenTable tr:first-child td:first-child {
+      border-top-left-radius: 10px;
+    }
+
+    td:first-child {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      padding-left: calc(1.5 * var(--space-md));
+      padding-right: var(--space-lg);
+
+      > div {
+        padding: var(--space-xs-fixed);
+        background-color: var(--color-neutral-400);
+        border-radius: 1000px;
+        height: 100%;
+        width: 100%;
+        width: 26px;
+        height: 26px;
+      }
+    }
+
+    td:last-child {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+
+  tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+  }
+}
+
+.tokenTable {
+  border-spacing: 0 var(--space-3xs-fixed);
+}
