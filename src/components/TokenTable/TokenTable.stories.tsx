@@ -19,6 +19,10 @@ export const Default = () => {
           {
             chainId: '137',
             address: ['0x1234', '0x1111']
+          },
+          {
+            chainId: '0',
+            address: []
           }
         ]}
       ></TokenTable>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { getChainMetadata } from '@hyperplay/chains'
 
-import { DownArrow } from '@/assets/images'
+import { Blockchain, DownArrow, Token } from '@/assets/images'
 
 import styles from './TokenTable.module.scss'
 
@@ -52,7 +52,9 @@ export default function TokenTable({ networkReqs }: TokenTableProps) {
     for (const address of tokenAddresses) {
       allTokenRows.push(
         <tr>
-          <td>{address}</td>
+          <td>
+            <Token fill="var(--color-neutral-100)" />
+          </td>
           <td>{address}</td>
           <td>{address}</td>
         </tr>
@@ -64,7 +66,16 @@ export default function TokenTable({ networkReqs }: TokenTableProps) {
   async function getAllRows() {
     const allRows = []
     for (const [i, networkReq_i] of networkReqs.entries()) {
-      const meta = await getChainMetadata(networkReq_i.chainId)
+      let meta
+      try {
+        meta = await getChainMetadata(networkReq_i.chainId)
+      } catch (err) {
+        console.error(err)
+        meta = {
+          icon: [],
+          chain: { name: 'Unknown Chain', nativeCurrency: { symbol: '???' } }
+        }
+      }
       console.log('chain metadata ', meta)
       let ipfsHash = ''
       if (meta.icon && meta.icon.length > 0)
@@ -84,7 +95,11 @@ export default function TokenTable({ networkReqs }: TokenTableProps) {
           >
             <td className={styles.icon}>
               <div>
-                <img src={imgUrl} />
+                {ipfsHash === '' ? (
+                  <Blockchain fill="var(--color-neutral-100)" />
+                ) : (
+                  <img src={imgUrl} />
+                )}
               </div>
             </td>
             <td>
