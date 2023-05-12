@@ -129,4 +129,12 @@
       background-color: var(--color-neutral-700);
     }
   }
+
+  > tr:not(:first-child) {
+    > td:nth-child(3) > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
 }
