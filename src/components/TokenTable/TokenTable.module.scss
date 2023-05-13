@@ -52,6 +52,7 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
+      margin-left: 1px;
     }
   }
 
@@ -144,7 +145,11 @@
   color: var(--color-neutral-400);
   display: flex;
   align-items: center;
-  gap: var(--space-3xs-fixed);
+  justify-items: start;
+}
+
+.infoText :first-child {
+  margin-right: var(--space-3xs-fixed);
 }
 
 .infoDropdown {
