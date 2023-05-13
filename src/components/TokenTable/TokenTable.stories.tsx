@@ -25,6 +25,8 @@ export const Default = () => {
             address: []
           }
         ]}
+        onTokenClick={(addr) => console.log('token clicked', addr)}
+        onGetTokenClick={(addr) => console.log('get token clicked', addr)}
       ></TokenTable>
     </div>
   )
@@ -49,6 +51,8 @@ export const GetTokenEnabled = () => {
             address: []
           }
         ]}
+        onTokenClick={(addr) => console.log('token clicked', addr)}
+        onGetTokenClick={(addr) => console.log('get token clicked', addr)}
       ></TokenTable>
     </div>
   )

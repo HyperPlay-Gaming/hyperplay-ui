@@ -15,11 +15,14 @@ interface NetworkRequirements {
 interface TokenTableProps {
   networkReqs: NetworkRequirements[]
   getTokenEnabled?: boolean
+  onTokenClick: (tokenAddress: string) => void
+  onGetTokenClick: (tokenAddress: string) => void
 }
 
 export default function TokenTable({
   networkReqs,
-  getTokenEnabled = false
+  getTokenEnabled = false,
+  ...props
 }: TokenTableProps) {
   const [allRows, setAllRows] = useState(<></>)
   const [expandedRows, setExpandedRows] = useState<{ [key: number]: boolean }>(
@@ -67,6 +70,7 @@ export default function TokenTable({
               onClick={(event) => {
                 console.log('token address clicked')
                 event?.stopPropagation()
+                props.onTokenClick(address)
               }}
             >
               {address}
@@ -88,6 +92,7 @@ export default function TokenTable({
                     onClick={(event) => {
                       console.log('get token clicked')
                       event?.stopPropagation()
+                      props.onGetTokenClick(address)
                     }}
                   >
                     <div className="button-sm">Get token</div>
