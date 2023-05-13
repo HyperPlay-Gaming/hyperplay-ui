@@ -8,7 +8,7 @@ import { Blockchain, DownArrow, Info, Token } from '@/assets/images'
 import Button from '../Button'
 import styles from './TokenTable.module.scss'
 
-type TokenType = 'fungible' | 'semiFungible' | 'nonFungible'
+type TokenType = 'fungible' | 'semiFungible' | 'nonFungible' | 'other'
 
 interface TokenMetadata {
   address: string
@@ -33,6 +33,7 @@ function getTokenTypeDisplayName(type: TokenType) {
   if (type === 'fungible') return 'Fungible'
   if (type === 'semiFungible') return 'Semi-fungible'
   if (type === 'nonFungible') return 'Non-fungible'
+  if (type === 'other') return 'Other'
 }
 
 export default function TokenTable({
