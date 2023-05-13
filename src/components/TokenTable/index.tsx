@@ -143,7 +143,15 @@ export default function TokenTable({
             style={rowStyle}
             onClick={() => toggleExpanded(i)}
           >
-            <td className={styles.icon}>
+            <td
+              className={styles.icon}
+              style={(() => {
+                if (showDropdown)
+                  return {
+                    borderBottomLeftRadius: '0px'
+                  }
+              })()}
+            >
               <div>
                 {ipfsHash === '' ? (
                   <Blockchain fill="var(--color-neutral-100)" />
@@ -185,7 +193,14 @@ export default function TokenTable({
                 </div>
               </td>
             ) : (
-              <td>
+              <td
+                style={(() => {
+                  if (showDropdown)
+                    return {
+                      borderBottomRightRadius: '0px'
+                    }
+                })()}
+              >
                 <div>
                   <div>
                     {showDropdown
@@ -234,10 +249,19 @@ export default function TokenTable({
           {showDropdown ? (
             <tr
               style={rowStyle}
-              className={`${styles.chainRow}`}
+              className={`${styles.tokenRow}`}
               onClick={() => toggleExpanded(i)}
             >
-              <td colSpan={3}>
+              <td
+                colSpan={3}
+                style={(() => {
+                  if (showDropdown)
+                    return {
+                      borderTopLeftRadius: '0px',
+                      borderTopRightRadius: '0px'
+                    }
+                })()}
+              >
                 <table className={styles.tokenTable}>
                   <tr className={`${styles.headerRow} eyebrow`}>
                     <th colSpan={2} style={{ maxWidth: '50%' }}>
@@ -250,6 +274,7 @@ export default function TokenTable({
               </td>
             </tr>
           ) : null}
+          <tr className={styles.separator}></tr>
         </>
       )
     }
@@ -265,6 +290,7 @@ export default function TokenTable({
         </th>
         <th>Token used</th>
       </tr>
+      <tr className={styles.separator}></tr>
       {allRows}
     </table>
   )
