@@ -8,9 +8,18 @@ import { Blockchain, DownArrow, Info, Token } from '@/assets/images'
 import Button from '../Button'
 import styles from './TokenTable.module.scss'
 
+type TokenType = 'fungible' | 'semiFungible' | 'nonFungible'
+
+interface TokenMetadata {
+  address: string
+  iconSvg?: string
+  type?: TokenType
+  name?: string
+}
+
 interface NetworkRequirements {
   chainId: string
-  address: string[]
+  tokens: TokenMetadata[]
 }
 
 interface TokenTableProps {
@@ -18,6 +27,12 @@ interface TokenTableProps {
   getTokenEnabled?: boolean
   onTokenClick: (tokenAddress: string) => void
   onGetTokenClick: (tokenAddress: string) => void
+}
+
+function getTokenTypeDisplayName(type: TokenType) {
+  if (type === 'fungible') return 'Fungible'
+  if (type === 'semiFungible') return 'Semi-fungible'
+  if (type === 'nonFungible') return 'Non-fungible'
 }
 
 export default function TokenTable({
@@ -47,10 +62,21 @@ export default function TokenTable({
     setExpandedRows((expandedRows) => ({ ...expandedRows, ...updatedValue }))
   }
 
+  function getTokenType(token: TokenMetadata) {
+    return token.type ? getTokenTypeDisplayName(token?.type) : 'Unknown'
+  }
+
+  function getTokenName(token: TokenMetadata) {
+    const addressName =
+      token.address.substring(0, 10) + (token.address.length > 10 ? '...' : '')
+    return token.name ? token?.name : addressName
+  }
+
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  function getAllTokenRows(tokenAddresses: string[], meta: any) {
+  function getAllTokenRows(tokens: TokenMetadata[], meta: any) {
     const allTokenRows = []
-    for (const address of tokenAddresses) {
+    for (const token of tokens) {
+      const address = token.address
       allTokenRows.push(
         <tr>
           <td>
@@ -70,14 +96,14 @@ export default function TokenTable({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {address}
+                {getTokenName(token)}
               </a>
             </Button>
           </td>
           <td>
             {getTokenEnabled ? (
               <div>
-                {address}
+                {getTokenType(token)}
 
                 <span
                   style={{
@@ -97,7 +123,7 @@ export default function TokenTable({
                 </span>
               </div>
             ) : (
-              address
+              getTokenType(token)
             )}
           </td>
         </tr>
@@ -124,7 +150,7 @@ export default function TokenTable({
         ipfsHash = meta.icon[0].url.split('//')[1]
       const imgUrl = `https://ipfs.io/ipfs/${ipfsHash}`
 
-      const hasTokens = networkReq_i.address.length > 0
+      const hasTokens = networkReq_i.tokens.length > 0
 
       const rowStyle = { cursor: 'default' }
       const showDropdown = hasTokens && expandedRows[i]
@@ -264,7 +290,7 @@ export default function TokenTable({
                     </th>
                     <th>Type</th>
                   </tr>
-                  <>{getAllTokenRows(networkReq_i.address, meta)}</>
+                  <>{getAllTokenRows(networkReq_i.tokens, meta)}</>
                 </table>
               </td>
             </tr>

@@ -14,19 +14,27 @@ export const Default = () => {
         networkReqs={[
           {
             chainId: '1',
-            address: []
+            tokens: []
           },
           {
             chainId: '137',
-            address: ['0x1234', '0x1111']
+            tokens: [
+              {
+                address: '0x1234',
+                name: 'Luffy NFTs',
+                iconSvg: '',
+                type: 'fungible'
+              },
+              { address: '0x11111', iconSvg: '', type: 'nonFungible' }
+            ]
           },
           {
             chainId: '0',
-            address: []
+            tokens: []
           },
           {
             chainId: '1',
-            address: ['0x9c93f03d43a7f1b0384c97e7c47c2515e53bb2a5']
+            tokens: [{ address: '0x9c93f03d43a7f1b0384c97e7c47c2515e53bb2a5' }]
           }
         ]}
         onTokenClick={(addr) => console.log('token clicked', addr)}
@@ -44,15 +52,15 @@ export const GetTokenEnabled = () => {
         networkReqs={[
           {
             chainId: '1',
-            address: []
+            tokens: []
           },
           {
             chainId: '137',
-            address: ['0x1234', '0x1111']
+            tokens: [{ address: '0x1234', iconSvg: '' }]
           },
           {
             chainId: '0',
-            address: []
+            tokens: []
           }
         ]}
         onTokenClick={(addr) => console.log('token clicked', addr)}
