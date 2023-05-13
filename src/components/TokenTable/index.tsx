@@ -206,14 +206,27 @@ export default function TokenTable({
                       </Menu.Dropdown>
                     </Menu>
                   </div>
-                  <span
+                  <div
                     style={{
                       margin: '0 0 0 auto',
-                      transform: `rotate(${expandedRows[i] ? 180 : 0}deg)`
+                      transform: `rotate(${expandedRows[i] ? 180 : 0}deg)`,
+                      height: '7px',
+                      width: '14px',
+                      position: 'relative'
                     }}
                   >
-                    <DownArrow stroke="var(--color-neutral-100)" />
-                  </span>
+                    <DownArrow
+                      fill="var(--color-neutral-100)"
+                      stroke="var(--color-neutral-100)"
+                      width="100%"
+                      height="100%"
+                      style={{
+                        position: 'absolute',
+                        top: '0px',
+                        left: '0px'
+                      }}
+                    />
+                  </div>
                 </div>
               </td>
             )}
