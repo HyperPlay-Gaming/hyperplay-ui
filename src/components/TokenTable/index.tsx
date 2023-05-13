@@ -36,27 +36,19 @@ export default function TokenTable({
 
   function toggleExpanded(chainRowIndex: number) {
     let expanded = false
-    console.log(
-      '!Object.hasOwn(expandedRows, chainRowIndex) ',
-      !Object.hasOwn(expandedRows, chainRowIndex)
-    )
-    console.log('!expandedRows[chainRowIndex] ', !expandedRows[chainRowIndex])
     if (
       !Object.hasOwn(expandedRows, chainRowIndex) ||
       !expandedRows[chainRowIndex]
     ) {
-      console.log('expanding row')
       expanded = true
-    } else {
-      console.log('collapsing row')
     }
     const updatedValue: { [key: number]: boolean } = {}
     updatedValue[chainRowIndex] = expanded
     setExpandedRows((expandedRows) => ({ ...expandedRows, ...updatedValue }))
   }
-  console.log(expandedRows)
 
-  function getAllTokenRows(tokenAddresses: string[]) {
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  function getAllTokenRows(tokenAddresses: string[], meta: any) {
     const allTokenRows = []
     for (const address of tokenAddresses) {
       allTokenRows.push(
@@ -69,12 +61,17 @@ export default function TokenTable({
               type="link"
               size="small"
               onClick={(event) => {
-                console.log('token address clicked')
                 event?.stopPropagation()
                 props.onTokenClick(address)
               }}
             >
-              {address}
+              <a
+                href={`${meta.chain.explorers[0].url}/address/${address}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {address}
+              </a>
             </Button>
           </td>
           <td>
@@ -91,7 +88,6 @@ export default function TokenTable({
                     type="secondary"
                     size="medium"
                     onClick={(event) => {
-                      console.log('get token clicked')
                       event?.stopPropagation()
                       props.onGetTokenClick(address)
                     }}
@@ -117,13 +113,12 @@ export default function TokenTable({
       try {
         meta = await getChainMetadata(networkReq_i.chainId)
       } catch (err) {
-        console.error(err)
+        console.warn(err)
         meta = {
           icon: [],
           chain: { name: 'Unknown Chain', nativeCurrency: { symbol: '???' } }
         }
       }
-      console.log('chain metadata ', meta)
       let ipfsHash = ''
       if (meta.icon && meta.icon.length > 0)
         ipfsHash = meta.icon[0].url.split('//')[1]
@@ -269,7 +264,7 @@ export default function TokenTable({
                     </th>
                     <th>Type</th>
                   </tr>
-                  <>{getAllTokenRows(networkReq_i.address)}</>
+                  <>{getAllTokenRows(networkReq_i.address, meta)}</>
                 </table>
               </td>
             </tr>

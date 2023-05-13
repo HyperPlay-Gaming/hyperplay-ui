@@ -23,6 +23,10 @@ export const Default = () => {
           {
             chainId: '0',
             address: []
+          },
+          {
+            chainId: '1',
+            address: ['0x9c93f03d43a7f1b0384c97e7c47c2515e53bb2a5']
           }
         ]}
         onTokenClick={(addr) => console.log('token clicked', addr)}

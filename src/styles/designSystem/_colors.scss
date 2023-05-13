@@ -196,3 +196,9 @@
 .color-neutral-100 {
   color: var(--color-neutral-100);
 }
+
+a:-webkit-any-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: inherit;
+}
