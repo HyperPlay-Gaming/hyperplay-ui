@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
 import { getChainMetadata } from '@hyperplay/chains'
+import { Menu } from '@mantine/core'
 
-import { Blockchain, DownArrow, Token } from '@/assets/images'
+import { Blockchain, DownArrow, Info, Token } from '@/assets/images'
 
 import Button from '../Button'
 import styles from './TokenTable.module.scss'
@@ -155,7 +156,34 @@ export default function TokenTable({
               <div>{meta.chain.name}</div>
             </td>
             {!hasTokens ? (
-              <td>{meta.chain.nativeCurrency.symbol}</td>
+              <td>
+                <div>
+                  <div
+                    style={{
+                      marginRight: 'auto',
+                      marginLeft: '0px',
+                      position: 'relative'
+                    }}
+                  >
+                    {meta.chain.nativeCurrency.symbol}
+                    <Menu trigger="hover" position="top-start">
+                      <Menu.Target>
+                        <div className={`caption-sm ${styles.infoText}`}>
+                          <Info fill="var(--color-neutral-400)" />
+                          Network fee
+                        </div>
+                      </Menu.Target>
+                      <Menu.Dropdown className={styles.infoDropdown}>
+                        <div className="caption">Network token fee</div>
+                        <div className="caption-sm">
+                          This token is required to pay for transactions on this
+                          network.
+                        </div>
+                      </Menu.Dropdown>
+                    </Menu>
+                  </div>
+                </div>
+              </td>
             ) : (
               <td>
                 <div>
@@ -163,6 +191,20 @@ export default function TokenTable({
                     {showDropdown
                       ? `Click to hide all tokens`
                       : `Click to see all tokens`}
+                    <Menu trigger="hover" position="top-start">
+                      <Menu.Target>
+                        <div className={`caption-sm ${styles.infoText}`}>
+                          <Info fill="var(--color-neutral-400)" />
+                          Token gated access
+                        </div>
+                      </Menu.Target>
+                      <Menu.Dropdown className={styles.infoDropdown}>
+                        <div className="caption">Token gated access</div>
+                        <div className="caption-sm">
+                          Some game content may require these tokens
+                        </div>
+                      </Menu.Dropdown>
+                    </Menu>
                   </div>
                   <span
                     style={{

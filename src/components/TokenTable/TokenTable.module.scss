@@ -138,3 +138,26 @@
     }
   }
 }
+
+.infoText {
+  color: var(--color-neutral-400);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs-fixed);
+}
+
+.infoDropdown {
+  background-color: var(--color-neutral-600);
+  border: none;
+  padding: var(--space-md);
+  border-radius: var(--space-md);
+  border-bottom-left-radius: 0px;
+}
+
+.infoDropdown :not(:first-child) {
+  color: var(--color-neutral-400);
+}
+
+.infoText:hover {
+  cursor: pointer;
+}

@@ -19,7 +19,10 @@ const IconFill: { [key: string]: string } = {
   Grid: '#FFFFFF',
   List: '#FFFFFF',
   Blockchain: 'white',
-  Token: 'white'
+  Token: 'white',
+  Info: 'white',
+  EthereumIcon: 'white',
+  PolygonIcon: 'white'
 }
 
 const IconStroke: { [key: string]: string } = {
