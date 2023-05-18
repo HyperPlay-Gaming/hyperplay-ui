@@ -46,6 +46,7 @@ export default function Icons() {
       if (Object.hasOwn(IconStroke, key)) {
         props.stroke = IconStroke[key]
       }
+      icons.push(<div>{key}</div>)
       icons.push(allImages[key](props))
     }
     return icons
