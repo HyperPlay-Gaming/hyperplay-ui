@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, PropsWithChildren, useState } from 'react'
+import React, { HTMLAttributes, PropsWithChildren } from 'react'
 
 import { faRepeat } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,131 +7,10 @@ import FallbackImage from '@/assets/fallback_card.jpg?url'
 
 import * as Images from '../../assets/images'
 import styles from './GameCard.module.scss'
+import ActionBar from './components/ActionBar'
+import DownloadBar from './components/DownloadBar'
 import imageStyles from './components/Image/Image.module.css'
-
-type ActionBarProps = {
-  title: string
-  onSettingsClick: () => void
-  onFavoriteClick: () => void
-  onActionClick: () => void
-  icon: JSX.Element
-  favorited?: boolean
-  showSettings: boolean
-}
-
-const ActionBar = ({
-  title,
-  onSettingsClick,
-  onFavoriteClick,
-  onActionClick,
-  icon,
-  favorited,
-  showSettings
-}: ActionBarProps) => {
-  return (
-    <>
-      <div className={`${styles.title} title`}>{title}</div>
-      <div className={styles.actionButtonContainer}>
-        <button style={{ paddingLeft: '0px' }} onClick={onSettingsClick}>
-          <Images.Ellipsis
-            fill={
-              showSettings
-                ? 'var(--color-primary-300)'
-                : 'var(--color-neutral-100)'
-            }
-          ></Images.Ellipsis>
-        </button>
-        <button onClick={onFavoriteClick} title={'Favorite'}>
-          <Images.Heart
-            fill={
-              favorited
-                ? 'var(--color-primary-400)'
-                : 'var(--color-neutral-100)'
-            }
-          ></Images.Heart>
-        </button>
-        <div className={styles.endActionButtonContainer}>
-          <button onClick={onActionClick}>{icon}</button>
-        </div>
-      </div>
-    </>
-  )
-}
-
-type DownloadBarProps = {
-  onStopDownloadClick: () => void
-  onPauseClick: () => void
-  message?: string
-  progress?: InstallProgress
-  isPaused?: boolean
-}
-
-const DownloadBar = ({
-  message,
-  progress,
-  onStopDownloadClick,
-  onPauseClick,
-  isPaused
-}: DownloadBarProps) => {
-  const progressBarStyle = {
-    '--download-progress-bar-percentage': `${
-      progress?.percent ? progress?.percent : 0
-    }%`
-  } as React.CSSProperties
-
-  return (
-    <>
-      <div className="caption">{message}</div>
-      <div
-        className={`${styles.downloadProgressContainer} ${
-          isPaused ? styles.paused : ''
-        }`}
-      >
-        <div className="caption">
-          {progress?.percent ? progress?.percent : 0}%
-        </div>
-        <div className={`${styles.progressBar}`} style={progressBarStyle}></div>
-        <button onClick={onStopDownloadClick}>
-          <Images.XCircle></Images.XCircle>
-        </button>
-        <button onClick={onPauseClick}>
-          {isPaused ? (
-            <Images.Resume fill="var(--color-tertiary-400)"></Images.Resume>
-          ) : (
-            <Images.PauseIcon fill="var(--color-tertiary-400)"></Images.PauseIcon>
-          )}
-        </button>
-      </div>
-    </>
-  )
-}
-
-export type GameCardState =
-  | 'NOT_SUPPORTED' //grayed out. only title no action bar
-  | 'UNINSTALLING' //message
-  | 'QUEUED' //action bar with x
-  | 'PLAYING' //action bar with cancel/pause buttons
-  | 'INSTALLING' //progress bar
-  | 'INSTALLED' //action bar with play
-  | 'NOT_INSTALLED' //action bar with download
-  | 'PAUSED' //progress bar with cancel/play buttons
-  | 'SHOW_MESSAGE' //text only
-  | 'NEEDS_UPDATE' //action bar with update icon
-
-export interface InstallProgress {
-  bytes: string
-  eta?: string
-  folder?: string
-  percent?: number
-  downSpeed?: number
-  diskSpeed?: number
-  file?: string
-}
-
-export type SettingsButtons = {
-  label: string
-  onClick: () => void
-}
+import { GameCardState, InstallProgress, SettingsButtons } from './types'
 
 export interface GameCardProps
   extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
@@ -290,7 +169,13 @@ const GameCard = ({
   return (
     <div className={styles.root} {...props}>
       <div className={styles.border} />
-      <div className={styles.card}>
+      <div
+        className={`${styles.card} ${
+          state === 'NOT_INSTALLED' || state === 'NOT_SUPPORTED'
+            ? styles.grayscaleFilter
+            : ''
+        }`}
+      >
         {showSettings ? (
           <div className={styles.settingsMenu}>{getSettingsItems()}</div>
         ) : null}
