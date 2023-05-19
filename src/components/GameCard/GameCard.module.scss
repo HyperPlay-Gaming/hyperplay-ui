@@ -66,14 +66,14 @@ $card-width: 220px;
   position: absolute;
 
   border-radius: var(--space-xs); // todo fix vars
-  border: 1px solid var(--color-neutral-600);
-  background: var(--color-neutral-700);
+  // border: 1px solid var(--color-neutral-600);
+  background: var(--color-neutral-800);
   transition: inset 0.2s ease-in-out, border 0.2s ease-in-out;
 
   .content {
     box-sizing: border-box;
 
-    padding: 8px;
+    padding: var(--space-sm);
     transform-origin: center;
     transition: inset 0.2s ease-in-out;
     display: flex;
@@ -102,7 +102,7 @@ $card-width: 220px;
 
   &:hover {
     inset: 2px;
-    border: 1px solid var(--color-neutral-700);
+    // border: 1px solid var(--color-neutral-700);
   }
 
   &:hover .content {
@@ -126,6 +126,7 @@ $card-width: 220px;
   @include bottomElement();
   @include visibleElement();
   transition: 0.1s;
+  position: relative;
 }
 
 .actionButtonContainer {
@@ -143,7 +144,6 @@ $card-width: 220px;
 
 .bottomContainer {
   position: relative;
-  height: 10%;
 }
 
 .progressBar {
@@ -153,7 +153,7 @@ $card-width: 220px;
   background-image: linear-gradient(
     90deg,
     var(--color-status-success) var(--download-progress-bar-percentage),
-    var(--color-neutral-500) var(--download-progress-bar-percentage)
+    var(--color-neutral-600) var(--download-progress-bar-percentage)
   );
   position: relative;
   border-radius: var(--text-xs);
@@ -165,4 +165,15 @@ $card-width: 220px;
   align-items: center;
   gap: var(--space-2xs);
   padding: var(--space-3xs) 0px;
+  > :first-child {
+    color: var(--color-success-400);
+  }
+  &.paused {
+    > :first-child {
+      opacity: 50%;
+    }
+    > :nth-child(2) {
+      opacity: 50%;
+    }
+  }
 }

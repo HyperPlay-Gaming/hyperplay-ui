@@ -12,6 +12,7 @@ type ActionBarProps = {
   onFavoriteClick: () => void
   onActionClick: () => void
   icon: JSX.Element
+  favorited?: boolean
 }
 
 const ActionBar = ({
@@ -19,7 +20,8 @@ const ActionBar = ({
   onSettingsClick,
   onFavoriteClick,
   onActionClick,
-  icon
+  icon,
+  favorited
 }: ActionBarProps) => {
   return (
     <>
@@ -29,11 +31,65 @@ const ActionBar = ({
           <Images.Ellipsis fill="var(--color-neutral-100)"></Images.Ellipsis>
         </button>
         <button onClick={onFavoriteClick}>
-          <Images.Heart fill="var(--color-neutral-100)"></Images.Heart>
+          <Images.Heart
+            fill={
+              favorited
+                ? 'var(--color-primary-400)'
+                : 'var(--color-neutral-100)'
+            }
+          ></Images.Heart>
         </button>
         <div className={styles.endActionButtonContainer}>
           <button onClick={onActionClick}>{icon}</button>
         </div>
+      </div>
+    </>
+  )
+}
+
+type DownloadBarProps = {
+  onStopDownloadClick: () => void
+  onPauseClick: () => void
+  message?: string
+  progress?: InstallProgress
+  isPaused?: boolean
+}
+
+const DownloadBar = ({
+  message,
+  progress,
+  onStopDownloadClick,
+  onPauseClick,
+  isPaused
+}: DownloadBarProps) => {
+  const progressBarStyle = {
+    '--download-progress-bar-percentage': `${
+      progress?.percent ? progress?.percent : 0
+    }%`
+  } as React.CSSProperties
+
+  return (
+    <>
+      <div className="caption">{message}</div>
+      <div
+        className={`${styles.downloadProgressContainer} ${
+          isPaused ? styles.paused : ''
+        }`}
+      >
+        <div className="caption">
+          {progress?.percent ? progress?.percent : 0}%
+        </div>
+        <div className={`${styles.progressBar}`} style={progressBarStyle}></div>
+        <button onClick={onStopDownloadClick}>
+          <Images.XCircle></Images.XCircle>
+        </button>
+        <button onClick={onPauseClick}>
+          {isPaused ? (
+            <Images.Resume fill="var(--color-tertiary-400)"></Images.Resume>
+          ) : (
+            <Images.PauseIcon fill="var(--color-tertiary-400)"></Images.PauseIcon>
+          )}
+        </button>
       </div>
     </>
   )
@@ -74,6 +130,7 @@ type GameCardProps = {
   state: GameCardState
   message?: string
   progress?: InstallProgress
+  favorited?: boolean
 }
 
 const GameCard = ({
@@ -89,17 +146,12 @@ const GameCard = ({
   message,
   progress,
   onStopDownloadClick,
-  onPauseClick
+  onPauseClick,
+  favorited
 }: GameCardProps) => {
   const [showSettings, setShowSettings] = useState(false)
 
   function getActionBar() {
-    const progressBarStyle = {
-      '--download-progress-bar-percentage': `${
-        progress?.percent ? progress?.percent : 0
-      }%`
-    } as React.CSSProperties
-
     switch (state) {
       case 'QUEUED':
         return (
@@ -109,6 +161,7 @@ const GameCard = ({
             onSettingsClick={() => setShowSettings(!showSettings)}
             title={title}
             icon={<Images.BurgerOpenIcon />}
+            favorited={favorited}
           />
         )
       case 'PLAYING':
@@ -119,6 +172,7 @@ const GameCard = ({
             onSettingsClick={() => setShowSettings(!showSettings)}
             title={title}
             icon={<Images.BurgerOpenIcon />}
+            favorited={favorited}
           />
         )
       case 'INSTALLED':
@@ -129,6 +183,7 @@ const GameCard = ({
             onSettingsClick={() => setShowSettings(!showSettings)}
             title={title}
             icon={<Images.PlayIcon fill="var(--color-neutral-100)" />}
+            favorited={favorited}
           />
         )
       case 'NOT_INSTALLED':
@@ -141,6 +196,7 @@ const GameCard = ({
             icon={
               <Images.DownloadIcon fill="var(--color-neutral-100)"></Images.DownloadIcon>
             }
+            favorited={favorited}
           />
         )
       case 'SHOW_MESSAGE':
@@ -159,25 +215,26 @@ const GameCard = ({
       case 'INSTALLING':
         return (
           <>
-            <div className={styles.downloadProgressContainer}>
-              <div className="caption">
-                {progress?.percent ? progress?.percent : 0}%
-              </div>
-              <div
-                className={`${styles.progressBar}`}
-                style={progressBarStyle}
-              ></div>
-              <button onClick={onStopDownloadClick}>
-                <Images.XCircle></Images.XCircle>
-              </button>
-              <button onClick={onPauseClick}>
-                <Images.PauseIcon fill="var(--color-tertiary-400)"></Images.PauseIcon>
-              </button>
-            </div>
+            <DownloadBar
+              message={message}
+              progress={progress}
+              onStopDownloadClick={onStopDownloadClick}
+              onPauseClick={onPauseClick}
+            />
           </>
         )
       case 'PAUSED':
-        return <></>
+        return (
+          <>
+            <DownloadBar
+              message={message}
+              progress={progress}
+              onStopDownloadClick={onStopDownloadClick}
+              onPauseClick={onPauseClick}
+              isPaused={true}
+            />
+          </>
+        )
       default:
         return null
         break

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import GameCard from '.'
 
@@ -40,9 +40,20 @@ export const Playing = () => (
   <GameCard title="Test Game" {...onClickHandlers} state="PLAYING"></GameCard>
 )
 
-export const Installed = () => (
-  <GameCard title="Test Game" {...onClickHandlers} state="INSTALLED"></GameCard>
-)
+export const Installed = () => {
+  /* eslint-disable-next-line */
+  const { onFavoriteClick, ...handlers } = onClickHandlers
+  const [favorited, setFavorited] = useState(false)
+  return (
+    <GameCard
+      title="Test Game"
+      {...handlers}
+      onFavoriteClick={() => setFavorited(!favorited)}
+      state="INSTALLED"
+      favorited={favorited}
+    ></GameCard>
+  )
+}
 
 export const ShowMessage = () => (
   <GameCard
@@ -77,5 +88,16 @@ export const Installing = () => (
     {...onClickHandlers}
     state="INSTALLING"
     progress={{ bytes: '0', percent: 50 }}
+    message="Installing..."
+  ></GameCard>
+)
+
+export const Paused = () => (
+  <GameCard
+    title="Test Game"
+    {...onClickHandlers}
+    state="PAUSED"
+    progress={{ bytes: '0', percent: 50 }}
+    message="Paused"
   ></GameCard>
 )
