@@ -115,3 +115,22 @@ export const Paused = () => (
     message="Paused"
   ></GameCard>
 )
+
+export const TwoInstalled = () => {
+  return (
+    <div style={{ display: 'flex' }}>
+      <GameCard
+        title="Test Game"
+        {...onClickHandlers}
+        state="INSTALLED"
+        imageUrl={MoonBlastersCover}
+      ></GameCard>
+      <GameCard
+        title="Test Game"
+        {...onClickHandlers}
+        state="INSTALLED"
+        imageUrl={MoonBlastersCover}
+      ></GameCard>
+    </div>
+  )
+}
