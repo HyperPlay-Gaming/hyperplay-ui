@@ -116,6 +116,11 @@ export interface InstallProgress {
   file?: string
 }
 
+export type SettingsButtons = {
+  label: string
+  onClick: () => void
+}
+
 type GameCardProps = {
   image?: JSX.Element
   imageUrl?: string
@@ -131,6 +136,7 @@ type GameCardProps = {
   message?: string
   progress?: InstallProgress
   favorited?: boolean
+  settingsItems: SettingsButtons[]
 }
 
 const GameCard = ({
@@ -147,7 +153,8 @@ const GameCard = ({
   progress,
   onStopDownloadClick,
   onPauseClick,
-  favorited
+  favorited,
+  settingsItems
 }: GameCardProps) => {
   const [showSettings, setShowSettings] = useState(false)
 
@@ -240,10 +247,26 @@ const GameCard = ({
         break
     }
   }
+
+  function getSettingsItems() {
+    const items = []
+    for (const item of settingsItems) {
+      items.push(
+        <button className="button-sm" key={item.label} onClick={item.onClick}>
+          {item.label}
+        </button>
+      )
+    }
+    return items
+  }
+
   return (
     <div className={styles.root}>
       <div className={styles.border} />
       <div className={styles.card}>
+        {showSettings ? (
+          <div className={styles.settingsMenu}>{getSettingsItems()}</div>
+        ) : null}
         <div className={styles.content}>
           <div className={imageStyles.proportions}>
             {image || imageUrl ? (

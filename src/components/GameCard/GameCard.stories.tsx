@@ -13,7 +13,16 @@ const onClickHandlers = {
   onRemoveFromQueueClick: () => console.log('remove from queue clicked'),
   onStopPlayingClick: () => console.log('stop playing clicked'),
   onPauseClick: () => console.log('pause download clicked'),
-  onStopDownloadClick: () => console.log('stop download clicked')
+  onStopDownloadClick: () => console.log('stop download clicked'),
+  settingsItems: [
+    { label: 'Update', onClick: () => console.log('update clicked') },
+    {
+      label: 'Add to Steam',
+      onClick: () => console.log('add to steam clicked')
+    },
+    { label: 'Move game', onClick: () => console.log('Move game clicked') },
+    { label: 'Game page', onClick: () => console.log('Game page clicked') }
+  ]
 }
 
 export const DefaultUninstalled = () => (

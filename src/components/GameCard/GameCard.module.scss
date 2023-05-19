@@ -1,7 +1,8 @@
 @import '../../styles/utilities/_variables';
 
 $card-height: 330px;
-$card-width: 220px;
+$card-width: 240px;
+$hoverBorderThickness: 2px;
 
 @mixin hiddenElement {
   visibility: hidden;
@@ -15,8 +16,8 @@ $card-width: 220px;
 .root {
   box-sizing: border-box;
   position: relative;
-  height: 300px;
-  width: 179px;
+  height: 309px;
+  width: 200px;
   cursor: pointer;
 
   &:hover .border {
@@ -38,8 +39,8 @@ $card-width: 220px;
   }
 
   @include for-tablet-portrait-up {
-    height: 308px;
-    width: 200px;
+    height: 334px;
+    width: 216px;
   }
 }
 
@@ -50,7 +51,7 @@ $card-width: 220px;
   left: 0;
   right: 0;
   bottom: 0;
-  border-radius: 8px;
+  border-radius: calc(var(--space-md) + $hoverBorderThickness);
   z-index: -1;
   opacity: 0;
   transition: opacity 0.5s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -65,15 +66,14 @@ $card-width: 220px;
   right: 0;
   position: absolute;
 
-  border-radius: var(--space-xs); // todo fix vars
-  // border: 1px solid var(--color-neutral-600);
+  border-radius: var(--space-md);
   background: var(--color-neutral-800);
   transition: inset 0.2s ease-in-out, border 0.2s ease-in-out;
 
   .content {
     box-sizing: border-box;
 
-    padding: var(--space-sm);
+    padding: var(--space-md);
     transform-origin: center;
     transition: inset 0.2s ease-in-out;
     display: flex;
@@ -87,7 +87,6 @@ $card-width: 220px;
     right: 0;
 
     h6 {
-      // width: 163px;
       color: var(--color-neutral-100);
     }
 
@@ -102,11 +101,10 @@ $card-width: 220px;
 
   &:hover {
     inset: 2px;
-    // border: 1px solid var(--color-neutral-700);
   }
 
   &:hover .content {
-    inset: -2px;
+    inset: -$hoverBorderThickness;
   }
 }
 
@@ -175,5 +173,33 @@ $card-width: 220px;
     > :nth-child(2) {
       opacity: 50%;
     }
+  }
+}
+
+$settingsMenuWidth: 75%;
+
+.settingsMenu {
+  position: absolute;
+  bottom: 24%;
+  width: $settingsMenuWidth;
+  right: calc((100% - $settingsMenuWidth) / 2);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(21px);
+  border-radius: var(--space-sm);
+  padding: var(--space-sm) var(--space-xs);
+  box-sizing: border-box;
+
+  > button {
+    width: 100%;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--space-sm);
+  }
+
+  > button:hover {
+    background-color: var(--color-primary-900);
+    opacity: 100%;
   }
 }
