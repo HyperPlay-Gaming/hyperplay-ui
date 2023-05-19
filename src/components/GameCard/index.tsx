@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { HTMLAttributes, PropsWithChildren, useState } from 'react'
 
 import FallbackImage from '@/assets/fallback_card.jpg?url'
 
@@ -121,7 +121,8 @@ export type SettingsButtons = {
   onClick: () => void
 }
 
-type GameCardProps = {
+export interface GameCardProps
+  extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
   image?: JSX.Element
   imageUrl?: string
   title: string
@@ -154,7 +155,8 @@ const GameCard = ({
   onStopDownloadClick,
   onPauseClick,
   favorited,
-  settingsItems
+  settingsItems,
+  ...props
 }: GameCardProps) => {
   const [showSettings, setShowSettings] = useState(false)
 
@@ -261,7 +263,7 @@ const GameCard = ({
   }
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} {...props}>
       <div className={styles.border} />
       <div className={styles.card}>
         {showSettings ? (

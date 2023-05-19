@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 
+import MoonBlastersCover from '@/assets/MoonBlastersCover.png?url'
+import RocketMonstersCover from '@/assets/RocketMonstersCover.png?url'
+
 import GameCard from '.'
 
 export default {
@@ -60,6 +63,7 @@ export const Installed = () => {
       onFavoriteClick={() => setFavorited(!favorited)}
       state="INSTALLED"
       favorited={favorited}
+      imageUrl={MoonBlastersCover}
     ></GameCard>
   )
 }
@@ -70,6 +74,7 @@ export const ShowMessage = () => (
     {...onClickHandlers}
     state="SHOW_MESSAGE"
     message="Test message..."
+    imageUrl={RocketMonstersCover}
   ></GameCard>
 )
 
