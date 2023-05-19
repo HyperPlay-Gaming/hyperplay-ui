@@ -24,8 +24,16 @@ const onClickHandlers = {
       onClick: () => console.log('add to steam clicked')
     },
     { label: 'Move game', onClick: () => console.log('Move game clicked') },
+    {
+      label: 'Add to Steam',
+      onClick: () => console.log('add to steam clicked')
+    },
+    { label: 'Move game', onClick: () => console.log('Move game clicked') },
     { label: 'Game page', onClick: () => console.log('Game page clicked') }
-  ]
+  ],
+  showSettings: false,
+  onSettingsClick: () => console.log('settings button clicked'),
+  onUpdateClick: () => console.log('update button clicked')
 }
 
 export const DefaultUninstalled = () => (
@@ -96,15 +104,24 @@ export const Uninstalling = () => (
   ></GameCard>
 )
 
-export const Installing = () => (
-  <GameCard
-    title="Test Game"
-    {...onClickHandlers}
-    state="INSTALLING"
-    progress={{ bytes: '0', percent: 50 }}
-    message="Installing..."
-  ></GameCard>
-)
+export const Installing = () => {
+  const [showSettings, setShowSettings] = useState(true)
+  return (
+    <GameCard
+      title="Test Game"
+      {...onClickHandlers}
+      state="INSTALLING"
+      progress={{ bytes: '0', percent: 50 }}
+      message="Installing..."
+      onContextMenu={(e) => {
+        e.preventDefault()
+        setShowSettings(!showSettings)
+      }}
+      showSettings={showSettings}
+      onSettingsClick={() => setShowSettings(!showSettings)}
+    ></GameCard>
+  )
+}
 
 export const Paused = () => (
   <GameCard
@@ -132,5 +149,41 @@ export const TwoInstalled = () => {
         imageUrl={MoonBlastersCover}
       ></GameCard>
     </div>
+  )
+}
+
+export const InstalledContextMenu = () => {
+  const [showSettings, setShowSettings] = useState(true)
+  return (
+    <GameCard
+      title="Test Game"
+      {...onClickHandlers}
+      state="INSTALLED"
+      imageUrl={MoonBlastersCover}
+      onContextMenu={(e) => {
+        e.preventDefault()
+        setShowSettings(!showSettings)
+      }}
+      showSettings={showSettings}
+      onSettingsClick={() => setShowSettings(!showSettings)}
+    ></GameCard>
+  )
+}
+
+export const NeedsUpdate = () => {
+  const [showSettings, setShowSettings] = useState(false)
+  return (
+    <GameCard
+      title="Test Game"
+      {...onClickHandlers}
+      state="NEEDS_UPDATE"
+      imageUrl={MoonBlastersCover}
+      onContextMenu={(e) => {
+        e.preventDefault()
+        setShowSettings(!showSettings)
+      }}
+      showSettings={showSettings}
+      onSettingsClick={() => setShowSettings(!showSettings)}
+    ></GameCard>
   )
 }

@@ -18,7 +18,8 @@ const IconFill: { [key: string]: string } = {
   Heart: '#FFFFFF',
   Grid: '#FFFFFF',
   List: '#FFFFFF',
-  Resume: 'white'
+  Resume: 'white',
+  Ellipsis: 'white'
 }
 
 const IconStroke: { [key: string]: string } = {

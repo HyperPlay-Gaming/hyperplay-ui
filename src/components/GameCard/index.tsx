@@ -1,5 +1,8 @@
 import React, { HTMLAttributes, PropsWithChildren, useState } from 'react'
 
+import { faRepeat } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import FallbackImage from '@/assets/fallback_card.jpg?url'
 
 import * as Images from '../../assets/images'
@@ -13,6 +16,7 @@ type ActionBarProps = {
   onActionClick: () => void
   icon: JSX.Element
   favorited?: boolean
+  showSettings: boolean
 }
 
 const ActionBar = ({
@@ -21,16 +25,23 @@ const ActionBar = ({
   onFavoriteClick,
   onActionClick,
   icon,
-  favorited
+  favorited,
+  showSettings
 }: ActionBarProps) => {
   return (
     <>
       <div className={`${styles.title} title`}>{title}</div>
       <div className={styles.actionButtonContainer}>
         <button style={{ paddingLeft: '0px' }} onClick={onSettingsClick}>
-          <Images.Ellipsis fill="var(--color-neutral-100)"></Images.Ellipsis>
+          <Images.Ellipsis
+            fill={
+              showSettings
+                ? 'var(--color-primary-300)'
+                : 'var(--color-neutral-100)'
+            }
+          ></Images.Ellipsis>
         </button>
-        <button onClick={onFavoriteClick}>
+        <button onClick={onFavoriteClick} title={'Favorite'}>
           <Images.Heart
             fill={
               favorited
@@ -105,6 +116,7 @@ export type GameCardState =
   | 'NOT_INSTALLED' //action bar with download
   | 'PAUSED' //progress bar with cancel/play buttons
   | 'SHOW_MESSAGE' //text only
+  | 'NEEDS_UPDATE' //action bar with update icon
 
 export interface InstallProgress {
   bytes: string
@@ -128,6 +140,7 @@ export interface GameCardProps
   title: string
   onFavoriteClick: () => void
   onDownloadClick: () => void
+  onUpdateClick: () => void
   onRemoveFromQueueClick: () => void
   onStopPlayingClick: () => void
   onPlayClick: () => void
@@ -138,6 +151,8 @@ export interface GameCardProps
   progress?: InstallProgress
   favorited?: boolean
   settingsItems: SettingsButtons[]
+  showSettings: boolean
+  onSettingsClick: () => void
 }
 
 const GameCard = ({
@@ -146,6 +161,7 @@ const GameCard = ({
   title,
   onFavoriteClick,
   onDownloadClick,
+  onUpdateClick,
   onRemoveFromQueueClick,
   onStopPlayingClick,
   onPlayClick,
@@ -156,56 +172,51 @@ const GameCard = ({
   onPauseClick,
   favorited,
   settingsItems,
+  showSettings,
+  onSettingsClick,
   ...props
 }: GameCardProps) => {
-  const [showSettings, setShowSettings] = useState(false)
-
   function getActionBar() {
+    const actionBarProps = {
+      onFavoriteClick: onFavoriteClick,
+      onSettingsClick: () => onSettingsClick(),
+      title: title,
+      favorited: favorited,
+      showSettings: showSettings
+    }
     switch (state) {
       case 'QUEUED':
         return (
           <ActionBar
+            {...actionBarProps}
             onActionClick={onRemoveFromQueueClick}
-            onFavoriteClick={onFavoriteClick}
-            onSettingsClick={() => setShowSettings(!showSettings)}
-            title={title}
             icon={<Images.BurgerOpenIcon />}
-            favorited={favorited}
           />
         )
       case 'PLAYING':
         return (
           <ActionBar
+            {...actionBarProps}
             onActionClick={onStopPlayingClick}
-            onFavoriteClick={onFavoriteClick}
-            onSettingsClick={() => setShowSettings(!showSettings)}
-            title={title}
             icon={<Images.BurgerOpenIcon />}
-            favorited={favorited}
           />
         )
       case 'INSTALLED':
         return (
           <ActionBar
+            {...actionBarProps}
             onActionClick={onPlayClick}
-            onFavoriteClick={onFavoriteClick}
-            onSettingsClick={() => setShowSettings(!showSettings)}
-            title={title}
             icon={<Images.PlayIcon fill="var(--color-neutral-100)" />}
-            favorited={favorited}
           />
         )
       case 'NOT_INSTALLED':
         return (
           <ActionBar
+            {...actionBarProps}
             onActionClick={onDownloadClick}
-            onFavoriteClick={onFavoriteClick}
-            onSettingsClick={() => setShowSettings(!showSettings)}
-            title={title}
             icon={
               <Images.DownloadIcon fill="var(--color-neutral-100)"></Images.DownloadIcon>
             }
-            favorited={favorited}
           />
         )
       case 'SHOW_MESSAGE':
@@ -243,6 +254,20 @@ const GameCard = ({
               isPaused={true}
             />
           </>
+        )
+      case 'NEEDS_UPDATE':
+        return (
+          <ActionBar
+            {...actionBarProps}
+            onActionClick={onUpdateClick}
+            icon={
+              <FontAwesomeIcon
+                size={'2x'}
+                fill="var(--color-neutral-100)"
+                icon={faRepeat}
+              />
+            }
+          />
         )
       default:
         return null
