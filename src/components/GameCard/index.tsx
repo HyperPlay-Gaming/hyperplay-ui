@@ -25,6 +25,7 @@ export interface GameCardProps
   onPlayClick: React.MouseEventHandler<HTMLButtonElement>
   onStopDownloadClick: React.MouseEventHandler<HTMLButtonElement>
   onPauseClick: React.MouseEventHandler<HTMLButtonElement>
+  onResumeClick: React.MouseEventHandler<HTMLButtonElement>
   state: GameCardState
   message?: string
   progress?: InstallProgress
@@ -53,6 +54,7 @@ const GameCard = ({
   settingsItems,
   showSettings,
   onSettingsClick,
+  onResumeClick,
   ...props
 }: GameCardProps) => {
   function getActionBar() {
@@ -119,6 +121,7 @@ const GameCard = ({
               progress={progress}
               onStopDownloadClick={onStopDownloadClick}
               onPauseClick={onPauseClick}
+              onResumeClick={onResumeClick}
             />
           </>
         )
@@ -130,6 +133,7 @@ const GameCard = ({
               progress={progress}
               onStopDownloadClick={onStopDownloadClick}
               onPauseClick={onPauseClick}
+              onResumeClick={onResumeClick}
               isPaused={true}
             />
           </>

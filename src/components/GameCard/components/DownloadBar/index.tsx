@@ -7,6 +7,7 @@ import { InstallProgress } from '../../types'
 type DownloadBarProps = {
   onStopDownloadClick: React.MouseEventHandler<HTMLButtonElement>
   onPauseClick: React.MouseEventHandler<HTMLButtonElement>
+  onResumeClick: React.MouseEventHandler<HTMLButtonElement>
   message?: string
   progress?: InstallProgress
   isPaused?: boolean
@@ -17,6 +18,7 @@ const DownloadBar = ({
   progress,
   onStopDownloadClick,
   onPauseClick,
+  onResumeClick,
   isPaused
 }: DownloadBarProps) => {
   const progressBarStyle = {
@@ -40,7 +42,7 @@ const DownloadBar = ({
         <button onClick={onStopDownloadClick}>
           <Images.XCircle></Images.XCircle>
         </button>
-        <button onClick={onPauseClick}>
+        <button onClick={isPaused ? onResumeClick : onPauseClick}>
           {isPaused ? (
             <Images.Resume fill="var(--color-tertiary-400)"></Images.Resume>
           ) : (
