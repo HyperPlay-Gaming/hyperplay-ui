@@ -5,9 +5,9 @@ import styles from '../../GameCard.module.scss'
 
 type ActionBarProps = {
   title: string
-  onSettingsClick: () => void
-  onFavoriteClick: () => void
-  onActionClick: () => void
+  onSettingsClick: React.MouseEventHandler<HTMLButtonElement>
+  onFavoriteClick: React.MouseEventHandler<HTMLButtonElement>
+  onActionClick: React.MouseEventHandler<HTMLButtonElement>
   icon: JSX.Element
   favorited?: boolean
   showSettings: boolean

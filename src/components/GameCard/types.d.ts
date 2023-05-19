@@ -22,5 +22,5 @@ export interface InstallProgress {
 
 export type SettingsButtons = {
   label: string
-  onClick: () => void
+  onClick: React.MouseEventHandler<HTMLButtonElement>
 }

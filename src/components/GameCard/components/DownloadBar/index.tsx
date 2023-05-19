@@ -5,8 +5,8 @@ import styles from '../../GameCard.module.scss'
 import { InstallProgress } from '../../types'
 
 type DownloadBarProps = {
-  onStopDownloadClick: () => void
-  onPauseClick: () => void
+  onStopDownloadClick: React.MouseEventHandler<HTMLButtonElement>
+  onPauseClick: React.MouseEventHandler<HTMLButtonElement>
   message?: string
   progress?: InstallProgress
   isPaused?: boolean

@@ -17,21 +17,21 @@ export interface GameCardProps
   image?: JSX.Element
   imageUrl?: string
   title: string
-  onFavoriteClick: () => void
-  onDownloadClick: () => void
-  onUpdateClick: () => void
-  onRemoveFromQueueClick: () => void
-  onStopPlayingClick: () => void
-  onPlayClick: () => void
-  onStopDownloadClick: () => void
-  onPauseClick: () => void
+  onFavoriteClick: React.MouseEventHandler<HTMLButtonElement>
+  onDownloadClick: React.MouseEventHandler<HTMLButtonElement>
+  onUpdateClick: React.MouseEventHandler<HTMLButtonElement>
+  onRemoveFromQueueClick: React.MouseEventHandler<HTMLButtonElement>
+  onStopPlayingClick: React.MouseEventHandler<HTMLButtonElement>
+  onPlayClick: React.MouseEventHandler<HTMLButtonElement>
+  onStopDownloadClick: React.MouseEventHandler<HTMLButtonElement>
+  onPauseClick: React.MouseEventHandler<HTMLButtonElement>
   state: GameCardState
   message?: string
   progress?: InstallProgress
   favorited?: boolean
   settingsItems: SettingsButtons[]
   showSettings: boolean
-  onSettingsClick: () => void
+  onSettingsClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const GameCard = ({
@@ -58,7 +58,7 @@ const GameCard = ({
   function getActionBar() {
     const actionBarProps = {
       onFavoriteClick: onFavoriteClick,
-      onSettingsClick: () => onSettingsClick(),
+      onSettingsClick: onSettingsClick,
       title: title,
       favorited: favorited,
       showSettings: showSettings
