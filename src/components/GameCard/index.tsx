@@ -122,6 +122,7 @@ const GameCard = ({
               onStopDownloadClick={onStopDownloadClick}
               onPauseClick={onPauseClick}
               onResumeClick={onResumeClick}
+              isPaused={false}
             />
           </>
         )

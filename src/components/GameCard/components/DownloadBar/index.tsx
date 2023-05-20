@@ -36,7 +36,7 @@ const DownloadBar = ({
         }`}
       >
         <div className="caption">
-          {progress?.percent ? progress?.percent : 0}%
+          {progress?.percent ? Math.round(progress?.percent) : 0}%
         </div>
         <div className={`${styles.progressBar}`} style={progressBarStyle}></div>
         <button onClick={onStopDownloadClick}>
