@@ -205,3 +205,9 @@ $settingsMenuWidth: 75%;
 .grayscaleFilter {
   filter: grayscale(100%);
 }
+
+.storeLogoContainer {
+  position: absolute;
+  top: calc(2 * var(--space-md));
+  right: calc(2 * var(--space-md));
+}

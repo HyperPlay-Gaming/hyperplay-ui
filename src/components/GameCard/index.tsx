@@ -35,6 +35,7 @@ export interface GameCardProps
   onSettingsClick: React.MouseEventHandler<HTMLButtonElement>
   actionDisabled?: boolean
   alwaysShowInColor?: boolean
+  store?: 'HYPERPLAY' | 'EPIC' | 'GOG'
 }
 
 const GameCard = ({
@@ -59,6 +60,7 @@ const GameCard = ({
   onResumeClick,
   actionDisabled = false,
   alwaysShowInColor = false,
+  store,
   ...props
 }: GameCardProps) => {
   function getActionBar() {
@@ -177,6 +179,19 @@ const GameCard = ({
     return items
   }
 
+  function getStoreLogo() {
+    switch (store) {
+      case 'HYPERPLAY':
+        return <Images.HyperPlayStoreLogo />
+      case 'GOG':
+        return <Images.GogStoreLogo />
+      case 'EPIC':
+        return <Images.EpicStoreLogo />
+      default:
+        return null
+    }
+  }
+
   return (
     <div className={styles.root} {...props}>
       <div className={styles.border} />
@@ -203,6 +218,9 @@ const GameCard = ({
             )}
           </div>
           <div className={styles.bottomContainer}>{getActionBar()}</div>
+          {store ? (
+            <div className={styles.storeLogoContainer}>{getStoreLogo()}</div>
+          ) : null}
         </div>
       </div>
     </div>

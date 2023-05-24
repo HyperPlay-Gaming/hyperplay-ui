@@ -33,7 +33,8 @@ const onClickHandlers = {
   ],
   showSettings: false,
   onSettingsClick: () => console.log('settings button clicked'),
-  onUpdateClick: () => console.log('update button clicked')
+  onUpdateClick: () => console.log('update button clicked'),
+  store: 'HYPERPLAY'
 }
 
 export const DefaultUninstalled = () => (
