@@ -11,6 +11,7 @@ type ActionBarProps = {
   icon: JSX.Element
   favorited?: boolean
   showSettings: boolean
+  actionDisabled?: boolean
 }
 
 const ActionBar = ({
@@ -20,7 +21,8 @@ const ActionBar = ({
   onActionClick,
   icon,
   favorited,
-  showSettings
+  showSettings,
+  actionDisabled = false
 }: ActionBarProps) => {
   return (
     <>
@@ -45,7 +47,9 @@ const ActionBar = ({
           ></Images.Heart>
         </button>
         <div className={styles.endActionButtonContainer}>
-          <button onClick={onActionClick}>{icon}</button>
+          <button onClick={onActionClick} disabled={actionDisabled}>
+            {icon}
+          </button>
         </div>
       </div>
     </>

@@ -33,6 +33,8 @@ export interface GameCardProps
   settingsItems: SettingsButtons[]
   showSettings: boolean
   onSettingsClick: React.MouseEventHandler<HTMLButtonElement>
+  actionDisabled?: boolean
+  alwaysShowInColor?: boolean
 }
 
 const GameCard = ({
@@ -55,6 +57,8 @@ const GameCard = ({
   showSettings,
   onSettingsClick,
   onResumeClick,
+  actionDisabled = false,
+  alwaysShowInColor = false,
   ...props
 }: GameCardProps) => {
   function getActionBar() {
@@ -63,7 +67,8 @@ const GameCard = ({
       onSettingsClick: onSettingsClick,
       title: title,
       favorited: favorited,
-      showSettings: showSettings
+      showSettings: showSettings,
+      actionDisabled: actionDisabled
     }
     switch (state) {
       case 'QUEUED':
@@ -98,6 +103,7 @@ const GameCard = ({
             icon={
               <Images.DownloadIcon fill="var(--color-neutral-100)"></Images.DownloadIcon>
             }
+            actionDisabled={actionDisabled}
           />
         )
       case 'SHOW_MESSAGE':
@@ -176,7 +182,8 @@ const GameCard = ({
       <div className={styles.border} />
       <div
         className={`${styles.card} ${
-          state === 'NOT_INSTALLED' || state === 'NOT_SUPPORTED'
+          !alwaysShowInColor &&
+          (state === 'NOT_INSTALLED' || state === 'NOT_SUPPORTED')
             ? styles.grayscaleFilter
             : ''
         }`}
