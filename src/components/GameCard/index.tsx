@@ -35,7 +35,7 @@ export interface GameCardProps
   onSettingsClick: React.MouseEventHandler<HTMLButtonElement>
   actionDisabled?: boolean
   alwaysShowInColor?: boolean
-  store?: 'HYPERPLAY' | 'EPIC' | 'GOG'
+  store?: 'legendary' | 'gog' | 'hyperplay' | 'sideload'
 }
 
 const GameCard = ({
@@ -78,7 +78,7 @@ const GameCard = ({
           <ActionBar
             {...actionBarProps}
             onActionClick={onRemoveFromQueueClick}
-            icon={<Images.BurgerOpenIcon />}
+            icon={<Images.BurgerOpenIcon width="22px" height="22px" />}
           />
         )
       case 'PLAYING':
@@ -86,7 +86,7 @@ const GameCard = ({
           <ActionBar
             {...actionBarProps}
             onActionClick={onStopPlayingClick}
-            icon={<Images.BurgerOpenIcon />}
+            icon={<Images.BurgerOpenIcon width="22px" height="22px" />}
           />
         )
       case 'INSTALLED':
@@ -181,11 +181,11 @@ const GameCard = ({
 
   function getStoreLogo() {
     switch (store) {
-      case 'HYPERPLAY':
+      case 'hyperplay':
         return <Images.HyperPlayStoreLogo />
-      case 'GOG':
+      case 'gog':
         return <Images.GogStoreLogo />
-      case 'EPIC':
+      case 'legendary':
         return <Images.EpicStoreLogo />
       default:
         return null
