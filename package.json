@@ -1,10 +1,10 @@
 {
   "name": "@hyperplay/ui",
-  "version": "0.1.0-alpha.19",
+  "version": "0.1.0-alpha.19.b",
   "license": "BUSL-1.1",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/unlinkFonts.cjs && vite build && node scripts/linkFonts.cjs",
+    "build": "vite build",
     "build:watch": "node scripts/unlinkFonts.cjs && vite build --watch && node scripts/linkFonts.cjs",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
@@ -92,7 +92,5 @@
       "react-app/jest"
     ]
   },
-  "optionalDependencies": {
-    "@hyperplay/proprietary-fonts": "^0.1.0"
-  }
+  "optionalDependencies": {}
 }
