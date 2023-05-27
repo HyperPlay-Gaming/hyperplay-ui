@@ -10,7 +10,12 @@ import styles from './GameCard.module.scss'
 import ActionBar from './components/ActionBar'
 import DownloadBar from './components/DownloadBar'
 import imageStyles from './components/Image/Image.module.css'
-import { GameCardState, InstallProgress, SettingsButtons } from './types'
+import {
+  GameCardState,
+  InstallProgress,
+  Runner,
+  SettingsButtons
+} from './types'
 
 export interface GameCardProps
   extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
@@ -35,7 +40,7 @@ export interface GameCardProps
   onSettingsClick: React.MouseEventHandler<HTMLButtonElement>
   actionDisabled?: boolean
   alwaysShowInColor?: boolean
-  store?: 'legendary' | 'gog' | 'hyperplay' | 'sideload'
+  store?: Runner
 }
 
 const GameCard = ({
@@ -192,22 +197,22 @@ const GameCard = ({
     }
   }
 
+  const grayscaleFilterClassName =
+    !alwaysShowInColor &&
+    (state === 'NOT_INSTALLED' || state === 'NOT_SUPPORTED')
+      ? styles.grayscaleFilter
+      : ''
   return (
     <div className={styles.root} {...props}>
       <div className={styles.border} />
-      <div
-        className={`${styles.card} ${
-          !alwaysShowInColor &&
-          (state === 'NOT_INSTALLED' || state === 'NOT_SUPPORTED')
-            ? styles.grayscaleFilter
-            : ''
-        }`}
-      >
+      <div className={`${styles.card}`}>
         {showSettings ? (
           <div className={styles.settingsMenu}>{getSettingsItems()}</div>
         ) : null}
         <div className={styles.content}>
-          <div className={imageStyles.proportions}>
+          <div
+            className={`${imageStyles.proportions} ${grayscaleFilterClassName}`}
+          >
             {image || imageUrl ? (
               <img src={imageUrl} />
             ) : (

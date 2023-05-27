@@ -4,6 +4,7 @@ import MoonBlastersCover from '@/assets/MoonBlastersCover.png?url'
 import RocketMonstersCover from '@/assets/RocketMonstersCover.png?url'
 
 import GameCard from '.'
+import { Runner } from './types'
 
 export default {
   title: 'GameCard'
@@ -34,16 +35,22 @@ const onClickHandlers = {
   showSettings: false,
   onSettingsClick: () => console.log('settings button clicked'),
   onUpdateClick: () => console.log('update button clicked'),
-  store: 'hyperplay'
+  onResumeClick: () => console.log('resume button clicked'),
+  store: 'hyperplay' as Runner
 }
 
-export const DefaultUninstalled = () => (
-  <GameCard
-    title="Test Game"
-    {...onClickHandlers}
-    state="NOT_INSTALLED"
-  ></GameCard>
-)
+export const DefaultUninstalled = () => {
+  const [favorited, setFavorited] = useState(false)
+  return (
+    <GameCard
+      title="Test Game"
+      {...onClickHandlers}
+      state="NOT_INSTALLED"
+      favorited={favorited}
+      onFavoriteClick={() => setFavorited(!favorited)}
+    ></GameCard>
+  )
+}
 
 export const LongTitleUninstalled = () => (
   <GameCard
