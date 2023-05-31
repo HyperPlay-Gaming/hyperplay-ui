@@ -7,7 +7,7 @@ import styles from './Button.module.scss'
 export interface ButtonProps
   extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
   type?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'danger' | 'menuItem'
-  size?: 'small' | 'medium' | 'large'
+  size?: 'small' | 'medium' | 'large' | 'icon'
   leftIcon?: JSX.Element
   rightIcon?: React.ReactNode
   fixedWidth?: number
