@@ -17,7 +17,9 @@ const IconFill: { [key: string]: string } = {
   Twitter: '#FFFFFF',
   Heart: '#FFFFFF',
   Grid: '#FFFFFF',
-  List: '#FFFFFF'
+  List: '#FFFFFF',
+  Resume: 'white',
+  Ellipsis: 'white'
 }
 
 const IconStroke: { [key: string]: string } = {
@@ -46,6 +48,7 @@ export default function Icons() {
       if (Object.hasOwn(IconStroke, key)) {
         props.stroke = IconStroke[key]
       }
+      icons.push(<div>{key}</div>)
       icons.push(allImages[key](props))
     }
     return icons

@@ -33,6 +33,10 @@ export default defineConfig({
         {
           src: 'src/fonts.css',
           dest: ''
+        },
+        {
+          src: 'src/fonts',
+          dest: ''
         }
       ]
     })
