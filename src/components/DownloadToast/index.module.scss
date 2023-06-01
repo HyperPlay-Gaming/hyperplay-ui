@@ -71,7 +71,7 @@ $progressBarBorderRadius: var(--space-2xs);
 .manageDownloadContainer {
   margin: var(--space-lg) 0 0 0;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .manageDownloadContainer button {
