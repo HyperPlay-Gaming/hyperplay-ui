@@ -1,9 +1,9 @@
 .svgPattern {
-  position: absolute;
+  position: fixed;
 }
 
 .mask {
-  position: absolute;
+  position: fixed;
   top: 0px;
   bottom: 0px;
   right: 0px;
@@ -17,7 +17,7 @@
 }
 
 .svgContainer {
-  position: absolute;
+  position: fixed;
   top: 0px;
   bottom: 0px;
   right: 0px;

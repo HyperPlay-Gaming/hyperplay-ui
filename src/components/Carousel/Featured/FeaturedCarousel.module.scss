@@ -5,24 +5,12 @@
   height: 466px;
   position: relative;
   overflow: hidden;
-}
-
-.filter {
-  background: radial-gradient(
-    57.52% 57.51% at 49.33% 38.64%,
-    rgba(12, 11, 15, 0) 0%,
-    rgba(12, 11, 15, 1) 100%
-  );
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  position: absolute;
+  background-color: var(--color-neutral-900);
 }
 
 .controller {
-  right: var(--space-7xl);
-  bottom: var(--space-5xl);
+  right: var(--space-xl);
+  bottom: var(--space-xl);
   position: absolute;
   display: none;
 
@@ -51,12 +39,11 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
-  padding: var(--space-3xl);
+  padding: var(--space-xl);
   flex-direction: column;
 
   .description {
     max-width: 524px;
-    margin-bottom: var(--space-lg);
   }
 
   .image-wrap {

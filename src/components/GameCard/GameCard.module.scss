@@ -115,7 +115,7 @@ $hoverBorderThickness: 2px;
   right: 0;
 }
 
-.title {
+@mixin gameTitle {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -123,6 +123,14 @@ $hoverBorderThickness: 2px;
   @include visibleElement();
   transition: 0.1s;
   position: relative;
+}
+
+.title {
+  @include gameTitle();
+}
+
+.storeTitle {
+  @include gameTitle();
 }
 
 .actionButtonContainer {

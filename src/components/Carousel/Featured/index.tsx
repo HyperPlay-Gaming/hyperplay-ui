@@ -54,7 +54,6 @@ const FeaturedCarousel = (props: FeaturedCarouselProps) => {
                   </div>
                   {imageElement}
                 </div>
-                <div className={styles.filter} />
               </div>
             )
           )}
