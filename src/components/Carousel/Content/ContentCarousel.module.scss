@@ -28,8 +28,8 @@
 
 .controlsWrapper {
   position: absolute;
-  left: var(--space-3xl);
-  bottom: var(--space-3xl);
+  left: var(--space-xl);
+  bottom: var(--space-xl);
 
   @include for-mobile-only {
     display: none;

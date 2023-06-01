@@ -195,3 +195,15 @@ export const NeedsUpdate = () => {
     ></GameCard>
   )
 }
+
+export const Store = () => {
+  return (
+    <GameCard
+      title="Test Game"
+      {...onClickHandlers}
+      imageUrl={MoonBlastersCover}
+      state="NEEDS_UPDATE"
+      app="store"
+    ></GameCard>
+  )
+}

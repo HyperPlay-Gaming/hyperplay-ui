@@ -41,6 +41,7 @@ export interface GameCardProps
   actionDisabled?: boolean
   alwaysShowInColor?: boolean
   store?: Runner
+  app?: 'client' | 'store'
 }
 
 const GameCard = ({
@@ -66,6 +67,7 @@ const GameCard = ({
   actionDisabled = false,
   alwaysShowInColor = false,
   store,
+  app = 'client',
   ...props
 }: GameCardProps) => {
   function getActionBar() {
@@ -213,7 +215,9 @@ const GameCard = ({
           <div
             className={`${imageStyles.proportions} ${grayscaleFilterClassName}`}
           >
-            {image || imageUrl ? (
+            {image ? (
+              <image />
+            ) : imageUrl ? (
               <img src={imageUrl} />
             ) : (
               <img
@@ -222,7 +226,14 @@ const GameCard = ({
               />
             )}
           </div>
-          <div className={styles.bottomContainer}>{getActionBar()}</div>
+          <div className={styles.bottomContainer}>
+            {app === 'client' ? (
+              getActionBar()
+            ) : (
+              <div className={`${styles.storeTitle} title`}>{title}</div>
+            )}
+          </div>
+
           {store ? (
             <div className={styles.storeLogoContainer}>{getStoreLogo()}</div>
           ) : null}
