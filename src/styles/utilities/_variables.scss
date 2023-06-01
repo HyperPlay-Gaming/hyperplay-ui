@@ -29,3 +29,10 @@ $laptopBreakpoint: 1350px;
     @content;
   }
 }
+
+@mixin imageWrapper {
+  position: relative;
+  object-fit: cover;
+  justify-content: center;
+  vertical-align: middle;
+}

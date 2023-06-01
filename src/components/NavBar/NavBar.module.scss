@@ -1,93 +1,148 @@
-@import '../../styles/utilities/_variables';
+@use '../../styles/utilities/_variables';
 
-.wrapper {
+.bannerContainer {
+  width: 100vw;
+  height: auto;
+  position: sticky;
+  top: 0px;
+  left: 0;
+  background-color: black;
+  z-index: 100;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
 .navbar {
-  width: 100%;
-  max-width: 1292px;
-  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
 
-  // sorry not sorry
-  @media (max-width: 750px) {
-    padding: 22px var(--space-md);
-
-    .menu {
-      display: none;
-    }
-
-    .links {
-      display: none;
-    }
-
-    .socials {
-      display: none;
-    }
-
-    .desktopLogo {
-      display: none;
-    }
+  @include variables.for-mobile-only {
+    padding: var(--text-2xl) var(--space-lg-fixed);
   }
-
-  @media (min-width: 750px) {
-    padding: var(--space-2xl) calc(1 * var(--space-5xl));
-
-    .mobileLogo {
-      display: none;
-    }
-
-    .desktopLogo {
-      display: block;
-    }
-
-    .burger {
-      display: none;
-    }
+  @include variables.for-tablet-portrait-up {
+    padding: var(--text-2xl) var(--space-xl-fixed);
   }
-
-  @include for-tablet-landscape-up {
-    padding: var(--space-5xl) calc(2 * var(--space-5xl));
+  @include variables.for-tablet-landscape-up {
+    padding: var(--text-2xl) var(--space-2xl-fixed);
   }
-  // padding: var(--space-5xl) calc(2 * var(--space-5xl));
-  // TODO: Mobile version
+  @include variables.for-desktop-up {
+    padding: var(--text-2xl) var(--text-4xl);
+  }
 }
 
-.links {
-  display: flex;
-  gap: 32px;
+.navbarLinkImg {
+  height: 20px;
+  width: 20px;
+  margin: 0px 10px;
+  @include variables.imageWrapper;
 }
 
-.socials {
-  display: flex;
-  gap: var(--space-3xl);
+.navbarLogoImg {
+  height: 24px;
+  width: 24px;
+  transform: translateY(2px);
+  @include variables.imageWrapper;
+}
+
+.navItem {
+  padding: 0px 20px;
 }
 
 .menu {
-  display: flex;
-  gap: calc(2 * var(--space-5xl));
-}
-
-.mobileMenu {
-  background: black;
-  position: absolute;
-  top: 84px;
-  left: 0px;
-  right: 0px;
-}
-
-.mobileMenuItem {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  height: 48px;
+  display: flex;
 
-  &:hover {
-    background: var(--color-neutral-700);
+  @include variables.for-mobile-only {
+    display: none;
   }
+  @include variables.for-tablet-portrait-up {
+    display: none;
+  }
+  @include variables.for-tablet-landscape-up {
+    display: flex;
+  }
+  @include variables.for-desktop-up {
+    display: flex;
+  }
+}
+
+.navbar a:hover {
+  // color: var(--grayscale-01-400);
+  opacity: 50%;
+}
+
+.hpLogoText {
+  font-family: 'Rotonto' var(--primary-font-family);
+  font-size: var(--text-xl);
+  padding-left: var(--space-2xs-fixed);
+}
+
+.navLogo {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbarHpLogoImage {
+  height: var(--text-xl);
+}
+
+.burgerMenu {
+  height: 24px;
+  width: 24px;
+  @include variables.imageWrapper;
+  background-color: transparent;
+
+  @include variables.for-mobile-only {
+    display: inline-block;
+  }
+  @include variables.for-tablet-portrait-up {
+    display: inline-block;
+  }
+  @include variables.for-tablet-landscape-up {
+    display: none;
+  }
+  @include variables.for-desktop-up {
+    display: none;
+  }
+}
+
+.burgerMenu:hover {
+  opacity: 50%;
+}
+
+.navbarDropdown {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 0%;
+  left: 0%;
+  top: 9%;
+  z-index: 100;
+  background-color: black;
+  align-items: center;
+
+  @include variables.for-mobile-only {
+    display: flex;
+  }
+  @include variables.for-tablet-portrait-up {
+    display: flex;
+  }
+  @include variables.for-tablet-landscape-up {
+    display: none;
+  }
+  @include variables.for-desktop-up {
+    display: none;
+  }
+}
+
+.navbarDropdown a:hover {
+  background-color: #0e0e0e;
+  color: var(--grayscale-01-300);
+}
+
+.navbarDropdown a {
+  padding: var(--space-3xs) 0px;
+  width: 100%;
+  text-align: center;
 }
