@@ -1,11 +1,15 @@
-import React, { HTMLAttributes, PropsWithChildren, forwardRef } from 'react'
+import React, {
+  InputHTMLAttributes,
+  PropsWithChildren,
+  forwardRef
+} from 'react'
 
 import { Checkmark } from '@/assets/images'
 
 import CheckboxStyles from './Checkbox.module.scss'
 
 export interface CheckboxProps
-  extends PropsWithChildren<HTMLAttributes<HTMLInputElement>> {
+  extends PropsWithChildren<InputHTMLAttributes<HTMLInputElement>> {
   disabled?: boolean
   type?: 'primary' | 'secondary' | 'icon'
   shape?: 'rounded' | 'semiRounded'
