@@ -222,6 +222,25 @@ export const StoreInClient = () => {
       onAddToLibraryClick={() => setInLibrary(true)}
       onRemoveFromLibraryClick={() => setInLibrary(false)}
       gameIsAddedToLibrary={inLibrary}
+      enableRemoveButton={true}
+    ></GameCard>
+  )
+}
+
+export const StoreInClientRemoveDisabled = () => {
+  const [inLibrary, setInLibrary] = useState(false)
+  return (
+    <GameCard
+      title="Test Game"
+      {...onClickHandlers}
+      state="NEEDS_UPDATE"
+      app="storeInClient"
+      onAddToLibraryClick={() => setInLibrary(true)}
+      onRemoveFromLibraryClick={() => setInLibrary(false)}
+      gameIsAddedToLibrary={inLibrary}
+      enableRemoveButton={false}
+      notAddedText={'Add'}
+      addedText="In library"
     ></GameCard>
   )
 }
