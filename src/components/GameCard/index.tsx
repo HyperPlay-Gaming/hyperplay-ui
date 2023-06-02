@@ -1,9 +1,12 @@
-import React, { HTMLAttributes, PropsWithChildren } from 'react'
+import React, { HTMLAttributes, PropsWithChildren, useState } from 'react'
 
 import { faRepeat } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Popover } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 
 import FallbackImage from '@/assets/fallback_card.jpg?url'
+import { CheckmarkCircleOutline, PlusCircleOutline } from '@/assets/images'
 
 import * as Images from '../../assets/images'
 import styles from './GameCard.module.scss'
@@ -41,7 +44,10 @@ export interface GameCardProps
   actionDisabled?: boolean
   alwaysShowInColor?: boolean
   store?: Runner
-  app?: 'client' | 'store'
+  app?: 'client' | 'store' | 'storeInClient'
+  onAddToLibraryClick?: React.MouseEventHandler<HTMLButtonElement>
+  onRemoveFromLibraryClick?: React.MouseEventHandler<HTMLButtonElement>
+  gameIsAddedToLibrary?: boolean
 }
 
 const GameCard = ({
@@ -68,8 +74,13 @@ const GameCard = ({
   alwaysShowInColor = false,
   store,
   app = 'client',
+  onAddToLibraryClick,
+  onRemoveFromLibraryClick,
+  gameIsAddedToLibrary,
   ...props
 }: GameCardProps) => {
+  const [showPopover, { open, close }] = useDisclosure(false)
+
   function getActionBar() {
     const actionBarProps = {
       onFavoriteClick: onFavoriteClick,
@@ -199,6 +210,65 @@ const GameCard = ({
     }
   }
 
+  function getStoreButton() {
+    const pos = 'top'
+    const offset = { mainAxis: 0 }
+    console.log('game in lib ', gameIsAddedToLibrary)
+    console.log('on add to lib ', onAddToLibraryClick !== undefined)
+    console.log('on remove to lib ', onRemoveFromLibraryClick !== undefined)
+    if (!gameIsAddedToLibrary && onAddToLibraryClick !== undefined)
+      return (
+        <Popover
+          position={pos}
+          shadow="md"
+          opened={showPopover}
+          offset={offset}
+        >
+          <Popover.Target>
+            <button
+              onClick={onAddToLibraryClick}
+              className={styles.storeActionButton}
+              onMouseEnter={open}
+              onMouseLeave={close}
+            >
+              <PlusCircleOutline />
+            </button>
+          </Popover.Target>
+          <Popover.Dropdown className={styles.popover}>
+            <div className="caption-sm">Add to library</div>
+          </Popover.Dropdown>
+        </Popover>
+      )
+
+    if (onRemoveFromLibraryClick !== undefined)
+      return (
+        <Popover
+          position={pos}
+          shadow="md"
+          opened={showPopover}
+          offset={offset}
+        >
+          <Popover.Target>
+            <button
+              onClick={onRemoveFromLibraryClick}
+              className={styles.storeActionButton}
+              onMouseEnter={open}
+              onMouseLeave={close}
+            >
+              <CheckmarkCircleOutline />
+            </button>
+          </Popover.Target>
+          <Popover.Dropdown className={styles.popover}>
+            <div className="caption-sm">Remove from library</div>
+          </Popover.Dropdown>
+        </Popover>
+      )
+
+    return null
+  }
+
+  console.log('app = ', app)
+
   const grayscaleFilterClassName =
     !alwaysShowInColor &&
     (state === 'NOT_INSTALLED' || state === 'NOT_SUPPORTED')
@@ -216,7 +286,7 @@ const GameCard = ({
             className={`${imageStyles.proportions} ${grayscaleFilterClassName}`}
           >
             {image ? (
-              <image />
+              image
             ) : imageUrl ? (
               <img src={imageUrl} />
             ) : (
@@ -234,9 +304,13 @@ const GameCard = ({
             )}
           </div>
 
-          {store ? (
-            <div className={styles.storeLogoContainer}>{getStoreLogo()}</div>
-          ) : null}
+          <div className={styles.storeLogoContainer}>
+            {app === 'storeInClient'
+              ? getStoreButton()
+              : app === 'client' && store
+              ? getStoreLogo()
+              : null}
+          </div>
         </div>
       </div>
     </div>

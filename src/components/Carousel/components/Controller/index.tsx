@@ -76,7 +76,6 @@ const Controller = forwardRef<ControllerRef, ControllerProps>(
 
     useImperativeHandle(ref, () => ({
       goTo: (index: number) => {
-        console.log('goTo', index)
         setActiveIndex(index)
       },
       pause: pauseInterval,
