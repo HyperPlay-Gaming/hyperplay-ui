@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, PropsWithChildren, useState } from 'react'
+import React, { HTMLAttributes, PropsWithChildren } from 'react'
 
 import { faRepeat } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
