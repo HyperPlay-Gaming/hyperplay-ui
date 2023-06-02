@@ -2,6 +2,7 @@
   flex: 1;
   overflow: hidden;
   border-radius: var(--space-sm);
+  position: relative;
 
   & > img {
     width: 100%;

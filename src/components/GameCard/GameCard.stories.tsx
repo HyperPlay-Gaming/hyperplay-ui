@@ -197,13 +197,31 @@ export const NeedsUpdate = () => {
 }
 
 export const Store = () => {
+  const [inLibrary, setInLibrary] = useState(false)
   return (
     <GameCard
       title="Test Game"
       {...onClickHandlers}
-      imageUrl={MoonBlastersCover}
       state="NEEDS_UPDATE"
       app="store"
+      onAddToLibraryClick={() => setInLibrary(true)}
+      onRemoveFromLibraryClick={() => setInLibrary(false)}
+      gameIsAddedToLibrary={inLibrary}
+    ></GameCard>
+  )
+}
+
+export const StoreInClient = () => {
+  const [inLibrary, setInLibrary] = useState(false)
+  return (
+    <GameCard
+      title="Test Game"
+      {...onClickHandlers}
+      state="NEEDS_UPDATE"
+      app="storeInClient"
+      onAddToLibraryClick={() => setInLibrary(true)}
+      onRemoveFromLibraryClick={() => setInLibrary(false)}
+      gameIsAddedToLibrary={inLibrary}
     ></GameCard>
   )
 }
