@@ -213,9 +213,6 @@ const GameCard = ({
   function getStoreButton() {
     const pos = 'top'
     const offset = { mainAxis: 0 }
-    console.log('game in lib ', gameIsAddedToLibrary)
-    console.log('on add to lib ', onAddToLibraryClick !== undefined)
-    console.log('on remove to lib ', onRemoveFromLibraryClick !== undefined)
     if (!gameIsAddedToLibrary && onAddToLibraryClick !== undefined)
       return (
         <Popover
@@ -266,8 +263,6 @@ const GameCard = ({
 
     return null
   }
-
-  console.log('app = ', app)
 
   const grayscaleFilterClassName =
     !alwaysShowInColor &&
