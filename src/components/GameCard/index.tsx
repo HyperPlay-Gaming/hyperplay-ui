@@ -48,6 +48,9 @@ export interface GameCardProps
   onAddToLibraryClick?: React.MouseEventHandler<HTMLButtonElement>
   onRemoveFromLibraryClick?: React.MouseEventHandler<HTMLButtonElement>
   gameIsAddedToLibrary?: boolean
+  notAddedText?: string
+  addedText?: string
+  enableRemoveButton?: boolean
 }
 
 const GameCard = ({
@@ -77,6 +80,9 @@ const GameCard = ({
   onAddToLibraryClick,
   onRemoveFromLibraryClick,
   gameIsAddedToLibrary,
+  notAddedText,
+  addedText,
+  enableRemoveButton,
   ...props
 }: GameCardProps) => {
   const [showPopover, { open, close }] = useDisclosure(false)
@@ -232,7 +238,9 @@ const GameCard = ({
             </button>
           </Popover.Target>
           <Popover.Dropdown className={styles.popover}>
-            <div className="caption-sm">Add to library</div>
+            <div className="caption-sm">
+              {notAddedText ? notAddedText : `Add to library`}
+            </div>
           </Popover.Dropdown>
         </Popover>
       )
@@ -247,16 +255,25 @@ const GameCard = ({
         >
           <Popover.Target>
             <button
-              onClick={onRemoveFromLibraryClick}
+              onClick={
+                enableRemoveButton
+                  ? onRemoveFromLibraryClick
+                  : () => {
+                      console.log('remove button disabled')
+                    }
+              }
               className={styles.storeActionButton}
               onMouseEnter={open}
               onMouseLeave={close}
+              style={!enableRemoveButton ? { opacity: '100%' } : {}}
             >
               <CheckmarkCircleOutline />
             </button>
           </Popover.Target>
           <Popover.Dropdown className={styles.popover}>
-            <div className="caption-sm">Remove from library</div>
+            <div className="caption-sm">
+              {addedText ? addedText : `Remove from library`}
+            </div>
           </Popover.Dropdown>
         </Popover>
       )
