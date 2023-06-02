@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 // import img from 'next/img'
-import burgerMenuIcon from '@/assets/Images/BurgerClosedIcon.svg?url'
-import hpIconLight from '@/assets/Images/MobileHpLogo.svg?url'
+import burgerMenuIcon from '@/assets/images/BurgerClosedIcon.svg?url'
+import hpIconLight from '@/assets/images/MobileHpLogo.svg?url'
 import discordLogo from '@/assets/logos/discord.svg?url'
 import githubLogo from '@/assets/logos/github.svg?url'
 import twitterLogo from '@/assets/logos/twitter.svg?url'
