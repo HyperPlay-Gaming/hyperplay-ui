@@ -9,7 +9,7 @@ import { Menu, MenuProps } from '@mantine/core'
 
 import { DownArrow } from '@/assets/images'
 
-import Button from '../Button'
+import Button from '../../Button'
 import styles from './GenericDropdown.module.scss'
 
 export interface GenericButtonProps

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import OptionsDropdown from '.'
 
 export default {
-  title: 'Options Dropdown',
+  title: 'Dropdowns/Options Dropdown',
   component: OptionsDropdown
 }
 

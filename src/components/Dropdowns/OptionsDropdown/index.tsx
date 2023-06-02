@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react'
 
 import { Menu } from '@mantine/core'
 
-import Button from '../Button'
-import Checkbox from '../Checkbox'
+import Button from '../../Button'
+import Checkbox from '../../Checkbox'
 import GenericDropdown from '../GenericDropdown'
 import styles from './OptionsDropdown.module.scss'
 
