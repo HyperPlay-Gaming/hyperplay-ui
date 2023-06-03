@@ -1,0 +1,40 @@
+$bgColor: var(--color-neutral-800);
+$textColor: var(--color-neutral-100);
+.panel {
+  background-color: $bgColor;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.item {
+  background-color: $bgColor;
+  color: $textColor;
+  border: 1.5px solid var(--color-stroke-01);
+
+  &[data-active] {
+    background-color: $bgColor;
+    color: $textColor;
+  }
+  :hover {
+    background-color: $bgColor;
+  }
+  overflow: hidden;
+}
+
+.control {
+  color: $textColor;
+}
+
+.optionRow {
+  > .onlyButton {
+    visibility: hidden;
+  }
+
+  &:hover > .onlyButton {
+    visibility: visible;
+  }
+}

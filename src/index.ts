@@ -26,6 +26,7 @@ export {
   GenericDropdown,
   OptionsDropdown
 } from './components/Dropdowns'
+export { default as OptionsAccordion } from './components/OptionsAccordion'
 export type { itemType as DropdownItemType } from './components/Dropdowns/Dropdown'
 export { Menu } from '@mantine/core'
 
