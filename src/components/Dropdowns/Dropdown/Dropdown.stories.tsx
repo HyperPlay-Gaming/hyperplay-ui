@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Dropdown from '.'
 
 export default {
-  title: 'Dropdown',
+  title: 'Dropdowns/Dropdown',
   component: Dropdown
 }
 
