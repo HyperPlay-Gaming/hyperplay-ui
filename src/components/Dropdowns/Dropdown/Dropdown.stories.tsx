@@ -17,9 +17,22 @@ export const Default = () => {
   return (
     <Dropdown
       options={data}
-      onChange={setSelected}
+      onItemChange={setSelected}
       selected={selected}
       targetWidth={300}
+    />
+  )
+}
+
+export const TitleSm = () => {
+  const [selected, setSelected] = useState(data[0])
+  return (
+    <Dropdown
+      options={data}
+      onItemChange={setSelected}
+      selected={selected}
+      targetWidth={300}
+      dropdownButtonDivProps={{ className: 'title-sm' }}
     />
   )
 }
