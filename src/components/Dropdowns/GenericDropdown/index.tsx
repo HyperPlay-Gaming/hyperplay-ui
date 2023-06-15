@@ -15,10 +15,11 @@ import styles from './GenericDropdown.module.scss'
 export interface GenericButtonProps
   extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
   text: string
+  divProps?: HTMLAttributes<HTMLDivElement>
 }
 
 const GenericButton = forwardRef<HTMLButtonElement, GenericButtonProps>(
-  ({ className, ...props }: GenericButtonProps, ref) => {
+  ({ className, divProps, ...props }: GenericButtonProps, ref) => {
     return (
       <Button
         type="tertiary"
@@ -27,7 +28,7 @@ const GenericButton = forwardRef<HTMLButtonElement, GenericButtonProps>(
         {...props}
         ref={ref}
       >
-        <div className="title" style={{ width: '100%' }}>
+        <div className="title" style={{ width: '100%' }} {...divProps}>
           {props.text}
         </div>
       </Button>
