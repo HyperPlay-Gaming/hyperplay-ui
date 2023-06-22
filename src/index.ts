@@ -7,6 +7,10 @@ export { default as TransactionToast } from './components/TransactionToasts'
 export { default as Button } from './components/Button'
 export { default as NavBar } from './components/NavBar'
 export { default as GameCard } from './components/GameCard'
+export type {
+  GameCardState,
+  SettingsButtons
+} from './components/GameCard/types'
 export { FeaturedCarousel, ContentCarousel } from './components/Carousel'
 export { default as Background } from './components/Background'
 export { default as CircularButton } from './components/CircularButton'
@@ -17,10 +21,14 @@ export { default as DownloadToast } from './components/DownloadToast'
 export { default as Checkbox } from './components/Checkbox'
 export { default as Tabs } from './components/Tabs'
 export { default as Toggle } from './components/Toggle'
-export { default as Dropdown } from './components/Dropdown'
-export type { itemType as DropdownItemType } from './components/Dropdown'
+export {
+  Dropdown,
+  GenericDropdown,
+  OptionsDropdown
+} from './components/Dropdowns'
+export { default as OptionsAccordion } from './components/OptionsAccordion'
+export type { itemType as DropdownItemType } from './components/Dropdowns/Dropdown'
 export { Menu } from '@mantine/core'
-export { default as GenericDropdown } from './components/GenericDropdown'
 
 export * as Typography from './components/Typography'
 export * as Images from './assets/images'

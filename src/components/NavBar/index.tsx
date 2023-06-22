@@ -1,156 +1,135 @@
-import React from 'react'
-import { useClickAway } from 'react-use'
+import React, { useState } from 'react'
 
-import { BurgerClosedIcon, BurgerOpenIcon, MobileHpLogo } from '@/assets/images'
-import { ReactComponent as DiscordLogo } from '@/assets/logos/discord.svg'
-import { ReactComponent as GithubLogo } from '@/assets/logos/github.svg'
-import { ReactComponent as HyperplayLogo } from '@/assets/logos/hyperplayHorizontal.svg'
-import { ReactComponent as TwitterLogo } from '@/assets/logos/twitter.svg'
+// import img from 'next/img'
+import burgerMenuIcon from '@/assets/images/BurgerClosedIcon.svg?url'
+import hpIconLight from '@/assets/images/MobileHpLogo.svg?url'
+import discordLogo from '@/assets/logos/discord.svg?url'
+import githubLogo from '@/assets/logos/github.svg?url'
+import twitterLogo from '@/assets/logos/twitter.svg?url'
 
 import Button from '../Button'
-import styles from './NavBar.module.scss'
+import navBarStyles from './NavBar.module.scss'
 
-export interface NavBarProps {
-  activeSite?: 'store' | 'docs' | 'submit-game' | 'landing-page'
-}
+const NavBar = function () {
+  const [showNavBarDropDown, setShowNavBarDropDown] = useState(false)
 
-const navItems: {
-  text: string
-  href: string
-  newTab: boolean
-  site: NavBarProps['activeSite']
-}[] = [
-  {
-    text: 'STORE',
-    href: 'https://store.hyperplay.xyz/',
-    newTab: false,
-    site: 'store'
-  },
-  {
-    text: 'DOCS',
-    href: 'https://docs.hyperplaygaming.com/',
-    newTab: true,
-    site: 'docs'
-  },
-  {
-    text: 'FAQ',
-    href: 'https://docs.hyperplaygaming.com/faq',
-    newTab: true,
-    site: 'docs'
-  },
-  {
-    text: 'SUBMIT A GAME',
-    href: 'https://forms.gle/A3mQ8A7CTWrDo8LD6',
-    newTab: true,
-    site: 'submit-game'
-  }
-]
-
-const NavBar = ({ activeSite }: NavBarProps) => {
-  const [isOpen, setOpen] = React.useState(false)
-  const mobileMenuRef = React.useRef<HTMLDivElement>(null)
-
-  useClickAway(mobileMenuRef, () => setOpen(false))
+  const getLinks = () => (
+    <>
+      <a
+        className={`${navBarStyles.navItem} menu`}
+        href="https://store.hyperplay.xyz/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Store
+      </a>
+      <a
+        className={`${navBarStyles.navItem} menu`}
+        href="https://docs.hyperplaygaming.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Docs
+      </a>
+      <a
+        className={`${navBarStyles.navItem} menu`}
+        href="https://docs.hyperplaygaming.com/faq"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        FAQ
+      </a>
+      <a
+        className={`${navBarStyles.navItem} menu`}
+        href="https://forms.gle/A3mQ8A7CTWrDo8LD6"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Button type="secondary">
+          <div className="button-sm">Submit a game</div>
+        </Button>
+      </a>
+    </>
+  )
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.navbar}>
-        <a href="https://hyperplaygaming.com/">
-          <HyperplayLogo className={styles.desktopLogo} />
-          <MobileHpLogo className={styles.mobileLogo} />
-        </a>
-        <div className={styles.menu}>
-          <div className={styles.links}>
-            {navItems.map(({ href, text, newTab, site }, index) => (
-              <a
-                href={href}
-                rel="noopener noreferrer"
-                target={newTab ? '_blank' : '_self'}
-                key={index}
-              >
-                <Button type="menuItem" active={site === activeSite}>
-                  {text}
-                </Button>
-              </a>
-            ))}
-          </div>
-
-          <div className={styles.socials}>
+    <>
+      <div className={navBarStyles.bannerContainer}>
+        <div className={navBarStyles.navbar}>
+          <a href="/">
+            <div className={`${navBarStyles.navLogo}`}>
+              <div className={navBarStyles.navbarLogoImg}>
+                <img
+                  src={hpIconLight}
+                  //fill={true}
+                  style={{ objectFit: 'contain' }}
+                  alt="HyperPlay Logo"
+                  height="24px"
+                  width="24px"
+                />
+              </div>
+              <div className={navBarStyles.hpLogoText}>HyperPlay</div>
+            </div>
+          </a>
+          <button
+            className={navBarStyles.burgerMenu}
+            onClick={() => setShowNavBarDropDown(!showNavBarDropDown)}
+          >
+            <img
+              src={burgerMenuIcon}
+              //fill={true}
+              style={{ objectFit: 'contain' }}
+              alt="Menu Button"
+            />
+          </button>
+          <div className={navBarStyles.menu}>
+            {getLinks()}
             <a
-              href="https://discord.gg/Vx4ky6ZbAK"
+              className={navBarStyles.navbarLinkImg}
+              href="https://discord.gg/hyperplay"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <DiscordLogo />
+              <img
+                src={discordLogo}
+                alt="Discord Link"
+                //fill={true}
+                style={{ objectFit: 'contain' }}
+              />
             </a>
             <a
+              className={navBarStyles.navbarLinkImg}
               href="https://twitter.com/HyperPlayGaming"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <TwitterLogo />
+              <img
+                src={twitterLogo}
+                alt="Twitter Link"
+                //fill={true}
+                style={{ objectFit: 'contain' }}
+              />
             </a>
             <a
-              href="https://github.com/HyperPlay-Gaming/"
+              className={navBarStyles.navbarLinkImg}
+              href="https://github.com/HyperPlay-Gaming"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <GithubLogo />
+              <img
+                src={githubLogo}
+                alt="Github Link"
+                //fill={true}
+                style={{ objectFit: 'contain' }}
+              />
             </a>
           </div>
         </div>
-        <div className={styles.burger} onClick={() => setOpen(!isOpen)}>
-          {isOpen ? <BurgerOpenIcon /> : <BurgerClosedIcon />}
-        </div>
-        {isOpen && (
-          <div ref={mobileMenuRef} className={styles.mobileMenu}>
-            {navItems.map(({ href, text, newTab, site }, index) => (
-              <a
-                href={href}
-                rel="noopener noreferrer"
-                target={newTab ? '_blank' : '_self'}
-                key={index}
-                className={styles.mobileMenuItem}
-              >
-                <Button type="menuItem" active={site === activeSite}>
-                  {text}
-                </Button>
-              </a>
-            ))}
-            <a
-              href="https://discord.gg/Vx4ky6ZbAK"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.mobileMenuItem}
-            >
-              <Button type="menuItem" active={false}>
-                Discord
-              </Button>
-            </a>
-            <a
-              href="https://twitter.com/HyperPlayGaming"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.mobileMenuItem}
-            >
-              <Button type="menuItem" active={false}>
-                Twitter
-              </Button>
-            </a>
-            <a
-              href="https://github.com/HyperPlay-Gaming/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.mobileMenuItem}
-            >
-              <Button type="menuItem" active={false}>
-                Github
-              </Button>
-            </a>
-          </div>
-        )}
       </div>
-    </div>
+      {showNavBarDropDown ? (
+        <div className={navBarStyles.navbarDropdown}>{getLinks()}</div>
+      ) : null}
+    </>
   )
 }
 

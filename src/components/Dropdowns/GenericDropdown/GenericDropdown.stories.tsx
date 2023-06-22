@@ -3,10 +3,10 @@ import React from 'react'
 import { Menu } from '@mantine/core'
 
 import GenericDropdown from '.'
-import Toggle from '../Toggle'
+import Toggle from '../../Toggle'
 
 export default {
-  title: 'Generic Dropdown',
+  title: 'Dropdowns/Generic Dropdown',
   component: GenericDropdown
 }
 

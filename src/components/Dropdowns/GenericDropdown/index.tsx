@@ -5,20 +5,21 @@ import React, {
   forwardRef
 } from 'react'
 
-import { Menu } from '@mantine/core'
+import { Menu, MenuProps } from '@mantine/core'
 
 import { DownArrow } from '@/assets/images'
 
-import Button from '../Button'
+import Button from '../../Button'
 import styles from './GenericDropdown.module.scss'
 
 export interface GenericButtonProps
   extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
   text: string
+  divProps?: HTMLAttributes<HTMLDivElement>
 }
 
 const GenericButton = forwardRef<HTMLButtonElement, GenericButtonProps>(
-  ({ className, ...props }: GenericButtonProps, ref) => {
+  ({ className, divProps, ...props }: GenericButtonProps, ref) => {
     return (
       <Button
         type="tertiary"
@@ -27,7 +28,7 @@ const GenericButton = forwardRef<HTMLButtonElement, GenericButtonProps>(
         {...props}
         ref={ref}
       >
-        <div className="title" style={{ width: '100%' }}>
+        <div className="title" style={{ width: '100%' }} {...divProps}>
           {props.text}
         </div>
       </Button>
@@ -36,17 +37,24 @@ const GenericButton = forwardRef<HTMLButtonElement, GenericButtonProps>(
 )
 GenericButton.displayName = 'GenericButton'
 
-export interface DropdownProps
-  extends PropsWithChildren<HTMLAttributes<HTMLElement>> {
+export interface DropdownProps extends MenuProps {
   target: ReactNode
+  menuItemsGap?: string
 }
 
-const GenericDropdown = function ({ target, children }: DropdownProps) {
+const GenericDropdown = function ({
+  target,
+  children,
+  menuItemsGap,
+  ...props
+}: DropdownProps) {
   return (
-    <Menu position="bottom-start" width={'target'} offset={0}>
+    <Menu position="bottom-start" width={'target'} offset={0} {...props}>
       <Menu.Target>{target}</Menu.Target>
       <Menu.Dropdown className={styles.menuDropdown} style={{ margin: '0px' }}>
-        <div>{children}</div>
+        <div style={{ gap: menuItemsGap ? menuItemsGap : 'var(--space-md)' }}>
+          {children}
+        </div>
       </Menu.Dropdown>
     </Menu>
   )

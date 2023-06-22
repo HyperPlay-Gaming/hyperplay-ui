@@ -3,7 +3,7 @@ import React from 'react'
 import * as Typography from '.'
 
 export default {
-  title: 'Typography'
+  title: 'misc/Typography'
 }
 
 export const Primary = () => {

@@ -106,6 +106,36 @@
   }
 }
 
+.icon.secondary {
+  background-color: var(--color-neutral-800);
+  border: solid 2px var(--color-stroke-01);
+  padding: var(--space-lg);
+  aspect-ratio: 1/1;
+  display: flex;
+
+  &:hover {
+    background: none;
+    background-color: var(--color-neutral-700);
+    border: solid 2px var(--color-neutral-500);
+    opacity: 100%;
+  }
+
+  &:active {
+    background: none;
+    background-color: var(--color-neutral-900);
+    border: solid 2px var(--color-neutral-700);
+  }
+
+  > div {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
 .danger {
   background-color: var(--color-neutral-800);
   border: solid 1.5px var(--color-stroke-03);

@@ -16,7 +16,8 @@
   background-color: var(--color-neutral-600);
 }
 
-.menuDropdown *[data-hovered='true'] * {
+.menuDropdown *[data-hovered='true'] > div > div > *:first-child,
+.menuDropdown *[data-hovered='true'] > div > * {
   color: var(--color-neutral-100);
 }
 
@@ -31,7 +32,6 @@
 .menuDropdown > div > div {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
   align-items: baseline;
 }
 
