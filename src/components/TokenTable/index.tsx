@@ -59,27 +59,23 @@ function getTokenTypeDisplayName(type: TokenType) {
 function getNetworkRequirements(contracts: ContractMetadata[]) {
   const netReqs: NetworkRequirements[] = []
 
-  const chainIds: { [key: string]: boolean } = {}
+  const chainIds: { [key: string]: TokenMetadata[] } = {}
   contracts.forEach((contract) => {
-    chainIds[contract.chainId] = true
+    if (!Object.hasOwn(chainIds, contract.chainId))
+      chainIds[contract.chainId] = []
+    chainIds[contract.chainId].push({
+      address: contract.address,
+      icon: contract.icon,
+      type: contract.type,
+      name: contract.name,
+      marketplaceUrls: contract.marketplaceUrls
+    })
   })
 
   for (const chainId in chainIds) {
-    const tokens: TokenMetadata[] = []
-    contracts.forEach((contract) => {
-      if (contract.chainId === chainId) {
-        tokens.push({
-          address: contract.address,
-          icon: contract.icon,
-          type: contract.type,
-          name: contract.name,
-          marketplaceUrls: contract.marketplaceUrls
-        })
-      }
-    })
     netReqs.push({
       chainId: chainId,
-      tokens: tokens
+      tokens: chainIds[chainId]
     })
   }
 
