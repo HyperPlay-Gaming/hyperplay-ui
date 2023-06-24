@@ -9,21 +9,8 @@ import Button from '../Button'
 import styles from './TokenTable.module.scss'
 
 // backend types
-export type ContractType = 'fungible' | 'semiFungible' | 'nonFungible' | 'other'
+import { ContractMetadata } from '@valist/sdk/dist/typesApi'
 
-export interface ContractMetadata {
-  chainId: string
-  /** token contract address */
-  address: string
-  /** token icon */
-  icon?: string
-  /** token fungible type */
-  type?: TokenType
-  /** name of token */
-  name?: string
-  /** dex or marketplace url where user can trade token */
-  marketplaceUrls?: string[]
-}
 
 // types used in this component
 
@@ -42,7 +29,7 @@ interface TokenMetadata {
   marketplaceUrls?: string[]
 }
 
-interface TokenTableProps {
+interface TokenTableProps extends React.DetailedHTMLProps<React.TableHTMLAttributes<HTMLTableElement>, HTMLTableElement> {
   contracts: ContractMetadata[]
   getTokenEnabled?: boolean
   onTokenClick: (tokenAddress: string) => void
@@ -61,14 +48,14 @@ function getNetworkRequirements(contracts: ContractMetadata[]) {
 
   const chainIds: { [key: string]: TokenMetadata[] } = {}
   contracts.forEach((contract) => {
-    if (!Object.hasOwn(chainIds, contract.chainId))
-      chainIds[contract.chainId] = []
-    chainIds[contract.chainId].push({
+    if (!Object.hasOwn(chainIds, contract.chain_id))
+      chainIds[contract.chain_id] = []
+    chainIds[contract.chain_id].push({
       address: contract.address,
       icon: contract.icon,
       type: contract.type,
       name: contract.name,
-      marketplaceUrls: contract.marketplaceUrls
+      marketplaceUrls: contract.marketplace_urls
     })
   })
 
@@ -85,6 +72,9 @@ function getNetworkRequirements(contracts: ContractMetadata[]) {
 export default function TokenTable({
   contracts,
   getTokenEnabled = false,
+  onTokenClick,
+  onGetTokenClick,
+  className,
   ...props
 }: TokenTableProps) {
   const [allRows, setAllRows] = useState(<></>)
@@ -137,7 +127,7 @@ export default function TokenTable({
               size="small"
               onClick={(event) => {
                 event?.stopPropagation()
-                props.onTokenClick(address)
+                onTokenClick(address)
               }}
             >
               <a
@@ -168,7 +158,7 @@ export default function TokenTable({
                     size="medium"
                     onClick={(event) => {
                       event?.stopPropagation()
-                      props.onGetTokenClick(address)
+                      onGetTokenClick(address)
                     }}
                   >
                     <div className="button-sm">Get token</div>
@@ -359,7 +349,7 @@ export default function TokenTable({
 
   getAllRows()
   return (
-    <table className={styles.chainTable}>
+    <table className={`${styles.chainTable} ${className}`} {...props}>
       <tr className={`${styles.headerRow} eyebrow`}>
         <th colSpan={2} style={{ maxWidth: '50%' }}>
           Chain

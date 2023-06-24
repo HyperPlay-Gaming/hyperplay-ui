@@ -13,24 +13,24 @@ export const Default = () => {
       <TokenTable
         contracts={[
           {
-            chainId: '1',
+            chain_id: '1',
             address: '0x12345'
           },
           {
-            chainId: '137',
+            chain_id: '137',
             address: '0x12346',
             name: 'Luffy NFTs',
             icon: '',
             type: 'fungible'
           },
           {
-            chainId: '1',
+            chain_id: '1',
             address: '0x11111',
             icon: '',
             type: 'nonFungible'
           },
           {
-            chainId: '1',
+            chain_id: '1',
             address: '0x9c93f03d43a7f1b0384c97e7c47c2515e53bb2a5'
           }
         ]}
@@ -48,15 +48,15 @@ export const GetTokenEnabled = () => {
         getTokenEnabled={true}
         contracts={[
           {
-            chainId: '1',
+            chain_id: '1',
             address: '0x12345'
           },
           {
-            chainId: '137',
+            chain_id: '137',
             address: '0x1234'
           },
           {
-            chainId: '1',
+            chain_id: '1',
             address: '0x1234'
           }
         ]}
@@ -65,4 +65,36 @@ export const GetTokenEnabled = () => {
       ></TokenTable>
     </div>
   )
+}
+
+
+export const DefaultWithMarginTop = () => {
+  return (<TokenTable
+        style={{ marginTop: '20px' }}
+        contracts={[
+          {
+            chain_id: '1',
+            address: '0x12345'
+          },
+          {
+            chain_id: '137',
+            address: '0x12346',
+            name: 'Luffy NFTs',
+            icon: '',
+            type: 'fungible'
+          },
+          {
+            chain_id: '1',
+            address: '0x11111',
+            icon: '',
+            type: 'nonFungible'
+          },
+          {
+            chain_id: '1',
+            address: '0x9c93f03d43a7f1b0384c97e7c47c2515e53bb2a5'
+          }
+        ]}
+        onTokenClick={(addr) => console.log('token clicked', addr)}
+        onGetTokenClick={(addr) => console.log('get token clicked', addr)}
+      ></TokenTable>)
 }
