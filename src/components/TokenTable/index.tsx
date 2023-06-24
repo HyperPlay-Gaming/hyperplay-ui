@@ -8,22 +8,42 @@ import { Blockchain, DownArrow, Info, Token } from '@/assets/images'
 import Button from '../Button'
 import styles from './TokenTable.module.scss'
 
-type TokenType = 'fungible' | 'semiFungible' | 'nonFungible' | 'other'
+// backend types
+export type ContractType = 'fungible' | 'semiFungible' | 'nonFungible' | 'other'
 
-interface TokenMetadata {
+export interface ContractMetadata {
+  chainId: string
+  /** token contract address */
   address: string
-  iconSvg?: string
+  /** token icon */
+  icon?: string
+  /** token fungible type */
   type?: TokenType
+  /** name of token */
   name?: string
+  /** dex or marketplace url where user can trade token */
+  marketplaceUrls?: string[]
 }
+
+// types used in this component
 
 interface NetworkRequirements {
   chainId: string
   tokens: TokenMetadata[]
 }
 
+type TokenType = 'fungible' | 'semiFungible' | 'nonFungible' | 'other'
+
+interface TokenMetadata {
+  address: string
+  icon?: string
+  type?: TokenType
+  name?: string
+  marketplaceUrls?: string[]
+}
+
 interface TokenTableProps {
-  networkReqs: NetworkRequirements[]
+  contracts: ContractMetadata[]
   getTokenEnabled?: boolean
   onTokenClick: (tokenAddress: string) => void
   onGetTokenClick: (tokenAddress: string) => void
@@ -36,8 +56,38 @@ function getTokenTypeDisplayName(type: TokenType) {
   if (type === 'other') return 'Other'
 }
 
+function getNetworkRequirements(contracts: ContractMetadata[]) {
+  const netReqs: NetworkRequirements[] = []
+
+  const chainIds: { [key: string]: boolean } = {}
+  contracts.forEach((contract) => {
+    chainIds[contract.chainId] = true
+  })
+
+  for (const chainId in chainIds) {
+    const tokens: TokenMetadata[] = []
+    contracts.forEach((contract) => {
+      if (contract.chainId === chainId) {
+        tokens.push({
+          address: contract.address,
+          icon: contract.icon,
+          type: contract.type,
+          name: contract.name,
+          marketplaceUrls: contract.marketplaceUrls
+        })
+      }
+    })
+    netReqs.push({
+      chainId: chainId,
+      tokens: tokens
+    })
+  }
+
+  return netReqs
+}
+
 export default function TokenTable({
-  networkReqs,
+  contracts,
   getTokenEnabled = false,
   ...props
 }: TokenTableProps) {
@@ -45,6 +95,8 @@ export default function TokenTable({
   const [expandedRows, setExpandedRows] = useState<{ [key: number]: boolean }>(
     {}
   )
+
+  const networkReqs = getNetworkRequirements(contracts)
 
   useEffect(() => {
     getAllRows().then((val) => setAllRows(<>{val}</>))
@@ -79,7 +131,7 @@ export default function TokenTable({
     for (const token of tokens) {
       const address = token.address
       allTokenRows.push(
-        <tr>
+        <tr key={token.address}>
           <td>
             <Token fill="var(--color-neutral-100)" />
           </td>
@@ -93,7 +145,11 @@ export default function TokenTable({
               }}
             >
               <a
-                href={`${meta.chain.explorers[0].url}/address/${address}`}
+                href={
+                  meta.chain.explorers && meta.chain.explorers.length > 0
+                    ? `${meta.chain.explorers[0].url}/address/${address}`
+                    : ''
+                }
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -164,6 +220,7 @@ export default function TokenTable({
             }`}
             style={rowStyle}
             onClick={() => toggleExpanded(i)}
+            key={networkReq_i.chainId}
           >
             <td
               className={styles.icon}
@@ -273,6 +330,7 @@ export default function TokenTable({
               style={rowStyle}
               className={`${styles.tokenRow}`}
               onClick={() => toggleExpanded(i)}
+              key={`${networkReq_i.chainId}_dropdown`}
             >
               <td
                 colSpan={3}

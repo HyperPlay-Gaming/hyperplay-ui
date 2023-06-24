@@ -32,3 +32,4 @@ export { Menu } from '@mantine/core'
 
 export * as Typography from './components/Typography'
 export * as Images from './assets/images'
+export { default as TokenTable } from './components/TokenTable'
