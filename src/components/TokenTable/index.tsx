@@ -352,14 +352,16 @@ export default function TokenTable({
   getAllRows()
   return (
     <table className={`${styles.chainTable} ${className}`} {...props}>
-      <tr className={`${styles.headerRow} eyebrow`}>
-        <th colSpan={2} style={{ maxWidth: '50%' }}>
-          Chain
-        </th>
-        <th>Token used</th>
-      </tr>
-      <tr className={styles.separator}></tr>
-      {allRows}
+      <tbody className={styles.chainTable}>
+        <tr className={`${styles.headerRow} eyebrow`}>
+          <th colSpan={2} style={{ maxWidth: '50%' }}>
+            Chain
+          </th>
+          <th>Token used</th>
+        </tr>
+        <tr className={styles.separator}></tr>
+        {allRows}
+      </tbody>
     </table>
   )
 }
