@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react'
 
 import { getChainMetadata } from '@hyperplay/chains'
 import { Menu } from '@mantine/core'
+// backend types
+import { ContractMetadata } from '@valist/sdk/dist/typesApi'
 
 import { Blockchain, DownArrow, Info, Token } from '@/assets/images'
 
 import Button from '../Button'
 import styles from './TokenTable.module.scss'
-
-// backend types
-import { ContractMetadata } from '@valist/sdk/dist/typesApi'
-
 
 // types used in this component
 
@@ -29,7 +27,11 @@ interface TokenMetadata {
   marketplaceUrls?: string[]
 }
 
-interface TokenTableProps extends React.DetailedHTMLProps<React.TableHTMLAttributes<HTMLTableElement>, HTMLTableElement> {
+interface TokenTableProps
+  extends React.DetailedHTMLProps<
+    React.TableHTMLAttributes<HTMLTableElement>,
+    HTMLTableElement
+  > {
   contracts: ContractMetadata[]
   getTokenEnabled?: boolean
   onTokenClick: (tokenAddress: string) => void
