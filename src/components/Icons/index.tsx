@@ -18,6 +18,11 @@ const IconFill: { [key: string]: string } = {
   Heart: '#FFFFFF',
   Grid: '#FFFFFF',
   List: '#FFFFFF',
+  Blockchain: 'white',
+  Token: 'white',
+  Info: 'white',
+  EthereumIcon: 'white',
+  PolygonIcon: 'white',
   Resume: 'white',
   Ellipsis: 'white'
 }

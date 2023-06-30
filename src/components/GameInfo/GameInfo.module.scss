@@ -2,10 +2,6 @@
 
 .root {
   padding: 0px;
-
-  @include for-desktop-up {
-    padding: 0px var(--space-xl);
-  }
 }
 
 .titleSection {
