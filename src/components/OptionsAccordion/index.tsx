@@ -74,6 +74,7 @@ export default function OptionsAccordion({
                 ...updatedOption
               }))
             }}
+            data-testid={`${val}-checkbox`}
           >
             <div
               className="body"
@@ -87,6 +88,7 @@ export default function OptionsAccordion({
             size="small"
             onClick={() => selectOnly(option, val)}
             className={styles.onlyButton}
+            data-testid={`${val}-only-button`}
           >
             Only
           </Button>
@@ -103,6 +105,7 @@ export default function OptionsAccordion({
           marginTop: 'var(--space-sm)',
           border: '1.5px solid var(--color-stroke-01)'
         }}
+        data-testid={`${option}-clear-filter`}
       >
         <div
           className="button-sm"
