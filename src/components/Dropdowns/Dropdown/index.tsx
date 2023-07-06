@@ -9,6 +9,7 @@ export interface itemType {
   text: string
   selected?: boolean
   id?: string
+  dataTestId?: string
 }
 
 export interface DropdownProps extends MenuProps {
@@ -28,7 +29,7 @@ export default function Dropdown({
   ...props
 }: DropdownProps) {
   const items = options.map((val, index) => (
-    <Menu.Item key={'filterIndex' + index} onClick={() => onItemChange(val)}>
+    <Menu.Item key={'filterIndex' + index} onClick={() => onItemChange(val)} data-test-id={val.dataTestId}>
       <div
         className={`${
           val.text === selected.text || val.selected ? styles.selected : ''
