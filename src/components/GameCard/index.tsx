@@ -312,7 +312,12 @@ const GameCard = ({
             {app === 'client' ? (
               getActionBar()
             ) : (
-              <div className={`${styles.storeTitle} title`}>{title}</div>
+              <div
+                className={`${styles.storeTitle} title`}
+                data-testid="game-title"
+              >
+                {title}
+              </div>
             )}
           </div>
 
