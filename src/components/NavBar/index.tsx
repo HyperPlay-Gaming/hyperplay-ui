@@ -20,6 +20,7 @@ const NavBar = function () {
         href="https://store.hyperplay.xyz/"
         target="_blank"
         rel="noopener noreferrer"
+        data-testid="store"
       >
         Store
       </a>
@@ -28,6 +29,7 @@ const NavBar = function () {
         href="https://docs.hyperplaygaming.com/"
         target="_blank"
         rel="noopener noreferrer"
+        data-testid="docs"
       >
         Docs
       </a>
@@ -36,6 +38,7 @@ const NavBar = function () {
         href="https://docs.hyperplaygaming.com/faq"
         target="_blank"
         rel="noopener noreferrer"
+        data-testid="FAQ"
       >
         FAQ
       </a>
@@ -44,6 +47,7 @@ const NavBar = function () {
         href="https://forms.gle/A3mQ8A7CTWrDo8LD6"
         target="_blank"
         rel="noopener noreferrer"
+        data-testid="submit-game"
       >
         <Button type="secondary">
           <div className="button-sm">Submit a game</div>
@@ -89,6 +93,7 @@ const NavBar = function () {
               href="https://discord.gg/hyperplay"
               target="_blank"
               rel="noopener noreferrer"
+              data-testid="discord-link"
             >
               <img
                 src={discordLogo}
@@ -102,6 +107,7 @@ const NavBar = function () {
               href="https://twitter.com/HyperPlayGaming"
               target="_blank"
               rel="noopener noreferrer"
+              data-testid="twitter-link"
             >
               <img
                 src={twitterLogo}
@@ -115,6 +121,7 @@ const NavBar = function () {
               href="https://github.com/HyperPlay-Gaming"
               target="_blank"
               rel="noopener noreferrer"
+              data-testid="github-link"
             >
               <img
                 src={githubLogo}
