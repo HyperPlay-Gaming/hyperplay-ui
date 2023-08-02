@@ -31,7 +31,11 @@ export default function Dropdown({
   ...props
 }: DropdownProps) {
   const items = options.map((val, index) => (
-    <Menu.Item key={'filterIndex' + index} onClick={() => onItemChange(val)} data-testid={val.dataTestId}>
+    <Menu.Item
+      key={'filterIndex' + index}
+      onClick={() => onItemChange(val)}
+      data-testid={val.dataTestId}
+    >
       <div
         className={`${
           val.text === selected.text || val.selected ? styles.selected : ''
