@@ -17,6 +17,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@emotion/react": "^11.11.0",
+    "@mantine/carousel": "^6.0.17",
     "@mantine/core": "^6.0.13",
     "@mantine/hooks": "^6.0.13",
     "@storybook/addon-actions": "^7.0.0-rc.8",
@@ -67,6 +68,7 @@
   },
   "peerDependencies": {
     "@emotion/react": "^11.11.0",
+    "@mantine/carousel": "^6.0.17",
     "@mantine/core": "^6.0.13",
     "@mantine/hooks": "^6.0.13",
     "react": "^17.0.0 || ^18.0.0",
@@ -104,6 +106,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@hyperplay/chains": "^0.0.2",
-    "@valist/sdk": "^2.9.1"
+    "@valist/sdk": "^2.9.1",
+    "embla-carousel-autoplay": "^8.0.0-rc11",
+    "embla-carousel-react": "^8.0.0-rc11"
   }
 }

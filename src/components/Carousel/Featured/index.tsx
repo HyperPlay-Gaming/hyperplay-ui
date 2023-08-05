@@ -20,7 +20,6 @@ interface FeaturedCarouselProps {
 }
 
 const FeaturedCarousel = (props: FeaturedCarouselProps) => {
-  const [ref, { width, height }] = useMeasure<HTMLDivElement>()
   const controller = useRef<ElementRef<typeof Controller>>(null)
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: true,
@@ -32,7 +31,7 @@ const FeaturedCarousel = (props: FeaturedCarouselProps) => {
   const goToSlide = (index: number) => instanceRef.current?.moveToIdx(index)
 
   return (
-    <div className={styles.featuredCarousel} ref={ref}>
+    <div className={styles.featuredCarousel}>
       <div className={styles.controller}>
         <Controller
           images={props.items.map(({ imageElement }) => imageElement)}
@@ -46,7 +45,7 @@ const FeaturedCarousel = (props: FeaturedCarouselProps) => {
           {props.items.map(
             ({ title, description, imageElement, buttonElement }, index) => (
               <div className={'keen-slider__slide'} key={index}>
-                <div className={styles['image-wrap']} style={{ width, height }}>
+                <div className={styles['image-wrap']}>
                   <div className={styles.content}>
                     <h1>{title}</h1>
                     <Body className={styles.description}>{description}</Body>

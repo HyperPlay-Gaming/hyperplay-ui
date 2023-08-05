@@ -1,0 +1,86 @@
+@use 'sass:math';
+
+@function difference($a, $b) {
+  @return calc(abs($a - $b) / (($a + $b) / 2));
+}
+
+$max-item-width: 100px;
+$max-item-height: 60px;
+
+$mid-item-width: 96px;
+$mid-item-height: 56px;
+
+$min-item-width: 92px;
+$min-item-height: 52px;
+
+$scale-mid-to-max-height: calc(
+  1 + difference($mid-item-height, $max-item-height)
+);
+$scale-mid-to-max-width: calc(1 + difference($mid-item-width, $max-item-width));
+
+$scale-mid-to-min-height: calc(
+  1 - difference($mid-item-height, $min-item-height)
+);
+$scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
+
+.itemContainer {
+  width: 96px;
+  height: 56px;
+  background: lightgrey;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.root:first-child,
+.root:last-child {
+  position: absolute;
+}
+
+.imageContainer {
+  width: 96px;
+  height: 56px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  z-index: 1;
+  position: absolute;
+  transition: transform 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+}
+
+.border {
+  width: 96px;
+  height: 56px;
+
+  background: var(--color-stroke-02);
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.imageContainer img {
+  width: 100%;
+  height: 100%;
+  // object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.itemContainer:hover .border,
+.active .border {
+  transform: scaleX($scale-mid-to-max-width) scaleY($scale-mid-to-max-height);
+}
+
+.itemContainer:hover .imageContainer,
+.active .imageContainer {
+  transform: scaleX($scale-mid-to-min-width) scaleY($scale-mid-to-min-height);
+
+  border-radius: 4.7px;
+}
+
+.itemContainer:hover img,
+.active img {
+  transform: scaleX($scale-mid-to-max-width) scaleY($scale-mid-to-max-height);
+}

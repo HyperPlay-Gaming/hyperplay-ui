@@ -1,0 +1,33 @@
+@import '../../styles/utilities/_variables';
+
+.controller {
+  right: var(--space-xl);
+  bottom: var(--space-xl);
+  position: absolute;
+  display: none;
+
+  @include for-tablet-landscape-up {
+    display: block;
+  }
+}
+
+.title {
+  position: absolute;
+  left: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 2;
+}
+
+.slide::after {
+  background: linear-gradient(
+    180deg,
+    rgba(12, 11, 15, 0) 0%,
+    rgba(12, 11, 15, 0.9) 100%
+  );
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  content: '';
+}
