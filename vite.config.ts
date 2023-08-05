@@ -16,10 +16,6 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    // linterPlugin({
-    //   include: ['./src}/**/*.{ts,tsx}'],
-    //   linters: [new EsLinter({ configEnv })],
-    // }),
     dts({
       include: ['src/']
     }),

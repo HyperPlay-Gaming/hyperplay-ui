@@ -28,7 +28,7 @@
 
 .controlsWrapper {
   position: absolute;
-  left: var(--space-xl);
+  right: var(--space-xl);
   bottom: var(--space-xl);
 
   @include for-mobile-only {
