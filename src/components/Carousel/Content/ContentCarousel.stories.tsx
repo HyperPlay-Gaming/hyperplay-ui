@@ -1,7 +1,8 @@
 import React from 'react'
 
-import ContentCarousel, { ContentCarouselProps } from '.'
 import pgCover from '@/assets/PhantomGalaxiesLandscape.png?url'
+
+import ContentCarousel, { ContentCarouselProps } from '.'
 
 export default {
   title: 'Carousel/ContentCarousel',
