@@ -1,5 +1,7 @@
 import React from 'react'
 
+import pgCover from '@/assets/PhantomGalaxiesLandscape.png?url'
+
 import ContentCarousel, { ContentCarouselProps } from '.'
 
 export default {
@@ -12,7 +14,7 @@ const items: ContentCarouselProps['items'] = [
     type: 'image',
     imageElement: (
       <img
-        src="https://picsum.photos/500/200"
+        src={pgCover}
         key=""
         style={{
           width: '100%',

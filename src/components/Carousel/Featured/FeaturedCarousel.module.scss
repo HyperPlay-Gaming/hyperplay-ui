@@ -20,9 +20,6 @@
   }
 }
 
-.item {
-}
-
 .slider {
   position: relative;
   width: 100%;
@@ -46,14 +43,6 @@
   .description {
     max-width: 524px;
   }
-
-  .image-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    overflow: hidden;
-  }
 }
 
 .image {
@@ -65,4 +54,31 @@
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.image-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  &::after {
+    background: linear-gradient(
+      180deg,
+      rgba(12, 11, 15, 0) 0%,
+      rgba(12, 11, 15, 0.9) 100%
+    );
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    content: '';
+  }
 }

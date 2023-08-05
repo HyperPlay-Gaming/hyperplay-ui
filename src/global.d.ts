@@ -13,3 +13,7 @@ declare module '*.svg' {
     React.SVGAttributes<SVGElement>
   >
 }
+
+declare module '*.svg?url'
+declare module '*.png'
+declare module '*.png?url'

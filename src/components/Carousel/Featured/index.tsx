@@ -45,7 +45,7 @@ const FeaturedCarousel = (props: FeaturedCarouselProps) => {
         <div ref={sliderRef} className="keen-slider">
           {props.items.map(
             ({ title, description, imageElement, buttonElement }, index) => (
-              <div className={`${styles.item} keen-slider__slide`} key={index}>
+              <div className={'keen-slider__slide'} key={index}>
                 <div className={styles['image-wrap']} style={{ width, height }}>
                   <div className={styles.content}>
                     <h1>{title}</h1>
