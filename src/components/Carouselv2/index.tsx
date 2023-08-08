@@ -1,7 +1,8 @@
-import React, { ElementRef, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import { Carousel } from '@mantine/carousel'
 import Autoplay from 'embla-carousel-autoplay'
+import { EmblaCarouselType } from 'embla-carousel-react'
 
 import Controller from './components/Controller'
 import styles from './index.module.scss'
@@ -17,8 +18,9 @@ export interface Carouselv2Props {
 
 const Carouselv2 = (props: Carouselv2Props) => {
   const [activeIndex, setActiveIndex] = useState(0)
-  const autoplay = useRef(Autoplay({ delay: 2000 }))
-  //   const controller = useRef<ElementRef<typeof Controller>>(null)
+  const autoplay = useRef(Autoplay({ delay: 6000 }))
+  const [emblaApiRef, setEmblaApiRef] = useState<EmblaCarouselType>()
+
   function getSlides() {
     return props.items.map((item) => (
       <Carousel.Slide key={item.title}>
@@ -27,23 +29,31 @@ const Carouselv2 = (props: Carouselv2Props) => {
       </Carousel.Slide>
     ))
   }
+
   return (
-    <Carousel
-      classNames={{ slide: styles.slide }}
-      plugins={[autoplay.current]}
-      onMouseEnter={autoplay.current.stop}
-      onMouseLeave={autoplay.current.reset}
-      onSlideChange={(index) => setActiveIndex(index)}
-    >
-      {getSlides()}
+    <div className={styles.carouselWrapper}>
+      <Carousel
+        getEmblaApi={(embla) => setEmblaApiRef(embla)}
+        classNames={{
+          slide: styles.slide
+        }}
+        plugins={[autoplay.current]}
+        onMouseEnter={autoplay.current.stop}
+        onMouseLeave={autoplay.current.reset}
+        onSlideChange={(index) => setActiveIndex(index)}
+        loop={true}
+        withControls={false}
+      >
+        {getSlides()}
+      </Carousel>
       <div className={styles.controller}>
         <Controller
           images={props.items.map(({ img }) => img)}
-          onChange={(index) => console.log('changing to slide ', index)}
+          onChange={(index) => emblaApiRef?.scrollTo(index)}
           activeIndex={activeIndex}
         />
       </div>
-    </Carousel>
+    </div>
   )
 }
 
