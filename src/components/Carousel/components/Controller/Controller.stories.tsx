@@ -17,7 +17,7 @@ const images = [
 export const Primary = () => (
   <Controller
     images={images}
-    interval={3000}
     onChange={console.log}
+    activeIndex={0}
   ></Controller>
 )

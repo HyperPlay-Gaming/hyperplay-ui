@@ -9,7 +9,7 @@ import wakeCover from '@/assets/TheWakeLandscape.png?url'
 import Carouselv2, { SlideData } from '.'
 
 export default {
-  title: 'Carousel/Carouselv2'
+  title: 'Carousel/Carousel'
 }
 
 const items: SlideData[] = [

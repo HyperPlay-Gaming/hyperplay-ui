@@ -11,7 +11,7 @@ export type {
   GameCardState,
   SettingsButtons
 } from './components/GameCard/types'
-export { FeaturedCarousel, ContentCarousel } from './components/Carousel'
+export { default as Carousel } from './components/Carousel'
 export { default as Background } from './components/Background'
 export { default as CircularButton } from './components/CircularButton'
 export { default as GameInfo } from './components/GameInfo'
