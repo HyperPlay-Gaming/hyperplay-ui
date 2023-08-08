@@ -6,14 +6,19 @@ import onisCover from '@/assets/OnisQuestLandscape.png?url'
 import pgCover from '@/assets/PhantomGalaxiesLandscape.png?url'
 import wakeCover from '@/assets/TheWakeLandscape.png?url'
 
-import Carouselv2, { SlideData } from '.'
+import Carousel, { SlideData } from '.'
+import Button from '../Button'
 
 export default {
   title: 'Carousel/Carousel'
 }
 
 const items: SlideData[] = [
-  { slideElement: <img src={pgCover} />, title: 'Phantom Galaxies' },
+  {
+    slideElement: <img src={pgCover} />,
+    title: 'Phantom Galaxies',
+    button: <Button>View Game</Button>
+  },
   { slideElement: <img src={dtCover} />, title: 'Dark Throne' },
   { slideElement: <img src={wakeCover} />, title: 'The Wake' },
   { slideElement: <img src={onisCover} />, title: 'Onis Quest' }
@@ -21,7 +26,7 @@ const items: SlideData[] = [
 
 export const Default = () => (
   <div style={{ maxWidth: 1080, maxHeight: 400 }}>
-    <Carouselv2 items={items} autoplayDelayInMs={6000}></Carouselv2>
+    <Carousel items={items} autoplayDelayInMs={6000}></Carousel>
   </div>
 )
 
@@ -56,7 +61,7 @@ const itemsWithVideo: SlideData[] = [
 export const WithYouTubeVideos = () => {
   return (
     <div style={{ maxWidth: 1080, maxHeight: 400 }}>
-      <Carouselv2 items={itemsWithVideo} autoplayDelayInMs={6000}></Carouselv2>
+      <Carousel items={itemsWithVideo} autoplayDelayInMs={6000}></Carousel>
     </div>
   )
 }

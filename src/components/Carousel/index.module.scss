@@ -1,8 +1,8 @@
 @import '../../styles/utilities/_variables';
 
 .controller {
-  right: var(--space-xl);
-  bottom: var(--space-xl);
+  right: var(--space-xl-fixed);
+  bottom: var(--space-xl-fixed);
   position: absolute;
   display: none;
 
@@ -13,8 +13,8 @@
 
 .title {
   position: absolute;
-  left: var(--space-md);
-  bottom: var(--space-md);
+  left: var(--space-xl-fixed);
+  bottom: var(--space-xl-fixed);
   z-index: 2;
 }
 
