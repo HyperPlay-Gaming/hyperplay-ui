@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "0.1.8",
+  "version": "0.1.9-alpha.0",
   "license": "BUSL-1.1",
   "scripts": {
     "dev": "vite",
@@ -64,7 +64,9 @@
     "vite-plugin-dts": "^1.7.3",
     "vite-plugin-linter": "^2.0.2",
     "vite-plugin-static-copy": "^0.13.0",
-    "vite-plugin-svgr": "^2.4.0"
+    "vite-plugin-svgr": "^2.4.0",
+    "embla-carousel-autoplay": "^8.0.0-rc11",
+    "embla-carousel-react": "^8.0.0-rc11"
   },
   "peerDependencies": {
     "@emotion/react": "^11.11.0",
@@ -72,7 +74,9 @@
     "@mantine/core": "^6.0.13",
     "@mantine/hooks": "^6.0.13",
     "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "embla-carousel-autoplay": "^8.0.0-rc11",
+    "embla-carousel-react": "^8.0.0-rc11"
   },
   "module": "dist/index.es.js",
   "files": [
@@ -106,8 +110,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@hyperplay/chains": "^0.0.2",
-    "@valist/sdk": "^2.9.1",
-    "embla-carousel-autoplay": "^8.0.0-rc11",
-    "embla-carousel-react": "^8.0.0-rc11"
+    "@valist/sdk": "^2.9.1"
   }
 }
