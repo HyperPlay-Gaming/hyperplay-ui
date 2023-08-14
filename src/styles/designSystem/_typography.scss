@@ -149,7 +149,7 @@ button {
 
 /* Elements */
 $h1FontSize: --text-9xl;
-h1 {
+@mixin h1-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h1FontSize);
   font-weight: var(--bold);
@@ -157,47 +157,66 @@ h1 {
   letter-spacing: -1%;
 }
 
+h1 {
+  @include h1-mixin();
+}
+
 $h2FontSize: --text-8xl;
-h2 {
+@mixin h2-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h2FontSize);
   font-weight: var(--bold);
   line-height: calc(var($h2FontSize) * 64 / 58);
   letter-spacing: -1%;
 }
+h2 {
+  @include h2-mixin();
+}
 
 $h3FontSize: --text-7xl;
-h3 {
+@mixin h3-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h3FontSize);
   font-weight: var(--bold);
   line-height: calc(var($h3FontSize) * 56 / 50);
   letter-spacing: -1%;
 }
+h3 {
+  @include h3-mixin();
+}
 
 $h4FontSize: --text-6xl;
-h4 {
+@mixin h4-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h4FontSize);
   font-weight: var(--bold);
   line-height: calc(var($h4FontSize) * 48 / 43);
   letter-spacing: -1%;
 }
+h4 {
+  @include h4-mixin();
+}
 
 $h5FontSize: --text-5xl;
-h5 {
+@mixin h5-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h5FontSize);
   font-weight: var(--bold);
   line-height: calc(var($h5FontSize) * 40 / 37);
 }
+h5 {
+  @include h5-mixin();
+}
 
 $h6FontSize: --text-4xl;
-h6 {
+@mixin h6-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h6FontSize);
   font-weight: var(--medium);
   line-height: calc(var($h6FontSize) * 40 / 32);
+}
+h6 {
+  @include h6-mixin();
 }
 
 $menuFontSize: --text-md;
@@ -210,11 +229,14 @@ $menuFontSize: --text-md;
 }
 
 $titleFontSize: --text-2xl;
-.title {
+@mixin title-mixin {
   font-family: var(--primary-font-family);
   font-size: var($titleFontSize);
   font-weight: var(--semibold);
   line-height: calc(var($titleFontSize) * 32 / 24);
+}
+.title {
+  @include title-mixin();
 }
 
 $titleSmFontSize: --text-xl;

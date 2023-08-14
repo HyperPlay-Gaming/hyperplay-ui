@@ -33,7 +33,7 @@ const Carouselv2 = (props: Carouselv2Props) => {
       >
         {item.slideElement}
         <div className={styles.title}>
-          <h1>{item.title}</h1>
+          <div className={styles.titleText}>{item.title}</div>
           {item.button ?? null}
         </div>
       </Carousel.Slide>
@@ -45,7 +45,8 @@ const Carouselv2 = (props: Carouselv2Props) => {
       <Carousel
         getEmblaApi={(embla) => setEmblaApiRef(embla)}
         classNames={{
-          slide: styles.slide
+          slide: styles.slide,
+          indicators: styles.indicators
         }}
         plugins={[autoplay.current]}
         onMouseEnter={autoplay.current.stop}
@@ -53,6 +54,7 @@ const Carouselv2 = (props: Carouselv2Props) => {
         onSlideChange={(index) => setActiveIndex(index)}
         loop={true}
         withControls={false}
+        withIndicators={true}
       >
         {getSlides()}
       </Carousel>

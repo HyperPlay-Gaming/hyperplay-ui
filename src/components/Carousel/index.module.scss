@@ -1,4 +1,5 @@
 @import '../../styles/utilities/_variables';
+@import '../../styles/designSystem/typography';
 
 .controller {
   right: var(--space-xl-fixed);
@@ -11,11 +12,42 @@
   }
 }
 
+@mixin title-mobile {
+  left: var(--space-sm-fixed);
+  right: var(--space-sm-fixed);
+}
+
 .title {
   position: absolute;
-  left: var(--space-xl-fixed);
   bottom: var(--space-xl-fixed);
   z-index: 2;
+
+  @include for-mobile-only {
+    @include title-mobile();
+  }
+
+  @include for-tablet-portrait-up {
+    @include title-mobile();
+  }
+
+  @include for-tablet-landscape-up {
+    left: var(--space-xl-fixed);
+    right: var(--space-xl-fixed);
+  }
+
+  > .titleText {
+    @include for-mobile-only {
+      @include h5-mixin();
+    }
+
+    @include for-tablet-portrait-up {
+      @include h3-mixin();
+    }
+
+    @include for-tablet-landscape-up {
+      @include h1-mixin();
+    }
+  }
 }
 
 .slide {
@@ -44,4 +76,10 @@
 .carouselWrapper {
   display: inline-block;
   position: relative;
+}
+
+.indicators {
+  @include for-tablet-landscape-up {
+    display: none;
+  }
 }
