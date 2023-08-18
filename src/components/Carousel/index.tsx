@@ -13,6 +13,7 @@ export interface SlideData {
   thumbnail?: JSX.Element
   disableGradient?: boolean
   button?: JSX.Element
+  key?: string
 }
 
 export interface Carouselv2Props {
@@ -28,7 +29,7 @@ const Carouselv2 = (props: Carouselv2Props) => {
   function getSlides() {
     return props.items.map((item) => (
       <Carousel.Slide
-        key={item.title}
+        key={item.key}
         id={item.disableGradient ? 'disableGradient' : 'enableGradient'}
       >
         {item.slideElement}
