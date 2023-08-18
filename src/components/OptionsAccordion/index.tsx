@@ -138,7 +138,6 @@ export default function OptionsAccordion({
     <Accordion
       variant="contained"
       radius={'var(--space-sm)'}
-      style={{ maxWidth: '300px' }}
       classNames={{
         panel: styles.panel,
         item: styles.item,

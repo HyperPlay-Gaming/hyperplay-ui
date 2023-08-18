@@ -16,9 +16,10 @@ export interface DropdownProps extends MenuProps {
   options: itemType[]
   selected: itemType
   onItemChange: (item: itemType) => void
-  targetWidth?: number
+  targetWidth?: string
   dropdownButtonDivProps?: HTMLAttributes<HTMLDivElement>
   dropdownButtonDataTestId?: string
+  dropdownButtonProps?: HTMLAttributes<HTMLButtonElement>
 }
 
 export default function Dropdown({
@@ -28,6 +29,7 @@ export default function Dropdown({
   targetWidth,
   dropdownButtonDivProps,
   dropdownButtonDataTestId,
+  dropdownButtonProps,
   ...props
 }: DropdownProps) {
   const items = options.map((val, index) => (
@@ -54,6 +56,7 @@ export default function Dropdown({
             style={{ width: targetWidth }}
             divProps={dropdownButtonDivProps}
             data-testid={dropdownButtonDataTestId}
+            {...dropdownButtonProps}
           ></GenericDropdown.GenericButton>
         }
         classNames={{ item: `body` }}

@@ -1,0 +1,85 @@
+@import '../../styles/utilities/_variables';
+@import '../../styles/designSystem/typography';
+
+.controller {
+  right: var(--space-xl-fixed);
+  bottom: var(--space-xl-fixed);
+  position: absolute;
+  display: none;
+
+  @include for-tablet-landscape-up {
+    display: block;
+  }
+}
+
+@mixin title-mobile {
+  left: var(--space-sm-fixed);
+  right: var(--space-sm-fixed);
+}
+
+.title {
+  position: absolute;
+  bottom: var(--space-xl-fixed);
+  z-index: 2;
+
+  @include for-mobile-only {
+    @include title-mobile();
+  }
+
+  @include for-tablet-portrait-up {
+    @include title-mobile();
+  }
+
+  @include for-tablet-landscape-up {
+    left: var(--space-xl-fixed);
+    right: var(--space-xl-fixed);
+  }
+
+  > .titleText {
+    @include for-mobile-only {
+      @include h5-mixin();
+    }
+
+    @include for-tablet-portrait-up {
+      @include h3-mixin();
+    }
+
+    @include for-tablet-landscape-up {
+      @include h1-mixin();
+    }
+  }
+}
+
+.slide {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &[id='enableGradient']::after {
+    background: linear-gradient(
+      180deg,
+      rgba(12, 11, 15, 0) 0%,
+      rgba(12, 11, 15, 0.9) 100%
+    );
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    content: '';
+    pointer-events: none;
+  }
+}
+
+.carouselWrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.indicators {
+  @include for-tablet-landscape-up {
+    display: none;
+  }
+}
