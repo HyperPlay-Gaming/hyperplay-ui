@@ -26,7 +26,7 @@ const IconFill: { [key: string]: string } = {
   Resume: 'white',
   Ellipsis: 'white',
   Youtube: 'white',
-  DiscordFilled: 'white',
+  DiscordFilled: 'white'
 }
 
 const IconStroke: { [key: string]: string } = {
@@ -60,6 +60,7 @@ export default function Icons() {
     }
     return icons
   }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <>{getAllIcons()}</>
