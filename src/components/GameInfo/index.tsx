@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {
-  HyperplayStoreIcon,
   LinuxIcon,
   MacOSIcon,
   SteamDeckIcon,
@@ -13,8 +12,6 @@ import { CaptionSmall } from '../Typography'
 import styles from './GameInfo.module.scss'
 
 export interface GameInfoProps {
-  store: 'hyperplay'
-  title: string
   info: Record<string, string>
   platforms: {
     linux: boolean
@@ -25,18 +22,10 @@ export interface GameInfoProps {
   action?: JSX.Element
 }
 
-const GameInfo = ({ store, title, info, platforms, action }: GameInfoProps) => {
+const GameInfo = ({ info, platforms, action }: GameInfoProps) => {
   return (
     <div className={styles.root}>
-      <div className={styles.titleSection}>
-        {store === 'hyperplay' && (
-          <HyperplayStoreIcon className={styles.storeIcon} />
-        )}
-        <h2 className={styles.title}>{title}</h2>
-      </div>
-
       <div className={styles.infoSection}>
-        {action && <div className={styles.action}>{action}</div>}
         <div className={styles.info} style={{ paddingTop: 0 }}>
           {Object.entries(info).map(([key, value]) => (
             <div className={styles.infoItem} key={key}>
@@ -61,6 +50,7 @@ const GameInfo = ({ store, title, info, platforms, action }: GameInfoProps) => {
             </div>
           </div>
         </div>
+        {action && <div className={styles.action}>{action}</div>}
       </div>
     </div>
   )
