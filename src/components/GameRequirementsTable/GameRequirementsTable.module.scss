@@ -1,0 +1,43 @@
+@import "../../styles/designSystem/typography";
+@import "../../styles/designSystem/spacing";
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    padding: var(--space-md) 0;
+
+    &__title {
+      color: var(--color-neutral-400);
+      flex: 1;
+    }
+
+    &__value {
+      color: var(--color-neutral-300);
+      font-size: var(--text-sm);
+      font-weight: var(--medium);
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--color-stroke-01);
+    }
+  }
+}
+
+
+.title {
+  border-bottom: 1px solid var(--color-stroke-01);
+  padding: var(--space-md-fixed) 0;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
