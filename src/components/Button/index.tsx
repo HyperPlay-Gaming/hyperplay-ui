@@ -20,6 +20,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     type = 'primary',
     size = 'medium',
+    fullWidth,
     leftIcon,
     rightIcon,
     children,
@@ -44,6 +45,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
           'menu-item': type === 'menuItem',
           [styles.active]: active
         },
+        fullWidth && styles.fullWidth,
         propClassName
       )}
       {...props}
