@@ -1,5 +1,5 @@
-@import "../../styles/designSystem/typography";
-@import "../../styles/designSystem/spacing";
+@import '../../styles/designSystem/typography';
+@import '../../styles/designSystem/spacing';
 
 .container {
   display: flex;
@@ -29,7 +29,6 @@
     }
   }
 }
-
 
 .title {
   border-bottom: 1px solid var(--color-stroke-01);
