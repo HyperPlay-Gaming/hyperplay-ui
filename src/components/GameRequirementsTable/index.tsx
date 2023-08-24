@@ -54,7 +54,7 @@ const GameRequirementsTable = ({
       <h1 className={classNames('title-sm', styles.title)}>Recommended</h1>
       <div className={styles.item}>
         <span className={classNames('caption', styles.item__title)}>OS</span>
-        <span className={styles.item__value}>
+        <span className={classNames('caption', styles.item__value)}>
           <SupportedPlatforms platforms={requirements.platforms} />
         </span>
       </div>
@@ -62,25 +62,33 @@ const GameRequirementsTable = ({
         <span className={classNames('caption', styles.item__title)}>
           Processor
         </span>
-        <span className={styles.item__value}>{requirements.cpu}</span>
+        <span className={classNames('caption', styles.item__value)}>
+          {requirements.cpu}
+        </span>
       </div>
       <div className={styles.item}>
         <span className={classNames('caption', styles.item__title)}>
           Memory
         </span>
-        <span className={styles.item__value}>{requirements.memory}</span>
+        <span className={classNames('caption', styles.item__value)}>
+          {requirements.memory}
+        </span>
       </div>
       <div className={styles.item}>
         <span className={classNames('caption', styles.item__title)}>
           Graphics
         </span>
-        <span className={styles.item__value}>{requirements.gpu}</span>
+        <span className={classNames('caption', styles.item__value)}>
+          {requirements.gpu}
+        </span>
       </div>
       <div className={styles.item}>
         <span className={classNames('caption', styles.item__title)}>
           Storage
         </span>
-        <span className={styles.item__value}>{requirements.disk}</span>
+        <span className={classNames('caption', styles.item__value)}>
+          {requirements.disk}
+        </span>
       </div>
     </div>
   )
