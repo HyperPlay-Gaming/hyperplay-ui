@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { HTMLProps } from 'react'
+
+import classNames from 'classnames'
 
 import {
   LinuxIcon,
@@ -11,7 +13,8 @@ import {
 import { CaptionSmall } from '../Typography'
 import styles from './GameInfo.module.scss'
 
-export interface GameInfoProps {
+export interface GameInfoProps
+  extends Omit<HTMLProps<HTMLDivElement>, 'action'> {
   info: Record<string, string>
   platforms: {
     linux: boolean
@@ -22,9 +25,15 @@ export interface GameInfoProps {
   action?: JSX.Element
 }
 
-const GameInfo = ({ info, platforms, action }: GameInfoProps) => {
+const GameInfo = ({
+  info,
+  platforms,
+  action,
+  className,
+  ...props
+}: GameInfoProps) => {
   return (
-    <div className={styles.root}>
+    <div className={classNames(className, styles.root)} {...props}>
       <div className={styles.infoSection}>
         <div className={styles.info} style={{ paddingTop: 0 }}>
           {Object.entries(info).map(([key, value]) => (
