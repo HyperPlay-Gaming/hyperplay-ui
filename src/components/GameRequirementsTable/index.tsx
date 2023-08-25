@@ -24,6 +24,7 @@ interface Requirements extends SystemRequirements {
 
 export interface GameRequirementsTableProps {
   requirements: Requirements
+  classnames?: { container?: string; title?: string; item?: string }
 }
 
 const SupportedPlatforms = ({
@@ -47,18 +48,21 @@ const SupportedPlatforms = ({
 }
 
 const GameRequirementsTable = ({
-  requirements
+  requirements,
+  classnames
 }: GameRequirementsTableProps) => {
   return (
-    <div className={styles.container}>
-      <h1 className={classNames('title-sm', styles.title)}>Recommended</h1>
-      <div className={styles.item}>
+    <div className={classNames(styles.container, classnames?.container)}>
+      <h1 className={classNames('title-sm', styles.title, classnames?.title)}>
+        Recommended
+      </h1>
+      <div className={classNames(styles.item, classnames?.item)}>
         <span className={classNames('caption', styles.item__title)}>OS</span>
         <span className={classNames('caption', styles.item__value)}>
           <SupportedPlatforms platforms={requirements.platforms} />
         </span>
       </div>
-      <div className={styles.item}>
+      <div className={classNames(styles.item, classnames?.item)}>
         <span className={classNames('caption', styles.item__title)}>
           Processor
         </span>
@@ -66,7 +70,7 @@ const GameRequirementsTable = ({
           {requirements.cpu}
         </span>
       </div>
-      <div className={styles.item}>
+      <div className={classNames(styles.item, classnames?.item)}>
         <span className={classNames('caption', styles.item__title)}>
           Memory
         </span>
@@ -74,7 +78,7 @@ const GameRequirementsTable = ({
           {requirements.memory}
         </span>
       </div>
-      <div className={styles.item}>
+      <div className={classNames(styles.item, classnames?.item)}>
         <span className={classNames('caption', styles.item__title)}>
           Graphics
         </span>
@@ -82,7 +86,7 @@ const GameRequirementsTable = ({
           {requirements.gpu}
         </span>
       </div>
-      <div className={styles.item}>
+      <div className={classNames(styles.item, classnames?.item)}>
         <span className={classNames('caption', styles.item__title)}>
           Storage
         </span>
