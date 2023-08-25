@@ -10,8 +10,6 @@ export interface ButtonProps
   size?: 'small' | 'medium' | 'large' | 'icon'
   leftIcon?: JSX.Element
   rightIcon?: React.ReactNode
-  fixedWidth?: number
-  fullWidth?: boolean
   active?: boolean
   disabled?: boolean
 }
@@ -20,7 +18,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     type = 'primary',
     size = 'medium',
-    fullWidth,
     leftIcon,
     rightIcon,
     children,
@@ -45,7 +42,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
           'menu-item': type === 'menuItem',
           [styles.active]: active
         },
-        fullWidth && styles.fullWidth,
         propClassName
       )}
       {...props}
