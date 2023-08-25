@@ -47,6 +47,10 @@
 .platformInfo {
   display: flex;
   gap: var(--space-xs);
+
+  svg {
+    fill: white;
+  }
 }
 
 .action {
