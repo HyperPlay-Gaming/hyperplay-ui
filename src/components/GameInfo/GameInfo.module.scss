@@ -18,7 +18,9 @@
 }
 
 .infoSection {
-  padding-top: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
 }
 
 .info {
@@ -26,7 +28,7 @@
 }
 
 .infoItem {
-  padding: var(--space-lg) 0px;
+  padding: var(--space-xs) 0;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #252832;
@@ -39,14 +41,18 @@
 
 .infoValue {
   font-weight: 500;
+  text-align: end;
 }
 
 .platformInfo {
   display: flex;
   gap: var(--space-xs);
+
+  svg {
+    fill: white;
+  }
 }
 
 .action {
-  padding-bottom: var(--space-xl);
   width: 100%;
 }

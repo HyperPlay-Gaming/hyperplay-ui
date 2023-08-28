@@ -10,8 +10,6 @@ export interface ButtonProps
   size?: 'small' | 'medium' | 'large' | 'icon'
   leftIcon?: JSX.Element
   rightIcon?: React.ReactNode
-  fixedWidth?: number
-  fullWidth?: boolean
   active?: boolean
   disabled?: boolean
 }

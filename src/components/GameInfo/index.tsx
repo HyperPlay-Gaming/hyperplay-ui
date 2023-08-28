@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { HTMLProps } from 'react'
+
+import classNames from 'classnames'
 
 import {
-  HyperplayStoreIcon,
   LinuxIcon,
   MacOSIcon,
   SteamDeckIcon,
@@ -12,9 +13,8 @@ import {
 import { CaptionSmall } from '../Typography'
 import styles from './GameInfo.module.scss'
 
-export interface GameInfoProps {
-  store: 'hyperplay'
-  title: string
+export interface GameInfoProps
+  extends Omit<HTMLProps<HTMLDivElement>, 'action'> {
   info: Record<string, string>
   platforms: {
     linux: boolean
@@ -25,18 +25,16 @@ export interface GameInfoProps {
   action?: JSX.Element
 }
 
-const GameInfo = ({ store, title, info, platforms, action }: GameInfoProps) => {
+const GameInfo = ({
+  info,
+  platforms,
+  action,
+  className,
+  ...props
+}: GameInfoProps) => {
   return (
-    <div className={styles.root}>
-      <div className={styles.titleSection}>
-        {store === 'hyperplay' && (
-          <HyperplayStoreIcon className={styles.storeIcon} />
-        )}
-        <h2 className={styles.title}>{title}</h2>
-      </div>
-
+    <div className={classNames(className, styles.root)} {...props}>
       <div className={styles.infoSection}>
-        {action && <div className={styles.action}>{action}</div>}
         <div className={styles.info} style={{ paddingTop: 0 }}>
           {Object.entries(info).map(([key, value]) => (
             <div className={styles.infoItem} key={key}>
@@ -61,6 +59,7 @@ const GameInfo = ({ store, title, info, platforms, action }: GameInfoProps) => {
             </div>
           </div>
         </div>
+        {action && <div className={styles.action}>{action}</div>}
       </div>
     </div>
   )

@@ -10,8 +10,6 @@ export default {
 
 export const Default = () => (
   <GameInfo
-    store="hyperplay"
-    title="Hyperplay"
     info={{
       'Release Date': '2020-10-10',
       Developer: 'Hyperplay',

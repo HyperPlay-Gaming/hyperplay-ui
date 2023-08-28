@@ -24,7 +24,9 @@ const IconFill: { [key: string]: string } = {
   EthereumIcon: 'white',
   PolygonIcon: 'white',
   Resume: 'white',
-  Ellipsis: 'white'
+  Ellipsis: 'white',
+  Youtube: 'white',
+  DiscordFilled: 'white'
 }
 
 const IconStroke: { [key: string]: string } = {
@@ -58,6 +60,7 @@ export default function Icons() {
     }
     return icons
   }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <>{getAllIcons()}</>
