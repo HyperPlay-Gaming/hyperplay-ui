@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "serve-storybook": "serve storybook-static",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json,.mdx ./src",
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
     "prettier-fix": "prettier --write .",
