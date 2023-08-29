@@ -26,7 +26,17 @@ const items: SlideData[] = [
 
 export const Default = () => (
   <div style={{ maxWidth: 1080, maxHeight: 400 }}>
-    <Carousel items={items} autoplayDelayInMs={6000}></Carousel>
+    <Carousel items={items} autoplayDelayInMs={6000} />
+  </div>
+)
+
+export const ControllerDetached = () => (
+  <div style={{ maxWidth: 1080, maxHeight: 400 }}>
+    <Carousel
+      items={items}
+      autoplayDelayInMs={6000}
+      controllerLayout="detached"
+    />
   </div>
 )
 
@@ -61,7 +71,7 @@ const itemsWithVideo: SlideData[] = [
 export const WithYouTubeVideos = () => {
   return (
     <div style={{ maxWidth: 1080, maxHeight: 400 }}>
-      <Carousel items={itemsWithVideo} autoplayDelayInMs={6000}></Carousel>
+      <Carousel items={itemsWithVideo} autoplayDelayInMs={6000} />
     </div>
   )
 }
