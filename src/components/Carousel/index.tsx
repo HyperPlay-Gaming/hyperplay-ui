@@ -19,12 +19,14 @@ export interface SlideData {
 export interface Carouselv2Props {
   items: SlideData[]
   autoplayDelayInMs: number
+  controllerLayout?: 'attached' | 'detached'
 }
 
 const Carouselv2 = (props: Carouselv2Props) => {
   const [activeIndex, setActiveIndex] = useState(0)
   const autoplay = useRef(Autoplay({ delay: props.autoplayDelayInMs }))
   const [emblaApiRef, setEmblaApiRef] = useState<EmblaCarouselType>()
+  const controllerLayout = props.controllerLayout ?? 'attached'
 
   function getSlides() {
     return props.items.map((item) => (
@@ -59,7 +61,13 @@ const Carouselv2 = (props: Carouselv2Props) => {
       >
         {getSlides()}
       </Carousel>
-      <div className={styles.controller}>
+      <div
+        className={
+          controllerLayout === 'attached'
+            ? styles.controllerAttached
+            : styles.controllerDetached
+        }
+      >
         <Controller
           images={props.items.map(({ slideElement, thumbnail }) =>
             thumbnail ? thumbnail : slideElement
