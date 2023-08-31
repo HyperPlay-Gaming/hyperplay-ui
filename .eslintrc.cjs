@@ -35,6 +35,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'error',
     'no-return-await': 'off',
     '@typescript-eslint/return-await': 'warn',
+    "react/prop-types": "off",
     'react/no-unknown-property': [
       'error',
       { ignore: ['partition', 'allowpopups', 'useragent'] }

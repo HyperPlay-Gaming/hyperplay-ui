@@ -1,0 +1,23 @@
+@import '../../styles/designSystem/spacing';
+@import '../../styles/designSystem/colors';
+@import '../../styles/designSystem/typography';
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--space-xs);
+  border: 1px solid var(--color-stroke-01);
+  box-shadow: var(----box-shadow-01);
+  color: var(--color-neutral-100);
+  background: var(--color-neutral-700);
+  font-family: var(--default-secondary-font-family);
+}
+
+.label {
+  color: var(--color-grey);
+  margin-bottom: var(--space-2xs);
+}
