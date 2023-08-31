@@ -2,7 +2,9 @@ import React, { HTMLAttributes } from 'react'
 
 import { Group, Menu } from '@mantine/core'
 
-import GenericDropdown, {DropdownProps as GenericDropdownDropdownProps} from '../GenericDropdown'
+import GenericDropdown, {
+  DropdownProps as GenericDropdownDropdownProps
+} from '../GenericDropdown'
 import styles from './Dropdown.module.scss'
 
 export interface itemType {
@@ -12,7 +14,8 @@ export interface itemType {
   dataTestId?: string
 }
 
-export interface DropdownProps extends Omit<GenericDropdownDropdownProps, 'target'> {
+export interface DropdownProps
+  extends Omit<GenericDropdownDropdownProps, 'target'> {
   options: itemType[]
   selected: itemType
   onItemChange: (item: itemType) => void
