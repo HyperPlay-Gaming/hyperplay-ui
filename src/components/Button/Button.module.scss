@@ -107,11 +107,13 @@
 }
 
 .icon.secondary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--color-neutral-800);
   border: solid 2px var(--color-stroke-01);
-  padding: var(--space-lg);
+  padding: var(--space-sm-fixed);
   aspect-ratio: 1/1;
-  display: flex;
 
   &:hover {
     background: none;
@@ -124,15 +126,6 @@
     background: none;
     background-color: var(--color-neutral-900);
     border: solid 2px var(--color-neutral-700);
-  }
-
-  > div {
-    position: absolute;
-    max-width: 100%;
-    max-height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 }
 
