@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { DiscordFilled } from '@/assets/images'
+
 import Button from '.'
 
 export default {
@@ -95,6 +97,6 @@ export const SmallDanger = () => (
 
 export const IconSecondary = () => (
   <Button type="secondary" size="icon">
-    S
+    <DiscordFilled fill="white" />
   </Button>
 )
