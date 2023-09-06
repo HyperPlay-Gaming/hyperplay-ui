@@ -26,7 +26,15 @@ const IconFill: { [key: string]: string } = {
   Resume: 'white',
   Ellipsis: 'white',
   Youtube: 'white',
-  DiscordFilled: 'white'
+  DiscordFilled: 'white',
+  SteamLogo: 'white',
+  TwitchLogo: 'white',
+  KickLogo: 'white',
+  XLogo: 'white',
+  Email: 'white',
+  GoogleLogo: 'white',
+  TwitterFilled: 'white',
+  WebIcon: '#FFFFFF'
 }
 
 const IconStroke: { [key: string]: string } = {
