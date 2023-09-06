@@ -13,10 +13,10 @@ const TextInput = React.forwardRef<
     <MantineTextInput
       {...props}
       classNames={{
-        root: styles.root,
-        input: styles.input,
-        label: cn('caption', styles.label),
-        ...classNames
+        ...classNames,
+        root: cn(styles.root, classNames?.root),
+        input: cn(styles.input, classNames?.input),
+        label: cn('caption', styles.label, classNames?.label)
       }}
       unstyled
       ref={ref}

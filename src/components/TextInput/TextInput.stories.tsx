@@ -10,5 +10,5 @@ export default {
 export const Default = () => <TextInput placeholder="Email" />
 
 export const WithLabel = () => (
-  <TextInput placeholder="Enter your email" label="Email" />
+  <TextInput id="with-label" placeholder="Enter your email" label="Email" />
 )
