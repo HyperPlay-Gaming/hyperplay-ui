@@ -9,6 +9,8 @@
 .content {
   border-radius: var(--space-md-fixed);
   background: var(--neutral-800, #13141A);
+  overflow-y: visible;
+
 }
 
 
@@ -48,7 +50,7 @@
 }
 
 .closeIcon {
-    fill: var(--color-neutral-100);
+  fill: var(--color-neutral-100);
 }
 
 .providersContainer {

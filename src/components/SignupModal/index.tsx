@@ -4,7 +4,6 @@ import { Modal, ModalProps } from '@mantine/core'
 import cn from 'classnames'
 
 import {
-  CloseButton,
   CloseModalIcon,
   DiscordFilled,
   Email,
