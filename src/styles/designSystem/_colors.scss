@@ -55,6 +55,7 @@
   --color-success-200: #9bfdbd;
   --color-success-300: #69faa9;
   --color-success-400: #40ffba;
+  --color-success-400-20: #40ffba20;
   --color-success-500: #08ef9c;
   --color-success-600: #05cd99;
   --color-success-700: #04ac90;
@@ -195,6 +196,10 @@
 
 .color-neutral-100 {
   color: var(--color-neutral-100);
+}
+
+.color-neutral-400 {
+  color: var(--color-neutral-400);
 }
 
 a:-webkit-any-link {
