@@ -6,7 +6,8 @@ import { GreenStatus } from '@/assets/images'
 
 import styles from './AuthProviderButton.module.scss'
 
-export interface AuthProviderButtonProps {
+export interface AuthProviderButtonProps
+  extends React.HTMLAttributes<HTMLButtonElement> {
   name: string
   icon: React.ReactNode
   label?: React.ReactNode
@@ -17,10 +18,12 @@ const AuthProviderButton = ({
   name,
   icon,
   connected,
-  label
+  label,
+  className,
+  ...props
 }: AuthProviderButtonProps) => {
   return (
-    <button className={styles.box}>
+    <button className={cn(styles.box, className)} {...props}>
       {connected && <GreenStatus className={styles.connectedIcon} />}
       {icon}
       <span className={cn('caption', styles.name)}>{name}</span>
