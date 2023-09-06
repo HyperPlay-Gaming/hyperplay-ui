@@ -29,6 +29,12 @@ export const Default: Story = {
     useEffect(() => {
       setOpened(args.opened)
     }, [args.opened])
-    return <SignupModal opened={opened} onClose={() => setOpened(false)} />
+    return (
+      <SignupModal
+        opened={opened}
+        onClose={() => setOpened(false)}
+        onEmailRequest={(email) => console.log(`Email requested: ${email}`)}
+      />
+    )
   }
 }

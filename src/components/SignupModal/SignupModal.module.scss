@@ -1,25 +1,7 @@
 @import "../../styles/designSystem/spacing";
 @import "../../styles/designSystem/colors";
+@import "../../styles/designSystem/typography";
 @import '../../styles/utilities/_variables';
-
-.root {
-  width: 600px;
-}
-
-.content {
-  border-radius: var(--space-md-fixed);
-  background: var(--neutral-800, #13141A);
-  overflow-y: visible;
-
-}
-
-
-.body {
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-xl-fixed) calc(var(--space-xl-fixed) * 1.25);
-  gap: calc(var(--space-lg) * 1.2);
-}
 
 .title {
   color: white;
@@ -38,21 +20,6 @@
   color: var(--color-primary-200);
 }
 
-.closeButton {
-  position: absolute;
-  padding: 0;
-  top: calc(var(--space-md-fixed)* -1);
-  right: calc(var(--space-md-fixed) * -1);
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
-.closeIcon {
-  fill: var(--color-neutral-100);
-}
-
 .providersContainer {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -62,5 +29,58 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+.emailRoundedIcon {
+  display: flex;
+  padding: calc(var(--space-xs) * 1.25);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: calc(var(--space-xs) * 1.25);
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background: var(--color-primary-500);
+}
+
+.signupButtonContainers {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.actionButton {
+  min-width: 167px;
+}
+
+.verifyButton {
+  width: 100%;
+  max-width: 218px;
+  margin: auto;
+}
+
+.emailInput {
+  width: 100%;
+}
+
+.linkContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonLink {
+  width: fit-content;
+  color: var(--color-secondary-300);
+  padding: 0 !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-lg) * 1.2);
+}
+
+
 
 
