@@ -84,7 +84,7 @@ export default function AchievementCard({
       </Button>
 
       <div className={styles.cardBody}>
-        <div className="body">{title}</div>
+        <div className={`${styles.title} body`}>{title}</div>
 
         <div className={styles.achievements}>
           <div className={styles.column}>

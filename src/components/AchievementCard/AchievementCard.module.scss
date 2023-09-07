@@ -6,7 +6,11 @@
 }
 
 .cardBody {
-  margin-top: 8px;
+  margin-top: var(--space-md);
+}
+
+.title {
+  margin-bottom: var(--space-xs);
 }
 
 .newAchievement {
