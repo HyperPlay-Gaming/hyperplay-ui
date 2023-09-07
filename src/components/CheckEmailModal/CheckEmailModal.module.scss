@@ -1,7 +1,5 @@
 @import "../../styles/designSystem/spacing";
 @import "../../styles/designSystem/colors";
-@import "../../styles/designSystem/typography";
-@import '../../styles/utilities/_variables';
 
 .title {
   color: white;
@@ -10,24 +8,6 @@
 
 .subtitle {
   color: var(--color-neutral-400);
-}
-
-.icon {
-  fill: var(--color-neutral-100);
-}
-
-.recommendedLabel {
-  color: var(--color-primary-200);
-}
-
-.providersContainer {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-md);
-
-  @include for-tablet-portrait-up {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
 }
 
 .emailRoundedIcon {
@@ -43,18 +23,26 @@
   background: var(--color-primary-500);
 }
 
-.signupButtonContainers {
+.icon {
+  fill: var(--color-neutral-100);
+}
+
+.verifyButton {
+  width: 100%;
+  max-width: 218px;
+  margin: auto;
+}
+
+.linkContainer {
   display: flex;
-  gap: var(--space-sm);
   justify-content: center;
+  align-items: center;
 }
 
-.actionButton {
-  min-width: 167px;
-}
-
-.emailInput {
-  //width: 100%;
+.buttonLink {
+  width: fit-content;
+  color: var(--color-secondary-300);
+  padding: 0 !important;
 }
 
 .form {
@@ -62,7 +50,5 @@
   flex-direction: column;
   gap: calc(var(--space-lg) * 1.2);
 }
-
-
 
 

@@ -70,9 +70,15 @@ const providerInfo: Record<AuthProvider, AuthProviderButtonProps> = {
   }
 }
 
-type Steps = 'selectProvider' | 'email' | 'checkEmail' | 'verifyEmail'
+type Steps = 'selectProvider' | 'email'
 
-const SelectProvider = ({ onEmailClick }: { onEmailClick: () => void }) => {
+const SelectProvider = ({
+  onEmailClick,
+  onAuthProviderClick
+}: {
+  onEmailClick: () => void
+  onAuthProviderClick: (provider: AuthProvider) => void
+}) => {
   return (
     <>
       <HyperPlayLogoColored />
@@ -85,7 +91,11 @@ const SelectProvider = ({ onEmailClick }: { onEmailClick: () => void }) => {
       </div>
       <div className={styles.providersContainer}>
         {sigInProviders.map((provider) => (
-          <AuthProviderButton key={provider} {...providerInfo[provider]} />
+          <AuthProviderButton
+            key={provider}
+            {...providerInfo[provider]}
+            onClick={() => onAuthProviderClick(provider)}
+          />
         ))}
         <AuthProviderButton
           name="Epig Games"
@@ -159,81 +169,37 @@ const EmailForm = ({
   )
 }
 
-const EmailVerification = ({
-  email,
-  onResend
-}: {
-  email: string
-  onResend: () => void
-}) => {
-  return (
-    <>
-      <div className={styles.emailRoundedIcon}>
-        <Email className={styles.icon} />
-      </div>
-      <div>
-        <h6 className={styles.title}>Check your email</h6>
-        <span className={cn('body', styles.subtitle)}>
-          We sent a verification link to{' '}
-          <span className="text--semibold">{email}</span>
-        </span>
-      </div>
-      <Button variant="primary" size="medium" className={styles.verifyButton}>
-        Verify email
-      </Button>
-      <div className={styles.linkContainer}>
-        <span className={cn('button-sm', styles.subtitle)}>
-          {`Didn't receive an email?`}
-        </span>
-        &nbsp;
-        <Button
-          variant="link"
-          size="small"
-          className={styles.buttonLink}
-          onClick={onResend}
-        >
-          Click to resend
-        </Button>
-      </div>
-    </>
-  )
-}
-
 export interface SignupModalProps extends ModalProps {
-  onEmailRequest: (email: string) => void
+  onAuthSignup: (provider: AuthProvider) => void
+  onEmailSignup: (email: string) => void
 }
 
-const SignupModal = ({ onEmailRequest, ...props }: SignupModalProps) => {
-  const [email, setEmail] = useState('')
+const SignupModal = ({
+  onEmailSignup,
+  onAuthSignup,
+  ...props
+}: SignupModalProps) => {
   const [step, setStep] = useState<Steps>('selectProvider')
 
   const handleClose = () => {
     props.onClose()
     setTimeout(() => {
       setStep('selectProvider')
-      setEmail('')
     }, DEFAULT_TRANSITION_DURATION)
   }
 
   return (
     <PopUpModal {...props} onClose={handleClose} size={600}>
       {step === 'selectProvider' && (
-        <SelectProvider onEmailClick={() => setStep('email')} />
+        <SelectProvider
+          onAuthProviderClick={(provider) => onAuthSignup(provider)}
+          onEmailClick={() => setStep('email')}
+        />
       )}
       {step === 'email' && (
         <EmailForm
           onGoBack={() => setStep('selectProvider')}
-          onSubmit={(email) => {
-            onEmailRequest(email)
-            setStep('checkEmail')
-            setEmail(email)
-          }}
-        />
-      )}
-      {step === 'checkEmail' && email && (
-        <EmailVerification
-          email={email}
-          onResend={() => onEmailRequest(email)}
+          onSubmit={(email) => onEmailSignup(email)}
         />
       )}
     </PopUpModal>

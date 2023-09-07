@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 
 import { Meta, StoryObj } from '@storybook/react'
 
-import SignupModal from '@/components/SignupModal/index'
+import EmailVerifiedModal from '@/components/EmailVerifiedModal'
 
-const meta: Meta<typeof SignupModal> = {
-  title: 'auth/SignupModal',
-  component: SignupModal,
+const meta: Meta<typeof EmailVerifiedModal> = {
+  title: 'auth/EmailVerifiedModal',
+  component: EmailVerifiedModal,
   argTypes: {
     opened: {
       control: {
@@ -21,7 +21,7 @@ const meta: Meta<typeof SignupModal> = {
 
 export default meta
 
-type Story = StoryObj<typeof SignupModal>
+type Story = StoryObj<typeof EmailVerifiedModal>
 
 export const Default: Story = {
   render: (args) => {
@@ -30,13 +30,10 @@ export const Default: Story = {
       setOpened(args.opened)
     }, [args.opened])
     return (
-      <SignupModal
+      <EmailVerifiedModal
         opened={opened}
         onClose={() => setOpened(false)}
-        onAuthSignup={(provider) =>
-          console.log(`Provider requested: ${provider}`)
-        }
-        onEmailSignup={(email) => console.log(`Email requested: ${email}`)}
+        onContinue={() => setOpened(false)}
       />
     )
   }
