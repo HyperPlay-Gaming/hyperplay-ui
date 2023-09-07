@@ -1,5 +1,5 @@
-@import "../../styles/designSystem/spacing";
-@import "../../styles/designSystem/colors";
+@import '../../styles/designSystem/spacing';
+@import '../../styles/designSystem/colors';
 
 .title {
   color: white;
@@ -50,5 +50,3 @@
   flex-direction: column;
   gap: calc(var(--space-lg) * 1.2);
 }
-
-

@@ -1,11 +1,10 @@
-@import "../../styles/designSystem/spacing";
-@import "../../styles/designSystem/colors";
+@import '../../styles/designSystem/spacing';
+@import '../../styles/designSystem/colors';
 
 .content {
   border-radius: var(--space-md-fixed);
   background: var(--color-neutral-800);
   overflow-y: visible;
-
 }
 
 .body {

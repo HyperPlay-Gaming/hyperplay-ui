@@ -1,5 +1,5 @@
-@import "../../styles/designSystem/spacing";
-@import "../../styles/designSystem/colors";
+@import '../../styles/designSystem/spacing';
+@import '../../styles/designSystem/colors';
 
 $space24px: calc(var(--space-unit-fixed) * 1.5);
 
@@ -38,11 +38,11 @@ $space24px: calc(var(--space-unit-fixed) * 1.5);
   text-transform: uppercase;
   font-weight: var(--semibold);
   font-size: 0.625rem;
-  line-height: 1rem
+  line-height: 1rem;
 }
 
 .labelConnected {
-  color: var(--color-success-400)
+  color: var(--color-success-400);
 }
 
 .connectedIcon {
@@ -50,5 +50,3 @@ $space24px: calc(var(--space-unit-fixed) * 1.5);
   top: var(--space-xs-fixed);
   right: var(--space-xs-fixed);
 }
-
-

@@ -1,6 +1,6 @@
-@import "../../styles/designSystem/spacing";
-@import "../../styles/designSystem/colors";
-@import "../../styles/designSystem/typography";
+@import '../../styles/designSystem/spacing';
+@import '../../styles/designSystem/colors';
+@import '../../styles/designSystem/typography';
 @import '../../styles/utilities/_variables';
 
 .title {
@@ -62,7 +62,3 @@
   flex-direction: column;
   gap: calc(var(--space-lg) * 1.2);
 }
-
-
-
-
