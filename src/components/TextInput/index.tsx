@@ -16,6 +16,7 @@ const TextInput = React.forwardRef<
         ...classNames,
         root: cn(styles.root, classNames?.root),
         input: cn(styles.input, classNames?.input),
+        wrapper: cn(styles.wrapper, classNames?.wrapper),
         label: cn('caption', styles.label, classNames?.label)
       }}
       unstyled

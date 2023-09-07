@@ -7,6 +7,10 @@
   flex-direction: column;
 }
 
+.wrapper {
+  display: flex;
+}
+
 .input {
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--space-xs);
@@ -15,6 +19,8 @@
   color: var(--color-neutral-100);
   background: var(--color-neutral-700);
   font-family: var(--default-secondary-font-family);
+  line-height: var(--text-4xl);
+  width: 100%;
 }
 
 .label {
