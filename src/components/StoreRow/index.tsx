@@ -21,8 +21,10 @@ interface StoreRowProps {
 export default function StoreRow({
   store,
   secondaryText,
-  children
-}: StoreRowProps) {
+  children,
+  ...props
+}: StoreRowProps &
+  Omit<React.HTMLProps<HTMLDivElement>, 'children' | 'className'>) {
   const getStoreData = () => {
     switch (store) {
       case 'steam':
@@ -48,7 +50,7 @@ export default function StoreRow({
   if (!storeData) return null
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} {...props}>
       <div className={styles.left}>
         <div>{storeData.icon}</div>
         <div className={styles.col}>
