@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   background-color: var(--color-neutral-700);
-  padding: 16px;
+  padding: var(--space-md);
   align-items: center;
   border-radius: 8px;
   border: 1px solid var(--color-neutral-600);
@@ -10,7 +10,7 @@
   .left {
     display: flex;
     flex-direction: row;
-    gap: 12px;
+    gap: var(--space-sm);
   }
 
   .col {

@@ -11,7 +11,7 @@ interface StoreRowProps {
   store: 'steam' | 'epic' | 'hyperplay'
   /**
    * The label for that goes beneath the store name.
-   * We wan this to be passed as a prop, because we want to be able to pass in a number of games
+   * We want this to be passed as a prop, because we want to be able to pass in a number of games
    * and a translatable string.
    */
   secondaryText?: string
@@ -33,12 +33,12 @@ export default function StoreRow({
       case 'epic':
         return {
           icon: <EpicStoreIcon height={40} />,
-          name: 'Epic Games Store'
+          name: 'Epic Games'
         }
       case 'hyperplay':
         return {
           icon: <HyperPlayLogoIcon height={40} />,
-          name: 'Hyperplay'
+          name: 'HyperPlay'
         }
     }
   }
