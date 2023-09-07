@@ -56,7 +56,8 @@ module.exports = {
       'single',
       { avoidEscape: true, allowTemplateLiterals: true }
     ],
-    'import/no-duplicates': ['error']
+    'import/no-duplicates': ['error'],
+    'react/react-in-jsx-scope': 'off' // This rule isn't necessary
   },
   ignorePatterns: ['!src', 'vite.config.ts', '.eslintrc.cjs'],
   parserOptions: {
