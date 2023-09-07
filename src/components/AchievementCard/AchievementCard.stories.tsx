@@ -31,3 +31,15 @@ export const NewAchievement = () => (
     />
   </Flex>
 )
+
+export const BrokenImage = () => (
+  <Flex maw={300}>
+    <AchievementCard
+      image="brokenImage"
+      title="Diablo II"
+      mintedAchievementsCount={5}
+      totalAchievementsCount={0}
+      data-testid="1"
+    />
+  </Flex>
+)

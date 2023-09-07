@@ -1,6 +1,7 @@
 import { Card, Image, ImageProps, Progress } from '@mantine/core'
 import classNames from 'classnames'
 
+import FallbackImage from '@/assets/fallback_card.jpg?url'
 import * as Images from '@/assets/images'
 
 import Button, { ButtonProps } from '../Button'
@@ -60,7 +61,14 @@ export default function AchievementCard({
   return (
     <Card radius="md" pos="relative" bg="var(--color-neutral-700)" {...others}>
       <Card.Section pos="relative">
-        <Image src={image} height={180} {...imageProps} />
+        <Image
+          src={image}
+          height={180}
+          bg="var(--color-gradient-08)"
+          withPlaceholder
+          placeholder={<Image src={FallbackImage} height={180} />}
+          {...imageProps}
+        />
         {isNewAchievement && (
           <div className={styles.newAchievement}>{newAchievementLabel}</div>
         )}
