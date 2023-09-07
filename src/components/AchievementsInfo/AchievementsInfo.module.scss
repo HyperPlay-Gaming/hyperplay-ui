@@ -1,0 +1,32 @@
+.card {
+  width: 100%;
+  border-radius: var(--space-md);
+  background: var(--color-neutral-800);
+  padding: var(--space-2lg);
+}
+
+.header {
+  margin-bottom: var(--space-xl);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: self-start;
+}
+
+.statTitle {
+  font-weight: 400;
+  margin-bottom: var(--space-xs);
+  color: var(--color-neutral-400);
+}
+
+.statValue {
+  font-weight: bold;
+}
