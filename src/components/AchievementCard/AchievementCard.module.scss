@@ -1,0 +1,55 @@
+.addButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border-radius: 99px;
+}
+
+.cardBody {
+  margin-top: 8px;
+}
+
+
+.newAchievement {
+  position: absolute;
+  bottom: 16px;
+  background-color: var(--color-primary-200);
+  padding: 4px 8px;
+  border-radius: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-transform: uppercase;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+
+.achievements {
+  display: flex;
+  align-items: center;
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .textContainer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    
+    div {
+      color: var(--color-neutral-400);
+      font-size: var(--text-sm);
+    }
+
+    :first-child {
+      color: var(--color-success-400);
+    }
+  }
+
+  .icon {
+    margin-left: 16px;
+  }
+}

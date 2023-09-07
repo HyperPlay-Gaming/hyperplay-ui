@@ -12,10 +12,22 @@ export const Default = () => (
     <AchievementCard
       image="https://i.imgur.com/Cij5vdL.png"
       title="Diablo II"
-      mintableAchievementsCount={10}
+      mintedAchievementsCount={5}
+      totalAchievementsCount={0}
+      data-testid="1"
+    />
+  </Flex>
+)
+
+export const NewAchievement = () => (
+  <Flex maw={300}>
+    <AchievementCard
+      image="https://i.imgur.com/Cij5vdL.png"
+      title="Diablo II"
       mintedAchievementsCount={5}
       totalAchievementsCount={15}
       data-testid="1"
+      isNewAchievement
     />
   </Flex>
 )

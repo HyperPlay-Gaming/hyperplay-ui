@@ -1,17 +1,10 @@
-import {
-  Box,
-  Card,
-  Flex,
-  Image,
-  ImageProps,
-  Progress,
-  Text
-} from '@mantine/core'
+import { Card, Image, ImageProps, Progress } from '@mantine/core'
+import classNames from 'classnames'
 
 import * as Images from '@/assets/images'
 
 import Button, { ButtonProps } from '../Button'
-import { Title } from '../Typography'
+import styles from './AchievementCard.module.scss'
 
 interface AchievementCardProps {
   image: string
@@ -20,10 +13,6 @@ interface AchievementCardProps {
    * The number of achievements that have been minted by the user for this game
    */
   mintedAchievementsCount: number
-  /**
-   * The total number of achievements that a user is able to mint for this game
-   */
-  mintableAchievementsCount: number
   /**
    * The total number of achievements that exist for this game
    */
@@ -36,6 +25,14 @@ interface AchievementCardProps {
    * Props to pass to the CTA button
    */
   ctaProps?: ButtonProps
+  /**
+   * If true, the card will have a new achievement indicator
+   */
+  isNewAchievement?: boolean
+  /**
+   * The label to display for the new achievement indicator
+   */
+  newAchievementLabel?: string
 }
 
 export default function AchievementCard({
@@ -44,73 +41,70 @@ export default function AchievementCard({
   imageProps = {},
   ctaProps = {},
   mintedAchievementsCount,
-  mintableAchievementsCount,
   totalAchievementsCount,
+  isNewAchievement = false,
+  newAchievementLabel = 'New Achievement',
   ...others
 }: AchievementCardProps &
   ImageProps &
   Omit<React.ComponentPropsWithoutRef<'div'>, keyof AchievementCardProps>) {
-  const mintedProgress = Math.round(
-    (mintedAchievementsCount / totalAchievementsCount) * 100
+  const safeMintedCount = Math.min(
+    mintedAchievementsCount,
+    totalAchievementsCount
   )
-  const mintableProgress = Math.round(
-    (mintableAchievementsCount / totalAchievementsCount) * 100 - mintedProgress
-  )
+  const safeTotalCount = totalAchievementsCount ?? 0
+
+  // Calculate the percentage of achievements that have been minted
+  const mintedProgress = Math.round((safeMintedCount / safeTotalCount) * 100)
 
   return (
     <Card radius="md" pos="relative" bg="var(--color-neutral-700)" {...others}>
-      <Card.Section>
+      <Card.Section pos="relative">
         <Image src={image} height={180} {...imageProps} />
+        {isNewAchievement && (
+          <div className={styles.newAchievement}>{newAchievementLabel}</div>
+        )}
       </Card.Section>
 
-      <Box pos="absolute" top={8} right={8}>
-        <Button size="icon" type="secondary" {...ctaProps}>
-          <Images.PlusCircleOutline fill="white" height={24} width={24} />
-        </Button>
-      </Box>
+      <Button
+        size="icon"
+        type="secondary"
+        {...ctaProps}
+        className={classNames(styles.addButton, ctaProps.className)}
+      >
+        <Images.PlusCircleOutline fill="white" height={24} width={24} />
+      </Button>
 
-      <Box pt={8}>
-        <Title className="color-neutral-100">{title}</Title>
+      <div className={styles.cardBody}>
+        <div className="body">{title}</div>
 
-        <Flex align="center">
-          <Flex direction="column" gap={4} w="100%">
-            <Flex>
-              <Text className="body-sm" color="var(--color-success-400)">
-                {mintedAchievementsCount}
-              </Text>
-              <Text className="bodySm" color="var(--color-neutral-400)" mx={2}>
-                /
-              </Text>
-              <Text className="bodySm" color="var(--color-neutral-400)">
-                {totalAchievementsCount}
-              </Text>
-              <Text className="bodySm" color="var(--color-neutral-400)" ml={4}>
-                achievements minted
-              </Text>
-            </Flex>
+        <div className={styles.achievements}>
+          <div className={styles.column}>
+            <div className={styles.textContainer}>
+              <div>{safeMintedCount}</div>
+              <div>/</div>
+              <div>{safeTotalCount}</div>
+              <div>achievements minted</div>
+            </div>
             <Progress
               bg="var(--color-neutral-600)"
               sections={[
                 {
                   value: mintedProgress,
                   color: 'var(--color-success-400)'
-                },
-                {
-                  value: mintableProgress,
-                  color: 'var(--color-success-400-20)'
                 }
               ]}
             />
-          </Flex>
-          <Flex ml="sm">
+          </div>
+          <div className={styles.icon}>
             <Images.Info
               height={16}
               width={16}
               fill="var(--color-neutral-400)"
             />
-          </Flex>
-        </Flex>
-      </Box>
+          </div>
+        </div>
+      </div>
     </Card>
   )
 }
