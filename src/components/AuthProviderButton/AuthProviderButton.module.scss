@@ -35,8 +35,8 @@
   right: auto;
   text-transform: uppercase;
   font-weight: var(--semibold);
-  font-size: 0.625rem;
-  line-height: 1rem;
+  font-size: calc(var(--text-md) * 0.625);
+  line-height: var(--text-md);
 }
 
 .labelConnected {
