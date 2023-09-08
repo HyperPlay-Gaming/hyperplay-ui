@@ -1,4 +1,4 @@
-name: Lint
+name: Lint and Test
 
 on:
   pull_request:
@@ -26,3 +26,5 @@ jobs:
         run: yarn lint
       - name: Prettier code.
         run: yarn prettier
+      - name: Run tests.
+        run: yarn test
