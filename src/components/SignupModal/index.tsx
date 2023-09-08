@@ -119,10 +119,13 @@ const EmailForm = ({
   onGoBack: () => void
   onSubmit: (email: string) => void
 }) => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const email = e.currentTarget.email.value
-    onSubmit(email)
+  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const form = event.currentTarget
+    const formElements = form.elements as typeof form.elements & {
+      email: { value: string }
+    }
+    onSubmit(formElements.email.value)
   }
 
   return (

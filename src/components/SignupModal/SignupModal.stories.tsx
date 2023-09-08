@@ -33,10 +33,8 @@ export const Default: Story = {
       <SignupModal
         opened={opened}
         onClose={() => setOpened(false)}
-        onAuthSignup={(provider) =>
-          console.log(`Provider requested: ${provider}`)
-        }
-        onEmailSignup={(email) => console.log(`Email requested: ${email}`)}
+        onAuthSignup={(provider) => alert(`Provider requested: ${provider}`)}
+        onEmailSignup={(email) => alert(`Email requested: ${email}`)}
       />
     )
   }

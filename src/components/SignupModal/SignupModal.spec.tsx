@@ -43,6 +43,6 @@ describe('SignupModal', () => {
     // Submit the form
     fireEvent.click(screen.getByRole('button', { name: /sign in/i }))
 
-    // expect(onEmailSignup).toHaveBeenCalledWith('test@example.com')
+    expect(onEmailSignup).toHaveBeenCalledWith('test@example.com')
   })
 })
