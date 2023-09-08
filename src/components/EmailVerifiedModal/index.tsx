@@ -4,7 +4,7 @@ import { ModalProps } from '@mantine/core'
 import cn from 'classnames'
 
 import { Email } from '@/assets/images'
-import Button from '@/components/ButtonV2'
+import Button from '@/components/Button'
 import PopUpModal from '@/components/PopUpModal'
 
 import styles from './EmailVerifiedModal.module.scss'
@@ -30,7 +30,7 @@ const EmailVerifiedModal = ({
         </span>
       </div>
       <Button
-        variant="primary"
+        type="primary"
         size="medium"
         className={styles.button}
         onClick={onContinue}

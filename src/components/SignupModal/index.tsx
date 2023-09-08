@@ -16,7 +16,7 @@ import {
   XLogo
 } from '@/assets/images'
 import { AuthProviderButtonProps } from '@/components/AuthProviderButton'
-import Button from '@/components/ButtonV2'
+import Button from '@/components/Button'
 import { DEFAULT_TRANSITION_DURATION } from '@/components/PopUpModal'
 import { AuthProviderButton, PopUpModal, TextInput } from '@/index'
 
@@ -151,7 +151,7 @@ const EmailForm = ({
         />
         <div className={styles.signupButtonContainers}>
           <Button
-            variant="tertiary"
+            type="tertiary"
             size="large"
             onClick={onGoBack}
             className={styles.actionButton}
@@ -159,8 +159,8 @@ const EmailForm = ({
             Back
           </Button>
           <Button
-            variant="secondary"
-            type="submit"
+            type="secondary"
+            htmlType="submit"
             size="large"
             className={styles.actionButton}
           >

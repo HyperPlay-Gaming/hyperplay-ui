@@ -4,7 +4,7 @@ import { ModalProps } from '@mantine/core'
 import cn from 'classnames'
 
 import { Email } from '@/assets/images'
-import Button from '@/components/ButtonV2'
+import Button from '@/components/Button'
 import PopUpModal from '@/components/PopUpModal'
 
 import styles from './CheckEmailModal.module.scss'
@@ -32,7 +32,7 @@ const CheckEmailModal = ({
           <span className="text--semibold">{email}</span>
         </span>
       </div>
-      <Button variant="primary" size="medium" className={styles.verifyButton}>
+      <Button type="primary" size="medium" className={styles.verifyButton}>
         Verify email
       </Button>
       <div className={styles.linkContainer}>
@@ -41,7 +41,7 @@ const CheckEmailModal = ({
         </span>
         &nbsp;
         <Button
-          variant="link"
+          type="link"
           size="small"
           className={styles.buttonLink}
           onClick={onResend}
