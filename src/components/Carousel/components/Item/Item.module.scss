@@ -35,8 +35,8 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   cursor: pointer;
 }
 
-.input:first-child,
-.input:last-child {
+.root:first-child,
+.root:last-child {
   position: absolute;
 }
 
