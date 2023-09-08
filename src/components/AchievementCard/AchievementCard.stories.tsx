@@ -13,7 +13,8 @@ export const Default = () => (
       image="https://i.imgur.com/Cij5vdL.png"
       title="Diablo II"
       mintedAchievementsCount={5}
-      totalAchievementsCount={0}
+      mintableAchievementsCount={10}
+      totalAchievementsCount={30}
       data-testid="1"
     />
   </Flex>
@@ -25,6 +26,7 @@ export const NewAchievement = () => (
       image="https://i.imgur.com/Cij5vdL.png"
       title="Diablo II"
       mintedAchievementsCount={5}
+      mintableAchievementsCount={10}
       totalAchievementsCount={15}
       data-testid="1"
       isNewAchievement
@@ -38,7 +40,34 @@ export const BrokenImage = () => (
       image="brokenImage"
       title="Diablo II"
       mintedAchievementsCount={5}
-      totalAchievementsCount={0}
+      mintableAchievementsCount={10}
+      totalAchievementsCount={15}
+      data-testid="1"
+    />
+  </Flex>
+)
+
+export const LongName = () => (
+  <Flex maw={300}>
+    <AchievementCard
+      image="https://i.imgur.com/Cij5vdL.png"
+      title="Star Wars: Knights of the Old Republic"
+      mintedAchievementsCount={5}
+      mintableAchievementsCount={10}
+      totalAchievementsCount={13}
+      data-testid="1"
+    />
+  </Flex>
+)
+
+export const NegativeAchievements = () => (
+  <Flex maw={300}>
+    <AchievementCard
+      image="https://i.imgur.com/Cij5vdL.png"
+      title="Star Wars: Knights of the Old Republic"
+      mintedAchievementsCount={5}
+      mintableAchievementsCount={10}
+      totalAchievementsCount={-5}
       data-testid="1"
     />
   </Flex>

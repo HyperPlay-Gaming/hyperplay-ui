@@ -1,8 +1,20 @@
 .addButton {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: var(--space-xs);
+  right: var(--space-xs);
   border-radius: 99px;
+  padding: var(--space-xs) !important;
+  background-color: #ffffff20 !important;
+
+  &:disabled {
+    background-color: #ffffff20 !important;
+    cursor: not-allowed;
+    opacity: 50%;
+
+    svg {
+      fill: var(--color-neutral-300);
+    }
+  }
 }
 
 .cardBody {
@@ -11,18 +23,21 @@
 
 .title {
   margin-bottom: var(--space-xs);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--color-neutral-100);
 }
 
 .newAchievement {
   position: absolute;
-  bottom: 16px;
+  bottom: var(--space-md);
   background-color: var(--color-primary-200);
-  padding: 4px 8px;
+  padding: var(--space-3xs) var(--space-xs);
   border-radius: 4px;
   left: 50%;
   transform: translateX(-50%);
   text-transform: uppercase;
-  font-size: var(--text-sm);
   white-space: nowrap;
 }
 
@@ -33,14 +48,14 @@
   .column {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--space-xs);
     width: 100%;
   }
 
   .textContainer {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: var(--space-3xs);
 
     div {
       color: var(--color-neutral-400);
@@ -53,6 +68,6 @@
   }
 
   .icon {
-    margin-left: 16px;
+    margin-left: var(--space-md);
   }
 }

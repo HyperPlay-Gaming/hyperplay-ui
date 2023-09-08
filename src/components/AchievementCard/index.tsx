@@ -1,15 +1,20 @@
 import { Card, Image, ImageProps, Progress } from '@mantine/core'
-import classNames from 'classnames'
+import cn from 'classnames'
 
-import FallbackImage from '@/assets/fallback_card.jpg?url'
+import FallbackImage from '@/assets/fallback_achievement.jpg?url'
 import * as Images from '@/assets/images'
 
-import Button, { ButtonProps } from '../Button'
+import { ButtonProps } from '../Button'
+import CircularButton from '../CircularButton'
 import styles from './AchievementCard.module.scss'
 
 interface AchievementCardProps {
   image: string
   title: string
+  /**
+   * The total number of achievements that a user is able to mint for this game
+   */
+  mintableAchievementsCount: number
   /**
    * The number of achievements that have been minted by the user for this game
    */
@@ -43,23 +48,35 @@ export default function AchievementCard({
   ctaProps = {},
   mintedAchievementsCount,
   totalAchievementsCount,
+  mintableAchievementsCount,
   isNewAchievement = false,
   newAchievementLabel = 'New Achievement',
   ...others
 }: AchievementCardProps &
   ImageProps &
   Omit<React.ComponentPropsWithoutRef<'div'>, keyof AchievementCardProps>) {
-  const safeMintedCount = Math.min(
-    mintedAchievementsCount,
-    totalAchievementsCount
-  )
-  const safeTotalCount = totalAchievementsCount ?? 0
+  const safeMintedCount = mintedAchievementsCount || 0
+  const safeTotalCount = totalAchievementsCount > 0 ? totalAchievementsCount : 0
 
-  // Calculate the percentage of achievements that have been minted
-  const mintedProgress = Math.round((safeMintedCount / safeTotalCount) * 100)
+  const mintedProgress =
+    safeTotalCount > 0
+      ? Math.round((mintedAchievementsCount / safeTotalCount) * 100)
+      : 0
+  const mintableProgress =
+    safeTotalCount > 0
+      ? Math.round(
+          (mintableAchievementsCount / safeTotalCount) * 100 - mintedProgress
+        )
+      : 0
 
   return (
-    <Card radius="md" pos="relative" bg="var(--color-neutral-700)" {...others}>
+    <Card
+      radius="md"
+      pos="relative"
+      bg="var(--color-neutral-700)"
+      w="100%"
+      {...others}
+    >
       <Card.Section pos="relative">
         <Image
           src={image}
@@ -70,21 +87,25 @@ export default function AchievementCard({
           {...imageProps}
         />
         {isNewAchievement && (
-          <div className={styles.newAchievement}>{newAchievementLabel}</div>
+          <div className={cn(styles.newAchievement, 'eyebrow')}>
+            {newAchievementLabel}
+          </div>
         )}
       </Card.Section>
 
-      <Button
-        size="icon"
-        type="secondary"
+      <CircularButton
         {...ctaProps}
-        className={classNames(styles.addButton, ctaProps.className)}
+        className={cn(styles.addButton, ctaProps.className)}
       >
-        <Images.PlusCircleOutline fill="white" height={24} width={24} />
-      </Button>
+        <Images.PlusCircleOutline
+          fill="var(--colors-neutral-100)"
+          height={24}
+          width={24}
+        />
+      </CircularButton>
 
       <div className={styles.cardBody}>
-        <div className={`${styles.title} body`}>{title}</div>
+        <div className={cn(styles.title, 'body')}>{title}</div>
 
         <div className={styles.achievements}>
           <div className={styles.column}>
@@ -100,6 +121,10 @@ export default function AchievementCard({
                 {
                   value: mintedProgress,
                   color: 'var(--color-success-400)'
+                },
+                {
+                  value: mintableProgress,
+                  color: 'var(--color-success-400-20)'
                 }
               ]}
             />
