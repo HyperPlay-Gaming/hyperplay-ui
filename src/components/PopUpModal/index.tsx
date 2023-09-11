@@ -21,13 +21,15 @@ const PopUpModal = ({ classNames, ...props }: ModalProps) => {
       }}
       withCloseButton={false}
     >
-      <button
-        className={styles.closeButton}
-        aria-label="close button"
-        onClick={props.onClose}
-      >
-        <CloseModalIcon />
-      </button>
+      {props.withCloseButton && (
+        <button
+          className={styles.closeButton}
+          aria-label="close button"
+          onClick={props.onClose}
+        >
+          <CloseModalIcon />
+        </button>
+      )}
       {props.children}
     </Modal>
   )
