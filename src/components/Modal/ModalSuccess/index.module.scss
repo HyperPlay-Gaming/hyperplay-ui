@@ -1,0 +1,54 @@
+.modal {
+  display: flex;
+  max-width: 420px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-neutral-800);
+  border-radius: var(--space-md);
+}
+
+.content {
+  display: grid;
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+}
+
+.close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  border-radius: 100%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  background-color: var(--color-primary-500);
+  svg path {
+    fill: var(--color-neutral-200);
+  }
+  svg {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 4px;
+  }
+}
+
+.title {
+  font-weight: 500;
+}
+
+.icon {
+  width: 118px;
+  height: 118px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.button {
+  font-size: var(--text-md);
+}
