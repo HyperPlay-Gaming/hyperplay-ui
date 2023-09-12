@@ -3,41 +3,47 @@ import React from 'react'
 import styles from './AchievementsInfo.module.scss'
 
 interface AchievementStatProps {
-  newAchievements: string
-  minted: string
-  games: string
+  newAchievementsValue: string
+  mintedValue: string
+  gamesValue: string
+  title?: string
+  newAchievementsTitle?: string
+  mintedTitle?: string
+  gamesTitle?: string
 }
 
 export function AchievementsInfo({
-  newAchievements,
-  minted,
-  games
+  title = 'Achievements',
+  newAchievementsTitle = 'New Achievements',
+  newAchievementsValue,
+  mintedTitle = 'Minted',
+  mintedValue,
+  gamesTitle = 'Games',
+  gamesValue
 }: AchievementStatProps) {
   return (
     <div className={`${styles.card}`}>
-      <div className={`${styles.header}`}>
-        <h4>Achievements</h4>
-      </div>
+      <h4>{title}</h4>
       <div className={styles.footer}>
         <div className={styles.stat}>
-          <div className={`${styles.statTitle}`}>New Achievements</div>
+          <div className={`${styles.statTitle}`}>{newAchievementsTitle}</div>
           <h6
             className={`${styles.statValue}`}
             data-testid="newAchievementsStat"
           >
-            {newAchievements}
+            {newAchievementsValue}
           </h6>
         </div>
         <div className={styles.stat}>
-          <div className={`${styles.statTitle}`}>Minted</div>
+          <div className={`${styles.statTitle}`}>{mintedTitle}</div>
           <h6 className={`${styles.statValue}`} data-testid="mintedStat">
-            {minted}
+            {mintedValue}
           </h6>
         </div>
         <div className={styles.stat}>
-          <div className={`${styles.statTitle}`}>Games</div>
+          <div className={`${styles.statTitle}`}>{gamesTitle}</div>
           <h6 className={`${styles.statValue}`} data-testid="gamesStat">
-            {games}
+            {gamesValue}
           </h6>
         </div>
       </div>

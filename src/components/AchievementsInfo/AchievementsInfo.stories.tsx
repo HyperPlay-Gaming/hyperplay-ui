@@ -10,9 +10,9 @@ export default {
 }
 
 const achievements = {
-  newAchievements: '100K',
-  minted: '0/100K',
-  games: '4'
+  newAchievementsValue: '100K',
+  mintedValue: '0/100K',
+  gamesValue: '4'
 }
 
 export const Default = () => (

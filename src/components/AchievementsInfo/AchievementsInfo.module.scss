@@ -1,16 +1,16 @@
 .card {
+  display: grid;
+  gap: var(--space-2lg);
   width: 100%;
   border-radius: var(--space-md);
   background: var(--color-neutral-800);
   padding: var(--space-2lg);
 }
 
-.header {
-  margin-bottom: var(--space-xl);
-}
-
 .footer {
   display: flex;
+  flex-direction: row;
+  column-gap: var(--space-md);
   justify-content: space-between;
 }
 
