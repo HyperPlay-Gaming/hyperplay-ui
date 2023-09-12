@@ -1,81 +1,35 @@
-import React, { useState } from 'react'
+import React, { HTMLProps, useState } from 'react'
 
-import { ModalProps } from '@mantine/core'
 import cn from 'classnames'
 
-import {
-  DiscordFilled,
-  Email,
-  EpicStoreLogo,
-  GoogleLogo,
-  HyperPlayLogoColored,
-  KickLogo,
-  MetamaskColored,
-  SteamLogo,
-  TwitchLogo,
-  XLogo
-} from '@/assets/images'
-import { AuthProviderButtonProps } from '@/components/AuthProviderButton'
+import { Email, HyperPlayLogoColored, MetamaskColored } from '@/assets/images'
 import Button from '@/components/Button'
-import { DEFAULT_TRANSITION_DURATION } from '@/components/PopUpModal'
-import { AuthProviderButton, PopUpModal, TextInput } from '@/index'
+import { AuthProviderButton, TextInput } from '@/index'
 
-import styles from './SignupModal.module.scss'
-
-const sigInProviders = [
-  'wallet',
-  'steam',
-  'twitch',
-  'kick',
-  'twitter',
-  'discord',
-  'google'
-] as const
-
-export type AuthProvider = (typeof sigInProviders)[number]
-
-const providerInfo: Record<AuthProvider, AuthProviderButtonProps> = {
-  wallet: {
-    name: 'Wallet',
-    icon: <MetamaskColored className={styles.icon} />,
-    label: (
-      <AuthProviderButton.Label className={styles.recommendedLabel}>
-        Recommended
-      </AuthProviderButton.Label>
-    )
-  },
-  discord: {
-    name: 'Discord',
-    icon: <DiscordFilled className={styles.icon} />
-  },
-  google: {
-    name: 'Google',
-    icon: <GoogleLogo className={styles.icon} />
-  },
-  kick: {
-    name: 'Kick',
-    icon: <KickLogo className={styles.icon} />
-  },
-  steam: {
-    name: 'Steam',
-    icon: <SteamLogo className={styles.icon} />
-  },
-  twitch: {
-    name: 'Twitch',
-    icon: <TwitchLogo className={styles.icon} />
-  },
-  twitter: {
-    name: 'Twitter/X',
-    icon: <XLogo className={styles.icon} />
-  }
-}
+import styles from './SignUp.module.scss'
 
 type Steps = 'selectProvider' | 'email'
 
+export type AuthProvider = {
+  id: string
+  name: string
+  icon?: React.ReactNode
+  label?: React.ReactNode
+}
+
+type AuthProps = {
+  providers: AuthProvider[]
+  onAuthProviderSignup: (provider: AuthProvider) => void
+  onEmailSignup: (email: string) => void
+  onWalletSignup: () => void
+}
+
 const SelectProvider = ({
+  providers,
   onEmailClick,
   onAuthProviderClick
 }: {
+  providers: AuthProvider[]
   onEmailClick: () => void
   onAuthProviderClick: (provider: AuthProvider) => void
 }) => {
@@ -90,18 +44,25 @@ const SelectProvider = ({
         </span>
       </div>
       <div className={styles.providersContainer}>
-        {sigInProviders.map((provider) => (
+        <AuthProviderButton
+          name="Wallet"
+          icon={<MetamaskColored className={styles.icon} />}
+          label={
+            <AuthProviderButton.Label
+              style={{ color: 'var(--color-primary-200)' }}
+            >
+              Recommended
+            </AuthProviderButton.Label>
+          }
+          onClick={onEmailClick}
+        />
+        {providers.map((provider) => (
           <AuthProviderButton
-            key={provider}
-            {...providerInfo[provider]}
+            key={provider.id}
+            {...provider}
             onClick={() => onAuthProviderClick(provider)}
           />
         ))}
-        <AuthProviderButton
-          name="Epig Games"
-          icon={<EpicStoreLogo />}
-          label={<AuthProviderButton.Label>Soon</AuthProviderButton.Label>}
-        />
         <AuthProviderButton
           name="Email"
           icon={<Email className={styles.icon} />}
@@ -112,7 +73,7 @@ const SelectProvider = ({
   )
 }
 
-const EmailForm = ({
+export const EmailForm = ({
   onGoBack,
   onSubmit
 }: {
@@ -172,31 +133,23 @@ const EmailForm = ({
   )
 }
 
-export interface SignupModalProps extends ModalProps {
-  onAuthSignup: (provider: AuthProvider) => void
-  onEmailSignup: (email: string) => void
-}
+export type SignupModalProps = HTMLProps<HTMLDivElement> & AuthProps
 
-const SignupModal = ({
+const SignUp = ({
+  className,
+  providers,
+  onAuthProviderSignup,
   onEmailSignup,
-  onAuthSignup,
   ...props
 }: SignupModalProps) => {
   const [step, setStep] = useState<Steps>('selectProvider')
-
-  const handleClose = () => {
-    props.onClose()
-    setTimeout(() => {
-      setStep('selectProvider')
-    }, DEFAULT_TRANSITION_DURATION)
-  }
-
   return (
-    <PopUpModal {...props} onClose={handleClose} size={600}>
+    <div className={cn(styles.root, className)} {...props}>
       {step === 'selectProvider' && (
         <SelectProvider
-          onAuthProviderClick={(provider) => onAuthSignup(provider)}
+          providers={providers}
           onEmailClick={() => setStep('email')}
+          onAuthProviderClick={onAuthProviderSignup}
         />
       )}
       {step === 'email' && (
@@ -205,8 +158,8 @@ const SignupModal = ({
           onSubmit={(email) => onEmailSignup(email)}
         />
       )}
-    </PopUpModal>
+    </div>
   )
 }
 
-export default SignupModal
+export default SignUp

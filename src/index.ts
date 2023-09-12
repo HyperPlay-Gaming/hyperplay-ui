@@ -39,10 +39,7 @@ export { default as GameAbout } from './components/GameAbout'
 export { default as AuthProviderButton } from './components/AuthProviderButton'
 export { default as TextInput } from './components/TextInput'
 export { default as PopUpModal } from './components/PopUpModal'
-export {
-  default as SignupModal,
-  type AuthProvider
-} from './components/SignupModal'
+export { default as SignUp, type AuthProvider } from './components/SignUp'
 export { default as StoreRow } from './components/StoreRow'
 
 export { default as AchievementCard } from './components/AchievementCard'

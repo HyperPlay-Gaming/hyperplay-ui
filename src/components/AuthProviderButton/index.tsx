@@ -9,7 +9,7 @@ import styles from './AuthProviderButton.module.scss'
 export interface AuthProviderButtonProps
   extends React.HTMLAttributes<HTMLButtonElement> {
   name: string
-  icon: React.ReactNode
+  icon?: React.ReactNode
   label?: React.ReactNode
   connected?: boolean
 }
