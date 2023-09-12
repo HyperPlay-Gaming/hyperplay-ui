@@ -10,8 +10,8 @@
 
 .content {
   display: grid;
-  gap: var(--space-lg);
-  padding: var(--space-xl);
+  gap: calc(var(--space-sm) * 2);
+  padding: calc(var(--space-lg) * 2);
 }
 
 .close {

@@ -20,7 +20,7 @@ export const Default = () => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         title="Grats!"
-        message="2 Achievement collections minted"
+        message="137 Achievements Minted"
         callToActionText="Back to achievements"
         callToActionLink="https://www.hyperplay.xyz/"
         icon={<Trophy />}
