@@ -1,6 +1,5 @@
 .card {
   --card-border-radius: 0.5rem;
-
   overflow: visible;
 
   &:before {
@@ -20,8 +19,7 @@
 
   .image {
     overflow: hidden;
-    border-top-left-radius: var(--card-border-radius);
-    border-top-right-radius: var(--card-border-radius);
+    border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
   }
   
   .addButton {
@@ -47,8 +45,7 @@
     position: relative;
     padding: var(--space-md);
     background-color: var(--color-neutral-700);
-    border-bottom-left-radius: var(--card-border-radius);
-    border-bottom-right-radius: var(--card-border-radius);
+    border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
   }
   
   .title {
@@ -103,6 +100,32 @@
   
     .icon {
       margin-left: var(--space-md);
+    }
+
+    .popover {
+      background-color: #101828;
+      border: none;
+      padding: var(--space-md)
+    }
+
+    .popoverRow {
+      display: flex;
+      align-items: center;
+      margin-top: var(--space-xs);
+
+      .circle {
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        margin-right: var(--space-xs);
+
+        &.minted {
+          background-color: var(--color-success-400);
+        }
+        &.notMinted {
+          background-color: var(--color-success-400-20);
+        }
+      }
     }
   }
 }

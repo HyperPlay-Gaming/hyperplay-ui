@@ -12,7 +12,6 @@ import styles from './AchievementCard.module.scss'
 interface AchievementCardProps {
   image: string
   title: string
-  infoText: string
   /**
    * The total number of achievements that a user is able to mint for this game
    */
@@ -53,7 +52,6 @@ export default function AchievementCard({
   mintableAchievementsCount,
   isNewAchievement = false,
   newAchievementLabel = 'New Achievement',
-  infoText,
   ...others
 }: AchievementCardProps &
   ImageProps &
@@ -151,8 +149,20 @@ export default function AchievementCard({
                   />
                 </button>
               </Popover.Target>
-              <Popover.Dropdown>
-                <div className="caption-sm">{infoText}</div>
+              <Popover.Dropdown className={styles.popover}>
+                <div className="text--sm color-neutral-400">
+                  Achievement progress
+                </div>
+                <div className={styles.popoverRow}>
+                  <div className={cn(styles.circle, styles.minted)} />
+                  <div className="text--xs color-neutral-100">{`${safeMintedCount} minted`}</div>
+                </div>
+                <div className={styles.popoverRow}>
+                  <div className={cn(styles.circle, styles.notMinted)} />
+                  <div className="text--xs color-neutral-100">{`${
+                    safeTotalCount - safeMintedCount
+                  } not minted`}</div>
+                </div>
               </Popover.Dropdown>
             </Popover>
           </div>
