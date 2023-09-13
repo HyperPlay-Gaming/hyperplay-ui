@@ -1,6 +1,17 @@
 @import '../../styles/designSystem/spacing';
 @import '../../styles/designSystem/colors';
 
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xl-fixed) calc(var(--space-xl-fixed) * 1.25);
+  gap: calc(var(--space-lg) * 1.2);
+  border-radius: var(--space-md-fixed);
+  background: var(--color-neutral-800);
+  width: 100%;
+  max-width: 600px;
+}
+
 .title {
   color: white;
   font-weight: var(--bold);
@@ -20,33 +31,15 @@
   width: 20px;
   height: 20px;
   border-radius: 100%;
-  background: var(--color-primary-500);
+  background: var(--color-status-success);
 }
 
 .icon {
-  fill: var(--color-neutral-100);
+  fill: var(--color-neutral-900);
 }
 
-.verifyButton {
+.button {
   width: 100%;
   max-width: 218px;
   margin: auto;
-}
-
-.linkContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.buttonLink {
-  width: fit-content;
-  color: var(--color-secondary-300);
-  padding: 0 !important;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--space-lg) * 1.2);
 }

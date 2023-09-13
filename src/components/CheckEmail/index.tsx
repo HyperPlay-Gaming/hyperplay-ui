@@ -1,27 +1,27 @@
-import React from 'react'
+import React, { HTMLProps } from 'react'
 
-import { ModalProps } from '@mantine/core'
 import cn from 'classnames'
 
 import { Email } from '@/assets/images'
 import Button from '@/components/Button'
-import PopUpModal from '@/components/PopUpModal'
 
-import styles from './CheckEmailModal.module.scss'
+import styles from './CheckEmail.module.scss'
 
-export interface CheckEmailModalProps extends ModalProps {
+export interface CheckEmailProps extends HTMLProps<HTMLDivElement> {
   email: string
+  onVerify: () => void
   onResend: () => void
 }
 
-const CheckEmailModal = ({
+const CheckEmail = ({
+  className,
   email,
+  onVerify,
   onResend,
-  onClose,
   ...props
-}: CheckEmailModalProps) => {
+}: CheckEmailProps) => {
   return (
-    <PopUpModal {...props} onClose={onClose} size={600}>
+    <div className={cn(styles.root, className)} {...props}>
       <div className={styles.emailRoundedIcon}>
         <Email className={styles.icon} />
       </div>
@@ -32,7 +32,12 @@ const CheckEmailModal = ({
           <span className="text--semibold">{email}</span>
         </span>
       </div>
-      <Button type="primary" size="medium" className={styles.verifyButton}>
+      <Button
+        type="primary"
+        size="medium"
+        className={styles.verifyButton}
+        onClick={onVerify}
+      >
         Verify email
       </Button>
       <div className={styles.linkContainer}>
@@ -49,8 +54,8 @@ const CheckEmailModal = ({
           Click to resend
         </Button>
       </div>
-    </PopUpModal>
+    </div>
   )
 }
 
-export default CheckEmailModal
+export default CheckEmail

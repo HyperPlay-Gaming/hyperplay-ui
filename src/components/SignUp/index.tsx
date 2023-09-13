@@ -27,10 +27,12 @@ type AuthProps = {
 const SelectProvider = ({
   providers,
   onEmailClick,
-  onAuthProviderClick
+  onAuthProviderClick,
+  onWalletClick
 }: {
   providers: AuthProvider[]
   onEmailClick: () => void
+  onWalletClick: () => void
   onAuthProviderClick: (provider: AuthProvider) => void
 }) => {
   return (
@@ -54,7 +56,7 @@ const SelectProvider = ({
               Recommended
             </AuthProviderButton.Label>
           }
-          onClick={onEmailClick}
+          onClick={onWalletClick}
         />
         {providers.map((provider) => (
           <AuthProviderButton
@@ -140,6 +142,7 @@ const SignUp = ({
   providers,
   onAuthProviderSignup,
   onEmailSignup,
+  onWalletSignup,
   ...props
 }: SignupModalProps) => {
   const [step, setStep] = useState<Steps>('selectProvider')
@@ -148,6 +151,7 @@ const SignUp = ({
       {step === 'selectProvider' && (
         <SelectProvider
           providers={providers}
+          onWalletClick={onWalletSignup}
           onEmailClick={() => setStep('email')}
           onAuthProviderClick={onAuthProviderSignup}
         />

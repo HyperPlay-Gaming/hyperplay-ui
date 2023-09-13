@@ -1,25 +1,23 @@
-import React from 'react'
+import React, { HTMLProps } from 'react'
 
-import { ModalProps } from '@mantine/core'
 import cn from 'classnames'
 
 import { Email } from '@/assets/images'
 import Button from '@/components/Button'
-import PopUpModal from '@/components/PopUpModal'
 
-import styles from './EmailVerifiedModal.module.scss'
+import styles from './EmailVerified.module.scss'
 
-export interface EmailVerifiedModalProps extends ModalProps {
+export interface EmailVerifiedModalProps extends HTMLProps<HTMLDivElement> {
   onContinue: () => void
 }
 
 const EmailVerifiedModal = ({
   onContinue,
-  onClose,
+  className,
   ...props
 }: EmailVerifiedModalProps) => {
   return (
-    <PopUpModal {...props} onClose={onClose} size={600}>
+    <div className={cn(className, styles.root)} {...props}>
       <div className={styles.emailRoundedIcon}>
         <Email className={styles.icon} />
       </div>
@@ -37,7 +35,7 @@ const EmailVerifiedModal = ({
       >
         Continue
       </Button>
-    </PopUpModal>
+    </div>
   )
 }
 
