@@ -160,7 +160,9 @@ export default function AchievementCard({
                 <div className={styles.popoverRow}>
                   <div className={cn(styles.circle, styles.notMinted)} />
                   <div className="text--xs color-neutral-100">{`${
-                    safeTotalCount - safeMintedCount
+                    safeTotalCount > safeMintedCount
+                      ? safeTotalCount - safeMintedCount
+                      : 0
                   } not minted`}</div>
                 </div>
               </Popover.Dropdown>

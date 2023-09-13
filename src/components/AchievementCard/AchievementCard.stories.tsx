@@ -27,7 +27,7 @@ export const Disabled = () => (
       title="Star Wars: Knights of the Old Republic"
       mintedAchievementsCount={5}
       mintableAchievementsCount={10}
-      totalAchievementsCount={-5}
+      totalAchievementsCount={30}
       data-testid="1"
       ctaProps={{ disabled: true }}
     />
@@ -41,7 +41,7 @@ export const active = () => (
       title="Star Wars: Knights of the Old Republic"
       mintedAchievementsCount={5}
       mintableAchievementsCount={10}
-      totalAchievementsCount={-5}
+      totalAchievementsCount={30}
       data-testid="1"
       ctaProps={{ disabled: false }}
       state="active"
