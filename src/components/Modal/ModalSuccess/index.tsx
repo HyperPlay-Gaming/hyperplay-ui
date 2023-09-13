@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { HTMLAttributes, PropsWithChildren } from 'react'
 
 import classNames from 'classnames'
 
@@ -8,11 +8,11 @@ import Button from '@/components/Button'
 import ModalAnimation from '../ModalAnimation'
 import styles from './index.module.scss'
 
-export interface ModalSuccessProps {
+export interface ModalSuccessProps
+  extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
   isOpen: boolean
   onClose: () => void
   title: string
-  message: string
   callToActionText: string
   callToActionLink: string
   icon: React.ReactNode
@@ -20,10 +20,10 @@ export interface ModalSuccessProps {
 
 const ModalSuccess = ({
   title,
-  message,
   icon,
   callToActionText,
   callToActionLink,
+  children,
   ...props
 }: ModalSuccessProps) => {
   return (
@@ -39,9 +39,7 @@ const ModalSuccess = ({
           <div className={classNames(styles.row)}>
             <div className={classNames(styles.icon)}>{icon}</div>
           </div>
-          <div className={classNames(styles.row)}>
-            <h6>{message}</h6>
-          </div>
+          <div className={classNames(styles.row)}>{children}</div>
           <div className={classNames(styles.row)}>
             <a href={`${callToActionLink}`}>
               <Button type="secondary">
