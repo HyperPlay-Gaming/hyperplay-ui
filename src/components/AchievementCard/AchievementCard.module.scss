@@ -14,27 +14,32 @@
   }
 
   &:hover:before {
-    background: linear-gradient(86.63deg, #4126E8 2.98%, #EA1ABA 38.52%, #10A6D6 89.36%);
+    background: linear-gradient(
+      86.63deg,
+      #4126e8 2.98%,
+      #ea1aba 38.52%,
+      #10a6d6 89.36%
+    );
   }
 
   .image {
     overflow: hidden;
     border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
   }
-  
+
   .addButton {
     position: absolute;
     top: var(--space-sm);
     right: var(--space-sm);
   }
-  
+
   .cardBody {
     position: relative;
     padding: var(--space-md);
     background-color: var(--color-neutral-700);
     border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
   }
-  
+
   .title {
     margin-bottom: var(--space-xs);
     text-overflow: ellipsis;
@@ -42,7 +47,7 @@
     white-space: nowrap;
     color: var(--color-neutral-100);
   }
-  
+
   .newAchievement {
     position: absolute;
     bottom: var(--space-md);
@@ -54,37 +59,37 @@
     text-transform: uppercase;
     white-space: nowrap;
   }
-  
+
   .achievements {
     display: flex;
     align-items: center;
-  
+
     .column {
       display: flex;
       flex-direction: column;
       gap: var(--space-xs);
       width: 100%;
     }
-  
+
     .textContainer {
       display: flex;
       align-items: center;
       gap: var(--space-3xs);
-  
+
       div {
         color: var(--color-neutral-400);
         font-size: var(--text-sm);
       }
-  
+
       :first-child {
         color: var(--color-success-400);
       }
     }
-  
+
     .popoverButton {
       padding: 0;
     }
-  
+
     .icon {
       margin-left: var(--space-md);
     }
@@ -92,7 +97,7 @@
     .popover {
       background-color: #101828;
       border: none;
-      padding: var(--space-md)
+      padding: var(--space-md);
     }
 
     .popoverRow {
@@ -116,4 +121,3 @@
     }
   }
 }
-
