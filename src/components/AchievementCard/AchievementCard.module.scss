@@ -1,77 +1,109 @@
-.addButton {
-  position: absolute;
-  top: var(--space-sm);
-  right: var(--space-sm);
-  border-radius: 99px;
-  padding: var(--space-xs) !important;
-  background-color: #ffffff20 !important;
+.card {
+  --card-border-radius: 0.5rem;
 
-  &:disabled {
+  overflow: visible;
+
+  &:before {
+    content: '';
+    border-radius: var(--card-border-radius);
+    background-color: transparent;
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+  }
+
+  &:hover:before {
+    background: linear-gradient(86.63deg, #4126E8 2.98%, #EA1ABA 38.52%, #10A6D6 89.36%);
+  }
+
+  .image {
+    overflow: hidden;
+    border-top-left-radius: var(--card-border-radius);
+    border-top-right-radius: var(--card-border-radius);
+  }
+  
+  .addButton {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    border-radius: 99px;
+    padding: var(--space-xs) !important;
     background-color: #ffffff20 !important;
-    cursor: not-allowed;
-    opacity: 50%;
-
-    svg {
-      fill: var(--color-neutral-300);
+  
+    &:disabled {
+      background-color: #ffffff20 !important;
+      cursor: not-allowed;
+      opacity: 50%;
+  
+      svg {
+        fill: var(--color-neutral-300);
+      }
     }
   }
-}
-
-.cardBody {
-  margin-top: var(--space-md);
-}
-
-.title {
-  margin-bottom: var(--space-xs);
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  color: var(--color-neutral-100);
-}
-
-.newAchievement {
-  position: absolute;
-  bottom: var(--space-md);
-  background-color: var(--color-primary-200);
-  padding: var(--space-3xs) var(--space-xs);
-  border-radius: 4px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.achievements {
-  display: flex;
-  align-items: center;
-
-  .column {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    width: 100%;
+  
+  .cardBody {
+    position: relative;
+    padding: var(--space-md);
+    background-color: var(--color-neutral-700);
+    border-bottom-left-radius: var(--card-border-radius);
+    border-bottom-right-radius: var(--card-border-radius);
   }
-
-  .textContainer {
+  
+  .title {
+    margin-bottom: var(--space-xs);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--color-neutral-100);
+  }
+  
+  .newAchievement {
+    position: absolute;
+    bottom: var(--space-md);
+    background-color: var(--color-primary-200);
+    padding: var(--space-3xs) var(--space-xs);
+    border-radius: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  
+  .achievements {
     display: flex;
     align-items: center;
-    gap: var(--space-3xs);
-
-    div {
-      color: var(--color-neutral-400);
-      font-size: var(--text-sm);
+  
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      width: 100%;
     }
-
-    :first-child {
-      color: var(--color-success-400);
+  
+    .textContainer {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3xs);
+  
+      div {
+        color: var(--color-neutral-400);
+        font-size: var(--text-sm);
+      }
+  
+      :first-child {
+        color: var(--color-success-400);
+      }
     }
-  }
-
-  .popoverButton {
-    padding: 0;
-  }
-
-  .icon {
-    margin-left: var(--space-md);
+  
+    .popoverButton {
+      padding: 0;
+    }
+  
+    .icon {
+      margin-left: var(--space-md);
+    }
   }
 }
+

@@ -80,9 +80,11 @@ export default function AchievementCard({
       pos="relative"
       bg="var(--color-neutral-700)"
       w="100%"
+      padding={0}
+      className={cn(styles.card, others.className)}
       {...others}
     >
-      <Card.Section pos="relative">
+      <Card.Section pos="relative" className={styles.image}>
         <Image
           src={image}
           height={180}
