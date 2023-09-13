@@ -6,8 +6,8 @@ import FallbackImage from '@/assets/fallback_achievement.jpg?url'
 import * as Images from '@/assets/images'
 
 import { ButtonProps } from '../Button'
-import CircularButton from '../CircularButton'
 import styles from './AchievementCard.module.scss'
+import StatusIcon, { StatusIconState } from './components/StatusIcon'
 
 interface AchievementCardProps {
   image: string
@@ -40,6 +40,10 @@ interface AchievementCardProps {
    * The label to display for the new achievement indicator
    */
   newAchievementLabel?: string
+  /**
+   * State of card
+   */
+  state?: StatusIconState
 }
 
 export default function AchievementCard({
@@ -52,7 +56,8 @@ export default function AchievementCard({
   mintableAchievementsCount,
   isNewAchievement = false,
   newAchievementLabel = 'New Achievement',
-  ...others
+  state = 'default',
+  ...rest
 }: AchievementCardProps &
   ImageProps &
   Omit<React.ComponentPropsWithoutRef<'div'>, keyof AchievementCardProps>) {
@@ -79,8 +84,8 @@ export default function AchievementCard({
       bg="var(--color-neutral-700)"
       w="100%"
       padding={0}
-      className={cn(styles.card, others.className)}
-      {...others}
+      className={cn(styles.card, rest.className)}
+      {...rest}
     >
       <Card.Section pos="relative" className={styles.image}>
         <Image
@@ -98,16 +103,11 @@ export default function AchievementCard({
         )}
       </Card.Section>
 
-      <CircularButton
+      <StatusIcon
         {...ctaProps}
-        className={cn(styles.addButton, ctaProps.className)}
-      >
-        <Images.PlusCircleOutline
-          fill="var(--colors-neutral-100)"
-          height={24}
-          width={24}
-        />
-      </CircularButton>
+        state={state}
+        className={cn(ctaProps.className, styles.addButton)}
+      />
 
       <div className={styles.cardBody}>
         <div className={cn(styles.title, 'body')}>{title}</div>

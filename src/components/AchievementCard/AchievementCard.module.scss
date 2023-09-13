@@ -26,19 +26,6 @@
     position: absolute;
     top: var(--space-sm);
     right: var(--space-sm);
-    border-radius: 99px;
-    padding: var(--space-xs) !important;
-    background-color: #ffffff20 !important;
-  
-    &:disabled {
-      background-color: #ffffff20 !important;
-      cursor: not-allowed;
-      opacity: 50%;
-  
-      svg {
-        fill: var(--color-neutral-300);
-      }
-    }
   }
   
   .cardBody {

@@ -16,7 +16,50 @@ export const Default = () => (
       mintableAchievementsCount={10}
       totalAchievementsCount={30}
       data-testid="1"
-      infoText="Information about progress."
+    />
+  </Flex>
+)
+
+export const Disabled = () => (
+  <Flex maw={300}>
+    <AchievementCard
+      image="https://i.imgur.com/Cij5vdL.png"
+      title="Star Wars: Knights of the Old Republic"
+      mintedAchievementsCount={5}
+      mintableAchievementsCount={10}
+      totalAchievementsCount={-5}
+      data-testid="1"
+      ctaProps={{ disabled: true }}
+    />
+  </Flex>
+)
+
+export const active = () => (
+  <Flex maw={300}>
+    <AchievementCard
+      image="https://i.imgur.com/Cij5vdL.png"
+      title="Star Wars: Knights of the Old Republic"
+      mintedAchievementsCount={5}
+      mintableAchievementsCount={10}
+      totalAchievementsCount={-5}
+      data-testid="1"
+      ctaProps={{ disabled: false }}
+      state="active"
+    />
+  </Flex>
+)
+
+export const update = () => (
+  <Flex maw={300}>
+    <AchievementCard
+      image="https://i.imgur.com/Cij5vdL.png"
+      title="Star Wars: Knights of the Old Republic"
+      mintedAchievementsCount={5}
+      mintableAchievementsCount={10}
+      totalAchievementsCount={-5}
+      data-testid="1"
+      ctaProps={{ disabled: false }}
+      state="update"
     />
   </Flex>
 )
@@ -30,7 +73,6 @@ export const NewAchievement = () => (
       mintableAchievementsCount={10}
       totalAchievementsCount={15}
       data-testid="1"
-      infoText="Information about progress."
       isNewAchievement
     />
   </Flex>
@@ -45,7 +87,6 @@ export const BrokenImage = () => (
       mintableAchievementsCount={10}
       totalAchievementsCount={15}
       data-testid="1"
-      infoText="Information about progress."
     />
   </Flex>
 )
@@ -59,7 +100,6 @@ export const LongName = () => (
       mintableAchievementsCount={10}
       totalAchievementsCount={13}
       data-testid="1"
-      infoText="Information about progress."
     />
   </Flex>
 )
@@ -73,21 +113,6 @@ export const NegativeAchievements = () => (
       mintableAchievementsCount={10}
       totalAchievementsCount={-5}
       data-testid="1"
-      infoText="Information about progress."
-    />
-  </Flex>
-)
-export const Disabled = () => (
-  <Flex maw={300}>
-    <AchievementCard
-      image="https://i.imgur.com/Cij5vdL.png"
-      title="Star Wars: Knights of the Old Republic"
-      mintedAchievementsCount={5}
-      mintableAchievementsCount={10}
-      totalAchievementsCount={-5}
-      data-testid="1"
-      infoText="Information about progress."
-      ctaProps={{ disabled: true }}
     />
   </Flex>
 )
