@@ -3,34 +3,54 @@ import React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import SignupModal from './index'
+import SignUp from './index'
 
-describe('SignupModal', () => {
+const providers = [{ id: 'discord', name: 'Discord', icon: 'discord' }]
+
+describe('SignUp', () => {
   it('executes onAuthSignup handler upon selecting a provider', () => {
+    const providerOption = providers[0]
     const onAuthSignup = vi.fn()
     render(
-      <SignupModal
-        opened={true}
+      <SignUp
+        providers={providers}
+        onWalletSignup={vi.fn}
         onEmailSignup={vi.fn}
-        onClose={vi.fn}
-        onAuthSignup={onAuthSignup}
+        onAuthProviderSignup={onAuthSignup}
       />
     )
 
     // Find and click on the provider button you want to test (e.g., 'Discord')
-    fireEvent.click(screen.getByRole('button', { name: /discord/i }))
+    fireEvent.click(screen.getByRole('button', { name: providerOption.name }))
 
-    expect(onAuthSignup).toHaveBeenCalledWith('discord')
+    expect(onAuthSignup).toHaveBeenCalledWith(providerOption)
+  })
+
+  it('executes onWalletSignup handler upon selecting wallet provider', () => {
+    const onWalletSignup = vi.fn()
+    render(
+      <SignUp
+        providers={providers}
+        onWalletSignup={onWalletSignup}
+        onEmailSignup={vi.fn}
+        onAuthProviderSignup={vi.fn}
+      />
+    )
+
+    // Find and click on the provider button you want to test (e.g., 'Discord')
+    fireEvent.click(screen.getByRole('button', { name: /wallet/i }))
+
+    expect(onWalletSignup).toHaveBeenCalled()
   })
 
   it('submits the email form and triggers onEmailSignup handler', () => {
     const onEmailSignup = vi.fn()
     render(
-      <SignupModal
-        opened={true}
+      <SignUp
+        providers={providers}
         onEmailSignup={onEmailSignup}
-        onClose={vi.fn}
-        onAuthSignup={vi.fn}
+        onWalletSignup={vi.fn}
+        onAuthProviderSignup={vi.fn}
       />
     )
 
