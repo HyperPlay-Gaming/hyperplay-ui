@@ -2,7 +2,7 @@ import { Card, Image, ImageProps, Popover, Progress } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import cn from 'classnames'
 
-import FallbackImage from '@/assets/fallback_achievement.jpg?url'
+import FallbackImage from '@/assets/fallback_achievement.svg?url'
 import * as Images from '@/assets/images'
 
 import { ButtonProps } from '../Button'
