@@ -1,4 +1,5 @@
-import { Card, Image, ImageProps, Progress } from '@mantine/core'
+import { Card, Image, ImageProps, Popover, Progress } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import cn from 'classnames'
 
 import FallbackImage from '@/assets/fallback_achievement.jpg?url'
@@ -11,6 +12,7 @@ import styles from './AchievementCard.module.scss'
 interface AchievementCardProps {
   image: string
   title: string
+  infoText: string
   /**
    * The total number of achievements that a user is able to mint for this game
    */
@@ -51,10 +53,13 @@ export default function AchievementCard({
   mintableAchievementsCount,
   isNewAchievement = false,
   newAchievementLabel = 'New Achievement',
+  infoText,
   ...others
 }: AchievementCardProps &
   ImageProps &
   Omit<React.ComponentPropsWithoutRef<'div'>, keyof AchievementCardProps>) {
+  const [opened, { close, open }] = useDisclosure(false)
+
   const safeMintedCount = mintedAchievementsCount || 0
   const safeTotalCount = totalAchievementsCount > 0 ? totalAchievementsCount : 0
 
@@ -130,11 +135,24 @@ export default function AchievementCard({
             />
           </div>
           <div className={styles.icon}>
-            <Images.Info
-              height={16}
-              width={16}
-              fill="var(--color-neutral-400)"
-            />
+            <Popover width={200} shadow="md" opened={opened}>
+              <Popover.Target>
+                <button
+                  onMouseEnter={open}
+                  onMouseLeave={close}
+                  className={styles.popoverButton}
+                >
+                  <Images.Info
+                    height={16}
+                    width={16}
+                    fill="var(--color-neutral-400)"
+                  />
+                </button>
+              </Popover.Target>
+              <Popover.Dropdown>
+                <div className="caption-sm">{infoText}</div>
+              </Popover.Dropdown>
+            </Popover>
           </div>
         </div>
       </div>

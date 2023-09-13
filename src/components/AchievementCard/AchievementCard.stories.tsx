@@ -16,6 +16,7 @@ export const Default = () => (
       mintableAchievementsCount={10}
       totalAchievementsCount={30}
       data-testid="1"
+      infoText="Information about progress."
     />
   </Flex>
 )
@@ -29,6 +30,7 @@ export const NewAchievement = () => (
       mintableAchievementsCount={10}
       totalAchievementsCount={15}
       data-testid="1"
+      infoText="Information about progress."
       isNewAchievement
     />
   </Flex>
@@ -43,6 +45,7 @@ export const BrokenImage = () => (
       mintableAchievementsCount={10}
       totalAchievementsCount={15}
       data-testid="1"
+      infoText="Information about progress."
     />
   </Flex>
 )
@@ -56,6 +59,7 @@ export const LongName = () => (
       mintableAchievementsCount={10}
       totalAchievementsCount={13}
       data-testid="1"
+      infoText="Information about progress."
     />
   </Flex>
 )
@@ -69,6 +73,7 @@ export const NegativeAchievements = () => (
       mintableAchievementsCount={10}
       totalAchievementsCount={-5}
       data-testid="1"
+      infoText="Information about progress."
     />
   </Flex>
 )
