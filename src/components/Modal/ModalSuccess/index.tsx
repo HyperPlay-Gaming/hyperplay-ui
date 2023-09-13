@@ -14,7 +14,7 @@ export interface ModalSuccessProps
   onClose: () => void
   title: string
   callToActionText: string
-  callToActionLink: string
+  onActionClick?: () => void
   icon: React.ReactNode
 }
 
@@ -22,7 +22,7 @@ const ModalSuccess = ({
   title,
   icon,
   callToActionText,
-  callToActionLink,
+  onActionClick,
   children,
   ...props
 }: ModalSuccessProps) => {
@@ -41,11 +41,9 @@ const ModalSuccess = ({
           </div>
           <div className={classNames(styles.row)}>{children}</div>
           <div className={classNames(styles.row)}>
-            <a href={`${callToActionLink}`}>
-              <Button type="secondary">
-                <div className={styles.button}>{callToActionText}</div>
-              </Button>
-            </a>
+            <Button type="secondary" onClick={onActionClick}>
+              <div className={styles.button}>{callToActionText}</div>
+            </Button>
           </div>
         </div>
       </div>

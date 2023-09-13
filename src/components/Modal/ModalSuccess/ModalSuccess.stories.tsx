@@ -13,6 +13,10 @@ export default {
 export const Default = () => {
   const [isOpen, setIsOpen] = React.useState(true)
 
+  const handleClick = () => {
+    window.open('https://achievo.xyz/', '_blank')
+  }
+
   return (
     <>
       <Button onClick={() => setIsOpen(true)}>Mint NFT!</Button>
@@ -21,7 +25,7 @@ export const Default = () => {
         onClose={() => setIsOpen(false)}
         title="Grats!"
         callToActionText="Back to achievements"
-        callToActionLink="https://www.hyperplay.xyz/"
+        onActionClick={handleClick}
         icon={<Trophy />}
       >
         <h6>
