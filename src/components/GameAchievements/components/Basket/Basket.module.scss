@@ -1,0 +1,15 @@
+.basket {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
+  background-color: var(--color-neutral-700);
+  border: 1px solid var(--color-neutral-600);
+  border-radius: 0.5rem;
+}
+
+.badge {
+  border-radius: 0.25rem;
+  padding: var(--space-3xs) var(--space-xs);
+  background-color: var(--color-primary-400);
+}

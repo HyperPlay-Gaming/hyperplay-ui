@@ -53,3 +53,4 @@ export { ReactComponent as CheckmarkCircleOutline } from './CheckmarkCircleOutli
 export { ReactComponent as Youtube } from './Youtube.svg'
 export { ReactComponent as DiscordFilled } from './DiscordFilled.svg'
 export { ReactComponent as TwitterFilled } from './TwitterFilled.svg'
+export { ReactComponent as TrophyOutline } from './TrophyOutline.svg'
