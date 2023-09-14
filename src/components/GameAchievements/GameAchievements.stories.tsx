@@ -46,5 +46,8 @@ export const Default = () => (
         isLocked: true
       }
     ]}
+    mintedAchievementsCount={5}
+    totalAchievementsCount={30}
+    mintableAchievementsCount={15}
   />
 )

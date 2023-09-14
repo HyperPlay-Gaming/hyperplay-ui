@@ -24,6 +24,9 @@ export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
     image: string
     isLocked: boolean
   }[]
+  mintableAchievementsCount: number
+  mintedAchievementsCount: number
+  totalAchievementsCount: number
 }
 
 const data = [
@@ -37,14 +40,17 @@ export default function GameAchievements({
   basketAmount,
   game,
   achievements,
+  mintedAchievementsCount,
+  totalAchievementsCount,
+  mintableAchievementsCount,
   ...rest
 }: GameAchievementsProps) {
   const [selected, setSelected] = useState(data[0])
   const { safeMintedCount, safeTotalCount, mintedProgress, mintableProgress } =
     getProgress({
-      mintedAchievementsCount: 5,
-      totalAchievementsCount: 15,
-      mintableAchievementsCount: 10
+      mintedAchievementsCount,
+      totalAchievementsCount,
+      mintableAchievementsCount
     })
 
   return (
