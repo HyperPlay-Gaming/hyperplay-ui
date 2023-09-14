@@ -1,0 +1,20 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-neutral-700);
+  padding: var(--space-md);
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--color-neutral-600);
+
+  .left {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-sm);
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+  }
+}
