@@ -81,7 +81,7 @@ export const NewAchievement = () => (
 export const BrokenImage = () => (
   <Flex maw={300}>
     <AchievementCard
-      image="brokenImage"
+      image="brokenImage.jpg"
       title="Diablo II"
       mintedAchievementsCount={5}
       mintableAchievementsCount={10}
