@@ -1,10 +1,9 @@
 .card {
-  --card-border-radius: 0.5rem;
   overflow: visible;
 
   &:before {
     content: '';
-    border-radius: var(--card-border-radius);
+    border-radius: var(--space-xs);
     background-color: transparent;
     position: absolute;
     top: -2px;
@@ -24,7 +23,7 @@
 
   .image {
     overflow: hidden;
-    border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+    border-radius: var(--space-xs) var(--space-xs) 0 0;
   }
 
   .addButton {
@@ -37,7 +36,7 @@
     position: relative;
     padding: var(--space-md);
     background-color: var(--color-neutral-700);
-    border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
+    border-radius: 0 0 var(--space-xs) var(--space-xs);
   }
 
   .title {
@@ -53,7 +52,7 @@
     bottom: var(--space-md);
     background-color: var(--color-primary-200);
     padding: var(--space-3xs) var(--space-xs);
-    border-radius: 4px;
+    border-radius: var(--space-3xs);
     left: 50%;
     transform: translateX(-50%);
     text-transform: uppercase;
