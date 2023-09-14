@@ -20,15 +20,29 @@ export const Default = () => (
       {
         id: '1',
         title: 'Achievement 1',
-        description: 'Description 1',
-        image: '',
+        description: 'With an image',
+        image: 'https://i.imgur.com/Cij5vdL.png',
         isLocked: false
       },
       {
         id: '2',
         title: 'Achievement 2',
-        description: 'Description 2',
-        image: '',
+        description: 'Without an image',
+        image: 'brokenImage',
+        isLocked: true
+      },
+      {
+        id: '3',
+        title: 'Achievement 3',
+        description: 'Without an image',
+        image: 'brokenImage',
+        isLocked: true
+      },
+      {
+        id: '4',
+        title: 'Achievement 4',
+        description: 'Without an image',
+        image: 'brokenImage',
         isLocked: true
       }
     ]}

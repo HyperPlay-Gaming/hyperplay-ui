@@ -24,7 +24,7 @@ export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
 }
 
 const data = [
-  { text: 'Alphabetical A-Z' },
+  { text: 'Alphabetically' },
   { text: 'Favorites' },
   { text: 'Sort by Status' }
 ]
@@ -62,7 +62,12 @@ export default function GameAchievements({
 
         <div className={styles.row}>
           <div>
-            <p className="text--4xl">{game.title}</p>
+            <p
+              className="text--4xl"
+              style={{ fontFamily: 'var(--primary-font-family)' }}
+            >
+              {game.title}
+            </p>
             <div className={styles.tagList}>
               {game.tags.map((tag) => (
                 <div

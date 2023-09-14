@@ -1,6 +1,6 @@
 .container {
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: var(--space-md);
   display: flex;
   flex-direction: column;
 }
@@ -55,7 +55,7 @@
 
   .tag {
     background-color: var(--color-neutral-600);
-    border-radius: 0.25rem;
+    border-radius: var(--space-3xs);
     padding: var(--space-3xs);
   }
 }
@@ -65,7 +65,6 @@
   flex-direction: column;
   gap: var(--space-lg);
   padding: var(--space-lg);
-  height: 300px;
   background: var(--color-neutral-800);
 
   .list {
@@ -82,7 +81,7 @@
   }
 
   .image {
-    border-radius: 0.25rem;
+    border-radius: 4px;
     overflow: hidden;
     box-shadow: 0px 4px 12px 0px #00000029;
   }
