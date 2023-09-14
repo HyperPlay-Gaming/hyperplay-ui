@@ -121,3 +121,15 @@
     }
   }
 }
+
+
+// When Mantine Image gets broken src it adds html that has a white background and a broken image that has a white border that is visible in the rounded corners of the card. This is a hack to hide that.
+.mantineOverRide {
+  :global(.mantine-Image-placeholder) {
+    background-color: transparent;
+  }
+
+  img[src*="brokenImage"] {
+    opacity: 0;
+  }
+}

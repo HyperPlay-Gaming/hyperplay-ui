@@ -87,7 +87,10 @@ export default function AchievementCard({
       className={cn(styles.card, rest.className)}
       {...rest}
     >
-      <Card.Section pos="relative" className={styles.image}>
+      <Card.Section
+        pos="relative"
+        className={cn(styles.image, styles.mantineOverRide)}
+      >
         <Image
           src={image}
           height={180}
