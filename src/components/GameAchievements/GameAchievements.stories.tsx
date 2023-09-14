@@ -49,5 +49,7 @@ export const Default = () => (
     mintedAchievementsCount={5}
     totalAchievementsCount={30}
     mintableAchievementsCount={15}
+    handleNext={() => console.log('next')}
+    handlePrevious={() => console.log('previous')}
   />
 )

@@ -1,4 +1,4 @@
-import React, { HTMLProps, useState } from 'react'
+import React, { HTMLProps, MouseEventHandler, useState } from 'react'
 
 import { Image } from '@mantine/core'
 import cn from 'classnames'
@@ -27,6 +27,8 @@ export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
   mintableAchievementsCount: number
   mintedAchievementsCount: number
   totalAchievementsCount: number
+  handleNext?: MouseEventHandler<HTMLButtonElement> | undefined
+  handlePrevious?: MouseEventHandler<HTMLButtonElement> | undefined
 }
 
 const data = [
@@ -43,6 +45,8 @@ export default function GameAchievements({
   mintedAchievementsCount,
   totalAchievementsCount,
   mintableAchievementsCount,
+  handlePrevious,
+  handleNext,
   ...rest
 }: GameAchievementsProps) {
   const [selected, setSelected] = useState(data[0])
@@ -59,10 +63,10 @@ export default function GameAchievements({
         <Images.MobileHpLogo className={styles.logo} width={100} height={100} />
         <div className={styles.row}>
           <div className={styles.left}>
-            <CircularButton className={styles.navItem}>
+            <CircularButton onClick={handlePrevious} className={styles.navItem}>
               <Images.ChevronLeft width="16" height="16" />
             </CircularButton>
-            <CircularButton className={styles.navItem} disabled={true}>
+            <CircularButton onClick={handleNext} className={styles.navItem}>
               <Images.ChevronRight width="16" height="16" />
             </CircularButton>
           </div>
@@ -113,15 +117,16 @@ export default function GameAchievements({
 
       <div className={styles.achievements}>
         <div className={styles.row}>
-          <p
+          <div
             className={cn(
               styles.colorNeutral400,
               'text--2xl',
               'weight--semibold'
             )}
+            style={{ fontFamily: 'var(--primary-font-family)' }}
           >
             Achievements
-          </p>
+          </div>
 
           <Dropdown
             options={data}
