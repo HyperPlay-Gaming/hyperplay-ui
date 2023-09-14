@@ -1,0 +1,33 @@
+.keyRow {
+  display: flex;
+  align-items: center;
+  margin-top: var(--space-xs);
+
+  .circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    margin-right: var(--space-xs);
+
+    &.minted {
+      background-color: var(--color-success-400);
+    }
+
+    &.notMinted {
+      background-color: var(--color-success-400-20);
+    }
+  }
+}
+
+.keyContainer {
+  display: flex;
+  
+  &.row {
+    gap: var(--space-2lg);
+    flex-direction: row;
+  }
+
+  &.column {
+    flex-direction: column;
+  }
+}

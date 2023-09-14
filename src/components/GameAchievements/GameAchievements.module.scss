@@ -50,7 +50,7 @@
     display: flex;
     gap: var(--space-xs);
     flex-wrap: wrap;
-    max-width: 254px;
+    max-width: 225px;
   }
 
   .tag {
@@ -111,5 +111,17 @@
   .unlocked {
     display: flex;
     gap: var(--space-xs);
+  }
+
+}
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 200px;
+
+  .progressKey {
+    margin-top: var(--space-xs);
   }
 }

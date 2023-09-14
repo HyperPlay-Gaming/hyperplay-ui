@@ -5,6 +5,9 @@ import cn from 'classnames'
 
 import * as Images from '@/assets/images'
 
+import AchievementProgress from '../AchievementProgress'
+import ProgressKey from '../AchievementProgress/components/ProgressKey'
+import getProgress from '../AchievementProgress/helpers/getProgress'
 import CircularButton from '../CircularButton'
 import { Dropdown } from '../Dropdowns'
 import styles from './GameAchievements.module.scss'
@@ -37,6 +40,12 @@ export default function GameAchievements({
   ...rest
 }: GameAchievementsProps) {
   const [selected, setSelected] = useState(data[0])
+  const { safeMintedCount, safeTotalCount, mintedProgress, mintableProgress } =
+    getProgress({
+      mintedAchievementsCount: 5,
+      totalAchievementsCount: 15,
+      mintableAchievementsCount: 10
+    })
 
   return (
     <div className={styles.container} {...rest}>
@@ -80,7 +89,19 @@ export default function GameAchievements({
             </div>
           </div>
 
-          <div className=""></div>
+          <div className={styles.progress}>
+            <AchievementProgress
+              safeMintedCount={safeMintedCount}
+              safeTotalCount={safeTotalCount}
+              mintedProgress={mintedProgress}
+              mintableProgress={mintableProgress}
+            />
+            <ProgressKey
+              className={styles.progressKey}
+              safeMintedCount={safeMintedCount}
+              safeTotalCount={safeTotalCount}
+            />
+          </div>
         </div>
       </div>
 
