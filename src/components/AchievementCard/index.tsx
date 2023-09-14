@@ -132,7 +132,8 @@ export default function AchievementCard({
                 },
                 {
                   value: mintableProgress,
-                  color: 'var(--color-success-400-20)'
+                  color: 'var(--color-success-400-20)',
+                  className: styles.noRadius
                 }
               ]}
             />
