@@ -55,6 +55,7 @@
   --color-success-200: #9bfdbd;
   --color-success-300: #69faa9;
   --color-success-400: #40ffba;
+  --color-success-400-20: #40ffba20;
   --color-success-500: #08ef9c;
   --color-success-600: #05cd99;
   --color-success-700: #04ac90;
@@ -118,6 +119,7 @@
     #1dbbed 52.48%,
     #02ffd1 76.34%
   );
+  --color-gradient-08: linear-gradient(90deg, #34004d, #00257f);
 
   /* Monochrome */
   --ui-color-mono-gradient-01: linear-gradient(

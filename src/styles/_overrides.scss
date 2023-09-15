@@ -1,0 +1,14 @@
+// When Mantine Image gets broken src it adds html that has a white background and a broken image that has a white border that is visible in the rounded corners of the card. This is a hack to hide that.
+@mixin broken-image-fix {
+  :global(.mantine-Image-placeholder) {
+    background-color: transparent;
+  }
+
+  :global(.mantine-Image-image) {
+    opacity: 0;
+  }
+
+  :global(.mantine-Image-image:only-child) {
+    opacity: 1;
+  }
+}
