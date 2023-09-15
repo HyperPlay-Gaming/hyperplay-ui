@@ -27,25 +27,16 @@
 }
 
 .games {
-  display: flex;
-  gap: var(--space-md);
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-column-gap: var(--space-md);
+  grid-row-gap: var(--space-md);
 
-  .game {
-    background-color: red;
-    width: 100%;
-    
-    
-      @include variables.for-tablet-portrait-up {
-        width: calc(50% - var(--space-md));
-      }
-    
-      @include variables.for-tablet-landscape-up {
-        width: calc(25% - var(--space-md));
-      }
-    
-      @include variables.for-desktop-up {
-        width: calc(25% - var(--space-md));
-      }
+  @include variables.for-tablet-portrait-up {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include variables.for-tablet-landscape-up {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }

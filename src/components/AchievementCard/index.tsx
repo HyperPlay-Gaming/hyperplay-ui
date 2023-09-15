@@ -9,7 +9,7 @@ import { ButtonProps } from '../Button'
 import styles from './AchievementCard.module.scss'
 import StatusIcon, { StatusIconState } from './components/StatusIcon'
 
-interface AchievementCardProps {
+export interface AchievementCardProps {
   image: string
   title: string
   /**
@@ -141,7 +141,7 @@ export default function AchievementCard({
               <div>{safeMintedCount}</div>
               <div>/</div>
               <div>{safeTotalCount}</div>
-              <div>{achievementMintedLabel}</div>
+              <div className={styles.noWrap}>{achievementMintedLabel}</div>
             </div>
             <Progress
               bg="var(--color-neutral-600)"

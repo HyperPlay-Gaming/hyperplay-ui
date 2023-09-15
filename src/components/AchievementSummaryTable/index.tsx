@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { HTMLProps, useState } from 'react'
 
+import AchievementCard, { AchievementCardProps } from '../AchievementCard'
 // import AchievementPageNav from '../AchievementPageNav'
 import Button from '../Button'
 import { Dropdown } from '../Dropdowns'
@@ -7,7 +8,11 @@ import { itemType } from '../Dropdowns/Dropdown'
 import Tabs from '../Tabs'
 import styles from './AchievementSummaryTable.module.scss'
 
-export interface GameAchievementsProps {
+interface Game extends AchievementCardProps {
+  id: string
+}
+
+export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
   /**
    * list of options for the dropdown to sort your achievements
    */
@@ -16,7 +21,7 @@ export interface GameAchievementsProps {
   newFilterLabel?: string
   mintedFilterLabel?: string
   mintButtonLabel?: string
-  games?: { id: string; image: string; title: string; state: string }[]
+  games: Game[]
 }
 
 export default function AchievementSummaryTable({
@@ -29,43 +34,13 @@ export default function AchievementSummaryTable({
   newFilterLabel = 'New',
   mintedFilterLabel = 'Minted',
   mintButtonLabel = 'Mint',
-  games = [
-    {
-      id: '1',
-      image: 'https://i.imgur.com/Cij5vdL.png',
-      title: 'Game 1',
-      state: 'minted'
-    },
-    {
-      id: '2',
-      image: 'https://i.imgur.com/Cij5vdL.png',
-      title: 'Game 1',
-      state: 'minted'
-    },
-    {
-      id: '3',
-      image: 'https://i.imgur.com/Cij5vdL.png',
-      title: 'Game 1',
-      state: 'minted'
-    },
-    {
-      id: '4',
-      image: 'https://i.imgur.com/Cij5vdL.png',
-      title: 'Game 1',
-      state: 'minted'
-    },
-    {
-      id: '5',
-      image: 'https://i.imgur.com/Cij5vdL.png',
-      title: 'Game 1',
-      state: 'minted'
-    }
-  ]
+  games,
+  ...rest
 }: GameAchievementsProps) {
   const [selected, setSelected] = useState(sortOptions[0])
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} {...rest}>
       {/* <AchievementPageNav
         freeMints={10}
         basketAmount={0}
@@ -105,10 +80,8 @@ export default function AchievementSummaryTable({
         </div>
 
         <Tabs.Panel value="all" className={styles.games}>
-          {games.map((game) => (
-            <div key={game.id} className={styles.game}>
-              {game.title}
-            </div>
+          {games.map(({ id, ...rest }) => (
+            <AchievementCard key={id} {...rest} />
           ))}
         </Tabs.Panel>
         <Tabs.Panel value="new">
