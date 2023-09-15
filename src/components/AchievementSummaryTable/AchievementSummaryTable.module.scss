@@ -1,0 +1,11 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-2lg);
+}
+
+.filters {
+  display: flex;
+  gap: var(--space-xs);
+}
