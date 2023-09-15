@@ -14,38 +14,38 @@ export const Default = () => (
     basketAmount={0}
     game={{
       title: 'Title of game',
-      tags: ['VR', 'Gore', 'Action', 'Simulation', 'Violent', 'Indie']
+      tags: ['VR', 'Gore', 'Action', 'Simulation', 'Violent', 'Indie'],
+      achievements: [
+        {
+          id: '1',
+          title: 'Achievement 1',
+          description: 'With an image',
+          image: 'https://i.imgur.com/Cij5vdL.png',
+          isLocked: false
+        },
+        {
+          id: '2',
+          title: 'Achievement 2',
+          description: 'Without an image',
+          image: 'brokenImage',
+          isLocked: true
+        },
+        {
+          id: '3',
+          title: 'Achievement 3',
+          description: 'Without an image',
+          image: 'brokenImage',
+          isLocked: true
+        },
+        {
+          id: '4',
+          title: 'Achievement 4',
+          description: 'Without an image',
+          image: 'brokenImage',
+          isLocked: true
+        }
+      ]
     }}
-    achievements={[
-      {
-        id: '1',
-        title: 'Achievement 1',
-        description: 'With an image',
-        image: 'https://i.imgur.com/Cij5vdL.png',
-        isLocked: false
-      },
-      {
-        id: '2',
-        title: 'Achievement 2',
-        description: 'Without an image',
-        image: 'brokenImage',
-        isLocked: true
-      },
-      {
-        id: '3',
-        title: 'Achievement 3',
-        description: 'Without an image',
-        image: 'brokenImage',
-        isLocked: true
-      },
-      {
-        id: '4',
-        title: 'Achievement 4',
-        description: 'Without an image',
-        image: 'brokenImage',
-        isLocked: true
-      }
-    ]}
     mintedAchievementsCount={5}
     totalAchievementsCount={30}
     mintableAchievementsCount={15}

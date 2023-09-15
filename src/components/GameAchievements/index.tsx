@@ -7,49 +7,91 @@ import * as Images from '@/assets/images'
 
 import AchievementProgress from '../AchievementProgress'
 import ProgressKey from '../AchievementProgress/components/ProgressKey'
-import getProgress from '../AchievementProgress/helpers/getProgress'
+import getProgress, {
+  AchievementProgressProps
+} from '../AchievementProgress/helpers/getProgress'
 import CircularButton from '../CircularButton'
 import { Dropdown } from '../Dropdowns'
+import { itemType } from '../Dropdowns/Dropdown'
 import styles from './GameAchievements.module.scss'
 import Basket from './components/Basket'
 
-export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
+export interface GameAchievementsProps
+  extends HTMLProps<HTMLDivElement>,
+    AchievementProgressProps {
+  /**
+   * Amount of free mints the user has
+   */
   freeMints: number
+  /**
+   * Amount in the user's basket
+   */
   basketAmount: number
-  game: { title: string; tags: string[] }
-  achievements: {
-    id: string
+  /**
+   * Game data
+   */
+  game: {
     title: string
-    description: string
-    image: string
-    isLocked: boolean
-  }[]
-  mintableAchievementsCount: number
-  mintedAchievementsCount: number
-  totalAchievementsCount: number
+    tags: string[]
+    achievements: {
+      id: string
+      title: string
+      description: string
+      image: string
+      isLocked: boolean
+    }[]
+  }
+  /**
+   * Go to next game
+   */
   handleNext?: MouseEventHandler<HTMLButtonElement> | undefined
+  /**
+   * Go to previous game
+   */
   handlePrevious?: MouseEventHandler<HTMLButtonElement> | undefined
+  /**
+   * text to show how many free mints a user has
+   */
+  freeMintsLabel?: string
+  /**
+   * text to show the achievement is locked
+   */
+  lockedLabel?: string
+  /**
+   * text to show the achievement is unlocked
+   */
+  unLockedLabel?: string
+  /**
+   * title of the Achievements list
+   */
+  achievementsTitleLabel?: string
+  /**
+   * list of options for the dropdown to sort your achievements
+   */
+  sortOptions?: itemType[]
 }
-
-const data = [
-  { text: 'Alphabetically' },
-  { text: 'Favorites' },
-  { text: 'Sort by Status' }
-]
 
 export default function GameAchievements({
   freeMints,
   basketAmount,
   game,
-  achievements,
   mintedAchievementsCount,
   totalAchievementsCount,
   mintableAchievementsCount,
   handlePrevious,
   handleNext,
+  freeMintsLabel = 'Free mints',
+  lockedLabel = 'locked',
+  unLockedLabel = 'Unlocked',
+  achievementsTitleLabel = 'Achievements',
+  sortOptions = [
+    { text: 'Alphabetically' },
+    { text: 'Favorites' },
+    { text: 'Sort by Status' }
+  ],
   ...rest
 }: GameAchievementsProps) {
-  const [selected, setSelected] = useState(data[0])
+  const [selected, setSelected] = useState(sortOptions[0])
   const { safeMintedCount, safeTotalCount, mintedProgress, mintableProgress } =
     getProgress({
       mintedAchievementsCount,
@@ -73,7 +115,8 @@ export default function GameAchievements({
 
           <div className={styles.right}>
             <p className="text--md">
-              Free mints: <span className="weight--semibold">{freeMints}</span>
+              {freeMintsLabel}:{' '}
+              <span className="weight--semibold">{freeMints}</span>
             </p>
             <Basket amount={basketAmount} />
           </div>
@@ -125,11 +168,11 @@ export default function GameAchievements({
             )}
             style={{ fontFamily: 'var(--primary-font-family)' }}
           >
-            Achievements
+            {achievementsTitleLabel}
           </div>
 
           <Dropdown
-            options={data}
+            options={sortOptions}
             onItemChange={setSelected}
             selected={selected}
             targetWidth="300"
@@ -140,46 +183,48 @@ export default function GameAchievements({
         </div>
 
         <div className={styles.list}>
-          {achievements.map(({ id, title, description, image, isLocked }) => (
-            <div key={id} className={styles.row}>
-              <div className={styles.achievementData}>
-                <Image
-                  className={styles.image}
-                  src={image}
-                  height={80}
-                  width={80}
-                  withPlaceholder
-                  placeholder={<div className={styles.fallback} />}
-                />
-                <div className={styles.achievementInfo}>
-                  <div className="text--lg weight--medium">{title}</div>
-                  <div className={cn(styles.colorNeutral400, 'text--md')}>
-                    {description}
+          {game.achievements.map(
+            ({ id, title, description, image, isLocked }) => (
+              <div key={id} className={styles.row}>
+                <div className={styles.achievementData}>
+                  <Image
+                    className={styles.image}
+                    src={image}
+                    height={80}
+                    width={80}
+                    withPlaceholder
+                    placeholder={<div className={styles.fallback} />}
+                  />
+                  <div className={styles.achievementInfo}>
+                    <div className="text--lg weight--medium">{title}</div>
+                    <div className={cn(styles.colorNeutral400, 'text--md')}>
+                      {description}
+                    </div>
                   </div>
                 </div>
+                <div
+                  className={cn(
+                    styles.colorNeutral400,
+                    styles.achievementState,
+                    'text--sm'
+                  )}
+                >
+                  {isLocked ? (
+                    <div className={styles.locked}>{lockedLabel}</div>
+                  ) : (
+                    <div className={styles.unlocked}>
+                      <div>{unLockedLabel}</div>
+                      <Images.CheckmarkCircleOutline
+                        fill="var(--color-neutral-400)"
+                        width={21}
+                        height={21}
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
-              <div
-                className={cn(
-                  styles.colorNeutral400,
-                  styles.achievementState,
-                  'text--sm'
-                )}
-              >
-                {isLocked ? (
-                  <div className={styles.locked}>Locked</div>
-                ) : (
-                  <div className={styles.unlocked}>
-                    <div>Unlocked</div>
-                    <Images.CheckmarkCircleOutline
-                      fill="var(--color-neutral-400)"
-                      width={21}
-                      height={21}
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
       </div>
     </div>
