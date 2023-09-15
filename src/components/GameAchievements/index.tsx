@@ -1,4 +1,4 @@
-import React, { HTMLProps, useMemo, useState } from 'react'
+import React, { HTMLProps } from 'react'
 
 import { Image } from '@mantine/core'
 import cn from 'classnames'
@@ -18,7 +18,7 @@ import getProgress, {
   AchievementProgressProps
 } from '../AchievementProgress/helpers/getProgress'
 import { Dropdown } from '../Dropdowns'
-import { DropdownProps, itemType } from '../Dropdowns/Dropdown'
+import { DropdownProps } from '../Dropdowns/Dropdown'
 import styles from './GameAchievements.module.scss'
 
 export interface GameAchievementsProps
