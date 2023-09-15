@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, PropsWithChildren } from 'react'
+import { HTMLAttributes, MouseEventHandler, PropsWithChildren } from 'react'
 
 import classNames from 'classnames'
 
@@ -6,17 +6,20 @@ import styles from './CircularButton.module.scss'
 
 export interface CircularButtonProps
   extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
-  onClick?: () => void
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined
+  disabled?: boolean
 }
 
 const CircularButton = ({
   children,
   className,
+  disabled = false,
   ...props
 }: CircularButtonProps) => {
   return (
     <button
-      className={classNames([styles.circularButton, className])}
+      disabled={disabled}
+      className={classNames([className, styles.circularButton])}
       {...props}
     >
       {children}
