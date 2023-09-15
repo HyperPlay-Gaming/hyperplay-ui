@@ -1,4 +1,4 @@
-import React, { HTMLProps, useState } from 'react'
+import React, { HTMLProps, useMemo, useState } from 'react'
 
 import { Image } from '@mantine/core'
 import cn from 'classnames'
@@ -51,6 +51,12 @@ export interface GameAchievementsProps
   sortOptions?: itemType[]
 }
 
+const achievementsSortOptions = [
+  { id: 'alphabetically', text: 'Alphabetically' },
+  { id: 'favorites', text: 'Favorites' },
+  { id: 'status', text: 'Sort by Status' }
+] as itemType[]
+
 export default function GameAchievements({
   freeMints,
   basketAmount,
@@ -64,11 +70,7 @@ export default function GameAchievements({
   lockedLabel = 'locked',
   unLockedLabel = 'Unlocked',
   achievementsTitleLabel = 'Achievements',
-  sortOptions = [
-    { text: 'Alphabetically' },
-    { text: 'Favorites' },
-    { text: 'Sort by Status' }
-  ],
+  sortOptions = achievementsSortOptions,
   ...rest
 }: GameAchievementsProps) {
   const [selected, setSelected] = useState(sortOptions[0])
@@ -78,6 +80,13 @@ export default function GameAchievements({
       totalAchievementsCount,
       mintableAchievementsCount
     })
+
+  const sortedAchievements = useMemo(() => {
+    if (selected.id === 'alphabetically') {
+      return game.achievements.sort((a, b) => a.title.localeCompare(b.title))
+    }
+    return game.achievements
+  }, [selected.text, game.achievements])
 
   return (
     <div className={styles.container} {...rest}>
@@ -152,7 +161,7 @@ export default function GameAchievements({
         </div>
 
         <div className={styles.list}>
-          {game.achievements.map(
+          {sortedAchievements.map(
             ({ id, title, description, image, isLocked }) => (
               <div key={id} className={styles.row}>
                 <div className={styles.achievementData}>
