@@ -13,7 +13,7 @@
 .right {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-lg);
   color: var(--color-neutral-400);
 }
 
@@ -28,8 +28,10 @@
 .basket {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-sm);
-  padding: var(--space-xs) var(--space-md);
+  padding: var(--space-sm);
+  color: white;
   background-color: var(--color-neutral-700);
   border: 1px solid var(--color-neutral-600);
   border-radius: 0.5rem;

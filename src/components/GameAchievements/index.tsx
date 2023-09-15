@@ -5,7 +5,9 @@ import cn from 'classnames'
 
 import * as Images from '@/assets/images'
 
-import AchievementPageNav, { AchievementPageProps } from '../AchievementPageNav'
+import AchievementPageNav, {
+  AchievementPageNavProps
+} from '../AchievementPageNav'
 import AchievementProgress, {
   AchievementProgressTextProps
 } from '../AchievementProgress'
@@ -21,8 +23,7 @@ import styles from './GameAchievements.module.scss'
 
 export interface GameAchievementsProps
   extends HTMLProps<HTMLDivElement>,
-    AchievementProgressProps,
-    AchievementPageProps {
+    AchievementProgressProps {
   /**
    * Game data
    */
@@ -55,6 +56,7 @@ export interface GameAchievementsProps
   sortOptions?: itemType[]
   progressKeyProps?: ProgressKeyTextProps
   achievementProgressProps?: AchievementProgressTextProps
+  achievementPageNavProps: AchievementPageNavProps
 }
 
 const achievementsSortOptions = [
@@ -64,16 +66,12 @@ const achievementsSortOptions = [
 ] as itemType[]
 
 export default function GameAchievements({
-  freeMints,
-  basketAmount,
   game,
   mintedAchievementsCount,
   totalAchievementsCount,
   mintableAchievementsCount,
-  handlePrevious,
-  handleNext,
-  freeMintsLabel,
-  lockedLabel = 'locked',
+  achievementPageNavProps,
+  lockedLabel = 'Locked',
   unLockedLabel = 'Unlocked',
   achievementsTitleLabel = 'Achievements',
   sortOptions = achievementsSortOptions,
@@ -100,13 +98,7 @@ export default function GameAchievements({
     <div className={styles.container} {...rest}>
       <div className={styles.hero}>
         <Images.MobileHpLogo className={styles.logo} width={100} height={100} />
-        <AchievementPageNav
-          freeMints={freeMints}
-          basketAmount={basketAmount}
-          handleNext={handleNext}
-          handlePrevious={handlePrevious}
-          freeMintsLabel={freeMintsLabel}
-        />
+        <AchievementPageNav {...achievementPageNavProps} />
 
         <div className={styles.row}>
           <div>
@@ -173,7 +165,10 @@ export default function GameAchievements({
         <div className={styles.list}>
           {sortedAchievements.map(
             ({ id, title, description, image, isLocked }) => (
-              <div key={id} className={styles.row}>
+              <div
+                key={id}
+                className={cn(styles.row, isLocked ? styles.locked : '')}
+              >
                 <div className={styles.achievementData}>
                   <Image
                     className={styles.image}
@@ -198,12 +193,12 @@ export default function GameAchievements({
                   )}
                 >
                   {isLocked ? (
-                    <div className={styles.locked}>{lockedLabel}</div>
+                    <div>{lockedLabel}</div>
                   ) : (
                     <div className={styles.unlocked}>
                       <div>{unLockedLabel}</div>
                       <Images.CheckmarkCircleOutline
-                        fill="var(--color-neutral-400)"
+                        fill="var(--color-neutral-500)"
                         width={21}
                         height={21}
                       />

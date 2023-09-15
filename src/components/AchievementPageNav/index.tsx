@@ -1,11 +1,13 @@
-import React, { MouseEventHandler } from 'react'
+import React from 'react'
+
+import classNames from 'classnames'
 
 import * as Images from '@/assets/images'
 
-import CircularButton from '../CircularButton'
+import CircularButton, { CircularButtonProps } from '../CircularButton'
 import styles from './AchievementPageNav.module.scss'
 
-export interface AchievementPageProps {
+export interface AchievementPageNavProps {
   /**
    * Amount of free mints the user has
    */
@@ -17,11 +19,11 @@ export interface AchievementPageProps {
   /**
    * Go to next game
    */
-  handleNext?: MouseEventHandler<HTMLButtonElement> | undefined
+  nextButtonProps?: CircularButtonProps
   /**
    * Go to previous game
    */
-  handlePrevious?: MouseEventHandler<HTMLButtonElement> | undefined
+  previousButtonProps?: CircularButtonProps
   /**
    * text to show how many free mints a user has
    */
@@ -31,17 +33,23 @@ export interface AchievementPageProps {
 export default function AchievementPageNav({
   freeMints,
   basketAmount,
-  handlePrevious,
-  handleNext,
+  previousButtonProps,
+  nextButtonProps,
   freeMintsLabel = 'Free mints'
-}: AchievementPageProps) {
+}: AchievementPageNavProps) {
   return (
     <div className={styles.row}>
       <div className={styles.left}>
-        <CircularButton onClick={handlePrevious} className={styles.navItem}>
+        <CircularButton
+          {...previousButtonProps}
+          className={classNames(previousButtonProps?.className, styles.navItem)}
+        >
           <Images.ChevronLeft width="16" height="16" />
         </CircularButton>
-        <CircularButton onClick={handleNext} className={styles.navItem}>
+        <CircularButton
+          {...nextButtonProps}
+          className={classNames(previousButtonProps?.className, styles.navItem)}
+        >
           <Images.ChevronRight width="16" height="16" />
         </CircularButton>
       </div>

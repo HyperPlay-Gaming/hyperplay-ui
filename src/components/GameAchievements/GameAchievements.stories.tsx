@@ -10,8 +10,10 @@ export default {
 
 export const Default = () => (
   <GameAchievements
-    freeMints={10}
-    basketAmount={0}
+    achievementPageNavProps={{
+      freeMints: 10,
+      basketAmount: 0
+    }}
     game={{
       title: 'Title of game',
       tags: ['VR', 'Gore', 'Action', 'Simulation', 'Violent', 'Indie'],
@@ -49,7 +51,5 @@ export const Default = () => (
     mintedAchievementsCount={5}
     totalAchievementsCount={30}
     mintableAchievementsCount={15}
-    handleNext={() => console.log('next')}
-    handlePrevious={() => console.log('previous')}
   />
 )
