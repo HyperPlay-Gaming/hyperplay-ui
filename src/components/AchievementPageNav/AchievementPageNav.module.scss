@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  align-items: center;
 }
 
 .left {
@@ -11,6 +12,7 @@
 
 .right {
   display: flex;
+  align-items: center;
   gap: var(--space-md);
   color: var(--color-neutral-400);
 }

@@ -47,10 +47,10 @@ export default function AchievementPageNav({
       </div>
 
       <div className={styles.right}>
-        <p className="text--md">
+        <div className="text--md">
           {freeMintsLabel}:{' '}
           <span className="weight--semibold">{freeMints}</span>
-        </p>
+        </div>
         <div className={styles.basket}>
           <Images.TrophyOutline width="22" height="22" />
           <div className={styles.badge}>{basketAmount}</div>
