@@ -1,0 +1,137 @@
+@import '../../styles/overrides';
+
+.card {
+  overflow: visible;
+
+  &:before {
+    content: '';
+    border-radius: var(--space-xs);
+    background-color: transparent;
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    opacity: 0;
+    box-shadow: 0px 0px 6px 7px rgba(0, 0, 0, 0.25);
+    transition: opacity 0.5s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  &:hover:before {
+    opacity: 1;
+    background: linear-gradient(
+      86.63deg,
+      #4126e8 2.98%,
+      #ea1aba 38.52%,
+      #10a6d6 89.36%
+    );
+  }
+
+  .image {
+    overflow: hidden;
+    border-radius: var(--space-xs) var(--space-xs) 0 0;
+  }
+
+  .addButton {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+  }
+
+  .cardBody {
+    position: relative;
+    padding: var(--space-md);
+    background-color: var(--color-neutral-700);
+    border-radius: 0 0 var(--space-xs) var(--space-xs);
+  }
+
+  .title {
+    margin-bottom: var(--space-xs);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--color-neutral-100);
+  }
+
+  .newAchievement {
+    position: absolute;
+    bottom: var(--space-md);
+    background-color: var(--color-primary-200);
+    padding: var(--space-3xs) var(--space-xs);
+    border-radius: var(--space-3xs);
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .achievements {
+    display: flex;
+    align-items: center;
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      width: 100%;
+    }
+
+    .textContainer {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3xs);
+
+      div {
+        color: var(--color-neutral-400);
+        font-size: var(--text-sm);
+      }
+
+      :first-child {
+        color: var(--color-success-400);
+      }
+    }
+
+    .popoverButton {
+      padding: 0;
+    }
+
+    .icon {
+      margin-left: var(--space-md);
+    }
+
+    .popover {
+      background-color: #101828;
+      border: none;
+      padding: var(--space-md);
+    }
+
+    .popoverRow {
+      display: flex;
+      align-items: center;
+      margin-top: var(--space-xs);
+
+      .circle {
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        margin-right: var(--space-xs);
+
+        &.minted {
+          background-color: var(--color-success-400);
+        }
+        &.notMinted {
+          background-color: var(--color-success-400-20);
+        }
+      }
+    }
+  }
+}
+
+.mantineOverRide {
+  @include broken-image-fix();
+}
+
+.noRadius {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
