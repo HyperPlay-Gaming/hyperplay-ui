@@ -44,6 +44,22 @@ interface AchievementCardProps {
    * State of card
    */
   state?: StatusIconState
+  /**
+   * The label to display for the progress label for how many you've minted
+   */
+  achievementMintedLabel?: string
+  /**
+   * The label to display title for the info popover
+   */
+  achievementProgressLabel?: string
+  /**
+   * The label to display the word minted
+   */
+  mintedLabel?: string
+  /**
+   * The label to display the words not minted
+   */
+  notMintedLabel?: string
 }
 
 export default function AchievementCard({
@@ -57,6 +73,10 @@ export default function AchievementCard({
   isNewAchievement = false,
   newAchievementLabel = 'New Achievement',
   state = 'default',
+  achievementMintedLabel = 'achievements minted',
+  achievementProgressLabel = 'Achievement progress',
+  mintedLabel = 'minted',
+  notMintedLabel = 'not minted',
   ...rest
 }: AchievementCardProps &
   ImageProps &
@@ -121,7 +141,7 @@ export default function AchievementCard({
               <div>{safeMintedCount}</div>
               <div>/</div>
               <div>{safeTotalCount}</div>
-              <div>achievements minted</div>
+              <div>{achievementMintedLabel}</div>
             </div>
             <Progress
               bg="var(--color-neutral-600)"
@@ -155,11 +175,11 @@ export default function AchievementCard({
               </Popover.Target>
               <Popover.Dropdown className={styles.popover}>
                 <div className="text--sm color-neutral-400">
-                  Achievement progress
+                  {achievementProgressLabel}
                 </div>
                 <div className={styles.popoverRow}>
                   <div className={cn(styles.circle, styles.minted)} />
-                  <div className="text--xs color-neutral-100">{`${safeMintedCount} minted`}</div>
+                  <div className="text--xs color-neutral-100">{`${safeMintedCount} ${mintedLabel}`}</div>
                 </div>
                 <div className={styles.popoverRow}>
                   <div className={cn(styles.circle, styles.notMinted)} />
@@ -167,7 +187,7 @@ export default function AchievementCard({
                     safeTotalCount > safeMintedCount
                       ? safeTotalCount - safeMintedCount
                       : 0
-                  } not minted`}</div>
+                  } ${notMintedLabel}`}</div>
                 </div>
               </Popover.Dropdown>
             </Popover>
