@@ -1,6 +1,17 @@
+@use '../../styles/utilities/_variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-2lg);
+  background: var(--color-neutral-800);
+}
+
 .row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: var(--space-xs);
   margin-bottom: var(--space-2lg);
 }
@@ -8,4 +19,33 @@
 .filters {
   display: flex;
   gap: var(--space-xs);
+  flex-direction: column;
+
+  @include variables.for-tablet-portrait-up {
+      flex-direction: row;
+    }
+}
+
+.games {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+
+  .game {
+    background-color: red;
+    width: 100%;
+    
+    
+      @include variables.for-tablet-portrait-up {
+        width: calc(50% - var(--space-md));
+      }
+    
+      @include variables.for-tablet-landscape-up {
+        width: calc(25% - var(--space-md));
+      }
+    
+      @include variables.for-desktop-up {
+        width: calc(25% - var(--space-md));
+      }
+  }
 }

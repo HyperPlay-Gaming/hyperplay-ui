@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import AchievementPageNav from '../AchievementPageNav'
+// import AchievementPageNav from '../AchievementPageNav'
 import Button from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { itemType } from '../Dropdowns/Dropdown'
@@ -16,6 +16,7 @@ export interface GameAchievementsProps {
   newFilterLabel?: string
   mintedFilterLabel?: string
   mintButtonLabel?: string
+  games?: { id: string; image: string; title: string; state: string }[]
 }
 
 export default function AchievementSummaryTable({
@@ -27,18 +28,50 @@ export default function AchievementSummaryTable({
   allFilterLabel = 'All',
   newFilterLabel = 'New',
   mintedFilterLabel = 'Minted',
-  mintButtonLabel = 'Mint'
+  mintButtonLabel = 'Mint',
+  games = [
+    {
+      id: '1',
+      image: 'https://i.imgur.com/Cij5vdL.png',
+      title: 'Game 1',
+      state: 'minted'
+    },
+    {
+      id: '2',
+      image: 'https://i.imgur.com/Cij5vdL.png',
+      title: 'Game 1',
+      state: 'minted'
+    },
+    {
+      id: '3',
+      image: 'https://i.imgur.com/Cij5vdL.png',
+      title: 'Game 1',
+      state: 'minted'
+    },
+    {
+      id: '4',
+      image: 'https://i.imgur.com/Cij5vdL.png',
+      title: 'Game 1',
+      state: 'minted'
+    },
+    {
+      id: '5',
+      image: 'https://i.imgur.com/Cij5vdL.png',
+      title: 'Game 1',
+      state: 'minted'
+    }
+  ]
 }: GameAchievementsProps) {
   const [selected, setSelected] = useState(sortOptions[0])
 
   return (
-    <>
-      <AchievementPageNav
+    <div className={styles.container}>
+      {/* <AchievementPageNav
         freeMints={10}
         basketAmount={0}
         handleNext={() => console.log('next')}
         handlePrevious={() => console.log('previous')}
-      />
+      /> */}
       <Tabs defaultValue="all">
         <div className={styles.row}>
           <div className={styles.filters}>
@@ -71,16 +104,20 @@ export default function AchievementSummaryTable({
           </div>
         </div>
 
-        <Tabs.Panel value={'tab1'}>
-          <div>Tab 1</div>
+        <Tabs.Panel value="all" className={styles.games}>
+          {games.map((game) => (
+            <div key={game.id} className={styles.game}>
+              {game.title}
+            </div>
+          ))}
         </Tabs.Panel>
-        <Tabs.Panel value={'tab2'}>
+        <Tabs.Panel value="new">
           <div>Tab 2</div>
         </Tabs.Panel>
-        <Tabs.Panel value={'tab3'}>
+        <Tabs.Panel value="minted">
           <div>Tab 3</div>
         </Tabs.Panel>
       </Tabs>
-    </>
+    </div>
   )
 }
