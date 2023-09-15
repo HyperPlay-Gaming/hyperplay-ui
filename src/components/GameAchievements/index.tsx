@@ -1,32 +1,24 @@
-import React, { HTMLProps, MouseEventHandler, useState } from 'react'
+import React, { HTMLProps, useState } from 'react'
 
 import { Image } from '@mantine/core'
 import cn from 'classnames'
 
 import * as Images from '@/assets/images'
 
+import AchievementPageNav, { AchievementPageProps } from '../AchievementPageNav'
 import AchievementProgress from '../AchievementProgress'
 import ProgressKey from '../AchievementProgress/components/ProgressKey'
 import getProgress, {
   AchievementProgressProps
 } from '../AchievementProgress/helpers/getProgress'
-import CircularButton from '../CircularButton'
 import { Dropdown } from '../Dropdowns'
 import { itemType } from '../Dropdowns/Dropdown'
 import styles from './GameAchievements.module.scss'
-import Basket from './components/Basket'
 
 export interface GameAchievementsProps
   extends HTMLProps<HTMLDivElement>,
-    AchievementProgressProps {
-  /**
-   * Amount of free mints the user has
-   */
-  freeMints: number
-  /**
-   * Amount in the user's basket
-   */
-  basketAmount: number
+    AchievementProgressProps,
+    AchievementPageProps {
   /**
    * Game data
    */
@@ -41,18 +33,6 @@ export interface GameAchievementsProps
       isLocked: boolean
     }[]
   }
-  /**
-   * Go to next game
-   */
-  handleNext?: MouseEventHandler<HTMLButtonElement> | undefined
-  /**
-   * Go to previous game
-   */
-  handlePrevious?: MouseEventHandler<HTMLButtonElement> | undefined
-  /**
-   * text to show how many free mints a user has
-   */
-  freeMintsLabel?: string
   /**
    * text to show the achievement is locked
    */
@@ -80,7 +60,7 @@ export default function GameAchievements({
   mintableAchievementsCount,
   handlePrevious,
   handleNext,
-  freeMintsLabel = 'Free mints',
+  freeMintsLabel,
   lockedLabel = 'locked',
   unLockedLabel = 'Unlocked',
   achievementsTitleLabel = 'Achievements',
@@ -103,24 +83,13 @@ export default function GameAchievements({
     <div className={styles.container} {...rest}>
       <div className={styles.hero}>
         <Images.MobileHpLogo className={styles.logo} width={100} height={100} />
-        <div className={styles.row}>
-          <div className={styles.left}>
-            <CircularButton onClick={handlePrevious} className={styles.navItem}>
-              <Images.ChevronLeft width="16" height="16" />
-            </CircularButton>
-            <CircularButton onClick={handleNext} className={styles.navItem}>
-              <Images.ChevronRight width="16" height="16" />
-            </CircularButton>
-          </div>
-
-          <div className={styles.right}>
-            <p className="text--md">
-              {freeMintsLabel}:{' '}
-              <span className="weight--semibold">{freeMints}</span>
-            </p>
-            <Basket amount={basketAmount} />
-          </div>
-        </div>
+        <AchievementPageNav
+          freeMints={freeMints}
+          basketAmount={basketAmount}
+          handleNext={handleNext}
+          handlePrevious={handlePrevious}
+          freeMintsLabel={freeMintsLabel}
+        />
 
         <div className={styles.row}>
           <div>
