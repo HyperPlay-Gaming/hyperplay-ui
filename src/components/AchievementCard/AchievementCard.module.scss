@@ -76,21 +76,6 @@
       width: 100%;
     }
 
-    .textContainer {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3xs);
-
-      div {
-        color: var(--color-neutral-400);
-        font-size: var(--text-sm);
-      }
-
-      :first-child {
-        color: var(--color-success-400);
-      }
-    }
-
     .popoverButton {
       padding: 0;
     }
@@ -109,29 +94,10 @@
       display: flex;
       align-items: center;
       margin-top: var(--space-xs);
-
-      .circle {
-        width: 10px;
-        height: 10px;
-        border-radius: 100%;
-        margin-right: var(--space-xs);
-
-        &.minted {
-          background-color: var(--color-success-400);
-        }
-        &.notMinted {
-          background-color: var(--color-success-400-20);
-        }
-      }
     }
   }
 }
 
 .mantineOverRide {
   @include broken-image-fix();
-}
-
-.noRadius {
-  border-top-right-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
 }

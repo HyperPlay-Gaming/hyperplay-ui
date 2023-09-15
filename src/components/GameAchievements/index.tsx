@@ -6,8 +6,12 @@ import cn from 'classnames'
 import * as Images from '@/assets/images'
 
 import AchievementPageNav, { AchievementPageProps } from '../AchievementPageNav'
-import AchievementProgress from '../AchievementProgress'
-import ProgressKey from '../AchievementProgress/components/ProgressKey'
+import AchievementProgress, {
+  AchievementProgressTextProps
+} from '../AchievementProgress'
+import ProgressKey, {
+  ProgressKeyTextProps
+} from '../AchievementProgress/components/ProgressKey'
 import getProgress, {
   AchievementProgressProps
 } from '../AchievementProgress/helpers/getProgress'
@@ -49,6 +53,8 @@ export interface GameAchievementsProps
    * list of options for the dropdown to sort your achievements
    */
   sortOptions?: itemType[]
+  progressKeyProps?: ProgressKeyTextProps
+  achievementProgressProps?: AchievementProgressTextProps
 }
 
 const achievementsSortOptions = [
@@ -71,6 +77,8 @@ export default function GameAchievements({
   unLockedLabel = 'Unlocked',
   achievementsTitleLabel = 'Achievements',
   sortOptions = achievementsSortOptions,
+  achievementProgressProps,
+  progressKeyProps,
   ...rest
 }: GameAchievementsProps) {
   const [selected, setSelected] = useState(sortOptions[0])
@@ -126,11 +134,13 @@ export default function GameAchievements({
               safeTotalCount={safeTotalCount}
               mintedProgress={mintedProgress}
               mintableProgress={mintableProgress}
+              {...achievementProgressProps}
             />
             <ProgressKey
               className={styles.progressKey}
               safeMintedCount={safeMintedCount}
               safeTotalCount={safeTotalCount}
+              {...progressKeyProps}
             />
           </div>
         </div>

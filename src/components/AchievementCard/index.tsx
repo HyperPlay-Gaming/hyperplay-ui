@@ -1,10 +1,17 @@
-import { Card, Image, ImageProps, Popover, Progress } from '@mantine/core'
+import { Card, Image, ImageProps, Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import cn from 'classnames'
 
 import FallbackImage from '@/assets/fallback_achievement.svg?url'
 import * as Images from '@/assets/images'
 
+import AchievementProgress, {
+  AchievementProgressTextProps
+} from '../AchievementProgress'
+import ProgressKey, {
+  ProgressKeyTextProps
+} from '../AchievementProgress/components/ProgressKey'
+import getProgress from '../AchievementProgress/helpers/getProgress'
 import { ButtonProps } from '../Button'
 import styles from './AchievementCard.module.scss'
 import StatusIcon, { StatusIconState } from './components/StatusIcon'
@@ -45,21 +52,11 @@ interface AchievementCardProps {
    */
   state?: StatusIconState
   /**
-   * The label to display for the progress label for how many you've minted
-   */
-  achievementMintedLabel?: string
-  /**
    * The label to display title for the info popover
    */
-  achievementProgressLabel?: string
-  /**
-   * The label to display the word minted
-   */
-  mintedLabel?: string
-  /**
-   * The label to display the words not minted
-   */
-  notMintedLabel?: string
+  achievementInfoTitleLabel?: string
+  progressKeyProps?: ProgressKeyTextProps
+  achievementProgressProps?: AchievementProgressTextProps
 }
 
 export default function AchievementCard({
@@ -73,29 +70,20 @@ export default function AchievementCard({
   isNewAchievement = false,
   newAchievementLabel = 'New Achievement',
   state = 'default',
-  achievementMintedLabel = 'achievements minted',
-  achievementProgressLabel = 'Achievement progress',
-  mintedLabel = 'minted',
-  notMintedLabel = 'not minted',
+  achievementInfoTitleLabel = 'Achievement progress',
+  progressKeyProps,
+  achievementProgressProps,
   ...rest
 }: AchievementCardProps &
   ImageProps &
   Omit<React.ComponentPropsWithoutRef<'div'>, keyof AchievementCardProps>) {
   const [opened, { close, open }] = useDisclosure(false)
-
-  const safeMintedCount = mintedAchievementsCount || 0
-  const safeTotalCount = totalAchievementsCount > 0 ? totalAchievementsCount : 0
-
-  const mintedProgress =
-    safeTotalCount > 0
-      ? Math.round((mintedAchievementsCount / safeTotalCount) * 100)
-      : 0
-  const mintableProgress =
-    safeTotalCount > 0
-      ? Math.round(
-          (mintableAchievementsCount / safeTotalCount) * 100 - mintedProgress
-        )
-      : 0
+  const { safeMintedCount, safeTotalCount, mintedProgress, mintableProgress } =
+    getProgress({
+      mintedAchievementsCount,
+      totalAchievementsCount,
+      mintableAchievementsCount
+    })
 
   return (
     <Card
@@ -137,25 +125,12 @@ export default function AchievementCard({
 
         <div className={styles.achievements}>
           <div className={styles.column}>
-            <div className={styles.textContainer}>
-              <div>{safeMintedCount}</div>
-              <div>/</div>
-              <div>{safeTotalCount}</div>
-              <div>{achievementMintedLabel}</div>
-            </div>
-            <Progress
-              bg="var(--color-neutral-600)"
-              sections={[
-                {
-                  value: mintedProgress,
-                  color: 'var(--color-success-400)'
-                },
-                {
-                  value: mintableProgress,
-                  color: 'var(--color-success-400-20)',
-                  className: styles.noRadius
-                }
-              ]}
+            <AchievementProgress
+              safeMintedCount={safeMintedCount}
+              safeTotalCount={safeTotalCount}
+              mintedProgress={mintedProgress}
+              mintableProgress={mintableProgress}
+              {...achievementProgressProps}
             />
           </div>
           <div className={styles.icon}>
@@ -175,19 +150,15 @@ export default function AchievementCard({
               </Popover.Target>
               <Popover.Dropdown className={styles.popover}>
                 <div className="text--sm color-neutral-400">
-                  {achievementProgressLabel}
+                  {achievementInfoTitleLabel}
                 </div>
                 <div className={styles.popoverRow}>
-                  <div className={cn(styles.circle, styles.minted)} />
-                  <div className="text--xs color-neutral-100">{`${safeMintedCount} ${mintedLabel}`}</div>
-                </div>
-                <div className={styles.popoverRow}>
-                  <div className={cn(styles.circle, styles.notMinted)} />
-                  <div className="text--xs color-neutral-100">{`${
-                    safeTotalCount > safeMintedCount
-                      ? safeTotalCount - safeMintedCount
-                      : 0
-                  } ${notMintedLabel}`}</div>
+                  <ProgressKey
+                    safeMintedCount={safeMintedCount}
+                    safeTotalCount={safeTotalCount}
+                    direction="column"
+                    {...progressKeyProps}
+                  />
                 </div>
               </Popover.Dropdown>
             </Popover>
