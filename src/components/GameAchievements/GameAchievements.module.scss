@@ -32,25 +32,6 @@
     opacity: 0.15;
   }
 
-  .left {
-    display: flex;
-    gap: var(--space-xs);
-  }
-
-  .right {
-    display: flex;
-    gap: var(--space-md);
-    color: var(--color-neutral-400);
-  }
-
-  .navItem {
-    width: 48px;
-    height: 48px;
-    background-color: var(--color-neutral-800);
-    border-radius: 100%;
-    border: 1px solid var(--color-neutral-600);
-  }
-
   .tagList {
     display: flex;
     gap: var(--space-xs);
