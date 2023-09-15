@@ -4,7 +4,7 @@ import React from 'react'
 import AchievementProgress from '.'
 
 export default {
-  title: 'AchievementProgress',
+  title: 'Achievements/AchievementProgress',
   component: AchievementProgress
 }
 

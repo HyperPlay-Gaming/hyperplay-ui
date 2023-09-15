@@ -4,7 +4,7 @@ import React from 'react'
 import AchievementPageNav from '.'
 
 export default {
-  title: 'AchievementPageNav',
+  title: 'Achievements/AchievementPageNav',
   component: AchievementPageNav
 }
 

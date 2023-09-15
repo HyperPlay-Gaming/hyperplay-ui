@@ -4,7 +4,7 @@ import React from 'react'
 import ProgressKey from '.'
 
 export default {
-  title: 'AchievementProgress/ProgressKey',
+  title: 'Achievements/AchievementProgress/ProgressKey',
   component: ProgressKey
 }
 
