@@ -60,9 +60,7 @@ export interface GameAchievementsProps
 }
 
 const achievementsSortOptions = [
-  { id: 'alphabetically', text: 'Alphabetically' },
-  { id: 'favorites', text: 'Favorites' },
-  { id: 'status', text: 'Sort by Status' }
+  { id: 'alphabetically', text: 'Alphabetically' }
 ] as itemType[]
 
 export default function GameAchievements({

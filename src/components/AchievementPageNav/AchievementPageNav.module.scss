@@ -34,7 +34,7 @@
   color: white;
   background-color: var(--color-neutral-700);
   border: 1px solid var(--color-neutral-600);
-  border-radius: 0.5rem;
+  border-radius: var(--space-xs);
 
   svg {
     fill: white;
@@ -42,7 +42,7 @@
 }
 
 .badge {
-  border-radius: 0.25rem;
+  border-radius: var(--space-3xs);
   padding: var(--space-3xs) var(--space-xs);
   background-color: var(--color-primary-400);
 }
