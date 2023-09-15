@@ -20,4 +20,9 @@
   // &:active svg path {
   //   fill: var(--color-neutral-200);
   // }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
