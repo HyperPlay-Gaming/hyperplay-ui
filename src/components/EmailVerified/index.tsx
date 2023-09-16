@@ -9,11 +9,17 @@ import styles from './EmailVerified.module.scss'
 
 export interface EmailVerifiedModalProps extends HTMLProps<HTMLDivElement> {
   onContinue: () => void
+  i18n?: {
+    title?: string
+    subtitle?: string
+    button?: string
+  }
 }
 
 const EmailVerifiedModal = ({
   onContinue,
   className,
+  i18n,
   ...props
 }: EmailVerifiedModalProps) => {
   return (
@@ -22,9 +28,9 @@ const EmailVerifiedModal = ({
         <Email className={styles.icon} />
       </div>
       <div>
-        <h6 className={styles.title}>Email verified</h6>
+        <h6 className={styles.title}>{i18n?.title ?? 'Email verified'}</h6>
         <span className={cn('body', styles.subtitle)}>
-          Congratulations! Your email has been verified.
+          {i18n?.subtitle ?? 'Congratulations! Your email has been verified.'}
         </span>
       </div>
       <Button
@@ -33,7 +39,7 @@ const EmailVerifiedModal = ({
         className={styles.button}
         onClick={onContinue}
       >
-        Continue
+        {i18n?.button ?? 'Continue'}
       </Button>
     </div>
   )

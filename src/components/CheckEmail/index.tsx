@@ -11,6 +11,13 @@ export interface CheckEmailProps extends HTMLProps<HTMLDivElement> {
   email: string
   onVerify: () => void
   onResend: () => void
+  i18n?: {
+    title?: string
+    subtitle?: string
+    button?: string
+    didNotReceiveEmail?: string
+    resend?: string
+  }
 }
 
 const CheckEmail = ({
@@ -18,6 +25,7 @@ const CheckEmail = ({
   email,
   onVerify,
   onResend,
+  i18n,
   ...props
 }: CheckEmailProps) => {
   return (
@@ -26,9 +34,9 @@ const CheckEmail = ({
         <Email className={styles.icon} />
       </div>
       <div>
-        <h6 className={styles.title}>Check your email</h6>
+        <h6 className={styles.title}>{i18n?.title ?? 'Check your email'}</h6>
         <span className={cn('body', styles.subtitle)}>
-          We sent a verification link to{' '}
+          {i18n?.subtitle ?? 'We sent a verification link to'}{' '}
           <span className="text--semibold">{email}</span>
         </span>
       </div>
@@ -38,11 +46,11 @@ const CheckEmail = ({
         className={styles.verifyButton}
         onClick={onVerify}
       >
-        Verify email
+        {i18n?.button ?? 'Verify email'}
       </Button>
       <div className={styles.linkContainer}>
         <span className={cn('button-sm', styles.subtitle)}>
-          {`Didn't receive an email?`}
+          {i18n?.didNotReceiveEmail ?? `Didn't receive an email?`}
         </span>
         &nbsp;
         <Button
@@ -51,7 +59,7 @@ const CheckEmail = ({
           className={styles.buttonLink}
           onClick={onResend}
         >
-          Click to resend
+          {i18n?.resend ?? 'Click to resend'}
         </Button>
       </div>
     </div>

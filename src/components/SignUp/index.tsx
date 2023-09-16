@@ -24,36 +24,53 @@ type AuthProps = {
   onWalletSignup: () => void
 }
 
+type I18n = {
+  signupTitle?: string
+  signupSubtitle?: string
+  emailTitle?: string
+  emailSubtitle?: string
+  emailPlaceholder?: string
+  emailBackButton?: string
+  emailSignupButton?: string
+  walletButton?: string
+  walletSubtitle?: string
+  emailButton?: string
+}
+
 const SelectProvider = ({
   providers,
   onEmailClick,
   onAuthProviderClick,
-  onWalletClick
+  onWalletClick,
+  i18n
 }: {
   providers: AuthProvider[]
   onEmailClick: () => void
   onWalletClick: () => void
   onAuthProviderClick: (provider: AuthProvider) => void
+  i18n?: I18n
 }) => {
   return (
     <>
       <HyperPlayLogoColored />
       <div>
-        <h6 className={styles.title}>Sign up to get started</h6>
+        <h6 className={styles.title}>
+          {i18n?.signupTitle ?? 'Sign up to get started'}
+        </h6>
         <span className={cn('body', styles.subtitle)}>
-          Select which account you would like to use to create your HyperPlay
-          account.
+          {i18n?.signupSubtitle ??
+            `Select which account you would like to use to create your HyperPlay account.`}
         </span>
       </div>
       <div className={styles.providersContainer}>
         <AuthProviderButton
-          name="Wallet"
+          name={i18n?.walletButton ?? 'Wallet'}
           icon={<MetamaskColored className={styles.icon} />}
           label={
             <AuthProviderButton.Label
               style={{ color: 'var(--color-primary-200)' }}
             >
-              Recommended
+              {i18n?.walletSubtitle ?? 'Recommended'}
             </AuthProviderButton.Label>
           }
           onClick={onWalletClick}
@@ -66,7 +83,7 @@ const SelectProvider = ({
           />
         ))}
         <AuthProviderButton
-          name="Email"
+          name={i18n?.emailButton ?? 'Email'}
           icon={<Email className={styles.icon} />}
           onClick={onEmailClick}
         />
@@ -77,10 +94,12 @@ const SelectProvider = ({
 
 export const EmailForm = ({
   onGoBack,
-  onSubmit
+  onSubmit,
+  i18n
 }: {
   onGoBack: () => void
   onSubmit: (email: string) => void
+  i18n?: I18n
 }) => {
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -97,16 +116,19 @@ export const EmailForm = ({
         <Email className={styles.icon} />
       </div>
       <div>
-        <h6 className={styles.title}>Sign up with email</h6>
+        <h6 className={styles.title}>
+          {i18n?.emailTitle ?? 'Sign up with email'}
+        </h6>
         <span className={cn('body', styles.subtitle)}>
-          Connect your email address to create your HyperPlay account.
+          {i18n?.emailSubtitle ??
+            'Connect your email address to create your HyperPlay account.'}
         </span>
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <TextInput
           required
           classNames={{ input: styles.emailInput }}
-          placeholder="Enter your email"
+          placeholder={i18n?.emailPlaceholder ?? 'Enter your email'}
           label="Email"
           name="email"
           type="email"
@@ -119,7 +141,7 @@ export const EmailForm = ({
             onClick={onGoBack}
             className={styles.actionButton}
           >
-            Back
+            {i18n?.emailBackButton ?? 'Back'}
           </Button>
           <Button
             type="secondary"
@@ -127,7 +149,7 @@ export const EmailForm = ({
             size="large"
             className={styles.actionButton}
           >
-            Sign in
+            {i18n?.emailSignupButton ?? 'Sign up'}
           </Button>
         </div>
       </form>
@@ -135,7 +157,10 @@ export const EmailForm = ({
   )
 }
 
-export type SignupModalProps = HTMLProps<HTMLDivElement> & AuthProps
+export type SignupModalProps = HTMLProps<HTMLDivElement> &
+  AuthProps & {
+    i18n?: I18n
+  }
 
 const SignUp = ({
   className,
@@ -143,6 +168,7 @@ const SignUp = ({
   onAuthProviderSignup,
   onEmailSignup,
   onWalletSignup,
+  i18n,
   ...props
 }: SignupModalProps) => {
   const [step, setStep] = useState<Steps>('selectProvider')
@@ -154,12 +180,14 @@ const SignUp = ({
           onWalletClick={onWalletSignup}
           onEmailClick={() => setStep('email')}
           onAuthProviderClick={onAuthProviderSignup}
+          i18n={i18n}
         />
       )}
       {step === 'email' && (
         <EmailForm
           onGoBack={() => setStep('selectProvider')}
           onSubmit={(email) => onEmailSignup(email)}
+          i18n={i18n}
         />
       )}
     </div>
