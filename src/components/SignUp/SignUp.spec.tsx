@@ -61,7 +61,7 @@ describe('SignUp', () => {
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } })
 
     // Submit the form
-    fireEvent.click(screen.getByRole('button', { name: /sign in/i }))
+    fireEvent.click(screen.getByRole('button', { name: /sign up/i }))
 
     expect(onEmailSignup).toHaveBeenCalledWith('test@example.com')
   })
