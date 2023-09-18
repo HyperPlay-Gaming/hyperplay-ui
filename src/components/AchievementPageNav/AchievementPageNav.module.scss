@@ -1,0 +1,48 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  color: var(--color-neutral-400);
+}
+
+.navItem {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-neutral-800);
+  border-radius: 100%;
+  border: 1px solid var(--color-neutral-600);
+}
+
+.basket {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  color: white;
+  background-color: var(--color-neutral-700);
+  border: 1px solid var(--color-neutral-600);
+  border-radius: var(--space-xs);
+
+  svg {
+    fill: white;
+  }
+}
+
+.badge {
+  border-radius: var(--space-3xs);
+  padding: var(--space-3xs) var(--space-xs);
+  background-color: var(--color-primary-400);
+}

@@ -147,6 +147,30 @@ button {
   font-size: var(--text-xs);
 }
 
+.weight--light {
+  font-weight: var(--light);
+}
+
+.weight--regular {
+  font-weight: var(--regular);
+}
+
+.weight--medium {
+  font-weight: var(--medium);
+}
+
+.weight--semibold {
+  font-weight: var(--semibold);
+}
+
+.weight--bold {
+  font-weight: var(--bold);
+}
+
+.weight--extrabold {
+  font-weight: var(--extrabold);
+}
+
 /* Elements */
 $h1FontSize: --text-9xl;
 @mixin h1-mixin {
