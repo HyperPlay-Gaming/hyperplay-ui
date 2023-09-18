@@ -12,7 +12,7 @@ export interface Game extends AchievementCardProps {
   id: string
 }
 
-export type filterTypes = 'all' | 'new' | 'minted'
+export type AchievementFilter = 'all' | 'new' | 'minted'
 
 export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
   games: Game[]
@@ -24,8 +24,8 @@ export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
     handlePrevPage: () => void
   }
   filterProps: {
-    activeFilter: filterTypes
-    setActiveFilter: (filter: filterTypes) => void
+    activeFilter: AchievementFilter
+    setActiveFilter: (filter: AchievementFilter) => void
   }
   mintButtonProps?: ButtonProps
   i18n?: {

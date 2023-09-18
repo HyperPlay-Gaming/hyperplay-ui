@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useMemo, useState } from 'react'
 
-import AchievementSummaryTable, { Game, filterTypes } from '.'
+import AchievementSummaryTable, { AchievementFilter, Game } from '.'
 import { itemType } from '../Dropdowns/Dropdown'
 
 export default {
@@ -55,7 +55,7 @@ const games = [
 export const Default = () => {
   const achievementsSortOptions = [{ text: 'Alphabetically' }] as itemType[]
   const [selectedSort, setSelectedSort] = useState(achievementsSortOptions[0])
-  const [activeFilter, setActiveFilter] = useState<filterTypes>('all')
+  const [activeFilter, setActiveFilter] = useState<AchievementFilter>('all')
 
   const filteredGames = useMemo(() => {
     if (activeFilter === 'minted') {
