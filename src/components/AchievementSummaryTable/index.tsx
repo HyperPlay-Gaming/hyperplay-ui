@@ -2,13 +2,13 @@ import React, { HTMLProps } from 'react'
 
 import AchievementCard, { AchievementCardProps } from '../AchievementCard'
 // import AchievementPageNav from '../AchievementPageNav'
-import Button from '../Button'
+import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import Tabs from '../Tabs'
 import styles from './AchievementSummaryTable.module.scss'
 
-interface Game extends AchievementCardProps {
+export interface Game extends AchievementCardProps {
   id: string
 }
 
@@ -31,6 +31,7 @@ export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
     activeFilter: filterTypes
     setActiveFilter: (filter: filterTypes) => void
   }
+  mintButtonProps?: ButtonProps
 }
 
 export default function AchievementSummaryTable({
@@ -42,6 +43,7 @@ export default function AchievementSummaryTable({
   sortProps,
   paginationProps,
   filterProps,
+  mintButtonProps,
   ...rest
 }: GameAchievementsProps) {
   return (
@@ -85,33 +87,17 @@ export default function AchievementSummaryTable({
             </Tabs.List>
           </div>
           <div>
-            <Button type="secondary" size="medium">
+            <Button type="secondary" size="medium" {...mintButtonProps}>
               {mintButtonLabel}
             </Button>
           </div>
         </div>
 
-        <Tabs.Panel value="all">
-          <div className={styles.games}>
-            {games.map(({ id, ...rest }) => (
-              <AchievementCard key={id} {...rest} />
-            ))}
-          </div>
-        </Tabs.Panel>
-        <Tabs.Panel value="new">
-          <div className={styles.games}>
-            {games.map(({ id, ...rest }) => (
-              <AchievementCard key={id} {...rest} />
-            ))}
-          </div>
-        </Tabs.Panel>
-        <Tabs.Panel value="minted">
-          <div className={styles.games}>
-            {games.map(({ id, ...rest }) => (
-              <AchievementCard key={id} {...rest} />
-            ))}
-          </div>
-        </Tabs.Panel>
+        <div className={styles.games}>
+          {games.map(({ id, ...rest }) => (
+            <AchievementCard key={id} {...rest} />
+          ))}
+        </div>
       </Tabs>
     </div>
   )

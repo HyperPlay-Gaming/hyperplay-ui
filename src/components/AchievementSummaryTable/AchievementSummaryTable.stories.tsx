@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useMemo, useState } from 'react'
 
-import AchievementSummaryTable, { filterTypes } from '.'
+import AchievementSummaryTable, { Game, filterTypes } from '.'
 import { itemType } from '../Dropdowns/Dropdown'
 
 export default {
@@ -50,7 +50,7 @@ const games = [
     isNewAchievement: true,
     state: 'default'
   }
-]
+] as Game[]
 
 export const Default = () => {
   const achievementsSortOptions = [{ text: 'Alphabetically' }] as itemType[]
@@ -85,6 +85,7 @@ export const Default = () => {
         activeFilter,
         setActiveFilter
       }}
+      mintButtonProps={{ onClick: () => console.log('mint') }}
     />
   )
 }
