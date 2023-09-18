@@ -74,6 +74,7 @@
       flex-direction: column;
       gap: var(--space-xs);
       width: 100%;
+      max-width: 90%;
     }
 
     .popoverButton {
@@ -100,4 +101,15 @@
 
 .mantineOverRide {
   @include broken-image-fix();
+}
+
+.noRadius {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.noWrap {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

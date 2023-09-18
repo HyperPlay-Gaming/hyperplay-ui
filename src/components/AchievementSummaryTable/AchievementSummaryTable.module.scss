@@ -1,0 +1,49 @@
+@use '../../styles/utilities/_variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-2lg);
+  background: var(--color-neutral-800);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2lg);
+}
+
+.filters {
+  display: flex;
+  gap: var(--space-xs);
+  flex-direction: column;
+
+  @include variables.for-tablet-portrait-up {
+    flex-direction: row;
+  }
+}
+
+.games {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-column-gap: var(--space-md);
+  grid-row-gap: var(--space-md);
+
+  @include variables.for-tablet-portrait-up {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include variables.for-tablet-landscape-up {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.mintButton {
+  width: 120px;
+}
+
+.tab {
+  padding: var(--space-sm-fixed) var(--space-md-fixed);
+}
