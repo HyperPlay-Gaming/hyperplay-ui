@@ -15,10 +15,6 @@ export interface Game extends AchievementCardProps {
 export type filterTypes = 'all' | 'new' | 'minted'
 
 export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
-  allFilterLabel?: string
-  newFilterLabel?: string
-  mintedFilterLabel?: string
-  mintButtonLabel?: string
   games: Game[]
   sortProps: DropdownProps
   paginationProps: {
@@ -32,18 +28,26 @@ export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
     setActiveFilter: (filter: filterTypes) => void
   }
   mintButtonProps?: ButtonProps
+  i18n?: {
+    allFilterLabel?: string
+    newFilterLabel?: string
+    mintedFilterLabel?: string
+    mintButtonLabel?: string
+  }
 }
 
 export default function AchievementSummaryTable({
-  allFilterLabel = 'All',
-  newFilterLabel = 'New',
-  mintedFilterLabel = 'Minted',
-  mintButtonLabel = 'Mint',
   games,
   sortProps,
   paginationProps,
   filterProps,
   mintButtonProps,
+  i18n = {
+    allFilterLabel: 'All',
+    newFilterLabel: 'New',
+    mintedFilterLabel: 'Minted',
+    mintButtonLabel: 'Mint'
+  },
   ...rest
 }: GameAchievementsProps) {
   const { handleNextPage, handlePrevPage, currentPage, totalPages } =
@@ -79,19 +83,19 @@ export default function AchievementSummaryTable({
 
             <Tabs.List type="outline" style={{ height: '50px' }}>
               <Tabs.Tab value="all">
-                <div className="menu">{allFilterLabel}</div>
+                <div className="menu">{i18n.allFilterLabel}</div>
               </Tabs.Tab>
               <Tabs.Tab value="new">
-                <div className="menu">{newFilterLabel}</div>
+                <div className="menu">{i18n.newFilterLabel}</div>
               </Tabs.Tab>
               <Tabs.Tab value="minted">
-                <div className="menu">{mintedFilterLabel}</div>
+                <div className="menu">{i18n.mintedFilterLabel}</div>
               </Tabs.Tab>
             </Tabs.List>
           </div>
           <div>
             <Button type="secondary" size="medium" {...mintButtonProps}>
-              {mintButtonLabel}
+              {i18n.mintButtonLabel}
             </Button>
           </div>
         </div>
