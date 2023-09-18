@@ -94,7 +94,12 @@ export default function AchievementSummaryTable({
             </Tabs.List>
           </div>
           <div>
-            <Button type="secondary" size="medium" {...mintButtonProps}>
+            <Button
+              type="secondary"
+              size="medium"
+              className={styles.mintButton}
+              {...mintButtonProps}
+            >
               {i18n.mintButtonLabel}
             </Button>
           </div>
