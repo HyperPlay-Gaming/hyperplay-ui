@@ -21,8 +21,8 @@
   flex-direction: column;
 
   @include variables.for-tablet-portrait-up {
-      flex-direction: row;
-    }
+    flex-direction: row;
+  }
 }
 
 .games {
@@ -32,10 +32,10 @@
   grid-row-gap: var(--space-md);
 
   @include variables.for-tablet-portrait-up {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @include variables.for-tablet-landscape-up {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
