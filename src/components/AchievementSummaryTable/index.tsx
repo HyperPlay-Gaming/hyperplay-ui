@@ -81,14 +81,14 @@ export default function AchievementSummaryTable({
               {...sortProps}
             />
 
-            <Tabs.List type="outline" style={{ height: '50px' }}>
-              <Tabs.Tab value="all">
+            <Tabs.List type="outline">
+              <Tabs.Tab value="all" className={styles.tab}>
                 <div className="menu">{i18n.allFilterLabel}</div>
               </Tabs.Tab>
-              <Tabs.Tab value="new">
+              <Tabs.Tab value="new" className={styles.tab}>
                 <div className="menu">{i18n.newFilterLabel}</div>
               </Tabs.Tab>
-              <Tabs.Tab value="minted">
+              <Tabs.Tab value="minted" className={styles.tab}>
                 <div className="menu">{i18n.mintedFilterLabel}</div>
               </Tabs.Tab>
             </Tabs.List>
