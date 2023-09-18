@@ -1,3 +1,5 @@
+import { DetailedHTMLProps, ImgHTMLAttributes } from 'react'
+
 import { Card, Image, ImageProps, Popover, Progress } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import cn from 'classnames'
@@ -27,7 +29,11 @@ export interface AchievementCardProps {
   /**
    * Props to pass to the image component
    */
-  imageProps?: ImageProps
+  imageProps?: ImageProps &
+    Omit<
+      DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
+      'ref'
+    >
   /**
    * Props to pass to the CTA button
    */
