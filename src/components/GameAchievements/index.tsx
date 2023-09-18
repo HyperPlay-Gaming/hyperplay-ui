@@ -112,12 +112,12 @@ export default function GameAchievements({
 
         <div className={styles.row}>
           <div>
-            <div
+            <h6
               className={styles.title}
               style={{ fontFamily: 'var(--primary-font-family)' }}
             >
               {game.title}
-            </div>
+            </h6>
             <div className={styles.tagList}>
               {game.tags.map((tag) => (
                 <div

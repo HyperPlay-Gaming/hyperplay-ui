@@ -65,7 +65,7 @@ export default function AchievementPageNav({
         </div>
         <div className={styles.basket}>
           <Images.TrophyOutline width="22" height="22" />
-          <div className={styles.badge}>{basketAmount}</div>
+          <div className={classNames(styles.badge, 'menu')}>{basketAmount}</div>
         </div>
       </div>
     </div>

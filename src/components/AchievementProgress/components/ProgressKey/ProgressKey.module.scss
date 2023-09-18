@@ -14,7 +14,8 @@
     }
 
     &.notMinted {
-      background-color: var(--color-success-400-20);
+      opacity: 0.5;
+      background-color: var(--color-success-400);
     }
   }
 }
