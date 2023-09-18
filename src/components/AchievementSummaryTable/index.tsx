@@ -76,7 +76,7 @@ export default function AchievementSummaryTable({
             <Dropdown
               targetWidth="300"
               dropdownButtonDivProps={{
-                className: 'title-sm'
+                className: 'text--md weight--regular'
               }}
               {...sortProps}
             />
