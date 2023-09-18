@@ -1,7 +1,7 @@
 import React, { HTMLProps } from 'react'
 
 import AchievementCard, { AchievementCardProps } from '../AchievementCard'
-// import AchievementPageNav from '../AchievementPageNav'
+import AchievementPageNav from '../AchievementPageNav'
 import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
@@ -46,9 +46,12 @@ export default function AchievementSummaryTable({
   mintButtonProps,
   ...rest
 }: GameAchievementsProps) {
+  const { handleNextPage, handlePrevPage, currentPage, totalPages } =
+    paginationProps
+
   return (
     <div className={styles.container} {...rest}>
-      {/* <AchievementPageNav
+      <AchievementPageNav
         freeMints={10}
         basketAmount={0}
         nextButtonProps={{
@@ -59,7 +62,7 @@ export default function AchievementSummaryTable({
           onClick: handlePrevPage,
           disabled: currentPage === 1
         }}
-      /> */}
+      />
       <Tabs
         value={filterProps.activeFilter}
         onTabChange={filterProps.setActiveFilter}
