@@ -44,19 +44,21 @@ interface AchievementCardProps {
    */
   isNewAchievement?: boolean
   /**
-   * The label to display for the new achievement indicator
-   */
-  newAchievementLabel?: string
-  /**
    * State of card
    */
   state?: StatusIconState
-  /**
-   * The label to display title for the info popover
-   */
-  achievementInfoTitleLabel?: string
   progressKeyProps?: ProgressKeyTextProps
   achievementProgressProps?: AchievementProgressTextProps
+  i18n?: {
+    /**
+     * The label to display title for the info popover
+     */
+    achievementInfoTitleLabel?: string
+    /**
+     * The label to display for the new achievement indicator
+     */
+    newAchievementLabel?: string
+  }
 }
 
 export default function AchievementCard({
@@ -68,9 +70,11 @@ export default function AchievementCard({
   totalAchievementsCount,
   mintableAchievementsCount,
   isNewAchievement = false,
-  newAchievementLabel = 'New Achievement',
   state = 'default',
-  achievementInfoTitleLabel = 'Achievement progress',
+  i18n = {
+    newAchievementLabel: 'New Achievement',
+    achievementInfoTitleLabel: 'Achievement progress'
+  },
   progressKeyProps,
   achievementProgressProps,
   ...rest
@@ -109,7 +113,7 @@ export default function AchievementCard({
         />
         {isNewAchievement && (
           <div className={cn(styles.newAchievement, 'eyebrow')}>
-            {newAchievementLabel}
+            {i18n.newAchievementLabel}
           </div>
         )}
       </Card.Section>
@@ -150,7 +154,7 @@ export default function AchievementCard({
               </Popover.Target>
               <Popover.Dropdown className={styles.popover}>
                 <div className="text--sm color-neutral-400">
-                  {achievementInfoTitleLabel}
+                  {i18n.achievementInfoTitleLabel}
                 </div>
                 <div className={styles.popoverRow}>
                   <ProgressKey

@@ -5,14 +5,16 @@ import cn from 'classnames'
 import styles from './ProgressKey.module.scss'
 
 export interface ProgressKeyTextProps {
-  /**
-   * The label to display the word minted
-   */
-  mintedLabel?: string
-  /**
-   * The label to display the words not minted
-   */
-  notMintedLabel?: string
+  i18n?: {
+    /**
+     * The label to display the word minted
+     */
+    mintedLabel?: string
+    /**
+     * The label to display the words not minted
+     */
+    notMintedLabel?: string
+  }
 }
 
 interface ProgressKeyProps
@@ -36,8 +38,10 @@ export default function ProgressKey({
   safeMintedCount,
   safeTotalCount,
   direction = 'row',
-  mintedLabel = 'minted',
-  notMintedLabel = 'not minted',
+  i18n = {
+    mintedLabel: 'minted',
+    notMintedLabel: 'not minted'
+  },
   ...rest
 }: ProgressKeyProps) {
   return (
@@ -47,7 +51,7 @@ export default function ProgressKey({
     >
       <div className={styles.keyRow}>
         <div className={cn(styles.circle, styles.minted)} />
-        <div className="text--xs color-neutral-100">{`${safeMintedCount} ${mintedLabel}`}</div>
+        <div className="text--xs color-neutral-100">{`${safeMintedCount} ${i18n.mintedLabel}`}</div>
       </div>
       <div className={styles.keyRow}>
         <div className={cn(styles.circle, styles.notMinted)} />
@@ -55,7 +59,7 @@ export default function ProgressKey({
           safeTotalCount > safeMintedCount
             ? safeTotalCount - safeMintedCount
             : 0
-        } ${notMintedLabel}`}</div>
+        } ${i18n.notMintedLabel}`}</div>
       </div>
     </div>
   )

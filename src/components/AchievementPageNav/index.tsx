@@ -24,10 +24,12 @@ export interface AchievementPageNavProps {
    * Go to previous game
    */
   previousButtonProps?: CircularButtonProps
-  /**
-   * text to show how many free mints a user has
-   */
-  freeMintsLabel?: string
+  i18n?: {
+    /**
+     * text to show how many free mints a user has
+     */
+    freeMintsLabel?: string
+  }
 }
 
 export default function AchievementPageNav({
@@ -35,7 +37,9 @@ export default function AchievementPageNav({
   basketAmount,
   previousButtonProps,
   nextButtonProps,
-  freeMintsLabel = 'Free mints'
+  i18n = {
+    freeMintsLabel: 'Free mints'
+  }
 }: AchievementPageNavProps) {
   return (
     <div className={styles.row}>
@@ -56,7 +60,7 @@ export default function AchievementPageNav({
 
       <div className={styles.right}>
         <div className="text--md">
-          {freeMintsLabel}:{' '}
+          {i18n.freeMintsLabel}:{' '}
           <span className="weight--semibold">{freeMints}</span>
         </div>
         <div className={styles.basket}>

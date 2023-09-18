@@ -41,18 +41,6 @@ export interface GameAchievementsProps
     image: string
     isLocked: boolean
   }[]
-  /**
-   * text to show the achievement is locked
-   */
-  lockedLabel?: string
-  /**
-   * text to show the achievement is unlocked
-   */
-  unLockedLabel?: string
-  /**
-   * title of the Achievements list
-   */
-  achievementsTitleLabel?: string
   progressKeyProps?: ProgressKeyTextProps
   achievementProgressProps?: AchievementProgressTextProps
   achievementPageNavProps: AchievementPageNavProps
@@ -63,6 +51,20 @@ export interface GameAchievementsProps
     handleNextPage: () => void
     handlePrevPage: () => void
   }
+  i18n?: {
+    /**
+     * text to show the achievement is locked
+     */
+    lockedLabel?: string
+    /**
+     * text to show the achievement is unlocked
+     */
+    unLockedLabel?: string
+    /**
+     * title of the Achievements list
+     */
+    achievementsTitleLabel?: string
+  }
 }
 
 export default function GameAchievements({
@@ -71,14 +73,16 @@ export default function GameAchievements({
   totalAchievementsCount,
   mintableAchievementsCount,
   achievementPageNavProps,
-  lockedLabel = 'Locked',
-  unLockedLabel = 'Unlocked',
-  achievementsTitleLabel = 'Achievements',
-  achievementProgressProps,
   progressKeyProps,
   achievements,
   sortProps,
   paginationProps,
+  achievementProgressProps,
+  i18n = {
+    lockedLabel: 'Locked',
+    unLockedLabel: 'Unlocked',
+    achievementsTitleLabel: 'Achievements'
+  },
   ...rest
 }: GameAchievementsProps) {
   const { safeMintedCount, safeTotalCount, mintedProgress, mintableProgress } =
@@ -154,7 +158,7 @@ export default function GameAchievements({
             )}
             style={{ fontFamily: 'var(--primary-font-family)' }}
           >
-            {achievementsTitleLabel}
+            {i18n.achievementsTitleLabel}
           </div>
 
           <Dropdown
@@ -196,10 +200,10 @@ export default function GameAchievements({
                 )}
               >
                 {isLocked ? (
-                  <div>{lockedLabel}</div>
+                  <div>{i18n.lockedLabel}</div>
                 ) : (
                   <div className={styles.unlocked}>
-                    <div>{unLockedLabel}</div>
+                    <div>{i18n.unLockedLabel}</div>
                     <Images.CheckmarkCircleOutline
                       fill="var(--color-neutral-500)"
                       width={21}

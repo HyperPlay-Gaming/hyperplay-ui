@@ -3,10 +3,12 @@ import { Progress } from '@mantine/core'
 import styles from './AchievementProgress.module.scss'
 
 export interface AchievementProgressTextProps {
-  /**
-   * The label to display for the progress label for how many you've minted
-   */
-  achievementMintedLabel?: string
+  i18n?: {
+    /**
+     * The label to display for the progress label for how many you've minted
+     */
+    achievementMintedLabel?: string
+  }
 }
 
 export interface AchievementProgressProps extends AchievementProgressTextProps {
@@ -33,7 +35,9 @@ export default function AchievementProgress({
   safeTotalCount,
   mintedProgress,
   mintableProgress,
-  achievementMintedLabel = 'achievements minted'
+  i18n = {
+    achievementMintedLabel: 'achievements minted'
+  }
 }: AchievementProgressProps) {
   return (
     <div>
@@ -42,7 +46,7 @@ export default function AchievementProgress({
           <div>{safeMintedCount}</div>
           <div>/</div>
           <div>{safeTotalCount}</div>
-          <div>{achievementMintedLabel}</div>
+          <div>{i18n.achievementMintedLabel}</div>
         </div>
         <Progress
           bg="var(--color-neutral-600)"
