@@ -38,7 +38,6 @@ export { default as GameRequirementsTable } from './components/GameRequirementsT
 export { default as GameAbout } from './components/GameAbout'
 export { default as AuthProviderButton } from './components/AuthProviderButton'
 export { default as TextInput } from './components/TextInput'
-export { default as PopUpModal } from './components/PopUpModal'
 export { default as SignUp, type AuthProvider } from './components/SignUp'
 export { default as CheckEmail } from './components/CheckEmail'
 export { default as EmailVerified } from './components/EmailVerified'
