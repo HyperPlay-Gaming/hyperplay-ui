@@ -25,4 +25,4 @@ export type SettingsButtons = {
   onClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-export type Runner = 'legendary' | 'gog' | 'hyperplay' | 'sideload'
+export type Runner = 'legendary' | 'gog' | 'hyperplay' | 'sideload' | 'nile'

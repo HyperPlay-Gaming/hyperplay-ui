@@ -211,6 +211,8 @@ const GameCard = ({
         return <Images.GogStoreLogo />
       case 'legendary':
         return <Images.EpicStoreLogo />
+      case 'nile':
+        return <Images.AmazonLogo />
       default:
         return null
     }
