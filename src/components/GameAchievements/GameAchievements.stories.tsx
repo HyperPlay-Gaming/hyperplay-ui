@@ -15,7 +15,7 @@ export const Default = () => {
 
   return (
     <GameAchievements
-      achievementPageNavProps={{
+      achievementNavProps={{
         freeMints: 10,
         basketAmount: 0
       }}

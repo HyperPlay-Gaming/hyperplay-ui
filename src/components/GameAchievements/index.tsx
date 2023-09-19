@@ -5,9 +5,7 @@ import cn from 'classnames'
 
 import * as Images from '@/assets/images'
 
-import AchievementPageNav, {
-  AchievementPageNavProps
-} from '../AchievementPageNav'
+import AchievementNav, { AchievementNavProps } from '../AchievementNav'
 import AchievementProgress, {
   AchievementProgressTextProps
 } from '../AchievementProgress'
@@ -43,7 +41,7 @@ export interface GameAchievementsProps
   }[]
   progressKeyProps?: ProgressKeyTextProps
   achievementProgressProps?: AchievementProgressTextProps
-  achievementPageNavProps: AchievementPageNavProps
+  achievementNavProps: AchievementNavProps
   sortProps: DropdownProps
   paginationProps: {
     currentPage: number
@@ -72,7 +70,7 @@ export default function GameAchievements({
   mintedAchievementsCount,
   totalAchievementsCount,
   mintableAchievementsCount,
-  achievementPageNavProps,
+  achievementNavProps,
   progressKeyProps,
   achievements,
   sortProps,
@@ -98,8 +96,8 @@ export default function GameAchievements({
     <div className={styles.container} {...rest}>
       <div className={styles.hero}>
         <Images.MobileHpLogo className={styles.logo} width={100} height={100} />
-        <AchievementPageNav
-          {...achievementPageNavProps}
+        <AchievementNav
+          {...achievementNavProps}
           nextButtonProps={{
             onClick: handleNextPage,
             disabled: currentPage === totalPages
