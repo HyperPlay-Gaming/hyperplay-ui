@@ -19,6 +19,7 @@ export const Default: Story = {
       style={{ margin: 'auto' }}
       email="hello@hyperplay.xyz"
       onResend={() => alert('Resend email')}
+      onVerify={() => alert('Resend email')}
     />
   )
 }
