@@ -5,9 +5,9 @@ import classNames from 'classnames'
 import * as Images from '@/assets/images'
 
 import CircularButton, { CircularButtonProps } from '../CircularButton'
-import styles from './AchievementPageNav.module.scss'
+import styles from './AchievementNav.module.scss'
 
-export interface AchievementPageNavProps {
+export interface AchievementNavProps {
   /**
    * Amount of free mints the user has
    */
@@ -32,7 +32,7 @@ export interface AchievementPageNavProps {
   }
 }
 
-export default function AchievementPageNav({
+export default function AchievementNav({
   freeMints,
   basketAmount,
   previousButtonProps,
@@ -40,7 +40,7 @@ export default function AchievementPageNav({
   i18n = {
     freeMintsLabel: 'Free mints'
   }
-}: AchievementPageNavProps) {
+}: AchievementNavProps) {
   return (
     <div className={styles.row}>
       <div className={styles.left}>
@@ -65,7 +65,7 @@ export default function AchievementPageNav({
         </div>
         <div className={styles.basket}>
           <Images.TrophyOutline width="22" height="22" />
-          <div className={styles.badge}>{basketAmount}</div>
+          <div className={classNames(styles.badge, 'menu')}>{basketAmount}</div>
         </div>
       </div>
     </div>

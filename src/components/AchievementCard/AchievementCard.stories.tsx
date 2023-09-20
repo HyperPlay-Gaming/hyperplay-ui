@@ -3,7 +3,7 @@ import { Flex } from '@mantine/core'
 import AchievementCard from '.'
 
 export default {
-  title: 'AchievementCard',
+  title: 'Achievements/AchievementCard',
   component: AchievementCard
 }
 

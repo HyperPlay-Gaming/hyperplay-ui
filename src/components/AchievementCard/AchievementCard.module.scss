@@ -77,21 +77,6 @@
       max-width: 90%;
     }
 
-    .textContainer {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3xs);
-
-      div {
-        color: var(--color-neutral-400);
-        font-size: var(--text-xs);
-      }
-
-      :first-child {
-        color: var(--color-success-400);
-      }
-    }
-
     .popoverButton {
       padding: 0;
     }
@@ -110,20 +95,6 @@
       display: flex;
       align-items: center;
       margin-top: var(--space-xs);
-
-      .circle {
-        width: 10px;
-        height: 10px;
-        border-radius: 100%;
-        margin-right: var(--space-xs);
-
-        &.minted {
-          background-color: var(--color-success-400);
-        }
-        &.notMinted {
-          background-color: var(--color-success-400-20);
-        }
-      }
     }
   }
 }

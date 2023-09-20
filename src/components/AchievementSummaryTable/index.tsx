@@ -1,7 +1,7 @@
 import React, { HTMLProps } from 'react'
 
 import AchievementCard, { AchievementCardProps } from '../AchievementCard'
-import AchievementPageNav from '../AchievementPageNav'
+import AchievementNav from '../AchievementNav'
 import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
@@ -55,7 +55,7 @@ export default function AchievementSummaryTable({
 
   return (
     <div className={styles.container} {...rest}>
-      <AchievementPageNav
+      <AchievementNav
         freeMints={10}
         basketAmount={0}
         nextButtonProps={{

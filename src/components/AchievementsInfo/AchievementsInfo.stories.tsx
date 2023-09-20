@@ -5,7 +5,7 @@ import { Flex } from '@mantine/core'
 import AchievementsInfo from '@/components/AchievementsInfo/index'
 
 export default {
-  title: 'AchievementsInfo',
+  title: 'Achievements/AchievementsInfo',
   component: AchievementsInfo
 }
 

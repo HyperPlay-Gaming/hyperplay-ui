@@ -19,7 +19,11 @@ const CircularButton = ({
   return (
     <button
       disabled={disabled}
-      className={classNames([className, styles.circularButton])}
+      className={classNames([
+        className,
+        styles.circularButton,
+        disabled ? styles.disabled : ''
+      ])}
       {...props}
     >
       {children}

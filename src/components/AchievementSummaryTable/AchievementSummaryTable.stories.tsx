@@ -5,7 +5,7 @@ import AchievementSummaryTable, { AchievementFilter, Game } from '.'
 import { itemType } from '../Dropdowns/Dropdown'
 
 export default {
-  title: 'Achievement/AchievementSummaryTable',
+  title: 'Achievements/AchievementSummaryTable',
   component: AchievementSummaryTable
 }
 
