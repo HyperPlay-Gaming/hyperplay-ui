@@ -1,3 +1,4 @@
+export { ReactComponent as AmazonLogo } from './amazonLogo.svg'
 export { ReactComponent as ArrowLeft } from './ArrowLeft.svg'
 export { ReactComponent as Blockchain } from './Blockchain.svg'
 export { ReactComponent as BurgerClosedIcon } from './BurgerClosedIcon.svg'
