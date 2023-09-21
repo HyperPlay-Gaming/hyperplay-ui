@@ -25,16 +25,16 @@ type AuthProps = {
 }
 
 type I18n = {
-  signupTitle?: string
-  signupSubtitle?: string
-  emailTitle?: string
-  emailSubtitle?: string
-  emailPlaceholder?: string
-  emailBackButton?: string
-  emailSignupButton?: string
-  walletButton?: string
-  walletSubtitle?: string
-  emailButton?: string
+  signupTitle: string
+  signupSubtitle: string
+  emailTitle: string
+  emailSubtitle: string
+  emailPlaceholder: string
+  emailBackButton: string
+  emailSignupButton: string
+  walletButton: string
+  walletSubtitle: string
+  emailButton: string
 }
 
 const SelectProvider = ({
@@ -48,29 +48,26 @@ const SelectProvider = ({
   onEmailClick: () => void
   onWalletClick: () => void
   onAuthProviderClick: (provider: AuthProvider) => void
-  i18n?: I18n
+  i18n: I18n
 }) => {
   return (
     <>
       <HyperPlayLogoColored />
       <div>
-        <h6 className={styles.title}>
-          {i18n?.signupTitle ?? 'Sign up to get started'}
-        </h6>
+        <h6 className={styles.title}>{i18n.signupTitle}</h6>
         <span className={cn('body', styles.subtitle)}>
-          {i18n?.signupSubtitle ??
-            `Select which account you would like to use to create your HyperPlay account.`}
+          {i18n.signupSubtitle}
         </span>
       </div>
       <div className={styles.providersContainer}>
         <AuthProviderButton
-          name={i18n?.walletButton ?? 'Wallet'}
+          name={i18n.walletButton}
           icon={<MetamaskColored className={styles.icon} />}
           label={
             <AuthProviderButton.Label
               style={{ color: 'var(--color-primary-200)' }}
             >
-              {i18n?.walletSubtitle ?? 'Recommended'}
+              {i18n.walletSubtitle}
             </AuthProviderButton.Label>
           }
           onClick={onWalletClick}
@@ -83,7 +80,7 @@ const SelectProvider = ({
           />
         ))}
         <AuthProviderButton
-          name={i18n?.emailButton ?? 'Email'}
+          name={i18n.emailButton}
           icon={<Email className={styles.icon} />}
           onClick={onEmailClick}
         />
@@ -99,7 +96,7 @@ export const EmailForm = ({
 }: {
   onGoBack: () => void
   onSubmit: (email: string) => void
-  i18n?: I18n
+  i18n: I18n
 }) => {
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -116,19 +113,16 @@ export const EmailForm = ({
         <Email className={styles.icon} />
       </div>
       <div>
-        <h6 className={styles.title}>
-          {i18n?.emailTitle ?? 'Sign up with email'}
-        </h6>
+        <h6 className={styles.title}>{i18n.emailTitle}</h6>
         <span className={cn('body', styles.subtitle)}>
-          {i18n?.emailSubtitle ??
-            'Connect your email address to create your HyperPlay account.'}
+          {i18n.emailSubtitle}
         </span>
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <TextInput
           required
           classNames={{ input: styles.emailInput }}
-          placeholder={i18n?.emailPlaceholder ?? 'Enter your email'}
+          placeholder={i18n.emailPlaceholder}
           label="Email"
           name="email"
           type="email"
@@ -141,7 +135,7 @@ export const EmailForm = ({
             onClick={onGoBack}
             className={styles.actionButton}
           >
-            {i18n?.emailBackButton ?? 'Back'}
+            {i18n.emailBackButton}
           </Button>
           <Button
             type="secondary"
@@ -149,7 +143,7 @@ export const EmailForm = ({
             size="large"
             className={styles.actionButton}
           >
-            {i18n?.emailSignupButton ?? 'Sign up'}
+            {i18n.emailSignupButton}
           </Button>
         </div>
       </form>
@@ -168,7 +162,20 @@ const SignUp = ({
   onAuthProviderSignup,
   onEmailSignup,
   onWalletSignup,
-  i18n,
+  i18n = {
+    signupTitle: 'Sign up to get started',
+    signupSubtitle:
+      'Select which account you would like to use to create your HyperPlay account.',
+    walletButton: 'Wallet',
+    walletSubtitle: 'Recommended',
+    emailButton: 'Email',
+    emailTitle: 'Sign up with email',
+    emailSubtitle:
+      'Connect your email address to create your HyperPlay account.',
+    emailPlaceholder: 'Enter your email',
+    emailBackButton: 'Back',
+    emailSignupButton: 'Sign up'
+  },
   ...props
 }: SignupModalProps) => {
   const [step, setStep] = useState<Steps>('selectProvider')
