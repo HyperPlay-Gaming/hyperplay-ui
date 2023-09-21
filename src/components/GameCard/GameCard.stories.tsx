@@ -33,7 +33,7 @@ const props: GameCardProps = {
   showSettings: false,
   onSettingsClick: () => console.log('settings button clicked'),
   onUpdateClick: () => console.log('update button clicked'),
-  onResumeClick: () => console.log('resume button clicked'),
+  onResumeClick: () => console.log('resume button clicked')
 }
 
 const meta: Meta<typeof GameCard> = {
@@ -42,12 +42,12 @@ const meta: Meta<typeof GameCard> = {
   parameters: {
     store: {
       values: [
-        {name: 'HyperPlay', value : 'hyperplay'},
-        {name: 'GOG', value : 'gog'},
-        {name: 'Epic', value : 'legendary'},
-        {name: 'Amazon', value : 'nile'},
-        {name: 'Sideload', value : 'sideload'}
-      ],
+        { name: 'HyperPlay', value: 'hyperplay' },
+        { name: 'GOG', value: 'gog' },
+        { name: 'Epic', value: 'legendary' },
+        { name: 'Amazon', value: 'nile' },
+        { name: 'Sideload', value: 'sideload' }
+      ]
     },
     state: {
       values: [
@@ -60,26 +60,24 @@ const meta: Meta<typeof GameCard> = {
         'UNINSTALLING',
         'INSTALLING',
         'PAUSED',
-        'NEEDS_UPDATE',
-      ],
+        'NEEDS_UPDATE'
+      ]
     }
-  },
-};
-
-
+  }
+}
 
 type Story = StoryObj<typeof GameCard>
 
 export const HyperPlayCard: Story = {
-  args: {...props}
+  args: { ...props }
 }
 
 export const MoonBlasters: Story = {
-  args: {...props, imageUrl: MoonBlastersCover, title: 'Moon Blasters'}
+  args: { ...props, imageUrl: MoonBlastersCover, title: 'Moon Blasters' }
 }
 
 export const RocketMonsters: Story = {
-  args: {...props, imageUrl: RocketMonstersCover, title: 'Rocket Monsters'}
+  args: { ...props, imageUrl: RocketMonstersCover, title: 'Rocket Monsters' }
 }
 
 export default meta
