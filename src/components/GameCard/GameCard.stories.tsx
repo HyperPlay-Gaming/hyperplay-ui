@@ -52,6 +52,48 @@ export const DefaultUninstalled = () => {
   )
 }
 
+export const DefaultUninstalledEpic = () => {
+  const [favorited, setFavorited] = useState(false)
+  return (
+    <GameCard
+      title="Test Game"
+      {...onClickHandlers}
+      state="NOT_INSTALLED"
+      store="legendary"
+      favorited={favorited}
+      onFavoriteClick={() => setFavorited(!favorited)}
+    ></GameCard>
+  )
+}
+
+export const DefaultUninstalledGOG = () => {
+  const [favorited, setFavorited] = useState(false)
+  return (
+    <GameCard
+      title="Test Game"
+      {...onClickHandlers}
+      state="NOT_INSTALLED"
+      store="gog"
+      favorited={favorited}
+      onFavoriteClick={() => setFavorited(!favorited)}
+    ></GameCard>
+  )
+}
+
+export const DefaultUninstalledAmazon = () => {
+  const [favorited, setFavorited] = useState(false)
+  return (
+    <GameCard
+      title="Test Game"
+      {...onClickHandlers}
+      state="NOT_INSTALLED"
+      store="nile"
+      favorited={favorited}
+      onFavoriteClick={() => setFavorited(!favorited)}
+    ></GameCard>
+  )
+}
+
 export const LongTitleUninstalled = () => (
   <GameCard
     title="Test Game with a Really Long Title"
