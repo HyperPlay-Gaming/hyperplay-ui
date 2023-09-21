@@ -73,6 +73,7 @@ export const Default: Story = {
     >
       <SignUp
         providers={authProviders}
+        onClose={() => alert('Close')}
         onWalletSignup={() => alert('Wallet requested')}
         onAuthProviderSignup={(provider) => alert(`Provider: ${provider.id}`)}
         onEmailSignup={(email) => alert(`Email requested: ${email}`)}
