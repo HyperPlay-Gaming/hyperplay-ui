@@ -4,23 +4,7 @@
 @import '../../styles/utilities/_variables';
 
 .root {
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-xl) calc(var(--space-xl) * 1.25);
-  gap: var(--space-2lg);
-  border-radius: var(--space-md);
-  background: var(--color-neutral-800);
-  width: 100%;
   max-width: 600px;
-}
-
-.title {
-  color: white;
-  font-weight: var(--bold);
-}
-
-.subtitle {
-  color: var(--color-neutral-400);
 }
 
 .icon {
@@ -62,10 +46,6 @@
 
 .actionButton {
   min-width: 167px;
-}
-
-.emailInput {
-  //width: 100%;
 }
 
 .form {

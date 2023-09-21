@@ -4,6 +4,7 @@ import cn from 'classnames'
 
 import { Email, HyperPlayLogoColored, MetamaskColored } from '@/assets/images'
 import Button from '@/components/Button'
+import Modal from '@/components/Modal/Modal'
 import { AuthProviderButton, TextInput } from '@/index'
 
 import styles from './SignUp.module.scss'
@@ -17,14 +18,14 @@ export type AuthProvider = {
   label?: React.ReactNode
 }
 
-type AuthProps = {
+interface AuthProps {
   providers: AuthProvider[]
   onAuthProviderSignup: (provider: AuthProvider) => void
   onEmailSignup: (email: string) => void
   onWalletSignup: () => void
 }
 
-type I18n = {
+interface I18n {
   signupTitle: string
   signupSubtitle: string
   emailTitle: string
@@ -53,12 +54,10 @@ const SelectProvider = ({
   return (
     <>
       <HyperPlayLogoColored />
-      <div>
-        <h6 className={styles.title}>{i18n.signupTitle}</h6>
-        <span className={cn('body', styles.subtitle)}>
-          {i18n.signupSubtitle}
-        </span>
-      </div>
+      <Modal.Header>
+        <Modal.Title>{i18n.signupTitle}</Modal.Title>
+        <Modal.Body>{i18n.signupSubtitle}</Modal.Body>
+      </Modal.Header>
       <div className={styles.providersContainer}>
         <AuthProviderButton
           name={i18n.walletButton}
@@ -112,12 +111,10 @@ export const EmailForm = ({
       <div className={styles.emailRoundedIcon}>
         <Email className={styles.icon} />
       </div>
-      <div>
-        <h6 className={styles.title}>{i18n.emailTitle}</h6>
-        <span className={cn('body', styles.subtitle)}>
-          {i18n.emailSubtitle}
-        </span>
-      </div>
+      <Modal.Header>
+        <Modal.Title>{i18n.emailTitle}</Modal.Title>
+        <Modal.Body>{i18n.emailSubtitle}</Modal.Body>
+      </Modal.Header>
       <form onSubmit={handleSubmit} className={styles.form}>
         <TextInput
           required
@@ -151,10 +148,10 @@ export const EmailForm = ({
   )
 }
 
-export type SignupModalProps = HTMLProps<HTMLDivElement> &
-  AuthProps & {
-    i18n?: I18n
-  }
+export interface SignupModalProps extends HTMLProps<HTMLDivElement>, AuthProps {
+  onClose: () => void
+  i18n?: I18n
+}
 
 const SignUp = ({
   className,
@@ -162,6 +159,7 @@ const SignUp = ({
   onAuthProviderSignup,
   onEmailSignup,
   onWalletSignup,
+  onClose,
   i18n = {
     signupTitle: 'Sign up to get started',
     signupSubtitle:
@@ -180,7 +178,8 @@ const SignUp = ({
 }: SignupModalProps) => {
   const [step, setStep] = useState<Steps>('selectProvider')
   return (
-    <div className={cn(styles.root, className)} {...props}>
+    <Modal.Content {...props} className={cn(className, styles.root)}>
+      <Modal.CloseButton aria-label="close signup modal" onClick={onClose} />
       {step === 'selectProvider' && (
         <SelectProvider
           providers={providers}
@@ -197,7 +196,7 @@ const SignUp = ({
           i18n={i18n}
         />
       )}
-    </div>
+    </Modal.Content>
   )
 }
 

@@ -13,6 +13,7 @@ describe('SignUp', () => {
     const onAuthSignup = vi.fn()
     render(
       <SignUp
+        onClose={vi.fn}
         providers={providers}
         onWalletSignup={vi.fn}
         onEmailSignup={vi.fn}
@@ -30,6 +31,7 @@ describe('SignUp', () => {
     const onWalletSignup = vi.fn()
     render(
       <SignUp
+        onClose={vi.fn}
         providers={providers}
         onWalletSignup={onWalletSignup}
         onEmailSignup={vi.fn}
@@ -47,6 +49,7 @@ describe('SignUp', () => {
     const onEmailSignup = vi.fn()
     render(
       <SignUp
+        onClose={vi.fn}
         providers={providers}
         onEmailSignup={onEmailSignup}
         onWalletSignup={vi.fn}

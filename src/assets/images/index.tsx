@@ -10,6 +10,7 @@ export { ReactComponent as CheckmarkCircleOutline } from './CheckmarkCircleOutli
 export { ReactComponent as ChevronLeft } from './ChevronLeft.svg'
 export { ReactComponent as ChevronRight } from './ChevronRight.svg'
 export { ReactComponent as CloseButton } from './CloseButton.svg'
+export { ReactComponent as CloseModalIcon } from './CloseModalIcon.svg'
 export { ReactComponent as Email } from './Email.svg'
 export { ReactComponent as Controller } from './Controller.svg'
 export { ReactComponent as Discord } from './Discord.svg'

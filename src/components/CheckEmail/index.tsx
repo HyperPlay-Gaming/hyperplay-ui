@@ -4,12 +4,14 @@ import cn from 'classnames'
 
 import { Email } from '@/assets/images'
 import Button from '@/components/Button'
+import Modal from '@/components/Modal/Modal'
 
 import styles from './CheckEmail.module.scss'
 
 export interface CheckEmailProps extends HTMLProps<HTMLDivElement> {
   email: string
   onVerify: () => void
+  onClose: () => void
   onResend: () => void
   i18n?: {
     title: string
@@ -25,6 +27,7 @@ const CheckEmail = ({
   email,
   onVerify,
   onResend,
+  onClose,
   i18n = {
     title: 'Check your email',
     subtitle: 'We sent a verification link to',
@@ -35,16 +38,17 @@ const CheckEmail = ({
   ...props
 }: CheckEmailProps) => {
   return (
-    <div className={cn(styles.root, className)} {...props}>
-      <div className={styles.emailRoundedIcon}>
+    <Modal.Content className={cn(className, styles.root)} {...props}>
+      <Modal.CloseButton aria-label="close signup modal" onClick={onClose} />
+      <Modal.HeadingIcon className={styles.emailRoundedIcon}>
         <Email className={styles.icon} />
-      </div>
-      <div>
-        <h6 className={styles.title}>{i18n.title}</h6>
-        <span className={cn('body', styles.subtitle)}>
+      </Modal.HeadingIcon>
+      <Modal.Header>
+        <Modal.Title>{i18n.title}</Modal.Title>
+        <Modal.Body>
           {i18n.subtitle} <span className="text--semibold">{email}</span>
-        </span>
-      </div>
+        </Modal.Body>
+      </Modal.Header>
       <Button
         type="primary"
         size="medium"
@@ -67,7 +71,7 @@ const CheckEmail = ({
           {i18n.resend}
         </Button>
       </div>
-    </div>
+    </Modal.Content>
   )
 }
 

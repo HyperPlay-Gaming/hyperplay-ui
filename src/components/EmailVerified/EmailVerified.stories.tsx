@@ -16,6 +16,7 @@ type Story = StoryObj<typeof EmailVerified>
 export const Default: Story = {
   render: () => (
     <EmailVerified
+      onClose={() => alert('Close')}
       style={{ margin: 'auto' }}
       onContinue={() => alert('Continue')}
     />

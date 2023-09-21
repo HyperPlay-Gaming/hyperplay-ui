@@ -4,11 +4,13 @@ import cn from 'classnames'
 
 import { Email } from '@/assets/images'
 import Button from '@/components/Button'
+import Modal from '@/components/Modal/Modal'
 
 import styles from './EmailVerified.module.scss'
 
 export interface EmailVerifiedModalProps extends HTMLProps<HTMLDivElement> {
   onContinue: () => void
+  onClose: () => void
   i18n?: {
     title: string
     subtitle: string
@@ -18,6 +20,7 @@ export interface EmailVerifiedModalProps extends HTMLProps<HTMLDivElement> {
 
 const EmailVerifiedModal = ({
   onContinue,
+  onClose,
   className,
   i18n = {
     title: 'Email verified',
@@ -27,14 +30,15 @@ const EmailVerifiedModal = ({
   ...props
 }: EmailVerifiedModalProps) => {
   return (
-    <div className={cn(className, styles.root)} {...props}>
-      <div className={styles.emailRoundedIcon}>
+    <Modal.Content className={cn(className, styles.root)} {...props}>
+      <Modal.CloseButton aria-label="email verified modal" onClick={onClose} />
+      <Modal.HeadingIcon className={styles.emailRoundedIcon}>
         <Email className={styles.icon} />
-      </div>
-      <div>
-        <h6 className={styles.title}>{i18n.title}</h6>
-        <span className={cn('body', styles.subtitle)}>{i18n.subtitle}</span>
-      </div>
+      </Modal.HeadingIcon>
+      <Modal.Header>
+        <Modal.Title>{i18n.title}</Modal.Title>
+        <Modal.Body>{i18n.subtitle}</Modal.Body>
+      </Modal.Header>
       <Button
         type="primary"
         size="medium"
@@ -43,7 +47,7 @@ const EmailVerifiedModal = ({
       >
         {i18n.button}
       </Button>
-    </div>
+    </Modal.Content>
   )
 }
 

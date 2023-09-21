@@ -4,7 +4,7 @@ import classNames from 'classnames'
 
 import styles from './index.module.scss'
 
-interface ModalAnimationProps
+export interface ModalAnimationProps
   extends PropsWithChildren<HTMLProps<HTMLDivElement>> {
   isOpen: boolean
   onClose: () => void
