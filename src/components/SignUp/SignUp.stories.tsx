@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Meta, StoryObj } from '@storybook/react'
 
@@ -11,8 +11,9 @@ import {
   TwitchLogo,
   XLogo
 } from '@/assets/images'
+import { ModalAnimation } from '@/components/Modal'
 import SignUp from '@/components/SignUp/index'
-import { AuthProviderButton } from '@/index'
+import { AuthProviderButton, Button } from '@/index'
 
 const meta: Meta<typeof SignUp> = {
   title: 'auth/SignUp'
@@ -62,22 +63,24 @@ const authProviders = [
 ]
 
 export const Default: Story = {
-  render: () => (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        padding: 10,
-        background: 'grey'
-      }}
-    >
-      <SignUp
-        providers={authProviders}
-        onClose={() => alert('Close')}
-        onWalletSignup={() => alert('Wallet requested')}
-        onAuthProviderSignup={(provider) => alert(`Provider: ${provider.id}`)}
-        onEmailSignup={(email) => alert(`Email requested: ${email}`)}
-      />
-    </div>
-  )
+  render: () => {
+    const [open, setOpen] = useState(true)
+    const close = () => setOpen(false)
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>Open</Button>
+        <ModalAnimation isOpen={open} onClose={close}>
+          <SignUp
+            providers={authProviders}
+            onClose={close}
+            onWalletSignup={() => alert('Wallet requested')}
+            onAuthProviderSignup={(provider) =>
+              alert(`Provider: ${provider.id}`)
+            }
+            onEmailSignup={(email) => alert(`Email requested: ${email}`)}
+          />
+        </ModalAnimation>
+      </>
+    )
+  }
 }
