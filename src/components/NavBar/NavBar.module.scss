@@ -36,6 +36,9 @@
   width: 20px;
   margin: 0px 10px;
   @include variables.imageWrapper;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbarLogoImg {
@@ -68,7 +71,6 @@
 }
 
 .navbar a:hover {
-  // color: var(--grayscale-01-400);
   opacity: 50%;
 }
 
