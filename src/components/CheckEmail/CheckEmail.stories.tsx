@@ -27,9 +27,9 @@ export const Default: Story = {
           <CheckEmailModal
             style={{ margin: 'auto' }}
             email="hello@hyperplay.xyz"
-            onClose={() => alert('Close')}
+            onClose={close}
             onResend={() => alert('Resend email')}
-            onVerify={() => alert('Resend email')}
+            onVerify={close}
           />
         </ModalAnimation>
       </>

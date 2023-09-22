@@ -25,7 +25,7 @@ export const Default: Story = {
         <Button onClick={() => setOpen(true)}>Open</Button>
         <ModalAnimation isOpen={open} onClose={close}>
           <EmailVerified
-            onClose={() => alert('Close')}
+            onClose={close}
             style={{ margin: 'auto' }}
             onContinue={() => alert('Continue')}
           />
