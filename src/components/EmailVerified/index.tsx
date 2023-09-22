@@ -30,7 +30,7 @@ const EmailVerifiedModal = ({
   ...props
 }: EmailVerifiedModalProps) => {
   return (
-    <Modal.Content className={cn(className, styles.root)} {...props}>
+    <Modal.Root className={cn(className, styles.root)} {...props}>
       <Modal.CloseButton aria-label="email verified modal" onClick={onClose} />
       <Modal.HeadingIcon className={styles.emailRoundedIcon}>
         <Email className={styles.icon} />
@@ -47,7 +47,7 @@ const EmailVerifiedModal = ({
       >
         {i18n.button}
       </Button>
-    </Modal.Content>
+    </Modal.Root>
   )
 }
 

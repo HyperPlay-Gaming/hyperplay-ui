@@ -38,7 +38,7 @@ const CheckEmail = ({
   ...props
 }: CheckEmailProps) => {
   return (
-    <Modal.Content className={cn(className, styles.root)} {...props}>
+    <Modal.Root className={cn(className, styles.root)} {...props}>
       <Modal.CloseButton aria-label="close signup modal" onClick={onClose} />
       <Modal.HeadingIcon className={styles.emailRoundedIcon}>
         <Email className={styles.icon} />
@@ -71,7 +71,7 @@ const CheckEmail = ({
           {i18n.resend}
         </Button>
       </div>
-    </Modal.Content>
+    </Modal.Root>
   )
 }
 

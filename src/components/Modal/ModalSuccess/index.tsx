@@ -2,8 +2,8 @@ import React, { HTMLAttributes, PropsWithChildren } from 'react'
 
 import classNames from 'classnames'
 
-import { CloseButton } from '@/assets/images'
 import Button from '@/components/Button'
+import Modal from '@/components/Modal/Modal'
 
 import ModalAnimation from '../ModalAnimation'
 import styles from './index.module.scss'
@@ -30,9 +30,7 @@ const ModalSuccess = ({
     <ModalAnimation {...props}>
       <div className={classNames(styles.modal)} data-testid="success-modal">
         <div className={classNames(styles.content)}>
-          <div className={styles.close}>
-            <CloseButton onClick={props.onClose} />
-          </div>
+          <Modal.CloseButton onClick={props.onClose} />
           <div className={classNames(styles.row)}>
             <h5 className={styles.title}>{title}</h5>
           </div>

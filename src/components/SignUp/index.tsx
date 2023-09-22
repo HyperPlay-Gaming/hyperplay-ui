@@ -178,7 +178,7 @@ const SignUp = ({
 }: SignupModalProps) => {
   const [step, setStep] = useState<Steps>('selectProvider')
   return (
-    <Modal.Content {...props} className={cn(className, styles.root)}>
+    <Modal.Root {...props} className={cn(className, styles.root)}>
       <Modal.CloseButton aria-label="close signup modal" onClick={onClose} />
       {step === 'selectProvider' && (
         <SelectProvider
@@ -196,7 +196,7 @@ const SignUp = ({
           i18n={i18n}
         />
       )}
-    </Modal.Content>
+    </Modal.Root>
   )
 }
 

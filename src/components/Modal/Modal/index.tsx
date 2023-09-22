@@ -40,11 +40,7 @@ const CloseButton = (
   )
 }
 
-const Content = ({
-  className,
-  children,
-  ...props
-}: HTMLProps<HTMLDivElement>) => {
+const Root = ({ className, children, ...props }: HTMLProps<HTMLDivElement>) => {
   return (
     <div className={cn(className, styles.root)} {...props}>
       {children}
@@ -59,13 +55,15 @@ export interface ModalProps extends ModalAnimationProps {
 const Modal = (props: ModalProps) => {
   return (
     <ModalAnimation {...props}>
-      {props.withCloseButton && <CloseButton onClick={props.onClose} />}
-      {props.children}
+      <Modal.Root>
+        {props.withCloseButton && <CloseButton onClick={props.onClose} />}
+        {props.children}
+      </Modal.Root>
     </ModalAnimation>
   )
 }
 
-Modal.Content = Content
+Modal.Root = Root
 Modal.Body = Body
 Modal.Title = Title
 Modal.CloseButton = CloseButton
