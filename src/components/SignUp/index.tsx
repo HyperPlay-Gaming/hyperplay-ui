@@ -2,7 +2,12 @@ import React, { HTMLProps, useState } from 'react'
 
 import cn from 'classnames'
 
-import { Email, HyperPlayLogoColored, MetamaskColored } from '@/assets/images'
+import {
+  Email,
+  HyperPlayLogoColored,
+  MetamaskColored,
+  WalletConnectLogo
+} from '@/assets/images'
 import Button from '@/components/Button'
 import Modal from '@/components/Modal/Modal'
 import { AuthProviderButton, TextInput } from '@/index'
@@ -33,8 +38,7 @@ interface I18n {
   emailPlaceholder: string
   emailBackButton: string
   emailSignupButton: string
-  walletButton: string
-  walletSubtitle: string
+  recommendedLabel: string
   emailButton: string
 }
 
@@ -60,15 +64,30 @@ const SelectProvider = ({
       </Modal.Header>
       <div className={styles.providersContainer}>
         <AuthProviderButton
-          name={i18n.walletButton}
+          name="Metamask"
           icon={<MetamaskColored className={styles.icon} />}
           label={
             <AuthProviderButton.Label
               style={{ color: 'var(--color-primary-200)' }}
             >
-              {i18n.walletSubtitle}
+              {i18n.recommendedLabel}
             </AuthProviderButton.Label>
           }
+          onClick={onWalletClick}
+        />
+        <AuthProviderButton
+          name="Metamask"
+          icon={<MetamaskColored className={styles.icon} />}
+          label={
+            <AuthProviderButton.Label className="color-neutral-400">
+              Mobile
+            </AuthProviderButton.Label>
+          }
+          onClick={onWalletClick}
+        />
+        <AuthProviderButton
+          name="WalletConnect"
+          icon={<WalletConnectLogo />}
           onClick={onWalletClick}
         />
         {providers.map((provider) => (
@@ -164,8 +183,7 @@ const SignUp = ({
     signupTitle: 'Sign up to get started',
     signupSubtitle:
       'Select which account you would like to use to create your HyperPlay account.',
-    walletButton: 'Wallet',
-    walletSubtitle: 'Recommended',
+    recommendedLabel: 'Recommended',
     emailButton: 'Email',
     emailTitle: 'Sign up with email',
     emailSubtitle:
