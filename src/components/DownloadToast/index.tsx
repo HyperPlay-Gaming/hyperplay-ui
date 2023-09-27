@@ -18,6 +18,7 @@ interface DownloadToastType {
   onCloseClick: () => void
   onPlayClick: () => void
   status: downloadStatus
+  statusText: string
 }
 
 function getETAStringFromMs(etaInMs: number) {
@@ -134,7 +135,7 @@ export default function DownloadToast(props: DownloadToastType) {
   return (
     <div className={DownloadToastStyles.downloadToastContainer}>
       <div className={DownloadToastStyles.topBar}>
-        <div className="title">Downloading</div>
+        <div className="title">{props.statusText}</div>
         <button onClick={props.onCloseClick}>
           <CloseButton />
         </button>
