@@ -36,6 +36,7 @@ export * as Images from './assets/images'
 export { default as TokenTable } from './components/TokenTable'
 export { default as GameRequirementsTable } from './components/GameRequirementsTable'
 export { default as GameAbout } from './components/GameAbout'
+export { default as StoreRow } from './components/StoreRow'
 
 export { default as AchievementCard } from './components/AchievementCard'
 export { default as AchievementNav } from './components/AchievementNav'
