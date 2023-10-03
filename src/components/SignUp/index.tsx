@@ -128,7 +128,7 @@ export const EmailForm = ({
   return (
     <>
       <div className={styles.emailRoundedIcon}>
-        <Email className={styles.icon} />
+        <Email className={styles.icon} width={20} height={20} />
       </div>
       <Modal.Header>
         <Modal.Title>{i18n.emailTitle}</Modal.Title>
