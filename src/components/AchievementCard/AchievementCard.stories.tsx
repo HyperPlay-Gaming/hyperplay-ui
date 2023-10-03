@@ -29,6 +29,7 @@ export const Disabled = () => (
       mintableAchievementsCount={10}
       totalAchievementsCount={30}
       data-testid="1"
+      state="default"
       ctaProps={{ disabled: true }}
     />
   </Flex>

@@ -68,24 +68,26 @@ export const Default = () => {
   }, [activeFilter])
 
   return (
-    <AchievementSummaryTable
-      games={filteredGames}
-      sortProps={{
-        options: achievementsSortOptions,
-        selected: selectedSort,
-        onItemChange: setSelectedSort
-      }}
-      paginationProps={{
-        currentPage: 1,
-        totalPages: 3,
-        handleNextPage: () => console.log('next page'),
-        handlePrevPage: () => console.log('prev page')
-      }}
-      filterProps={{
-        activeFilter,
-        setActiveFilter
-      }}
-      mintButtonProps={{ onClick: () => console.log('mint') }}
-    />
+    <div style={{ height: '100vh' }}>
+      <AchievementSummaryTable
+        games={filteredGames}
+        sortProps={{
+          options: achievementsSortOptions,
+          selected: selectedSort,
+          onItemChange: setSelectedSort
+        }}
+        paginationProps={{
+          currentPage: 1,
+          totalPages: 3,
+          handleNextPage: () => console.log('next page'),
+          handlePrevPage: () => console.log('prev page')
+        }}
+        filterProps={{
+          activeFilter,
+          setActiveFilter
+        }}
+        mintButtonProps={{ onClick: () => console.log('mint') }}
+      />
+    </div>
   )
 }

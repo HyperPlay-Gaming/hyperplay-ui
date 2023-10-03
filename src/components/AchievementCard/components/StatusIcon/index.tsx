@@ -8,7 +8,7 @@ import CircularButton from '@/components/CircularButton'
 
 import styles from './StatusIcon.module.scss'
 
-export type StatusIconState = 'default' | 'active' | 'disabled' | 'update'
+export type StatusIconState = 'default' | 'active' | 'update'
 type StatusIconProps = ButtonProps & { state: StatusIconState }
 
 const StatusIcon = ({ state, ...rest }: StatusIconProps) => {
