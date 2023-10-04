@@ -1,13 +1,16 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useMemo, useState } from 'react'
 
-import AchievementSummaryTable, { AchievementFilter, Game } from '.'
+import AchievementSummaryTable, { AchievementFilter } from '.'
+import AchievementCard, { AchievementCardProps } from '../AchievementCard'
 import { itemType } from '../Dropdowns/Dropdown'
 
 export default {
   title: 'Achievements/AchievementSummaryTable',
   component: AchievementSummaryTable
 }
+
+type Data = AchievementCardProps & { id: string }
 
 const games = [
   {
@@ -50,7 +53,7 @@ const games = [
     isNewAchievement: true,
     state: 'default'
   }
-] as Game[]
+] as Data[]
 
 export const Default = () => {
   const achievementsSortOptions = [{ text: 'Alphabetically' }] as itemType[]
@@ -70,7 +73,9 @@ export const Default = () => {
   return (
     <div style={{ height: '100vh' }}>
       <AchievementSummaryTable
-        games={filteredGames}
+        games={filteredGames.map(({ id, ...rest }) => (
+          <AchievementCard key={id} {...rest} />
+        ))}
         sortProps={{
           options: achievementsSortOptions,
           selected: selectedSort,

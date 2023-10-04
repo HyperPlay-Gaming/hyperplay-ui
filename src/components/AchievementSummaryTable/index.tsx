@@ -1,6 +1,5 @@
-import React, { HTMLProps } from 'react'
+import React, { HTMLProps, ReactNode } from 'react'
 
-import AchievementCard, { AchievementCardProps } from '../AchievementCard'
 import AchievementNav from '../AchievementNav'
 import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
@@ -8,14 +7,10 @@ import { DropdownProps } from '../Dropdowns/Dropdown'
 import Tabs from '../Tabs'
 import styles from './AchievementSummaryTable.module.scss'
 
-export interface Game extends AchievementCardProps {
-  id: string
-}
-
 export type AchievementFilter = 'all' | 'new' | 'minted'
 
 export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
-  games: Game[]
+  games: ReactNode[]
   sortProps: DropdownProps
   paginationProps: {
     currentPage: number
@@ -105,11 +100,7 @@ export default function AchievementSummaryTable({
           </div>
         </div>
 
-        <div className={styles.games}>
-          {games.map(({ id, ...rest }) => (
-            <AchievementCard key={id} {...rest} />
-          ))}
-        </div>
+        <div className={styles.games}>{games}</div>
       </Tabs>
     </div>
   )
