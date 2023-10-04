@@ -26,15 +26,6 @@
 }
 
 .emailRoundedIcon {
-  display: flex;
-  padding: calc(var(--space-xs) * 1.25);
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: calc(var(--space-xs) * 1.25);
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
   background: var(--color-primary-500);
 }
 
