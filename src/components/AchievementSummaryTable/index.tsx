@@ -64,7 +64,7 @@ export default function AchievementSummaryTable({
         }}
         previousButtonProps={{
           onClick: handlePrevPage,
-          disabled: currentPage === 1
+          disabled: currentPage <= 1
         }}
       />
       <Tabs
