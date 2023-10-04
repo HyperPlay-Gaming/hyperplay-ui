@@ -2,6 +2,7 @@
 import React, { useMemo, useState } from 'react'
 
 import AchievementSummaryTable, { AchievementFilter, Game } from '.'
+import AchievementCard from '../AchievementCard'
 import { itemType } from '../Dropdowns/Dropdown'
 
 export default {
@@ -70,7 +71,9 @@ export const Default = () => {
   return (
     <div style={{ height: '100vh' }}>
       <AchievementSummaryTable
-        games={filteredGames}
+        games={filteredGames.map(({ id, ...rest }) => (
+          <AchievementCard key={id} {...rest} />
+        ))}
         sortProps={{
           options: achievementsSortOptions,
           selected: selectedSort,
