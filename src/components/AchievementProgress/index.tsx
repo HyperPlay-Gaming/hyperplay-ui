@@ -1,4 +1,5 @@
 import { Progress } from '@mantine/core'
+import classNames from 'classnames'
 
 import styles from './AchievementProgress.module.scss'
 
@@ -42,7 +43,7 @@ export default function AchievementProgress({
   return (
     <div>
       <div className={styles.column}>
-        <div className={styles.textContainer}>
+        <div className={classNames(styles.textContainer, styles.noWrap)}>
           <div>{safeMintedCount}</div>
           <div>/</div>
           <div>{safeTotalCount}</div>

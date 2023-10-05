@@ -130,3 +130,13 @@
   margin-top: var(--space-lg-fixed);
   font-family: var(--primary-font-family);
 }
+
+.ctaContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-xs);
+}
+
+.mintButton {
+  width: 120px;
+}
