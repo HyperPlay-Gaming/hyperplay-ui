@@ -17,7 +17,20 @@ const StatusIcon = ({ state, ...rest }: StatusIconProps) => {
       case 'active':
         return <Images.CheckmarkCircle height={24} width={24} />
       case 'update':
-        return <Images.UpdateCircleOutline height={24} width={24} />
+        return (
+          <div className={styles.updateState}>
+            <Images.UpdateCircleOutline
+              height={24}
+              width={24}
+              className={styles.updateIcon}
+            />
+            <Images.PlusCircleOutline
+              height={24}
+              width={24}
+              className={styles.plusIcon}
+            />
+          </div>
+        )
       default:
         return <Images.PlusCircleOutline height={24} width={24} />
     }
