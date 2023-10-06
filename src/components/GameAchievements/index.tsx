@@ -117,6 +117,8 @@ export default function GameAchievements({
           <Button
             type="secondary"
             size="medium"
+            leftIcon={<Images.PlusCircleOutline width={16} height={16} />}
+            spacing="xs"
             {...mintButtonProps}
             className={cn(styles.mintButton, mintButtonProps?.className)}
           >

@@ -2,6 +2,8 @@ import React, { HTMLProps, ReactNode } from 'react'
 
 import cn from 'classnames'
 
+import * as Images from '@/assets/images'
+
 import AchievementNav, { AchievementNavProps } from '../AchievementNav'
 import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
@@ -95,6 +97,8 @@ export default function AchievementSummaryTable({
             <Button
               type="secondary"
               size="medium"
+              leftIcon={<Images.PlusCircleOutline width={16} height={16} />}
+              spacing="xs"
               {...mintButtonProps}
               className={cn(styles.mintButton, mintButtonProps?.className)}
             >
