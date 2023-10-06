@@ -213,11 +213,7 @@ export default function GameAchievements({
                 ) : (
                   <div className={styles.unlocked}>
                     <div>{i18n.unLockedLabel}</div>
-                    <Images.CheckmarkCircleOutline
-                      fill="var(--color-neutral-500)"
-                      width={21}
-                      height={21}
-                    />
+                    <Images.CheckmarkCircleOutline width={21} height={21} />
                   </div>
                 )}
               </div>
