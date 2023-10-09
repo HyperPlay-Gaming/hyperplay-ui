@@ -15,7 +15,9 @@ const NavBar = function () {
   const ref = useRef<HTMLDivElement | null>(null)
 
   useLayoutEffect(() => {
-    if (ref === null || ref.current === null) return
+    if (ref === null || ref.current === null) {
+      return
+    }
     const { height } = ref.current.getBoundingClientRect()
     document.documentElement.style.setProperty(
       '--nav-bar-height',
