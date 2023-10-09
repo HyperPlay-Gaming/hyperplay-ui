@@ -12,6 +12,12 @@
   /* Effects */
   --blur-light: 4px;
   --blur-strong: 16px;
+
+  /*
+  * This is overridden in the top nav bar, but providing 
+  * an initial value prevents layout shifting after the first render
+  */
+  --nav-bar-height: 92.6px;
 }
 
 body {
