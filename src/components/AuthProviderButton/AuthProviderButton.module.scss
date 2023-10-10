@@ -12,6 +12,7 @@
   border: 1px solid var(--color-stroke-01);
   background: var(--color-neutral-800);
   overflow: hidden;
+  transition: 0.25s ease-in-out;
 
   &:hover {
     opacity: 100%;
@@ -22,6 +23,7 @@
 
 .name {
   color: var(--color-neutral-400);
+  transition: 0.25s ease-in-out;
 
   :hover > & {
     color: var(--color-neutral-100);
