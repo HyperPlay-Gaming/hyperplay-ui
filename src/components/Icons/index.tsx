@@ -59,6 +59,8 @@ export default function Icons() {
       }
       if (Object.hasOwn(IconFill, key)) {
         props.fill = IconFill[key]
+      } else {
+        props.fill = 'white'
       }
       if (Object.hasOwn(IconStroke, key)) {
         props.stroke = IconStroke[key]
