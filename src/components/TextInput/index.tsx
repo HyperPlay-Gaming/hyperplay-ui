@@ -5,9 +5,19 @@ import cn from 'classnames'
 
 import styles from './TextInput.module.scss'
 
+interface TextInputProps
+  extends React.ComponentPropsWithoutRef<typeof MantineTextInput> {
+  classNames?: {
+    root?: string
+    input?: string
+    wrapper?: string
+    label?: string
+  }
+}
+
 const TextInput = React.forwardRef<
   React.ElementRef<typeof MantineTextInput>,
-  React.ComponentPropsWithoutRef<typeof MantineTextInput>
+  TextInputProps
 >(({ classNames, ...props }, ref) => {
   return (
     <MantineTextInput

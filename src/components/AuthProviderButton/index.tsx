@@ -38,11 +38,11 @@ const AuthProviderButton = ({
   )
 }
 
-const Label = ({
-  children,
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLSpanElement>) => {
+interface LabelProps extends React.HTMLAttributes<HTMLSpanElement> {
+  children: React.ReactNode
+}
+
+const Label = ({ children, className, ...props }: LabelProps) => {
   return (
     <span className={cn(styles.label, className)} {...props}>
       {children}
