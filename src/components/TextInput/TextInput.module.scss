@@ -21,6 +21,11 @@
   font-family: var(--default-secondary-font-family);
   line-height: var(--text-4xl);
   width: 100%;
+
+  &:focus-visible {
+    outline: none;
+    border: 1px solid var(--color-primary-400);
+  }
 }
 
 .label {
