@@ -1,7 +1,7 @@
 @mixin colorSystem {
-  /* 
-  * Semantic Naming is used over declarative naming for ease of maintainability. 
-  * e.g. color-secondary-x can be changed from pink to red 
+  /*
+  * Semantic Naming is used over declarative naming for ease of maintainability.
+  * e.g. color-secondary-x can be changed from pink to red
   * without renaming every css variable.
   * The figma designs should use semantic naming as well so frontend devs
   * do not have to check this global scss file when picking every color.
@@ -187,6 +187,9 @@
     #10a6d6 89.36%
   );
   --color-stroke-03: #292235;
+
+  /* Box Shadows */
+  --box-shadow-01: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
 }
 
 :root {

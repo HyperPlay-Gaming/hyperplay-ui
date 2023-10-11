@@ -1,0 +1,52 @@
+@import '../../styles/designSystem/spacing';
+@import '../../styles/designSystem/colors';
+
+.box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--space-unit-fixed) * 1.5);
+  gap: var(--space-3xs);
+  border-radius: var(--space-xs);
+  border: 1px solid var(--color-stroke-01);
+  background: var(--color-neutral-800);
+  overflow: hidden;
+  transition: 0.25s ease-in-out;
+
+  &:hover {
+    opacity: 100%;
+    border: 1px solid var(--color-neutral-600);
+    background: var(--color-neutral-700);
+  }
+}
+
+.name {
+  color: var(--color-neutral-400);
+  transition: 0.25s ease-in-out;
+
+  :hover > & {
+    color: var(--color-neutral-100);
+  }
+}
+
+.label {
+  position: absolute;
+  bottom: var(--space-xs-fixed);
+  left: auto;
+  right: auto;
+  text-transform: uppercase;
+  font-weight: var(--semibold);
+  font-size: calc(var(--text-md) * 0.625);
+  line-height: var(--text-md);
+}
+
+.labelConnected {
+  color: var(--color-success-400);
+}
+
+.connectedIcon {
+  position: absolute;
+  top: var(--space-xs-fixed);
+  right: var(--space-xs-fixed);
+}

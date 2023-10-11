@@ -1,0 +1,20 @@
+@import '../../styles/designSystem/spacing';
+@import '../../styles/designSystem/colors';
+
+.root {
+  max-width: 600px;
+}
+
+.emailRoundedIcon {
+  background: var(--color-status-success);
+}
+
+.icon {
+  fill: var(--color-neutral-900);
+}
+
+.button {
+  width: 100%;
+  max-width: 218px;
+  margin: auto;
+}

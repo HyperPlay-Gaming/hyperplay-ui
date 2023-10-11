@@ -23,6 +23,6 @@ export const Default = () => (
       windows: true,
       web: true
     }}
-    action={<Button fullWidth={true}>Add to Library</Button>}
+    action={<Button>Add to Library</Button>}
   />
 )
