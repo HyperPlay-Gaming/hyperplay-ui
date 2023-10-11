@@ -34,7 +34,9 @@ const IconFill: { [key: string]: string } = {
   Email: 'white',
   GoogleLogo: 'white',
   TwitterFilled: 'white',
-  WebIcon: '#FFFFFF'
+  WebIcon: '#FFFFFF',
+  TrophyOutline: '#FFFFFF',
+  CheckmarkCircleOutline: '#FFFFFF'
 }
 
 const IconStroke: { [key: string]: string } = {
@@ -59,8 +61,6 @@ export default function Icons() {
       }
       if (Object.hasOwn(IconFill, key)) {
         props.fill = IconFill[key]
-      } else {
-        props.fill = 'white'
       }
       if (Object.hasOwn(IconStroke, key)) {
         props.stroke = IconStroke[key]
