@@ -12,6 +12,7 @@ export interface ButtonProps
   rightIcon?: React.ReactNode
   active?: boolean
   disabled?: boolean
+  spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
@@ -24,6 +25,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     active,
     disabled,
     className: propClassName,
+    spacing = 'md',
     ...props
   }: ButtonProps,
   ref
@@ -46,7 +48,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       )}
       {...props}
     >
-      <div className={styles.content}>
+      <div
+        className={styles.content}
+        style={{ gap: `var(--space-${spacing}-fixed)` }}
+      >
         {leftIcon}
         {children}
         {rightIcon}

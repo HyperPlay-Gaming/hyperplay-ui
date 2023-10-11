@@ -1,6 +1,10 @@
 import React, { HTMLProps, ReactNode } from 'react'
 
-import AchievementNav from '../AchievementNav'
+import cn from 'classnames'
+
+import * as Images from '@/assets/images'
+
+import AchievementNav, { AchievementNavProps } from '../AchievementNav'
 import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
@@ -29,6 +33,7 @@ export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
     mintedFilterLabel?: string
     mintButtonLabel?: string
   }
+  achievementNavProps: AchievementNavProps
 }
 
 export default function AchievementSummaryTable({
@@ -43,6 +48,7 @@ export default function AchievementSummaryTable({
     mintedFilterLabel: 'Minted',
     mintButtonLabel: 'Mint'
   },
+  achievementNavProps,
   ...rest
 }: GameAchievementsProps) {
   const { handleNextPage, handlePrevPage, currentPage, totalPages } =
@@ -51,8 +57,7 @@ export default function AchievementSummaryTable({
   return (
     <div className={styles.container} {...rest}>
       <AchievementNav
-        freeMints={10}
-        basketAmount={0}
+        {...achievementNavProps}
         nextButtonProps={{
           onClick: handleNextPage,
           disabled: currentPage === totalPages
@@ -92,8 +97,10 @@ export default function AchievementSummaryTable({
             <Button
               type="secondary"
               size="medium"
-              className={styles.mintButton}
+              leftIcon={<Images.PlusCircleOutline width={16} height={16} />}
+              spacing="xs"
               {...mintButtonProps}
+              className={cn(styles.mintButton, mintButtonProps?.className)}
             >
               {i18n.mintButtonLabel}
             </Button>
