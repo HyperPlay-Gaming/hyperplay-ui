@@ -92,6 +92,7 @@ export const Default = () => {
           setActiveFilter
         }}
         mintButtonProps={{ onClick: () => console.log('mint') }}
+        achievementNavProps={{ freeMints: 10, basketAmount: 20 }}
       />
     </div>
   )

@@ -6,12 +6,20 @@ import styles from './Button.module.scss'
 
 export interface ButtonProps
   extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
-  type?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'danger' | 'menuItem'
+  type?:
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'link'
+    | 'danger'
+    | 'menuItem'
+    | 'alert'
   size?: 'small' | 'medium' | 'large' | 'icon'
   leftIcon?: JSX.Element
   rightIcon?: React.ReactNode
   active?: boolean
   disabled?: boolean
+  spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
@@ -24,6 +32,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     active,
     disabled,
     className: propClassName,
+    spacing = 'md',
     ...props
   }: ButtonProps,
   ref
@@ -46,7 +55,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       )}
       {...props}
     >
-      <div className={styles.content}>
+      <div
+        className={styles.content}
+        style={{ gap: `var(--space-${spacing}-fixed)` }}
+      >
         {leftIcon}
         {children}
         {rightIcon}

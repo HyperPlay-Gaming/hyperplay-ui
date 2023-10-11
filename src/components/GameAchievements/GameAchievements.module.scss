@@ -106,6 +106,10 @@
     display: flex;
     align-items: center;
     gap: var(--space-xs);
+    color: var(--color-success-100);
+    svg {
+      fill: var(--color-success-300);
+    }
   }
 }
 
@@ -129,4 +133,15 @@
   margin-bottom: var(--space-sm-fixed);
   margin-top: var(--space-lg-fixed);
   font-family: var(--primary-font-family);
+}
+
+.ctaContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-xs);
+}
+
+.mintButton {
+  width: 120px;
+  gap: var(--space-xs);
 }

@@ -15,6 +15,7 @@ import ProgressKey, {
 import getProgress, {
   AchievementProgressProps
 } from '../AchievementProgress/helpers/getProgress'
+import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import styles from './GameAchievements.module.scss'
@@ -42,6 +43,7 @@ export interface GameAchievementsProps
   progressKeyProps?: ProgressKeyTextProps
   achievementProgressProps?: AchievementProgressTextProps
   achievementNavProps: AchievementNavProps
+  mintButtonProps?: ButtonProps
   sortProps: DropdownProps
   paginationProps: {
     currentPage: number
@@ -62,6 +64,7 @@ export interface GameAchievementsProps
      * title of the Achievements list
      */
     achievementsTitleLabel?: string
+    mintButtonLabel?: string
   }
 }
 
@@ -76,10 +79,12 @@ export default function GameAchievements({
   sortProps,
   paginationProps,
   achievementProgressProps,
+  mintButtonProps,
   i18n = {
     lockedLabel: 'Locked',
     unLockedLabel: 'Unlocked',
-    achievementsTitleLabel: 'Achievements'
+    achievementsTitleLabel: 'Achievements',
+    mintButtonLabel: 'Mint'
   },
   ...rest
 }: GameAchievementsProps) {
@@ -107,6 +112,19 @@ export default function GameAchievements({
             disabled: currentPage === 1
           }}
         />
+
+        <div className={cn(styles.row, styles.ctaContainer)}>
+          <Button
+            type="secondary"
+            size="medium"
+            leftIcon={<Images.PlusCircleOutline width={16} height={16} />}
+            spacing="xs"
+            {...mintButtonProps}
+            className={cn(styles.mintButton, mintButtonProps?.className)}
+          >
+            {i18n.mintButtonLabel}
+          </Button>
+        </div>
 
         <div className={styles.row}>
           <div>
@@ -197,11 +215,7 @@ export default function GameAchievements({
                 ) : (
                   <div className={styles.unlocked}>
                     <div>{i18n.unLockedLabel}</div>
-                    <Images.CheckmarkCircleOutline
-                      fill="var(--color-neutral-500)"
-                      width={21}
-                      height={21}
-                    />
+                    <Images.CheckmarkCircleOutline width={21} height={21} />
                   </div>
                 )}
               </div>
