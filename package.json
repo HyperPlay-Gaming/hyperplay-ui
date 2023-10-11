@@ -16,6 +16,9 @@
     "prettier": "prettier --check .",
     "test": "vitest"
   },
+  "resolutions": {
+    "jackspeak": "2.1.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@emotion/react": "^11.11.0",
@@ -73,9 +76,6 @@
     "vite-plugin-static-copy": "^0.13.0",
     "vite-plugin-svgr": "^2.4.0",
     "vitest": "^0.33.0"
-  },
-  "resolutions": {
-    "jackspeak": "2.1.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.11.0",
