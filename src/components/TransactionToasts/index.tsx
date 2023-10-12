@@ -11,18 +11,18 @@ import {
 
 import styles from './index.module.css'
 
-export type statusType = 'pending' | 'submitted' | 'error' | 'alert' | 'success'
+export type TransactionStatus = 'pending' | 'submitted' | 'error' | 'alert' | 'success'
 
-interface TransactionToastProps {
+export interface TransactionToastProps {
   title: string
   subtext: string
-  status: statusType
+  status: TransactionStatus
   onClick: () => void
   showCloseButton?: boolean
 }
 
 export default function TransactionToast(props: TransactionToastProps) {
-  function getTxnImage(status: statusType): JSX.Element {
+  function getTxnImage(status: TransactionStatus): JSX.Element {
     switch (status) {
       case 'pending':
         return <TxnPending />
