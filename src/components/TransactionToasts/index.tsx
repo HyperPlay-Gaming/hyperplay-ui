@@ -11,7 +11,12 @@ import {
 
 import styles from './index.module.css'
 
-export type TransactionStatus = 'pending' | 'submitted' | 'error' | 'alert' | 'success'
+export type TransactionStatus =
+  | 'pending'
+  | 'submitted'
+  | 'error'
+  | 'alert'
+  | 'success'
 
 export interface TransactionToastProps {
   title: string

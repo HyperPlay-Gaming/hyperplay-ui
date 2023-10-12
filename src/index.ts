@@ -4,7 +4,10 @@ import './fonts.css'
 import './index.scss'
 
 export { default as TransactionToast } from './components/TransactionToasts'
-export type { TransactionToastProps, TransactionStatus } from './components/TransactionToasts'
+export type {
+  TransactionToastProps,
+  TransactionStatus
+} from './components/TransactionToasts'
 export { default as Button } from './components/Button'
 export { default as NavBar } from './components/NavBar'
 export { default as GameCard } from './components/GameCard'
