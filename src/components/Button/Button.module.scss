@@ -47,7 +47,7 @@
 }
 
 .primary {
-  color: var(--color-neutral-0);
+  color: var(--color-neutral-100);
   background: var(--color-gradient-01);
   border: 1.5px solid transparent;
   background: var(--color-gradient-01) padding-box,
@@ -65,7 +65,7 @@
 }
 
 .secondary {
-  color: var(--color-neutral-0);
+  color: var(--color-neutral-100);
   border: 1.5px solid transparent;
 
   background: var(--color-primary-500);
@@ -221,10 +221,10 @@
 .menuItem {
   padding: 0;
   margin: 0;
-  color: var(--color-neutral-0);
+  color: var(--color-neutral-100);
 
   &:hover .content {
-    color: var(--color-neutral-0);
+    color: var(--color-neutral-100);
   }
 
   .content:after {

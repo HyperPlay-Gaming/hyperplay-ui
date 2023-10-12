@@ -1,4 +1,9 @@
-import React, { HTMLAttributes, PropsWithChildren, forwardRef } from 'react'
+import React, {
+  ButtonHTMLAttributes,
+  HTMLAttributes,
+  PropsWithChildren,
+  forwardRef
+} from 'react'
 
 import classNames from 'classnames'
 
@@ -15,6 +20,7 @@ export interface ButtonProps
     | 'menuItem'
     | 'alert'
   size?: 'small' | 'medium' | 'large' | 'icon'
+  htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type']
   leftIcon?: JSX.Element
   rightIcon?: React.ReactNode
   active?: boolean
@@ -31,6 +37,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     children,
     active,
     disabled,
+    htmlType,
     className: propClassName,
     spacing = 'md',
     ...props
@@ -41,6 +48,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     <button
       disabled={disabled}
       ref={ref}
+      type={htmlType}
       className={classNames(
         styles.base,
         styles[type],

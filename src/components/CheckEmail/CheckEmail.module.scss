@@ -1,0 +1,38 @@
+@import '../../styles/designSystem/spacing';
+@import '../../styles/designSystem/colors';
+
+.root {
+  max-width: 600px;
+}
+
+.emailRoundedIcon {
+  background: var(--color-primary-500);
+}
+
+.icon {
+  fill: var(--color-neutral-100);
+}
+
+.verifyButton {
+  width: 100%;
+  max-width: 218px;
+  margin: auto;
+}
+
+.linkContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonLink {
+  width: fit-content;
+  color: var(--color-secondary-300);
+  padding: 0 !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2lg);
+}

@@ -171,6 +171,20 @@ button {
   font-weight: var(--extrabold);
 }
 
+/* FONT WEIGHT */
+/* Helpers */
+.text--semibold {
+  font-weight: var(--semibold);
+}
+
+.text--bold {
+  font-weight: var(--bold);
+}
+
+.text--extrabold {
+  font-weight: var(--extrabold);
+}
+
 /* Elements */
 $h1FontSize: --text-9xl;
 @mixin h1-mixin {
