@@ -50,6 +50,7 @@ export const MediumSecondary = () => (
 export const MediumTertiary = () => (
   <Button type="tertiary">{medButtonText}</Button>
 )
+export const MediumAlert = () => <Button type="alert">{medButtonText}</Button>
 
 export const MediumLink = () => <Button type="link">{medButtonText}</Button>
 
