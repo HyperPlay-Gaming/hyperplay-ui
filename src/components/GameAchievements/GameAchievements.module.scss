@@ -139,9 +139,23 @@
   display: flex;
   justify-content: flex-end;
   margin-top: var(--space-xs);
+  gap: var(--space-xs);
 }
 
-.mintButton {
-  width: 120px;
-  gap: var(--space-xs);
+.rightIcon {
+  font-size: var(--text-md);
+  padding: 0 var(--space-xs);
+  border-radius: var(--space-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.mint {
+    background-color: var(--color-primary-700);
+  }
+
+  &.update {
+    background-color: var(--color-alert-400);
+    color: var(--color-neutral-800);
+  }
 }

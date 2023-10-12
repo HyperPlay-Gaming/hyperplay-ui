@@ -43,7 +43,8 @@ export interface GameAchievementsProps
   progressKeyProps?: ProgressKeyTextProps
   achievementProgressProps?: AchievementProgressTextProps
   achievementNavProps: AchievementNavProps
-  mintButtonProps?: ButtonProps
+  mintButtonProps?: ButtonProps & { totalToMint: number }
+  updateButtonProps?: ButtonProps & { totalToUpdate: number }
   sortProps: DropdownProps
   paginationProps: {
     currentPage: number
@@ -65,6 +66,7 @@ export interface GameAchievementsProps
      */
     achievementsTitleLabel?: string
     mintButtonLabel?: string
+    updateButtonLabel?: string
   }
 }
 
@@ -80,11 +82,13 @@ export default function GameAchievements({
   paginationProps,
   achievementProgressProps,
   mintButtonProps,
+  updateButtonProps,
   i18n = {
     lockedLabel: 'Locked',
     unLockedLabel: 'Unlocked',
     achievementsTitleLabel: 'Achievements',
-    mintButtonLabel: 'Mint'
+    mintButtonLabel: 'Mint',
+    updateButtonLabel: 'Update'
   },
   ...rest
 }: GameAchievementsProps) {
@@ -96,6 +100,8 @@ export default function GameAchievements({
     })
   const { handleNextPage, handlePrevPage, currentPage, totalPages } =
     paginationProps
+  const { totalToMint, ...mintProps } = mintButtonProps ?? {}
+  const { totalToUpdate, ...updateProps } = updateButtonProps ?? {}
 
   return (
     <div className={styles.container} {...rest}>
@@ -119,10 +125,28 @@ export default function GameAchievements({
             size="medium"
             leftIcon={<Images.PlusCircleOutline width={16} height={16} />}
             spacing="xs"
-            {...mintButtonProps}
-            className={cn(styles.mintButton, mintButtonProps?.className)}
+            rightIcon={
+              <div className={cn(styles.rightIcon, styles.mint)}>
+                {totalToMint ?? 0}
+              </div>
+            }
+            {...mintProps}
           >
             {i18n.mintButtonLabel}
+          </Button>
+          <Button
+            type="alert"
+            size="medium"
+            leftIcon={<Images.Update width={16} height={16} />}
+            spacing="xs"
+            rightIcon={
+              <div className={cn(styles.rightIcon, styles.update)}>
+                {totalToUpdate ?? 0}
+              </div>
+            }
+            {...updateProps}
+          >
+            {i18n.updateButtonLabel}
           </Button>
         </div>
 
