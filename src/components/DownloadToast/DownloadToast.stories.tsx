@@ -20,6 +20,7 @@ export const Default = () => (
     onCloseClick={() => console.log('close clicked')}
     onPlayClick={() => console.log('play clicked')}
     status="inProgress"
+    statusText="Downloading"
   />
 )
 
@@ -36,6 +37,7 @@ export const zeroPercent = () => (
     onCloseClick={() => console.log('close clicked')}
     onPlayClick={() => console.log('play clicked')}
     status="inProgress"
+    statusText="Downloading"
   />
 )
 
@@ -52,6 +54,7 @@ export const hundredPercent = () => (
     onCloseClick={() => console.log('close clicked')}
     onPlayClick={() => console.log('play clicked')}
     status="showOnlyCancel"
+    statusText="Downloading"
   />
 )
 
@@ -76,6 +79,7 @@ export const paused = () => (
       onCloseClick={() => console.log('close clicked')}
       onPlayClick={() => console.log('play clicked')}
       status="paused"
+      statusText="Paused"
     />
   </div>
 )
@@ -101,6 +105,7 @@ export const done = () => (
       onCloseClick={() => console.log('close clicked')}
       onPlayClick={() => console.log('play clicked')}
       status="done"
+      statusText="Ready to Play"
     />
   </div>
 )
