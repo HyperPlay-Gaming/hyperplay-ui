@@ -42,8 +42,31 @@
   }
 }
 
-.mintButton {
-  width: 120px;
+.ctas {
+  display: flex;
+  gap: var(--space-xs);
+  flex-direction: column;
+
+  @include variables.for-tablet-portrait-up {
+    flex-direction: row;
+  }
+}
+
+.rightIcon {
+  font-size: var(--text-md);
+  padding: 0 var(--space-xs);
+  border-radius: var(--space-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.mint {
+    background-color: var(--color-primary-700);
+  }
+  &.update {
+    background-color: var(--color-alert-400);
+    color: var(--color-neutral-800);
+  }
 }
 
 .tab {

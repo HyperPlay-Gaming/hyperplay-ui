@@ -13,7 +13,8 @@ import styles from './AchievementSummaryTable.module.scss'
 
 export type AchievementFilter = 'all' | 'new' | 'minted'
 
-export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
+export interface AchievementSummaryTableProps
+  extends HTMLProps<HTMLDivElement> {
   games: ReactNode[]
   sortProps: DropdownProps
   paginationProps: {
@@ -26,12 +27,14 @@ export interface GameAchievementsProps extends HTMLProps<HTMLDivElement> {
     activeFilter: AchievementFilter
     setActiveFilter: (filter: AchievementFilter) => void
   }
-  mintButtonProps?: ButtonProps
+  mintButtonProps?: ButtonProps & { totalToMint: number }
+  updateButtonProps?: ButtonProps & { totalToUpdate: number }
   i18n?: {
     allFilterLabel?: string
     newFilterLabel?: string
     mintedFilterLabel?: string
     mintButtonLabel?: string
+    updateButtonLabel?: string
   }
   achievementNavProps: AchievementNavProps
 }
@@ -42,17 +45,21 @@ export default function AchievementSummaryTable({
   paginationProps,
   filterProps,
   mintButtonProps,
+  updateButtonProps,
   i18n = {
     allFilterLabel: 'All',
     newFilterLabel: 'New',
     mintedFilterLabel: 'Minted',
-    mintButtonLabel: 'Mint'
+    mintButtonLabel: 'Mint',
+    updateButtonLabel: 'Update'
   },
   achievementNavProps,
   ...rest
-}: GameAchievementsProps) {
+}: AchievementSummaryTableProps) {
   const { handleNextPage, handlePrevPage, currentPage, totalPages } =
     paginationProps
+  const { totalToMint, ...mintProps } = mintButtonProps ?? {}
+  const { totalToUpdate, ...updateProps } = updateButtonProps ?? {}
 
   return (
     <div className={styles.container} {...rest}>
@@ -93,16 +100,34 @@ export default function AchievementSummaryTable({
               </Tabs.Tab>
             </Tabs.List>
           </div>
-          <div>
+          <div className={styles.ctas}>
             <Button
               type="secondary"
               size="medium"
               leftIcon={<Images.PlusCircleOutline width={16} height={16} />}
               spacing="xs"
-              {...mintButtonProps}
-              className={cn(styles.mintButton, mintButtonProps?.className)}
+              rightIcon={
+                <div className={cn(styles.rightIcon, styles.mint)}>
+                  {totalToMint ?? 0}
+                </div>
+              }
+              {...mintProps}
             >
               {i18n.mintButtonLabel}
+            </Button>
+            <Button
+              type="alert"
+              size="medium"
+              leftIcon={<Images.Update width={16} height={16} />}
+              spacing="xs"
+              rightIcon={
+                <div className={cn(styles.rightIcon, styles.update)}>
+                  {totalToUpdate ?? 0}
+                </div>
+              }
+              {...updateProps}
+            >
+              {i18n.updateButtonLabel}
             </Button>
           </div>
         </div>
