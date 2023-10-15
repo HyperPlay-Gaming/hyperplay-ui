@@ -13,7 +13,7 @@ import styles from './index.module.css'
 
 export type statusType = 'pending' | 'submitted' | 'error' | 'alert' | 'success'
 
-interface TransactionToastProps {
+export interface TransactionToastProps {
   title: string
   subtext: string
   status: statusType
