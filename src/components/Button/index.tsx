@@ -11,7 +11,14 @@ import styles from './Button.module.scss'
 
 export interface ButtonProps
   extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
-  type?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'danger' | 'menuItem'
+  type?:
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'link'
+    | 'danger'
+    | 'menuItem'
+    | 'alert'
   size?: 'small' | 'medium' | 'large' | 'icon'
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type']
   leftIcon?: JSX.Element
