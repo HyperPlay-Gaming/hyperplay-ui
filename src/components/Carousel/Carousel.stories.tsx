@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import ReactPlayer from 'react-player'
 
 import dtCover from '@/assets/DarkThroneLandscape.png?url'
@@ -40,38 +40,66 @@ export const ControllerDetached = () => (
   </div>
 )
 
-const itemsWithVideo: SlideData[] = [
-  {
-    slideElement: (
-      <ReactPlayer
-        url="https://www.youtube.com/watch?v=bGzW-ps-_vc"
-        width={'100%'}
-        height={'100%'}
-        onPlay={() => console.log('play called')}
-        onClickPreview={() => console.log('preview called')}
-        controls={true}
-      />
-    ),
-    title: '',
-    thumbnail: (
-      <ReactPlayer
-        url="https://www.youtube.com/watch?v=bGzW-ps-_vc"
-        width={'100%'}
-        height={'100%'}
-        light={true}
-        playIcon={<></>}
-        style={{ pointerEvents: 'none' }}
-      />
-    ),
-    disableGradient: true
-  },
-  ...items
-]
-
 export const WithYouTubeVideos = () => {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [canAutoRotate, setCanAutoRotate] = useState(true)
+  const onPlay = useCallback(() => {
+    console.log('On play tapped')
+
+    setIsPlaying(true)
+    setCanAutoRotate(false)
+  }, [])
+  const onStop = useCallback(() => {
+    console.log('On stop tapped')
+
+    setCanAutoRotate(true)
+
+    if (isPlaying) {
+      setIsPlaying(false)
+    }
+  }, [isPlaying])
+
+  const onThumbnailHandler = useCallback(() => {
+    console.log('On control item tapped')
+
+    setIsPlaying(false)
+    setCanAutoRotate(true)
+  }, [])
+
+  const itemsWithVideo: SlideData[] = useMemo(() => [
+    {
+      slideElement: (
+        <ReactPlayer
+          url="https://www.youtube.com/watch?v=bGzW-ps-_vc"
+          width={'100%'}
+          height={'100%'}
+          onPlay={onPlay}
+          onPause={onStop}
+          onEnded={onStop}
+          playing={isPlaying}
+          onClickPreview={() => console.log('preview clicked')}
+          controls={true}
+        />
+      ),
+      title: '',
+      thumbnail: (
+        <ReactPlayer
+          url="https://www.youtube.com/watch?v=bGzW-ps-_vc"
+          width={'100%'}
+          height={'100%'}
+          light={true}
+          playIcon={<></>}
+          style={{ pointerEvents: 'none' }}
+        />
+      ),
+      disableGradient: true
+    },
+    ...items
+  ], [isPlaying])
+
   return (
     <div style={{ maxWidth: 1080, maxHeight: 400 }}>
-      <Carousel items={itemsWithVideo} autoplayDelayInMs={6000} />
+      <Carousel items={itemsWithVideo} autoplayDelayInMs={6000} canAutoRotate={canAutoRotate} onThumbnailHandler={onThumbnailHandler} />
     </div>
   )
 }
