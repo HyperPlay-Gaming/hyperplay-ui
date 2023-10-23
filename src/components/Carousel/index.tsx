@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { Carousel } from '@mantine/carousel'
 import Autoplay, { AutoplayType } from 'embla-carousel-autoplay'
@@ -24,22 +24,27 @@ export interface Carouselv2Props {
   onThumbnailHandler?: (index: number) => void
 }
 
-
-const Carouselv2 = ({ canAutoRotate = true, onThumbnailHandler, ...props }: Carouselv2Props) => {
+const Carouselv2 = ({
+  canAutoRotate = true,
+  onThumbnailHandler,
+  ...props
+}: Carouselv2Props) => {
   const [activeIndex, setActiveIndex] = useState(0)
-  const autoplay = useRef<AutoplayType>(Autoplay({ delay: props.autoplayDelayInMs, stopOnInteraction: false }))
+  const autoplay = useRef<AutoplayType>(
+    Autoplay({ delay: props.autoplayDelayInMs, stopOnInteraction: false })
+  )
   const [emblaApiRef, setEmblaApiRef] = useState<EmblaCarouselType>()
   const controllerLayout = props.controllerLayout ?? 'attached'
-  
+
   useEffect(() => {
     if (emblaApiRef) {
       if (canAutoRotate) {
-        autoplay.current.play();
+        autoplay.current.play()
       } else {
-        autoplay.current.stop();
+        autoplay.current.stop()
       }
     }
-  }, [emblaApiRef, canAutoRotate]);
+  }, [emblaApiRef, canAutoRotate])
 
   function getSlides() {
     return props.items.map((item) => (
@@ -67,7 +72,7 @@ const Carouselv2 = ({ canAutoRotate = true, onThumbnailHandler, ...props }: Caro
         plugins={[autoplay.current]}
         onMouseEnter={() => {
           if (canAutoRotate) {
-            autoplay.current.stop();
+            autoplay.current.stop()
           }
         }}
         onMouseLeave={() => {

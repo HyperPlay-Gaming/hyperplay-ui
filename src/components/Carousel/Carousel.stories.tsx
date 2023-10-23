@@ -66,40 +66,48 @@ export const WithYouTubeVideos = () => {
     setCanAutoRotate(true)
   }, [])
 
-  const itemsWithVideo: SlideData[] = useMemo(() => [
-    {
-      slideElement: (
-        <ReactPlayer
-          url="https://www.youtube.com/watch?v=bGzW-ps-_vc"
-          width={'100%'}
-          height={'100%'}
-          onPlay={onPlay}
-          onPause={onStop}
-          onEnded={onStop}
-          playing={isPlaying}
-          onClickPreview={() => console.log('preview clicked')}
-          controls={true}
-        />
-      ),
-      title: '',
-      thumbnail: (
-        <ReactPlayer
-          url="https://www.youtube.com/watch?v=bGzW-ps-_vc"
-          width={'100%'}
-          height={'100%'}
-          light={true}
-          playIcon={<></>}
-          style={{ pointerEvents: 'none' }}
-        />
-      ),
-      disableGradient: true
-    },
-    ...items
-  ], [isPlaying])
+  const itemsWithVideo: SlideData[] = useMemo(
+    () => [
+      {
+        slideElement: (
+          <ReactPlayer
+            url="https://www.youtube.com/watch?v=bGzW-ps-_vc"
+            width={'100%'}
+            height={'100%'}
+            onPlay={onPlay}
+            onPause={onStop}
+            onEnded={onStop}
+            playing={isPlaying}
+            onClickPreview={() => console.log('preview clicked')}
+            controls={true}
+          />
+        ),
+        title: '',
+        thumbnail: (
+          <ReactPlayer
+            url="https://www.youtube.com/watch?v=bGzW-ps-_vc"
+            width={'100%'}
+            height={'100%'}
+            light={true}
+            playIcon={<></>}
+            style={{ pointerEvents: 'none' }}
+          />
+        ),
+        disableGradient: true
+      },
+      ...items
+    ],
+    [isPlaying]
+  )
 
   return (
     <div style={{ maxWidth: 1080, maxHeight: 400 }}>
-      <Carousel items={itemsWithVideo} autoplayDelayInMs={6000} canAutoRotate={canAutoRotate} onThumbnailHandler={onThumbnailHandler} />
+      <Carousel
+        items={itemsWithVideo}
+        autoplayDelayInMs={6000}
+        canAutoRotate={canAutoRotate}
+        onThumbnailHandler={onThumbnailHandler}
+      />
     </div>
   )
 }
