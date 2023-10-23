@@ -38,7 +38,7 @@ const NavBar = function () {
       </a>
       <a
         className={`${navBarStyles.navItem} menu`}
-        href="https://docs.hyperplaygaming.com/"
+        href="https://docs.hyperplay.xyz/"
         target="_blank"
         rel="noopener noreferrer"
         data-testid="docs"
@@ -47,7 +47,7 @@ const NavBar = function () {
       </a>
       <a
         className={`${navBarStyles.navItem} menu`}
-        href="https://docs.hyperplaygaming.com/faq"
+        href="https://docs.hyperplay.xyz/faq"
         target="_blank"
         rel="noopener noreferrer"
         data-testid="FAQ"
