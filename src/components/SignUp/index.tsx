@@ -1,5 +1,3 @@
-'use client'
-
 import React, { HTMLProps, useState } from 'react'
 
 import cn from 'classnames'
