@@ -11,6 +11,7 @@
     "build-storybook": "storybook build",
     "serve-storybook": "serve storybook-static",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json,.mdx ./src",
+    "lint:fix": "eslint --fix -c .eslintrc --ext .tsx,ts ./src",
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
     "prettier-fix": "prettier --write .",
     "prettier": "prettier --check .",
