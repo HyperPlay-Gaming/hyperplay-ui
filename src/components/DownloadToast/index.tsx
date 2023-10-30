@@ -4,7 +4,12 @@ import { CloseButton, PauseIcon, PlayIcon, XCircle } from '@/assets/images'
 
 import DownloadToastStyles from './index.module.scss'
 
-export type downloadStatus = 'inProgress' | 'paused' | 'showOnlyCancel' | 'done' | 'inExtraction'
+export type downloadStatus =
+  | 'inProgress'
+  | 'paused'
+  | 'showOnlyCancel'
+  | 'done'
+  | 'inExtraction'
 
 interface DownloadToastType {
   imgUrl: string

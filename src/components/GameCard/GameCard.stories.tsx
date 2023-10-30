@@ -82,23 +82,23 @@ export const RocketMonsters: Story = {
 }
 
 export const DownloadingGameCard: Story = {
-  args: { 
+  args: {
     ...props,
-    state: 'INSTALLING',
+    state: 'INSTALLING'
   }
 }
 
 export const PauseDownloadGameCard: Story = {
-  args: { 
+  args: {
     ...props,
-    state: 'PAUSED',
+    state: 'PAUSED'
   }
 }
 
 export const ExtractingGameCard: Story = {
-  args: { 
+  args: {
     ...props,
-    state: 'EXTRACTING',
+    state: 'EXTRACTING'
   }
 }
 
