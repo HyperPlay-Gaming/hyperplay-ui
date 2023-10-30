@@ -9,6 +9,7 @@ export type GameCardState =
   | 'PAUSED' //progress bar with cancel/play buttons
   | 'SHOW_MESSAGE' //text only
   | 'NEEDS_UPDATE' //action bar with update icon
+  | 'EXTRACTING' // show only cancel button
 
 export interface InstallProgress {
   bytes: string
