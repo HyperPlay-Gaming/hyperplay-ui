@@ -57,8 +57,8 @@ const games = [
 
 export const Default = () => {
   const achievementsSortOptions = [
-    { text: 'Alphabetically(ASC)' },
-    { text: 'Alphabetically(DES)' }
+    { text: 'Alphabetically (ASC)' },
+    { text: 'Alphabetically (DES)' }
   ] as itemType[]
   const [selectedSort, setSelectedSort] = useState(achievementsSortOptions[0])
   const [activeFilter, setActiveFilter] = useState<AchievementFilter>('all')
