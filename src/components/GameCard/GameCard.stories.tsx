@@ -60,7 +60,8 @@ const meta: Meta<typeof GameCard> = {
         'UNINSTALLING',
         'INSTALLING',
         'PAUSED',
-        'NEEDS_UPDATE'
+        'NEEDS_UPDATE',
+        'EXTRACTING'
       ]
     }
   }
@@ -78,6 +79,27 @@ export const MoonBlasters: Story = {
 
 export const RocketMonsters: Story = {
   args: { ...props, imageUrl: RocketMonstersCover, title: 'Rocket Monsters' }
+}
+
+export const DownloadingGameCard: Story = {
+  args: {
+    ...props,
+    state: 'INSTALLING'
+  }
+}
+
+export const PauseDownloadGameCard: Story = {
+  args: {
+    ...props,
+    state: 'PAUSED'
+  }
+}
+
+export const ExtractingGameCard: Story = {
+  args: {
+    ...props,
+    state: 'EXTRACTING'
+  }
 }
 
 export default meta

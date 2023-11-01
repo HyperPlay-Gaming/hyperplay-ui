@@ -11,6 +11,7 @@ type DownloadBarProps = {
   message?: string
   progress?: InstallProgress
   isPaused?: boolean
+  hasProgressControls?: boolean
 }
 
 const DownloadBar = ({
@@ -19,7 +20,8 @@ const DownloadBar = ({
   onStopDownloadClick,
   onPauseClick,
   onResumeClick,
-  isPaused
+  isPaused,
+  hasProgressControls = true
 }: DownloadBarProps) => {
   const progressBarStyle = {
     '--download-progress-bar-percentage': `${
@@ -42,13 +44,15 @@ const DownloadBar = ({
         <button onClick={onStopDownloadClick}>
           <Images.XCircle></Images.XCircle>
         </button>
-        <button onClick={isPaused ? onResumeClick : onPauseClick}>
-          {isPaused ? (
-            <Images.Resume fill="var(--color-tertiary-400)"></Images.Resume>
-          ) : (
-            <Images.PauseIcon fill="var(--color-tertiary-400)"></Images.PauseIcon>
-          )}
-        </button>
+        {hasProgressControls && (
+          <button onClick={isPaused ? onResumeClick : onPauseClick}>
+            {isPaused ? (
+              <Images.Resume fill="var(--color-tertiary-400)"></Images.Resume>
+            ) : (
+              <Images.PauseIcon fill="var(--color-tertiary-400)"></Images.PauseIcon>
+            )}
+          </button>
+        )}
       </div>
     </>
   )

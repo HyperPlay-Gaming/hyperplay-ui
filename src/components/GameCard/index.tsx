@@ -158,6 +158,20 @@ const GameCard = ({
             />
           </>
         )
+      case 'EXTRACTING':
+        return (
+          <>
+            <DownloadBar
+              message={message}
+              progress={progress}
+              onStopDownloadClick={onStopDownloadClick}
+              onPauseClick={onPauseClick}
+              onResumeClick={onResumeClick}
+              isPaused={false}
+              hasProgressControls={false}
+            />
+          </>
+        )
       case 'PAUSED':
         return (
           <>
@@ -187,7 +201,6 @@ const GameCard = ({
         )
       default:
         return null
-        break
     }
   }
 
