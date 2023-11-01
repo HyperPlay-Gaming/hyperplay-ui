@@ -67,7 +67,7 @@ export default function AchievementSummaryTable({
         {...achievementNavProps}
         nextButtonProps={{
           onClick: handleNextPage,
-          disabled: currentPage === totalPages
+          disabled: currentPage === totalPages || totalPages === 0
         }}
         previousButtonProps={{
           onClick: handlePrevPage,
@@ -83,8 +83,9 @@ export default function AchievementSummaryTable({
             <Dropdown
               targetWidth="300"
               dropdownButtonDivProps={{
-                className: 'text--md weight--regular'
+                className: `text--lg weight--regular`
               }}
+              dropdownButtonProps={{ className: styles.dropdownSort }}
               {...sortProps}
             />
 

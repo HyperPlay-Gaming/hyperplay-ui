@@ -1,6 +1,6 @@
 import { Flex } from '@mantine/core'
 
-import { Eye } from '@/assets/images'
+import { Eye, Refresh } from '@/assets/images'
 
 import StoreRow from '.'
 
@@ -19,7 +19,7 @@ export const Default = () => {
         <p>Link Store</p>
       </StoreRow>
       <StoreRow store="steam" secondaryText="10 Games">
-        <p>anything else we want</p>
+        <Refresh />
       </StoreRow>
     </Flex>
   )
