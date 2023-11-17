@@ -29,6 +29,10 @@
   width: fit-content;
   color: var(--color-secondary-300);
   padding: 0 !important;
+
+  &:disabled {
+    color: var(--color-neutral-400);
+  }
 }
 
 .form {

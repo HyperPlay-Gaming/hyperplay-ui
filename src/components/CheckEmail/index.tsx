@@ -1,4 +1,4 @@
-import React, { HTMLProps } from 'react'
+import React, { HTMLProps, useEffect, useState } from 'react'
 
 import cn from 'classnames'
 
@@ -10,33 +10,53 @@ import styles from './CheckEmail.module.scss'
 
 export interface CheckEmailProps extends HTMLProps<HTMLDivElement> {
   email: string
-  onVerify: () => void
   onClose: () => void
   onResend: () => void
   i18n?: {
     title: string
     subtitle: string
-    button: string
     didNotReceiveEmail: string
     resend: string
+    retryIn: string
+    seconds: string
   }
 }
 
 const CheckEmail = ({
   className,
   email,
-  onVerify,
   onResend,
   onClose,
   i18n = {
     title: 'Check your email',
     subtitle: 'We sent a verification link to',
-    button: 'Verify email',
     didNotReceiveEmail: `Didn't receive an email?`,
-    resend: 'Click to resend'
+    resend: 'Click to resend',
+    retryIn: 'Retry in',
+    seconds: 'seconds'
   },
   ...props
 }: CheckEmailProps) => {
+  const [timeOut, setTimeOut] = useState(0)
+
+  const handleResend = () => {
+    if (timeOut > 0) return
+    onResend()
+    setTimeOut(15)
+  }
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout
+
+    if (timeOut > 0) {
+      interval = setInterval(() => {
+        setTimeOut((prevTimeOut) => prevTimeOut - 1)
+      }, 1000)
+    }
+
+    return () => clearInterval(interval)
+  }, [timeOut])
+
   return (
     <Modal.Root className={cn(className, styles.root)} {...props}>
       <Modal.CloseButton aria-label="close signup modal" onClick={onClose} />
@@ -49,26 +69,21 @@ const CheckEmail = ({
           {i18n.subtitle} <span className="text--semibold">{email}</span>
         </Modal.Body>
       </Modal.Header>
-      <Button
-        type="primary"
-        size="medium"
-        className={styles.verifyButton}
-        onClick={onVerify}
-      >
-        {i18n.button}
-      </Button>
       <div className={styles.linkContainer}>
         <span className={cn('button-sm', styles.subtitle)}>
           {i18n.didNotReceiveEmail}
         </span>
         &nbsp;
         <Button
+          disabled={timeOut > 0}
           type="link"
           size="small"
           className={styles.buttonLink}
-          onClick={onResend}
+          onClick={handleResend}
         >
-          {i18n.resend}
+          {timeOut > 0
+            ? `${i18n.retryIn} ${timeOut} ${i18n.seconds}`
+            : `${i18n.resend}`}
         </Button>
       </div>
     </Modal.Root>
