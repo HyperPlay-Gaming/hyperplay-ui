@@ -91,17 +91,41 @@ export const NegativeAchievements: Story = {
   }
 }
 
-export const SteamAspectRatioCard: Story = {
+export const SteamCardAspectRatio300px: Story = {
   args: {
     ...props,
-    image: cupheadCard
+    image: cupheadCard,
+    imageProps: {
+      width: 300
+    }
+  }
+}
+
+export const SteamCardAspectRatio400px: Story = {
+  args: {
+    ...props,
+    image: cupheadCard,
+    imageProps: {
+      width: 400
+    }
+  }
+}
+
+export const SteamCardAspectRatio500px: Story = {
+  args: {
+    ...props,
+    image: cupheadCard,
+    imageProps: {
+      width: 500
+    }
   }
 }
 
 export const BrightBackgroundCard: Story = {
   args: {
     ...props,
-    image: cyberpunkCard
+    image: cyberpunkCard,
+    ctaProps: {disabled: true}
   }
 }
 
