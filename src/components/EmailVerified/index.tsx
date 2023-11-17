@@ -10,7 +10,6 @@ import styles from './EmailVerified.module.scss'
 
 export interface EmailVerifiedModalProps extends HTMLProps<HTMLDivElement> {
   onContinue: () => void
-  onClose: () => void
   i18n?: {
     title: string
     subtitle: string
@@ -20,7 +19,6 @@ export interface EmailVerifiedModalProps extends HTMLProps<HTMLDivElement> {
 
 const EmailVerifiedModal = ({
   onContinue,
-  onClose,
   className,
   i18n = {
     title: 'Email verified',
@@ -31,7 +29,6 @@ const EmailVerifiedModal = ({
 }: EmailVerifiedModalProps) => {
   return (
     <Modal.Root className={cn(className, styles.root)} {...props}>
-      <Modal.CloseButton aria-label="email verified modal" onClick={onClose} />
       <Modal.HeadingIcon className={styles.emailRoundedIcon}>
         <Email className={styles.icon} width={20} height={20} />
       </Modal.HeadingIcon>
