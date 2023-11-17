@@ -23,9 +23,9 @@
       "@/*": ["src/*"]
     },
     "typeRoots": ["node_modules/@types", "src/global.d.ts"],
-    "types": ["vite-plugin-svgr/client", "vite/client"]
+    "types": ["vite-plugin-svgr/client", "vite/client", "vitest/globals"]
   },
-  "include": ["src"],
+  "include": ["src", "./tests/setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["vite.config.ts"]
 }
