@@ -65,6 +65,7 @@ export interface AchievementCardProps {
      */
     newAchievementLabel?: string
   }
+  showStatusIcon?: boolean
 }
 
 export default function AchievementCard({
@@ -83,6 +84,7 @@ export default function AchievementCard({
   },
   progressKeyProps,
   achievementProgressProps,
+  showStatusIcon = true,
   ...rest
 }: AchievementCardProps &
   ImageProps &
@@ -94,6 +96,15 @@ export default function AchievementCard({
       totalAchievementsCount,
       mintableAchievementsCount
     })
+
+    let statusIcon = null
+    if (showStatusIcon) {
+      statusIcon = (<StatusIcon
+      {...ctaProps}
+      state={state}
+      className={cn(ctaProps.className, styles.addButton)}
+    />)
+      }
 
   return (
     <Card
@@ -124,11 +135,7 @@ export default function AchievementCard({
         )}
       </Card.Section>
 
-      <StatusIcon
-        {...ctaProps}
-        state={state}
-        className={cn(ctaProps.className, styles.addButton)}
-      />
+      {statusIcon}
 
       <div className={styles.cardBody}>
         <div className={cn(styles.title, 'body')}>{title}</div>
