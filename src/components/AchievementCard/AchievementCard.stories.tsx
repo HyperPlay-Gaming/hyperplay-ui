@@ -1,7 +1,8 @@
-import reCard from '@/assets/steamCards/residentEvilCard.jpg?url'
+import type { Meta, StoryObj } from '@storybook/react'
+
 import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url'
 import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg?url'
-import type { Meta, StoryObj } from '@storybook/react'
+import reCard from '@/assets/steamCards/residentEvilCard.jpg?url'
 
 import AchievementCard, { AchievementCardProps } from '.'
 
@@ -23,7 +24,7 @@ const props: AchievementCardProps = {
 }
 
 export const Default: Story = {
-  args: {...props}
+  args: { ...props }
 }
 
 export const Disabled: Story = {
@@ -31,17 +32,16 @@ export const Disabled: Story = {
     ...props,
     title: 'Star Wars: Knights of the Old Republic',
     state: 'default',
-    ctaProps: {disabled: true}
+    ctaProps: { disabled: true }
   }
 }
-
 
 export const active: Story = {
   args: {
     ...props,
     title: 'Star Wars: Knights of the Old Republic',
     state: 'active',
-    ctaProps: {disabled: false }
+    ctaProps: { disabled: false }
   }
 }
 
@@ -50,7 +50,7 @@ export const update: Story = {
     ...props,
     title: 'Star Wars: Knights of the Old Republic',
     state: 'update',
-    ctaProps: {disabled: false },
+    ctaProps: { disabled: false },
     mintedAchievementsCount: 5,
     mintableAchievementsCount: 10,
     totalAchievementsCount: -5
@@ -60,7 +60,7 @@ export const update: Story = {
 export const NewAchievement: Story = {
   args: {
     ...props,
-    ctaProps: {disabled: false },
+    ctaProps: { disabled: false },
     mintedAchievementsCount: 5,
     mintableAchievementsCount: 10,
     totalAchievementsCount: -5,
@@ -125,7 +125,7 @@ export const BrightBackgroundCard: Story = {
   args: {
     ...props,
     image: cyberpunkCard,
-    ctaProps: {disabled: true}
+    ctaProps: { disabled: true }
   }
 }
 

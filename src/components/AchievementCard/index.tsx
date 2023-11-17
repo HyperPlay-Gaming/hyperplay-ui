@@ -98,14 +98,16 @@ export default function AchievementCard({
       mintableAchievementsCount
     })
 
-    let statusIcon = null
-    if (showStatusIcon) {
-      statusIcon = (<StatusIcon
-      {...ctaProps}
-      state={state}
-      className={cn(ctaProps.className, styles.addButton)}
-    />)
-      }
+  let statusIcon = null
+  if (showStatusIcon) {
+    statusIcon = (
+      <StatusIcon
+        {...ctaProps}
+        state={state}
+        className={cn(ctaProps.className, styles.addButton)}
+      />
+    )
+  }
 
   return (
     <Card
