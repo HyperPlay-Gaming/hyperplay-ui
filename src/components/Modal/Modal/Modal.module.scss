@@ -27,6 +27,8 @@
 
 .title {
   color: white;
+  font-size: var(--text-xl);
+  line-height: calc(var(--text-xl) * 1.25);
   font-weight: var(--bold);
   letter-spacing: -0.16px;
 }
