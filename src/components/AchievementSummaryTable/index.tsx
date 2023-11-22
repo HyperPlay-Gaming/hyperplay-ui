@@ -1,4 +1,4 @@
-import React, { HTMLProps, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 import cn from 'classnames'
 
@@ -10,12 +10,12 @@ import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import Tabs from '../Tabs'
 import styles from './AchievementSummaryTable.module.scss'
-import { ScrollArea } from '@mantine/core'
+import { StackProps } from '@mantine/core'
 
 export type AchievementFilter = 'all' | 'new' | 'minted'
 
 export interface AchievementSummaryTableProps
-  extends HTMLProps<HTMLDivElement> {
+  extends React.ForwardRefExoticComponent<StackProps & React.RefAttributes<HTMLDivElement>> {
   games: ReactNode[]
   sortProps: DropdownProps
   paginationProps: {
@@ -134,9 +134,9 @@ export default function AchievementSummaryTable({
             </div>
           </Tabs>
           </div>
-        <ScrollArea.Autosize className={styles.scrollArea}>
+        {/* <ScrollArea.Autosize className={styles.scrollArea}> */}
           <div className={styles.games}>{games}</div>
-        </ScrollArea.Autosize>
+        {/* </ScrollArea.Autosize> */}
       </div>
   )
 }

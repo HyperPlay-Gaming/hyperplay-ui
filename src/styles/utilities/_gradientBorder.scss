@@ -42,7 +42,7 @@ $hoverBorderThickness: 2px;
 
   &:before {
     content: '';
-    border-radius: var(--space-xs);
+    border-radius: calc(var(--space-xs) + $hoverBorderThickness);
     background-color: transparent;
     position: absolute;
     top: 0px;
