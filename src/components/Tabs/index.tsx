@@ -1,80 +1,59 @@
-import React, { forwardRef } from 'react'
-
+import React, { forwardRef } from 'react';
 import {
   Tabs as MantTabs,
-  TabProps,
+  TabsTabProps,
   TabsListProps,
   TabsPanelProps,
-  TabsProps
-} from '@mantine/core'
+  TabsProps,
+  createPolymorphicComponent
+} from '@mantine/core';
+import styles from './Tabs.module.scss';
 
-import styles from './Tabs.module.scss'
-
-type TabsListPropsType = TabsListProps & { type?: 'outline' }
-type TabsType = typeof MantTabs & {
+type TabsListPropsType = TabsListProps & { type?: 'outline' };
+type TabsSubComponents = {
   List: React.ForwardRefExoticComponent<
     TabsListPropsType & React.RefAttributes<HTMLDivElement>
-  >
-}
+  >,
+  Tab: React.ForwardRefExoticComponent<
+    TabsTabProps & React.RefAttributes<HTMLButtonElement>
+  >,
+  Panel: React.ForwardRefExoticComponent<
+    TabsPanelProps & React.RefAttributes<HTMLDivElement>
+  >,
+};
 
-const Tabs: TabsType = forwardRef<HTMLDivElement, TabsProps>(
-  (props, ref) => (
-    <MantTabs
-      {...props}
-      ref={ref}
-      className={`${props.className} ${styles.tabs}`}
-    >
+const Tabs = createPolymorphicComponent<'div', TabsProps, TabsSubComponents>(forwardRef<HTMLDivElement, TabsProps>(function Tabs(props, ref) {
+  return (
+    <MantTabs {...props} ref={ref} className={`${props.className} ${styles.tabs}`}>
       {props.children}
     </MantTabs>
   )
-  /* eslint-disable-next-line */
-) as any
-Tabs.displayName = '@hyperplay/ui/Tabs'
+}));
+Tabs.displayName = '@hyperplay/ui/Tabs';
 
-const Tab = forwardRef<HTMLButtonElement, TabProps>((props, ref) => {
-  return (
-    <MantTabs.Tab
-      {...props}
-      ref={ref}
-      className={`${props.className} ${styles.tab}`}
-    >
-      {props.children}
-    </MantTabs.Tab>
-  )
-})
-Tab.displayName = '@hyperplay/ui/Tab'
-Tabs.Tab = Tab
+const Tab = forwardRef<HTMLButtonElement, TabsTabProps>((props, ref) => (
+  <MantTabs.Tab {...props} ref={ref} className={`${props.className} ${styles.tab}`}>
+    {props.children}
+  </MantTabs.Tab>
+));
+Tab.displayName = '@hyperplay/ui/Tab';
 
-const List = forwardRef<HTMLDivElement, TabsListPropsType>(
-  ({ type, ...props }, ref) => {
-    return (
-      <MantTabs.List
-        {...props}
-        ref={ref}
-        className={`${props.className} ${styles.list} ${
-          type ? styles[type] : ''
-        }`}
-      >
-        {props.children}
-      </MantTabs.List>
-    )
-  }
-)
-List.displayName = '@hyperplay/ui/TabsList'
-Tabs.List = List
+const List = forwardRef<HTMLDivElement, TabsListPropsType>(({ type, ...props }, ref) => (
+  <MantTabs.List {...props} ref={ref} className={`${props.className} ${styles.list} ${type ? styles[type] : ''}`}>
+    {props.children}
+  </MantTabs.List>
+));
+List.displayName = '@hyperplay/ui/TabsList';
 
-const TabsPanel = forwardRef<HTMLDivElement, TabsPanelProps>((props, ref) => {
-  return (
-    <MantTabs.Panel
-      {...props}
-      ref={ref}
-      className={`${props.className} ${styles.panel}`}
-    >
-      {props.children}
-    </MantTabs.Panel>
-  )
-})
-TabsPanel.displayName = '@hyperplay/ui/TabsPanel'
-Tabs.Panel = TabsPanel
+const TabsPanel = forwardRef<HTMLDivElement, TabsPanelProps>((props, ref) => (
+  <MantTabs.Panel {...props} ref={ref} className={`${props.className} ${styles.panel}`}>
+    {props.children}
+  </MantTabs.Panel>
+));
+TabsPanel.displayName = '@hyperplay/ui/TabsPanel';
 
-export default Tabs
+Tabs.Tab = Tab;
+Tabs.List = List;
+Tabs.Panel = TabsPanel;
+
+export default Tabs;
