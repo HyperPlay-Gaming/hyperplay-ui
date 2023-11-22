@@ -1,6 +1,5 @@
 import React, { HTMLProps } from 'react'
 
-import { Image } from '@mantine/core'
 import cn from 'classnames'
 
 import * as Images from '@/assets/images'
@@ -19,6 +18,7 @@ import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import Loading from '../Loading'
+import CustomImage from '../Image'
 import styles from './GameAchievements.module.scss'
 
 export interface GameAchievementsProps
@@ -209,13 +209,16 @@ export default function GameAchievements({
                 className={cn(styles.row, isLocked ? styles.locked : '')}
               >
                 <div className={styles.achievementData}>
-                  <Image
+                  <CustomImage
                     className={styles.image}
                     src={image}
-                    height={80}
-                    width={80}
-                    withPlaceholder
+                    h={80}
+                    w={80}
                     placeholder={<div className={styles.fallback} />}
+                    style={{ 
+                      height: 80,
+                      width: 80,
+                    }}
                   />
                   <div className={styles.achievementInfo}>
                     <div className="text--lg weight--medium">{title}</div>
