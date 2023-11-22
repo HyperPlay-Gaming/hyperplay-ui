@@ -29,7 +29,6 @@ export const Default: Story = {
             email="hello@hyperplay.xyz"
             onClose={close}
             onResend={() => alert('Resend email')}
-            onVerify={close}
           />
         </ModalAnimation>
       </>

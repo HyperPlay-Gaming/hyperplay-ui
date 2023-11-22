@@ -64,7 +64,7 @@ const SelectProvider = ({
       </Modal.Header>
       <div className={styles.providersContainer}>
         <AuthProviderButton
-          name="Metamask"
+          name="MetaMask"
           icon={<MetamaskColored className={styles.icon} />}
           label={
             <AuthProviderButton.Label
@@ -76,7 +76,7 @@ const SelectProvider = ({
           onClick={onWalletClick}
         />
         <AuthProviderButton
-          name="Metamask"
+          name="MetaMask"
           icon={<MetamaskColored className={styles.icon} />}
           label={
             <AuthProviderButton.Label className="color-neutral-400">
