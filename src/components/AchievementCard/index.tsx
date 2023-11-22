@@ -4,7 +4,8 @@ import { Card, Image, ImageProps, Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import cn from 'classnames'
 
-import FallbackImage from '@/assets/fallback_achievement.svg?url'
+// TODO: add fallback image back as fallbackSrc on Image after upgrading to mantine 7
+// import FallbackImage from '@/assets/fallback_achievement.svg?url'
 import * as Images from '@/assets/images'
 
 import AchievementProgress, {
@@ -65,6 +66,7 @@ export interface AchievementCardProps {
      */
     newAchievementLabel?: string
   }
+  showStatusIcon?: boolean
 }
 
 export default function AchievementCard({
@@ -83,6 +85,7 @@ export default function AchievementCard({
   },
   progressKeyProps,
   achievementProgressProps,
+  showStatusIcon = true,
   ...rest
 }: AchievementCardProps &
   ImageProps &
@@ -95,12 +98,23 @@ export default function AchievementCard({
       mintableAchievementsCount
     })
 
+  let statusIcon = null
+  if (showStatusIcon) {
+    statusIcon = (
+      <StatusIcon
+        {...ctaProps}
+        state={state}
+        className={cn(ctaProps.className, styles.addButton)}
+      />
+    )
+  }
+
   return (
     <Card
       radius="md"
       pos="relative"
       bg="var(--color-neutral-700)"
-      w="100%"
+      display={'inline-block'}
       padding={0}
       className={cn(styles.card, rest.className)}
       {...rest}
@@ -111,10 +125,8 @@ export default function AchievementCard({
       >
         <Image
           src={image}
-          height={180}
+          w={300}
           bg="var(--color-gradient-08)"
-          withPlaceholder
-          placeholder={<Image src={FallbackImage} height={180} />}
           {...imageProps}
         />
         {isNewAchievement && (
@@ -124,11 +136,7 @@ export default function AchievementCard({
         )}
       </Card.Section>
 
-      <StatusIcon
-        {...ctaProps}
-        state={state}
-        className={cn(ctaProps.className, styles.addButton)}
-      />
+      {statusIcon}
 
       <div className={styles.cardBody}>
         <div className={cn(styles.title, 'body')}>{title}</div>
