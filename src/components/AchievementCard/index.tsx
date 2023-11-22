@@ -99,10 +99,10 @@ export default function AchievementCard({
     <Card
       radius="md"
       pos="relative"
-      bg="var(--color-neutral-700)"
       w="100%"
       padding={0}
-      className={cn(styles.card, rest.className)}
+      bg='transparent'
+      className={cn(styles.card, rest.className, 'gradientShadow', 'gradientBorderOnHover' )}
       {...rest}
     >
       <Card.Section

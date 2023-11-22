@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useMemo, useState } from 'react'
 
 import AchievementSummaryTable, { AchievementFilter } from '.'
@@ -55,6 +54,12 @@ const games = [
   }
 ] as Data[]
 
+for (let i = 5; i < 100; ++i){
+  const newGame = JSON.parse(JSON.stringify(games[i % 4]));
+  newGame.id = i.toString()
+  games.push(newGame)
+}
+
 export const Default = () => {
   const achievementsSortOptions = [
     { text: 'Alphabetically (ASC)' },
@@ -74,7 +79,7 @@ export const Default = () => {
   }, [activeFilter])
 
   return (
-    <div style={{ height: '100vh' }}>
+    <div style={{ maxHeight: '100vh', display: 'flex' }}>
       <AchievementSummaryTable
         games={filteredGames.map(({ id, ...rest }) => (
           <AchievementCard key={id} {...rest} />

@@ -3,6 +3,7 @@
 @use './styles/designSystem/colors';
 @use './styles/designSystem/buttons';
 @use './styles/utilities/variables';
+@use './styles/utilities/gradientBorder';
 :root {
   @include typography.typeSystem;
   @include spacing.spacingSystem;
