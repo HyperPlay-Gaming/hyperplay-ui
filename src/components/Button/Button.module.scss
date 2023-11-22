@@ -186,7 +186,7 @@
     transition: transform 0.25s ease-out, background-color 0.25s ease-out;
   }
 
-  &:hover .content {
+  &:hover:not(:disabled) .content {
     color: #ff83e2;
 
     &:after {

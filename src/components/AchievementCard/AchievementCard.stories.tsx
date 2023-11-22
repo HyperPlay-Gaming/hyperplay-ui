@@ -1,119 +1,137 @@
-import { Flex } from '@mantine/core'
+import type { Meta, StoryObj } from '@storybook/react'
 
-import AchievementCard from '.'
+import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url'
+import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg?url'
+import reCard from '@/assets/steamCards/residentEvilCard.jpg?url'
 
-export default {
+import AchievementCard, { AchievementCardProps } from '.'
+
+const meta: Meta<typeof AchievementCard> = {
   title: 'Achievements/AchievementCard',
   component: AchievementCard
 }
 
-export const Default = () => (
-  <Flex maw={300}>
-    <AchievementCard
-      image="https://i.imgur.com/Cij5vdL.png"
-      title="Diablo II"
-      mintedAchievementsCount={5}
-      mintableAchievementsCount={10}
-      totalAchievementsCount={30}
-      data-testid="1"
-    />
-  </Flex>
-)
+export default meta
 
-export const Disabled = () => (
-  <Flex maw={300}>
-    <AchievementCard
-      image="https://i.imgur.com/Cij5vdL.png"
-      title="Star Wars: Knights of the Old Republic"
-      mintedAchievementsCount={5}
-      mintableAchievementsCount={10}
-      totalAchievementsCount={30}
-      data-testid="1"
-      state="default"
-      ctaProps={{ disabled: true }}
-    />
-  </Flex>
-)
+type Story = StoryObj<typeof AchievementCard>
 
-export const active = () => (
-  <Flex maw={300}>
-    <AchievementCard
-      image="https://i.imgur.com/Cij5vdL.png"
-      title="Star Wars: Knights of the Old Republic"
-      mintedAchievementsCount={5}
-      mintableAchievementsCount={10}
-      totalAchievementsCount={30}
-      data-testid="1"
-      ctaProps={{ disabled: false }}
-      state="active"
-    />
-  </Flex>
-)
+const props: AchievementCardProps = {
+  image: reCard,
+  title: 'Diablo II',
+  mintedAchievementsCount: 5,
+  mintableAchievementsCount: 10,
+  totalAchievementsCount: 30
+}
 
-export const update = () => (
-  <Flex maw={300}>
-    <AchievementCard
-      image="https://i.imgur.com/Cij5vdL.png"
-      title="Star Wars: Knights of the Old Republic"
-      mintedAchievementsCount={5}
-      mintableAchievementsCount={10}
-      totalAchievementsCount={-5}
-      data-testid="1"
-      ctaProps={{ disabled: false }}
-      state="update"
-    />
-  </Flex>
-)
+export const Default: Story = {
+  args: { ...props }
+}
 
-export const NewAchievement = () => (
-  <Flex maw={300}>
-    <AchievementCard
-      image="https://i.imgur.com/Cij5vdL.png"
-      title="Diablo II"
-      mintedAchievementsCount={5}
-      mintableAchievementsCount={10}
-      totalAchievementsCount={15}
-      data-testid="1"
-      isNewAchievement
-    />
-  </Flex>
-)
+export const Disabled: Story = {
+  args: {
+    ...props,
+    title: 'Star Wars: Knights of the Old Republic',
+    state: 'default',
+    ctaProps: { disabled: true }
+  }
+}
 
-export const BrokenImage = () => (
-  <Flex maw={300}>
-    <AchievementCard
-      image="brokenImage.jpg"
-      title="Diablo II"
-      mintedAchievementsCount={5}
-      mintableAchievementsCount={10}
-      totalAchievementsCount={15}
-      data-testid="1"
-    />
-  </Flex>
-)
+export const active: Story = {
+  args: {
+    ...props,
+    title: 'Star Wars: Knights of the Old Republic',
+    state: 'active',
+    ctaProps: { disabled: false }
+  }
+}
 
-export const LongName = () => (
-  <Flex maw={300}>
-    <AchievementCard
-      image="https://i.imgur.com/Cij5vdL.png"
-      title="Star Wars: Knights of the Old Republic"
-      mintedAchievementsCount={5}
-      mintableAchievementsCount={10}
-      totalAchievementsCount={13}
-      data-testid="1"
-    />
-  </Flex>
-)
+export const update: Story = {
+  args: {
+    ...props,
+    title: 'Star Wars: Knights of the Old Republic',
+    state: 'update',
+    ctaProps: { disabled: false },
+    mintedAchievementsCount: 5,
+    mintableAchievementsCount: 10,
+    totalAchievementsCount: -5
+  }
+}
 
-export const NegativeAchievements = () => (
-  <Flex maw={300}>
-    <AchievementCard
-      image="https://i.imgur.com/Cij5vdL.png"
-      title="Star Wars: Knights of the Old Republic"
-      mintedAchievementsCount={5}
-      mintableAchievementsCount={10}
-      totalAchievementsCount={-5}
-      data-testid="1"
-    />
-  </Flex>
-)
+export const NewAchievement: Story = {
+  args: {
+    ...props,
+    ctaProps: { disabled: false },
+    mintedAchievementsCount: 5,
+    mintableAchievementsCount: 10,
+    totalAchievementsCount: -5,
+    isNewAchievement: true
+  }
+}
+
+export const BrokenImage: Story = {
+  args: {
+    ...props,
+    image: 'brokenImage.jpg'
+  }
+}
+
+export const LongName: Story = {
+  args: {
+    ...props,
+    title: 'Star Wars: Knights of the Old Republic'
+  }
+}
+
+export const NegativeAchievements: Story = {
+  args: {
+    ...props,
+    mintedAchievementsCount: 5,
+    mintableAchievementsCount: 10,
+    totalAchievementsCount: -5
+  }
+}
+
+export const SteamCardAspectRatio300px: Story = {
+  args: {
+    ...props,
+    image: cupheadCard,
+    imageProps: {
+      width: 300
+    }
+  }
+}
+
+export const SteamCardAspectRatio400px: Story = {
+  args: {
+    ...props,
+    image: cupheadCard,
+    imageProps: {
+      width: 400
+    }
+  }
+}
+
+export const SteamCardAspectRatio500px: Story = {
+  args: {
+    ...props,
+    image: cupheadCard,
+    imageProps: {
+      width: 500
+    }
+  }
+}
+
+export const BrightBackgroundCard: Story = {
+  args: {
+    ...props,
+    image: cyberpunkCard,
+    ctaProps: { disabled: true }
+  }
+}
+
+export const NoStatusIcon: Story = {
+  args: {
+    ...props,
+    showStatusIcon: false
+  }
+}

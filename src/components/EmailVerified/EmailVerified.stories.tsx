@@ -1,9 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { Meta, StoryObj } from '@storybook/react'
-
-import { ModalAnimation } from '@/components/Modal'
-import { Button } from '@/index'
+import { Meta } from '@storybook/react'
 
 import EmailVerified from './index'
 
@@ -14,23 +11,9 @@ const meta: Meta<typeof EmailVerified> = {
 
 export default meta
 
-type Story = StoryObj<typeof EmailVerified>
-
-export const Default: Story = {
-  render: () => {
-    const [open, setOpen] = useState(false)
-    const close = () => setOpen(false)
-    return (
-      <>
-        <Button onClick={() => setOpen(true)}>Open</Button>
-        <ModalAnimation isOpen={open} onClose={close}>
-          <EmailVerified
-            onClose={close}
-            style={{ margin: 'auto' }}
-            onContinue={() => alert('Continue')}
-          />
-        </ModalAnimation>
-      </>
-    )
-  }
-}
+export const Default = () => (
+  <EmailVerified
+    style={{ margin: 'auto' }}
+    onContinue={() => alert('Continue')}
+  />
+)
