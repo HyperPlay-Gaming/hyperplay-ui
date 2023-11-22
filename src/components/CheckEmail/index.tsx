@@ -38,9 +38,10 @@ const CheckEmail = ({
   ...props
 }: CheckEmailProps) => {
   const [timeOut, setTimeOut] = useState(0)
+  const isDisabled = timeOut > 0
 
   const handleResend = () => {
-    if (timeOut > 0) return
+    if (isDisabled) return
     onResend()
     setTimeOut(15)
   }
@@ -48,14 +49,14 @@ const CheckEmail = ({
   useEffect(() => {
     let interval: NodeJS.Timeout
 
-    if (timeOut > 0) {
+    if (isDisabled) {
       interval = setInterval(() => {
         setTimeOut((prevTimeOut) => prevTimeOut - 1)
       }, 1000)
     }
 
     return () => clearInterval(interval)
-  }, [timeOut])
+  }, [isDisabled])
 
   return (
     <Modal.Root className={cn(className, styles.root)} {...props}>
@@ -74,17 +75,24 @@ const CheckEmail = ({
           {i18n.didNotReceiveEmail}
         </span>
         &nbsp;
-        <Button
-          disabled={timeOut > 0}
-          type="link"
-          size="small"
-          className={styles.buttonLink}
-          onClick={handleResend}
-        >
-          {timeOut > 0
-            ? `${i18n.retryIn} ${timeOut} ${i18n.seconds}`
-            : `${i18n.resend}`}
-        </Button>
+        {isDisabled ? (
+          <span
+            className={cn('button-sm', styles.subtitle, styles.disabledText)}
+          >
+            {i18n.retryIn} {timeOut} {i18n.seconds}
+          </span>
+        ) : (
+          <>
+            <Button
+              type="link"
+              size="small"
+              className={styles.buttonLink}
+              onClick={handleResend}
+            >
+              {i18n.resend}
+            </Button>
+          </>
+        )}
       </div>
     </Modal.Root>
   )
