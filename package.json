@@ -23,9 +23,9 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@emotion/react": "^11.11.0",
-    "@mantine/carousel": "^6.0.17",
-    "@mantine/core": "^6.0.13",
-    "@mantine/hooks": "^6.0.13",
+    "@mantine/carousel": "^7.2.2",
+    "@mantine/core": "7.2.2",
+    "@mantine/hooks": "7.2.2",
     "@storybook/addon-actions": "^7.4.3",
     "@storybook/addon-essentials": "^7.4.3",
     "@storybook/addon-interactions": "^7.4.3",
@@ -80,13 +80,10 @@
   },
   "peerDependencies": {
     "@emotion/react": "^11.11.0",
-    "@mantine/carousel": "^6.0.17",
-    "@mantine/core": "^6.0.13",
-    "@mantine/hooks": "^6.0.13",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0",
+    "embla-carousel-autoplay": ">=7.0.0",
     "embla-carousel-react": ">=7.0.0",
-    "embla-carousel-autoplay": ">=7.0.0"
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
   "module": "dist/index.es.js",
   "files": [
