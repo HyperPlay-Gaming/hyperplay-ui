@@ -1,11 +1,9 @@
 import { DetailedHTMLProps, ImgHTMLAttributes } from 'react'
 
-import { Card, Image, ImageProps, Popover } from '@mantine/core'
+import { Card, ImageProps, Popover, CardProps } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import cn from 'classnames'
 
-// TODO: add fallback image back as fallbackSrc on Image after upgrading to mantine 7
-// import FallbackImage from '@/assets/fallback_achievement.svg?url'
 import * as Images from '@/assets/images'
 
 import AchievementProgress, {
@@ -18,8 +16,9 @@ import getProgress from '../AchievementProgress/helpers/getProgress'
 import { ButtonProps } from '../Button'
 import styles from './AchievementCard.module.scss'
 import StatusIcon, { StatusIconState } from './components/StatusIcon'
+import CustomImage from '../Image'
 
-export interface AchievementCardProps {
+export interface AchievementCardProps extends CardProps {
   image: string
   title: string
   /**
@@ -161,10 +160,11 @@ export default function AchievementCard({
         pos="relative"
         className={cn(styles.image, styles.mantineOverRide)}
       >
-        <Image
+        <CustomImage
           src={image}
           w={300}
           bg="var(--color-gradient-08)"
+          fallbackSrc='@/assets/fallback_achievement.svg?url'
           {...imageProps}
         />
         {isNewAchievement && (
