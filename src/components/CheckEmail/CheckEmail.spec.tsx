@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from 'vitest'
 import CheckEmailModal from '@/components/CheckEmail/index'
 
 describe('CheckEmail', () => {
-  it('goes into timeout mode after clicking on resend button', () => {
+  it('goes into timeout mode after clicking on resend button', async () => {
     render(
       <CheckEmailModal
         style={{ margin: 'auto' }}
@@ -17,11 +17,13 @@ describe('CheckEmail', () => {
     )
 
     fireEvent.click(screen.getByRole('button', { name: /click to resend/i }))
-    const retryButton = screen.getByRole('button', { name: /retry in/i })
-    expect(retryButton).toBeDisabled()
+    expect(
+      screen.queryByRole('button', { name: /click to resend/i })
+    ).not.toBeInTheDocument()
+    expect(screen.getByText(/retry in/i)).toBeInTheDocument()
   })
 
-  it('does not trigger onResend handler if in timeout mode', () => {
+  it('does not render onResend handler if in timeout mode', () => {
     const onResend = vi.fn()
     render(
       <CheckEmailModal
@@ -33,8 +35,8 @@ describe('CheckEmail', () => {
     )
 
     fireEvent.click(screen.getByRole('button', { name: /click to resend/i }))
-    fireEvent.click(screen.getByRole('button', { name: /retry in/i }))
-    fireEvent.click(screen.getByRole('button', { name: /retry in/i }))
+    fireEvent.click(screen.getByText(/retry in/i))
+    fireEvent.click(screen.getByText(/retry in/i))
     expect(onResend).toHaveBeenCalledOnce()
   })
 })
