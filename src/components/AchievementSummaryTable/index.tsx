@@ -136,7 +136,7 @@ export default function AchievementSummaryTable({
         />
         <Tabs
           value={filterProps.activeFilter}
-          onTabChange={filterProps.setActiveFilter}
+          onChange={(filter) => filterProps.setActiveFilter(filter as AchievementFilter)}
           mah={'100%'}
           className={styles.secondTopRowContainer}
         >
