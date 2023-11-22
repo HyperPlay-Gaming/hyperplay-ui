@@ -55,21 +55,13 @@ export default function AchievementProgress({
           <div>{i18n.achievementMintedLabel}</div>
         </div>
         <div className={styles.progressRow}>
-          <Progress
+          <Progress.Root
+            className={styles.progressRow}
             bg="var(--color-neutral-600)"
-            sections={[
-              {
-                value: mintedProgress,
-                color: 'var(--color-success-400)'
-              },
-              {
-                value: mintableProgress,
-                color: 'var(--color-success-400-20)',
-                className: styles.noRadius
-              }
-            ]}
-            w={'100%'}
-          />
+          >
+            <Progress.Section color='var(--color-success-400)' value={mintedProgress} />
+            <Progress.Section color='var(--color-success-400-20)' value={mintableProgress} className={styles.noRadius} />
+          </Progress.Root>
           {rightIcon}
         </div>
       </div>
