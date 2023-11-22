@@ -1,6 +1,8 @@
 import React from 'react'
 import 'react-loading-skeleton/dist/skeleton.css'
 
+import { MantineProvider } from '@mantine/core';
+
 import '../src/fonts.css'
 import '../src/index.scss'
 
@@ -23,4 +25,8 @@ export const parameters = {
   }
 }
 
-export const decorators = [(Story) => <Story />]
+export const decorators = [(Story) => 
+  <MantineProvider>
+    <Story />
+  </MantineProvider>
+]

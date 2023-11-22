@@ -1,7 +1,4 @@
 import { StorybookConfig } from '@storybook/react-vite'
-import { mergeConfig } from 'vite'
-
-import HyperPlayViteConfig from '../vite.config'
 
 let config: StorybookConfig = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -19,10 +16,7 @@ let config: StorybookConfig = {
   features: {
     storyStoreV7: true
   },
-  async viteFinal(config, { configType }) {
-    // const newConfig = mergeConfig(config, {
-    //   ...HyperPlayViteConfig
-    // })
+  async viteFinal(config) {
     return config
   },
   docs: {
