@@ -29,8 +29,8 @@ export interface AchievementNavProps {
      * text to show how many free mints a user has
      */
     freeMintsLabel?: string
-  },
-  showPreviousButton?: boolean,
+  }
+  showPreviousButton?: boolean
   showNextButton?: boolean
 }
 
@@ -48,18 +48,28 @@ export default function AchievementNav({
   return (
     <div className={styles.row}>
       <div className={styles.left}>
-        {showPreviousButton ? <CircularButton
-          {...previousButtonProps}
-          className={classNames(previousButtonProps?.className, styles.navItem)}
-        >
-          <Images.ChevronLeft width="16" height="16" />
-        </CircularButton> : null}
-        {showNextButton ? <CircularButton
-          {...nextButtonProps}
-          className={classNames(previousButtonProps?.className, styles.navItem)}
-        >
-          <Images.ChevronRight width="16" height="16" />
-        </CircularButton> : null}
+        {showPreviousButton ? (
+          <CircularButton
+            {...previousButtonProps}
+            className={classNames(
+              previousButtonProps?.className,
+              styles.navItem
+            )}
+          >
+            <Images.ChevronLeft width="16" height="16" />
+          </CircularButton>
+        ) : null}
+        {showNextButton ? (
+          <CircularButton
+            {...nextButtonProps}
+            className={classNames(
+              previousButtonProps?.className,
+              styles.navItem
+            )}
+          >
+            <Images.ChevronRight width="16" height="16" />
+          </CircularButton>
+        ) : null}
       </div>
 
       <div className={styles.right}>

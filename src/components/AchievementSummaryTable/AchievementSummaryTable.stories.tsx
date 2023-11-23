@@ -54,8 +54,8 @@ const games = [
   }
 ] as Data[]
 
-for (let i = 5; i < 100; ++i){
-  const newGame = JSON.parse(JSON.stringify(games[i % 4]));
+for (let i = 5; i < 100; ++i) {
+  const newGame = JSON.parse(JSON.stringify(games[i % 4]))
   newGame.id = i.toString()
   games.push(newGame)
 }
@@ -103,7 +103,7 @@ export const Default = () => {
         achievementNavProps={{ freeMints: 10, basketAmount: 20 }}
         isFetching={false}
         hasFetchedAll={false}
-        fetchNextPage={()=>{
+        fetchNextPage={() => {
           console.log('fetch next page!')
         }}
       />

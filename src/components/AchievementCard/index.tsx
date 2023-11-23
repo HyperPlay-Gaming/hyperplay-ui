@@ -115,8 +115,13 @@ export default function AchievementCard({
       pos="relative"
       display={'inline-block'}
       padding={0}
-      bg='transparent'
-      className={cn(styles.card, rest.className, 'gradientShadow', 'gradientBorderOnHover' )}
+      bg="transparent"
+      className={cn(
+        styles.card,
+        rest.className,
+        'gradientShadow',
+        'gradientBorderOnHover'
+      )}
       {...rest}
     >
       <Card.Section
@@ -152,7 +157,7 @@ export default function AchievementCard({
             />
           </div>
           <div className={styles.icon}>
-            <Popover width={200} shadow="md" opened={opened} position='top'>
+            <Popover width={200} shadow="md" opened={opened} position="top">
               <Popover.Target>
                 <button
                   onMouseEnter={open}

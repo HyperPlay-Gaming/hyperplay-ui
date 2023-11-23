@@ -98,8 +98,7 @@ export default function GameAchievements({
       totalAchievementsCount,
       mintableAchievementsCount
     })
-  const { handleNextPage, handlePrevPage } =
-    paginationProps
+  const { handleNextPage, handlePrevPage } = paginationProps
   const { totalToMint, ...mintProps } = mintButtonProps ?? {}
   const { totalToUpdate, ...updateProps } = updateButtonProps ?? {}
 
