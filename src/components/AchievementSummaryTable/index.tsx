@@ -134,9 +134,7 @@ export default function AchievementSummaryTable({
             </div>
           </Tabs>
           </div>
-        {/* <ScrollArea.Autosize className={styles.scrollArea}> */}
           <div className={styles.games}>{games}</div>
-        {/* </ScrollArea.Autosize> */}
       </div>
   )
 }
