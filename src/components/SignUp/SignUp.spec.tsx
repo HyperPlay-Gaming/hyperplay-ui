@@ -2,8 +2,8 @@ import React from 'react'
 
 import { fireEvent, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { renderWithMantine } from '../../../tests/utils/providers'
 
+import { renderWithMantine } from '../../../tests/utils/providers'
 import SignUp from './index'
 
 const providers = [{ id: 'discord', name: 'Discord', icon: 'discord' }]
