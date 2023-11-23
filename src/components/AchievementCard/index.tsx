@@ -152,7 +152,7 @@ export default function AchievementCard({
             />
           </div>
           <div className={styles.icon}>
-            <Popover width={200} shadow="md" opened={opened}>
+            <Popover width={200} shadow="md" opened={opened} position='top'>
               <Popover.Target>
                 <button
                   onMouseEnter={open}

@@ -136,3 +136,26 @@ export const NoStatusIcon: Story = {
     showStatusIcon: false
   }
 }
+
+/**
+ * This story can be used to check that the popover on i hover shows over the card below it.
+ * Important for usage in a list of game achievements.
+ */
+export const StackedCards: Story = {
+  args: {
+    ...props
+  },
+  render: (args)=>{
+    return (
+    <div style={{display: 'flex', flexDirection: 'row'}}>
+      <div style={{display: 'flex', flexDirection: 'column', maxWidth: 300, position: 'relative'}}>
+        <AchievementCard {...args} />
+        <AchievementCard {...args} />
+      </div>
+      <div style={{display: 'flex', flexDirection: 'column', maxWidth: 300, position: 'relative'}}>
+        <AchievementCard {...args} />
+        <AchievementCard {...args} />
+      </div>
+    </div>)
+  }
+}

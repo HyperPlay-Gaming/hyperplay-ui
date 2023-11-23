@@ -4,6 +4,8 @@
   overflow: visible;
   cursor: pointer;
   max-width: 100%;
+  /* z-index must be auto so that stacking context is shared and popovers appear over sibling cards */
+  z-index: auto;
 
   .image {
     overflow: hidden;
@@ -67,7 +69,6 @@
       background-color: #101828;
       border: none;
       padding: var(--space-md);
-      z-index: 10;
     }
 
     .popoverRow {
