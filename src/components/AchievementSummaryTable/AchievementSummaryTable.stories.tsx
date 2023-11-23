@@ -79,7 +79,7 @@ export const Default = () => {
   }, [activeFilter])
 
   return (
-    <div style={{ maxHeight: '100vh', display: 'flex' }}>
+    <div style={{ height: '1000px', display: 'flex' }}>
       <AchievementSummaryTable
         games={filteredGames.map(({ id, ...rest }) => (
           <AchievementCard key={id} {...rest} />
@@ -101,6 +101,11 @@ export const Default = () => {
         }}
         mintButtonProps={{ onClick: () => console.log('mint') }}
         achievementNavProps={{ freeMints: 10, basketAmount: 20 }}
+        isFetching={false}
+        hasFetchedAll={false}
+        fetchNextPage={()=>{
+          console.log('fetch next page!')
+        }}
       />
     </div>
   )

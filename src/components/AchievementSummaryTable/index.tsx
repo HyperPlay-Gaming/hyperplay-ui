@@ -38,6 +38,9 @@ export interface AchievementSummaryTableProps
     updateButtonLabel?: string
   }
   achievementNavProps: AchievementNavProps
+  isFetching?: boolean
+  hasFetchedAll?: boolean
+  fetchNextPage?: ()=>void
 }
 
 export default function AchievementSummaryTable({
@@ -55,11 +58,22 @@ export default function AchievementSummaryTable({
     updateButtonLabel: 'Update'
   },
   achievementNavProps,
+  isFetching,
+  hasFetchedAll,
+  fetchNextPage,
   ...rest
 }: AchievementSummaryTableProps) {
   const { handleNextPage, handlePrevPage } = paginationProps
   const { totalToMint, ...mintProps } = mintButtonProps ?? {}
   const { totalToUpdate, ...updateProps } = updateButtonProps ?? {}
+
+  const fetchMoreOnBottomReached: React.UIEventHandler<HTMLDivElement> = (ev: React.UIEvent<HTMLElement>) => {
+    const {scrollHeight, scrollTop, clientHeight} = ev.target as HTMLDivElement
+
+    if (scrollHeight - scrollTop - clientHeight < 5000 && !isFetching && !hasFetchedAll && fetchNextPage !== undefined){
+      fetchNextPage()
+    }
+  }
 
   return (
       <div className={styles.container} {...rest}>
@@ -134,7 +148,7 @@ export default function AchievementSummaryTable({
             </div>
           </Tabs>
           </div>
-          <div className={styles.games}>{games}</div>
+          <div className={styles.games} onScroll={fetchMoreOnBottomReached}>{games}</div>
       </div>
   )
 }
