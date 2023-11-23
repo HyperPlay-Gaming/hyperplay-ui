@@ -78,7 +78,8 @@ export const BrokenImage: Story = {
 export const LongName: Story = {
   args: {
     ...props,
-    title: 'Star Wars: Knights of the Old Republic'
+    title: 'Star Wars: Knights of the Old Republic Star Wars: Knights of the Old Republic Star Wars: Knights of the Old Republic Star Wars: Knights of the Old Republic',
+    maw: '300px'
   }
 }
 
