@@ -3,6 +3,7 @@
 .card {
   overflow: visible;
   cursor: pointer;
+  max-width: 100%;
 
   .image {
     overflow: hidden;
@@ -66,6 +67,7 @@
       background-color: #101828;
       border: none;
       padding: var(--space-md);
+      z-index: 10;
     }
 
     .popoverRow {
