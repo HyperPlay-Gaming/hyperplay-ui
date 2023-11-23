@@ -3,6 +3,7 @@ import { DetailedHTMLProps, ImgHTMLAttributes } from 'react'
 import { Card, ImageProps, Popover, CardProps } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import cn from 'classnames'
+import FallbackImage from '@/assets/fallback_achievement.svg?url';
 
 import * as Images from '@/assets/images'
 
@@ -164,7 +165,7 @@ export default function AchievementCard({
           src={image}
           w={300}
           bg="var(--color-gradient-08)"
-          fallbackSrc='@/assets/fallback_achievement.svg?url'
+          fallbackSrc={FallbackImage}
           {...imageProps}
         />
         {isNewAchievement && (
