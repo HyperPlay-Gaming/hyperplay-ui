@@ -29,28 +29,28 @@ const Tabs = createPolymorphicComponent<'div', TabsProps, TabsSubComponents>(for
     </MantTabs>
   )
 }));
-Tabs.displayName = '@hyperplay/ui/Tabs';
+Tabs.displayName = 'HyplerPlayUiTabs';
 
 const Tab = forwardRef<HTMLButtonElement, TabsTabProps>((props, ref) => (
   <MantTabs.Tab {...props} ref={ref} className={`${props.className} ${styles.tab}`}>
     {props.children}
   </MantTabs.Tab>
 ));
-Tab.displayName = '@hyperplay/ui/Tab';
+Tab.displayName = 'HyplerPlayUiTab';
 
 const List = forwardRef<HTMLDivElement, TabsListPropsType>(({ type, ...props }, ref) => (
   <MantTabs.List {...props} ref={ref} className={`${props.className} ${styles.list} ${type ? styles[type] : ''}`}>
     {props.children}
   </MantTabs.List>
 ));
-List.displayName = '@hyperplay/ui/TabsList';
+List.displayName = 'HyplerPlayUiTabsList';
 
 const TabsPanel = forwardRef<HTMLDivElement, TabsPanelProps>((props, ref) => (
   <MantTabs.Panel {...props} ref={ref} className={`${props.className} ${styles.panel}`}>
     {props.children}
   </MantTabs.Panel>
 ));
-TabsPanel.displayName = '@hyperplay/ui/TabsPanel';
+TabsPanel.displayName = 'HyplerPlayUiTabsPanel';
 
 Tabs.Tab = Tab;
 Tabs.List = List;
