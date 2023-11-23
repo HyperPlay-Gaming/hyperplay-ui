@@ -45,11 +45,11 @@
   max-height: 100%;
   overflow-y: scroll;
 
-  @include variables.for-tablet-portrait-up {
+  @include variables.for-desktop-up {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @include variables.for-tablet-landscape-up {
+  @include variables.for-big-desktop-up {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
