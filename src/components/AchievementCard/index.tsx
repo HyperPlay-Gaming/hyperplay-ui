@@ -1,10 +1,10 @@
 import { DetailedHTMLProps, ImgHTMLAttributes } from 'react'
 
-import { Card, ImageProps, Popover, CardProps } from '@mantine/core'
+import { Card, CardProps, ImageProps, Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import cn from 'classnames'
-import FallbackImage from '@/assets/fallback_achievement.svg?url';
 
+import FallbackImage from '@/assets/fallback_achievement.svg?url'
 import * as Images from '@/assets/images'
 
 import AchievementProgress, {
@@ -15,9 +15,9 @@ import ProgressKey, {
 } from '../AchievementProgress/components/ProgressKey'
 import getProgress from '../AchievementProgress/helpers/getProgress'
 import { ButtonProps } from '../Button'
+import CustomImage from '../Image'
 import styles from './AchievementCard.module.scss'
 import StatusIcon, { StatusIconState } from './components/StatusIcon'
-import CustomImage from '../Image'
 
 export interface AchievementCardProps extends CardProps {
   image: string

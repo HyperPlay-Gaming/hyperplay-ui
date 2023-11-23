@@ -151,7 +151,7 @@ export default function GameAchievements({
 
         <div className={styles.heroRow}>
           <div>
-            <Image
+            <CustomImage
               src={gameCardImage}
               w={300}
               className={styles.gameCardImageContainer}
