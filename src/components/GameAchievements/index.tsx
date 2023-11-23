@@ -98,7 +98,7 @@ export default function GameAchievements({
       totalAchievementsCount,
       mintableAchievementsCount
     })
-  const { handleNextPage, handlePrevPage, currentPage, totalPages } =
+  const { handleNextPage, handlePrevPage } =
     paginationProps
   const { totalToMint, ...mintProps } = mintButtonProps ?? {}
   const { totalToUpdate, ...updateProps } = updateButtonProps ?? {}
@@ -110,13 +110,12 @@ export default function GameAchievements({
         <AchievementNav
           {...achievementNavProps}
           nextButtonProps={{
-            onClick: handleNextPage,
-            disabled: currentPage === totalPages
+            onClick: handleNextPage
           }}
           previousButtonProps={{
-            onClick: handlePrevPage,
-            disabled: currentPage === 1
+            onClick: handlePrevPage
           }}
+          showPreviousButton={true}
         />
 
         <div className={cn(styles.row, styles.ctaContainer)}>
