@@ -102,7 +102,7 @@ export const Error: Story = {
         <Button onClick={() => setOpen(true)}>Open</Button>
         <ModalAnimation isOpen={open} onClose={close}>
           <SignUp
-            alert={{ 
+            alert={{
               variant: 'danger',
               message: 'Something went wrong. Please try again later.'
             }}
