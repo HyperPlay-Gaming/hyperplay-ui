@@ -1,6 +1,4 @@
 import React, { ReactNode } from 'react'
-
-import { StackProps } from '@mantine/core'
 import cn from 'classnames'
 
 import * as Images from '@/assets/images'
@@ -15,9 +13,7 @@ import styles from './AchievementSummaryTable.module.scss'
 export type AchievementFilter = 'all' | 'new' | 'minted'
 
 export interface AchievementSummaryTableProps
-  extends React.ForwardRefExoticComponent<
-    StackProps & React.RefAttributes<HTMLDivElement>
-  > {
+  extends React.HTMLAttributes<HTMLDivElement> {
   games: ReactNode[]
   sortProps: DropdownProps
   paginationProps: {
@@ -63,6 +59,7 @@ export default function AchievementSummaryTable({
   isFetching,
   hasFetchedAll,
   fetchNextPage,
+  className: classNameProp,
   ...rest
 }: AchievementSummaryTableProps) {
   const { handleNextPage, handlePrevPage } = paginationProps
@@ -86,7 +83,7 @@ export default function AchievementSummaryTable({
   }
 
   return (
-    <div className={styles.container} {...rest}>
+    <div className={cn(styles.container, classNameProp)} {...rest}>
       <div className={styles.topBar}>
         <AchievementNav
           {...achievementNavProps}
