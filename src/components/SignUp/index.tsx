@@ -25,7 +25,7 @@ interface ConnectedProviders {
   email: boolean
 }
 
-interface AuthProps {
+export interface AuthProps {
   alert?: AlertProps
   providers: AuthProviderButtonProps[]
   onAuthProviderSignup: (provider: AuthProviderButtonProps) => void
