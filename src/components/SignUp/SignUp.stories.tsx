@@ -12,8 +12,8 @@ import {
   XLogo
 } from '@/assets/images'
 import { ModalAnimation } from '@/components/Modal'
-import SignUp, { AuthProps } from '@/components/SignUp/index'
-import { AuthProvider, AuthProviderButton, Button } from '@/index'
+import SignUp from '@/components/SignUp/index'
+import { AuthProviderButton, Button } from '@/index'
 
 const meta: Meta<typeof SignUp> = {
   title: 'auth/SignUp'
