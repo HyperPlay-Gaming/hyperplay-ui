@@ -1,0 +1,28 @@
+
+.base {
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+  color: var(--color-neutral-100);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-status-info);
+}
+
+.danger {
+  background-color: var(--color-status-error);
+}
+
+.warning {
+  background-color: var(--color-status-alert);
+}
+
+.success {
+  background-color: var(--color-status-success);
+  color: var(--color-neutral-800);
+}
+
+.info {
+  background-color:var(--color-status-info);
+}
