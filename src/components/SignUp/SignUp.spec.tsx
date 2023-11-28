@@ -22,7 +22,7 @@ describe('SignUp', () => {
           email: false,
           metamaskExtension: false,
           metamaskMobile: false,
-          walletConnect: false,
+          walletConnect: false
         }}
       />
     )
@@ -46,7 +46,7 @@ describe('SignUp', () => {
           email: false,
           metamaskExtension: false,
           metamaskMobile: false,
-          walletConnect: false,
+          walletConnect: false
         }}
       />
     )
@@ -70,7 +70,7 @@ describe('SignUp', () => {
           email: false,
           metamaskExtension: false,
           metamaskMobile: false,
-          walletConnect: false,
+          walletConnect: false
         }}
       />
     )
