@@ -12,9 +12,9 @@ import Button from '@/components/Button'
 import Modal from '@/components/Modal/Modal'
 import { AuthProviderButton, TextInput } from '@/index'
 
+import Alert, { AlertProps } from '../Alert'
 import { AuthProviderButtonProps } from '../AuthProviderButton'
 import styles from './SignUp.module.scss'
-import Alert, { AlertProps } from '../Alert'
 
 type Steps = 'selectProvider' | 'email'
 
@@ -45,7 +45,6 @@ interface I18n {
   recommendedLabel: string
   emailButton: string
 }
-
 
 const SelectProvider = ({
   alert,
@@ -127,7 +126,7 @@ export const EmailForm = ({
   onSubmit,
   i18n
 }: {
-  alert?: AlertProps,
+  alert?: AlertProps
   onGoBack: () => void
   onSubmit: (email: string) => void
   i18n: I18n
