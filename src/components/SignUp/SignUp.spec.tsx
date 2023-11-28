@@ -18,6 +18,12 @@ describe('SignUp', () => {
         onWalletSignup={vi.fn}
         onEmailSignup={vi.fn}
         onAuthProviderSignup={onAuthSignup}
+        connected={{
+          email: false,
+          metamaskExtension: false,
+          metamaskMobile: false,
+          walletConnect: false,
+        }}
       />
     )
 
@@ -36,6 +42,12 @@ describe('SignUp', () => {
         onWalletSignup={onWalletSignup}
         onEmailSignup={vi.fn}
         onAuthProviderSignup={vi.fn}
+        connected={{
+          email: false,
+          metamaskExtension: false,
+          metamaskMobile: false,
+          walletConnect: false,
+        }}
       />
     )
 
@@ -54,6 +66,12 @@ describe('SignUp', () => {
         onEmailSignup={onEmailSignup}
         onWalletSignup={vi.fn}
         onAuthProviderSignup={vi.fn}
+        connected={{
+          email: false,
+          metamaskExtension: false,
+          metamaskMobile: false,
+          walletConnect: false,
+        }}
       />
     )
 
