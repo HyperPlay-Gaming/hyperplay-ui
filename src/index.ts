@@ -39,7 +39,10 @@ export * as Images from './assets/images'
 export { default as TokenTable } from './components/TokenTable'
 export { default as GameRequirementsTable } from './components/GameRequirementsTable'
 export { default as GameAbout } from './components/GameAbout'
-export { default as AuthProviderButton, type AuthProviderButtonProps as AuthProvider } from './components/AuthProviderButton'
+export {
+  default as AuthProviderButton,
+  type AuthProviderButtonProps as AuthProvider
+} from './components/AuthProviderButton'
 export { default as TextInput } from './components/TextInput'
 export { default as SignUp } from './components/SignUp'
 export { default as CheckEmail } from './components/CheckEmail'

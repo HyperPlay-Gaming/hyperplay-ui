@@ -12,8 +12,8 @@ import Button from '@/components/Button'
 import Modal from '@/components/Modal/Modal'
 import { AuthProviderButton, TextInput } from '@/index'
 
-import styles from './SignUp.module.scss'
 import { AuthProviderButtonProps } from '../AuthProviderButton'
+import styles from './SignUp.module.scss'
 
 type Steps = 'selectProvider' | 'email'
 
