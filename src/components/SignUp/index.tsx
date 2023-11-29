@@ -12,6 +12,7 @@ import Button from '@/components/Button'
 import Modal from '@/components/Modal/Modal'
 import { AuthProviderButton, TextInput } from '@/index'
 
+import Alert, { AlertProps } from '../Alert'
 import { AuthProviderButtonProps } from '../AuthProviderButton'
 import styles from './SignUp.module.scss'
 
@@ -25,6 +26,7 @@ interface ConnectedProviders {
 }
 
 interface AuthProps {
+  alert?: AlertProps
   providers: AuthProviderButtonProps[]
   onAuthProviderSignup: (provider: AuthProviderButtonProps) => void
   onEmailSignup: (email: string) => void
@@ -45,6 +47,7 @@ interface I18n {
 }
 
 const SelectProvider = ({
+  alert,
   providers,
   onEmailClick,
   onAuthProviderClick,
@@ -52,6 +55,7 @@ const SelectProvider = ({
   i18n,
   connected
 }: {
+  alert?: AlertProps
   providers: AuthProviderButtonProps[]
   onEmailClick: () => void
   onWalletClick: () => void
@@ -66,6 +70,7 @@ const SelectProvider = ({
         <Modal.Title>{i18n.signupTitle}</Modal.Title>
         <Modal.Body>{i18n.signupSubtitle}</Modal.Body>
       </Modal.Header>
+      {alert && <Alert {...alert}></Alert>}
       <div className={styles.providersContainer}>
         <AuthProviderButton
           name="MetaMask"
@@ -116,10 +121,12 @@ const SelectProvider = ({
 }
 
 export const EmailForm = ({
+  alert,
   onGoBack,
   onSubmit,
   i18n
 }: {
+  alert?: AlertProps
   onGoBack: () => void
   onSubmit: (email: string) => void
   i18n: I18n
@@ -143,6 +150,7 @@ export const EmailForm = ({
         <Modal.Body>{i18n.emailSubtitle}</Modal.Body>
       </Modal.Header>
       <form onSubmit={handleSubmit} className={styles.form}>
+        {alert && <Alert {...alert}></Alert>}
         <TextInput
           required
           classNames={{ input: styles.emailInput }}
@@ -181,6 +189,7 @@ export interface SignupModalProps extends HTMLProps<HTMLDivElement>, AuthProps {
 }
 
 const SignUp = ({
+  alert,
   className,
   providers,
   onAuthProviderSignup,
@@ -209,6 +218,7 @@ const SignUp = ({
       <Modal.CloseButton aria-label="close signup modal" onClick={onClose} />
       {step === 'selectProvider' && (
         <SelectProvider
+          alert={alert}
           providers={providers}
           onWalletClick={onWalletSignup}
           onEmailClick={() => setStep('email')}
@@ -219,6 +229,7 @@ const SignUp = ({
       )}
       {step === 'email' && (
         <EmailForm
+          alert={alert}
           onGoBack={() => setStep('selectProvider')}
           onSubmit={(email) => onEmailSignup(email)}
           i18n={i18n}
