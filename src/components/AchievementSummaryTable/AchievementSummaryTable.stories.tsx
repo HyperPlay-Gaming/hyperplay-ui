@@ -97,7 +97,8 @@ const props: AchievementSummaryTableProps = {
   hasFetchedAll: false,
   fetchNextPage: () => {
     console.log('fetch next page!')
-  }
+  },
+  tabs: [{value: 'all', label: 'All'},{value: 'new', label: 'New'},{value: 'minted', label: 'Minted'}]
 }
 
 export const Default: Story = {

@@ -13,6 +13,11 @@ import Loading from '../Loading'
 
 export type AchievementFilter = 'all' | 'new' | 'minted'
 
+export interface GameSummaryTab {
+  label: string
+  value: string
+}
+
 export interface AchievementSummaryTableProps
   extends React.HTMLAttributes<HTMLDivElement> {
   games: ReactNode[]
@@ -28,9 +33,6 @@ export interface AchievementSummaryTableProps
   mintButtonProps?: ButtonProps & { totalToMint: number }
   updateButtonProps?: ButtonProps & { totalToUpdate: number }
   i18n?: {
-    allFilterLabel?: string
-    newFilterLabel?: string
-    mintedFilterLabel?: string
     mintButtonLabel?: string
     updateButtonLabel?: string
   }
@@ -39,6 +41,7 @@ export interface AchievementSummaryTableProps
   hasFetchedAll?: boolean
   fetchNextPage?: () => void
   isPageLoading?: boolean
+  tabs: GameSummaryTab[]
 }
 
 export default function AchievementSummaryTable({
@@ -49,9 +52,6 @@ export default function AchievementSummaryTable({
   mintButtonProps,
   updateButtonProps,
   i18n = {
-    allFilterLabel: 'All',
-    newFilterLabel: 'New',
-    mintedFilterLabel: 'Minted',
     mintButtonLabel: 'Mint',
     updateButtonLabel: 'Update'
   },
@@ -61,6 +61,7 @@ export default function AchievementSummaryTable({
   fetchNextPage,
   className: classNameProp,
   isPageLoading,
+  tabs,
   ...rest
 }: AchievementSummaryTableProps) {
   const { handleNextPage, handlePrevPage } = paginationProps
@@ -83,15 +84,16 @@ export default function AchievementSummaryTable({
     }
   }
 
+  const gamesComponent = <div className={styles.gamesTable}>{games}</div>
   let content = null
   if (isPageLoading){
     content = (<Loading />)
   }
   else if (isFetching){
-    content = (<><div className={styles.gamesTable}>{games}</div><Loading /></>)
+    content = (<>{gamesComponent}<Loading /></>)
   }
   else {
-    content = games
+    content = gamesComponent
   }
 
   return (
@@ -123,15 +125,10 @@ export default function AchievementSummaryTable({
               />
 
               <Tabs.List type="outline">
-                <Tabs.Tab value="all" className={styles.tab}>
-                  <div className="menu">{i18n.allFilterLabel}</div>
-                </Tabs.Tab>
-                <Tabs.Tab value="new" className={styles.tab}>
-                  <div className="menu">{i18n.newFilterLabel}</div>
-                </Tabs.Tab>
-                <Tabs.Tab value="minted" className={styles.tab}>
-                  <div className="menu">{i18n.mintedFilterLabel}</div>
-                </Tabs.Tab>
+                {tabs.map((tab)=>(<Tabs.Tab value={tab.value} key={tab.value} className={styles.tab}>
+                  <div className="menu">{tab.label}</div>
+                </Tabs.Tab>)
+                )}
               </Tabs.List>
             </div>
             <div className={styles.ctas}>
