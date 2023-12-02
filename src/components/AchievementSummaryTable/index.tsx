@@ -9,18 +9,7 @@ import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import Tabs from '../Tabs'
 import styles from './AchievementSummaryTable.module.scss'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-
-function Loading(){
-  return (<div className={styles.loadingSpinnerContainer}><FontAwesomeIcon
-    size={'2x'}
-    fill="var(--color-neutral-100)"
-    icon={faSpinner}
-    className={styles.spinning}
-  /></div>)
-}
+import Loading from '../Loading'
 
 export type AchievementFilter = 'all' | 'new' | 'minted'
 
