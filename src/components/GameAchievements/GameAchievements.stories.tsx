@@ -16,6 +16,41 @@ type Story = StoryObj<typeof GameAchievements>
 const achievementsSortOptions = [{ text: 'Alphabetically' }] as itemType[]
 const selectedSort = achievementsSortOptions[0]
 
+const achievements = [{
+  id: '1',
+  title: 'Achievement 1',
+  description: 'With an image',
+  image: 'https://i.imgur.com/Cij5vdL.png',
+  isLocked: false
+},
+{
+  id: '2',
+  title: 'Achievement 2',
+  description: 'Without an image',
+  image: 'brokenImage',
+  isLocked: true
+},
+{
+  id: '3',
+  title: 'Achievement 3',
+  description: 'Without an image',
+  image: 'brokenImage',
+  isLocked: true
+},
+{
+  id: '4',
+  title: 'Achievement 4',
+  description: 'Without an image',
+  image: 'brokenImage',
+  isLocked: true
+}]
+
+for (let i = 5; i < 20; ++i) {
+  const newGame = JSON.parse(JSON.stringify(achievements[i % 4]))
+  newGame.id = i.toString()
+  achievements.push(newGame)
+}
+
 const props: GameAchievementsProps = {
   achievementNavProps:{
     freeMints: 10,
@@ -28,36 +63,7 @@ const props: GameAchievementsProps = {
   mintedAchievementsCount: 5,
   totalAchievementsCount: 30,
   mintableAchievementsCount: 15,
-  achievements:[
-    {
-      id: '1',
-      title: 'Achievement 1',
-      description: 'With an image',
-      image: 'https://i.imgur.com/Cij5vdL.png',
-      isLocked: false
-    },
-    {
-      id: '2',
-      title: 'Achievement 2',
-      description: 'Without an image',
-      image: 'brokenImage',
-      isLocked: true
-    },
-    {
-      id: '3',
-      title: 'Achievement 3',
-      description: 'Without an image',
-      image: 'brokenImage',
-      isLocked: true
-    },
-    {
-      id: '4',
-      title: 'Achievement 4',
-      description: 'Without an image',
-      image: 'brokenImage',
-      isLocked: true
-    }
-  ],
+  achievements,
   sortProps: {
     options: achievementsSortOptions,
     selected: selectedSort,
@@ -70,5 +76,8 @@ const props: GameAchievementsProps = {
 }
 
 export const Default: Story = {
-  args: {...props}
+  args: {...props},
+  render: (args)=>{
+    return <div style={{ height: '1000px', width: '100%' }}><GameAchievements {...args} /></div>
+  }
 }

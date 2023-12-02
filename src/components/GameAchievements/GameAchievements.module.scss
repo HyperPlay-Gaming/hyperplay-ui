@@ -1,10 +1,11 @@
 @import '../../styles/overrides';
 
 .container {
-  overflow: hidden;
   border-radius: var(--space-md);
   display: flex;
   flex-direction: column;
+  max-height: 100%;
+  height: 100%;
 }
 
 .row {
@@ -26,6 +27,7 @@
     rgba(0, 25, 115, 0.5) 100%
   );
   padding: var(--space-2lg);
+  border-radius: var(--space-md) var(--space-md) 0px 0px;
 
   .logo {
     position: absolute;
@@ -58,6 +60,10 @@
   padding: var(--space-2lg);
   background: var(--color-neutral-800);
   border-top: 3px solid var(--color-neutral-900);
+  max-height: 100%;
+  overflow-y: scroll;
+  flex: 1;
+  border-radius: 0px 0px var(--space-md) var(--space-md);
 
   .list {
     display: flex;
