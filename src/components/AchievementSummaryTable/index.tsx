@@ -9,6 +9,18 @@ import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import Tabs from '../Tabs'
 import styles from './AchievementSummaryTable.module.scss'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
+function Loading(){
+  return (<div className={styles.loadingSpinnerContainer}><FontAwesomeIcon
+    size={'2x'}
+    fill="var(--color-neutral-100)"
+    icon={faSpinner}
+    className={styles.spinning}
+  /></div>)
+}
 
 export type AchievementFilter = 'all' | 'new' | 'minted'
 
@@ -17,8 +29,6 @@ export interface AchievementSummaryTableProps
   games: ReactNode[]
   sortProps: DropdownProps
   paginationProps: {
-    currentPage: number
-    totalPages: number
     handleNextPage: () => void
     handlePrevPage: () => void
   }
@@ -39,6 +49,7 @@ export interface AchievementSummaryTableProps
   isFetching?: boolean
   hasFetchedAll?: boolean
   fetchNextPage?: () => void
+  isPageLoading?: boolean
 }
 
 export default function AchievementSummaryTable({
@@ -60,6 +71,7 @@ export default function AchievementSummaryTable({
   hasFetchedAll,
   fetchNextPage,
   className: classNameProp,
+  isPageLoading,
   ...rest
 }: AchievementSummaryTableProps) {
   const { handleNextPage, handlePrevPage } = paginationProps
@@ -156,7 +168,7 @@ export default function AchievementSummaryTable({
         </Tabs>
       </div>
       <div className={styles.games} onScroll={fetchMoreOnBottomReached}>
-        {games}
+        {isPageLoading ? <Loading/> : games}
       </div>
     </div>
   )

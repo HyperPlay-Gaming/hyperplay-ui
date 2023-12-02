@@ -47,8 +47,6 @@ export interface GameAchievementsProps
   updateButtonProps?: ButtonProps & { totalToUpdate: number }
   sortProps: DropdownProps
   paginationProps: {
-    currentPage: number
-    totalPages: number
     handleNextPage: () => void
     handlePrevPage: () => void
   }
