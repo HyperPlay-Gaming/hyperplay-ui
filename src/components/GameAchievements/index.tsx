@@ -19,6 +19,7 @@ import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import styles from './GameAchievements.module.scss'
+import Loading from '../Loading'
 
 export interface GameAchievementsProps
   extends HTMLProps<HTMLDivElement>,
@@ -66,6 +67,7 @@ export interface GameAchievementsProps
     mintButtonLabel?: string
     updateButtonLabel?: string
   }
+  loadingAchievements?: boolean
 }
 
 export default function GameAchievements({
@@ -88,6 +90,7 @@ export default function GameAchievements({
     mintButtonLabel: 'Mint',
     updateButtonLabel: 'Update'
   },
+  loadingAchievements,
   ...rest
 }: GameAchievementsProps) {
   const { safeMintedCount, safeTotalCount, mintedProgress, mintableProgress } =
@@ -202,7 +205,7 @@ export default function GameAchievements({
         </div>
 
         <div className={styles.list}>
-          {achievements.map(({ id, title, description, image, isLocked }) => (
+          {loadingAchievements ? <Loading /> : achievements.map(({ id, title, description, image, isLocked }) => (
             <div
               key={id}
               className={cn(styles.row, isLocked ? styles.locked : '')}
