@@ -94,6 +94,17 @@ export default function AchievementSummaryTable({
     }
   }
 
+  let content = null
+  if (isPageLoading){
+    content = (<Loading />)
+  }
+  else if (isFetching){
+    content = (<><div className={styles.gamesTable}>{games}</div><Loading /></>)
+  }
+  else {
+    content = games
+  }
+
   return (
     <div className={cn(styles.container, classNameProp)} {...rest}>
       <div className={styles.topBar}>
@@ -168,7 +179,7 @@ export default function AchievementSummaryTable({
         </Tabs>
       </div>
       <div className={styles.games} onScroll={fetchMoreOnBottomReached}>
-        {isPageLoading ? <Loading/> : games}
+        {content}
       </div>
     </div>
   )

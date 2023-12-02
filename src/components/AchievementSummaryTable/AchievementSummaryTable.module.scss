@@ -36,14 +36,17 @@
 }
 
 .games {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  grid-column-gap: var(--space-md);
-  grid-row-gap: var(--space-md);
   padding: var(--space-2lg);
   margin-bottom: var(--space-2lg);
   max-height: 100%;
   overflow-y: scroll;
+}
+
+.gamesTable {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-column-gap: var(--space-md);
+  grid-row-gap: var(--space-md);
 
   @include variables.for-desktop-up {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -104,4 +107,8 @@
 
 .loadingSpinnerContainer {
   margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
 }

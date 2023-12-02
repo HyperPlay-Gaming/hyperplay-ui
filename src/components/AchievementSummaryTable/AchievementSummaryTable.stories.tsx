@@ -58,7 +58,7 @@ const games = [
   }
 ] as Data[]
 
-for (let i = 5; i < 50; ++i) {
+for (let i = 5; i < 20; ++i) {
   const newGame = JSON.parse(JSON.stringify(games[i % 4]))
   newGame.id = i.toString()
   games.push(newGame)
@@ -101,51 +101,8 @@ const props: AchievementSummaryTableProps = {
 }
 
 export const Default: Story = {
-  args: { ...props }
+  args: { ...props },
+  render: (args)=>{
+    return <div style={{ height: '1000px', display: 'flex' }}><AchievementSummaryTable {...args} /></div>
+  }
 }
-
-
-// export const Default = () => {
-//   const [selectedSort, setSelectedSort] = useState(achievementsSortOptions[0])
-//   const [activeFilter, setActiveFilter] = useState<AchievementFilter>('all')
-
-//   const filteredGames = useMemo(() => {
-//     if (activeFilter === 'minted') {
-//       return games.filter((game) => game.state === 'active')
-//     }
-//     if (activeFilter === 'new') {
-//       return games.filter((game) => game.isNewAchievement)
-//     }
-//     return games
-//   }, [activeFilter])
-
-//   return (
-//     <div style={{ height: '1000px', display: 'flex' }}>
-//       <AchievementSummaryTable
-//         games={filteredGames.map(({ id, ...rest }) => (
-//           <AchievementCard key={id} {...rest} />
-//         ))}
-//         sortProps={{
-//           options: achievementsSortOptions,
-//           selected: selectedSort,
-//           onItemChange: setSelectedSort
-//         }}
-//         paginationProps={{
-//           handleNextPage: () => console.log('next page'),
-//           handlePrevPage: () => console.log('prev page')
-//         }}
-//         filterProps={{
-//           activeFilter,
-//           setActiveFilter
-//         }}
-//         mintButtonProps={{ onClick: () => console.log('mint'), totalToMint: 1 }}
-//         achievementNavProps={{ freeMints: 10, basketAmount: 20 }}
-//         isFetching={false}
-//         hasFetchedAll={false}
-//         fetchNextPage={() => {
-//           console.log('fetch next page!')
-//         }}
-//       />
-//     </div>
-//   )
-// }
