@@ -1,4 +1,5 @@
 @import '../../styles/overrides';
+@import '../../styles/utilities/_variables';
 
 .container {
   border-radius: var(--space-md);
@@ -138,8 +139,7 @@
 }
 
 .title {
-  margin-bottom: var(--space-sm-fixed);
-  margin-top: var(--space-lg-fixed);
+  margin-bottom: var(--space-xs-fixed);
   font-family: var(--primary-font-family);
 }
 
@@ -172,4 +172,12 @@
   background-color: var(--color-gradient-08);
   border-radius: var(--space-xs);
   overflow: hidden;
+
+  @include for-tablet-portrait-up {
+    max-width: 230px;
+  }
+
+  @include for-tablet-landscape-up {
+    max-width: 460px;
+  }
 }
