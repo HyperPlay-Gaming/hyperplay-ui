@@ -98,7 +98,11 @@ const props: AchievementSummaryTableProps = {
   fetchNextPage: () => {
     console.log('fetch next page!')
   },
-  tabs: [{value: 'all', label: 'All'},{value: 'new', label: 'New'},{value: 'minted', label: 'Minted'}]
+  tabs: [{value: 'all', label: 'All'},{value: 'new', label: 'New'},{value: 'minted', label: 'Minted'}],
+  messageModalProps: {
+    title: 'Oops!',
+    message: `It looks like we couldn't find any games in your Steam account at the moment. Just a quick reminder to double-check that your game details are set to public. This way, we can access your achievements and provide you with the best experience.`
+  }
 }
 
 export const Default: Story = {

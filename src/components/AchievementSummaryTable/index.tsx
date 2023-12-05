@@ -10,6 +10,7 @@ import { DropdownProps } from '../Dropdowns/Dropdown'
 import Tabs from '../Tabs'
 import styles from './AchievementSummaryTable.module.scss'
 import Loading from '../Loading'
+import MessageModal, { MessageModalProps } from './components/MessageModal'
 
 export type AchievementFilter = 'all' | 'new' | 'minted'
 
@@ -42,6 +43,7 @@ export interface AchievementSummaryTableProps
   fetchNextPage?: () => void
   isPageLoading?: boolean
   tabs: GameSummaryTab[]
+  messageModalProps: MessageModalProps
 }
 
 export default function AchievementSummaryTable({
@@ -62,6 +64,7 @@ export default function AchievementSummaryTable({
   className: classNameProp,
   isPageLoading,
   tabs,
+  messageModalProps,
   ...rest
 }: AchievementSummaryTableProps) {
   const { handleNextPage, handlePrevPage } = paginationProps
@@ -91,6 +94,9 @@ export default function AchievementSummaryTable({
   }
   else if (isFetching){
     content = (<>{gamesComponent}<Loading /></>)
+  }
+  else if (games === undefined || games === null || games.length === 0){
+    content = <MessageModal title={messageModalProps.title} message={messageModalProps.message} className={styles.messageModal}/>
   }
   else {
     content = gamesComponent
