@@ -118,6 +118,7 @@ export default function AchievementSummaryTable({
           value={filterProps.activeFilter}
           onTabChange={filterProps.setActiveFilter}
           mah={'100%'}
+          className={styles.secondTopRowContainer}
         >
           <div className={styles.row}>
             <div className={styles.filters}>

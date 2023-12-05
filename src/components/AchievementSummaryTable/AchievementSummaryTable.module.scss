@@ -22,7 +22,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-2lg);
 }
 
 .filters {
@@ -95,4 +94,8 @@
 .messageModal {
   max-width: 540px;
   margin: 0px auto;
+}
+
+.secondTopRowContainer {
+  margin-top: var(--space-md);
 }
