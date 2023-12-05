@@ -173,11 +173,11 @@
   border-radius: var(--space-xs);
   overflow: hidden;
 
-  @include for-tablet-portrait-up {
+  @include for-tablet-landscape-up {
     max-width: 230px;
   }
 
-  @include for-tablet-landscape-up {
+  @include for-desktop-up{
     max-width: 460px;
   }
 }
