@@ -4,6 +4,7 @@ import GameAchievements, { GameAchievementsProps } from '.'
 import { itemType } from '../Dropdowns/Dropdown'
 import { Meta, StoryObj } from '@storybook/react'
 import { gamesAdded } from '../AchievementNav/AchievementNav.stories'
+import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg?url'
 
 const meta: Meta<typeof GameAchievements> = {
   title: 'Achievements/GameAchievements',
@@ -55,7 +56,12 @@ for (let i = 5; i < 20; ++i) {
 const props: GameAchievementsProps = {
   achievementNavProps:{
     freeMints: 10,
-    basketAmount: 0
+    basketAmount: 0,
+    onGameAdd: ()=>console.log('game added'),
+    gamesAdded: gamesAdded,
+    addThisGameText: 'Add this game',
+    gamesToMintLabelText: 'Games to mint',
+    showGameAddButton: true
   },
   game:{
     title: 'Title of game'
@@ -73,10 +79,8 @@ const props: GameAchievementsProps = {
     handleNextPage: () => console.log('next page'),
     handlePrevPage: () => console.log('prev page')
   },
-  onGameAdd: ()=>console.log('game added'),
-  gamesAdded: gamesAdded,
-  addThisGameText: 'Add this game',
-  gamesToMintLabelText: 'Games to mint'
+  
+  gameCardImage: cyberpunkCard
 }
 
 export const Default: Story = {

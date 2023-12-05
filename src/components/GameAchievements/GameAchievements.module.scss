@@ -10,9 +10,9 @@
 
 .row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  gap: var(--space-xl);
 }
 
 .colorNeutral400 {
@@ -21,11 +21,7 @@
 
 .hero {
   position: relative;
-  background: linear-gradient(
-    180deg,
-    rgba(151, 71, 255, 0.5) 0%,
-    rgba(0, 25, 115, 0.5) 100%
-  );
+  background: var(--color-gradient-steam-01);
   padding: var(--space-2lg);
   border-radius: var(--space-md) var(--space-md) 0px 0px;
 
@@ -123,7 +119,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-self: flex-end;
   width: 200px;
 
   .progressKey {
@@ -164,4 +159,10 @@
     background-color: var(--color-alert-400);
     color: var(--color-neutral-800);
   }
+}
+
+.gameCardImageContainer {
+  background-color: var(--color-gradient-08);
+  border-radius: var(--space-xs);
+  overflow: hidden;
 }

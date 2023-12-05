@@ -5,7 +5,7 @@ import cn from 'classnames'
 
 import * as Images from '@/assets/images'
 
-import AchievementNav, { AchievementNavProps, GameAdded } from '../AchievementNav'
+import AchievementNav, { AchievementNavProps } from '../AchievementNav'
 import AchievementProgress, {
   AchievementProgressTextProps
 } from '../AchievementProgress'
@@ -67,10 +67,7 @@ export interface GameAchievementsProps
     updateButtonLabel?: string
   }
   loadingAchievements?: boolean
-  onGameAdd: ()=>void
-  gamesAdded: GameAdded[]
-  addThisGameText: string
-  gamesToMintLabelText: string
+  gameCardImage: string
 }
 
 export default function GameAchievements({
@@ -94,10 +91,7 @@ export default function GameAchievements({
     updateButtonLabel: 'Update'
   },
   loadingAchievements,
-  onGameAdd,
-  gamesAdded,
-  addThisGameText,
-  gamesToMintLabelText,
+  gameCardImage,
   ...rest
 }: GameAchievementsProps) {
   const { safeMintedCount, safeTotalCount, mintedProgress, mintableProgress } =
@@ -113,7 +107,6 @@ export default function GameAchievements({
   return (
     <div className={styles.container} {...rest}>
       <div className={styles.hero}>
-        <Images.MobileHpLogo className={styles.logo} width={100} height={100} />
         <AchievementNav
           {...achievementNavProps}
           nextButtonProps={{
@@ -124,17 +117,12 @@ export default function GameAchievements({
           }}
           showPreviousButton={true}
           showGameAddButton={true}
-          onGameAdd={onGameAdd}
-          gamesAdded={gamesAdded}
-          addThisGameText={addThisGameText}
-          gamesToMintLabelText={gamesToMintLabelText}
         />
 
         <div className={cn(styles.row, styles.ctaContainer)}>
           <Button
             type="secondary"
             size="medium"
-            leftIcon={<Images.PlusCircleOutline width={16} height={16} />}
             spacing="xs"
             rightIcon={
               <div className={cn(styles.rightIcon, styles.mint)}>
@@ -163,10 +151,15 @@ export default function GameAchievements({
 
         <div className={styles.row}>
           <div>
-            <h6 className={styles.title}>{game.title}</h6>
+            <Image
+              src={gameCardImage}
+              w={300}
+              className={styles.gameCardImageContainer}
+            />
           </div>
 
           <div className={styles.progress}>
+            <h6 className={styles.title}>{game.title}</h6>
             <AchievementProgress
               safeMintedCount={safeMintedCount}
               safeTotalCount={safeTotalCount}
