@@ -149,7 +149,7 @@ export default function GameAchievements({
           </Button>
         </div>
 
-        <div className={styles.row}>
+        <div className={styles.heroRow}>
           <div>
             <Image
               src={gameCardImage}

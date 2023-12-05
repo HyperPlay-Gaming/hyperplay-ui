@@ -10,6 +10,13 @@
 
 .row {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.heroRow {
+  display: flex;
   align-items: center;
   flex-direction: row;
   gap: var(--space-xl);
