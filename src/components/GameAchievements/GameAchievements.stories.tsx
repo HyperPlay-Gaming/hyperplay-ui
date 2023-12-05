@@ -58,8 +58,7 @@ const props: GameAchievementsProps = {
     basketAmount: 0
   },
   game:{
-    title: 'Title of game',
-    tags: ['VR', 'Gore', 'Action', 'Simulation', 'Violent', 'Indie']
+    title: 'Title of game'
   },
   mintedAchievementsCount: 5,
   totalAchievementsCount: 30,

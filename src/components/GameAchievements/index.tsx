@@ -29,7 +29,6 @@ export interface GameAchievementsProps
    */
   game: {
     title: string
-    tags: string[]
   }
   /**
    * An array of achievements
@@ -165,16 +164,6 @@ export default function GameAchievements({
         <div className={styles.row}>
           <div>
             <h6 className={styles.title}>{game.title}</h6>
-            <div className={styles.tagList}>
-              {game.tags.map((tag) => (
-                <div
-                  key={tag}
-                  className={cn(styles.tag, styles.colorNeutral400, 'text--xs')}
-                >
-                  {tag}
-                </div>
-              ))}
-            </div>
           </div>
 
           <div className={styles.progress}>
