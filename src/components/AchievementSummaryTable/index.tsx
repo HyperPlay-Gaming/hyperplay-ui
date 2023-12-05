@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 import * as Images from '@/assets/images'
 
-import AchievementNav, { AchievementNavProps } from '../AchievementNav'
+import AchievementNav, { AchievementNavProps, GameAdded } from '../AchievementNav'
 import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
@@ -44,6 +44,7 @@ export interface AchievementSummaryTableProps
   isPageLoading?: boolean
   tabs: GameSummaryTab[]
   messageModalProps: MessageModalProps
+  gamesAdded: GameAdded[]
 }
 
 export default function AchievementSummaryTable({
@@ -65,6 +66,7 @@ export default function AchievementSummaryTable({
   isPageLoading,
   tabs,
   messageModalProps,
+  gamesAdded,
   ...rest
 }: AchievementSummaryTableProps) {
   const { handleNextPage, handlePrevPage } = paginationProps
@@ -113,6 +115,8 @@ export default function AchievementSummaryTable({
           previousButtonProps={{
             onClick: handlePrevPage
           }}
+          showGameAddButton={false}
+          gamesAdded={gamesAdded}
         />
         <Tabs
           value={filterProps.activeFilter}

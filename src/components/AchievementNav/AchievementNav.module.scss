@@ -25,15 +25,21 @@
   border: 1px solid var(--color-neutral-600);
 }
 
+@mixin backgroundBasket {
+  border: 1px solid var(--color-neutral-600);
+  border-radius: var(--space-xs);
+  background-color: var(--color-neutral-800);
+}
+
 .basket {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  padding: var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
   color: white;
-  border: 1px solid var(--color-neutral-600);
-  border-radius: var(--space-xs);
+  cursor: pointer;
+  @include backgroundBasket;
 
   svg {
     fill: white;
@@ -44,4 +50,57 @@
   border-radius: var(--space-3xs);
   padding: var(--space-3xs) var(--space-xs);
   background-color: var(--color-primary-400);
+}
+
+.dropdownContainer {
+  @include backgroundBasket;
+}
+
+.dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.gameAddedContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  &:hover {
+    color: var(--color-primary-200);
+    opacity: 100%;
+  }
+  flex: 1;
+}
+
+.itemLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.item {
+  color: var(--color-neutral-100);
+  &:hover {
+    background-color: var(--color-neutral-700);
+    opacity: 100%;
+  }
+}
+
+.addThisGameContainer{
+  &:hover {
+    background-color: inherit;
+    opacity: 100%;
+    cursor: default;
+  }
+  > div{
+    justify-content: center;
+    cursor: default;
+  }
+}
+
+.menuLabel {
+  font-family: var(--secondary-font-family);
 }

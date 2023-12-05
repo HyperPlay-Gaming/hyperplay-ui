@@ -4,6 +4,8 @@ import AchievementSummaryTable, { AchievementSummaryTableProps } from '.'
 import AchievementCard, { AchievementCardProps } from '../AchievementCard'
 import { itemType } from '../Dropdowns/Dropdown'
 import { Meta, StoryObj } from '@storybook/react'
+import { s } from 'vitest/dist/types-198fd1d9'
+import { GameAdded } from '../AchievementNav'
 
 const meta: Meta<typeof AchievementSummaryTable> = {
   title: 'Achievements/AchievementSummaryTable',
@@ -75,6 +77,7 @@ const gamesNodes = games.map(({ id, ...rest }) => (
 
 const selectedSort = achievementsSortOptions[0]
 const activeFilter = 'all'
+const gamesAdded: GameAdded[] = []
 
 const props: AchievementSummaryTableProps = {
   games: gamesNodes,
@@ -102,7 +105,8 @@ const props: AchievementSummaryTableProps = {
   messageModalProps: {
     title: 'Oops!',
     message: `It looks like we couldn't find any games in your Steam account at the moment. Just a quick reminder to double-check that your game details are set to public. This way, we can access your achievements and provide you with the best experience.`
-  }
+  },
+  gamesAdded: gamesAdded
 }
 
 export const Default: Story = {

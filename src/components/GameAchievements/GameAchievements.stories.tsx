@@ -3,6 +3,7 @@ import React from 'react'
 import GameAchievements, { GameAchievementsProps } from '.'
 import { itemType } from '../Dropdowns/Dropdown'
 import { Meta, StoryObj } from '@storybook/react'
+import { gamesAdded } from '../AchievementNav/AchievementNav.stories'
 
 const meta: Meta<typeof GameAchievements> = {
   title: 'Achievements/GameAchievements',
@@ -72,7 +73,11 @@ const props: GameAchievementsProps = {
   paginationProps: {
     handleNextPage: () => console.log('next page'),
     handlePrevPage: () => console.log('prev page')
-  }
+  },
+  onGameAdd: ()=>console.log('game added'),
+  gamesAdded: gamesAdded,
+  addThisGameText: 'Add this game',
+  gamesToMintLabelText: 'Games to mint'
 }
 
 export const Default: Story = {

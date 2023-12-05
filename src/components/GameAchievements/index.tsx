@@ -5,7 +5,7 @@ import cn from 'classnames'
 
 import * as Images from '@/assets/images'
 
-import AchievementNav, { AchievementNavProps } from '../AchievementNav'
+import AchievementNav, { AchievementNavProps, GameAdded } from '../AchievementNav'
 import AchievementProgress, {
   AchievementProgressTextProps
 } from '../AchievementProgress'
@@ -68,6 +68,10 @@ export interface GameAchievementsProps
     updateButtonLabel?: string
   }
   loadingAchievements?: boolean
+  onGameAdd: ()=>void
+  gamesAdded: GameAdded[]
+  addThisGameText: string
+  gamesToMintLabelText: string
 }
 
 export default function GameAchievements({
@@ -91,6 +95,10 @@ export default function GameAchievements({
     updateButtonLabel: 'Update'
   },
   loadingAchievements,
+  onGameAdd,
+  gamesAdded,
+  addThisGameText,
+  gamesToMintLabelText,
   ...rest
 }: GameAchievementsProps) {
   const { safeMintedCount, safeTotalCount, mintedProgress, mintableProgress } =
@@ -116,6 +124,11 @@ export default function GameAchievements({
             onClick: handlePrevPage
           }}
           showPreviousButton={true}
+          showGameAddButton={true}
+          onGameAdd={onGameAdd}
+          gamesAdded={gamesAdded}
+          addThisGameText={addThisGameText}
+          gamesToMintLabelText={gamesToMintLabelText}
         />
 
         <div className={cn(styles.row, styles.ctaContainer)}>
