@@ -1,9 +1,9 @@
-import React, { ReactNode } from 'react'
+import React, { ReactElement } from 'react'
 import cn from 'classnames'
 
 import * as Images from '@/assets/images'
 
-import AchievementNav, { AchievementNavProps, GameAdded } from '../AchievementNav'
+import AchievementNav, { AchievementNavProps } from '../AchievementNav'
 import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
@@ -11,6 +11,7 @@ import Tabs from '../Tabs'
 import styles from './AchievementSummaryTable.module.scss'
 import Loading from '../Loading'
 import MessageModal, { MessageModalProps } from './components/MessageModal'
+import useAllImagesLoaded from '@/utils/useAllImagesLoaded'
 
 export type AchievementFilter = 'all' | 'new' | 'minted'
 
@@ -21,7 +22,8 @@ export interface GameSummaryTab {
 
 export interface AchievementSummaryTableProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  games: ReactNode[]
+  games: ReactElement[]
+  imagesToPreload: string[]
   sortProps: DropdownProps
   paginationProps: {
     handleNextPage: () => void
@@ -44,11 +46,11 @@ export interface AchievementSummaryTableProps
   isPageLoading?: boolean
   tabs: GameSummaryTab[]
   messageModalProps: MessageModalProps
-  gamesAdded: GameAdded[]
 }
 
 export default function AchievementSummaryTable({
   games,
+  imagesToPreload,
   sortProps,
   paginationProps,
   filterProps,
@@ -66,7 +68,6 @@ export default function AchievementSummaryTable({
   isPageLoading,
   tabs,
   messageModalProps,
-  gamesAdded,
   ...rest
 }: AchievementSummaryTableProps) {
   const { handleNextPage, handlePrevPage } = paginationProps
@@ -89,9 +90,11 @@ export default function AchievementSummaryTable({
     }
   }
 
+  const cardsLoaded = useAllImagesLoaded(imagesToPreload)
+
   const gamesComponent = <div className={styles.gamesTable}>{games}</div>
   let content = null
-  if (isPageLoading){
+  if (isPageLoading || !cardsLoaded){
     content = (<Loading />)
   }
   else if (isFetching){
@@ -116,7 +119,6 @@ export default function AchievementSummaryTable({
             onClick: handlePrevPage
           }}
           showGameAddButton={false}
-          gamesAdded={gamesAdded}
         />
         <Tabs
           value={filterProps.activeFilter}
