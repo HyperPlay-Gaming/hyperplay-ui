@@ -1,7 +1,8 @@
 import React from 'react'
 
-import styles from './MessageModal.module.scss'
 import classNames from 'classnames'
+
+import styles from './MessageModal.module.scss'
 
 export interface MessageModalProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -16,7 +17,10 @@ export default function MessageModal({
   ...rest
 }: MessageModalProps) {
   return (
-    <div className={classNames(styles.messageModalContainer, className)} {...rest}>
+    <div
+      className={classNames(styles.messageModalContainer, className)}
+      {...rest}
+    >
       <div className="header">{title}</div>
       <div className={`${styles.message} body`}>{message}</div>
     </div>
