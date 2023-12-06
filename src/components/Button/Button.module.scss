@@ -53,7 +53,7 @@
   background: var(--color-gradient-01) padding-box,
     var(--color-gradient-01-border) border-box;
 
-  &:hover {
+    &:hover:not(:disabled) {
     background: var(--color-gradient-02) padding-box,
       var(--color-gradient-02-border) border-box;
   }
@@ -70,7 +70,7 @@
 
   background: var(--color-primary-500);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--color-primary-600);
     background: linear-gradient(
           var(--color-primary-600),
@@ -96,7 +96,7 @@
   color: var(--color-neutral-100);
   border: solid 1.5px var(--color-stroke-03);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--color-neutral-600);
     color: var(--color-neutral-100);
   }
@@ -116,7 +116,7 @@
   padding: var(--space-sm-fixed);
   aspect-ratio: 1/1;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: none;
     background-color: var(--color-neutral-700);
     border: solid 2px var(--color-neutral-500);
@@ -135,7 +135,7 @@
   border: solid 1.5px var(--color-stroke-03);
   color: var(--color-status-error);
 
-  &:hover {
+  &:hover:not(:disabled) {
     border: solid 1.5px var(--color-quaternary-500);
   }
 
@@ -149,7 +149,7 @@
   border: solid 1.5px var(--color-alert-400);
   color: var(--color-alert-400);
 
-  &:hover {
+  &:hover:not(:disabled) {
     border: solid 1.5px var(--color-alert-300);
   }
 
@@ -223,7 +223,7 @@
   margin: 0;
   color: var(--color-neutral-100);
 
-  &:hover .content {
+  &:hover:not(:disabled) .content {
     color: var(--color-neutral-100);
   }
 
@@ -237,7 +237,7 @@
   &.active {
     color: var(--color-secondary-100);
 
-    &:hover .content {
+    &:hover:not(:disabled) .content {
       color: var(--color-secondary-100);
 
       &:after {
