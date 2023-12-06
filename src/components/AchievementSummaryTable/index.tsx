@@ -1,17 +1,18 @@
 import React, { ReactElement } from 'react'
+
 import cn from 'classnames'
 
 import * as Images from '@/assets/images'
+import useAllImagesLoaded from '@/utils/useAllImagesLoaded'
 
 import AchievementNav, { AchievementNavProps } from '../AchievementNav'
 import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
+import Loading from '../Loading'
 import Tabs from '../Tabs'
 import styles from './AchievementSummaryTable.module.scss'
-import Loading from '../Loading'
 import MessageModal, { MessageModalProps } from './components/MessageModal'
-import useAllImagesLoaded from '@/utils/useAllImagesLoaded'
 
 export type AchievementFilter = 'all' | 'new' | 'minted'
 
@@ -94,16 +95,24 @@ export default function AchievementSummaryTable({
 
   const gamesComponent = <div className={styles.gamesTable}>{games}</div>
   let content = null
-  if (isPageLoading || !cardsLoaded){
-    content = (<Loading />)
-  }
-  else if (isFetching){
-    content = (<>{gamesComponent}<Loading /></>)
-  }
-  else if (games === undefined || games === null || games.length === 0){
-    content = <MessageModal title={messageModalProps.title} message={messageModalProps.message} className={styles.messageModal}/>
-  }
-  else {
+  if (isPageLoading || !cardsLoaded) {
+    content = <Loading />
+  } else if (isFetching) {
+    content = (
+      <>
+        {gamesComponent}
+        <Loading />
+      </>
+    )
+  } else if (games === undefined || games === null || games.length === 0) {
+    content = (
+      <MessageModal
+        title={messageModalProps.title}
+        message={messageModalProps.message}
+        className={styles.messageModal}
+      />
+    )
+  } else {
     content = gamesComponent
   }
 
@@ -138,10 +147,15 @@ export default function AchievementSummaryTable({
               />
 
               <Tabs.List type="outline">
-                {tabs.map((tab)=>(<Tabs.Tab value={tab.value} key={tab.value} className={styles.tab}>
-                  <div className="menu">{tab.label}</div>
-                </Tabs.Tab>)
-                )}
+                {tabs.map((tab) => (
+                  <Tabs.Tab
+                    value={tab.value}
+                    key={tab.value}
+                    className={styles.tab}
+                  >
+                    <div className="menu">{tab.label}</div>
+                  </Tabs.Tab>
+                ))}
               </Tabs.List>
             </div>
             <div className={styles.ctas}>

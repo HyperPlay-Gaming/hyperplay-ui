@@ -53,7 +53,7 @@
   background: var(--color-gradient-01) padding-box,
     var(--color-gradient-01-border) border-box;
 
-    &:hover:not(:disabled) {
+  &:hover:not(:disabled) {
     background: var(--color-gradient-02) padding-box,
       var(--color-gradient-02-border) border-box;
   }

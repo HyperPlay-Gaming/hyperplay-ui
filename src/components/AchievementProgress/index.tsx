@@ -32,7 +32,7 @@ export interface AchievementProgressProps extends AchievementProgressTextProps {
   /**
    * Optional icon to the right of the progress bar in the same row
    */
-  rightIcon?:  React.ReactNode
+  rightIcon?: React.ReactNode
 }
 
 export default function AchievementProgress({
@@ -70,9 +70,7 @@ export default function AchievementProgress({
             ]}
             w={'100%'}
           />
-          {
-            rightIcon ? rightIcon : null
-          }
+          {rightIcon ? rightIcon : null}
         </div>
       </div>
     </div>

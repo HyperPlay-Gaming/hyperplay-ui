@@ -89,13 +89,13 @@
   }
 }
 
-.addThisGameContainer{
+.addThisGameContainer {
   &:hover {
     background-color: inherit;
     opacity: 100%;
     cursor: default;
   }
-  > div{
+  > div {
     justify-content: center;
     cursor: default;
   }

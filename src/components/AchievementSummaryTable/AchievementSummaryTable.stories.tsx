@@ -1,13 +1,15 @@
 import React from 'react'
 
-import AchievementSummaryTable, { AchievementSummaryTableProps } from '.'
-import AchievementCard, { AchievementCardProps } from '../AchievementCard'
-import { itemType } from '../Dropdowns/Dropdown'
 import { Meta, StoryObj } from '@storybook/react'
-import { GameAdded } from '../AchievementNav'
+
 import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url'
 import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg?url'
 import reCard from '@/assets/steamCards/residentEvilCard.jpg?url'
+
+import AchievementSummaryTable, { AchievementSummaryTableProps } from '.'
+import AchievementCard, { AchievementCardProps } from '../AchievementCard'
+import { GameAdded } from '../AchievementNav'
+import { itemType } from '../Dropdowns/Dropdown'
 
 const meta: Meta<typeof AchievementSummaryTable> = {
   title: 'Achievements/AchievementSummaryTable',
@@ -79,12 +81,12 @@ const gamesNodes = games.map(({ id, ...rest }) => (
 const selectedSort = achievementsSortOptions[0]
 const activeFilter = 'all'
 const gamesAdded: GameAdded[] = []
-const imagesToPreload = games.map((game)=>game.image)
+const imagesToPreload = games.map((game) => game.image)
 
 const props: AchievementSummaryTableProps = {
   imagesToPreload,
   games: gamesNodes,
-  sortProps:{
+  sortProps: {
     options: achievementsSortOptions,
     selected: selectedSort,
     onItemChange: (val) => console.log(`Sort item changed to ${val}`)
@@ -93,18 +95,27 @@ const props: AchievementSummaryTableProps = {
     handleNextPage: () => console.log('next page'),
     handlePrevPage: () => console.log('prev page')
   },
-  filterProps:{
+  filterProps: {
     activeFilter,
     setActiveFilter: (val) => console.log(`Active filter changed to ${val}`)
   },
-  mintButtonProps:{ onClick: () => console.log('mint'), totalToMint: 1 },
-  achievementNavProps:{ freeMints: 10, basketAmount: 20, gamesAdded, showGameAddButton: false },
+  mintButtonProps: { onClick: () => console.log('mint'), totalToMint: 1 },
+  achievementNavProps: {
+    freeMints: 10,
+    basketAmount: 20,
+    gamesAdded,
+    showGameAddButton: false
+  },
   isFetching: false,
   hasFetchedAll: false,
   fetchNextPage: () => {
     console.log('fetch next page!')
   },
-  tabs: [{value: 'all', label: 'All'},{value: 'new', label: 'New'},{value: 'minted', label: 'Minted'}],
+  tabs: [
+    { value: 'all', label: 'All' },
+    { value: 'new', label: 'New' },
+    { value: 'minted', label: 'Minted' }
+  ],
   messageModalProps: {
     title: 'Oops!',
     message: `It looks like we couldn't find any games in your Steam account at the moment. Just a quick reminder to double-check that your game details are set to public. This way, we can access your achievements and provide you with the best experience.`
@@ -113,7 +124,11 @@ const props: AchievementSummaryTableProps = {
 
 export const Default: Story = {
   args: { ...props },
-  render: (args)=>{
-    return <div style={{ height: '1000px', display: 'flex' }}><AchievementSummaryTable {...args} /></div>
+  render: (args) => {
+    return (
+      <div style={{ height: '1000px', display: 'flex' }}>
+        <AchievementSummaryTable {...args} />
+      </div>
+    )
   }
 }

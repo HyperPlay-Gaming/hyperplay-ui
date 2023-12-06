@@ -1,16 +1,16 @@
-.messageModalContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: var(--color-neutral-700);
-    border-radius: var(--space-lg);
-    padding: var(--space-xl) var(--space-lg);
-    gap: var(--space-sm);
-    text-align: center;
+.messageModalContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--color-neutral-700);
+  border-radius: var(--space-lg);
+  padding: var(--space-xl) var(--space-lg);
+  gap: var(--space-sm);
+  text-align: center;
 }
 
 .message {
-    color: var(--color-neutral-400);
-    line-height: var(--space-xl);
+  color: var(--color-neutral-400);
+  line-height: var(--space-xl);
 }

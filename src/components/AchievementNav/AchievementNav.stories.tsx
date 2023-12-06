@@ -9,9 +9,18 @@ export default {
 }
 
 export const gamesAdded = [
-  {title: 'Kosium Arctic Eclipse', onGameRemove: ()=>console.log('Removing Kosium!')},
-  {title: 'Runescape', onGameRemove: ()=>console.log('Removing Runescape!')},
-  {title: 'A Short Hike', onGameRemove: ()=>console.log('Removing A Short Hike!')}
+  {
+    title: 'Kosium Arctic Eclipse',
+    onGameRemove: () => console.log('Removing Kosium!')
+  },
+  {
+    title: 'Runescape',
+    onGameRemove: () => console.log('Removing Runescape!')
+  },
+  {
+    title: 'A Short Hike',
+    onGameRemove: () => console.log('Removing A Short Hike!')
+  }
 ]
 
 export const Default = () => (
@@ -20,7 +29,7 @@ export const Default = () => (
     basketAmount={0}
     nextButtonProps={{ onClick: () => console.log('next') }}
     previousButtonProps={{ onClick: () => console.log('previous') }}
-    onGameAdd={()=>console.log('Game Added!')}
+    onGameAdd={() => console.log('Game Added!')}
     gamesAdded={gamesAdded}
     showGameAddButton={false}
   />

@@ -18,8 +18,8 @@ import getProgress, {
 import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
-import styles from './GameAchievements.module.scss'
 import Loading from '../Loading'
+import styles from './GameAchievements.module.scss'
 
 export interface GameAchievementsProps
   extends HTMLProps<HTMLDivElement>,
@@ -200,45 +200,49 @@ export default function GameAchievements({
         </div>
 
         <div className={styles.list}>
-          {loadingAchievements ? <Loading /> : achievements.map(({ id, title, description, image, isLocked }) => (
-            <div
-              key={id}
-              className={cn(styles.row, isLocked ? styles.locked : '')}
-            >
-              <div className={styles.achievementData}>
-                <Image
-                  className={styles.image}
-                  src={image}
-                  height={80}
-                  width={80}
-                  withPlaceholder
-                  placeholder={<div className={styles.fallback} />}
-                />
-                <div className={styles.achievementInfo}>
-                  <div className="text--lg weight--medium">{title}</div>
-                  <div className={cn(styles.colorNeutral400, 'text--md')}>
-                    {description}
+          {loadingAchievements ? (
+            <Loading />
+          ) : (
+            achievements.map(({ id, title, description, image, isLocked }) => (
+              <div
+                key={id}
+                className={cn(styles.row, isLocked ? styles.locked : '')}
+              >
+                <div className={styles.achievementData}>
+                  <Image
+                    className={styles.image}
+                    src={image}
+                    height={80}
+                    width={80}
+                    withPlaceholder
+                    placeholder={<div className={styles.fallback} />}
+                  />
+                  <div className={styles.achievementInfo}>
+                    <div className="text--lg weight--medium">{title}</div>
+                    <div className={cn(styles.colorNeutral400, 'text--md')}>
+                      {description}
+                    </div>
                   </div>
                 </div>
+                <div
+                  className={cn(
+                    styles.colorNeutral400,
+                    styles.achievementState,
+                    'text--sm'
+                  )}
+                >
+                  {isLocked ? (
+                    <div>{i18n.lockedLabel}</div>
+                  ) : (
+                    <div className={styles.unlocked}>
+                      <div>{i18n.unLockedLabel}</div>
+                      <Images.CheckmarkCircleOutline width={21} height={21} />
+                    </div>
+                  )}
+                </div>
               </div>
-              <div
-                className={cn(
-                  styles.colorNeutral400,
-                  styles.achievementState,
-                  'text--sm'
-                )}
-              >
-                {isLocked ? (
-                  <div>{i18n.lockedLabel}</div>
-                ) : (
-                  <div className={styles.unlocked}>
-                    <div>{i18n.unLockedLabel}</div>
-                    <Images.CheckmarkCircleOutline width={21} height={21} />
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>
