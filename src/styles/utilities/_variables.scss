@@ -19,6 +19,11 @@ $laptopBreakpoint: 1350px;
     @content;
   }
 }
+@mixin for-steamdeck-down {
+  @media (max-width: 1300px) {
+    @content;
+  }
+}
 @mixin for-desktop-up {
   @media (min-width: 1200px) {
     @content;
