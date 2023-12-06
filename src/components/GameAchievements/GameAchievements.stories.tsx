@@ -63,8 +63,6 @@ const props: GameAchievementsProps = {
     basketAmount: 0,
     onGameAdd: () => console.log('game added'),
     gamesAdded: gamesAdded,
-    addThisGameText: 'Add this game',
-    gamesToMintLabelText: 'Games to mint',
     showGameAddButton: true
   },
   game: {

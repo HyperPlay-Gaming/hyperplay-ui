@@ -35,17 +35,38 @@ export interface AchievementNavProps {
   previousButtonProps?: CircularButtonProps
   i18n?: {
     /**
-     * text to show how many free mints a user has
+     * Text to show how many free mints a user has
      */
     freeMintsLabel?: string
+    /**
+     * Text to show on add game button
+     */
+    addThisGameText?: string
+    /**
+     * Text to show in menu label above added games
+     */
+    gamesToMintLabelText?: string
   }
+  /**
+   * Whether to show the back arrow previous button
+   */
   showPreviousButton?: boolean
+  /**
+   * Whether to show the forward arrow next button
+   */
   showNextButton?: boolean
+  /**
+   * Whether to show the add this game button
+   */
   showGameAddButton: boolean
+  /**
+   * Handler for user clicking on add this game button
+   */
   onGameAdd?: () => void
+  /**
+   * Games added to mint. Shown in trophy hover menu
+   */
   gamesAdded: GameAdded[]
-  addThisGameText?: string
-  gamesToMintLabelText?: string
 }
 
 export default function AchievementNav({
@@ -54,7 +75,9 @@ export default function AchievementNav({
   previousButtonProps,
   nextButtonProps,
   i18n = {
-    freeMintsLabel: 'Free mints'
+    freeMintsLabel: 'Free mints',
+    addThisGameText: 'Add this game',
+    gamesToMintLabelText: 'Games to mint'
   },
   showPreviousButton = false,
   showNextButton = false,
@@ -62,9 +85,7 @@ export default function AchievementNav({
     console.log('game add clicked')
   },
   gamesAdded,
-  addThisGameText = 'Add this game',
-  showGameAddButton,
-  gamesToMintLabelText = 'Games to mint'
+  showGameAddButton
 }: AchievementNavProps) {
   const xIcon = (
     <div>
@@ -151,12 +172,12 @@ export default function AchievementNav({
                     className={styles.addThisGameButton}
                     id="addThisGameButtonId"
                   >
-                    {addThisGameText}
+                    {i18n.addThisGameText}
                   </Button>
                 </Menu.Item>
               ) : null}
               <Menu.Label className={styles.menuLabel}>
-                {gamesToMintLabelText}
+                {i18n.gamesToMintLabelText}
               </Menu.Label>
               {gameComponents}
             </Menu.Dropdown>
