@@ -49,6 +49,10 @@ export interface AchievementSummaryTableProps
   messageModalProps: MessageModalProps
 }
 
+/**
+ * The main achievement summary card page
+ * TODO: Refactor into smaller components
+ */
 export default function AchievementSummaryTable({
   games,
   imagesToPreload,
@@ -81,8 +85,9 @@ export default function AchievementSummaryTable({
     const { scrollHeight, scrollTop, clientHeight } =
       ev.target as HTMLDivElement
 
+    const distanceFromBottom = scrollHeight - scrollTop - clientHeight
     if (
-      scrollHeight - scrollTop - clientHeight < 5000 &&
+      distanceFromBottom < 5000 &&
       !isFetching &&
       !hasFetchedAll &&
       fetchNextPage !== undefined
