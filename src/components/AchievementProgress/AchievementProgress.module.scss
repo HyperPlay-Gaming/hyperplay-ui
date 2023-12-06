@@ -30,3 +30,9 @@
   overflow: hidden;
   white-space: nowrap;
 }
+
+.progressRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
