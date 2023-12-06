@@ -5,7 +5,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg?url'
 
 import GameAchievements, { GameAchievementsProps } from '.'
-import { gamesAdded } from '../AchievementNav/AchievementNav.stories'
+import { gamesAdded } from '../AchievementNav/data'
 import { itemType } from '../Dropdowns/Dropdown'
 
 const meta: Meta<typeof GameAchievements> = {

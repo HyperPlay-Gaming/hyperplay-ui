@@ -2,26 +2,12 @@
 import React from 'react'
 
 import AchievementNav from '.'
+import { gamesAdded } from './data'
 
 export default {
   title: 'Achievements/AchievementNav',
   component: AchievementNav
 }
-
-export const gamesAdded = [
-  {
-    title: 'Kosium Arctic Eclipse',
-    onGameRemove: () => console.log('Removing Kosium!')
-  },
-  {
-    title: 'Runescape',
-    onGameRemove: () => console.log('Removing Runescape!')
-  },
-  {
-    title: 'A Short Hike',
-    onGameRemove: () => console.log('Removing A Short Hike!')
-  }
-]
 
 export const Default = () => (
   <AchievementNav
