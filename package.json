@@ -1,7 +1,7 @@
 {
   "name": "@hyperplay/ui",
-  "version": "0.1.37",
-  "license": "BUSL-1.1",
+  "version": "0.1.38",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
