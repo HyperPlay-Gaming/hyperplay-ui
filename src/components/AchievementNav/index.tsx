@@ -105,9 +105,9 @@ export default function AchievementNav({
 
   const plusIcon = <Images.PlusCircleOutline />
 
-  const dropdownStyle: CSSProperties = {}
+  let dropdownClass = ''
   if (gamesAdded.length === 0) {
-    dropdownStyle.cursor = 'default'
+    dropdownClass = styles.disabledTrophy
   }
 
   return (
@@ -154,7 +154,7 @@ export default function AchievementNav({
           }}
         >
           <Menu.Target>
-            <div className={styles.basket} style={dropdownStyle}>
+            <div className={`${styles.basket} ${dropdownClass}`}>
               <Images.TrophyOutline width="22" height="22" />
               <div className={classNames(styles.badge, 'menu')}>
                 {basketAmount}

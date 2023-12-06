@@ -44,6 +44,10 @@
   svg {
     fill: white;
   }
+
+  &.disabledTrophy {
+    cursor: default;
+  }
 }
 
 .badge {
