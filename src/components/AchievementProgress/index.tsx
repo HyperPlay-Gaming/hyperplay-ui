@@ -70,7 +70,7 @@ export default function AchievementProgress({
             ]}
             w={'100%'}
           />
-          {rightIcon ? rightIcon : null}
+          {rightIcon}
         </div>
       </div>
     </div>
