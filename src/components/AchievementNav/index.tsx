@@ -154,7 +154,7 @@ export default function AchievementNav({
           }}
         >
           <Menu.Target>
-            <div className={`${styles.basket} ${dropdownClass}`}>
+            <div className={classNames(styles.basket, dropdownClass)}>
               <Images.TrophyOutline width="22" height="22" />
               <div className={classNames(styles.badge, 'menu')}>
                 {basketAmount}
