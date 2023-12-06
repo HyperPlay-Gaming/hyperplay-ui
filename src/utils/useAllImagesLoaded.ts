@@ -21,7 +21,7 @@ export default function useAllImagesLoaded(images: string[]) {
     Promise.allSettled(images.map(async (img) => loadImage(img)))
       .then(() => setImagesLoaded(true))
       .catch((err) =>
-        console.log(`Failed to load images  ${err.toString()}`, err)
+        console.error(`Failed to load images  ${err.toString()}`, err)
       )
   }, [])
 
