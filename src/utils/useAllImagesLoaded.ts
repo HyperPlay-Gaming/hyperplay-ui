@@ -6,15 +6,15 @@ export default function useAllImagesLoaded(images: string[]) {
     const loadImage = async (image: string) => {
       return new Promise((resolve, reject) => {
         const loadImg = new Image()
-        loadImg.src = image
-        // wait 2 seconds to simulate loading time
-        loadImg.onload = () =>
-          setTimeout(() => {
-            resolve(image)
-          }, 5000)
+        loadImg.onload = () => resolve(image)
+
+        setTimeout(() => {
+          resolve(image)
+        }, 3000)
 
         loadImg.onerror = (err) => reject(err)
         loadImg.onabort = (err) => reject(err)
+        loadImg.src = image
       })
     }
 
