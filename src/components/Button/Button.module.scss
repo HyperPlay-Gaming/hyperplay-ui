@@ -148,6 +148,7 @@
   color: var(--color-alert-400);
 
   &:hover:not(:disabled) {
+    color: var(--color-alert-300);
     border: solid 1.5px var(--color-alert-300);
     opacity: 100%;
   }
