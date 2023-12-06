@@ -12,22 +12,26 @@ import Button from '@/components/Button'
 import Modal from '@/components/Modal/Modal'
 import { AuthProviderButton, TextInput } from '@/index'
 
+import Alert, { AlertProps } from '../Alert'
+import { AuthProviderButtonProps } from '../AuthProviderButton'
 import styles from './SignUp.module.scss'
 
 type Steps = 'selectProvider' | 'email'
 
-export type AuthProvider = {
-  id: string
-  name: string
-  icon?: React.ReactNode
-  label?: React.ReactNode
+interface ConnectedProviders {
+  metamaskExtension: boolean
+  walletConnect: boolean
+  metamaskMobile: boolean
+  email: boolean
 }
 
 interface AuthProps {
-  providers: AuthProvider[]
-  onAuthProviderSignup: (provider: AuthProvider) => void
+  alert?: AlertProps
+  providers: AuthProviderButtonProps[]
+  onAuthProviderSignup: (provider: AuthProviderButtonProps) => void
   onEmailSignup: (email: string) => void
   onWalletSignup: () => void
+  connected: ConnectedProviders
 }
 
 interface I18n {
@@ -43,17 +47,21 @@ interface I18n {
 }
 
 const SelectProvider = ({
+  alert,
   providers,
   onEmailClick,
   onAuthProviderClick,
   onWalletClick,
-  i18n
+  i18n,
+  connected
 }: {
-  providers: AuthProvider[]
+  alert?: AlertProps
+  providers: AuthProviderButtonProps[]
   onEmailClick: () => void
   onWalletClick: () => void
-  onAuthProviderClick: (provider: AuthProvider) => void
+  onAuthProviderClick: (provider: AuthProviderButtonProps) => void
   i18n: I18n
+  connected: ConnectedProviders
 }) => {
   return (
     <>
@@ -62,6 +70,7 @@ const SelectProvider = ({
         <Modal.Title>{i18n.signupTitle}</Modal.Title>
         <Modal.Body>{i18n.signupSubtitle}</Modal.Body>
       </Modal.Header>
+      {alert && <Alert {...alert}></Alert>}
       <div className={styles.providersContainer}>
         <AuthProviderButton
           name="MetaMask"
@@ -74,6 +83,7 @@ const SelectProvider = ({
             </AuthProviderButton.Label>
           }
           onClick={onWalletClick}
+          connected={connected.metamaskExtension}
         />
         <AuthProviderButton
           name="MetaMask"
@@ -84,11 +94,13 @@ const SelectProvider = ({
             </AuthProviderButton.Label>
           }
           onClick={onWalletClick}
+          connected={connected.metamaskMobile}
         />
         <AuthProviderButton
           name="WalletConnect"
           icon={<WalletConnectLogo />}
           onClick={onWalletClick}
+          connected={connected.walletConnect}
         />
         {providers.map((provider) => (
           <AuthProviderButton
@@ -101,6 +113,7 @@ const SelectProvider = ({
           name={i18n.emailButton}
           icon={<Email className={styles.icon} />}
           onClick={onEmailClick}
+          connected={connected.email}
         />
       </div>
     </>
@@ -108,10 +121,12 @@ const SelectProvider = ({
 }
 
 export const EmailForm = ({
+  alert,
   onGoBack,
   onSubmit,
   i18n
 }: {
+  alert?: AlertProps
   onGoBack: () => void
   onSubmit: (email: string) => void
   i18n: I18n
@@ -135,6 +150,7 @@ export const EmailForm = ({
         <Modal.Body>{i18n.emailSubtitle}</Modal.Body>
       </Modal.Header>
       <form onSubmit={handleSubmit} className={styles.form}>
+        {alert && <Alert {...alert}></Alert>}
         <TextInput
           required
           classNames={{ input: styles.emailInput }}
@@ -173,6 +189,7 @@ export interface SignupModalProps extends HTMLProps<HTMLDivElement>, AuthProps {
 }
 
 const SignUp = ({
+  alert,
   className,
   providers,
   onAuthProviderSignup,
@@ -192,6 +209,7 @@ const SignUp = ({
     emailBackButton: 'Back',
     emailSignupButton: 'Sign up'
   },
+  connected,
   ...props
 }: SignupModalProps) => {
   const [step, setStep] = useState<Steps>('selectProvider')
@@ -200,15 +218,18 @@ const SignUp = ({
       <Modal.CloseButton aria-label="close signup modal" onClick={onClose} />
       {step === 'selectProvider' && (
         <SelectProvider
+          alert={alert}
           providers={providers}
           onWalletClick={onWalletSignup}
           onEmailClick={() => setStep('email')}
           onAuthProviderClick={onAuthProviderSignup}
           i18n={i18n}
+          connected={connected}
         />
       )}
       {step === 'email' && (
         <EmailForm
+          alert={alert}
           onGoBack={() => setStep('selectProvider')}
           onSubmit={(email) => onEmailSignup(email)}
           i18n={i18n}

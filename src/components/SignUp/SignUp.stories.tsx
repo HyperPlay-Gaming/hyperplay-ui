@@ -23,6 +23,13 @@ export default meta
 
 type Story = StoryObj<typeof SignUp>
 
+const connected = {
+  metamaskExtension: false,
+  walletConnect: false,
+  metamaskMobile: false,
+  email: true
+}
+
 const authProviders = [
   {
     id: 'discord',
@@ -77,6 +84,35 @@ export const Default: Story = {
             onAuthProviderSignup={(provider) =>
               alert(`Provider: ${provider.id}`)
             }
+            connected={connected}
+            onEmailSignup={(email) => alert(`Email requested: ${email}`)}
+          />
+        </ModalAnimation>
+      </>
+    )
+  }
+}
+
+export const Error: Story = {
+  render: () => {
+    const [open, setOpen] = useState(true)
+    const close = () => setOpen(false)
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>Open</Button>
+        <ModalAnimation isOpen={open} onClose={close}>
+          <SignUp
+            alert={{
+              variant: 'danger',
+              message: 'Something went wrong. Please try again later.'
+            }}
+            providers={authProviders}
+            onClose={close}
+            onWalletSignup={() => alert('Wallet requested')}
+            onAuthProviderSignup={(provider) =>
+              alert(`Provider: ${provider.id}`)
+            }
+            connected={connected}
             onEmailSignup={(email) => alert(`Email requested: ${email}`)}
           />
         </ModalAnimation>
