@@ -56,6 +56,7 @@
   &:hover:not(:disabled) {
     background: var(--color-gradient-02) padding-box,
       var(--color-gradient-02-border) border-box;
+    opacity: 80%;
   }
 
   &:active {
@@ -71,13 +72,8 @@
   background: var(--color-primary-500);
 
   &:hover:not(:disabled) {
-    background-color: var(--color-primary-600);
-    background: linear-gradient(
-          var(--color-primary-600),
-          var(--color-primary-600)
-        )
-        padding-box,
-      linear-gradient(180deg, #6e37b3 0%, #4a06a0 100%) border-box;
+    background-color: var(--color-primary-400);
+    opacity: 100%;
   }
 
   &:active {
@@ -99,6 +95,7 @@
   &:hover:not(:disabled) {
     background-color: var(--color-neutral-600);
     color: var(--color-neutral-100);
+    opacity: 100%;
   }
 
   &:active {
@@ -137,6 +134,7 @@
 
   &:hover:not(:disabled) {
     border: solid 1.5px var(--color-quaternary-500);
+    opacity: 100%;
   }
 
   &:active {
@@ -151,6 +149,7 @@
 
   &:hover:not(:disabled) {
     border: solid 1.5px var(--color-alert-300);
+    opacity: 100%;
   }
 
   &:active {
@@ -197,6 +196,7 @@
     svg path {
       fill: #ff83e2;
     }
+    opacity: 100%;
   }
 
   &:active {
