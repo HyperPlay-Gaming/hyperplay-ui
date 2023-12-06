@@ -18,6 +18,7 @@ import getProgress, {
 import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
+import Loading from '../Loading'
 import styles from './GameAchievements.module.scss'
 
 export interface GameAchievementsProps
@@ -28,7 +29,6 @@ export interface GameAchievementsProps
    */
   game: {
     title: string
-    tags: string[]
   }
   /**
    * An array of achievements
@@ -47,8 +47,6 @@ export interface GameAchievementsProps
   updateButtonProps?: ButtonProps & { totalToUpdate: number }
   sortProps: DropdownProps
   paginationProps: {
-    currentPage: number
-    totalPages: number
     handleNextPage: () => void
     handlePrevPage: () => void
   }
@@ -68,6 +66,8 @@ export interface GameAchievementsProps
     mintButtonLabel?: string
     updateButtonLabel?: string
   }
+  loadingAchievements?: boolean
+  gameCardImage: string
 }
 
 export default function GameAchievements({
@@ -90,6 +90,8 @@ export default function GameAchievements({
     mintButtonLabel: 'Mint',
     updateButtonLabel: 'Update'
   },
+  loadingAchievements,
+  gameCardImage,
   ...rest
 }: GameAchievementsProps) {
   const { safeMintedCount, safeTotalCount, mintedProgress, mintableProgress } =
@@ -98,32 +100,29 @@ export default function GameAchievements({
       totalAchievementsCount,
       mintableAchievementsCount
     })
-  const { handleNextPage, handlePrevPage, currentPage, totalPages } =
-    paginationProps
+  const { handleNextPage, handlePrevPage } = paginationProps
   const { totalToMint, ...mintProps } = mintButtonProps ?? {}
   const { totalToUpdate, ...updateProps } = updateButtonProps ?? {}
 
   return (
     <div className={styles.container} {...rest}>
       <div className={styles.hero}>
-        <Images.MobileHpLogo className={styles.logo} width={100} height={100} />
         <AchievementNav
           {...achievementNavProps}
           nextButtonProps={{
-            onClick: handleNextPage,
-            disabled: currentPage === totalPages
+            onClick: handleNextPage
           }}
           previousButtonProps={{
-            onClick: handlePrevPage,
-            disabled: currentPage === 1
+            onClick: handlePrevPage
           }}
+          showPreviousButton={true}
+          showGameAddButton={true}
         />
 
         <div className={cn(styles.row, styles.ctaContainer)}>
           <Button
             type="secondary"
             size="medium"
-            leftIcon={<Images.PlusCircleOutline width={16} height={16} />}
             spacing="xs"
             rightIcon={
               <div className={cn(styles.rightIcon, styles.mint)}>
@@ -150,22 +149,17 @@ export default function GameAchievements({
           </Button>
         </div>
 
-        <div className={styles.row}>
+        <div className={styles.heroRow}>
           <div>
-            <h6 className={styles.title}>{game.title}</h6>
-            <div className={styles.tagList}>
-              {game.tags.map((tag) => (
-                <div
-                  key={tag}
-                  className={cn(styles.tag, styles.colorNeutral400, 'text--xs')}
-                >
-                  {tag}
-                </div>
-              ))}
-            </div>
+            <Image
+              src={gameCardImage}
+              w={300}
+              className={styles.gameCardImageContainer}
+            />
           </div>
 
           <div className={styles.progress}>
+            <h6 className={styles.title}>{game.title}</h6>
             <AchievementProgress
               safeMintedCount={safeMintedCount}
               safeTotalCount={safeTotalCount}
@@ -206,45 +200,49 @@ export default function GameAchievements({
         </div>
 
         <div className={styles.list}>
-          {achievements.map(({ id, title, description, image, isLocked }) => (
-            <div
-              key={id}
-              className={cn(styles.row, isLocked ? styles.locked : '')}
-            >
-              <div className={styles.achievementData}>
-                <Image
-                  className={styles.image}
-                  src={image}
-                  height={80}
-                  width={80}
-                  withPlaceholder
-                  placeholder={<div className={styles.fallback} />}
-                />
-                <div className={styles.achievementInfo}>
-                  <div className="text--lg weight--medium">{title}</div>
-                  <div className={cn(styles.colorNeutral400, 'text--md')}>
-                    {description}
+          {loadingAchievements ? (
+            <Loading />
+          ) : (
+            achievements.map(({ id, title, description, image, isLocked }) => (
+              <div
+                key={id}
+                className={cn(styles.row, isLocked ? styles.locked : '')}
+              >
+                <div className={styles.achievementData}>
+                  <Image
+                    className={styles.image}
+                    src={image}
+                    height={80}
+                    width={80}
+                    withPlaceholder
+                    placeholder={<div className={styles.fallback} />}
+                  />
+                  <div className={styles.achievementInfo}>
+                    <div className="text--lg weight--medium">{title}</div>
+                    <div className={cn(styles.colorNeutral400, 'text--md')}>
+                      {description}
+                    </div>
                   </div>
                 </div>
+                <div
+                  className={cn(
+                    styles.colorNeutral400,
+                    styles.achievementState,
+                    'text--sm'
+                  )}
+                >
+                  {isLocked ? (
+                    <div>{i18n.lockedLabel}</div>
+                  ) : (
+                    <div className={styles.unlocked}>
+                      <div>{i18n.unLockedLabel}</div>
+                      <Images.CheckmarkCircleOutline width={21} height={21} />
+                    </div>
+                  )}
+                </div>
               </div>
-              <div
-                className={cn(
-                  styles.colorNeutral400,
-                  styles.achievementState,
-                  'text--sm'
-                )}
-              >
-                {isLocked ? (
-                  <div>{i18n.lockedLabel}</div>
-                ) : (
-                  <div className={styles.unlocked}>
-                    <div>{i18n.unLockedLabel}</div>
-                    <Images.CheckmarkCircleOutline width={21} height={21} />
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>

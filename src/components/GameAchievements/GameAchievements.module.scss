@@ -1,10 +1,12 @@
 @import '../../styles/overrides';
+@import '../../styles/utilities/_variables';
 
 .container {
-  overflow: hidden;
   border-radius: var(--space-md);
   display: flex;
   flex-direction: column;
+  max-height: 100%;
+  height: 100%;
 }
 
 .row {
@@ -14,18 +16,22 @@
   flex-direction: row;
 }
 
+.heroRow {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: var(--space-xl);
+}
+
 .colorNeutral400 {
   color: var(--color-neutral-400);
 }
 
 .hero {
   position: relative;
-  background: linear-gradient(
-    180deg,
-    rgba(151, 71, 255, 0.5) 0%,
-    rgba(0, 25, 115, 0.5) 100%
-  );
+  background: var(--color-gradient-steam-01);
   padding: var(--space-2lg);
+  border-radius: var(--space-md) var(--space-md) 0px 0px;
 
   .logo {
     position: absolute;
@@ -58,6 +64,10 @@
   padding: var(--space-2lg);
   background: var(--color-neutral-800);
   border-top: 3px solid var(--color-neutral-900);
+  max-height: 100%;
+  overflow-y: scroll;
+  flex: 1;
+  border-radius: 0px 0px var(--space-md) var(--space-md);
 
   .list {
     display: flex;
@@ -117,7 +127,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-self: flex-end;
   width: 200px;
 
   .progressKey {
@@ -130,8 +139,7 @@
 }
 
 .title {
-  margin-bottom: var(--space-sm-fixed);
-  margin-top: var(--space-lg-fixed);
+  margin-bottom: var(--space-xs-fixed);
   font-family: var(--primary-font-family);
 }
 
@@ -157,5 +165,16 @@
   &.update {
     background-color: var(--color-alert-400);
     color: var(--color-neutral-800);
+  }
+}
+
+.gameCardImageContainer {
+  background-color: var(--color-gradient-08);
+  border-radius: var(--space-xs);
+  overflow: hidden;
+  max-width: 460px;
+
+  @include for-steamdeck-down {
+    max-width: 230px;
   }
 }

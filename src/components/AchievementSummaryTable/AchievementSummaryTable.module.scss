@@ -4,17 +4,24 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  padding: var(--space-2lg);
   background: var(--color-neutral-800);
   border-radius: var(--space-md);
-  min-height: 100%;
+  max-height: 100%;
+  height: 100%;
+}
+
+.topBar {
+  padding: var(--space-2lg) var(--space-2lg) 0px;
+}
+
+.scrollArea {
+  max-height: 100%;
 }
 
 .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-2lg);
 }
 
 .filters {
@@ -28,16 +35,23 @@
 }
 
 .games {
+  padding: var(--space-2lg);
+  margin-bottom: var(--space-2lg);
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+.gamesTable {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   grid-column-gap: var(--space-md);
   grid-row-gap: var(--space-md);
 
-  @include variables.for-tablet-portrait-up {
+  @include variables.for-desktop-up {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @include variables.for-tablet-landscape-up {
+  @include variables.for-big-desktop-up {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
@@ -75,4 +89,13 @@
 
 .dropdownSort {
   height: 100%;
+}
+
+.messageModal {
+  max-width: 540px;
+  margin: 0px auto;
+}
+
+.secondTopRowContainer {
+  margin-top: var(--space-md);
 }

@@ -53,9 +53,10 @@
   background: var(--color-gradient-01) padding-box,
     var(--color-gradient-01-border) border-box;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: var(--color-gradient-02) padding-box,
       var(--color-gradient-02-border) border-box;
+    opacity: 80%;
   }
 
   &:active {
@@ -70,14 +71,9 @@
 
   background: var(--color-primary-500);
 
-  &:hover {
-    background-color: var(--color-primary-600);
-    background: linear-gradient(
-          var(--color-primary-600),
-          var(--color-primary-600)
-        )
-        padding-box,
-      linear-gradient(180deg, #6e37b3 0%, #4a06a0 100%) border-box;
+  &:hover:not(:disabled) {
+    background-color: var(--color-primary-400);
+    opacity: 100%;
   }
 
   &:active {
@@ -96,9 +92,10 @@
   color: var(--color-neutral-100);
   border: solid 1.5px var(--color-stroke-03);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--color-neutral-600);
     color: var(--color-neutral-100);
+    opacity: 100%;
   }
 
   &:active {
@@ -116,7 +113,7 @@
   padding: var(--space-sm-fixed);
   aspect-ratio: 1/1;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: none;
     background-color: var(--color-neutral-700);
     border: solid 2px var(--color-neutral-500);
@@ -135,8 +132,9 @@
   border: solid 1.5px var(--color-stroke-03);
   color: var(--color-status-error);
 
-  &:hover {
+  &:hover:not(:disabled) {
     border: solid 1.5px var(--color-quaternary-500);
+    opacity: 100%;
   }
 
   &:active {
@@ -149,8 +147,10 @@
   border: solid 1.5px var(--color-alert-400);
   color: var(--color-alert-400);
 
-  &:hover {
+  &:hover:not(:disabled) {
+    color: var(--color-alert-300);
     border: solid 1.5px var(--color-alert-300);
+    opacity: 100%;
   }
 
   &:active {
@@ -197,6 +197,7 @@
     svg path {
       fill: #ff83e2;
     }
+    opacity: 100%;
   }
 
   &:active {
@@ -223,7 +224,7 @@
   margin: 0;
   color: var(--color-neutral-100);
 
-  &:hover .content {
+  &:hover:not(:disabled) .content {
     color: var(--color-neutral-100);
   }
 
@@ -237,7 +238,7 @@
   &.active {
     color: var(--color-secondary-100);
 
-    &:hover .content {
+    &:hover:not(:disabled) .content {
       color: var(--color-secondary-100);
 
       &:after {

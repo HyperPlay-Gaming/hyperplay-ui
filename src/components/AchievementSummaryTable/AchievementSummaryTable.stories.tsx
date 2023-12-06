@@ -1,21 +1,30 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import React, { useMemo, useState } from 'react'
+import React from 'react'
 
-import AchievementSummaryTable, { AchievementFilter } from '.'
+import { Meta, StoryObj } from '@storybook/react'
+
+import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url'
+import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg?url'
+import reCard from '@/assets/steamCards/residentEvilCard.jpg?url'
+
+import AchievementSummaryTable, { AchievementSummaryTableProps } from '.'
 import AchievementCard, { AchievementCardProps } from '../AchievementCard'
+import { GameAdded } from '../AchievementNav'
 import { itemType } from '../Dropdowns/Dropdown'
 
-export default {
+const meta: Meta<typeof AchievementSummaryTable> = {
   title: 'Achievements/AchievementSummaryTable',
   component: AchievementSummaryTable
 }
 
+export default meta
+
+type Story = StoryObj<typeof AchievementSummaryTable>
 type Data = AchievementCardProps & { id: string }
 
 const games = [
   {
     id: '1',
-    image: 'https://i.imgur.com/Cij5vdL.png',
+    image: cyberpunkCard,
     title: 'Diablo II',
     mintedAchievementsCount: 5,
     mintableAchievementsCount: 10,
@@ -25,7 +34,7 @@ const games = [
   },
   {
     id: '2',
-    image: 'https://i.imgur.com/Cij5vdL.png',
+    image: cupheadCard,
     title: 'Star Wars: Knights of the Old Republic',
     mintedAchievementsCount: 5,
     mintableAchievementsCount: 10,
@@ -36,7 +45,7 @@ const games = [
   },
   {
     id: '3',
-    image: 'https://i.imgur.com/Cij5vdL.png',
+    image: reCard,
     title: 'Star Wars: Knights of the Old Republic',
     mintedAchievementsCount: 5,
     mintableAchievementsCount: 10,
@@ -55,48 +64,71 @@ const games = [
   }
 ] as Data[]
 
-export const Default = () => {
-  const achievementsSortOptions = [
-    { text: 'Alphabetically (ASC)' },
-    { text: 'Alphabetically (DES)' }
-  ] as itemType[]
-  const [selectedSort, setSelectedSort] = useState(achievementsSortOptions[0])
-  const [activeFilter, setActiveFilter] = useState<AchievementFilter>('all')
+for (let i = 5; i < 20; ++i) {
+  const newGame = JSON.parse(JSON.stringify(games[i % 4]))
+  newGame.id = i.toString()
+  games.push(newGame)
+}
 
-  const filteredGames = useMemo(() => {
-    if (activeFilter === 'minted') {
-      return games.filter((game) => game.state === 'active')
-    }
-    if (activeFilter === 'new') {
-      return games.filter((game) => game.isNewAchievement)
-    }
-    return games
-  }, [activeFilter])
+const achievementsSortOptions = [
+  { text: 'Alphabetically (ASC)' },
+  { text: 'Alphabetically (DES)' }
+] as itemType[]
+const gamesNodes = games.map(({ id, ...rest }) => (
+  <AchievementCard key={id} {...rest} />
+))
 
-  return (
-    <div style={{ height: '100vh' }}>
-      <AchievementSummaryTable
-        games={filteredGames.map(({ id, ...rest }) => (
-          <AchievementCard key={id} {...rest} />
-        ))}
-        sortProps={{
-          options: achievementsSortOptions,
-          selected: selectedSort,
-          onItemChange: setSelectedSort
-        }}
-        paginationProps={{
-          currentPage: 1,
-          totalPages: 3,
-          handleNextPage: () => console.log('next page'),
-          handlePrevPage: () => console.log('prev page')
-        }}
-        filterProps={{
-          activeFilter,
-          setActiveFilter
-        }}
-        mintButtonProps={{ onClick: () => console.log('mint') }}
-        achievementNavProps={{ freeMints: 10, basketAmount: 20 }}
-      />
-    </div>
-  )
+const selectedSort = achievementsSortOptions[0]
+const activeFilter = 'all'
+const gamesAdded: GameAdded[] = []
+const imagesToPreload = games.map((game) => game.image)
+
+const props: AchievementSummaryTableProps = {
+  imagesToPreload,
+  games: gamesNodes,
+  sortProps: {
+    options: achievementsSortOptions,
+    selected: selectedSort,
+    onItemChange: (val) => console.log(`Sort item changed to ${val}`)
+  },
+  paginationProps: {
+    handleNextPage: () => console.log('next page'),
+    handlePrevPage: () => console.log('prev page')
+  },
+  filterProps: {
+    activeFilter,
+    setActiveFilter: (val) => console.log(`Active filter changed to ${val}`)
+  },
+  mintButtonProps: { onClick: () => console.log('mint'), totalToMint: 1 },
+  achievementNavProps: {
+    freeMints: 10,
+    basketAmount: 20,
+    gamesAdded,
+    showGameAddButton: false
+  },
+  isFetching: false,
+  hasFetchedAll: false,
+  fetchNextPage: () => {
+    console.log('fetch next page!')
+  },
+  tabs: [
+    { value: 'all', label: 'All' },
+    { value: 'new', label: 'New' },
+    { value: 'minted', label: 'Minted' }
+  ],
+  messageModalProps: {
+    title: 'Oops!',
+    message: `It looks like we couldn't find any games in your Steam account at the moment. Just a quick reminder to double-check that your game details are set to public. This way, we can access your achievements and provide you with the best experience.`
+  }
+}
+
+export const Default: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div style={{ height: '1000px', display: 'flex' }}>
+        <AchievementSummaryTable {...args} />
+      </div>
+    )
+  }
 }

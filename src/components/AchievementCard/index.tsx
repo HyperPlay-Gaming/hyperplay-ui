@@ -109,14 +109,52 @@ export default function AchievementCard({
     )
   }
 
+  const infoIcon = (
+    <div className={styles.icon}>
+      <Popover width={200} shadow="md" opened={opened} position="top">
+        <Popover.Target>
+          <button
+            onMouseEnter={open}
+            onMouseLeave={close}
+            className={styles.popoverButton}
+          >
+            <Images.Info
+              height={16}
+              width={16}
+              fill="var(--color-neutral-400)"
+            />
+          </button>
+        </Popover.Target>
+        <Popover.Dropdown className={styles.popover}>
+          <div className="text--sm color-neutral-400">
+            {i18n.achievementInfoTitleLabel}
+          </div>
+          <div className={styles.popoverRow}>
+            <ProgressKey
+              safeMintedCount={safeMintedCount}
+              safeTotalCount={safeTotalCount}
+              direction="column"
+              {...progressKeyProps}
+            />
+          </div>
+        </Popover.Dropdown>
+      </Popover>
+    </div>
+  )
+
   return (
     <Card
       radius="md"
       pos="relative"
-      bg="var(--color-neutral-700)"
       display={'inline-block'}
       padding={0}
-      className={cn(styles.card, rest.className)}
+      bg="transparent"
+      className={cn(
+        styles.card,
+        rest.className,
+        'gradientShadow',
+        'gradientBorderOnHover'
+      )}
       {...rest}
     >
       <Card.Section
@@ -148,38 +186,9 @@ export default function AchievementCard({
               safeTotalCount={safeTotalCount}
               mintedProgress={mintedProgress}
               mintableProgress={mintableProgress}
+              rightIcon={infoIcon}
               {...achievementProgressProps}
             />
-          </div>
-          <div className={styles.icon}>
-            <Popover width={200} shadow="md" opened={opened}>
-              <Popover.Target>
-                <button
-                  onMouseEnter={open}
-                  onMouseLeave={close}
-                  className={styles.popoverButton}
-                >
-                  <Images.Info
-                    height={16}
-                    width={16}
-                    fill="var(--color-neutral-400)"
-                  />
-                </button>
-              </Popover.Target>
-              <Popover.Dropdown className={styles.popover}>
-                <div className="text--sm color-neutral-400">
-                  {i18n.achievementInfoTitleLabel}
-                </div>
-                <div className={styles.popoverRow}>
-                  <ProgressKey
-                    safeMintedCount={safeMintedCount}
-                    safeTotalCount={safeTotalCount}
-                    direction="column"
-                    {...progressKeyProps}
-                  />
-                </div>
-              </Popover.Dropdown>
-            </Popover>
           </div>
         </div>
       </div>

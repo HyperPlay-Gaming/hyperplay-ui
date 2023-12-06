@@ -29,6 +29,10 @@ export interface AchievementProgressProps extends AchievementProgressTextProps {
    * The total amount that can be minted
    * */
   mintableProgress: number
+  /**
+   * Optional icon to the right of the progress bar in the same row
+   */
+  rightIcon?: React.ReactNode
 }
 
 export default function AchievementProgress({
@@ -38,7 +42,8 @@ export default function AchievementProgress({
   mintableProgress,
   i18n = {
     achievementMintedLabel: 'achievements minted'
-  }
+  },
+  rightIcon
 }: AchievementProgressProps) {
   return (
     <div>
@@ -49,20 +54,24 @@ export default function AchievementProgress({
           <div>{safeTotalCount}</div>
           <div>{i18n.achievementMintedLabel}</div>
         </div>
-        <Progress
-          bg="var(--color-neutral-600)"
-          sections={[
-            {
-              value: mintedProgress,
-              color: 'var(--color-success-400)'
-            },
-            {
-              value: mintableProgress,
-              color: 'var(--color-success-400-20)',
-              className: styles.noRadius
-            }
-          ]}
-        />
+        <div className={styles.progressRow}>
+          <Progress
+            bg="var(--color-neutral-600)"
+            sections={[
+              {
+                value: mintedProgress,
+                color: 'var(--color-success-400)'
+              },
+              {
+                value: mintableProgress,
+                color: 'var(--color-success-400-20)',
+                className: styles.noRadius
+              }
+            ]}
+            w={'100%'}
+          />
+          {rightIcon}
+        </div>
       </div>
     </div>
   )
