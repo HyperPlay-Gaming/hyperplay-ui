@@ -59,8 +59,15 @@ export default function AchievementProgress({
             className={styles.progressRow}
             bg="var(--color-neutral-600)"
           >
-            <Progress.Section color='var(--color-success-400)' value={mintedProgress} />
-            <Progress.Section color='var(--color-success-400-20)' value={mintableProgress} className={styles.noRadius} />
+            <Progress.Section
+              color="var(--color-success-400)"
+              value={mintedProgress}
+            />
+            <Progress.Section
+              color="var(--color-success-400-20)"
+              value={mintableProgress}
+              className={styles.noRadius}
+            />
           </Progress.Root>
           {rightIcon}
         </div>

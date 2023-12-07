@@ -17,8 +17,8 @@ import getProgress, {
 import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
-import Loading from '../Loading'
 import CustomImage from '../Image'
+import Loading from '../Loading'
 import styles from './GameAchievements.module.scss'
 
 export interface GameAchievementsProps
@@ -215,9 +215,9 @@ export default function GameAchievements({
                     h={80}
                     w={80}
                     placeholder={<div className={styles.fallback} />}
-                    style={{ 
+                    style={{
                       height: 80,
-                      width: 80,
+                      width: 80
                     }}
                   />
                   <div className={styles.achievementInfo}>
