@@ -2,7 +2,7 @@ import React from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { MetamaskColored } from '@/assets/images'
+import { MetaMaskBrowserLogo } from '@/assets/images'
 
 import AuthProviderButton from './index'
 
@@ -35,14 +35,14 @@ type Story = StoryObj<typeof AuthProviderButton>
 export const Default: Story = {
   args: {
     name: 'MetaMask',
-    icon: <MetamaskColored />
+    icon: <MetaMaskBrowserLogo />
   }
 }
 
 export const WithLabel: Story = {
   args: {
     name: 'MetaMask',
-    icon: <MetamaskColored />,
+    icon: <MetaMaskBrowserLogo />,
     label: <AuthProviderButton.Label>Soon</AuthProviderButton.Label>
   }
 }
@@ -50,7 +50,7 @@ export const WithLabel: Story = {
 export const WithStyledLabel: Story = {
   args: {
     name: 'MetaMask',
-    icon: <MetamaskColored />,
+    icon: <MetaMaskBrowserLogo />,
     label: (
       <AuthProviderButton.Label style={{ color: 'var(--color-primary-200)' }}>
         Recommended
@@ -62,7 +62,7 @@ export const WithStyledLabel: Story = {
 export const Connected: Story = {
   args: {
     name: 'MetaMask',
-    icon: <MetamaskColored />,
+    icon: <MetaMaskBrowserLogo />,
     connected: true
   }
 }

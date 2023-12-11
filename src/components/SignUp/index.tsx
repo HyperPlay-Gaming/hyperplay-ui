@@ -5,7 +5,8 @@ import cn from 'classnames'
 import {
   Email,
   HyperPlayLogoColored,
-  MetamaskColored,
+  MetaMaskBrowserLogo,
+  MetaMaskMobileLogo,
   WalletConnectLogo
 } from '@/assets/images'
 import Button from '@/components/Button'
@@ -74,25 +75,13 @@ const SelectProvider = ({
       <div className={styles.providersContainer}>
         <AuthProviderButton
           name="MetaMask"
-          icon={<MetamaskColored className={styles.icon} />}
-          label={
-            <AuthProviderButton.Label
-              style={{ color: 'var(--color-primary-200)' }}
-            >
-              {i18n.recommendedLabel}
-            </AuthProviderButton.Label>
-          }
+          icon={<MetaMaskBrowserLogo className={styles.icon} />}
           onClick={onWalletClick}
           connected={connected.metamaskExtension}
         />
         <AuthProviderButton
           name="MetaMask"
-          icon={<MetamaskColored className={styles.icon} />}
-          label={
-            <AuthProviderButton.Label className="color-neutral-400">
-              Mobile
-            </AuthProviderButton.Label>
-          }
+          icon={<MetaMaskMobileLogo className={styles.icon} />}
           onClick={onWalletClick}
           connected={connected.metamaskMobile}
         />
