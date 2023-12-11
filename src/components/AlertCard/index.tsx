@@ -30,7 +30,7 @@ export default function Alert({
   onActionClick = () => {},
   variant,
   isOpen = true,
-  showClose,
+  showClose = true,
   icon,
   ...props
 }: InfoAlertProps) {
@@ -42,9 +42,7 @@ export default function Alert({
       {...props}
     >
       <div className={styles.icon}>
-        {icon ? icon : 
-          <WarningIcon /> 
-        }
+        {icon ?? <WarningIcon />}
       </div>
       <div className={styles.text}>
         <div className={classNames('button', styles.title)}>{title}</div>
