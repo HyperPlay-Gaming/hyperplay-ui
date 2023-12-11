@@ -18,6 +18,8 @@ export interface InfoAlertProps extends HTMLProps<HTMLDivElement> {
   onActionClick?: () => void
   variant: Variants
   isOpen?: boolean
+  showClose?:boolean
+  icon?: JSX.Element
 }
 
 export default function Alert({
@@ -28,6 +30,8 @@ export default function Alert({
   onActionClick = () => {},
   variant,
   isOpen = true,
+  showClose,
+  icon,
   ...props
 }: InfoAlertProps) {
   return (
@@ -38,7 +42,9 @@ export default function Alert({
       {...props}
     >
       <div className={styles.icon}>
-        <WarningIcon />
+        {icon ? icon : 
+          <WarningIcon /> 
+        }
       </div>
       <div className={styles.text}>
         <div className={classNames('button', styles.title)}>{title}</div>
@@ -54,9 +60,9 @@ export default function Alert({
           {message}
         </div>
       </div>
-      <div className={styles.close}>
+      {showClose ? <div className={styles.close}>
         <CloseButton onClick={onClose} />
-      </div>
+      </div> : null}
       {actionText && (
         <div className={styles.action}>
           <Button
