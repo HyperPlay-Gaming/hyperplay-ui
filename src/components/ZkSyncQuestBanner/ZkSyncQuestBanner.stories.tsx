@@ -17,5 +17,9 @@ const props: ZkSyncQuestBannerProps = {
 
 export const Default: Story = {
   args: { ...props },
-  render: (args)=><div style={{margin: '100px'}}><ZkSyncQuestBanner {...args} /></div>
+  render: (args) => (
+    <div style={{ margin: '100px' }}>
+      <ZkSyncQuestBanner {...args} />
+    </div>
+  )
 }

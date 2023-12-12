@@ -1,9 +1,11 @@
 import React, { HTMLProps } from 'react'
 
+import classNames from 'classnames'
+
+import CapsuleUrl from '@/assets/banners/ZkSync/Capsule.png?url'
+
 import Button from '../Button'
 import styles from './index.module.scss'
-import CapsuleUrl from '@/assets/banners/ZkSync/Capsule.png?url'
-import classNames from 'classnames'
 
 export interface ZkSyncQuestBannerProps extends HTMLProps<HTMLDivElement> {
   i18n?: {
@@ -31,14 +33,18 @@ export default function ZkSyncQuestBanner({
   }
   return (
     <div className={styles.bannerContainer} {...props}>
-        <div className={styles.contentContainer}>
-            <h3>{title}</h3>
-            {description}
-            <div className={styles.cta}>
-            <a href={link} rel="noreferrer" target="_blank"><Button type='secondary'><div className={styles.buttonTextContainer}>{buttonText}</div></Button></a>
-            </div>
+      <div className={styles.contentContainer}>
+        <h3>{title}</h3>
+        {description}
+        <div className={styles.cta}>
+          <a href={link} rel="noreferrer" target="_blank">
+            <Button type="secondary">
+              <div className={styles.buttonTextContainer}>{buttonText}</div>
+            </Button>
+          </a>
         </div>
-        <img src={CapsuleUrl} className={styles.capsule}/>
+      </div>
+      <img src={CapsuleUrl} className={styles.capsule} />
     </div>
   )
 }
