@@ -1,0 +1,61 @@
+@use '../../styles/utilities/variables';
+
+.bannerContainer {
+    background-image: url('@/assets/banners/OuterSpacePurple.png?url');
+    padding: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+    border-radius: var(--space-lg);
+}
+
+.capsule {
+    max-height: 240px;
+    transform: rotate(15deg) scale(1.5);
+    
+    @include variables.for-mobile-only {
+        transform: rotate(15deg) scale(1.1);
+    }
+    @include variables.for-tablet-portrait-up {
+        transform: rotate(15deg) scale(1.25);
+    }
+    @include variables.for-desktop-up {
+        transform: rotate(15deg) scale(1.5);
+    }
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-2lg);
+    max-width: 31%;
+    
+    @include variables.for-mobile-only {
+        max-width: 100%;
+    }
+    @include variables.for-tablet-portrait-up {
+        max-width: 100%;
+    }
+    @include variables.for-desktop-up {
+        max-width: 50%;
+    }
+    @include variables.for-big-desktop-up {
+        max-width: 40%;
+    }
+}
+
+.title {
+    font-weight: var(--regular);
+}
+
+.cta {
+    display: inline-block;
+}
+
+.buttonTextContainer {
+    margin: 0px var(--space-2xl);
+}
