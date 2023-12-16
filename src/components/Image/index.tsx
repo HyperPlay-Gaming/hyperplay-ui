@@ -12,25 +12,23 @@ const CustomImage = createPolymorphicComponent<'img', CustomImageProps>(
     ref
   ) {
     const [loadError, setLoadError] = useState(false)
-
-    console.log(props)
-
-    if ((loadError && Placeholder) || (loadError && fallbackSrc)) {
-      if (typeof Placeholder === 'string' || fallbackSrc) {
+    const hasPlaceHolder = Boolean(Placeholder) || Boolean(fallbackSrc)
+    
+    if (loadError && hasPlaceHolder) {
+      if (fallbackSrc) {
         return (
           <Image
             ref={ref}
-            fallbackSrc={fallbackSrc || (Placeholder as string)}
+            fallbackSrc={fallbackSrc}
             onError={(error) => {
               setLoadError(true)
-
               props?.onError?.(error)
             }}
             {...props}
           />
         )
       }
-
+    
       return <>{Placeholder}</>
     }
 
