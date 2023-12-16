@@ -57,6 +57,8 @@ export { default as AchievementProgress } from './components/AchievementProgress
 export { default as AchievementsInfo } from './components/AchievementsInfo'
 export { default as AchievementSummaryTable } from './components/AchievementSummaryTable'
 export { default as GameAchievements } from './components/GameAchievements'
+export { default as HyperPlayDesignProvider } from './components/HyperPlayDesignProvider'
+export { default as localStorageColorSchemeManager } from './utils/localStorageColorSchemeManager'
 export type { GameAdded } from './components/AchievementNav/index'
 export {
   default as ZkSyncQuestBanner,
