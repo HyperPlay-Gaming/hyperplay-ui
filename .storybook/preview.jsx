@@ -1,7 +1,7 @@
 import React from 'react'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import { MantineProvider } from '@mantine/core'
+import HyperPlayDesignProvider from '../src/components/HyperPlayDesignProvider'
 
 import '../src/fonts.css'
 import '../src/index.scss'
@@ -27,8 +27,8 @@ export const parameters = {
 
 export const decorators = [
   (Story) => (
-    <MantineProvider>
+    <HyperPlayDesignProvider>
       <Story />
-    </MantineProvider>
+    </HyperPlayDesignProvider>
   )
 ]
