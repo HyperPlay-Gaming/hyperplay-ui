@@ -13,7 +13,7 @@ const CustomImage = createPolymorphicComponent<'img', CustomImageProps>(
   ) {
     const [loadError, setLoadError] = useState(false)
     const hasPlaceHolder = Boolean(Placeholder) || Boolean(fallbackSrc)
-    
+
     if (loadError && hasPlaceHolder) {
       if (fallbackSrc) {
         return (
@@ -28,7 +28,7 @@ const CustomImage = createPolymorphicComponent<'img', CustomImageProps>(
           />
         )
       }
-    
+
       return <>{Placeholder}</>
     }
 

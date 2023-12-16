@@ -1,67 +1,63 @@
 import {
-  isMantineColorScheme,
   MantineColorScheme,
   MantineColorSchemeManager,
-} from '@mantine/core';
+  isMantineColorScheme
+} from '@mantine/core'
 
 export interface LocalStorageColorSchemeManagerOptions {
   /** Local storage key used to retrieve value with `localStorage.getItem(key)`, `mantine-color-scheme` by default */
-  key?: string;
+  key?: string
 }
 
 export default function localStorageColorSchemeManager({
-  key = 'mantine-color-scheme',
+  key = 'mantine-color-scheme'
 }: LocalStorageColorSchemeManagerOptions = {}): MantineColorSchemeManager {
-  let handleStorageEvent: (event: StorageEvent) => void;
+  let handleStorageEvent: (event: StorageEvent) => void
 
   return {
     get: (defaultValue) => {
       if (typeof window === 'undefined') {
-        return defaultValue;
+        return defaultValue
       }
 
       try {
         return (
           (window.localStorage.getItem(key) as MantineColorScheme) ||
           defaultValue
-        );
+        )
       } catch {
-        return defaultValue;
+        return defaultValue
       }
     },
 
     set: (value) => {
       try {
-        window.localStorage.setItem(key, value);
+        window.localStorage.setItem(key, value)
       } catch (error) {
         // eslint-disable-next-line no-console
         console.warn(
           '[@mantine/core] Local storage color scheme manager was unable to save color scheme.',
           error
-        );
+        )
       }
     },
 
     subscribe: (onUpdate) => {
       handleStorageEvent = (event) => {
-        if (
-          event.storageArea === window.localStorage &&
-          event.key === key
-        ) {
-          isMantineColorScheme(event.newValue) &&
-            onUpdate(event.newValue);
+        if (event.storageArea === window.localStorage && event.key === key) {
+          isMantineColorScheme(event.newValue) && onUpdate(event.newValue)
         }
-      };
+      }
 
-      window.addEventListener('storage', handleStorageEvent);
+      window.addEventListener('storage', handleStorageEvent)
     },
 
     unsubscribe: () => {
-      window.removeEventListener('storage', handleStorageEvent);
+      window.removeEventListener('storage', handleStorageEvent)
     },
 
     clear: () => {
-      window.localStorage.removeItem(key);
-    },
-  };
+      window.localStorage.removeItem(key)
+    }
+  }
 }
