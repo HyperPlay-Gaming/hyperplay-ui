@@ -15,7 +15,6 @@ interface OptionsDropdownProps {
 }
 
 export default function OptionsDropdown(props: OptionsDropdownProps) {
-  console.log('rendering options dropdown with ', props)
   function selectOnly(onlyKey: string) {
     const updatedOptions: OptionsType = {}
     for (const opt in props.options) {
@@ -50,7 +49,6 @@ export default function OptionsDropdown(props: OptionsDropdownProps) {
             type="secondary"
             checked={props.options[val]}
             onChange={(ev) => {
-              console.log('changed ', val, ev.target.checked)
               const updatedOption: OptionsType = {}
               updatedOption[val] = ev.target.checked
               props.setOptions((currentOptions) => ({
@@ -86,7 +84,11 @@ export default function OptionsDropdown(props: OptionsDropdownProps) {
   }
 
   x.push(
-    <Button type="tertiary" size="small" onClick={clearOptions}>
+    <Button 
+      type="tertiary" 
+      size="small" 
+      onClick={clearOptions}
+    >
       <div className="button-sm" style={{ color: 'var(--color-neutral-100)' }}>
         Clear filter
       </div>

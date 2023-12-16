@@ -51,9 +51,10 @@ export default function OptionsAccordion({
     const panelOptions = options[option]
     /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     const items: ReactElement<any>[] = []
-    Object.keys(panelOptions).forEach((val) =>
+    Object.keys(panelOptions).forEach((val, index) =>
       items.push(
         <div
+          key={`${option}-${val}-${index}-item`}
           style={{
             display: 'flex',
             flexDirection: 'row',
@@ -98,6 +99,7 @@ export default function OptionsAccordion({
 
     items.push(
       <Button
+        key={`${option}-clear-filter`}
         type="tertiary"
         size="small"
         onClick={() => clearOptions(option)}
