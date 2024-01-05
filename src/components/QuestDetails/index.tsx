@@ -21,7 +21,7 @@ export default function QuestDetails({
     linkSteamAccount: 'Link your Steam account to check eligibility.',
     needMoreAchievements:
       'You need to have completed 15% of the achievements in one of these games.',
-    claim: 'Claim'
+    claim: 'Claim all'
   },
   onClaimClick,
   ...props
