@@ -46,7 +46,7 @@ export default function QuestDetails({
     <DarkContainer className={styles.darkContainer}>
       <div className={classNames(className, styles.container)} {...props}>
         <div className="title">{title}</div>
-        <div className="body-sm color-neutral-400">{description}</div>
+        <div className={classNames('body-sm', 'color-neutral-400', styles.description)}>{description}</div>
 
         <AssociatedGamesCollapse
           opened={opened}
