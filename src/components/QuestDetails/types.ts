@@ -1,7 +1,12 @@
 import { HTMLProps } from 'react'
 
+export interface Game {
+  title: string
+  imageUrl: string
+}
+
 export interface ReputationQuestEligibility {
-  games: string[]
+  games: Game[]
   completionPercent: number
   eligible: boolean
   steamAccountLinked: boolean
@@ -30,10 +35,13 @@ export type QuestReward =
   | ERC1155QuestReward
   | ERC20QuestReward
 
+// More quest eligibilty interfaces will be added here in future iterations
+export type Eligibility = ReputationQuestEligibility
+
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string
   description: string
-  eligibility: ReputationQuestEligibility
+  eligibility: Eligibility
   rewards: QuestReward[]
   onClaimClick: () => void
   i18n?: {

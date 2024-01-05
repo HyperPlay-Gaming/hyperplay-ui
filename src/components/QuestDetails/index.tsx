@@ -1,9 +1,11 @@
 import React from 'react'
 
+import { useDisclosure } from '@mantine/hooks'
 import classNames from 'classnames'
 
 import Button from '../Button'
 import DarkContainer from '../DarkContainer'
+import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
 
@@ -24,6 +26,8 @@ export default function QuestDetails({
   onClaimClick,
   ...props
 }: QuestDetailsProps) {
+  const [opened, { toggle }] = useDisclosure(false)
+
   let needMoreAchievementsText = null
   if (!eligibility.eligible) {
     needMoreAchievementsText = <div>{i18n.needMoreAchievements}</div>
@@ -43,6 +47,14 @@ export default function QuestDetails({
       <div className={classNames(className, styles.container)} {...props}>
         <div className="title">{title}</div>
         <div className="body-sm color-neutral-400">{description}</div>
+
+        <AssociatedGamesCollapse
+          opened={opened}
+          toggle={toggle}
+          i18n={{ associatedGames: i18n.associatedGames }}
+          eligibility={eligibility}
+        />
+
         <div className="eyebrow color-neutral-400">{i18n.reward}</div>
         {rewardComponents}
         {needMoreAchievementsText}
