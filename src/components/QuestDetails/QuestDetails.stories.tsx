@@ -27,7 +27,8 @@ const props: QuestDetailsProps = {
       imageUrl: '',
       tokenId: 0
     }
-  ]
+  ],
+  onClaimClick: () => console.log('claim clicked!')
 }
 
 export const Default: Story = {

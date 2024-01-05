@@ -35,6 +35,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   description: string
   eligibility: ReputationQuestEligibility
   rewards: QuestReward[]
+  onClaimClick: () => void
   i18n?: {
     reward: string
     associatedGames: string

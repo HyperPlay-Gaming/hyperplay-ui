@@ -21,6 +21,7 @@ export default function QuestDetails({
       'You need to have completed 15% of the achievements in one of these games.',
     claim: 'Claim'
   },
+  onClaimClick,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
@@ -46,7 +47,11 @@ export default function QuestDetails({
         {rewardComponents}
         {needMoreAchievementsText}
         {linkSteamAccountText}
-        <Button type="secondary" className={styles.claimButton}>
+        <Button
+          type="secondary"
+          className={styles.claimButton}
+          onClick={onClaimClick}
+        >
           {i18n.claim}
         </Button>
       </div>
