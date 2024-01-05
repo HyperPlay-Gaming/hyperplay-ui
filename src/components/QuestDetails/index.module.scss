@@ -1,0 +1,18 @@
+.darkContainer {
+  padding: var(--space-lg);
+  max-width: 512px;
+  height: 100%;
+  margin: var(--space-xl) var(--space-xs);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.claimButton {
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: 0px;
+}
