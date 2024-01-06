@@ -10,5 +10,7 @@ $imgSize: 160px;
     object-fit: contain;
     max-height: 100%;
     max-width: 100%;
+    position: relative;
+    border-radius: var(--space-xs);
   }
 }
