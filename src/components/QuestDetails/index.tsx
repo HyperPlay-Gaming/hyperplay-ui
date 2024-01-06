@@ -6,6 +6,7 @@ import classNames from 'classnames'
 import Button from '../Button'
 import DarkContainer from '../DarkContainer'
 import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
+import Rewards from './components/Rewards'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
 
@@ -38,15 +39,19 @@ export default function QuestDetails({
     linkSteamAccountText = <div>{i18n.linkSteamAccount}</div>
   }
 
-  const rewardComponents = rewards.map((reward) => (
-    <div key={reward.title}>{reward.title}</div>
-  ))
-
   return (
     <DarkContainer className={styles.darkContainer}>
       <div className={classNames(className, styles.container)} {...props}>
         <div className="title">{title}</div>
-        <div className={classNames('body-sm', 'color-neutral-400', styles.description)}>{description}</div>
+        <div
+          className={classNames(
+            'body-sm',
+            'color-neutral-400',
+            styles.description
+          )}
+        >
+          {description}
+        </div>
 
         <AssociatedGamesCollapse
           opened={opened}
@@ -55,8 +60,7 @@ export default function QuestDetails({
           eligibility={eligibility}
         />
 
-        <div className="eyebrow color-neutral-400">{i18n.reward}</div>
-        {rewardComponents}
+        <Rewards rewards={rewards} i18n={{ reward: i18n.reward }} />
         {needMoreAchievementsText}
         {linkSteamAccountText}
         <Button

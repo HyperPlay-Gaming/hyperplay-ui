@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import kosiumGhoul from '@/assets/Kosium_Ghoul.png'
+
 /* eslint-disable-next-line */
 // @ts-ignore
 import cupheadCard from '@/assets/steamCards/cupheadCard.jpg'
@@ -35,9 +37,9 @@ const props: QuestDetailsProps = {
   },
   rewards: [
     {
-      title: 'BAYC',
-      imageUrl: '',
-      tokenId: 0
+      title: 'Kosium Pioneer',
+      imageUrl: kosiumGhoul,
+      tokenId: 213
     }
   ],
   onClaimClick: () => console.log('claim clicked!')

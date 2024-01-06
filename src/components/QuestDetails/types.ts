@@ -35,6 +35,12 @@ export type QuestReward =
   | ERC1155QuestReward
   | ERC20QuestReward
 
+export interface QuestRewards {
+  ERC721Rewards: ERC721QuestReward[]
+  ERC1155Rewards: ERC1155QuestReward[]
+  ERC20QuestRewards: ERC20QuestReward[]
+}
+
 // More quest eligibilty interfaces will be added here in future iterations
 export type Eligibility = ReputationQuestEligibility
 

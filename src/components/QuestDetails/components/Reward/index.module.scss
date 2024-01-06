@@ -1,0 +1,14 @@
+$imgSize: 160px;
+.rewardContainer {
+  max-width: $imgSize;
+  max-height: $imgSize;
+  width: $imgSize;
+  border-radius: var(--space-xs);
+  position: relative;
+
+  > img {
+    object-fit: contain;
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
