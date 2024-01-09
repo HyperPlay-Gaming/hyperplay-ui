@@ -3,16 +3,22 @@ import React, { HTMLProps } from 'react'
 import { useDisclosure } from '@mantine/hooks'
 import classNames from 'classnames'
 
+import { AlertTriangle } from '@/assets/images'
+
 import Button from '../Button'
 import DarkContainer from '../DarkContainer'
 import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
 import Rewards from './components/Rewards'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
-import { AlertTriangle } from '@/assets/images'
 
-function AlertText(props: HTMLProps<HTMLDivElement>){
-  return <div className={styles.alertTextContainer} {...props}><AlertTriangle className={styles.alertTriangle} /><div>{props.children}</div></div>
+function AlertText(props: HTMLProps<HTMLDivElement>) {
+  return (
+    <div className={styles.alertTextContainer} {...props}>
+      <AlertTriangle className={styles.alertTriangle} />
+      <div>{props.children}</div>
+    </div>
+  )
 }
 
 export default function QuestDetails({
@@ -36,7 +42,9 @@ export default function QuestDetails({
 
   let needMoreAchievementsText = null
   if (!eligibility.eligible) {
-    needMoreAchievementsText = <AlertText>{i18n.needMoreAchievements}</AlertText>
+    needMoreAchievementsText = (
+      <AlertText>{i18n.needMoreAchievements}</AlertText>
+    )
   }
 
   let linkSteamAccountText = null

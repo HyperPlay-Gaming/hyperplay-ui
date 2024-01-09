@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import droid from '@/assets/Droid.png'
 import kosiumGhoul from '@/assets/Kosium_Ghoul.png'
 import SAND from '@/assets/SAND.png'
-import droid from '@/assets/Droid.png'
 
 /* eslint-disable-next-line */
 // @ts-ignore
