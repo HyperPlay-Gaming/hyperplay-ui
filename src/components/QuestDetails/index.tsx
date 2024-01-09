@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { HTMLProps } from 'react'
 
 import { useDisclosure } from '@mantine/hooks'
 import classNames from 'classnames'
@@ -9,6 +9,11 @@ import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
 import Rewards from './components/Rewards'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
+import { AlertTriangle } from '@/assets/images'
+
+function AlertText(props: HTMLProps<HTMLDivElement>){
+  return <div className={styles.alertTextContainer} {...props}><AlertTriangle className={styles.alertTriangle} /><div>{props.children}</div></div>
+}
 
 export default function QuestDetails({
   className,
@@ -31,12 +36,12 @@ export default function QuestDetails({
 
   let needMoreAchievementsText = null
   if (!eligibility.eligible) {
-    needMoreAchievementsText = <div>{i18n.needMoreAchievements}</div>
+    needMoreAchievementsText = <AlertText>{i18n.needMoreAchievements}</AlertText>
   }
 
   let linkSteamAccountText = null
   if (!eligibility.steamAccountLinked) {
-    linkSteamAccountText = <div>{i18n.linkSteamAccount}</div>
+    linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
   }
 
   return (
@@ -60,9 +65,10 @@ export default function QuestDetails({
           eligibility={eligibility}
         />
 
-        <Rewards rewards={rewards} i18n={{ reward: i18n.reward }} />
         {needMoreAchievementsText}
         {linkSteamAccountText}
+
+        <Rewards rewards={rewards} i18n={{ reward: i18n.reward }} />
         <Button
           type="secondary"
           className={styles.claimButton}
