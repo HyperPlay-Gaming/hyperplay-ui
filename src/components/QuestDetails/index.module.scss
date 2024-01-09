@@ -1,0 +1,36 @@
+.darkContainer {
+  padding: var(--space-lg);
+  max-width: 512px;
+  height: 100%;
+  margin: var(--space-xl) var(--space-xs);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.claimButton {
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: 0px;
+}
+
+.description {
+  white-space: pre;
+  text-wrap: wrap;
+  line-height: var(--space-xl);
+}
+
+.alertTriangle {
+  stroke: var(--color-alert-400);
+}
+
+.alertTextContainer {
+  display: flex;
+  flex-direction: row;
+  color: var(--color-alert-200);
+  gap: var(--space-sm);
+  align-items: center;
+}

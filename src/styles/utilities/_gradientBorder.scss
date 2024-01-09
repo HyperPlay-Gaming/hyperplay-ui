@@ -12,7 +12,7 @@ $hoverBorderThickness: 2px;
       linear-gradient(86.63deg, #4126e8 2.98%, #ea1aba 38.52%, #10a6d6 89.36%) !important;
     position: absolute;
     border-radius: calc(
-      --gradient-border-radius + $hoverBorderThickness
+      var(--gradient-border-radius) + $hoverBorderThickness
     ) !important;
     z-index: 0;
     opacity: 1 !important;

@@ -1,0 +1,33 @@
+$imgSize: 150px;
+.rewardContainer {
+  max-width: $imgSize;
+  max-height: $imgSize;
+  width: $imgSize;
+  height: $imgSize;
+  border-radius: var(--space-xs);
+  position: relative;
+
+  > img {
+    object-fit: cover;
+    max-height: 100%;
+    max-width: 100%;
+    position: relative;
+    border-radius: var(--space-xs);
+    width: 100%;
+    height: 100%;
+  }
+
+  > .title {
+    background: linear-gradient(
+      180deg,
+      rgba(12, 11, 15, 0.3) 0%,
+      var(--color-neutral-900) 100%
+    );
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+    padding: var(--space-sm) 0px;
+  }
+}
