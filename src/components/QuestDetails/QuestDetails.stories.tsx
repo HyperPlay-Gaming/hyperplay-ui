@@ -69,3 +69,14 @@ const props: QuestDetailsProps = {
 export const Default: Story = {
   args: { ...props }
 }
+
+export const SmallMaxHeight: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div style={{ height: '500px', width: '100%' }}>
+        <QuestDetails {...args} />
+      </div>
+    )
+  }
+}
