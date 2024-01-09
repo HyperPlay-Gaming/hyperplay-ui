@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import kosiumGhoul from '@/assets/Kosium_Ghoul.png'
+import SAND from '@/assets/SAND.png'
+import droid from '@/assets/Droid.png'
 
 /* eslint-disable-next-line */
 // @ts-ignore
@@ -38,8 +40,27 @@ const props: QuestDetailsProps = {
   rewards: [
     {
       title: 'Kosium Pioneer',
-      imageUrl: kosiumGhoul,
-      tokenId: 213
+      imageUrl: kosiumGhoul
+    },
+    {
+      title: 'SAND',
+      imageUrl: SAND
+    },
+    {
+      title: 'Droid',
+      imageUrl: droid
+    },
+    {
+      title: 'Kosium Pioneer',
+      imageUrl: kosiumGhoul
+    },
+    {
+      title: 'SAND',
+      imageUrl: SAND
+    },
+    {
+      title: 'Droid',
+      imageUrl: droid
     }
   ],
   onClaimClick: () => console.log('claim clicked!')

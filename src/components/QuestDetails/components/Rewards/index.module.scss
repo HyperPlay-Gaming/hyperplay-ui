@@ -22,3 +22,11 @@ $rewardTitleSideMargin: var(--space-2lg);
   transform: translateY(-50%);
   background-color: var(--color-neutral-900);
 }
+
+.rewardItemsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
