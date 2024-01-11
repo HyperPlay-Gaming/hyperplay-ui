@@ -50,7 +50,7 @@ export default function QuestItem({
     >
       <div className={classNames(styles.itemContainer, itemClasses)}>
         <div className={styles.headerContainer}>
-          <Sticker styleType="secondary">
+          <Sticker styleType="secondary" variant="outlined" className="caption">
             {getQuestTypeDisplayName(info.questType, i18n)}
           </Sticker>
           {icon}

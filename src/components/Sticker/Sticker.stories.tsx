@@ -14,7 +14,8 @@ type Story = StoryObj<typeof Sticker>
 const props: StickerProps = {
   styleType: 'secondary',
   children: 'Sticker',
-  className: 'menu'
+  className: 'caption',
+  variant: 'outlined'
 }
 
 export const Default: Story = {
