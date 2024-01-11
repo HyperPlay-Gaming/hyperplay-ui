@@ -68,6 +68,9 @@
 
   &.secondary {
     background-color: transparent;
+    // necessary to prevent layout shift when changing tabs
+    border-bottom: 2px solid transparent;
+
     &[data-active] {
       background-image: none;
       border-bottom: 2px solid var(--color-primary-200);
