@@ -6,6 +6,7 @@ export interface QuestLogInfo {
   questType: QuestType
   title: string
   state: 'READY_FOR_CLAIM' | 'ACTIVE' | 'CLAIMED'
+  onClick?: () => void
 }
 
 export interface QuestLogTranslations {

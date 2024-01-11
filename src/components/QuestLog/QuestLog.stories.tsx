@@ -17,7 +17,10 @@ const props: QuestLogProps = {
     {
       title: 'Eternal Ember: Shadows of the Celestial Nexus',
       state: 'READY_FOR_CLAIM',
-      questType: 'REPUTATION'
+      questType: 'REPUTATION',
+      onClick: () => {
+        console.log('1st Quest Clicked!')
+      }
     },
     {
       title: 'Eternal Ember: Shadows of the Celestial Nexus',
