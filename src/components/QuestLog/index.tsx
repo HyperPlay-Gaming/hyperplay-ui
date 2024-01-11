@@ -1,5 +1,7 @@
 import React from 'react'
 
+import classNames from 'classnames'
+
 import DarkContainer from '../DarkContainer'
 import Tabs from '../Tabs'
 import QuestItem from './components/QuestItem'
@@ -16,10 +18,6 @@ export default function QuestLog({
     reputation: 'Reputation'
   }
 }: QuestLogProps) {
-  const readyForClaimQuests = quests
-    .filter((val) => val.state === 'READY_FOR_CLAIM')
-    .map((val) => <QuestItem key={val.title} info={val} i18n={i18n} />)
-
   const activeQuests = quests
     .filter((val) => val.state === 'ACTIVE')
     .map((val) => <QuestItem key={val.title} info={val} i18n={i18n} />)
@@ -28,12 +26,24 @@ export default function QuestLog({
     .filter((val) => val.state === 'CLAIMED')
     .map((val) => <QuestItem key={val.title} info={val} i18n={i18n} />)
 
+  const readyForClaimQuests = quests
+    .filter((val) => val.state === 'READY_FOR_CLAIM')
+    .map((val) => <QuestItem key={val.title} info={val} i18n={i18n} />)
+
+  const numClaimable = readyForClaimQuests.length
+  const claimableQuestsCounter = (
+    <div className={classNames('eyebrow', styles.counter)}>{numClaimable}</div>
+  )
+
   return (
     <DarkContainer className={styles.darkContainer}>
       <Tabs defaultValue={'tab1'} classNames={{ tabsList: styles.tabsList }}>
         <Tabs.List>
           <Tabs.Tab styleType="secondary" value={'tab1'}>
-            <div className="menu">{i18n.quests}</div>
+            <div className="menu">
+              {i18n.quests}
+              {claimableQuestsCounter}
+            </div>
           </Tabs.Tab>
           <Tabs.Tab styleType="secondary" value={'tab2'}>
             <div className="menu">{i18n.claimed}</div>
