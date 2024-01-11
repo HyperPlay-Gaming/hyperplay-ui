@@ -30,7 +30,7 @@ export default function QuestLog({
 
   return (
     <DarkContainer className={styles.darkContainer}>
-      <Tabs defaultValue={'tab1'}>
+      <Tabs defaultValue={'tab1'} classNames={{ tabsList: styles.tabsList }}>
         <Tabs.List>
           <Tabs.Tab styleType="secondary" value={'tab1'}>
             <div className="menu">{i18n.quests}</div>

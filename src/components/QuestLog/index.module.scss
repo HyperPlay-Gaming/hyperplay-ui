@@ -1,6 +1,6 @@
 .darkContainer {
   padding: var(--space-lg);
-  max-width: 512px;
+  max-width: 400px;
   height: 100%;
   margin: var(--space-xl) var(--space-xs);
 }
@@ -15,4 +15,8 @@
   margin-bottom: var(--space-md);
   margin-top: var(--space-xl);
   color: var(--color-neutral-400);
+}
+
+.tabsList {
+  justify-content: center;
 }
