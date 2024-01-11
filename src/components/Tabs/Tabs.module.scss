@@ -13,8 +13,16 @@
     border-radius: var(--space-xs) 0px 0px var(--space-xs);
   }
 
+  > button.secondary.tab:first-of-type {
+    border-radius: 0px;
+  }
+
   > button.tab:last-of-type {
     border-radius: 0px var(--space-xs) var(--space-xs) 0px;
+  }
+
+  > button.secondary.tab:last-of-type {
+    border-radius: 0px;
   }
 }
 
@@ -56,5 +64,18 @@
 
   > span {
     color: var(--color-neutral-400);
+  }
+
+  &.secondary {
+    background-color: transparent;
+    &[data-active] {
+      background-image: none;
+      border-bottom: 2px solid var(--color-primary-200);
+      border-bottom-left-radius: 0px;
+
+      > span {
+        color: var(--color-primary-200);
+      }
+    }
   }
 }
