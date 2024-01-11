@@ -1,10 +1,11 @@
 $hoverBorderThickness: 2px;
 
-.gradientBorderOnHover {
+@mixin gradientBorderHidden {
   box-sizing: border-box;
   position: relative;
   display: inline-block;
   --gradient-border-radius: var(--space-xs);
+  z-index: 1;
 
   &:before {
     content: '';
@@ -17,13 +18,26 @@ $hoverBorderThickness: 2px;
     z-index: 0;
     opacity: 1 !important;
   }
+}
+
+@mixin showGradientBorder {
+  inset: -2px !important;
+  transition: inset 0.2s ease-in-out;
+}
+
+.gradientBorderOnHover {
+  @include gradientBorderHidden();
 
   &:hover::before {
-    inset: -2px !important;
-    transition: inset 0.2s ease-in-out;
+    @include showGradientBorder();
   }
+}
 
-  z-index: 1;
+.gradientBorder {
+  @include gradientBorderHidden();
+  &:before {
+    @include showGradientBorder();
+  }
 }
 
 .gradientShadow {

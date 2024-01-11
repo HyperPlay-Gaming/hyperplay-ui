@@ -4,3 +4,15 @@
   height: 100%;
   margin: var(--space-xl) var(--space-xs);
 }
+
+.questItemsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.sectionTitle {
+  margin-bottom: var(--space-md);
+  margin-top: var(--space-xl);
+  color: var(--color-neutral-400);
+}

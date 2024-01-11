@@ -41,16 +41,18 @@ export default function QuestLog({
         </Tabs.List>
         <Tabs.Panel value={'tab1'}>
           <div>
-            <div>{i18n.readyForClaim}</div>
-            {readyForClaimQuests}
-            <div>{i18n.active}</div>
-            {activeQuests}
+            <div className={styles.sectionTitle}>{i18n.readyForClaim}</div>
+            <div className={styles.questItemsContainer}>
+              {readyForClaimQuests}
+            </div>
+            <div className={styles.sectionTitle}>{i18n.active}</div>
+            <div className={styles.questItemsContainer}>{activeQuests}</div>
           </div>
         </Tabs.Panel>
         <Tabs.Panel value={'tab2'}>
           <div>
-            <div>{i18n.claimed}</div>
-            {claimedQuests}
+            <div className={styles.sectionTitle}>{i18n.claimed}</div>
+            <div className={styles.questItemsContainer}>{claimedQuests}</div>
           </div>
         </Tabs.Panel>
       </Tabs>

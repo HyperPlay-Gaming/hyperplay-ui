@@ -1,0 +1,27 @@
+.itemContainer {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  border: 1px solid var(--color-neutral-600);
+  border-radius: var(--gradient-border-radius);
+  background-color: var(--color-neutral-800);
+  color: var(--color-neutral-100);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+  &.readyForClaim {
+    background-color: var(--color-neutral-700);
+    color: var(--color-success-300);
+  }
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
