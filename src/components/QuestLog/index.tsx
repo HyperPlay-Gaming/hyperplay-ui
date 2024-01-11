@@ -32,7 +32,7 @@ export default function QuestLog({
 
   const numClaimable = readyForClaimQuests.length
   const claimableQuestsCounter = (
-    <div className={classNames('eyebrow', styles.counter)}>{numClaimable}</div>
+    <div className={classNames('menu', styles.counter)}>{numClaimable}</div>
   )
 
   return (
