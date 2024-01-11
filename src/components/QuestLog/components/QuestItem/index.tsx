@@ -55,7 +55,7 @@ export default function QuestItem({
           </Sticker>
           {icon}
         </div>
-        <div className="menu">{info.title}</div>
+        <div className={classNames('menu', styles.title)}>{info.title}</div>
       </div>
     </div>
   )

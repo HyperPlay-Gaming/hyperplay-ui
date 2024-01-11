@@ -40,7 +40,8 @@ const props: QuestLogProps = {
       questType: 'REPUTATION'
     },
     {
-      title: 'Eternal Ember: Shadows of the Celestial Nexus',
+      title:
+        'A reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeally long title',
       state: 'CLAIMED',
       questType: 'REPUTATION'
     }
