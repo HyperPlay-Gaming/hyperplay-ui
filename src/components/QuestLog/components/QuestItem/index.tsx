@@ -3,16 +3,31 @@ import React, { HTMLProps } from 'react'
 import classNames from 'classnames'
 
 import { CheckmarkCircleOutline, GiftBox } from '@/assets/images'
+import Sticker from '@/components/Sticker'
 
-import { QuestLogInfo } from '../../types'
+import { QuestLogInfo, QuestLogTranslations, QuestType } from '../../types'
 import styles from './index.module.scss'
 
 export interface QuestItemProps extends HTMLProps<HTMLDivElement> {
   info: QuestLogInfo
+  i18n: QuestLogTranslations
+}
+
+export function getQuestTypeDisplayName(
+  type: QuestType,
+  i18n: QuestLogTranslations
+) {
+  switch (type) {
+    case 'REPUTATION':
+      return i18n.reputation
+    default:
+      return i18n.reputation
+  }
 }
 
 export default function QuestItem({
   info,
+  i18n,
   className,
   ...props
 }: QuestItemProps) {
@@ -35,7 +50,9 @@ export default function QuestItem({
     >
       <div className={classNames(styles.itemContainer, itemClasses)}>
         <div className={styles.headerContainer}>
-          <div>{info.questType}</div>
+          <Sticker styleType="secondary">
+            {getQuestTypeDisplayName(info.questType, i18n)}
+          </Sticker>
           {icon}
         </div>
         <div className="menu">{info.title}</div>

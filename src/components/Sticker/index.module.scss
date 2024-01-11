@@ -1,0 +1,10 @@
+.sticker {
+  padding: var(--space-3xs) var(--space-sm);
+  display: inline-block;
+}
+
+.secondary {
+  color: var(--color-primary-200);
+  border-radius: var(--corner-round, 100px);
+  border: 1px solid var(--color-primary-200);
+}

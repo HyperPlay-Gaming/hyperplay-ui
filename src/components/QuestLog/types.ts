@@ -1,18 +1,22 @@
 import { HTMLProps } from 'react'
 
+export type QuestType = 'REPUTATION'
+
 export interface QuestLogInfo {
-  questType: 'REPUTATION'
+  questType: QuestType
   title: string
   state: 'READY_FOR_CLAIM' | 'ACTIVE' | 'CLAIMED'
 }
 
+export interface QuestLogTranslations {
+  quests: string
+  claimed: string
+  readyForClaim: string
+  active: string
+  reputation: string
+}
+
 export interface QuestLogProps extends HTMLProps<HTMLDivElement> {
   quests: QuestLogInfo[]
-  i18n?: {
-    quests: string
-    claimed: string
-    readyForClaim: string
-    active: string
-    reputation: string
-  }
+  i18n?: QuestLogTranslations
 }
