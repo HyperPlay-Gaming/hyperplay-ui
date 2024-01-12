@@ -9,6 +9,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+  // this padding ensures that the gradient border for a selected item has a consistent border thickness
+  padding: 2px 2px;
 }
 
 .sectionTitle {

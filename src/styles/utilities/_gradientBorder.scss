@@ -5,15 +5,17 @@ $hoverBorderThickness: 2px;
   position: relative;
   display: inline-block;
   --gradient-border-radius: var(--space-xs);
+  --gradient-border: linear-gradient(transparent, transparent),
+    linear-gradient(86.63deg, #4126e8 2.98%, #ea1aba 38.52%, #10a6d6 89.36%) !important;
+  --gradient-thickness-px: 2px
   z-index: 1;
 
   &:before {
     content: '';
-    background-image: linear-gradient(transparent, transparent),
-      linear-gradient(86.63deg, #4126e8 2.98%, #ea1aba 38.52%, #10a6d6 89.36%) !important;
+    background-image: var(--gradient-border);
     position: absolute;
     border-radius: calc(
-      var(--gradient-border-radius) + $hoverBorderThickness
+      var(--gradient-border-radius) + var(--gradient-thickness-px)
     ) !important;
     z-index: 0;
     opacity: 1 !important;
@@ -21,7 +23,7 @@ $hoverBorderThickness: 2px;
 }
 
 @mixin showGradientBorder {
-  inset: -2px !important;
+  inset: calc(-1 * var(--gradient-thickness-px)) !important;
   transition: inset 0.2s ease-in-out;
 }
 

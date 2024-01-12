@@ -34,19 +34,27 @@ export default function QuestItem({
   const itemClasses: Record<string, boolean> = {}
   itemClasses[styles.active] = info.state === 'ACTIVE'
   itemClasses[styles.readyForClaim] = info.state === 'READY_FOR_CLAIM'
+  itemClasses[styles.claimed] = info.state === 'CLAIMED'
+  itemClasses[styles.selected] = !!info.selected
 
   let icon = null
   if (info.state === 'READY_FOR_CLAIM') {
     icon = <GiftBox stroke="var(--color-success-300)" />
   } else if (info.state === 'CLAIMED') {
-    icon = <CheckmarkCircleOutline fill="var(--color-neutral-300)" />
+    icon = <CheckmarkCircleOutline fill="var(--color-neutral-400)" />
+  }
+
+  const containerClasses = {
+    gradientBorder: !!info.selected
   }
   return (
     <div
       {...props}
-      className={classNames(className, {
-        gradientBorder: info.state === 'READY_FOR_CLAIM'
-      })}
+      className={classNames(
+        className,
+        styles.gradientContainer,
+        containerClasses
+      )}
     >
       <div className={classNames(styles.itemContainer, itemClasses)}>
         <div className={styles.headerContainer}>

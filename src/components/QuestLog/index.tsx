@@ -31,9 +31,11 @@ export default function QuestLog({
     .map((val) => <QuestItem key={val.title} info={val} i18n={i18n} />)
 
   const numClaimable = readyForClaimQuests.length
-  const claimableQuestsCounter = (
-    <div className={classNames('menu', styles.counter)}>{numClaimable}</div>
-  )
+  let claimableQuestsCounter = null
+  if (numClaimable > 0)
+    claimableQuestsCounter = (
+      <div className={classNames('menu', styles.counter)}>{numClaimable}</div>
+    )
 
   return (
     <DarkContainer className={styles.darkContainer}>
