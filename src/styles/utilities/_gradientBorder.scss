@@ -7,7 +7,7 @@ $hoverBorderThickness: 2px;
   --gradient-border-radius: var(--space-xs);
   --gradient-border: linear-gradient(transparent, transparent),
     linear-gradient(86.63deg, #4126e8 2.98%, #ea1aba 38.52%, #10a6d6 89.36%) !important;
-  --gradient-thickness-px: 2px
+  --gradient-thickness-px: 2px;
   z-index: 1;
 
   &:before {
