@@ -55,7 +55,7 @@ export default function QuestDetails({
   return (
     <DarkContainer className={styles.darkContainer}>
       <div className={classNames(className, styles.container)} {...props}>
-        <div className="title">{title}</div>
+        <div className={classNames('title', styles.title)}>{title}</div>
         <div
           className={classNames(
             'body-sm',
