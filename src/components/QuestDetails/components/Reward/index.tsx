@@ -13,7 +13,7 @@ export default function Reward({ reward }: RewardProps) {
   return (
     <div key={reward.title} className={styles.rewardContainer}>
       <img src={reward.imageUrl} />
-      <div className={classNames(styles.title, 'body')}>{reward.title}</div>
+      <div className={classNames(styles.title, 'menu')}>{reward.title}</div>
     </div>
   )
 }
