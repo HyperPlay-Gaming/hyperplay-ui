@@ -29,13 +29,15 @@ const props: QuestDetailsProps = {
   description:
     'Shadows of the Celestial NexusEmbark on a cosmic odyssey as the chosen guardian of the Eternal Ember. Traverse astral realms, unravel celestial mysteries, and confront shadowy entities threatening the balance of the Celestial Nexus. Master arcane powers, forge alliances with otherworldly beings, and navigate intricate puzzles. \n \nWill you rise to the challenge and become the savior of the Celestial Nexus, or succumb to the shadows that threaten to engulf the eternal flame?',
   eligibility: {
-    games: [
-      { title: 'Call of Duty', imageUrl: cupheadCard },
-      { title: 'Skyrim', imageUrl: cyberpunkCard }
-    ],
-    completionPercent: 50,
-    eligible: true,
-    steamAccountLinked: true
+    reputation: {
+      games: [
+        { title: 'Call of Duty', imageUrl: cupheadCard },
+        { title: 'Skyrim', imageUrl: cyberpunkCard }
+      ],
+      completionPercent: 50,
+      eligible: true,
+      steamAccountLinked: true
+    }
   },
   rewards: [
     {

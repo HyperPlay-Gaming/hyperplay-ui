@@ -1,6 +1,5 @@
+import { QuestType, QuestTypeTranslations } from '@/common/types'
 import { HTMLProps } from 'react'
-
-export type QuestType = 'REPUTATION'
 
 export interface QuestLogInfo {
   questType: QuestType
@@ -15,7 +14,7 @@ export interface QuestLogTranslations {
   claimed: string
   readyForClaim: string
   active: string
-  reputation: string
+  type: QuestTypeTranslations
 }
 
 export interface QuestLogProps extends HTMLProps<HTMLDivElement> {
