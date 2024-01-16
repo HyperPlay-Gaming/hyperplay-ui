@@ -1,0 +1,33 @@
+.darkContainer {
+  padding: var(--space-2lg);
+  max-width: 400px;
+  height: 100%;
+  margin: var(--space-xl) var(--space-xs);
+}
+
+.questItemsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  // this padding ensures that the gradient border for a selected item has a consistent border thickness
+  padding: 2px 2px;
+}
+
+.sectionTitle {
+  margin-bottom: var(--space-md);
+  margin-top: var(--space-xl);
+  color: var(--color-neutral-400);
+}
+
+.tabsList {
+  justify-content: center;
+}
+
+.counter {
+  display: inline;
+  background-color: var(--color-primary-500);
+  padding: 2px var(--space-xs) 2px var(--space-xs);
+  color: var(--color-neutral-100);
+  border-radius: var(--space-3xs);
+  margin-left: var(--space-sm);
+}
