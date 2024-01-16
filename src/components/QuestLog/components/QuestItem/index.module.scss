@@ -44,6 +44,10 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
+
+  > svg {
+    width: 16px;
+  }
 }
 
 .title {
