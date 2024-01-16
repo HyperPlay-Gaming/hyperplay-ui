@@ -4,10 +4,10 @@ import classNames from 'classnames'
 
 import { CheckmarkCircleOutline, GiftBox } from '@/assets/images'
 import Sticker from '@/components/Sticker'
+import { getQuestTypeDisplayName } from '@/utils/getQuestTypeDisplayName'
 
 import { QuestLogInfo, QuestLogTranslations } from '../../types'
 import styles from './index.module.scss'
-import { getQuestTypeDisplayName } from '@/utils/getQuestTypeDisplayName'
 
 export interface QuestItemProps extends HTMLProps<HTMLDivElement> {
   info: QuestLogInfo

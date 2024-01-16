@@ -11,7 +11,7 @@ import styles from './index.module.scss'
 export interface AssociatedGamesCollapseProps {
   opened: boolean
   toggle: () => void
-  games: Game[],
+  games: Game[]
   i18n?: {
     associatedGames: string
   }

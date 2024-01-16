@@ -4,15 +4,15 @@ import { useDisclosure } from '@mantine/hooks'
 import classNames from 'classnames'
 
 import { AlertTriangle } from '@/assets/images'
+import { getQuestTypeDisplayName } from '@/utils/getQuestTypeDisplayName'
 
 import Button from '../Button'
 import DarkContainer from '../DarkContainer'
+import Sticker from '../Sticker'
 import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
 import Rewards from './components/Rewards'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
-import Sticker from '../Sticker'
-import { getQuestTypeDisplayName } from '@/utils/getQuestTypeDisplayName'
 
 function AlertText(props: HTMLProps<HTMLDivElement>) {
   return (
@@ -49,25 +49,31 @@ export default function QuestDetails({
   let linkSteamAccountText = null
   let sticker = null
   let gamesCollapsable = null
-  if (eligibility.reputation !== undefined){
+  if (eligibility.reputation !== undefined) {
     if (!eligibility.reputation?.eligible) {
       needMoreAchievementsText = (
         <AlertText>{i18n.needMoreAchievements}</AlertText>
       )
     }
-  
+
     if (!eligibility.reputation.steamAccountLinked) {
       linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
     }
 
-    sticker = <Sticker styleType='secondary' variant='outlined'>{getQuestTypeDisplayName('REPUTATION', i18n.questType)}</Sticker>
+    sticker = (
+      <Sticker styleType="secondary" variant="outlined">
+        {getQuestTypeDisplayName('REPUTATION', i18n.questType)}
+      </Sticker>
+    )
 
-    gamesCollapsable = <AssociatedGamesCollapse
-      opened={opened}
-      toggle={toggle}
-      i18n={{ associatedGames: i18n.associatedGames }}
-      games={eligibility.reputation.games}
-    />
+    gamesCollapsable = (
+      <AssociatedGamesCollapse
+        opened={opened}
+        toggle={toggle}
+        i18n={{ associatedGames: i18n.associatedGames }}
+        games={eligibility.reputation.games}
+      />
+    )
   }
 
   return (

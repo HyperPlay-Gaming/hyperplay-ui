@@ -1,5 +1,6 @@
-import { QuestTypeTranslations } from '@/common/types'
 import { HTMLProps } from 'react'
+
+import { QuestTypeTranslations } from '@/common/types'
 
 export interface Game {
   title: string
@@ -16,7 +17,7 @@ export interface ReputationQuestEligibility {
 export interface QuestReward {
   title: string
   imageUrl: string
-} 
+}
 
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string

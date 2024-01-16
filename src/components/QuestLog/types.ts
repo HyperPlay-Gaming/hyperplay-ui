@@ -1,5 +1,6 @@
-import { QuestType, QuestTypeTranslations } from '@/common/types'
 import { HTMLProps } from 'react'
+
+import { QuestType, QuestTypeTranslations } from '@/common/types'
 
 export interface QuestLogInfo {
   questType: QuestType
