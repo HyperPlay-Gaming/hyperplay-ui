@@ -1,0 +1,15 @@
+.sticker {
+  padding: var(--space-3xs) var(--space-sm);
+  display: inline-block;
+}
+
+.secondary {
+  color: var(--color-primary-200);
+  border-radius: var(--corner-round, 100px);
+  border: 2px solid var(--color-primary-200);
+
+  &.filled {
+    background-color: var(--color-primary-200);
+    color: var(--color-neutral-800);
+  }
+}
