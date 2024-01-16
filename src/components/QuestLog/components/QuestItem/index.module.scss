@@ -52,6 +52,5 @@
 
 .title {
   text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: wrap;
+  overflow-wrap: break-word;
 }
