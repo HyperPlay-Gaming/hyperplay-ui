@@ -5,13 +5,13 @@ import classNames from 'classnames'
 
 import { DownArrow } from '@/assets/images'
 
-import { Eligibility } from '../../types'
+import { Game } from '../../types'
 import styles from './index.module.scss'
 
 export interface AssociatedGamesCollapseProps {
   opened: boolean
   toggle: () => void
-  eligibility: Eligibility
+  games: Game[]
   i18n?: {
     associatedGames: string
   }
@@ -20,7 +20,7 @@ export interface AssociatedGamesCollapseProps {
 export default function AssociatedGamesCollapse({
   opened,
   toggle,
-  eligibility,
+  games,
   i18n = {
     associatedGames: 'Associated games'
   }
@@ -45,7 +45,7 @@ export default function AssociatedGamesCollapse({
         />
       </button>
       <Collapse in={opened} className={styles.associatedGamesCollapseContainer}>
-        {eligibility.games.map((game) => (
+        {games.map((game) => (
           <div key={game.title} className={styles.associatedGameContainer}>
             <img
               src={game.imageUrl}

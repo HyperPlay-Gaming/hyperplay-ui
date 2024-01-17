@@ -15,7 +15,9 @@ export default function QuestLog({
     claimed: 'Claimed',
     readyForClaim: 'Ready for Claim',
     active: 'Active',
-    reputation: 'Reputation'
+    type: {
+      REPUTATION: 'Reputation'
+    }
   }
 }: QuestLogProps) {
   const activeQuests = quests

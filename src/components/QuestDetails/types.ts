@@ -1,5 +1,7 @@
 import { HTMLProps } from 'react'
 
+import { QuestTypeTranslations } from '@/common/types'
+
 export interface Game {
   title: string
   imageUrl: string
@@ -17,13 +19,13 @@ export interface QuestReward {
   imageUrl: string
 }
 
-// More quest eligibilty interfaces will be added here in future iterations
-export type Eligibility = ReputationQuestEligibility
-
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string
   description: string
-  eligibility: Eligibility
+  // More quest eligibilty interfaces will be added here in future iterations
+  eligibility: {
+    reputation?: ReputationQuestEligibility
+  }
   rewards: QuestReward[]
   onClaimClick: () => void
   i18n?: {
@@ -32,5 +34,6 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     linkSteamAccount: string
     needMoreAchievements: string
     claim: string
+    questType: QuestTypeTranslations
   }
 }

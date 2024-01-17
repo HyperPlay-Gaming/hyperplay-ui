@@ -4,9 +4,11 @@ import { useDisclosure } from '@mantine/hooks'
 import classNames from 'classnames'
 
 import { AlertTriangle } from '@/assets/images'
+import { getQuestTypeDisplayName } from '@/utils/getQuestTypeDisplayName'
 
 import Button from '../Button'
 import DarkContainer from '../DarkContainer'
+import Sticker from '../Sticker'
 import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
 import Rewards from './components/Rewards'
 import styles from './index.module.scss'
@@ -33,7 +35,10 @@ export default function QuestDetails({
     linkSteamAccount: 'Link your Steam account to check eligibility.',
     needMoreAchievements:
       'You need to have completed 15% of the achievements in one of these games.',
-    claim: 'Claim all'
+    claim: 'Claim all',
+    questType: {
+      REPUTATION: 'Reputation'
+    }
   },
   onClaimClick,
   ...props
@@ -41,21 +46,41 @@ export default function QuestDetails({
   const [opened, { toggle }] = useDisclosure(false)
 
   let needMoreAchievementsText = null
-  if (!eligibility.eligible) {
-    needMoreAchievementsText = (
-      <AlertText>{i18n.needMoreAchievements}</AlertText>
-    )
-  }
-
   let linkSteamAccountText = null
-  if (!eligibility.steamAccountLinked) {
-    linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
+  let sticker = null
+  let gamesCollapsable = null
+  if (eligibility.reputation !== undefined) {
+    if (!eligibility.reputation?.eligible) {
+      needMoreAchievementsText = (
+        <AlertText>{i18n.needMoreAchievements}</AlertText>
+      )
+    }
+
+    if (!eligibility.reputation.steamAccountLinked) {
+      linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
+    }
+
+    sticker = (
+      <Sticker styleType="secondary" variant="outlined">
+        {getQuestTypeDisplayName('REPUTATION', i18n.questType)}
+      </Sticker>
+    )
+
+    gamesCollapsable = (
+      <AssociatedGamesCollapse
+        opened={opened}
+        toggle={toggle}
+        i18n={{ associatedGames: i18n.associatedGames }}
+        games={eligibility.reputation.games}
+      />
+    )
   }
 
   return (
     <DarkContainer className={styles.darkContainer}>
       <div className={classNames(className, styles.container)} {...props}>
-        <div className="title">{title}</div>
+        {sticker}
+        <div className={classNames('title', styles.title)}>{title}</div>
         <div
           className={classNames(
             'body-sm',
@@ -66,12 +91,7 @@ export default function QuestDetails({
           {description}
         </div>
 
-        <AssociatedGamesCollapse
-          opened={opened}
-          toggle={toggle}
-          i18n={{ associatedGames: i18n.associatedGames }}
-          eligibility={eligibility}
-        />
+        {gamesCollapsable}
 
         {needMoreAchievementsText}
         {linkSteamAccountText}

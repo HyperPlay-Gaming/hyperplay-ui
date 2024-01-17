@@ -3,6 +3,7 @@
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--space-sm);
   background-color: var(--color-neutral-800);
+  align-self: stretch;
 }
 
 .associatedGamesButton {
@@ -11,6 +12,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  gap: var(--space-md);
 
   > .opened {
     transform: rotate(180deg);
