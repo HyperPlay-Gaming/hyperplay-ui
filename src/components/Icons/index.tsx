@@ -36,7 +36,8 @@ const IconFill: { [key: string]: string } = {
   TwitterFilled: 'white',
   WebIcon: '#FFFFFF',
   TrophyOutline: '#FFFFFF',
-  CheckmarkCircleOutline: '#FFFFFF'
+  CheckmarkCircleOutline: '#FFFFFF',
+  TrashCan: '#FFFFFF'
 }
 
 const IconStroke: { [key: string]: string } = {
