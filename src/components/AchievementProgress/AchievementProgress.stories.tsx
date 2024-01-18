@@ -12,7 +12,7 @@ export const Progress = () => (
   <AchievementProgress
     safeMintedCount={5}
     safeTotalCount={20}
-    mintedProgress={10}
-    mintableProgress={20}
+    mintedProgress={25}
+    mintableProgress={50}
   />
 )

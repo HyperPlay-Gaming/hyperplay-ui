@@ -31,8 +31,24 @@
   white-space: nowrap;
 }
 
+$progressRowRadius: 4px;
 .progressRow {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  height: 8px;
+  border-radius: $progressRowRadius;
+  position: relative;
+}
+
+.progressSection {
+  height: 100%;
+  width: var(--progress-section-width);
+  position: absolute;
+  border-radius: $progressRowRadius;
+
+  &:first-child {
+    background-color: var(--color-success-400);
+  }
+
+  &:last-child {
+    background-color: var(--color-success-400-20);
+  }
 }
