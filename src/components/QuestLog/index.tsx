@@ -1,13 +1,13 @@
 import React from 'react'
 
+import { Tabs } from '@mantine/core'
 import classNames from 'classnames'
 
 import DarkContainer from '../DarkContainer'
+import { getTabsClassNames } from '../Tabs'
 import QuestItem from './components/QuestItem'
 import styles from './index.module.scss'
 import { QuestLogProps } from './types'
-import { Tabs } from '@mantine/core'
-import { getTabsClassNames } from '../Tabs'
 
 export default function QuestLog({
   quests,
@@ -42,7 +42,13 @@ export default function QuestLog({
 
   return (
     <DarkContainer className={styles.darkContainer}>
-      <Tabs defaultValue={'tab1'} classNames={getTabsClassNames({ list: styles.tabsList }, {tab: 'secondary'})}>
+      <Tabs
+        defaultValue={'tab1'}
+        classNames={getTabsClassNames(
+          { list: styles.tabsList },
+          { tab: 'secondary' }
+        )}
+      >
         <Tabs.List>
           <Tabs.Tab value={'tab1'}>
             <div className="menu">
