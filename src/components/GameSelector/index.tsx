@@ -1,26 +1,11 @@
-import React, { HTMLProps } from 'react'
+import React, { useState } from 'react'
 
-import { TrashCan } from '@/assets/images'
-
+import { GenericDropdown } from '../Dropdowns'
 import TextInput from '../TextInput'
+import GameItem from './components/GameItem'
 import styles from './index.module.scss'
-
-export interface GameDetails {
-  title: string
-  img: string
-  onClick: () => void
-}
-
-export interface GameSelectorProps extends HTMLProps<HTMLDivElement> {
-  selectedGames: GameDetails[]
-  searchResultGames: GameDetails[]
-  onSearchInput: (text: string) => void
-  i18n?: {
-    selectGame: string
-    selectUpTo: string
-    searchForGames: string
-  }
-}
+import { GameSelectorProps } from './types'
+import { useFocusTrap } from '@mantine/hooks'
 
 export default function GameSelector({
   selectedGames,
@@ -32,16 +17,13 @@ export default function GameSelector({
     searchForGames: 'Search for game(s)'
   }
 }: GameSelectorProps) {
+  const [opened, setOpened] = useState(false)
+  const focusTrapRef = useFocusTrap(true);
+
   let selectedGamesElement = null
   if (selectedGames.length > 0) {
     selectedGamesElement = selectedGames.map((val) => (
-      <div key={val.title} className={styles.selectedGameContainer}>
-        <div className={styles.details}>
-          <img src={val.img} />
-          <div className="title-sm">{val.title}</div>
-        </div>
-        <button onClick={val.onClick}><TrashCan/></button>
-      </div>
+      <GameItem key={val.title} game={val} />
     ))
   }
 
@@ -52,14 +34,32 @@ export default function GameSelector({
     </div>
   )
 
+  let searchResults = null
+  if (searchResultGames.length > 0) {
+    searchResults = searchResultGames.map((val) => (
+      <GameItem key={val.title} game={val} />
+    ))
+  }
+
   return (
     <div>
-      <TextInput
-        placeholder={i18n.searchForGames}
-        enterKeyHint="search"
-        onChange={(ev) => console.log(ev.target.value)}
-        label={labelNode}
-      />
+      <GenericDropdown
+      trapFocus={false}
+        target={
+          <TextInput
+            placeholder={i18n.searchForGames}
+            enterKeyHint="search"
+            onChange={(ev) => console.log(ev.target.value)}
+            label={labelNode}
+            data-autofocus='true'
+            ref={focusTrapRef}
+          />
+        }
+        opened={opened}
+        onChange={setOpened}
+      >
+        {searchResults}
+      </GenericDropdown>
       {selectedGamesElement}
     </div>
   )

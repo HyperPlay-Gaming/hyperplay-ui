@@ -42,4 +42,3 @@ const props: GameSelectorProps = {
 export const Default: Story = {
   args: { ...props }
 }
-

@@ -1,0 +1,23 @@
+.selectedGameContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) 0px;
+
+  svg {
+    fill: var(--color-neutral-500);
+  }
+
+  > .details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-md);
+
+    > img {
+      max-height: var(--space-2xl);
+      border-radius: var(--space-xs);
+    }
+  }
+}

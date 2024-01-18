@@ -5,7 +5,7 @@ import React, {
   forwardRef
 } from 'react'
 
-import { Menu, MenuProps } from '@mantine/core'
+import { Menu, MenuProps, MenuTargetProps } from '@mantine/core'
 
 import { DownArrow } from '@/assets/images'
 
@@ -40,17 +40,19 @@ GenericButton.displayName = 'GenericButton'
 export interface DropdownProps extends MenuProps {
   target: ReactNode
   menuItemsGap?: string
+  targetProps?: MenuTargetProps & React.RefAttributes<HTMLElement>
 }
 
 const GenericDropdown = function ({
   target,
   children,
   menuItemsGap,
+  targetProps,
   ...props
 }: DropdownProps) {
   return (
     <Menu position="bottom-start" width={'target'} offset={0} {...props}>
-      <Menu.Target>{target}</Menu.Target>
+      <Menu.Target {...targetProps}>{target}</Menu.Target>
       <Menu.Dropdown className={styles.menuDropdown} style={{ margin: '0px' }}>
         <div style={{ gap: menuItemsGap ? menuItemsGap : 'var(--space-md)' }}>
           {children}
