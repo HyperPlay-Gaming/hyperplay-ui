@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react'
 
 import {
+  TabProps as MantTabProps,
   Tabs as MantTabs,
   TabsListProps,
   TabsPanelProps,
@@ -8,11 +9,16 @@ import {
   TabsTabProps,
   createPolymorphicComponent
 } from '@mantine/core'
+import classNames from 'classnames'
 
 import styles from './Tabs.module.scss'
 
+export interface TabProps extends MantTabProps {
+  styleType?: 'primary' | 'secondary'
+}
 type TabsListPropsType = TabsListProps & { type?: 'outline' }
-type TabsSubComponents = {
+
+type TabsType = typeof MantTabs & {
   List: React.ForwardRefExoticComponent<
     TabsListPropsType & React.RefAttributes<HTMLDivElement>
   >
@@ -39,15 +45,19 @@ const Tabs = createPolymorphicComponent<'div', TabsProps, TabsSubComponents>(
 )
 Tabs.displayName = 'HyplerPlayUiTabs'
 
-const Tab = forwardRef<HTMLButtonElement, TabsTabProps>((props, ref) => (
-  <MantTabs.Tab
-    {...props}
-    ref={ref}
-    className={`${props.className} ${styles.tab}`}
-  >
-    {props.children}
-  </MantTabs.Tab>
-))
+const Tab = forwardRef<HTMLButtonElement, TabsTabProps>(
+  ({ styleType = 'primary', className, ...props }, ref) => {
+    const tabClasses: Record<string, boolean> = {}
+    tabClasses[styles.secondary] = styleType === 'secondary'
+    return (<MantTabs.Tab
+        {...props}
+        ref={ref}
+        className={`${props.className} ${styles.tab}`}
+      >
+        {props.children}
+      </MantTabs.Tab>
+    )
+})
 Tab.displayName = 'HyplerPlayUiTab'
 
 const List = forwardRef<HTMLDivElement, TabsListPropsType>(

@@ -1,0 +1,47 @@
+.associatedGamesContainer {
+  border: 1px solid var(--color-stroke-01);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--space-sm);
+  background-color: var(--color-neutral-800);
+  align-self: stretch;
+}
+
+.associatedGamesButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: var(--space-md);
+
+  > .opened {
+    transform: rotate(180deg);
+  }
+
+  margin-bottom: var(--space-md);
+
+  &.collpased {
+    margin-bottom: 0px;
+  }
+}
+
+$thumbnailSize: 24px;
+.associatedGameThumbnail {
+  max-width: $thumbnailSize;
+  max-height: $thumbnailSize;
+  height: $thumbnailSize;
+  object-fit: cover;
+  border-radius: calc($thumbnailSize / 6);
+}
+
+.associatedGameContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm);
+}
+
+.associatedGamesCollapseContainer > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}

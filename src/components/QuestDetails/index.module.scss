@@ -1,0 +1,41 @@
+.darkContainer {
+  padding: var(--space-2lg);
+  max-width: 576px;
+  height: 100%;
+  margin: var(--space-xl) var(--space-xs);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2lg);
+  align-items: flex-start;
+}
+
+.claimButton {
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: 0px;
+}
+
+.description {
+  white-space: pre-wrap;
+  text-wrap: wrap;
+  line-height: var(--space-xl);
+}
+
+.alertTriangle {
+  stroke: var(--color-alert-400);
+}
+
+.alertTextContainer {
+  display: flex;
+  flex-direction: row;
+  color: var(--color-alert-200);
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.title {
+  line-height: var(--text-2xl);
+}
