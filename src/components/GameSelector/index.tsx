@@ -44,7 +44,7 @@ export default function GameSelector({
     <TextInput
       placeholder={i18n.searchForGames}
       enterKeyHint="search"
-      onChange={(ev) => console.log(ev.target.value)}
+      onChange={(ev) => onSearchInput(ev.target.value)}
       label={labelNode}
       data-autofocus="true"
     />
