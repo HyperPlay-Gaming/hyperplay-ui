@@ -1,7 +1,9 @@
 import React, { HTMLProps } from 'react'
 
+import { Image } from '@mantine/core'
 import cn from 'classnames'
 
+import FallbackImage from '@/assets/fallback_achievement.svg?url'
 import * as Images from '@/assets/images'
 
 import AchievementNav, { AchievementNavProps } from '../AchievementNav'
@@ -19,8 +21,6 @@ import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import Loading from '../Loading'
 import styles from './GameAchievements.module.scss'
-import { Image } from '@mantine/core'
-import FallbackImage from '@/assets/fallback_achievement.svg?url'
 
 export interface GameAchievementsProps
   extends HTMLProps<HTMLDivElement>,

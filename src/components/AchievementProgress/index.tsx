@@ -57,7 +57,7 @@ export default function AchievementProgress({
         <div className={styles.progressRow}>
           <Progress.Root
             className={styles.progressRow}
-            classNames={{section: styles.progressSection}}
+            classNames={{ section: styles.progressSection }}
             bg="var(--color-neutral-600)"
             unstyled
           >

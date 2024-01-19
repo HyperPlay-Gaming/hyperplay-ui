@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 
+import { Tabs } from '@mantine/core'
 import cn from 'classnames'
 
 import * as Images from '@/assets/images'
@@ -10,10 +11,9 @@ import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import Loading from '../Loading'
+import { getTabsClassNames } from '../Tabs'
 import styles from './AchievementSummaryTable.module.scss'
 import MessageModal, { MessageModalProps } from './components/MessageModal'
-import { Tabs } from '@mantine/core'
-import { getTabsClassNames } from '../Tabs'
 
 export type AchievementFilter = 'all' | 'new' | 'minted'
 
@@ -142,7 +142,7 @@ export default function AchievementSummaryTable({
           }
           mah={'100%'}
           className={styles.secondTopRowContainer}
-          classNames={getTabsClassNames({}, {list: 'outline'})}
+          classNames={getTabsClassNames({}, { list: 'outline' })}
         >
           <div className={styles.row}>
             <div className={styles.filters}>
