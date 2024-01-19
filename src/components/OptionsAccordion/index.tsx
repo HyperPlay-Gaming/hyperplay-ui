@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 
 import { Accordion, AccordionProps } from '@mantine/core'
+import classNames from 'classnames'
 
 import Button from '../Button'
 import Checkbox from '../Checkbox'
@@ -123,7 +124,9 @@ export default function OptionsAccordion({
     return (
       <Accordion.Item value={option} key={option}>
         <Accordion.Control>
-          <div className="title-sm">{option}</div>
+          <div className={classNames('title-sm', styles.sectionTitle)}>
+            {option}
+          </div>
         </Accordion.Control>
         <Accordion.Panel>{items}</Accordion.Panel>
       </Accordion.Item>
@@ -137,14 +140,17 @@ export default function OptionsAccordion({
   })
 
   return (
+    // chevron position right is not being respected here
     <Accordion
       variant="contained"
-      radius={'var(--space-sm)'}
       classNames={{
         panel: styles.panel,
         item: styles.item,
         content: styles.content,
-        control: styles.control
+        control: styles.control,
+        chevron: styles.chevron,
+        root: styles.root,
+        label: styles.label
       }}
       multiple
       {...props}
