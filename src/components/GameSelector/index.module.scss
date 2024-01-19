@@ -8,3 +8,12 @@
   font-style: italic;
   color: var(--color-neutral-500);
 }
+
+.menuDropdown {
+  background-color: var(--color-neutral-800);
+  color: var(--color-neutral-400);
+  border: none;
+  padding: 0px;
+  border-radius: 0 0 var(--space-sm) var(--space-sm);
+  position: absolute;
+}

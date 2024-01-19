@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
-import { GenericDropdown } from '../Dropdowns'
+import { Menu } from '@mantine/core'
+
 import TextInput from '../TextInput'
 import GameItem from './components/GameItem'
 import styles from './index.module.scss'
 import { GameSelectorProps } from './types'
-import { useFocusTrap } from '@mantine/hooks'
 
 export default function GameSelector({
   selectedGames,
@@ -18,7 +18,6 @@ export default function GameSelector({
   }
 }: GameSelectorProps) {
   const [opened, setOpened] = useState(false)
-  const focusTrapRef = useFocusTrap(true);
 
   let selectedGamesElement = null
   if (selectedGames.length > 0) {
@@ -41,25 +40,31 @@ export default function GameSelector({
     ))
   }
 
+  const target = (
+    <TextInput
+      placeholder={i18n.searchForGames}
+      enterKeyHint="search"
+      onChange={(ev) => console.log(ev.target.value)}
+      label={labelNode}
+      data-autofocus="true"
+    />
+  )
+
   return (
     <div>
-      <GenericDropdown
-      trapFocus={false}
-        target={
-          <TextInput
-            placeholder={i18n.searchForGames}
-            enterKeyHint="search"
-            onChange={(ev) => console.log(ev.target.value)}
-            label={labelNode}
-            data-autofocus='true'
-            ref={focusTrapRef}
-          />
-        }
+      <Menu
         opened={opened}
         onChange={setOpened}
+        trapFocus={false}
+        position="bottom-start"
+        width={'target'}
+        offset={0}
       >
-        {searchResults}
-      </GenericDropdown>
+        <Menu.Target>{target}</Menu.Target>
+        <Menu.Dropdown className={styles.menuDropdown}>
+          {searchResults}
+        </Menu.Dropdown>
+      </Menu>
       {selectedGamesElement}
     </div>
   )
