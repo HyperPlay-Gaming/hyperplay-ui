@@ -1,15 +1,22 @@
+import { HTMLProps } from 'react'
+
+import classNames from 'classnames'
+
 import { TrashCan } from '@/assets/images'
 
 import { GameDetails } from '../../types'
 import styles from './index.module.scss'
 
-interface GameItemProps {
+interface GameItemProps extends HTMLProps<HTMLDivElement> {
   game: GameDetails
 }
 
-export default function GameItem({ game }: GameItemProps) {
+export default function GameItem({ game, className, ...props }: GameItemProps) {
   return (
-    <div className={styles.selectedGameContainer}>
+    <div
+      className={classNames(styles.selectedGameContainer, className)}
+      {...props}
+    >
       <div className={styles.details}>
         <img src={game.img} />
         <div className="title-sm">{game.title}</div>

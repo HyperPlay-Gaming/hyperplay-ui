@@ -17,3 +17,7 @@
   border-radius: 0 0 var(--space-sm) var(--space-sm);
   position: absolute;
 }
+
+.underline {
+  border-bottom: 2px solid var(--color-neutral-600);
+}

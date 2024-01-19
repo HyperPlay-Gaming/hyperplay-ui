@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 
 import { Menu } from '@mantine/core'
+import classNames from 'classnames'
 
 import TextInput from '../TextInput'
 import GameItem from './components/GameItem'
 import styles from './index.module.scss'
-import { GameSelectorProps } from './types'
+import { GameDetails, GameSelectorProps } from './types'
 
 export default function GameSelector({
   selectedGames,
@@ -19,12 +20,25 @@ export default function GameSelector({
 }: GameSelectorProps) {
   const [opened, setOpened] = useState(false)
 
-  let selectedGamesElement = null
-  if (selectedGames.length > 0) {
-    selectedGamesElement = selectedGames.map((val) => (
-      <GameItem key={val.title} game={val} />
-    ))
+  function getGameItems(games: GameDetails[]) {
+    if (games.length === 0) {
+      return null
+    }
+
+    return games.map((val, index) => {
+      const itemClasses: Record<string, boolean> = {}
+      itemClasses[styles.underline] = index < games.length - 1
+      return (
+        <GameItem
+          key={val.title}
+          game={val}
+          className={classNames(itemClasses)}
+        />
+      )
+    })
   }
+
+  const selectedGamesElement = getGameItems(selectedGames)
 
   const labelNode = (
     <div className={styles.searchLabel}>
@@ -33,12 +47,7 @@ export default function GameSelector({
     </div>
   )
 
-  let searchResults = null
-  if (searchResultGames.length > 0) {
-    searchResults = searchResultGames.map((val) => (
-      <GameItem key={val.title} game={val} />
-    ))
-  }
+  const searchResults = getGameItems(searchResultGames)
 
   const target = (
     <TextInput
@@ -51,7 +60,7 @@ export default function GameSelector({
   )
 
   return (
-    <div>
+    <div className={styles.selectorContainer}>
       <Menu
         opened={opened}
         onChange={setOpened}
