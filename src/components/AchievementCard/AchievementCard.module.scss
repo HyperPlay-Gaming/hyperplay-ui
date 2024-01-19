@@ -6,6 +6,7 @@
   max-width: 100%;
   /* z-index must be auto so that stacking context is shared and popovers appear over sibling cards */
   z-index: auto;
+  width: 100%;
 
   .image {
     overflow: hidden;
@@ -92,4 +93,9 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.achievementImage {
+  min-width: 100%;
+  display: block;
 }

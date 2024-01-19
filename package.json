@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "0.1.43",
+  "version": "1.0.0",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
@@ -23,9 +23,9 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@emotion/react": "^11.11.0",
-    "@mantine/carousel": "^6.0.17",
-    "@mantine/core": "^6.0.13",
-    "@mantine/hooks": "^6.0.13",
+    "@mantine/carousel": "^7.4.2",
+    "@mantine/core": "7.4.2",
+    "@mantine/hooks": "7.4.2",
     "@storybook/addon-actions": "^7.4.3",
     "@storybook/addon-essentials": "^7.4.3",
     "@storybook/addon-interactions": "^7.4.3",
@@ -58,6 +58,9 @@
     "json": "^11.0.0",
     "keen-slider": "^6.8.5",
     "next": "^13.1.6",
+    "postcss": "^8.4.32",
+    "postcss-preset-mantine": "^1.11.1",
+    "postcss-simple-vars": "^7.0.1",
     "prettier": "^2.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -80,13 +83,10 @@
   },
   "peerDependencies": {
     "@emotion/react": "^11.11.0",
-    "@mantine/carousel": "^6.0.17",
-    "@mantine/core": "^6.0.13",
-    "@mantine/hooks": "^6.0.13",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0",
+    "embla-carousel-autoplay": ">=7.0.0",
     "embla-carousel-react": ">=7.0.0",
-    "embla-carousel-autoplay": ">=7.0.0"
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
   "module": "dist/index.es.js",
   "files": [

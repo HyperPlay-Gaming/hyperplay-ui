@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 
+import { Tabs } from '@mantine/core'
 import cn from 'classnames'
 
 import * as Images from '@/assets/images'
@@ -10,7 +11,7 @@ import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import Loading from '../Loading'
-import Tabs from '../Tabs'
+import { getTabsClassNames } from '../Tabs'
 import styles from './AchievementSummaryTable.module.scss'
 import MessageModal, { MessageModalProps } from './components/MessageModal'
 
@@ -136,9 +137,12 @@ export default function AchievementSummaryTable({
         />
         <Tabs
           value={filterProps.activeFilter}
-          onTabChange={filterProps.setActiveFilter}
+          onChange={(filter) =>
+            filterProps.setActiveFilter(filter as AchievementFilter)
+          }
           mah={'100%'}
           className={styles.secondTopRowContainer}
+          classNames={getTabsClassNames({}, { list: 'outline' })}
         >
           <div className={styles.row}>
             <div className={styles.filters}>
@@ -151,7 +155,7 @@ export default function AchievementSummaryTable({
                 {...sortProps}
               />
 
-              <Tabs.List type="outline">
+              <Tabs.List>
                 {tabs.map((tab) => (
                   <Tabs.Tab
                     value={tab.value}

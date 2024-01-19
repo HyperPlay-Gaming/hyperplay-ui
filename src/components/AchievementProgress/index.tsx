@@ -22,11 +22,11 @@ export interface AchievementProgressProps extends AchievementProgressTextProps {
    */
   safeTotalCount: number
   /**
-   * The total progress you have made towards minting all achievements
+   * The total progress you have made towards minting all achievements in percent
    */
   mintedProgress: number
   /**
-   * The total amount that can be minted
+   * The total amount that can be minted in percent
    * */
   mintableProgress: number
   /**
@@ -55,21 +55,22 @@ export default function AchievementProgress({
           <div>{i18n.achievementMintedLabel}</div>
         </div>
         <div className={styles.progressRow}>
-          <Progress
+          <Progress.Root
+            className={styles.progressRow}
+            classNames={{ section: styles.progressSection }}
             bg="var(--color-neutral-600)"
-            sections={[
-              {
-                value: mintedProgress,
-                color: 'var(--color-success-400)'
-              },
-              {
-                value: mintableProgress,
-                color: 'var(--color-success-400-20)',
-                className: styles.noRadius
-              }
-            ]}
-            w={'100%'}
-          />
+            unstyled
+          >
+            <Progress.Section
+              color="var(--color-success-400)"
+              value={mintedProgress}
+            ></Progress.Section>
+            <Progress.Section
+              color="var(--color-success-400-20)"
+              value={mintableProgress}
+              className={styles.noRadius}
+            />
+          </Progress.Root>
           {rightIcon}
         </div>
       </div>

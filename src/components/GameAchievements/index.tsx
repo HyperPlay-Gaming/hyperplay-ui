@@ -3,6 +3,7 @@ import React, { HTMLProps } from 'react'
 import { Image } from '@mantine/core'
 import cn from 'classnames'
 
+import FallbackImage from '@/assets/fallback_achievement.svg?url'
 import * as Images from '@/assets/images'
 
 import AchievementNav, { AchievementNavProps } from '../AchievementNav'
@@ -153,7 +154,6 @@ export default function GameAchievements({
           <div>
             <Image
               src={gameCardImage}
-              w={300}
               className={styles.gameCardImageContainer}
             />
           </div>
@@ -212,10 +212,7 @@ export default function GameAchievements({
                   <Image
                     className={styles.image}
                     src={image}
-                    height={80}
-                    width={80}
-                    withPlaceholder
-                    placeholder={<div className={styles.fallback} />}
+                    fallbackSrc={FallbackImage}
                   />
                   <div className={styles.achievementInfo}>
                     <div className="text--lg weight--medium">{title}</div>

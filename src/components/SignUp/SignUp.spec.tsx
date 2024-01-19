@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
+import { renderWithMantine } from '../../../tests/utils/providers'
 import SignUp from './index'
 
 const providers = [{ id: 'discord', name: 'Discord', icon: 'discord' }]
@@ -11,7 +12,7 @@ describe('SignUp', () => {
   it('executes onAuthSignup handler upon selecting a provider', () => {
     const providerOption = providers[0]
     const onAuthSignup = vi.fn()
-    render(
+    renderWithMantine(
       <SignUp
         onClose={vi.fn}
         providers={providers}
@@ -35,7 +36,7 @@ describe('SignUp', () => {
 
   it('executes onWalletSignup handler upon selecting wallet provider', () => {
     const onWalletSignup = vi.fn()
-    render(
+    renderWithMantine(
       <SignUp
         onClose={vi.fn}
         providers={providers}
@@ -59,7 +60,7 @@ describe('SignUp', () => {
 
   it('submits the email form and triggers onEmailSignup handler', () => {
     const onEmailSignup = vi.fn()
-    render(
+    renderWithMantine(
       <SignUp
         onClose={vi.fn}
         providers={providers}

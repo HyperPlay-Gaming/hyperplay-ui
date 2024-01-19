@@ -25,7 +25,8 @@ export { default as Alert } from './components/Alert'
 export type { AlertProps } from './components/Alert'
 export { default as DownloadToast } from './components/DownloadToast'
 export { default as Checkbox } from './components/Checkbox'
-export { default as Tabs } from './components/Tabs'
+export { getTabsClassNames } from './components/Tabs'
+export type { TabsTypes } from './components/Tabs'
 export { default as Toggle } from './components/Toggle'
 export {
   Dropdown,
@@ -57,6 +58,7 @@ export { default as AchievementProgress } from './components/AchievementProgress
 export { default as AchievementsInfo } from './components/AchievementsInfo'
 export { default as AchievementSummaryTable } from './components/AchievementSummaryTable'
 export { default as GameAchievements } from './components/GameAchievements'
+export { default as HyperPlayDesignProvider } from './components/HyperPlayDesignProvider'
 export type { GameAdded } from './components/AchievementNav/index'
 export {
   default as ZkSyncQuestBanner,

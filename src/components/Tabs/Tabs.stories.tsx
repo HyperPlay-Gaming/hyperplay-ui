@@ -1,6 +1,10 @@
 import React from 'react'
 
-import Tabs from '.'
+import { Tabs } from '@mantine/core'
+import classNames from 'classnames'
+
+import { getTabsClassNames } from '.'
+import styles from './Tabs.module.scss'
 
 export default {
   title: 'Tabs',
@@ -8,7 +12,11 @@ export default {
 }
 
 export const Default = () => (
-  <Tabs defaultValue="tab2">
+  <Tabs
+    defaultValue="tab2"
+    className={classNames(styles.tabs)}
+    classNames={getTabsClassNames()}
+  >
     <Tabs.List>
       <Tabs.Tab value={'tab1'}>
         <div className="menu">Option 1</div>
@@ -33,8 +41,12 @@ export const Default = () => (
 )
 
 export const Outlined = () => (
-  <Tabs defaultValue="tab2">
-    <Tabs.List type="outline">
+  <Tabs
+    defaultValue="tab2"
+    className={classNames(styles.tabs)}
+    classNames={getTabsClassNames({}, { list: 'outline' })}
+  >
+    <Tabs.List>
       <Tabs.Tab value={'tab1'}>
         <div className="menu">Option 1</div>
       </Tabs.Tab>

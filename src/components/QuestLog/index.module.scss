@@ -21,6 +21,8 @@
 
 .tabsList {
   justify-content: center;
+  display: flex;
+  flex-direction: row;
 }
 
 .counter {
