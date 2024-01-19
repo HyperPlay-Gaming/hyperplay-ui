@@ -86,6 +86,9 @@
     border-radius: 4px;
     overflow: hidden;
     box-shadow: 0px 4px 12px 0px #00000029;
+    min-height: 80px;
+    width: 80px;
+    object-fit: cover;
     @include broken-image-fix();
   }
 

@@ -154,7 +154,6 @@ export default function GameAchievements({
           <div>
             <Image
               src={gameCardImage}
-              w={300}
               className={styles.gameCardImageContainer}
             />
           </div>
@@ -213,13 +212,7 @@ export default function GameAchievements({
                   <Image
                     className={styles.image}
                     src={image}
-                    h={80}
-                    w={80}
                     fallbackSrc={FallbackImage}
-                    style={{
-                      height: 80,
-                      width: 80
-                    }}
                   />
                   <div className={styles.achievementInfo}>
                     <div className="text--lg weight--medium">{title}</div>
