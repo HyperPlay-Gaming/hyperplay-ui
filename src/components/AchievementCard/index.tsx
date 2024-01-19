@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, ImgHTMLAttributes } from 'react'
 
-import { Card, CardProps, ImageProps, Popover } from '@mantine/core'
+import { Card, CardProps, Image, ImageProps, Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import cn from 'classnames'
 
@@ -15,7 +15,6 @@ import ProgressKey, {
 } from '../AchievementProgress/components/ProgressKey'
 import getProgress from '../AchievementProgress/helpers/getProgress'
 import { ButtonProps } from '../Button'
-import CustomImage from '../Image'
 import styles from './AchievementCard.module.scss'
 import StatusIcon, { StatusIconState } from './components/StatusIcon'
 
@@ -156,17 +155,17 @@ export default function AchievementCard({
         'gradientBorderOnHover'
       )}
       {...rest}
+      unstyled
     >
       <Card.Section
         pos="relative"
         className={cn(styles.image, styles.mantineOverRide)}
       >
-        <CustomImage
+        <Image
           src={image}
-          w={300}
-          bg="var(--color-gradient-08)"
           fallbackSrc={FallbackImage}
           {...imageProps}
+          className={styles.achievementImage}
         />
         {isNewAchievement && (
           <div className={cn(styles.newAchievement, 'eyebrow')}>

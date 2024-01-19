@@ -17,9 +17,10 @@ import getProgress, {
 import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
-import CustomImage from '../Image'
 import Loading from '../Loading'
 import styles from './GameAchievements.module.scss'
+import { Image } from '@mantine/core'
+import FallbackImage from '@/assets/fallback_achievement.svg?url'
 
 export interface GameAchievementsProps
   extends HTMLProps<HTMLDivElement>,
@@ -151,7 +152,7 @@ export default function GameAchievements({
 
         <div className={styles.heroRow}>
           <div>
-            <CustomImage
+            <Image
               src={gameCardImage}
               w={300}
               className={styles.gameCardImageContainer}
@@ -209,12 +210,12 @@ export default function GameAchievements({
                 className={cn(styles.row, isLocked ? styles.locked : '')}
               >
                 <div className={styles.achievementData}>
-                  <CustomImage
+                  <Image
                     className={styles.image}
                     src={image}
                     h={80}
                     w={80}
-                    placeholder={<div className={styles.fallback} />}
+                    fallbackSrc={FallbackImage}
                     style={{
                       height: 80,
                       width: 80
