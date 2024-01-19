@@ -12,7 +12,6 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: var(--space-md);
 
   > .opened {
     transform: rotate(180deg);
@@ -40,7 +39,7 @@ $thumbnailSize: 24px;
   gap: var(--space-sm);
 }
 
-.associatedGamesCollapseContainer > div {
+.associatedGamesCollapseContainer {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
