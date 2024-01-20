@@ -17,7 +17,11 @@ export default function ClickableGameItem({
   ...props
 }: ClickableGameItemProps) {
   return (
-    <button className={classNames(styles.gameContainer, className)} onClick={game.onClick} {...props}>
+    <button
+      className={classNames(styles.gameContainer, className)}
+      onClick={game.onClick}
+      {...props}
+    >
       <GameDisplayDetails game={game} />
     </button>
   )

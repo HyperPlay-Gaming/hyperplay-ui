@@ -40,7 +40,7 @@ export default function GameSelector({
           />
         )
       }
-      
+
       return (
         <GameItem
           key={`selected-${val.gameId}`}

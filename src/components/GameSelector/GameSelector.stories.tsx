@@ -1,11 +1,11 @@
+import { expect } from '@storybook/jest'
+import { useArgs } from '@storybook/preview-api'
 import type { Meta, StoryObj } from '@storybook/react'
+import { userEvent, within } from '@storybook/testing-library'
 
 import GameSelector from '.'
+import { wait } from '../../../tests/utils/wait'
 import { GameSelectorProps } from './types'
-import { useArgs } from '@storybook/preview-api';
-import { within, userEvent } from '@storybook/testing-library'
-import { expect } from '@storybook/jest';
-import { wait } from '../../../tests/utils/wait';
 
 const meta: Meta<typeof GameSelector> = {
   title: 'Quests/GameSelector',
@@ -51,52 +51,69 @@ export const props: GameSelectorProps = {
 export const Default: Story = {
   args: { ...props },
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  render: function Render(args) {    
-    const [{ selectedGames, searchResultGames }, updateArgs] = useArgs<GameSelectorProps>();
+  render: function Render(args) {
+    const [{ selectedGames, searchResultGames }, updateArgs] =
+      useArgs<GameSelectorProps>()
 
-    for (const game_i of selectedGames){
+    for (const game_i of selectedGames) {
       game_i.onClick = () => {
-        const newSelectedGames = selectedGames.filter((val)=>val.gameId !== game_i.gameId)
-        updateArgs({selectedGames: newSelectedGames, searchResultGames})
+        const newSelectedGames = selectedGames.filter(
+          (val) => val.gameId !== game_i.gameId
+        )
+        updateArgs({ selectedGames: newSelectedGames, searchResultGames })
       }
     }
-    
-    for (const game_i of searchResultGames){
+
+    for (const game_i of searchResultGames) {
       game_i.onClick = () => {
         selectedGames.push(JSON.parse(JSON.stringify(game_i)))
-        updateArgs({selectedGames, searchResultGames})
+        updateArgs({ selectedGames, searchResultGames })
       }
     }
 
     return (
-        <GameSelector {...args} selectedGames={selectedGames} searchResultGames={searchResultGames} />
+      <GameSelector
+        {...args}
+        selectedGames={selectedGames}
+        searchResultGames={searchResultGames}
+      />
     )
   },
-  play: async ({canvasElement, step}) => {
-    const canvas = within(canvasElement);
-    
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+
     await step('Remove first selected game', async () => {
-      const firstSelectedElement = canvas.getByTestId(`selected-${props.selectedGames[0].gameId}`)
+      const firstSelectedElement = canvas.getByTestId(
+        `selected-${props.selectedGames[0].gameId}`
+      )
       await userEvent.click(firstSelectedElement)
       await wait(1000)
       expect(firstSelectedElement).not.toBeInTheDocument()
     })
-    
+
     await step('Click the search input and type gun', async () => {
       await userEvent.click(canvas.getByTestId('search-input'))
       await userEvent.type(canvas.getByTestId('search-input'), 'gun')
-      
-      const element = document.querySelector('div[data-portal="true"]') as HTMLElement
+
+      const element = document.querySelector(
+        'div[data-portal="true"]'
+      ) as HTMLElement
       await expect(element).not.toBeNull()
-      if (element === null){
+      if (element === null) {
         throw 'element null'
       }
 
       await step('Click the first game result', async () => {
         const dropdownCanvas = within(element)
-        await userEvent.click(dropdownCanvas.getByTestId(`clickable-${props.searchResultGames[0].gameId}`))
-    
-        const newlyAddedGame = canvas.getByTestId(`selected-${props.searchResultGames[0].gameId}`)
+        await userEvent.click(
+          dropdownCanvas.getByTestId(
+            `clickable-${props.searchResultGames[0].gameId}`
+          )
+        )
+
+        const newlyAddedGame = canvas.getByTestId(
+          `selected-${props.searchResultGames[0].gameId}`
+        )
         expect(newlyAddedGame).toBeInTheDocument()
       })
     })

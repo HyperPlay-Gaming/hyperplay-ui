@@ -18,7 +18,7 @@
   position: absolute;
   box-sizing: border-box;
 
-  > *:nth-child(2){
+  > *:nth-child(2) {
     border-radius: var(--space-sm) var(--space-sm) 0 0;
   }
 
