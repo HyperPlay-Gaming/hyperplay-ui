@@ -30,14 +30,17 @@ export default function GameSelector({
       const itemClasses: Record<string, boolean> = {}
       itemClasses[styles.underline] = index < games.length - 1
       if (isClickable) {
+        const key = `clickable-${val.gameId}`
         return (
           <ClickableGameItem
-            key={`clickable-${val.gameId}`}
+            key={key}
             game={val}
             className={classNames(itemClasses)}
+            data-testid={key}
           />
         )
       }
+      
       return (
         <GameItem
           key={`selected-${val.gameId}`}
@@ -66,6 +69,7 @@ export default function GameSelector({
       onChange={(ev) => onSearchInput(ev.target.value)}
       label={labelNode}
       data-autofocus="true"
+      data-testid="search-input"
     />
   )
 
