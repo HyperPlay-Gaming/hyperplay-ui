@@ -132,3 +132,14 @@ export const Default: Story = {
     )
   }
 }
+
+export const NoGames: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div style={{ height: '1000px', display: 'flex' }}>
+        <AchievementSummaryTable {...args} games={[]} />
+      </div>
+    )
+  }
+}
