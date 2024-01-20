@@ -19,7 +19,7 @@ export default function GameItem({ game, className, ...props }: GameItemProps) {
     >
       <div className={styles.details}>
         <img src={game.img} />
-        <div className="title-sm">{game.title}</div>
+        <div className="menu">{game.title}</div>
       </div>
       <button onClick={game.onClick}>
         <TrashCan />

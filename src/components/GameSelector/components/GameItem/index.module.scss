@@ -16,7 +16,7 @@
     gap: var(--space-md);
 
     > img {
-      max-height: var(--space-2xl);
+      max-height: calc(2.5 * var(--space-unit-fixed));
       border-radius: var(--space-xs);
     }
   }

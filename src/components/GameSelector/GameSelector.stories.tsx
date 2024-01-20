@@ -14,7 +14,7 @@ type Story = StoryObj<typeof GameSelector>
 const props: GameSelectorProps = {
   selectedGames: [
     {
-      title: 'Call of duty',
+      title: 'Cozy Time',
       img: 'https://cdn.akamai.steamstatic.com/steam/apps/2054740/capsule_231x87.jpg?t=1657686629',
       onClick: () => console.log('cod clicked')
     },
