@@ -15,7 +15,8 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
     "prettier-fix": "prettier --write .",
     "prettier": "prettier --check .",
-    "test": "vitest && test-storybook"
+    "test": "vitest",
+    "test-storybook": "test-storybook"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
