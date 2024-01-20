@@ -22,7 +22,8 @@ export default function GameSelector({
   const [opened, setOpened] = useState(false)
 
   function getGameItems(games: GameDetails[], isClickable?: boolean) {
-    if (games.length === 0) {
+    // check undefined to satisfy smoke test
+    if (games === undefined || games.length === 0) {
       return null
     }
 
