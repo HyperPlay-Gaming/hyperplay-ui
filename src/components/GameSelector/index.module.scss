@@ -14,8 +14,17 @@
   color: var(--color-neutral-400);
   border: none;
   padding: 0px;
-  border-radius: 0 0 var(--space-sm) var(--space-sm);
+  border-radius: var(--space-sm);
   position: absolute;
+  box-sizing: border-box;
+
+  > *:nth-child(2){
+    border-radius: var(--space-sm) var(--space-sm) 0 0;
+  }
+
+  > *:last-child {
+    border-radius: 0 0 var(--space-sm) var(--space-sm);
+  }
 }
 
 .underline {

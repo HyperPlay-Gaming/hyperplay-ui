@@ -4,6 +4,7 @@ import { Menu } from '@mantine/core'
 import classNames from 'classnames'
 
 import TextInput from '../TextInput'
+import ClickableGameItem from './components/ClickableGameItem'
 import GameItem from './components/GameItem'
 import styles from './index.module.scss'
 import { GameDetails, GameSelectorProps } from './types'
@@ -20,7 +21,7 @@ export default function GameSelector({
 }: GameSelectorProps) {
   const [opened, setOpened] = useState(false)
 
-  function getGameItems(games: GameDetails[]) {
+  function getGameItems(games: GameDetails[], isClickable?: boolean) {
     if (games.length === 0) {
       return null
     }
@@ -28,6 +29,15 @@ export default function GameSelector({
     return games.map((val, index) => {
       const itemClasses: Record<string, boolean> = {}
       itemClasses[styles.underline] = index < games.length - 1
+      if (isClickable) {
+        return (
+          <ClickableGameItem
+            key={val.title}
+            game={val}
+            className={classNames(itemClasses)}
+          />
+        )
+      }
       return (
         <GameItem
           key={val.title}
@@ -47,7 +57,7 @@ export default function GameSelector({
     </div>
   )
 
-  const searchResults = getGameItems(searchResultGames)
+  const searchResults = getGameItems(searchResultGames, true)
 
   const target = (
     <TextInput
@@ -67,7 +77,7 @@ export default function GameSelector({
         trapFocus={false}
         position="bottom-start"
         width={'target'}
-        offset={0}
+        offset={8}
       >
         <Menu.Target>{target}</Menu.Target>
         <Menu.Dropdown className={styles.menuDropdown}>
