@@ -1,6 +1,7 @@
 import { HTMLProps } from 'react'
 
 export interface GameDetails {
+  gameId: string
   title: string
   img: string
   onClick: () => void

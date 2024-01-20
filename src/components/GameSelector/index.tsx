@@ -19,6 +19,7 @@ export default function GameSelector({
     searchForGames: 'Search for game(s)'
   }
 }: GameSelectorProps) {
+  console.log('rendering game selector')
   const [opened, setOpened] = useState(false)
 
   function getGameItems(games: GameDetails[], isClickable?: boolean) {
@@ -27,12 +28,13 @@ export default function GameSelector({
     }
 
     return games.map((val, index) => {
+      console.log('returning game item ', val.gameId, ' is clickable ', isClickable, ' games length ', games.length)
       const itemClasses: Record<string, boolean> = {}
       itemClasses[styles.underline] = index < games.length - 1
       if (isClickable) {
         return (
           <ClickableGameItem
-            key={val.title}
+            key={`clickable-${val.gameId}`}
             game={val}
             className={classNames(itemClasses)}
           />
@@ -40,7 +42,7 @@ export default function GameSelector({
       }
       return (
         <GameItem
-          key={val.title}
+          key={`selected-${val.gameId}`}
           game={val}
           className={classNames(itemClasses)}
         />
