@@ -53,7 +53,6 @@ export const Default: Story = {
 
     for (const game_i of selectedGames){
       game_i.onClick = () => {
-        console.log('game id clicked ', game_i.gameId)
         const newSelectedGames = selectedGames.filter((val)=>val.gameId !== game_i.gameId)
         updateArgs({selectedGames: newSelectedGames, searchResultGames})
       }
@@ -61,7 +60,6 @@ export const Default: Story = {
     
     for (const game_i of searchResultGames){
       game_i.onClick = () => {
-        console.log('game id clicked ', game_i.gameId)
         selectedGames.push(JSON.parse(JSON.stringify(game_i)))
         updateArgs({selectedGames, searchResultGames})
       }
