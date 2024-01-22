@@ -37,7 +37,8 @@ const IconFill: { [key: string]: string } = {
   WebIcon: '#FFFFFF',
   TrophyOutline: '#FFFFFF',
   CheckmarkCircleOutline: '#FFFFFF',
-  TrashCan: '#FFFFFF'
+  TrashCan: '#FFFFFF',
+  QuestIcon: '#FFFFFF',
 }
 
 const IconStroke: { [key: string]: string } = {
