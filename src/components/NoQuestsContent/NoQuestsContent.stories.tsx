@@ -13,8 +13,8 @@ type Story = StoryObj<typeof NoQuestsContent>
 
 export const Default: Story = {
   args: {
-    onCreateNewQuest: () => { 
-      console.log('clicked') 
-    },
+    onCreateNewQuest: () => {
+      console.log('clicked')
+    }
   }
 }

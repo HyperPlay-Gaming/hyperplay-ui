@@ -16,18 +16,18 @@
 
 .title {
   @extend .title;
-  
+
   margin-top: var(--space-lg);
   margin-bottom: var(--space-xs);
 }
 
 .description {
   @extend .caption;
-  
+
   font-weight: var(--regular);
   margin-bottom: var(--space-xl);
   max-width: 90%;
-  
+
   @include variables.for-desktop-up {
     max-width: 45%;
   }
