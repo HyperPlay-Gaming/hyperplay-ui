@@ -12,6 +12,7 @@ export interface TextInputProps
     input?: string
     wrapper?: string
     label?: string
+    charCounter?: string
   }
   maxCharacters?: number
 }
@@ -25,7 +26,9 @@ const TextInput = React.forwardRef<
   let rightSectionComponent = rightSection
   if (rightSectionComponent === undefined && maxCharacters !== undefined) {
     rightSectionComponent = (
-      <div className={styles.charCounter}>{`${numChars}/${maxCharacters}`}</div>
+      <div
+        className={cn(styles.charCounter, classNames?.charCounter)}
+      >{`${numChars}/${maxCharacters}`}</div>
     )
   }
 
