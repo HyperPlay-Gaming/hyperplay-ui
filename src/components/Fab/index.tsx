@@ -17,9 +17,14 @@ export const Fab = (props: FabProps) => {
   const isHidden = useMediaQuery('(min-width: 1200px)', false)
   if (isHidden) return <></>
 
+  let overlay = null
+  if (opened) {
+    overlay = <div className={styles.overlay} />
+  }
+
   return (
     <>
-      {opened && <div className={styles.overlay} />}
+      {overlay}
       <div ref={ref} className={styles.wrapper}>
         {opened && props.children}
         <Button onClick={() => setOpened(!opened)}>
