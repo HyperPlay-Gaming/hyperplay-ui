@@ -66,4 +66,8 @@ export {
 } from './components/ZkSyncQuestBanner'
 export { default as LinkAccountDialog } from './components/LinkAccount'
 export { default as Item } from './components/Item'
-export { default as AccountSelect } from './components/AccountSelect'
+export {
+  default as AccountSelect,
+  type AccountSelectProps,
+  AccountSelectContext
+} from './components/AccountSelect'
