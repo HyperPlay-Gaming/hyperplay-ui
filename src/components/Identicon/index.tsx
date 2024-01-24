@@ -22,7 +22,11 @@ export default function Identicon(props: IdenticonProps) {
   const label = <Center>{clipboard.copied ? 'copied' : trunc}</Center>
 
   return (
-    <Tooltip position="bottom" label={label} className={styles.tooltip}>
+    <Tooltip
+      position="bottom"
+      label={label}
+      className={classNames('caption', styles.tooltip)}
+    >
       <button
         onClick={() => clipboard.copy(props.value)}
         className={classNames(styles.button, props.classNames?.button)}
