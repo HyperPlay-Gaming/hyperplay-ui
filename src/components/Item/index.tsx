@@ -25,12 +25,20 @@ export default function Item(props: ItemProps) {
           image: imgClasses
         }}
       />
-      <div>
-        <div className={classNames({ title: !!props.large }, styles.name)}>
+      <div className={styles.textContainer}>
+        <div
+          className={classNames(
+            { menu: !props.large, title: !!props.large },
+            styles.name
+          )}
+        >
           {props.name}
         </div>
         <div
-          className={classNames({ 'title-sm': !!props.large }, styles.label)}
+          className={classNames(
+            { menu: !props.large, 'title-sm': !!props.large },
+            styles.label
+          )}
         >
           {props.label}
         </div>

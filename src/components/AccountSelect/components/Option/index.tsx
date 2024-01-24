@@ -1,27 +1,26 @@
 import { useContext } from 'react'
 
-import { Group, UnstyledButton } from '@mantine/core'
 import * as Icon from 'tabler-icons-react'
 
-import Item from '../../../Item'
+import Item, { ItemProps } from '../../../Item'
 import { AccountSelectContext } from '../../index'
+import styles from './Option.module.scss'
 
-export interface OptionProps {
-  name: string
+export interface OptionProps extends ItemProps {
   value: string
-  image?: string
-  label?: string
 }
 
 export function Option(props: OptionProps) {
   const { value, setValue } = useContext(AccountSelectContext)
 
   return (
-    <UnstyledButton onClick={() => setValue(props.value)}>
-      <Group justify="apart">
+    <button onClick={() => setValue(props.value)}>
+      <div className={styles.container}>
         <Item {...props} />
-        {value === props.value && <Icon.Check color="#669F2A" />}
-      </Group>
-    </UnstyledButton>
+        {value === props.value ? (
+          <Icon.Check className={styles.checkmark} />
+        ) : null}
+      </div>
+    </button>
   )
 }
