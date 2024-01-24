@@ -1,3 +1,5 @@
+@use '../../styles/utilities/dynamicUnderline';
+
 .root {
   display: flex;
   flex-direction: row;
@@ -5,6 +7,7 @@
 }
 
 .breadcrumb {
+  @include dynamicUnderline.DynamicUnderline;
   color: var(--color-neutral-500);
 
   &:last-of-type {
@@ -17,6 +20,7 @@
 }
 
 .home {
+  @include dynamicUnderline.DynamicUnderline;
   color: var(--color-neutral-400);
   height: 100%;
 }
