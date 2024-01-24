@@ -1,6 +1,6 @@
-import { Loader } from '@mantine/core'
 import * as Icon from 'tabler-icons-react'
 
+import Loading from '../Loading'
 import TextInput, { TextInputProps } from '../TextInput'
 
 export interface AsyncTextInputProps extends TextInputProps {
@@ -13,10 +13,10 @@ export default function AsyncTextInput(props: AsyncTextInputProps) {
 
   let status = null
   if (loading) {
-    status = <Loader color="#5850EC" size="xs" />
+    status = <Loading style={{ height: 24 }} />
   } else if (valid) {
     status = <Icon.Check color="#669F2A" />
-  } else if (props.value) {
+  } else if (props.error) {
     status = <Icon.AlertCircle color="#F04438" />
   }
 

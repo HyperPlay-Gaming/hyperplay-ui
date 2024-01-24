@@ -16,3 +16,15 @@ const props: AsyncTextInputProps = {}
 export const Default: Story = {
   args: { ...props }
 }
+
+export const Loading: Story = {
+  args: { ...props, loading: true }
+}
+
+export const Valid: Story = {
+  args: { ...props, valid: true }
+}
+
+export const Alert: Story = {
+  args: { ...props, error: 'Error' }
+}
