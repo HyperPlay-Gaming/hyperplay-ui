@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import * as Icon from 'tabler-icons-react'
+import { IconCoin, IconSettings } from '@tabler/icons-react'
 
 import Fab, { FabProps } from '.'
 
@@ -16,10 +16,10 @@ const props: FabProps = {
   children: (
     <>
       <Fab.Button label="Pricing">
-        <Icon.Coin size={32} />
+        <IconCoin size={32} />
       </Fab.Button>
       <Fab.Button label="Settings">
-        <Icon.Settings size={32} />
+        <IconSettings size={32} />
       </Fab.Button>
     </>
   )

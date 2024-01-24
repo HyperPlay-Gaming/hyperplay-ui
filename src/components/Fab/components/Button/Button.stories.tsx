@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import * as Icon from 'tabler-icons-react'
+import { IconCoin } from '@tabler/icons-react'
 
 import Button, { ButtonProps } from '.'
 
@@ -14,7 +14,7 @@ type Story = StoryObj<typeof Button>
 
 const props: ButtonProps = {
   label: 'Pricing',
-  children: <Icon.Coin size={32} />
+  children: <IconCoin size={32} />
 }
 
 export const Default: Story = {
