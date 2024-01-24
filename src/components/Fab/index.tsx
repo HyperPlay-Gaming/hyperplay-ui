@@ -1,0 +1,35 @@
+import React, { useState } from 'react'
+
+import { useClickOutside, useMediaQuery } from '@mantine/hooks'
+import * as Icon from 'tabler-icons-react'
+
+import styles from './Fab.module.scss'
+import Button from './components/Button'
+
+export interface FabProps {
+  children?: React.ReactNode
+}
+
+export const Fab = (props: FabProps) => {
+  const [opened, setOpened] = useState(false)
+  const ref = useClickOutside(() => setOpened(false))
+
+  const isHidden = useMediaQuery('(min-width: 1200px)', false)
+  if (isHidden) return <></>
+
+  return (
+    <>
+      {opened && <div className={styles.overlay} />}
+      <div ref={ref} className={styles.wrapper}>
+        {opened && props.children}
+        <Button onClick={() => setOpened(!opened)}>
+          <Icon.Plus size={32} />
+        </Button>
+      </div>
+    </>
+  )
+}
+
+Fab.Button = Button
+
+export default Fab

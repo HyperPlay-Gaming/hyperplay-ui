@@ -1,0 +1,24 @@
+.wrapper {
+  display: flex;
+  gap: var(--space-md);
+  flex-direction: column;
+  justify-content: flex-end;
+
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+
+  z-index: 90;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: light-dark(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.85));
+
+  z-index: 80;
+}
