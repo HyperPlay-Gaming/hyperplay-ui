@@ -1,0 +1,22 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.breadcrumb {
+  color: var(--color-neutral-500);
+
+  &:last-of-type {
+    color: var(--color-neutral-300);
+  }
+}
+
+.separator {
+  color: var(--color-neutral-500);
+}
+
+.home {
+  color: var(--color-neutral-400);
+  height: 100%;
+}
