@@ -120,7 +120,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@hyperplay/chains": "^0.0.2",
-    "@valist/sdk": "^2.9.1",
-    "tabler-icons-react": "^1.56.0"
+    "@tabler/icons-react": "^2.46.0",
+    "@valist/sdk": "^2.9.1"
   }
 }

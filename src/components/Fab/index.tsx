@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { useClickOutside, useMediaQuery } from '@mantine/hooks'
-import * as Icon from 'tabler-icons-react'
+import { IconPlus } from '@tabler/icons-react'
 
 import styles from './Fab.module.scss'
 import Button from './components/Button'
@@ -23,7 +23,7 @@ export const Fab = (props: FabProps) => {
       <div ref={ref} className={styles.wrapper}>
         {opened && props.children}
         <Button onClick={() => setOpened(!opened)}>
-          <Icon.Plus size={32} />
+          <IconPlus size={32} />
         </Button>
       </div>
     </>
