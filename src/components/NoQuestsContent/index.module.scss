@@ -24,11 +24,12 @@
 .description {
   @extend .caption;
 
+  font-size: var(--text-md);
   font-weight: var(--regular);
   margin-bottom: var(--space-xl);
   max-width: 90%;
 
   @include variables.for-desktop-up {
-    max-width: 45%;
+    max-width: 50%;
   }
 }
