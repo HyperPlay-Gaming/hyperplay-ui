@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 import { Divider, Popover } from '@mantine/core'
+import { IconCaretDown, IconCirclePlus } from '@tabler/icons-react'
 import classNames from 'classnames'
-import * as Icon from 'tabler-icons-react'
 
 import Button from '../Button'
 import Item from '../Item'
@@ -59,7 +59,7 @@ const AccountSelect: AccountSelectComponent = ({
           className={styles.targetButton}
         >
           <Item name={props.name} image={props.image} />
-          <Icon.CaretDown size={16} fill="currentColor" />
+          <IconCaretDown size={16} fill="currentColor" />
         </button>
       </Popover.Target>
       <Popover.Dropdown>
@@ -79,7 +79,7 @@ const AccountSelect: AccountSelectComponent = ({
             <Button
               type="link"
               leftIcon={
-                <Icon.CirclePlus size={26} className={styles.circleIcon} />
+                <IconCirclePlus size={26} className={styles.circleIcon} />
               }
               className={styles.linkButton}
             >
