@@ -12,3 +12,12 @@ export const Default = () => <TextInput placeholder="Email" />
 export const WithLabel = () => (
   <TextInput id="with-label" placeholder="Enter your email" label="Email" />
 )
+
+export const Error = () => (
+  <TextInput
+    id="with-label"
+    placeholder="Enter your email"
+    label="Email"
+    error="Invalid email"
+  />
+)
