@@ -65,3 +65,7 @@ export {
   type ZkSyncQuestBannerProps
 } from './components/ZkSyncQuestBanner'
 export { default as LinkAccountDialog } from './components/LinkAccount'
+export {
+  default as AsyncTextInput,
+  type AsyncTextInputProps
+} from './components/AsyncTextInput'
