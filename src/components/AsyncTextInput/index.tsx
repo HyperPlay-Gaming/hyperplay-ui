@@ -15,9 +15,9 @@ export default function AsyncTextInput(props: AsyncTextInputProps) {
   if (loading) {
     status = <Loading style={{ height: 24 }} />
   } else if (valid) {
-    status = <Icon.Check color="#669F2A" />
+    status = <Icon.Check color="var(--color-success-600)" />
   } else if (props.error) {
-    status = <Icon.AlertCircle color="#F04438" />
+    status = <Icon.AlertCircle color="var(--color-error-500)" />
   }
 
   return <TextInput {...rest} rightSection={status} />
