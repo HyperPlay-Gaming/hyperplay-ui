@@ -22,10 +22,10 @@
   border: 'none';
   display: flex;
   flex-direction: column;
-  max-width: 324px;
   background-color: var(--color-neutral-700);
   border-radius: var(--space-md);
   padding: var(--space-sm);
+  color: var(--color-neutral-100);
 }
 
 .newAccountContainer {
@@ -47,6 +47,7 @@
 }
 
 .link {
+  margin-top: var(--space-md);
   display: inline-block;
   text-align: left;
 

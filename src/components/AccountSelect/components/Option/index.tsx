@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import * as Icon from 'tabler-icons-react'
+import { IconCheck } from '@tabler/icons-react'
 
 import Item, { ItemProps } from '../../../Item'
 import { AccountSelectContext } from '../../index'
@@ -18,7 +18,7 @@ export function Option(props: OptionProps) {
       <div className={styles.container}>
         <Item {...props} />
         {value === props.value ? (
-          <Icon.Check className={styles.checkmark} />
+          <IconCheck className={styles.checkmark} />
         ) : null}
       </div>
     </button>

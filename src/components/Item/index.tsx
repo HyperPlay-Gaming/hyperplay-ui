@@ -11,18 +11,15 @@ export interface ItemProps {
 }
 
 export default function Item(props: ItemProps) {
-  const avatarClasses: Record<string, boolean> = {}
-  avatarClasses[styles.large] = !!props.large
-
-  const imgClasses = classNames(styles.avatarImageContainer, avatarClasses)
+  const imgClass = styles.avatarImageContainer
   return (
     <div className={styles.avatarContainer}>
       <Avatar
-        radius="xl"
+        size={props.large ? 'md' : 'sm'}
         src={props.image}
         classNames={{
-          placeholder: imgClasses,
-          image: imgClasses
+          placeholder: imgClass,
+          image: imgClass
         }}
       />
       <div className={styles.textContainer}>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Divider, Popover } from '@mantine/core'
+import { Popover } from '@mantine/core'
 import { IconCaretDown, IconCirclePlus } from '@tabler/icons-react'
 import classNames from 'classnames'
 
@@ -51,6 +51,7 @@ const AccountSelect: AccountSelectComponent = ({
       onClose={() => setOpened(false)}
       classNames={{ dropdown: styles.popoverDropdown }}
       offset={20}
+      unstyled
     >
       <Popover.Target>
         <button
@@ -73,7 +74,6 @@ const AccountSelect: AccountSelectComponent = ({
             {props.children}
           </AccountSelectContext.Provider>
         </div>
-        <Divider style={{ marginBottom: 16 }} />
         <div className={styles.link}>
           <a href={props.href}>
             <Button
