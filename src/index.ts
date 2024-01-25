@@ -71,3 +71,8 @@ export {
   type AccountSelectProps,
   AccountSelectContext
 } from './components/AccountSelect'
+export {
+  default as Gallery,
+  type GalleryProps,
+  type Asset
+} from './components/Gallery'

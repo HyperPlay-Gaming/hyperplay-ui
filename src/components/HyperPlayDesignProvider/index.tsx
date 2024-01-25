@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { MantineProvider, MantineProviderProps } from '@mantine/core'
+import '@mantine/core/styles.css'
 
 export type HyperPlayDesignProviderProps = MantineProviderProps & {
   children: React.ReactNode
