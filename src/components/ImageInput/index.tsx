@@ -17,7 +17,7 @@ const IMAGE_MIME_TYPE = ['image/png' || 'image/gif' || 'image/jpeg']
 export interface ImageInputProps extends Omit<DropzoneProps, 'onDrop'> {
   onImageDropped: (value?: string) => void
   value?: File | string
-  classNames?: Record<DropzoneStylesNames, string>
+  classNames?: PartialRecord<DropzoneStylesNames, string>
 }
 
 export default function ImageInput({
