@@ -12,3 +12,5 @@ export const Default = () => <TextInput placeholder="Email" />
 export const WithLabel = () => (
   <TextInput id="with-label" placeholder="Enter your email" label="Email" />
 )
+
+export const WithCharacterLimit = () => <TextInput maxCharacters={10} />

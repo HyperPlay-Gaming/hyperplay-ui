@@ -206,6 +206,10 @@
   @include colorSystem;
 }
 
+body {
+  color: var(--color-neutral-100);
+}
+
 .color-neutral-100 {
   color: var(--color-neutral-100);
 }

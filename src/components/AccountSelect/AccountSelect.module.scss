@@ -1,0 +1,57 @@
+.scrollArea {
+  max-height: 266px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  width: 324px;
+  gap: var(--space-md);
+}
+
+.targetButton {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.popoverHeader {
+  padding: 0px 0px var(--space-md) var(--space-xs);
+}
+
+.popoverDropdown {
+  border: 'none';
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-neutral-700);
+  border-radius: var(--space-md);
+  padding: var(--space-sm);
+  color: var(--color-neutral-100);
+}
+
+.newAccountContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: var(--color-primary-500);
+  gap: var(--space-md);
+
+  > svg {
+    fill: var(--color-primary-500);
+  }
+}
+
+.circleIcon {
+  --button-svg-path-fill: none;
+  --button-svg-path-fill-hover: none;
+  max-height: var(--space-md);
+}
+
+.link {
+  margin-top: var(--space-md);
+  display: inline-block;
+  text-align: left;
+
+  .linkButton {
+    padding: 0px;
+  }
+}
