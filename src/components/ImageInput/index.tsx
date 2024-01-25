@@ -31,7 +31,6 @@ export default function ImageInput({
   ...props
 }: ImageInputProps) {
   const onImageDroppedHandler = (files: FileWithPath[]) => {
-    console.log('on drop files ', files)
     if (files.length > 0) {
       onImageDropped(URL.createObjectURL(files[0]))
     } else {
