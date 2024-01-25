@@ -76,3 +76,4 @@ export {
   type GalleryProps,
   type Asset
 } from './components/Gallery'
+export { default as List, type ListProps } from './components/List'
