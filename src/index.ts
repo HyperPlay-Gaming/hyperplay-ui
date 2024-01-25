@@ -65,3 +65,8 @@ export {
   type ZkSyncQuestBannerProps
 } from './components/ZkSyncQuestBanner'
 export { default as LinkAccountDialog } from './components/LinkAccount'
+export {
+  default as Gallery,
+  type GalleryProps,
+  type Asset
+} from './components/Gallery'
