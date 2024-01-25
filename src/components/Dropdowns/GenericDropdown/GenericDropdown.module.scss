@@ -4,7 +4,7 @@
 
 // cannot put this padding in .menuDropdown without breaking the dropdown = target width mantine calcs
 // i.e. setting width="target" on Menu element
-.menuDropdown > div {
+.menuDropdown > div:not(:first-child) {
   padding: var(--space-sm);
 }
 
@@ -29,13 +29,13 @@
   border-radius: 0 0 var(--space-sm) var(--space-sm);
 }
 
-.menuDropdown > div > div {
+.menuDropdown > div {
   display: flex;
   flex-direction: column;
   align-items: baseline;
 }
 
-.menuDropdown > div > div > * {
+.menuDropdown > div > * {
   padding: var(--space-sm);
   border-radius: var(--space-sm);
   width: 100%;
