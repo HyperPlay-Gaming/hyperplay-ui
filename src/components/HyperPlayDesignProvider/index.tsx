@@ -2,6 +2,7 @@ import React from 'react'
 
 import { MantineProvider, MantineProviderProps } from '@mantine/core'
 import '@mantine/core/styles.css'
+import '@mantine/carousel/styles.css';
 
 // import HyperPlay styles after mantine to override their defaults with our design system
 import '../../../src/fonts.css'
