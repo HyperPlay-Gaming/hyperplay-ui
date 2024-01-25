@@ -76,3 +76,7 @@ export {
   type GalleryProps,
   type Asset
 } from './components/Gallery'
+export {
+  default as InfoButton,
+  type InfoButtonProps
+} from './components/InfoButton'
