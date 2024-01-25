@@ -74,7 +74,8 @@ export {
 export {
   default as Gallery,
   type GalleryProps,
-  type Asset
+  type Asset,
+  getYouTubeEmbedURL
 } from './components/Gallery'
 export {
   default as InfoButton,
