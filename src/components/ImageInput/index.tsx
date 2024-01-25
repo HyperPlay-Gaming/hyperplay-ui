@@ -18,12 +18,16 @@ export interface ImageInputProps extends Omit<DropzoneProps, 'onDrop'> {
   onImageDropped: (value?: string) => void
   value?: File | string
   classNames?: PartialRecord<DropzoneStylesNames, string>
+  i18n?: {
+    hint?: string
+  }
 }
 
 export default function ImageInput({
   onImageDropped,
   value,
   classNames,
+  i18n = { hint: 'Click or drag and drop to upload' },
   ...props
 }: ImageInputProps) {
   const onImageDroppedHandler = (files: FileWithPath[]) => {
@@ -42,7 +46,7 @@ export default function ImageInput({
     image = (
       <div className={styles.imageDropContainer}>
         <IconPhoto color="#9595A8" size={64} />
-        <div className="body">Click or drag and drop to upload</div>
+        <div className="body">{i18n.hint}</div>
       </div>
     )
   }

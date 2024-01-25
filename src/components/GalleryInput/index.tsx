@@ -3,13 +3,14 @@ import { useRef, useState } from 'react'
 import { ActionIcon, Center, Image } from '@mantine/core'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
 
-import ImageInput from '../ImageInput'
+import ImageInput, { ImageInputProps } from '../ImageInput'
 import styles from './GalleryInput.module.scss'
 
 export interface GalleryInputProps {
   onChange: (files: string[]) => void
   value?: string[]
   disabled?: boolean
+  imageInputProps?: ImageInputProps
 }
 
 export default function GalleryInput(props: GalleryInputProps) {
@@ -58,31 +59,26 @@ export default function GalleryInput(props: GalleryInputProps) {
         openRef={openRef as React.MutableRefObject<() => void>}
         disabled={props.disabled}
         classNames={{ root: styles.imageInputRoot }}
+        {...props.imageInputProps}
       />
       <div className={styles.actionButtonContainer}>
         {files.map((file: string, index: number) => (
-          <div key={index} style={{ position: 'relative' }}>
+          <div key={index} className={styles.thumbnailPreviewContainer}>
             <ActionIcon className={styles.remove} onClick={() => remove(index)}>
-              <IconTrash size={18} color="#fff" />
+              <IconTrash className={styles.trashIcon} />
             </ActionIcon>
             <button className={styles.preview} onClick={() => setIndex(index)}>
-              <Image
-                fit="contain"
-                width="100%"
-                height="100%"
-                radius="sm"
-                src={src(file)}
-              />
+              <Image className={styles.addedImageThumbnail} src={src(file)} />
             </button>
           </div>
         ))}
         <button
           className={styles.preview}
-          onClick={() => add()}
+          onClick={add}
           disabled={props.disabled}
         >
           <Center>
-            <IconPlus size={32} color="#9595A8" />
+            <IconPlus className={styles.plusIcon} />
           </Center>
         </button>
       </div>
