@@ -34,32 +34,37 @@ export default function Gallery(props: GalleryProps): JSX.Element {
     setCurrentAsset(props?.assets?.[0])
   }, [props?.assets])
 
+  let media = null
+  if (currentAsset?.type.includes('image')) {
+    media = (
+      <img
+        src={currentAsset.src}
+        className={styles.image}
+        alt={currentAsset.name}
+      />
+    )
+  } else if (currentAsset?.type.includes('video')) {
+    media = (
+      <video controls className={styles.video}>
+        <source src={currentAsset.src} type={currentAsset.type} />
+      </video>
+    )
+  } else if (currentAsset?.type.includes('youtube')) {
+    media = (
+      <iframe
+        width="100%"
+        src={getYouTubeEmbedURL(currentAsset.src)}
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    )
+  }
+
   return (
     <div>
-      <div className={styles.preview}>
-        {currentAsset?.type.includes('image') && (
-          <img
-            src={currentAsset.src}
-            className={styles.image}
-            alt={currentAsset.name}
-          />
-        )}
-        {currentAsset?.type.includes('video') && (
-          <video controls className={styles.video}>
-            <source src={currentAsset.src} type={currentAsset.type} />
-          </video>
-        )}
-        {currentAsset?.type.includes('youtube') && (
-          <iframe
-            width="100%"
-            src={getYouTubeEmbedURL(currentAsset.src)}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        )}
-      </div>
+      <div className={styles.preview}>{media}</div>
       <div className={styles.items}>
         {props?.assets?.map((asset, index) => (
           <img
