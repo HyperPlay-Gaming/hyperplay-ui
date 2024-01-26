@@ -59,7 +59,7 @@ export default function PlatformUpload({
         accept="application/zip"
       >
         {(props) => (
-          <Button style={{ backgroundColor: '#1A1D25' }} {...props}>
+          <Button type="secondary" {...props}>
             {i18n.chooseFile}
           </Button>
         )}
@@ -68,16 +68,7 @@ export default function PlatformUpload({
   }
   return (
     <div className={classNames(className, styles.rootContainer)} {...props}>
-      <Flex
-        justify="space-between"
-        align="stretch"
-        p="lg"
-        style={{
-          borderRadius: 8,
-          border: '1px solid #22252F',
-          width: '100%'
-        }}
-      >
+      <Flex className={styles.uploadRowContainer}>
         {platformName}
         {uploadActionRow}
       </Flex>

@@ -3,3 +3,12 @@
   flex-direction: column;
   gap: var(--space-xs);
 }
+
+.uploadRowContainer {
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md);
+  border-radius: 8px;
+  border: 1px solid #22252f;
+  width: 100%;
+}

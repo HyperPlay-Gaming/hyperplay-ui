@@ -31,5 +31,5 @@ export const Default: Story = {
 }
 
 export const Mac: Story = {
-  args: { ...props, platformName: 'darwin' }
+  args: { ...props, platformName: 'darwin', fileNameArm64: undefined }
 }
