@@ -1,3 +1,7 @@
+.label {
+  color: var(--color-neutral-300);
+}
+
 .menuDropdown > div > div > * {
   color: var(--color-neutral-400);
 }
@@ -8,7 +12,7 @@
   padding: var(--space-sm);
 }
 
-.menuDropdown *:hover {
+.menuDropdown *:hover:not(input[type="checkbox"]) {
   opacity: 1;
 }
 
