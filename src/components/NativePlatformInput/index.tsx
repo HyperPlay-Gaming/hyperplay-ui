@@ -9,7 +9,7 @@ import { Arch, Platforms, platformLabels } from '@/common/types'
 import { PlatformContainer } from '../PlatformContainer'
 import { TextInputProps } from '../TextInput'
 import styles from './NativePlatformInput.module.scss'
-import PlatformUpload from './components/PlatformUpload'
+import PlatformUpload, { PlatformUploadI18n } from './components/PlatformUpload'
 
 export interface PlatformInputProps {
   platformName: Platforms
@@ -18,6 +18,9 @@ export interface PlatformInputProps {
   clearFile: (arch: Arch) => void
   updateFile: (file: File, arch: Arch) => void
   exeInputProps: Record<Arch, TextInputProps>
+  i18n?: {
+    upload?: PlatformUploadI18n
+  }
 }
 
 export function NativePlatformInput({
@@ -26,7 +29,8 @@ export function NativePlatformInput({
   fileNameArm64,
   clearFile,
   updateFile,
-  exeInputProps
+  exeInputProps,
+  i18n
 }: PlatformInputProps): JSX.Element {
   const platformDisplayName = platformLabels[platformName]
   const amdLabel = `${platformDisplayName} (Intel / amd64)`
@@ -60,6 +64,7 @@ export function NativePlatformInput({
           clearFile('arm64')
         }}
         exeInputProps={exeInputProps.arm64}
+        i18n={i18n?.upload}
       />
     )
   }

@@ -9,6 +9,11 @@ import TextInput, { TextInputProps } from '@/components/TextInput'
 
 import styles from './PlatformUpload.module.scss'
 
+export interface PlatformUploadI18n {
+  chooseFile?: string
+  exePathPlaceholder?: string
+}
+
 export interface PlatformUploadProps extends HTMLProps<HTMLDivElement> {
   platformName: string
   uploaded: boolean
@@ -16,10 +21,7 @@ export interface PlatformUploadProps extends HTMLProps<HTMLDivElement> {
   onRemoveUpload: () => void
   exeInputProps: TextInputProps
   uploadZipName?: string
-  i18n?: {
-    chooseFile?: string
-    exePathPlaceholder?: string
-  }
+  i18n?: PlatformUploadI18n
 }
 
 export default function PlatformUpload({
