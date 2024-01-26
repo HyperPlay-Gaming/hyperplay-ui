@@ -49,3 +49,10 @@
   padding-right: var(--space-md);
   color: var(--color-neutral-400);
 }
+
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

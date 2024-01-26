@@ -13,6 +13,7 @@ export interface TextInputProps
     wrapper?: string
     label?: string
     charCounter?: string
+    section?: string
   }
   maxCharacters?: number
 }
@@ -40,7 +41,8 @@ const TextInput = React.forwardRef<
         root: cn(styles.root, classNames?.root),
         input: cn(styles.input, classNames?.input),
         wrapper: cn(styles.wrapper, classNames?.wrapper),
-        label: cn('caption', styles.label, classNames?.label)
+        label: cn('caption', styles.label, classNames?.label),
+        section: cn(styles.section, classNames?.section)
       }}
       unstyled
       ref={ref}
