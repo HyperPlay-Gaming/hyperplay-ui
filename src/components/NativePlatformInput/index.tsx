@@ -53,7 +53,8 @@ export default function PlatformInput({
   updateFile,
   exeInputProps
 }: PlatformInputProps): JSX.Element {
-  const amdLabel = `${platformName} (Intel / amd64)`
+  const platformDisplayName = platformLabels[platformName]
+  const amdLabel = `${platformDisplayName} (Intel / amd64)`
   const amdPlatformUpload = (
     <PlatformUpload
       platformName={amdLabel}
@@ -70,7 +71,7 @@ export default function PlatformInput({
 
   let arm64PlatformUpload = null
   if (platformName !== 'windows') {
-    const arm64Label = `${platformName} ${
+    const arm64Label = `${platformDisplayName} ${
       platformName === 'darwin' ? '(Apple Silicon / arm64)' : '(ARM / arm64)'
     }`
     arm64PlatformUpload = (
