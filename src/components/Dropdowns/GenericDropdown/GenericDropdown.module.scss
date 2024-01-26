@@ -12,7 +12,7 @@
   padding: var(--space-sm);
 }
 
-.menuDropdown *:hover:not(input[type="checkbox"]) {
+.menuDropdown *:hover:not(input[type='checkbox']) {
   opacity: 1;
 }
 
