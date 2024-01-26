@@ -1,0 +1,17 @@
+.root {
+  border-radius: 8px;
+  border: 1px solid #22252f;
+}
+
+.image {
+  height: 120px;
+  aspect-ratio: 1 / 1;
+}
+
+.uploadActionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: var(--space-md);
+}
