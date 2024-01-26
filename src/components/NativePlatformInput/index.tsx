@@ -3,24 +3,13 @@
 import React from 'react'
 
 import { Flex } from '@mantine/core'
-import {
-  PlatformsMeta,
-  SupportedPlatform,
-  supportedPlatforms
-} from '@valist/sdk'
 
 import { Arch, Platforms, platformLabels } from '@/common/types'
 
-import PlatformContainer from '../PlatformContainer'
+import { PlatformContainer } from '../PlatformContainer'
 import { TextInputProps } from '../TextInput'
 import styles from './NativePlatformInput.module.scss'
 import PlatformUpload from './components/PlatformUpload'
-
-export type NativePlatformKey = keyof Omit<PlatformsMeta, 'web'>
-
-export const isNativePlatformKey = (key: string): key is NativePlatformKey => {
-  return supportedPlatforms.includes(key as SupportedPlatform)
-}
 
 export interface PlatformInputProps {
   platformName: Platforms
@@ -31,13 +20,7 @@ export interface PlatformInputProps {
   exeInputProps: Record<Arch, TextInputProps>
 }
 
-export const isSupportedPlatform = (
-  platform: string
-): platform is SupportedPlatform => {
-  return supportedPlatforms.includes(platform as SupportedPlatform)
-}
-
-export default function PlatformInput({
+export function NativePlatformInput({
   platformName,
   fileNameAmd64,
   fileNameArm64,

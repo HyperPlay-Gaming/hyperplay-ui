@@ -1,4 +1,6 @@
-import PlatformContainer from '../PlatformContainer'
+'use client'
+
+import { PlatformContainer } from '../PlatformContainer'
 import TextInput, { TextInputProps } from '../TextInput'
 import styles from './WebPlatformInput.module.scss'
 
@@ -6,7 +8,7 @@ export interface WebPlatformInputProps {
   textInputProps?: TextInputProps
 }
 
-export default function WebPlatformInput({
+export function WebPlatformInput({
   textInputProps
 }: WebPlatformInputProps): JSX.Element {
   return (

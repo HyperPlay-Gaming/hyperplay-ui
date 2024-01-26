@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import PlatformContainer, { PlatformContainerProps } from '.'
+import { PlatformContainer, PlatformContainerProps } from '.'
 
 const meta: Meta<typeof PlatformContainer> = {
   title: 'DevPortal/PlatformContainer',

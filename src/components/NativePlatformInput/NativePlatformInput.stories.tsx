@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { Arch } from '@/common/types'
 
-import NativePlatformInput, { PlatformInputProps } from '.'
+import { NativePlatformInput, PlatformInputProps } from '.'
 
 const meta: Meta<typeof NativePlatformInput> = {
   title: 'DevPortal/NativePlatformInput',
