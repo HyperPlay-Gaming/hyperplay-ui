@@ -1,0 +1,19 @@
+.root {
+  border-radius: 8px;
+  border: 1px solid #22252f;
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  height: 120px;
+  aspect-ratio: 1 / 1;
+}

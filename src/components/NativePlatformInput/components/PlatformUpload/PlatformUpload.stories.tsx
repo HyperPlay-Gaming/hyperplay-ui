@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import PlatformUpload, { PlatformUploadProps } from '.'
 
 const meta: Meta<typeof PlatformUpload> = {
-  title: 'DevPortal/PlatformUpload',
+  title: 'DevPortal/NativePlatformInput/PlatformUpload',
   component: PlatformUpload
 }
 

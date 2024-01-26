@@ -2,18 +2,16 @@
 
 import React from 'react'
 
-import { Center, Flex, Stack, Text } from '@mantine/core'
+import { Flex } from '@mantine/core'
 import {
   PlatformsMeta,
   SupportedPlatform,
   supportedPlatforms
 } from '@valist/sdk'
 
-import LinuxIcon from '@/assets/platformIcons/linux-icon.png'
-import MacIcon from '@/assets/platformIcons/mac-icon.png'
-import WindowsIcon from '@/assets/platformIcons/windows-icon.png'
 import { Arch, Platforms, platformLabels } from '@/common/types'
 
+import PlatformContainer from '../PlatformContainer'
 import { TextInputProps } from '../TextInput'
 import styles from './NativePlatformInput.module.scss'
 import PlatformUpload from './components/PlatformUpload'
@@ -37,12 +35,6 @@ export const isSupportedPlatform = (
   platform: string
 ): platform is SupportedPlatform => {
   return supportedPlatforms.includes(platform as SupportedPlatform)
-}
-
-export const platformImages: Record<Platforms, string> = {
-  windows: WindowsIcon,
-  linux: LinuxIcon,
-  darwin: MacIcon
 }
 
 export default function PlatformInput({
@@ -98,22 +90,12 @@ export default function PlatformInput({
     ></Flex>
   )
 
-  const platformIcon = platformImages[platformName]
-
   return (
-    <Flex gap="md" p="md" className={styles.root}>
-      <Stack>
-        <img src={platformIcon} alt={platformName} className={styles.image} />
-        <Center>
-          <Text m={0} p={0} color="#94A2B3">
-            {platformLabels[platformName]}
-          </Text>
-        </Center>
-      </Stack>
+    <PlatformContainer platformName={platformName}>
       <div className={styles.uploadActionsContainer}>
         {amdPlatformUpload}
         {arm64PlatformUpload ? arm64PlatformUpload : emptyDiv}
       </div>
-    </Flex>
+    </PlatformContainer>
   )
 }
