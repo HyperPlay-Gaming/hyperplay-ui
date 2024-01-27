@@ -18,9 +18,13 @@ const props: MemberListProps = {
     { member: '0x6786786787867876876', label: 'Studio Admin', truncate: true }
   ],
   onRemove: (member: string) => console.log('remove ', member),
-  editable: true
+  editable: false
 }
 
 export const Default: Story = {
   args: { ...props }
+}
+
+export const Editable: Story = {
+  args: { ...props, editable: true }
 }
