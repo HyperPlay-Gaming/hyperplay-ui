@@ -2,18 +2,25 @@ import { useState } from 'react'
 
 import { Combobox, ComboboxProps, InputBase, useCombobox } from '@mantine/core'
 
+import styles from './SelectCreatable.module.scss'
+
 export interface SelectCreatableProps extends ComboboxProps {
   options: string[]
-  onChange: (option: string)=>void
-  onCreated: (option: string)=>void
+  onChange: (option: string) => void
+  onCreated: (option: string) => void
 }
 
-export function SelectCreatable({ options, onChange, onCreated, ...props }: SelectCreatableProps) {
+export function SelectCreatable({
+  options,
+  onChange,
+  onCreated,
+  ...props
+}: SelectCreatableProps) {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption()
   })
 
-  const [data, setData] = useState(options);
+  const [data, setData] = useState(options)
   const [value, setValue] = useState<string | null>(null)
   const [search, setSearch] = useState('')
 
@@ -47,6 +54,7 @@ export function SelectCreatable({ options, onChange, onCreated, ...props }: Sele
 
         combobox.closeDropdown()
       }}
+      classNames={{ dropdown: styles.dropdown, option: styles.option }}
       {...props}
     >
       <Combobox.Target>
@@ -66,6 +74,7 @@ export function SelectCreatable({ options, onChange, onCreated, ...props }: Sele
           }}
           placeholder="Search value"
           rightSectionPointerEvents="none"
+          classNames={{ input: styles.input }}
         />
       </Combobox.Target>
 
