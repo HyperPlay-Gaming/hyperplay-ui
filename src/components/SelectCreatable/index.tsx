@@ -8,12 +8,17 @@ export interface SelectCreatableProps extends ComboboxProps {
   options: string[]
   onChange: (option: string) => void
   onCreated: (option: string) => void
+  i18n?: {
+    create?: string
+    searchValue?: string
+  }
 }
 
 export function SelectCreatable({
   options,
   onChange,
   onCreated,
+  i18n = { create: '+ Create', searchValue: 'Search value' },
   ...props
 }: SelectCreatableProps) {
   const combobox = useCombobox({
@@ -72,7 +77,7 @@ export function SelectCreatable({
             combobox.closeDropdown()
             setSearch(value || '')
           }}
-          placeholder="Search value"
+          placeholder={i18n.searchValue}
           rightSectionPointerEvents="none"
           classNames={{ input: styles.input }}
         />
@@ -82,7 +87,9 @@ export function SelectCreatable({
         <Combobox.Options>
           {optionsElements}
           {!exactOptionMatch && search.trim().length > 0 && (
-            <Combobox.Option value="$create">+ Create {search}</Combobox.Option>
+            <Combobox.Option value="$create">
+              {i18n.create} {search}
+            </Combobox.Option>
           )}
         </Combobox.Options>
       </Combobox.Dropdown>
