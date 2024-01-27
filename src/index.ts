@@ -65,6 +65,11 @@ export {
   type ZkSyncQuestBannerProps
 } from './components/ZkSyncQuestBanner'
 export { default as LinkAccountDialog } from './components/LinkAccount'
+export { default as Activity, type ActivityProps } from './components/Activity'
+export {
+  default as Identicon,
+  type IdenticonProps
+} from './components/Identicon'
 export { default as _404, type _404Props } from './components/404'
 export { default as Item } from './components/Item'
 export {
