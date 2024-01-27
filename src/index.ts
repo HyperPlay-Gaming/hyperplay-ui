@@ -93,3 +93,8 @@ export {
   default as AsyncTextInput,
   type AsyncTextInputProps
 } from './components/AsyncTextInput'
+export {
+  default as Breadcrumbs,
+  type BreadcrumbsProps,
+  type Breadcrumb
+} from './components/Breadcrumbs'
