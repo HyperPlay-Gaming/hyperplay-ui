@@ -103,3 +103,11 @@ export {
   default as CheckboxList,
   type CheckboxListProps
 } from './components/CheckboxList'
+export {
+  default as GalleryInput,
+  type GalleryInputProps
+} from './components/GalleryInput'
+export {
+  default as ImageInput,
+  type ImageInputProps
+} from './components/ImageInput'

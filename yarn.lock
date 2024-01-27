@@ -1959,6 +1959,13 @@
     react-textarea-autosize "8.5.3"
     type-fest "^3.13.1"
 
+"@mantine/dropzone@^7.5.0":
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/@mantine/dropzone/-/dropzone-7.5.0.tgz#95437a2b4471e8108377c3fbc79859b33e268492"
+  integrity sha512-vjYwVrdRiCK0TpPPYliUMNIeCrOhWiFwP6DlmO0Wnb8X+GpyW2+cuWCxdpcFQHZZGzbNUT3QB8ulIAuwFP9jKw==
+  dependencies:
+    react-dropzone-esm "15.0.1"
+
 "@mantine/hooks@7.4.2":
   version "7.4.2"
   resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-7.4.2.tgz#ca4d57961ef22ed1815874b95940c2cc2034564d"
@@ -9148,6 +9155,13 @@ react-dom@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
+
+react-dropzone-esm@15.0.1:
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/react-dropzone-esm/-/react-dropzone-esm-15.0.1.tgz#8c689638aaa9feb5b2a429dd565acfa6792263e5"
+  integrity sha512-RdeGpqwHnoV/IlDFpQji7t7pTtlC2O1i/Br0LWkRZ9hYtLyce814S71h5NolnCZXsIN5wrZId6+8eQj2EBnEzg==
+  dependencies:
+    prop-types "^15.8.1"
 
 react-element-to-jsx-string@^15.0.0:
   version "15.0.0"

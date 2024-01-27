@@ -25,6 +25,7 @@
     "@emotion/react": "^11.11.0",
     "@mantine/carousel": "^7.4.2",
     "@mantine/core": "7.4.2",
+    "@mantine/dropzone": "^7.5.0",
     "@mantine/hooks": "7.4.2",
     "@storybook/addon-actions": "^7.4.3",
     "@storybook/addon-essentials": "^7.4.3",
@@ -82,10 +83,11 @@
     "vitest": "^0.33.0"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.11.0",
     "@mantine/carousel": "^7.4.2",
     "@mantine/core": "7.4.2",
+    "@mantine/dropzone": "^7.4.2",
     "@mantine/hooks": "7.4.2",
-    "@emotion/react": "^11.11.0",
     "embla-carousel-autoplay": ">=7.0.0",
     "embla-carousel-react": ">=7.0.0",
     "react": "^17.0.0 || ^18.0.0",
