@@ -88,3 +88,4 @@ export {
   type InfoButtonProps
 } from './components/InfoButton'
 export { default as List, type ListProps } from './components/List'
+export { default as Address, type AddressProps } from './components/Address'
