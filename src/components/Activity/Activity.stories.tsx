@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Activity, { ActivityProps } from '.'
 
 const meta: Meta<typeof Activity> = {
-  title: 'DevPortal/IdentActivityicon',
+  title: 'DevPortal/Activity',
   component: Activity
 }
 
