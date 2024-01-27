@@ -62,6 +62,8 @@
 
 .section {
   padding: var(--space-sm);
+  display: flex;
+  align-items: center;
 }
 
 .error {
