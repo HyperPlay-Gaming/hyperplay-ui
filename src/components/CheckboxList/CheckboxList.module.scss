@@ -1,0 +1,19 @@
+.root {
+  margin-bottom: 35;
+}
+
+.input {
+  background-color: transparent;
+  &:checked {
+    background-color: var(--color-success-500);
+  }
+}
+
+.icon {
+  display: none;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+}

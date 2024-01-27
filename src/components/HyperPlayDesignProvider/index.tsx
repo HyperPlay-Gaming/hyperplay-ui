@@ -1,5 +1,6 @@
 import React from 'react'
 
+import '@mantine/carousel/styles.css'
 import { MantineProvider, MantineProviderProps } from '@mantine/core'
 import '@mantine/core/styles.css'
 

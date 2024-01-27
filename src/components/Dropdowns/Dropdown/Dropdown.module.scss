@@ -1,3 +1,10 @@
+@import '../../../styles/designSystem/typography';
+
 .selected {
   color: var(--color-secondary-200);
+}
+
+.item {
+  @extend .body;
+  color: var(--color-neutral-400);
 }
