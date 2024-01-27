@@ -98,3 +98,4 @@ export {
   type BreadcrumbsProps,
   type Breadcrumb
 } from './components/Breadcrumbs'
+export { default as Card, type CardProps } from './components/Card'
