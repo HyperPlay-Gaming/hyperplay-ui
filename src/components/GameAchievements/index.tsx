@@ -210,6 +210,7 @@ export default function GameAchievements({
               >
                 <div className={styles.achievementData}>
                   <Image
+                    unstyled
                     className={styles.image}
                     src={image}
                     fallbackSrc={FallbackImage}
