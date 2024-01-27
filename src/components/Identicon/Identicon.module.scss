@@ -1,0 +1,19 @@
+.image {
+  border-radius: 50%;
+  max-width: 100%;
+}
+
+.tooltip {
+  width: 100px;
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-900);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--space-md);
+}
+
+.button {
+  width: 44px;
+}

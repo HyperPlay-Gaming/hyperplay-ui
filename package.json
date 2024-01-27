@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
@@ -125,6 +125,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@hyperplay/chains": "^0.0.2",
     "@tabler/icons-react": "^2.46.0",
-    "@valist/sdk": "^2.9.1"
+    "@valist/sdk": "^2.9.1",
+    "ethereum-blockies-base64": "^1.0.2"
   }
 }
