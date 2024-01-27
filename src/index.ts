@@ -89,3 +89,7 @@ export {
 } from './components/InfoButton'
 export { default as List, type ListProps } from './components/List'
 export { default as Address, type AddressProps } from './components/Address'
+export {
+  default as AsyncTextInput,
+  type AsyncTextInputProps
+} from './components/AsyncTextInput'

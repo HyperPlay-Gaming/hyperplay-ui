@@ -14,3 +14,12 @@ export const WithLabel = () => (
 )
 
 export const WithCharacterLimit = () => <TextInput maxCharacters={10} />
+
+export const Error = () => (
+  <TextInput
+    id="with-label"
+    placeholder="Enter your email"
+    label="Email"
+    error="Invalid email"
+  />
+)
