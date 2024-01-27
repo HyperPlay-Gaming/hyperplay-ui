@@ -4,7 +4,7 @@ import {
   Breadcrumbs as MantineBreadcrumbs,
   BreadcrumbsProps as MantineBreadcrumbsProps
 } from '@mantine/core'
-import * as Icon from 'tabler-icons-react'
+import { IconChevronRight, IconHome } from '@tabler/icons-react'
 
 import styles from './Breadcrumbs.module.scss'
 
@@ -26,7 +26,7 @@ export default function Breadcrumbs({
 }: BreadcrumbsProps) {
   return (
     <MantineBreadcrumbs
-      separator={<Icon.ChevronRight />}
+      separator={<IconChevronRight />}
       classNames={{
         root: styles.root,
         breadcrumb: styles.breadcrumb,
@@ -35,7 +35,7 @@ export default function Breadcrumbs({
       {...props}
     >
       <a href={homeHref}>
-        <Icon.Home className={styles.home} />
+        <IconHome className={styles.home} />
       </a>
       {items.map((item, index) => (
         <a key={index} href={item.href}>
