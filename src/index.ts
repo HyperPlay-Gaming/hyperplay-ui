@@ -114,3 +114,4 @@ export {
 export * from './components/WebPlatformInput'
 export * from './components/NativePlatformInput'
 export * from './components/PlatformContainer'
+export { default as Fab, type FabProps } from './components/Fab'
