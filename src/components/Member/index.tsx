@@ -1,4 +1,3 @@
-import { Group, Stack } from '@mantine/core'
 import classNames from 'classnames'
 
 import Address from '../Address'
@@ -13,17 +12,17 @@ export interface MemberProps {
 
 export function Member(props: MemberProps) {
   return (
-    <Group wrap="nowrap">
+    <div className={styles.container}>
       <Identicon value={props.member} />
-      <Stack gap={0} style={{ flexGrow: 1 }}>
+      <div className={styles.textContainer}>
         <Address
           address={props.member}
           truncate={props.truncate}
           classNames={{ button: classNames('title-sm', styles.addressButton) }}
         />
         <div className={styles.label}>{props.label}</div>
-      </Stack>
-    </Group>
+      </div>
+    </div>
   )
 }
 
