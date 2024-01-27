@@ -21,7 +21,8 @@ $textColor: var(--color-neutral-100);
     background-color: $bgColor;
     color: $textColor;
   }
-  :hover {
+  // buttons have a div inside them. we don't want to change the background color of that div
+  :hover:not(button > div) {
     background-color: $bgColor;
   }
   overflow: hidden;

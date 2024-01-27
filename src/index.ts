@@ -25,7 +25,7 @@ export { default as Alert } from './components/Alert'
 export type { AlertProps } from './components/Alert'
 export { default as DownloadToast } from './components/DownloadToast'
 export { default as Checkbox } from './components/Checkbox'
-export { getTabsClassNames } from './components/Tabs'
+export * from './components/Tabs'
 export type { TabsTypes } from './components/Tabs'
 export { default as Toggle } from './components/Toggle'
 export {
@@ -65,6 +65,11 @@ export {
   type ZkSyncQuestBannerProps
 } from './components/ZkSyncQuestBanner'
 export { default as LinkAccountDialog } from './components/LinkAccount'
+export { default as Activity, type ActivityProps } from './components/Activity'
+export {
+  default as Identicon,
+  type IdenticonProps
+} from './components/Identicon'
 export { default as _404, type _404Props } from './components/404'
 export { default as Item } from './components/Item'
 export {
@@ -83,3 +88,30 @@ export {
   type InfoButtonProps
 } from './components/InfoButton'
 export { default as List, type ListProps } from './components/List'
+export { default as Address, type AddressProps } from './components/Address'
+export {
+  default as AsyncTextInput,
+  type AsyncTextInputProps
+} from './components/AsyncTextInput'
+export {
+  default as Breadcrumbs,
+  type BreadcrumbsProps,
+  type Breadcrumb
+} from './components/Breadcrumbs'
+export { default as Card, type CardProps } from './components/Card'
+export {
+  default as CheckboxList,
+  type CheckboxListProps
+} from './components/CheckboxList'
+export {
+  default as GalleryInput,
+  type GalleryInputProps
+} from './components/GalleryInput'
+export {
+  default as ImageInput,
+  type ImageInputProps
+} from './components/ImageInput'
+export * from './components/WebPlatformInput'
+export * from './components/NativePlatformInput'
+export * from './components/PlatformContainer'
+export { default as Fab, type FabProps } from './components/Fab'

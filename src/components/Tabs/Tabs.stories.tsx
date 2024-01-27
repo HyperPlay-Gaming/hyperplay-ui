@@ -1,10 +1,8 @@
-import React from 'react'
-
-import { Tabs } from '@mantine/core'
 import classNames from 'classnames'
 
 import { getTabsClassNames } from '.'
 import styles from './Tabs.module.scss'
+import { Tabs } from './index'
 
 export default {
   title: 'Tabs',
