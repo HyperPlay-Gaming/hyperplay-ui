@@ -62,7 +62,7 @@ export default function Dropdown({
             {...dropdownButtonProps}
           ></GenericDropdown.GenericButton>
         }
-        classNames={{ item: `body` }}
+        classNames={{ item: styles.item }}
         {...props}
       >
         {items}

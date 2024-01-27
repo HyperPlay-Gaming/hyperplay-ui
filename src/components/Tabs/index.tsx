@@ -1,4 +1,10 @@
-import { TabsStylesNames } from '@mantine/core'
+import { forwardRef } from 'react'
+
+import {
+  Tabs as MantineTabs,
+  TabsProps as MantineTabsProps,
+  TabsStylesNames
+} from '@mantine/core'
 import classNames from 'classnames'
 
 import styles from './Tabs.module.scss'
@@ -12,7 +18,13 @@ export interface TabsTypes {
   panel?: string
 }
 
-export function getTabsClassNames(
+type ExtendedTabs = typeof MantineTabs & {
+  List: typeof MantineTabs.List
+  Tab: typeof MantineTabs.Tab
+  Panel: typeof MantineTabs.Panel
+}
+
+function getTabsClassNames(
   classNamesOverrides?: Partial<Record<TabsStylesNames, string>>,
   tabsType?: TabsTypes
 ) {
@@ -30,3 +42,20 @@ export function getTabsClassNames(
 
   return defaultClassNames
 }
+
+const Tabs = forwardRef<HTMLDivElement, MantineTabsProps>(
+  ({ children, ...props }, ref) => {
+    return (
+      <MantineTabs unstyled {...props} ref={ref}>
+        {children}
+      </MantineTabs>
+    )
+  }
+) as ExtendedTabs
+
+Tabs.List = MantineTabs.List
+Tabs.Tab = MantineTabs.Tab
+Tabs.Panel = MantineTabs.Panel
+Tabs.displayName = MantineTabs.displayName
+export { Tabs, getTabsClassNames }
+export type { MantineTabsProps as TabProps, TabsStylesNames }

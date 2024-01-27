@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3xs);
+}
+
+.text {
+  overflow: 'hidden';
+  white-space: 'nowrap';
+}
+
+.link {
+  font-size: 12;
+  color: light-dark(var(--color-neutral-200), var(--color-neutral-300));
+}
+
+.contentContainer {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

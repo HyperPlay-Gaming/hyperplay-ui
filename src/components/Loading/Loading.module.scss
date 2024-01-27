@@ -16,5 +16,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-md);
+  // padding: var(--space-md);
+  > svg {
+    max-height: 100%;
+  }
 }
