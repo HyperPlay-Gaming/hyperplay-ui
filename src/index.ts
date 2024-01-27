@@ -99,3 +99,7 @@ export {
   type Breadcrumb
 } from './components/Breadcrumbs'
 export { default as Card, type CardProps } from './components/Card'
+export {
+  default as CheckboxList,
+  type CheckboxListProps
+} from './components/CheckboxList'
