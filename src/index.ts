@@ -111,3 +111,6 @@ export {
   default as ImageInput,
   type ImageInputProps
 } from './components/ImageInput'
+export * from './components/WebPlatformInput'
+export * from './components/NativePlatformInput'
+export * from './components/PlatformContainer'
