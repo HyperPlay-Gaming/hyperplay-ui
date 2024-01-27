@@ -1,0 +1,28 @@
+@mixin DynamicUnderline {
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+  border-radius: 0;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 2px;
+    left: 0;
+    background-color: #ff83e2;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out, background-color 0.25s ease-out;
+  }
+
+  &:hover:not(:disabled) {
+    color: #ff83e2;
+
+    &:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+}

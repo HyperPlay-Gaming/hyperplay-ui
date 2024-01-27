@@ -1,0 +1,29 @@
+.image {
+  height: 100%;
+  object-fit: contain;
+  max-height: 100%;
+  flex-grow: 1;
+}
+
+.imageDropContainer {
+  justify-content: center;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 100%;
+  height: 100%;
+}
+
+.dropzoneRoot {
+  border: 2px dashed var(--color-neutral-300);
+  text-align: center;
+  cursor: pointer;
+  transition: 0.25s;
+
+  &:hover {
+    background-color: var(--color-neutral-600);
+  }
+}
