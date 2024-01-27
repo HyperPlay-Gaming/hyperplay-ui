@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 
 import { TextInput as MantineTextInput } from '@mantine/core'
 import cn from 'classnames'
@@ -14,13 +14,26 @@ export interface TextInputProps
     label?: string
     section?: string
     error?: string
+    charCounter?: string
   }
+  maxCharacters?: number
 }
 
 const TextInput = React.forwardRef<
   React.ElementRef<typeof MantineTextInput>,
   TextInputProps
->(({ classNames, ...props }, ref) => {
+>(({ classNames, rightSection, maxCharacters, onChange, ...props }, ref) => {
+  const [numChars, setNumChars] = useState(0)
+
+  let rightSectionComponent = rightSection
+  if (rightSectionComponent === undefined && maxCharacters !== undefined) {
+    rightSectionComponent = (
+      <div
+        className={cn(styles.charCounter, classNames?.charCounter)}
+      >{`${numChars}/${maxCharacters}`}</div>
+    )
+  }
+
   return (
     <MantineTextInput
       {...props}
@@ -35,6 +48,18 @@ const TextInput = React.forwardRef<
       }}
       unstyled
       ref={ref}
+      onChange={(ev) => {
+        setNumChars(ev.target.value.length)
+        if (onChange) {
+          onChange(ev)
+        }
+      }}
+      onBeforeInput={(ev) => {
+        if (maxCharacters !== undefined && numChars === maxCharacters) {
+          ev.preventDefault()
+        }
+      }}
+      rightSection={rightSectionComponent}
     />
   )
 })

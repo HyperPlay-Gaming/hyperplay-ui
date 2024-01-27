@@ -1,0 +1,28 @@
+.name {
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--color-neutral-300);
+}
+
+.label {
+  color: var(--color-neutral-300);
+}
+
+.avatarImageContainer {
+  display: block;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  aspect-ratio: 1 / 1;
+}
+
+.avatarContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.textContainer {
+  text-align: left;
+}
