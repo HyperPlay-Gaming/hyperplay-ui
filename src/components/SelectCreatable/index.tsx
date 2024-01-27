@@ -4,13 +4,16 @@ import { Combobox, ComboboxProps, InputBase, useCombobox } from '@mantine/core'
 
 export interface SelectCreatableProps extends ComboboxProps {
   options: string[]
+  onChange: (option: string)=>void
+  onCreated: (option: string)=>void
 }
 
-export function SelectCreatable({ options, ...props }: SelectCreatableProps) {
+export function SelectCreatable({ options, onChange, onCreated, ...props }: SelectCreatableProps) {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption()
   })
 
+  const [data, setData] = useState(options);
   const [value, setValue] = useState<string | null>(null)
   const [search, setSearch] = useState('')
 
@@ -35,9 +38,11 @@ export function SelectCreatable({ options, ...props }: SelectCreatableProps) {
         if (val === '$create') {
           setData((current) => [...current, search])
           setValue(search)
+          onCreated(search)
         } else {
           setValue(val)
           setSearch(val)
+          onChange(val)
         }
 
         combobox.closeDropdown()
