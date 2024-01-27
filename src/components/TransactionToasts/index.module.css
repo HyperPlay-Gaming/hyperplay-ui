@@ -5,7 +5,7 @@
   padding: var(--space-xl) calc(2 * var(--space-md));
   border-radius: var(--space-xs);
   gap: var(--space-lg);
-  max-width: 420px;
+  max-width: 484px;
 }
 
 .infoContainer {

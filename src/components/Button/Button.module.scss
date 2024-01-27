@@ -169,7 +169,7 @@
   border-radius: 0;
 
   svg path {
-    fill: var(--color-primary-200);
+    fill: var(--button-svg-path-fill, var(--color-primary-200));
     transition: fill 0.25s ease-out;
   }
 
@@ -195,7 +195,7 @@
     }
 
     svg path {
-      fill: #ff83e2;
+      fill: var(--button-svg-path-fill-hover, #ff83e2);
     }
     opacity: 100%;
   }
