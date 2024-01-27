@@ -1,7 +1,9 @@
-import { Group, Stack, Text, useMantineTheme } from '@mantine/core'
+import { Group, Stack } from '@mantine/core'
+import classNames from 'classnames'
 
-import { Address } from '../Address'
-import { Identicon } from '../Identicon'
+import Address from '../Address'
+import Identicon from '../Identicon'
+import styles from './Member.module.scss'
 
 export interface MemberProps {
   member: string
@@ -10,16 +12,16 @@ export interface MemberProps {
 }
 
 export function Member(props: MemberProps) {
-  const theme = useMantineTheme()
-  const color =
-    theme.colorScheme === 'dark' ? theme.colors.gray[2] : theme.colors.gray[3]
-
   return (
-    <Group noWrap>
+    <Group wrap="nowrap">
       <Identicon value={props.member} />
-      <Stack spacing={0} style={{ flexGrow: 1 }}>
-        <Address address={props.member} truncate={props.truncate} />
-        <Text color={color}>{props.label}</Text>
+      <Stack gap={0} style={{ flexGrow: 1 }}>
+        <Address
+          address={props.member}
+          truncate={props.truncate}
+          classNames={{ button: classNames('title-sm', styles.addressButton) }}
+        />
+        <div className={styles.label}>{props.label}</div>
       </Stack>
     </Group>
   )
