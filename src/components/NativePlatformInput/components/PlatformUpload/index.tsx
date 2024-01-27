@@ -50,7 +50,9 @@ export default function PlatformUpload({
     uploadActionRow = (
       <>
         <Text color="#94A2B3">{uploadZipName}</Text>
-        <IconTrash size={20} onClick={onTrashClick} />
+        <button onClick={onTrashClick} className='center'>
+          <IconTrash size={20} />
+        </button>
       </>
     )
   } else {
