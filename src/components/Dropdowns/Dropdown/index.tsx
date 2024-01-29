@@ -51,22 +51,20 @@ export default function Dropdown({
     </Menu.Item>
   ))
   return (
-    <Group>
-      <GenericDropdown
-        target={
-          <GenericDropdown.GenericButton
-            text={selected.text}
-            style={{ width: targetWidth }}
-            divProps={dropdownButtonDivProps}
-            data-testid={dropdownButtonDataTestId}
-            {...dropdownButtonProps}
-          ></GenericDropdown.GenericButton>
-        }
-        classNames={{ item: styles.item }}
-        {...props}
-      >
-        {items}
-      </GenericDropdown>
-    </Group>
+    <GenericDropdown
+      target={
+        <GenericDropdown.GenericButton
+          text={selected.text}
+          style={{ width: targetWidth }}
+          divProps={dropdownButtonDivProps}
+          data-testid={dropdownButtonDataTestId}
+          {...dropdownButtonProps}
+        ></GenericDropdown.GenericButton>
+      }
+      classNames={{ item: styles.item }}
+      {...props}
+    >
+      {items}
+    </GenericDropdown>
   )
 }

@@ -55,6 +55,7 @@ const GenericDropdown = function ({
       position="bottom-start"
       width={'target'}
       offset={0}
+      unstyled
       classNames={{
         ...classNames,
         itemLabel: cn(
