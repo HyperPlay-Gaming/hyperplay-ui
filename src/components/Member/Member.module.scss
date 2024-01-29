@@ -1,0 +1,21 @@
+.label {
+  color: var(--color-neutral-300);
+}
+
+.addressButton {
+  text-align: start;
+  padding: 0px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  flex-grow: 1;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--space-md);
+}

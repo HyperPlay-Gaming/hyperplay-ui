@@ -43,7 +43,14 @@ export default function Address(props: AddressProps) {
   return (
     <button
       onClick={() => clipboard.copy(props.address)}
-      className={classNames('body', props.classNames?.button)}
+      /**
+       * if we try to override body with a classname that comes before body in the typography style sheet,
+       * it will not override and remain styled by .body. So we disable body if a classname is passed in
+       */
+      className={classNames(
+        { body: !props.classNames?.button },
+        props.classNames?.button
+      )}
     >
       {label}
     </button>
