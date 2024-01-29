@@ -15,7 +15,6 @@ export interface TextInputProps
     section?: string
     error?: string
     charCounter?: string
-    section?: string
   }
   maxCharacters?: number
 }
