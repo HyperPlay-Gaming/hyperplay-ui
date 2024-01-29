@@ -2,6 +2,12 @@ import React from 'react'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import HyperPlayDesignProvider from '../src/components/HyperPlayDesignProvider'
+import '@mantine/carousel/styles.css'
+import '@mantine/core/styles.css'
+
+// import HyperPlay styles after mantine to override their defaults with our design system
+import '../src/fonts.css'
+import '../src/index.scss'
 
 export const parameters = {
   backgrounds: {
