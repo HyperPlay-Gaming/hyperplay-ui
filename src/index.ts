@@ -6,7 +6,7 @@ import './index.scss'
 export { default as TransactionToast } from './components/TransactionToasts'
 export type { TransactionToastProps } from './components/TransactionToasts'
 export type { statusType as TransactionStatus } from './components/TransactionToasts'
-export { default as Button } from './components/Button'
+export { default as Button, type ButtonProps } from './components/Button'
 export { default as NavBar } from './components/NavBar'
 export { default as GameCard } from './components/GameCard'
 export type {
