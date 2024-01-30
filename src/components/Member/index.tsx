@@ -7,25 +7,21 @@ import styles from './Member.module.scss'
 export interface MemberProps {
   member: string
   label?: string
-  truncate: boolean
+  truncate?: boolean
 }
 
-export function Member(props: MemberProps) {
+export function Member({ member, label, truncate = false }: MemberProps) {
   return (
     <div className={styles.container}>
-      <Identicon value={props.member} />
+      <Identicon value={member} />
       <div className={styles.textContainer}>
         <Address
-          address={props.member}
-          truncate={props.truncate}
+          address={member}
+          truncate={truncate}
           classNames={{ button: classNames('title-sm', styles.addressButton) }}
         />
-        <div className={styles.label}>{props.label}</div>
+        <div className={styles.label}>{label}</div>
       </div>
     </div>
   )
-}
-
-Member.defaultProps = {
-  truncate: false
 }
