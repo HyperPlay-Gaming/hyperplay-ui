@@ -19,7 +19,7 @@ export interface DropdownProps
   options: itemType[]
   selected: itemType
   onItemChange: (item: itemType) => void
-  targetWidth?: string
+  targetWidth?: number
   dropdownButtonDivProps?: HTMLAttributes<HTMLDivElement>
   dropdownButtonDataTestId?: string
   dropdownButtonProps?: HTMLAttributes<HTMLButtonElement>
