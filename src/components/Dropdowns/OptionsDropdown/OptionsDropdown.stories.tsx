@@ -57,25 +57,21 @@ export const Stacked = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <OptionsDropdown
-        closeOnClickOutside={true}
         options={genreOptions}
         setOptions={setGenreOptions}
         title="Genre"
       />
       <OptionsDropdown
-        closeOnClickOutside={true}
         options={systemsOptions}
         setOptions={setSystemsOptions}
         title="Systems"
       />
       <OptionsDropdown
-        closeOnClickOutside={true}
         options={versionOptions}
         setOptions={setVersionOptions}
         title="Version"
       />
       <OptionsDropdown
-        closeOnClickOutside={true}
         options={othersOptions}
         setOptions={setOthersOptions}
         title="Others"
