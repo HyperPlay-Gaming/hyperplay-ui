@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from 'react'
 
-import { Group, Menu } from '@mantine/core'
+import { Menu } from '@mantine/core'
 
 import GenericDropdown, {
   DropdownProps as GenericDropdownDropdownProps
