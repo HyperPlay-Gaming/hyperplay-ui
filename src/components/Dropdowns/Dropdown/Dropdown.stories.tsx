@@ -19,7 +19,7 @@ export const Default = () => {
       options={data}
       onItemChange={setSelected}
       selected={selected}
-      targetWidth={200}
+      targetWidth={250}
     />
   )
 }
@@ -31,7 +31,7 @@ export const TitleSm = () => {
       options={data}
       onItemChange={setSelected}
       selected={selected}
-      targetWidth={200}
+      targetWidth={250}
       dropdownButtonDivProps={{ className: 'title-sm' }}
     />
   )
