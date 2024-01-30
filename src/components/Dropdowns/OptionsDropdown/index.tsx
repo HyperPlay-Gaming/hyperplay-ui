@@ -4,11 +4,12 @@ import { Menu } from '@mantine/core'
 
 import Button from '../../Button'
 import Checkbox from '../../Checkbox'
-import GenericDropdown from '../GenericDropdown'
+import GenericDropdown, { DropdownProps } from '../GenericDropdown'
 import styles from './OptionsDropdown.module.scss'
 
 type OptionsType = { [key: string]: boolean }
-interface OptionsDropdownProps {
+
+interface OptionsDropdownProps extends Omit<DropdownProps, 'target'> {
   title: string
   options: OptionsType
   setOptions: React.Dispatch<React.SetStateAction<OptionsType>>
@@ -96,13 +97,7 @@ export default function OptionsDropdown(props: OptionsDropdownProps) {
       menuItemsGap={'0px'}
       closeOnClickOutside={false}
       styles={{
-        itemLabel: { color: 'var(--color-neutral-100)' },
-        dropdown: {
-          position: 'relative',
-          top: '0px !important',
-          left: '0px !important',
-          transform: 'none'
-        }
+        itemLabel: { color: 'var(--color-neutral-100)' }
       }}
       target={
         <GenericDropdown.GenericButton
@@ -110,6 +105,7 @@ export default function OptionsDropdown(props: OptionsDropdownProps) {
           style={{ width: '300px' }}
         ></GenericDropdown.GenericButton>
       }
+      {...props}
     >
       {x}
     </GenericDropdown>
