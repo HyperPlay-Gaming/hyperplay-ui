@@ -55,7 +55,7 @@ export const Stacked = () => {
   const [versionOptions, setVersionOptions] = useState(Version)
   const [othersOptions, setOthersOptions] = useState(Others)
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <OptionsDropdown
         options={genreOptions}
         setOptions={setGenreOptions}

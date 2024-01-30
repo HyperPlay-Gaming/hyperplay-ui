@@ -53,7 +53,8 @@ const GenericDropdown = function ({
 }: DropdownProps) {
   const uuid = useId()
   return (
-    <>
+    // we wrap in a div to make a single node
+    <div>
       <Menu
         position="bottom-start"
         width={'target'}
@@ -84,7 +85,7 @@ const GenericDropdown = function ({
       </Menu>
       {/* the dropdown portal will be displayed here */}
       <div id={uuid} />
-    </>
+    </div>
   )
 }
 
