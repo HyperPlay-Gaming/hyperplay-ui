@@ -14,4 +14,6 @@
 .dropdown {
   background-color: var(--color-neutral-800) !important;
   border: none;
+  max-height: 400px;
+  overflow-y: auto;
 }
