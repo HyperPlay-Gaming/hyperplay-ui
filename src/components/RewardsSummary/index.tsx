@@ -19,7 +19,7 @@ export interface RewardsSummaryProps {
   }
 }
 
-export default function RewardsSummary({
+export function RewardsSummary({
   title,
   chainName,
   tokenType,

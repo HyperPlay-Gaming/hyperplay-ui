@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import RewardsSummary, { RewardsSummaryProps } from './index'
+import { RewardsSummary, RewardsSummaryProps } from './index'
 
 type Story = StoryObj<typeof RewardsSummary>
 
