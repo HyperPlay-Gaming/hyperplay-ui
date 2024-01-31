@@ -8,6 +8,7 @@ import GenericDropdown from '../GenericDropdown'
 import styles from './OptionsDropdown.module.scss'
 
 type OptionsType = { [key: string]: boolean }
+
 interface OptionsDropdownProps {
   title: string
   options: OptionsType

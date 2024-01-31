@@ -31,6 +31,7 @@
   border: none;
   padding: 0px;
   border-radius: 0 0 var(--space-sm) var(--space-sm);
+  position: absolute;
 }
 
 .menuDropdown > div {
@@ -51,7 +52,6 @@
 }
 
 .genericButton {
-  width: '100%';
   text-align: left;
 }
 
