@@ -6,14 +6,14 @@ import classNames from 'classnames'
 import styles from './List.module.scss'
 
 export interface ListProps extends Omit<HTMLProps<HTMLDivElement>, 'children'> {
-  children?: ReactElement[]
+  children?: ReactElement | ReactElement[]
 }
 
 export default function List({ children, className, ...props }: ListProps) {
   let childrenList = children
   let count = React.Children.count(childrenList)
 
-  const firstChild = children?.at(0)
+  const firstChild = Array.isArray(children) ? children?.at(0) : children
   const childIsOneReactFragment =
     count === 1 && firstChild?.type.toString() === 'Symbol(react.fragment)'
   if (childIsOneReactFragment) {
