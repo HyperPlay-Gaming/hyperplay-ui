@@ -27,3 +27,10 @@ const props: SelectCreatableProps = {
 export const Default: Story = {
   args: { ...props }
 }
+
+export const Required: Story = {
+  args: {
+    ...props,
+    inputProps: { label: 'asdf', required: true, withAsterisk: true }
+  }
+}
