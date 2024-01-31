@@ -1,10 +1,11 @@
-import { expect } from '@storybook/jest';
+import { expect } from '@storybook/jest'
 import type { Meta, StoryObj } from '@storybook/react'
-import { within, userEvent } from '@storybook/testing-library';
+import { userEvent, within } from '@storybook/testing-library'
+
 import FAQ, { FAQProps } from '.'
 
-type Component = typeof FAQ;
-type Story = StoryObj<Component>;
+type Component = typeof FAQ
+type Story = StoryObj<Component>
 
 const meta: Meta<typeof FAQ> = {
   title: 'DevPortal/FAQ',
@@ -17,40 +18,52 @@ const props: FAQProps = {
   list: [
     {
       question: 'What is a Reward Contract?',
-      answer: 'Reward Contracts are smart contracts that hold the balance of your Quest Rewards. This is where you’ll deposit assets (ERC-20, ERC-721, ERC-1155) that will be issued as rewards to eligible players who complete your Quest.'
+      answer:
+        'Reward Contracts are smart contracts that hold the balance of your Quest Rewards. This is where you’ll deposit assets (ERC-20, ERC-721, ERC-1155) that will be issued as rewards to eligible players who complete your Quest.'
     },
     {
       question: 'What if I have assets across multiple networks?',
-      answer: 'A single Quest can support multiple networks. Click on, “Add Reward Contract”, to specify Rewards across networks.'
+      answer:
+        'A single Quest can support multiple networks. Click on, “Add Reward Contract”, to specify Rewards across networks.'
     },
     {
       question: 'Can I deposit more rewards once the Quest is active?',
-      answer: 'Absolutely. You can always deposit more rewards into an active Quest from your Quest Details page.'
+      answer:
+        'Absolutely. You can always deposit more rewards into an active Quest from your Quest Details page.'
     },
     {
-      question: 'What happens if I disable a Quest before all Rewards have been claimed?',
-      answer: 'Similar to depositing additional Rewards, you can withdraw remaining Rewards from the Quest Details page.',
+      question:
+        'What happens if I disable a Quest before all Rewards have been claimed?',
+      answer:
+        'Similar to depositing additional Rewards, you can withdraw remaining Rewards from the Quest Details page.'
     },
     {
-      question: 'What if I withdraw my Quest Rewards before all the Rewards have been claimed?',
-      answer: 'If the Rewards pool is depleted prior to all rewards being claimed, the Quest will be deactivated.'
+      question:
+        'What if I withdraw my Quest Rewards before all the Rewards have been claimed?',
+      answer:
+        'If the Rewards pool is depleted prior to all rewards being claimed, the Quest will be deactivated.'
     },
     {
-      question: 'Can I issue different number of Rewards across multiple Reward types?',
-      answer: 'Absolutely. A single Quest can support multiple networks (Mainnet, Polygon, etc.) and multiple Reward types (ERC-20, ERC-721, ERC-1155).'
+      question:
+        'Can I issue different number of Rewards across multiple Reward types?',
+      answer:
+        'Absolutely. A single Quest can support multiple networks (Mainnet, Polygon, etc.) and multiple Reward types (ERC-20, ERC-721, ERC-1155).'
     },
     {
-      question: 'Why is there a gas fee associated with deploying Reward Contracts?',
-      answer: 'Gas fees incentivize blockchain validators to accurately process transactions and uphold the security of the blockchain ledger. HyperPlay does not take any portion of the gas fee associated with deploying Reward Contracts.'
+      question:
+        'Why is there a gas fee associated with deploying Reward Contracts?',
+      answer:
+        'Gas fees incentivize blockchain validators to accurately process transactions and uphold the security of the blockchain ledger. HyperPlay does not take any portion of the gas fee associated with deploying Reward Contracts.'
     },
     {
       question: 'What are Quest Types?',
-      answer: 'A Quest\'s type defines how the Quest functions. Reputation Airdrops is our first Quest type, based upon the player\'s web2 gaming reputation. Other types are planned, including Leaderboard based Quests.'
+      answer:
+        "A Quest's type defines how the Quest functions. Reputation Airdrops is our first Quest type, based upon the player's web2 gaming reputation. Other types are planned, including Leaderboard based Quests."
     },
     {
       question: 'Where can I find my Token ID(s)?',
       answer: 'MAYBE: Link out to an existing explanation video.'
-    },
+    }
   ]
 }
 
@@ -62,24 +75,24 @@ export const Default: Story = {
     </div>
   ),
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+    const canvas = within(canvasElement)
 
-    const toggleFirstItem = canvas.getByText(props.list[0].question);
-    await userEvent.click(toggleFirstItem);
+    const toggleFirstItem = canvas.getByText(props.list[0].question)
+    await userEvent.click(toggleFirstItem)
 
-    expect(canvas.getByText(props.list[0].answer)).toBeVisible();
-    
-    const seeMoreButton = canvas.getByRole('button', { name: /See more/i });
-    await userEvent.click(seeMoreButton);
+    expect(canvas.getByText(props.list[0].answer)).toBeVisible()
 
-    const toggleInsideSeeMore = canvas.getByText(props.list[4].question);
-    await userEvent.click(toggleInsideSeeMore);
+    const seeMoreButton = canvas.getByRole('button', { name: /See more/i })
+    await userEvent.click(seeMoreButton)
 
-    expect(canvas.getByText(props.list[4].answer)).toBeVisible();
-    
-    const seeLessButton = canvas.getByRole('button', { name: /See less/i });
-    await userEvent.click(seeLessButton);
-  },
+    const toggleInsideSeeMore = canvas.getByText(props.list[4].question)
+    await userEvent.click(toggleInsideSeeMore)
+
+    expect(canvas.getByText(props.list[4].answer)).toBeVisible()
+
+    const seeLessButton = canvas.getByRole('button', { name: /See less/i })
+    await userEvent.click(seeLessButton)
+  }
 }
 
 export const OneItem: Story = {
