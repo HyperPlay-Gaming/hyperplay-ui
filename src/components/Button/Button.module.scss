@@ -219,6 +219,70 @@
   }
 }
 
+.text {
+  border: none;
+  background: transparent;
+  background-color: transparent;
+  box-shadow: none;
+  color: var(--color-primary-200);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+  border-radius: 0;
+
+  svg path {
+    fill: var(--button-svg-path-fill, var(--color-primary-200));
+    transition: fill 0.25s ease-out;
+  }
+
+  .content:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 2px;
+    left: 0;
+    background-color: #ff83e2;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out, background-color 0.25s ease-out;
+  }
+
+  &:hover:not(:disabled) .content {
+    color: #ff83e2;
+
+    &:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    svg path {
+      fill: var(--button-svg-path-fill-hover, #ff83e2);
+    }
+    opacity: 100%;
+  }
+
+  &:active {
+    color: var(--color-primary-200);
+
+    &:after {
+      background-color: var(--color-primary-200);
+    }
+  }
+
+  &:disabled,
+  &[disabled] {
+    opacity: 1;
+    color: var(--color-neutral-400);
+  }
+
+  &.small,
+  &.medium,
+  &.large {
+    padding: 0;
+  }
+}
+
+
 .menuItem {
   padding: 0;
   margin: 0;
