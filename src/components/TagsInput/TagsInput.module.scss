@@ -1,0 +1,44 @@
+@use '../../styles/designSystem/typography';
+
+.input {
+  background-color: var(--color-neutral-700) !important;
+  border: 1px solid var(--color-neutral-600);
+  width: 100%;
+  outline: none;
+  @include typography.body-sm-mixin;
+  color: var(--color-neutral-100);
+}
+
+.inputField {
+  padding: var(--space-3xs) var(--space-sm);
+}
+
+.wrapper {
+  background-color: var(--color-neutral-700);
+}
+
+.dropdown {
+  background-color: var(--color-neutral-700) !important;
+  border: 1px solid var(--color-neutral-600);
+  position: absolute;
+}
+
+.options {
+  background-color: var(--color-neutral-700);
+}
+
+.root {
+  width: 100%;
+}
+
+.pill {
+  background-color: var(--color-neutral-400);
+  @include typography.body-sm-mixin;
+}
+
+.option {
+  @include typography.body-sm-mixin;
+  &:hover {
+    background-color: var(--color-neutral-500);
+  }
+}
