@@ -9,6 +9,7 @@
 .breadcrumb {
   @include dynamicUnderline.DynamicUnderline;
   color: var(--color-neutral-500);
+  cursor: pointer !important;
 
   &:last-of-type {
     color: var(--color-neutral-300);
