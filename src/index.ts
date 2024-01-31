@@ -46,7 +46,10 @@ export {
   default as AuthProviderButton,
   type AuthProviderButtonProps as AuthProvider
 } from './components/AuthProviderButton'
-export { default as TextInput } from './components/TextInput'
+export {
+  default as TextInput,
+  type TextInputProps
+} from './components/TextInput'
 export { default as SignUp } from './components/SignUp'
 export { default as CheckEmail } from './components/CheckEmail'
 export { default as EmailVerified } from './components/EmailVerified'
@@ -120,3 +123,4 @@ export * from './components/MemberList'
 export * from './components/SelectCreatable'
 export * from './components/TagsInput'
 export * from './components/TextArea'
+export * from './common/types'
