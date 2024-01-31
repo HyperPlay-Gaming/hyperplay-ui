@@ -3,7 +3,7 @@ import { useArgs } from '@storybook/preview-api'
 import type { Meta, StoryObj } from '@storybook/react'
 import { userEvent, within } from '@storybook/testing-library'
 
-import GameSelector from '.'
+import { GameSelector } from '.'
 import { wait } from '../../../tests/utils/wait'
 import { GameSelectorProps } from './types'
 

@@ -9,7 +9,7 @@ import GameItem from './components/GameItem'
 import styles from './index.module.scss'
 import { GameDetails, GameSelectorProps } from './types'
 
-export default function GameSelector({
+export function GameSelector({
   selectedGames,
   searchResultGames,
   onSearchInput,
