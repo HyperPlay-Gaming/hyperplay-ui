@@ -17,3 +17,9 @@ declare module '*.svg' {
 declare module '*.svg?url'
 declare module '*.png'
 declare module '*.png?url'
+declare module '*.gif'
+
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any*/
+type PartialRecord<K extends keyof any, T> = {
+  [P in K]?: T
+}

@@ -6,7 +6,7 @@ import './index.scss'
 export { default as TransactionToast } from './components/TransactionToasts'
 export type { TransactionToastProps } from './components/TransactionToasts'
 export type { statusType as TransactionStatus } from './components/TransactionToasts'
-export { default as Button } from './components/Button'
+export { default as Button, type ButtonProps } from './components/Button'
 export { default as NavBar } from './components/NavBar'
 export { default as GameCard } from './components/GameCard'
 export type {
@@ -24,8 +24,8 @@ export { default as AlertCard } from './components/AlertCard'
 export { default as Alert } from './components/Alert'
 export type { AlertProps } from './components/Alert'
 export { default as DownloadToast } from './components/DownloadToast'
-export { default as Checkbox } from './components/Checkbox'
-export { getTabsClassNames } from './components/Tabs'
+export { default as Checkbox, type CheckboxProps } from './components/Checkbox'
+export * from './components/Tabs'
 export type { TabsTypes } from './components/Tabs'
 export { default as Toggle } from './components/Toggle'
 export {
@@ -46,7 +46,10 @@ export {
   default as AuthProviderButton,
   type AuthProviderButtonProps as AuthProvider
 } from './components/AuthProviderButton'
-export { default as TextInput } from './components/TextInput'
+export {
+  default as TextInput,
+  type TextInputProps
+} from './components/TextInput'
 export { default as SignUp } from './components/SignUp'
 export { default as CheckEmail } from './components/CheckEmail'
 export { default as EmailVerified } from './components/EmailVerified'
@@ -65,4 +68,60 @@ export {
   type ZkSyncQuestBannerProps
 } from './components/ZkSyncQuestBanner'
 export { default as LinkAccountDialog } from './components/LinkAccount'
+export { default as Activity, type ActivityProps } from './components/Activity'
+export {
+  default as Identicon,
+  type IdenticonProps
+} from './components/Identicon'
+export { default as _404, type _404Props } from './components/404'
+export { default as Item } from './components/Item'
+export {
+  default as AccountSelect,
+  type AccountSelectProps,
+  AccountSelectContext
+} from './components/AccountSelect'
+export {
+  default as Gallery,
+  type GalleryProps,
+  type Asset,
+  getYouTubeEmbedURL
+} from './components/Gallery'
+export {
+  default as InfoButton,
+  type InfoButtonProps
+} from './components/InfoButton'
+export { default as List, type ListProps } from './components/List'
+export { default as Address, type AddressProps } from './components/Address'
+export {
+  default as AsyncTextInput,
+  type AsyncTextInputProps
+} from './components/AsyncTextInput'
+export {
+  default as Breadcrumbs,
+  type BreadcrumbsProps,
+  type Breadcrumb
+} from './components/Breadcrumbs'
+export { default as Card, type CardProps } from './components/Card'
+export {
+  default as CheckboxList,
+  type CheckboxListProps
+} from './components/CheckboxList'
+export {
+  default as GalleryInput,
+  type GalleryInputProps
+} from './components/GalleryInput'
+export {
+  default as ImageInput,
+  type ImageInputProps
+} from './components/ImageInput'
+export * from './components/WebPlatformInput'
+export * from './components/NativePlatformInput'
+export * from './components/PlatformContainer'
+export { default as Fab, type FabProps } from './components/Fab'
+export * from './components/Member'
+export * from './components/MemberList'
+export * from './components/SelectCreatable'
+export * from './components/TagsInput'
+export * from './components/TextArea'
+export * from './common/types'
 export { default as GameSelector } from './components/GameSelector'

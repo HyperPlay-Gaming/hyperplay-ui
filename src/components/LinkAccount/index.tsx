@@ -8,13 +8,6 @@ import Modal from '@/components/Modal/Modal'
 
 import styles from './LinkAccount.module.scss'
 
-export type AuthProvider = {
-  id: string
-  name: string
-  icon?: React.ReactNode
-  label?: React.ReactNode
-}
-
 interface I18n {
   connectTitle: string
   connectSubtitle: string
@@ -29,7 +22,6 @@ export interface LinkAccountModalProps extends HTMLProps<HTMLDivElement> {
 
 const LinkAccount = ({
   className,
-  onClose,
   onConnectTap,
   i18n = {
     connectTitle: 'Link to your HyperPlay account',
@@ -40,7 +32,6 @@ const LinkAccount = ({
 }: LinkAccountModalProps) => {
   return (
     <Modal.Root {...props} className={cn(className, styles.root)}>
-      <Modal.CloseButton aria-label="close signin modal" onClick={onClose} />
       <Modal.Header>
         <Modal.Title className={cn(styles.row, styles.title)}>
           {i18n.connectTitle}

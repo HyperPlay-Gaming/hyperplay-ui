@@ -1,0 +1,19 @@
+.option {
+  &:hover {
+    background-color: var(--color-neutral-600);
+  }
+}
+
+.input {
+  background-color: var(--color-neutral-800);
+  border: none;
+  cursor: text;
+  color: var(--color-neutral-100);
+}
+
+.dropdown {
+  background-color: var(--color-neutral-800) !important;
+  border: none;
+  max-height: 400px;
+  overflow-y: auto;
+}

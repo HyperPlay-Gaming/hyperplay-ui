@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  gap: var(--space-md);
+  flex-direction: column;
+  justify-content: flex-end;
+
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+
+  z-index: 90;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0px;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+}

@@ -328,11 +328,14 @@ $bodyFontSize: --text-lg;
 }
 
 $bodySmFontSize: --text-md;
-.body-sm {
+@mixin body-sm-mixin {
   font-family: var(--secondary-font-family);
   font-size: var($bodySmFontSize);
   font-weight: var(--regular);
   line-height: calc(var($bodySmFontSize) * 24 / 16);
+}
+.body-sm {
+  @include body-sm-mixin;
 }
 
 $buttonFontSize: --text-xl;

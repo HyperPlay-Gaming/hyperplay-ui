@@ -6,6 +6,7 @@ import React, {
 } from 'react'
 
 import { Menu, MenuProps, MenuTargetProps } from '@mantine/core'
+import cn from 'classnames'
 
 import { DownArrow } from '@/assets/images'
 
@@ -47,11 +48,25 @@ const GenericDropdown = function ({
   target,
   children,
   menuItemsGap,
+  classNames = {},
   targetProps,
   ...props
 }: DropdownProps) {
   return (
-    <Menu position="bottom-start" width={'target'} offset={0} {...props}>
+    <Menu
+      position="bottom-start"
+      width={'target'}
+      offset={0}
+      classNames={{
+        ...classNames,
+        itemLabel: cn(
+          styles.label,
+          // ts doesn't detect classNames props intelisense
+          (classNames as Record<string, string>)['itemLabel']
+        )
+      }}
+      {...props}
+    >
       <Menu.Target {...targetProps}>{target}</Menu.Target>
       <Menu.Dropdown className={styles.menuDropdown} style={{ margin: '0px' }}>
         <div style={{ gap: menuItemsGap ? menuItemsGap : 'var(--space-md)' }}>

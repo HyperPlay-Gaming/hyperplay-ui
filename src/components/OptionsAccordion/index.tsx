@@ -142,6 +142,7 @@ export default function OptionsAccordion({
   return (
     // chevron position right is not being respected here
     <Accordion
+      unstyled
       variant="contained"
       classNames={{
         panel: styles.panel,
