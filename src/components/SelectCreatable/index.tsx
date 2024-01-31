@@ -1,6 +1,12 @@
 import { useState } from 'react'
 
-import { Combobox, ComboboxProps, InputBase, useCombobox } from '@mantine/core'
+import {
+  Combobox,
+  ComboboxProps,
+  InputBase,
+  InputBaseProps,
+  useCombobox
+} from '@mantine/core'
 
 import styles from './SelectCreatable.module.scss'
 
@@ -8,6 +14,7 @@ export interface SelectCreatableProps extends ComboboxProps {
   options: string[]
   onChange: (option: string) => void
   onCreated: (option: string) => void
+  inputProps?: InputBaseProps
   i18n?: {
     create?: string
     searchValue?: string
@@ -18,6 +25,7 @@ export function SelectCreatable({
   options,
   onChange,
   onCreated,
+  inputProps,
   i18n = { create: '+ Create', searchValue: 'Search value' },
   ...props
 }: SelectCreatableProps) {
@@ -80,6 +88,7 @@ export function SelectCreatable({
           placeholder={i18n.searchValue}
           rightSectionPointerEvents="none"
           classNames={{ input: styles.input }}
+          {...inputProps}
         />
       </Combobox.Target>
 
