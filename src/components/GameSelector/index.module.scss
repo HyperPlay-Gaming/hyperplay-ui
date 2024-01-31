@@ -9,21 +9,23 @@
   color: var(--color-neutral-500);
 }
 
+$dropdownBorderRadius: var(--space-xs);
+
 .menuDropdown {
-  background-color: var(--color-neutral-800);
+  background-color: var(--color-neutral-700) !important;
   color: var(--color-neutral-400);
   border: none;
   padding: 0px;
-  border-radius: var(--space-sm);
+  border-radius: $dropdownBorderRadius;
   position: absolute;
   box-sizing: border-box;
 
   > *:nth-child(2) {
-    border-radius: var(--space-sm) var(--space-sm) 0 0;
+    border-radius: $dropdownBorderRadius $dropdownBorderRadius 0 0;
   }
 
   > *:last-child {
-    border-radius: 0 0 var(--space-sm) var(--space-sm);
+    border-radius: 0 0 $dropdownBorderRadius $dropdownBorderRadius;
   }
 }
 
