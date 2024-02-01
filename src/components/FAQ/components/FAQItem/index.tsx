@@ -19,9 +19,11 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
         onClick={() => setOpened((prevState) => !prevState)}
       >
         <p className={styles.question}>{question}</p>
-        <span className={styles.toggleIcon} >{isOpen ? <MinusCircle/> : <PlusCircle />}</span>
+        <span className={styles.toggleIcon}>
+          {isOpen ? <MinusCircle /> : <PlusCircle />}
+        </span>
       </div>
-      {isOpen && (<p className={styles.answer}>{answer}</p>)}
+      {isOpen && <p className={styles.answer}>{answer}</p>}
     </div>
   )
 }

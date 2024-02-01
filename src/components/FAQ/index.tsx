@@ -6,7 +6,6 @@ import FAQItem, { FAQItemProps } from './components/FAQItem'
 
 const MAX_FAQS_DISPLAYED = 3
 
-
 export interface FAQProps {
   list: Array<FAQItemProps>
   i18n?: {
