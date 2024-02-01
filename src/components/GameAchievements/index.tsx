@@ -191,7 +191,7 @@ export default function GameAchievements({
           </div>
 
           <Dropdown
-            targetWidth="300"
+            targetWidth={300}
             dropdownButtonDivProps={{
               className: 'title-sm'
             }}
