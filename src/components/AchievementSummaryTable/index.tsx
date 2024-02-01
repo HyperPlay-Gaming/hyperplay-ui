@@ -146,7 +146,7 @@ export default function AchievementSummaryTable({
           <div className={styles.row}>
             <div className={styles.filters}>
               <Dropdown
-                targetWidth="300"
+                targetWidth={300}
                 dropdownButtonDivProps={{
                   className: `text--lg weight--regular`
                 }}

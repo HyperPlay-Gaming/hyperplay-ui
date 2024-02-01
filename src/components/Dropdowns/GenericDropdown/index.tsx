@@ -42,6 +42,7 @@ GenericButton.displayName = 'GenericButton'
 export interface DropdownProps extends MenuProps {
   target: ReactNode
   menuItemsGap?: string
+  containerProps?: HTMLAttributes<HTMLDivElement>
   targetProps?: MenuTargetProps & React.RefAttributes<HTMLElement>
 }
 
@@ -50,13 +51,14 @@ const GenericDropdown = function ({
   children,
   menuItemsGap,
   classNames = {},
+  containerProps,
   targetProps,
   ...props
 }: DropdownProps) {
   const uuid = useId()
   return (
     // we wrap in a div to make a single node
-    <div>
+    <div {...containerProps}>
       <Menu
         position="bottom-start"
         width={'target'}

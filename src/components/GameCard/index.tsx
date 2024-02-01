@@ -133,6 +133,8 @@ const GameCard = ({
           />
         )
       case 'SHOW_MESSAGE':
+      case 'DOWNLOADING_DISTRIBUTABLES':
+      case 'PREPARING':
         return <div className="caption">{message}</div>
       case 'NOT_SUPPORTED':
         return (
