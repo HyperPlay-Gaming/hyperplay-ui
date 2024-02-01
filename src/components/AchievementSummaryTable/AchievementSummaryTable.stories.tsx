@@ -124,7 +124,7 @@ const props: AchievementSummaryTableProps = {
 
 export const Default: Story = {
   args: { ...props },
-  render: function Render(args) {
+  render: (args) => {
     return (
       <div style={{ height: '1000px', display: 'flex' }}>
         <AchievementSummaryTable {...args} />
