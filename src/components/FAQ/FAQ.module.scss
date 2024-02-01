@@ -16,38 +16,7 @@
 
 .title {
   @extend .title;
+  
+  font-family: var(--secondary-font-family);
   font-weight: var(--bold);
-}
-
-.item {
-  margin-top: var(--space-md);
-  text-align: left;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.questionContainer {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.question {
-  font-family: var(--secondary-font-family);
-  font-size: var(--text-lg);
-  font-weight: var(--semibold);
-  line-height: 1.485rem;
-  width: 85%;
-}
-
-.answer {
-  margin-top: var(--space-sm);
-  color: var(--color-slate-400);
-  font-family: var(--secondary-font-family);
-  font-size: var(--text-md);
-  font-weight: var(--regular);
-  line-height: 1.5rem;
 }

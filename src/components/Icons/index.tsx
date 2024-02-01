@@ -45,8 +45,8 @@ const IconStroke: { [key: string]: string } = {
   Discord: '#FFFFFF',
   GiftBox: '#FFFFFF',
   AlertTriangle: '#FFFFFF',
-  PlusCircle: '#94A2B3',
-  MinusCircle: '#94A2B3'
+  PlusCircle: '#FFFFFF',
+  MinusCircle: '#FFFFFF'
 }
 
 export default function Icons() {
