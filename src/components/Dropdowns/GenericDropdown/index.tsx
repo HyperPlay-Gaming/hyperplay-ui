@@ -6,6 +6,7 @@ import React, {
 } from 'react'
 
 import { Menu, MenuProps, MenuTargetProps } from '@mantine/core'
+import { useId } from '@mantine/hooks'
 import cn from 'classnames'
 
 import { DownArrow } from '@/assets/images'
@@ -52,28 +53,41 @@ const GenericDropdown = function ({
   targetProps,
   ...props
 }: DropdownProps) {
+  const uuid = useId()
   return (
-    <Menu
-      position="bottom-start"
-      width={'target'}
-      offset={0}
-      classNames={{
-        ...classNames,
-        itemLabel: cn(
-          styles.label,
-          // ts doesn't detect classNames props intelisense
-          (classNames as Record<string, string>)['itemLabel']
-        )
-      }}
-      {...props}
-    >
-      <Menu.Target {...targetProps}>{target}</Menu.Target>
-      <Menu.Dropdown className={styles.menuDropdown} style={{ margin: '0px' }}>
-        <div style={{ gap: menuItemsGap ? menuItemsGap : 'var(--space-md)' }}>
-          {children}
-        </div>
-      </Menu.Dropdown>
-    </Menu>
+    // we wrap in a div to make a single node
+    <div>
+      <Menu
+        position="bottom-start"
+        width={'target'}
+        offset={0}
+        unstyled
+        portalProps={{
+          target: `#${uuid}`
+        }}
+        classNames={{
+          ...classNames,
+          itemLabel: cn(
+            styles.label,
+            // ts doesn't detect classNames props intelisense
+            (classNames as Record<string, string>)['itemLabel']
+          )
+        }}
+        {...props}
+      >
+        <Menu.Target {...targetProps}>{target}</Menu.Target>
+        <Menu.Dropdown
+          className={styles.menuDropdown}
+          style={{ margin: '0px' }}
+        >
+          <div style={{ gap: menuItemsGap ? menuItemsGap : 'var(--space-md)' }}>
+            {children}
+          </div>
+        </Menu.Dropdown>
+      </Menu>
+      {/* the dropdown portal will be displayed here */}
+      <div id={uuid} />
+    </div>
   )
 }
 

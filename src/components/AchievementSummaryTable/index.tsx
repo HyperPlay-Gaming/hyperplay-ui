@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react'
 
-import { Tabs } from '@mantine/core'
 import cn from 'classnames'
 
 import * as Images from '@/assets/images'
@@ -11,7 +10,7 @@ import Button, { ButtonProps } from '../Button'
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import Loading from '../Loading'
-import { getTabsClassNames } from '../Tabs'
+import { Tabs, getTabsClassNames } from '../Tabs'
 import styles from './AchievementSummaryTable.module.scss'
 import MessageModal, { MessageModalProps } from './components/MessageModal'
 
@@ -151,7 +150,6 @@ export default function AchievementSummaryTable({
                 dropdownButtonDivProps={{
                   className: `text--lg weight--regular`
                 }}
-                dropdownButtonProps={{ className: styles.dropdownSort }}
                 {...sortProps}
               />
 
