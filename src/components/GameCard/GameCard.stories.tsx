@@ -61,7 +61,9 @@ const meta: Meta<typeof GameCard> = {
         'INSTALLING',
         'PAUSED',
         'NEEDS_UPDATE',
-        'EXTRACTING'
+        'EXTRACTING',
+        'DOWNLOADING_DISTRIBUTABLES',
+        'PREPARING'
       ]
     }
   }

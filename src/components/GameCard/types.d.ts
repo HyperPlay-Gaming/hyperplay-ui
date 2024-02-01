@@ -10,6 +10,8 @@ export type GameCardState =
   | 'SHOW_MESSAGE' //text only
   | 'NEEDS_UPDATE' //action bar with update icon
   | 'EXTRACTING' // show only cancel button
+  | 'DOWNLOADING_DISTRIBUTABLES' //message
+  | 'PREPARING' ///message
 
 export interface InstallProgress {
   bytes: string
