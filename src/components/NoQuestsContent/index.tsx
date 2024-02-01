@@ -32,7 +32,7 @@ export default function NoQuestsContent({
 }: NoQuestsContentProps) {
   return (
     <Container className={cn(styles.container, classNameProp)}>
-      <QuestIcon width={240} height={240} />
+      <QuestIcon width={120} height={120} />
       <Title className={styles.title}>{i18n.title}</Title>
       <Text className={styles.description}>{i18n.description}</Text>
       <Button onClick={onCreateNewQuest} {...buttonProps}>
