@@ -67,7 +67,11 @@ export default function GalleryInput(props: GalleryInputProps) {
             <ActionIcon className={styles.remove} onClick={() => remove(index)}>
               <IconTrash className={styles.trashIcon} />
             </ActionIcon>
-            <button className={styles.preview} onClick={() => setIndex(index)}>
+            <button
+              className={styles.preview}
+              onClick={() => setIndex(index)}
+              type="button"
+            >
               <Image className={styles.addedImageThumbnail} src={src(file)} />
             </button>
           </div>
@@ -76,6 +80,7 @@ export default function GalleryInput(props: GalleryInputProps) {
           className={styles.preview}
           onClick={add}
           disabled={props.disabled}
+          type="button"
         >
           <Center>
             <IconPlus className={styles.plusIcon} />
