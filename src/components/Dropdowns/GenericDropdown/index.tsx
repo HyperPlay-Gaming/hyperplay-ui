@@ -5,7 +5,7 @@ import React, {
   forwardRef
 } from 'react'
 
-import { Menu, MenuProps } from '@mantine/core'
+import { Menu, MenuProps, MenuTargetProps } from '@mantine/core'
 import { useId } from '@mantine/hooks'
 import cn from 'classnames'
 
@@ -43,6 +43,7 @@ export interface DropdownProps extends MenuProps {
   target: ReactNode
   menuItemsGap?: string
   containerProps?: HTMLAttributes<HTMLDivElement>
+  targetProps?: MenuTargetProps & React.RefAttributes<HTMLElement>
 }
 
 const GenericDropdown = function ({
@@ -51,6 +52,7 @@ const GenericDropdown = function ({
   menuItemsGap,
   classNames = {},
   containerProps,
+  targetProps,
   ...props
 }: DropdownProps) {
   const uuid = useId()
@@ -75,7 +77,7 @@ const GenericDropdown = function ({
         }}
         {...props}
       >
-        <Menu.Target>{target}</Menu.Target>
+        <Menu.Target {...targetProps}>{target}</Menu.Target>
         <Menu.Dropdown
           className={styles.menuDropdown}
           style={{ margin: '0px' }}

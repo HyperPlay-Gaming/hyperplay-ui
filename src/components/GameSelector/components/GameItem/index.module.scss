@@ -1,0 +1,11 @@
+.selectedGameContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) var(--space-md-fixed);
+
+  svg {
+    fill: var(--color-neutral-500);
+  }
+}
