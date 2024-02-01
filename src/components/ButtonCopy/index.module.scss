@@ -1,0 +1,11 @@
+$iconWidth: 22px;
+
+.copyButton {
+  stroke: var(--color-neutral-400);
+  width: $iconWidth;
+}
+
+.copiedCheckmark {
+  stroke: var(--color-success-400);
+  width: $iconWidth;
+}
