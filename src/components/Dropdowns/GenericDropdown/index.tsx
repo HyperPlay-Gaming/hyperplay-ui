@@ -56,10 +56,7 @@ const GenericDropdown = function ({
   const uuid = useId()
   return (
     // we wrap in a div to make a single node
-    <div
-      className={cn(styles.container, containerProps?.className)}
-      {...containerProps}
-    >
+    <div {...containerProps}>
       <Menu
         position="bottom-start"
         width={'target'}
