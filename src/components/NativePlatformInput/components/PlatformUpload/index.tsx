@@ -50,7 +50,7 @@ export default function PlatformUpload({
     uploadActionRow = (
       <>
         <Text color="#94A2B3">{uploadZipName}</Text>
-        <button onClick={onTrashClick} className="center">
+        <button onClick={onTrashClick} className="center" type="button">
           <IconTrash size={20} />
         </button>
       </>
@@ -63,7 +63,7 @@ export default function PlatformUpload({
         accept="application/zip"
       >
         {(props) => (
-          <Button type="secondary" {...props}>
+          <Button type="secondary" htmlType="button" {...props}>
             {i18n.chooseFile}
           </Button>
         )}
