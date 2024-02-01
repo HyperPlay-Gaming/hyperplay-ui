@@ -1,12 +1,14 @@
+import { InputHTMLAttributes, PropsWithChildren, forwardRef } from 'react'
+
 import cn from 'classnames'
 
 import { QuestIcon } from '@/assets/images'
 import Button, { ButtonProps } from '@/components/Button'
 
 import styles from './index.module.scss'
-import { InputHTMLAttributes, PropsWithChildren, forwardRef } from 'react'
 
-interface NoQuestsContentProps extends PropsWithChildren<InputHTMLAttributes<HTMLDivElement>> {
+interface NoQuestsContentProps
+  extends PropsWithChildren<InputHTMLAttributes<HTMLDivElement>> {
   onCreateNewQuest: () => void
   i18n?: i18nNoQuestContentContext
   className?: string
@@ -19,7 +21,8 @@ interface i18nNoQuestContentContext {
   buttonText: string
 }
 
-export default forwardRef<HTMLDivElement, NoQuestsContentProps>(function NoQuestsContent(
+export default forwardRef<HTMLDivElement, NoQuestsContentProps>(
+  function NoQuestsContent(
     {
       className: classNameProp,
       onCreateNewQuest,
@@ -34,14 +37,15 @@ export default forwardRef<HTMLDivElement, NoQuestsContentProps>(function NoQuest
     }: NoQuestsContentProps,
     ref
   ) {
-  return (
-    <div className={cn(styles.container, classNameProp)} ref={ref} {...props} >
-      <QuestIcon className={styles.questIcon} />
-      <h1 className={styles.title}>{i18n.title}</h1>
-      <p className={styles.description}>{i18n.description}</p>
-      <Button onClick={onCreateNewQuest} {...buttonProps}>
-        {i18n.buttonText}
-      </Button>
-    </div>
-  )
-});
+    return (
+      <div className={cn(styles.container, classNameProp)} ref={ref} {...props}>
+        <QuestIcon className={styles.questIcon} />
+        <h1 className={styles.title}>{i18n.title}</h1>
+        <p className={styles.description}>{i18n.description}</p>
+        <Button onClick={onCreateNewQuest} {...buttonProps}>
+          {i18n.buttonText}
+        </Button>
+      </div>
+    )
+  }
+)
