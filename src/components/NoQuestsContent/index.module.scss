@@ -28,7 +28,11 @@
   margin-bottom: var(--space-xl);
   max-width: 90%;
 
+  @include variables.for-tablet-portrait-up {
+    max-width: 35%;
+  }
+
   @include variables.for-desktop-up {
-    max-width: 50%;
+    max-width: 30%;
   }
 }
