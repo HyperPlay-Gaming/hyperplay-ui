@@ -15,7 +15,7 @@ const meta: Meta<typeof FAQ> = {
 export default meta
 
 const props: FAQProps = {
-  list: [
+  faqList: [
     {
       question: 'What is a Reward Contract?',
       answer:
@@ -77,18 +77,18 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    const toggleFirstItem = canvas.getByText(props.list[0].question)
+    const toggleFirstItem = canvas.getByText(props.faqList[0].question)
     await userEvent.click(toggleFirstItem)
 
-    expect(canvas.getByText(props.list[0].answer)).toBeVisible()
+    expect(canvas.getByText(props.faqList[0].answer)).toBeVisible()
 
     const seeMoreButton = canvas.getByRole('button', { name: /See more/i })
     await userEvent.click(seeMoreButton)
 
-    const toggleInsideSeeMore = canvas.getByText(props.list[4].question)
+    const toggleInsideSeeMore = canvas.getByText(props.faqList[4].question)
     await userEvent.click(toggleInsideSeeMore)
 
-    expect(canvas.getByText(props.list[4].answer)).toBeVisible()
+    expect(canvas.getByText(props.faqList[4].answer)).toBeVisible()
 
     const seeLessButton = canvas.getByRole('button', { name: /See less/i })
     await userEvent.click(seeLessButton)
@@ -96,7 +96,7 @@ export const Default: Story = {
 }
 
 export const OneItem: Story = {
-  args: { ...props, list: props.list.slice(0, 1) },
+  args: { ...props, faqList: props.faqList.slice(0, 1) },
   render: (args: FAQProps) => (
     <div>
       <FAQ {...args} />
@@ -105,7 +105,7 @@ export const OneItem: Story = {
 }
 
 export const SeeMore: Story = {
-  args: { ...props, list: props.list.slice(0, 4) },
+  args: { ...props, faqList: props.faqList.slice(0, 4) },
   render: (args: FAQProps) => (
     <div>
       <FAQ {...args} />
