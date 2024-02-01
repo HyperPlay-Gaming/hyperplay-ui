@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 
 import cn from 'classnames'
 
+import { ButtonCopy } from '../ButtonCopy'
 import styles from './RewardsSummary.module.scss'
 
 export interface RewardsSummaryProps {
@@ -36,6 +37,7 @@ export function RewardsSummary({
   function getTruncatedAddress(addr: string) {
     return addr.slice(0, 5) + '...' + addr.slice(-5)
   }
+
   const detailTexts = [
     chainName,
     tokenType,
@@ -43,6 +45,7 @@ export function RewardsSummary({
     marketplace,
     getTruncatedAddress(tokenContractAddress)
   ]
+
   const detailElements = detailTexts.map((text, index) => (
     <>
       <div key={text} className="body-sm color-neutral-400">
@@ -52,9 +55,12 @@ export function RewardsSummary({
         <div className="center">
           <div className="circle" />
         </div>
-      ) : null}
+      ) : (
+        <ButtonCopy text={tokenContractAddress} />
+      )}
     </>
   ))
+
   return (
     <div className={cn(styles.root, classNames?.root)}>
       <div className={styles.headerRow}>
