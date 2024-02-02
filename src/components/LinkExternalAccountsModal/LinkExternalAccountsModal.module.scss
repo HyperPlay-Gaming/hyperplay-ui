@@ -1,0 +1,31 @@
+@import '../../styles/designSystem/spacing';
+@import '../../styles/designSystem/colors';
+@import '../../styles/designSystem/typography';
+@import '../../styles/utilities/_variables';
+
+.root {
+  max-width: 600px;
+}
+
+.icon {
+  fill: var(--color-neutral-100);
+}
+
+.disabledLabel {
+  color: var(--color-neutral-100);
+}
+
+.providersContainer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+
+  @include for-tablet-portrait-up {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+
+.disabledOption {
+  opacity: 0.5;
+}
