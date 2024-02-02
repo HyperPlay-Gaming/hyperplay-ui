@@ -15,32 +15,26 @@
   color: var(--color-primary-200);
 }
 
-.providersContainer {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-md);
-
-  @include for-tablet-portrait-up {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
 .emailRoundedIcon {
   background: var(--color-primary-500);
 }
 
-.signupButtonContainers {
+.buttonContainer {
   display: flex;
   gap: var(--space-sm);
   justify-content: center;
-}
-
-.actionButton {
-  min-width: 167px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: var(--space-2lg);
+}
+
+.label {
+  font-weight: var(--bold);
+}
+
+.loadingButton {
+  min-width: 107px;
 }
