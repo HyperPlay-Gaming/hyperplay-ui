@@ -7,7 +7,7 @@ import classNames from 'classnames'
 
 import { Checkmark, Copy } from '@/assets/images'
 
-import styles from './index.module.scss'
+import styles from './ButtonCopy.module.scss'
 
 export interface ButtonCopyProps extends HTMLAttributes<HTMLButtonElement> {
   text: string
@@ -26,7 +26,7 @@ export function ButtonCopy({ text, className, ...props }: ButtonCopyProps) {
   )
 
   const copiedElement = (
-    <div>
+    <div className={className}>
       <Checkmark className={styles.copiedCheckmark} />
     </div>
   )
