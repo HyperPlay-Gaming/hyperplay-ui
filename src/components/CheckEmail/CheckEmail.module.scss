@@ -21,7 +21,6 @@
 
 .linkContainer {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -32,6 +31,10 @@
 }
 
 .disabledText {
+  color: var(--color-neutral-400);
+}
+
+.subtitle {
   color: var(--color-neutral-400);
 }
 
