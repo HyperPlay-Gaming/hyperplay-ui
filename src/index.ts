@@ -50,7 +50,8 @@ export {
   default as TextInput,
   type TextInputProps
 } from './components/TextInput'
-export { default as SignUp } from './components/SignUp'
+export { default as SignUp } from './components/SignInModal'
+export { default as LinkExternalAccountsModal } from './components/LinkExternalAccountsModal'
 export { default as CheckEmail } from './components/CheckEmail'
 export { default as EmailVerified } from './components/EmailVerified'
 export { default as StoreRow } from './components/StoreRow'
