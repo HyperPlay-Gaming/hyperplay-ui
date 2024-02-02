@@ -4,11 +4,11 @@ import { fireEvent, screen } from '@testing-library/react'
 import { renderWithMantine } from 'tests/utils/providers'
 import { describe, expect, it, vi } from 'vitest'
 
-import LinkExternalAccountsModal from '@/components/LinkExternalAccountsModal/index'
+import LinkExternalAccountsModal from '@/components/LinkExternalAccounts/index'
 
 const providers = [{ id: 'discord', name: 'Discord', icon: 'discord' }]
 
-describe('LinkExternalAccountsModal', () => {
+describe('LinkExternalAccounts', () => {
   it('executes onAuthSignup handler upon selecting a provider', () => {
     const providerOption = providers[0]
     const onAuthSignup = vi.fn()

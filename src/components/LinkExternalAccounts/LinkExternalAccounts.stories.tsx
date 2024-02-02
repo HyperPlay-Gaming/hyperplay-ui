@@ -17,7 +17,7 @@ import LinkExternalAccountsModal from './index'
 type Story = StoryObj<typeof LinkExternalAccountsModal>
 
 const meta: Meta<typeof LinkExternalAccountsModal> = {
-  title: 'auth/LinkExternalAccountsModal'
+  title: 'auth/LinkExternalAccounts'
 }
 
 export default meta

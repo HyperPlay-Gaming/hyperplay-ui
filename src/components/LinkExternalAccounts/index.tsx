@@ -12,7 +12,7 @@ import Alert, { AlertProps } from '@/components/Alert'
 import { AuthProviderButton } from '@/index'
 
 import Modal from '../Modal/Modal'
-import styles from './LinkExternalAccountsModal.module.scss'
+import styles from './LinkExternalAccounts.module.scss'
 
 const SoonLabel = (
   <AuthProviderButton.Label className={styles.disabledLabel}>
