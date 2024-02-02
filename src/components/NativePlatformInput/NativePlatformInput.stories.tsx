@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Arch } from '@/common/types'
@@ -31,5 +33,16 @@ export const Default: Story = {
 }
 
 export const Mac: Story = {
-  args: { ...props, platformName: 'darwin', fileNameArm64: undefined }
+  args: { ...props, platformName: 'darwin', fileNameArm64: undefined },
+  render: (args) => {
+    const [file, setFile] = useState<string>('')
+    return (
+      <NativePlatformInput
+        {...args}
+        updateFile={(file) => setFile(file.name)}
+        clearFile={() => setFile('')}
+        fileNameAmd64={file}
+      ></NativePlatformInput>
+    )
+  }
 }
