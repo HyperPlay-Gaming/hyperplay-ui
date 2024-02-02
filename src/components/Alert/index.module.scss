@@ -1,12 +1,12 @@
 .base {
-  padding: 1em;
-  margin: 1em 0;
-  border-radius: 4px;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: 8px;
   color: var(--color-neutral-100);
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: var(--color-status-info);
+  gap: var(--space-xs);
+  font-weight: var(--medium);
 }
 
 .danger {
@@ -15,13 +15,14 @@
 
 .warning {
   background-color: var(--color-status-alert);
+  color: var(--color-neutral-800);
 }
 
 .success {
   background-color: var(--color-status-success);
-  color: var(--color-neutral-800);
 }
 
 .info {
+  color: var(--color-neutral-800);
   background-color: var(--color-status-info);
 }
