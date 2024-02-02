@@ -4,7 +4,7 @@
 @import '../../styles/utilities/_variables';
 
 .root {
-  max-width: 680px;
+  max-width: 600px;
 }
 
 .icon {
@@ -37,4 +37,5 @@
 
 .loadingButton {
   min-width: 107px;
+  font-size: var(--text-xs);
 }
