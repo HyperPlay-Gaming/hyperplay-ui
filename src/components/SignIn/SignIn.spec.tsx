@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import SignInModal from './index'
 
-describe('SignInModal', () => {
+describe('SignIn', () => {
   it('submits the email form and triggers onEmailSignup handler', () => {
     const onEmailSubmit = vi.fn()
     renderWithMantine(<SignInModal onClose={vi.fn} onSubmit={onEmailSubmit} />)

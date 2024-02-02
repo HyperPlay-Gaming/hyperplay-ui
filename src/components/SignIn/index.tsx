@@ -9,7 +9,7 @@ import Modal from '@/components/Modal/Modal'
 import { TextInput } from '@/index'
 
 import Alert from '../Alert'
-import styles from './SignInModal.module.scss'
+import styles from './SignIn.module.scss'
 
 interface I18n {
   title: string

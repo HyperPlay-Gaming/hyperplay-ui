@@ -2,10 +2,10 @@ import React from 'react'
 
 import { Meta, StoryObj } from '@storybook/react'
 
-import SignInModal from '@/components/SignInModal/index'
+import SignInModal from '@/components/SignIn/index'
 
 const meta: Meta<typeof SignInModal> = {
-  title: 'auth/SignInModal'
+  title: 'auth/SignIn'
 }
 
 export default meta
