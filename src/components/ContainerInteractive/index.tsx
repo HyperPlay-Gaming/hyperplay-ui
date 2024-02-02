@@ -7,10 +7,12 @@ import styles from './ContainerInteractive.module.scss'
 
 export interface ContainerInteractiveProps extends HTMLProps<HTMLDivElement> {
   title: string
+  tag?: ReactElement
   icon: ReactElement
   classNames?: {
     root?: string
     header?: string
+    titleContainer?: string
   }
 }
 
@@ -20,6 +22,7 @@ export function ContainerInteractive({
   classNames,
   children,
   className,
+  tag,
   ...props
 }: ContainerInteractiveProps) {
   return (
@@ -28,7 +31,10 @@ export function ContainerInteractive({
       {...props}
     >
       <div className={cn(styles.headerRow, classNames?.header)}>
-        <div className="title">{title}</div>
+        <div className={cn(styles.titleContainer, classNames?.titleContainer)}>
+          <div className="title">{title}</div>
+          {tag ?? null}
+        </div>
         {icon}
       </div>
       {children}
