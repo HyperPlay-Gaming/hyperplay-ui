@@ -4,6 +4,8 @@ import React from 'react'
 
 import cn from 'classnames'
 
+import { getTruncatedAddress } from '@/utils/addressUtils'
+
 import '../ButtonCopy'
 import styles from './RewardDetails.module.scss'
 
@@ -31,10 +33,6 @@ export function RewardDetails({
   className,
   ...props
 }: RewardDetailsProps) {
-  function getTruncatedAddress(addr: string) {
-    return addr.slice(0, 5) + '...' + addr.slice(-5)
-  }
-
   const detailTexts = [
     chainName,
     tokenType,
