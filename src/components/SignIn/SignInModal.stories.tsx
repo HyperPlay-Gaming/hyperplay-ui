@@ -6,7 +6,7 @@ import { expect, fn, userEvent, within } from '@storybook/test'
 import SignInModal from '@/components/SignIn/index'
 
 const meta: Meta<typeof SignInModal> = {
-  title: 'auth/SignIn',
+  title: 'auth/SignInModal',
   args: {
     onClose: fn(),
     onSubmit: fn()

@@ -63,7 +63,7 @@ const authProviders = [
 ]
 
 const meta: Meta<typeof LinkExternalAccountsModal> = {
-  title: 'auth/LinkExternalAccounts',
+  title: 'auth/LinkExternalAccountsModal',
   args: {
     providers: authProviders,
     onClose: fn(),

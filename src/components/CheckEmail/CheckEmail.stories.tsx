@@ -6,7 +6,7 @@ import { expect, fn, userEvent, within } from '@storybook/test'
 import CheckEmailModal from './index'
 
 const meta: Meta<typeof CheckEmailModal> = {
-  title: 'auth/CheckEmail',
+  title: 'auth/CheckEmailModal',
   args: {
     email: 'hello@hyperplay.xyz',
     onClose: fn(),
