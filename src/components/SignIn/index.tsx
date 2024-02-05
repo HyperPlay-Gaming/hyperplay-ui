@@ -74,6 +74,7 @@ const SignUp = ({
           />
           <div className={styles.buttonContainer}>
             <Button
+              disabled={loading}
               type="secondary"
               htmlType="submit"
               size="medium"
