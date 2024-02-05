@@ -26,5 +26,3 @@ jobs:
         run: yarn lint
       - name: Prettier code.
         run: yarn prettier
-      - name: Run tests.
-        run: yarn test

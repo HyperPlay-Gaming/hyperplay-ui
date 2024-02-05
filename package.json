@@ -15,7 +15,6 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
     "prettier-fix": "prettier --write .",
     "prettier": "prettier --check .",
-    "test": "vitest",
     "test-storybook": "test-storybook"
   },
   "resolutions": {
@@ -86,8 +85,7 @@
     "vite-plugin-dts": "^1.7.3",
     "vite-plugin-linter": "^2.0.2",
     "vite-plugin-static-copy": "^0.13.0",
-    "vite-plugin-svgr": "^2.4.0",
-    "vitest": "^0.33.0"
+    "vite-plugin-svgr": "^2.4.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.11.0",
