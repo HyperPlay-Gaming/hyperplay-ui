@@ -2,8 +2,7 @@ import React from 'react'
 
 import { expect } from '@storybook/jest'
 import { Meta, StoryObj } from '@storybook/react'
-import { Mock, fn } from '@storybook/test'
-import { fireEvent, within } from '@storybook/testing-library'
+import { fn, userEvent, within } from '@storybook/test'
 
 import SignInModal from '@/components/SignIn/index'
 
@@ -28,13 +27,11 @@ export const Default: Story = {
     )
   },
   play: async ({ canvasElement, args }) => {
-    const onEmailSubmit = args.onSubmit as Mock
+    const onEmailSubmit = args.onSubmit
     const canvas = within(canvasElement)
     const emailInput = canvas.getByPlaceholderText('Enter your email')
-    fireEvent.change(emailInput, {
-      target: { value: 'test@example.com' }
-    })
-    fireEvent.click(canvas.getByRole('button', { name: /sign in/i }))
+    await userEvent.type(emailInput, 'test@example.com')
+    await userEvent.click(canvas.getByRole('button', { name: /sign in/i }))
     await expect(onEmailSubmit).toHaveBeenCalledWith('test@example.com')
   }
 }
@@ -46,13 +43,11 @@ export const Loading: Story = {
     </div>
   ),
   play: async ({ canvasElement, args }) => {
-    const onEmailSubmit = args.onSubmit as Mock
+    const onEmailSubmit = args.onSubmit
     const canvas = within(canvasElement)
     const emailInput = canvas.getByPlaceholderText('Enter your email')
-    fireEvent.change(emailInput, {
-      target: { value: 'test@example.com' }
-    })
-    fireEvent.click(canvas.getByRole('button', { name: /loading/i }))
+    await userEvent.type(emailInput, 'test@example.com')
+    await userEvent.click(canvas.getByRole('button', { name: /loading/i }))
     await expect(onEmailSubmit).not.toHaveBeenCalled()
   }
 }
