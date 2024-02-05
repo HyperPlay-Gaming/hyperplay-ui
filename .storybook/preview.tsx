@@ -24,7 +24,7 @@ export const parameters = {
 }
 
 export const decorators = [
-  (Story) => (
+  (Story: any) => (
     <HyperPlayDesignProvider>
       <Story />
     </HyperPlayDesignProvider>

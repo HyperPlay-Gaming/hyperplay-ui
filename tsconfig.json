@@ -24,7 +24,7 @@
       "tests/*": ["./tests/*"]
     },
     "typeRoots": ["node_modules/@types", "src/global.d.ts"],
-    "types": ["vite-plugin-svgr/client", "vite/client", "vitest/globals"]
+    "types": ["vite-plugin-svgr/client", "vite/client"]
   },
   "include": ["src", "./tests/setup.ts", "./tests/utils/*"],
   "references": [{ "path": "./tsconfig.node.json" }],
