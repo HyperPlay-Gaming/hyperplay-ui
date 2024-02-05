@@ -75,6 +75,7 @@ const SignUp = ({
           <div className={styles.buttonContainer}>
             <Button
               disabled={loading}
+              aria-label={loading ? 'loading' : undefined}
               type="secondary"
               htmlType="submit"
               size="medium"
