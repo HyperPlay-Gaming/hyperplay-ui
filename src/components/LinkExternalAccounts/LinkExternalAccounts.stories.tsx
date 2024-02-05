@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Meta, StoryObj } from '@storybook/react'
+import { expect, fn, userEvent, within } from '@storybook/test'
 
 import {
   DiscordFilled,
@@ -15,12 +16,6 @@ import {
 import LinkExternalAccountsModal from './index'
 
 type Story = StoryObj<typeof LinkExternalAccountsModal>
-
-const meta: Meta<typeof LinkExternalAccountsModal> = {
-  title: 'auth/LinkExternalAccounts'
-}
-
-export default meta
 
 const connectedProviders = {
   metamaskExtension: true,
@@ -67,45 +62,63 @@ const authProviders = [
   }
 ]
 
+const meta: Meta<typeof LinkExternalAccountsModal> = {
+  title: 'auth/LinkExternalAccounts',
+  args: {
+    providers: authProviders,
+    onClose: fn(),
+    onWalletClick: fn(),
+    onAuthProviderClick: fn()
+  }
+}
+
+export default meta
+
 export const Default: Story = {
-  render: () => (
+  render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
-      <LinkExternalAccountsModal
-        providers={authProviders}
-        onClose={() => alert('Closed')}
-        onWalletClick={() => alert('Wallet linked')}
-        onAuthProviderClick={(provider) => alert(`Provider: ${provider.id}`)}
-      />
+      <LinkExternalAccountsModal {...args} />
     </div>
-  )
+  ),
+  play: async ({ canvasElement, args }) => {
+    const provider = authProviders[0]
+    const onAuthSignup = args.onAuthProviderClick
+    const canvas = within(canvasElement)
+    const providerButton = canvas.getByRole('button', {
+      name: new RegExp(provider.name, 'i')
+    })
+    await userEvent.click(providerButton)
+    await expect(onAuthSignup).toHaveBeenCalledWith(provider)
+  }
 }
 
 export const WalletProvidersConnected: Story = {
-  render: () => (
+  render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
       <LinkExternalAccountsModal
-        providers={authProviders}
-        onClose={() => alert('Closed')}
-        onWalletClick={() => alert('Wallet linked')}
-        onAuthProviderClick={(provider) => alert(`Provider: ${provider.id}`)}
+        {...args}
         walletProvidersConnectionState={connectedProviders}
       />
     </div>
-  )
+  ),
+  play: async ({ canvasElement, args }) => {
+    const onWalletClick = args.onWalletClick
+    const canvas = within(canvasElement)
+    const walletButton = canvas.getByRole('button', { name: /wallet/i })
+    await userEvent.click(walletButton)
+    await expect(onWalletClick).toHaveBeenCalled()
+  }
 }
 
 export const Error: Story = {
-  render: () => (
+  render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
       <LinkExternalAccountsModal
+        {...args}
         alert={{
           variant: 'danger',
           message: 'Something went wrong. Please try again later.'
         }}
-        providers={authProviders}
-        onClose={close}
-        onWalletClick={() => alert('Wallet linked')}
-        onAuthProviderClick={(provider) => alert(`Provider: ${provider.id}`)}
       />
     </div>
   )
