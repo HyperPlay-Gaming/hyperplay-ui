@@ -48,8 +48,7 @@ export default function FAQ({
       {faqList.length > MAX_FAQS_DISPLAYED && (
         <Button
           className={styles.seeMoreButton}
-          size="small"
-          type="text"
+          type="link"
           onClick={() => setShowAll((prevState) => !prevState)}
         >
           {showAll ? i18n.seeLessButtonText : i18n.seeMoreButtonText}
