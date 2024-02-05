@@ -1,8 +1,7 @@
 import React from 'react'
 
-import { expect } from '@storybook/jest'
 import { Meta, StoryObj } from '@storybook/react'
-import { fn, userEvent, within } from '@storybook/test'
+import { expect, fn, userEvent, within } from '@storybook/test'
 
 import SignInModal from '@/components/SignIn/index'
 
