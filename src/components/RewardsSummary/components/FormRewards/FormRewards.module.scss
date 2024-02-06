@@ -1,0 +1,10 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.label {
+  color: var(--color-neutral-400);
+  margin-bottom: var(--space-2xs);
+}
