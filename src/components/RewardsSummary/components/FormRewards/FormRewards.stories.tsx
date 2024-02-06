@@ -49,7 +49,19 @@ const props: FormRewardsProps = {
   decimalsTextInputProps: { placeholder: '0', label: 'Decimals' },
 
   /* erc1155 props*/
-  rewardInputs: [],
+  erc1155RewardInputs: [
+    {
+      onRemoveClick: () => console.log('remove reward input 0'),
+      tokenNameTextInputProps: {
+        placeholder: 'Enter Token Name',
+        label: 'Token Name'
+      },
+      amountPerUserTextInputProps: {
+        placeholder: '0',
+        label: 'Amount Per User'
+      }
+    }
+  ],
   addTokenId: () => console.log('add token'),
   i18n: {
     addTokenId: 'Add Token ID'

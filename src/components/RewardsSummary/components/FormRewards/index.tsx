@@ -34,7 +34,7 @@ export interface FormRewardsProps {
   decimalsTextInputProps: TextInputProps
 
   /* erc1155 props*/
-  rewardInputs: TokenIdRowInputProps[]
+  erc1155RewardInputs: TokenIdRowInputProps[]
   addTokenId: () => void
   i18n: {
     addTokenId: string

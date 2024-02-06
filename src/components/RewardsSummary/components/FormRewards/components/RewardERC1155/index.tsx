@@ -12,7 +12,7 @@ import { TokenIdRow } from './components/TokenIdRow'
 
 export interface RewardERC1155Props {
   marketplaceUrlTextInputProps: TextInputProps
-  rewardInputs: TokenIdRowInputProps[]
+  erc1155RewardInputs: TokenIdRowInputProps[]
   addTokenId: () => void
   i18n: {
     addTokenId: string
@@ -21,11 +21,11 @@ export interface RewardERC1155Props {
 
 export function RewardERC1155({
   marketplaceUrlTextInputProps,
-  rewardInputs,
+  erc1155RewardInputs,
   addTokenId,
   i18n
 }: RewardERC1155Props) {
-  const tokenIdRows = rewardInputs.map((inputs_i, index) => (
+  const tokenIdRows = erc1155RewardInputs.map((inputs_i, index) => (
     <TokenIdRow
       key={index}
       {...inputs_i}

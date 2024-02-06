@@ -6,6 +6,7 @@ import { TrashCan } from '@/assets/images'
 import TextInput from '@/components/TextInput'
 
 import { TokenIdRowInputProps } from '../../../../types'
+import styles from './index.module.scss'
 
 export function TokenIdRow({
   tokenNameTextInputProps,
@@ -13,11 +14,11 @@ export function TokenIdRow({
   onRemoveClick
 }: TokenIdRowInputProps) {
   return (
-    <div>
+    <div className={styles.root}>
       <TextInput {...tokenNameTextInputProps} />
       <TextInput {...amountPerUserTextInputProps} />
-      <button onClick={onRemoveClick}>
-        <TrashCan />
+      <button onClick={onRemoveClick} className={styles.removeButton}>
+        <TrashCan className={styles.removeIcon} />
       </button>
     </div>
   )

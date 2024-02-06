@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-md);
+  justify-content: stretch;
+
+  > * {
+    flex-grow: 1;
+  }
+
+  > *.removeButton {
+    flex-grow: 0;
+  }
+}
+
+.removeIcon {
+  fill: var(--color-neutral-400);
+}
