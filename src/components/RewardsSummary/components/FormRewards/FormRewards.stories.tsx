@@ -9,7 +9,8 @@ type Story = StoryObj<typeof FormRewards>
 
 const meta: Meta<typeof FormRewards> = {
   title: 'Quests/RewardsSummary/FormRewards',
-  component: FormRewards
+  component: FormRewards,
+  excludeStories: ['formRewardsProps']
 }
 
 export default meta
