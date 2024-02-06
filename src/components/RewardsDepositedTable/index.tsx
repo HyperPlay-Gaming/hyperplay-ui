@@ -3,6 +3,7 @@
 import React from 'react'
 
 import { TokenType } from '@/common/types'
+import { getTruncatedAddress } from '@/utils/addressUtils'
 
 import { ButtonCopy } from '../ButtonCopy'
 import styles from './RewardsDepositedTable.module.scss'
@@ -61,8 +62,11 @@ export function RewardsDepositedTable({
       <tr>
         <td>{i18n.tokenContractAddress}</td>
         <td>
-          {truncateAddress(tokenContractAddress)}
-          <ButtonCopy text={tokenContractAddress} />
+          {getTruncatedAddress(tokenContractAddress)}
+          <ButtonCopy
+            text={tokenContractAddress}
+            className={styles.copyButton}
+          />
         </td>
       </tr>
       <tr>
