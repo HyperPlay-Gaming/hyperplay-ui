@@ -1,10 +1,11 @@
 import { useState } from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react'
-import { IconPencil } from '@tabler/icons-react'
+import { IconEdit } from '@tabler/icons-react'
 
 import { Ellipsis, TrashCan } from '@/assets/images'
 
+import Button from '../Button'
 import { rewardDetailsProps } from '../RewardDetails/RewardDetails.stories'
 import { formRewardsProps } from './components/FormRewards/FormRewards.stories'
 import { RewardsSummary, RewardsSummaryProps } from './index'
@@ -22,8 +23,6 @@ const props: RewardsSummaryProps = {
   title: 'Reward 1',
   icon: <Ellipsis />,
   rewardsProps: formRewardsProps,
-  addERC1155TokenId: () =>
-    console.log('add new input field for erc 1155 token id'),
   editable: true,
   updateEditable: (editable) => console.log(`editable: ${editable}`),
   rewardDetailsProps: rewardDetailsProps
@@ -37,17 +36,23 @@ export const Confirmed: Story = {
   args: { ...props },
   render: (args) => {
     const [editable, setEditable] = useState(false)
+    const [erc1155Tokens, setErc1155Tokens] = useState(
+      args.rewardsProps.erc1155RewardInputs
+    )
 
     let iconButton = (
       <button onClick={() => setEditable(true)}>
-        <IconPencil color="var(--color-neutral-400)" />
+        <IconEdit color="var(--color-neutral-400)" />
       </button>
     )
     if (editable) {
       iconButton = (
-        <button>
-          <TrashCan fill="var(--color-neutral-400)" />
-        </button>
+        <Button
+          type="tertiary"
+          rightIcon={<TrashCan fill="var(--color-neutral-400)" />}
+        >
+          Remove
+        </Button>
       )
     }
     return (
@@ -56,6 +61,30 @@ export const Confirmed: Story = {
         editable={editable}
         updateEditable={setEditable}
         icon={iconButton}
+        rewardsProps={{
+          ...args.rewardsProps,
+          erc1155RewardInputs: erc1155Tokens,
+          addTokenId: () => {
+            console.log('add token id')
+            console.log(erc1155Tokens)
+            const newTokenId = {
+              onRemoveClick: () =>
+                console.log(`remove reward input ${erc1155Tokens.length}`),
+              tokenNameTextInputProps: {
+                placeholder: 'Enter Token Name',
+                label: 'Token Name'
+              },
+              amountPerUserTextInputProps: {
+                placeholder: '0',
+                label: 'Amount Per User'
+              }
+            }
+            console.log('asdfdas')
+            const newTokenArray = [...erc1155Tokens, newTokenId]
+            console.log(newTokenArray)
+            setErc1155Tokens(newTokenArray)
+          }
+        }}
       />
     )
   }

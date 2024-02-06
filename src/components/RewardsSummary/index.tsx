@@ -12,7 +12,6 @@ export interface RewardsSummaryProps {
   classNames?: {
     root?: string
   }
-  addERC1155TokenId: () => void
   rewardsProps: FormRewardsProps
   editable: boolean
   updateEditable: (editable: boolean) => void
@@ -28,7 +27,7 @@ export function RewardsSummary({
   rewardsProps,
   editable,
   updateEditable,
-  i18n = { confirm: 'Confirm' },
+  i18n = { confirm: 'Confirm Changes' },
   rewardDetailsProps
 }: RewardsSummaryProps) {
   let content = <RewardDetails {...rewardDetailsProps} />

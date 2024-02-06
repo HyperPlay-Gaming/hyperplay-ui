@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { TrashCan } from '@/assets/images'
+import Button from '@/components/Button'
 import TextInput from '@/components/TextInput'
 
 import { TokenIdRowInputProps } from '../../../../types'
@@ -15,11 +15,17 @@ export function TokenIdRow({
 }: TokenIdRowInputProps) {
   return (
     <div className={styles.root}>
-      <TextInput {...tokenNameTextInputProps} />
-      <TextInput {...amountPerUserTextInputProps} />
-      <button onClick={onRemoveClick} className={styles.removeButton}>
-        <TrashCan className={styles.removeIcon} />
-      </button>
+      <div className={styles.inputRow}>
+        <TextInput {...tokenNameTextInputProps} />
+        <TextInput {...amountPerUserTextInputProps} />
+      </div>
+      <Button
+        type="tertiary"
+        onClick={onRemoveClick}
+        className={styles.removeButton}
+      >
+        Remove
+      </Button>
     </div>
   )
 }

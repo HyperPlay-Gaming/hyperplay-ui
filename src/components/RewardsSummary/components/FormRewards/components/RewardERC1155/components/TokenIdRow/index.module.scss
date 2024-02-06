@@ -1,4 +1,4 @@
-.root {
+.inputRow {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -8,12 +8,14 @@
   > * {
     flex-grow: 1;
   }
-
-  > *.removeButton {
-    flex-grow: 0;
-  }
 }
 
-.removeIcon {
+.removeButton {
   fill: var(--color-neutral-400);
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
 }
