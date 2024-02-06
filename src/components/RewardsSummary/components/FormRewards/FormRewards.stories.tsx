@@ -32,7 +32,7 @@ export const formRewardsProps: FormRewardsProps = {
     i18n: {
       searchValue: 'Search for Network'
     },
-    options: defaultNetworks.map((val) => val.value),
+    options: defaultNetworks.map((val) => val.label),
     onChange: (option) => console.log(option),
     onCreated: (option) => console.log(option)
   },
