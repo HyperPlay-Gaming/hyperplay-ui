@@ -1,6 +1,6 @@
 @use '../../../../styles/utilities/_variables';
-@import '../../../../styles/designSystem/typography';
-@import '../../../../styles/designSystem/spacing';
+@use '../../../../styles/designSystem/typography';
+@use '../../../../styles/designSystem/spacing';
 
 .item {
   margin-top: var(--space-2lg);
