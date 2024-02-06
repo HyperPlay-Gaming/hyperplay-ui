@@ -1,0 +1,43 @@
+@use '../../styles/utilities/_variables';
+@import '../../styles/designSystem/typography';
+@import '../../styles/designSystem/spacing';
+
+.container {
+  background-color: var(--color-neutral-800);
+  color: var(--color-neutral-200);
+  font-family: var(--default-secondary-font-family);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-xl);
+  text-align: center;
+}
+
+.title {
+  @extend .title;
+
+  margin-top: var(--space-lg);
+}
+
+.description {
+  @extend .caption;
+
+  font-size: var(--text-md);
+  font-weight: var(--regular);
+  margin-bottom: var(--space-xl);
+  max-width: 90%;
+
+  @include variables.for-tablet-portrait-up {
+    max-width: 35%;
+  }
+
+  @include variables.for-desktop-up {
+    max-width: 30%;
+  }
+}
+
+.questIcon {
+  width: 120;
+  height: 120;
+}
