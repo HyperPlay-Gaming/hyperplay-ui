@@ -11,6 +11,8 @@ import {
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
 import styles from './ .module.scss'
+import { RewardERC20_721 } from './components/RewardERC20_721'
+import { RewardERC1155 } from './components/RewardERC1155'
 
 const data = [
   { text: 'Select Reward Type' },
@@ -23,6 +25,9 @@ export interface FormRewardsProps {
   tokenAddressTextInputProps: TextInputProps
   onDropdownSelectionChange: (item: itemType) => void
   networkSelectCreatableProps: SelectCreatableProps
+  i18n: {
+    addTokenId: string
+  }
 }
 
 export function FormRewards({
@@ -31,14 +36,18 @@ export function FormRewards({
   networkSelectCreatableProps
 }: FormRewardsProps) {
   const [selectedTokenType, setSelectedTokenType] = useState(data[0])
+  let content = null
+  if (selectedTokenType.text === 'ERC721') {
+    content = <RewardERC20_721 tokenType="erc721" />
+  } else if (selectedTokenType.text === 'ERC20') {
+    content = <RewardERC20_721 tokenType="erc20" />
+  } else {
+    content = <RewardERC1155 />
+  }
   return (
     <div className={styles.root}>
       <SelectCreatable {...networkSelectCreatableProps} />
-      <TextInput
-        placeholder="Paste token address"
-        label="Token Contract Address"
-        {...tokenAddressTextInputProps}
-      />
+      <TextInput {...tokenAddressTextInputProps} />
       <div>
         <div className={cn('caption', styles.label)}>Reward Token Type</div>
         <Dropdown
@@ -50,6 +59,7 @@ export function FormRewards({
           }}
         />
       </div>
+      {content}
     </div>
   )
 }

@@ -2,35 +2,40 @@
 
 import React from 'react'
 
-import TextInput, { TextInputProps } from '@/components/TextInput'
 import Button from '@/components/Fab/components/Button'
-import { TokenIdRowInputProps, i18nProps } from '../../types'
-import { TokenIdRow } from './components/TokenIdRow'
-import { i18nDefaultValues } from '../../constants'
+import TextInput, { TextInputProps } from '@/components/TextInput'
 
-export interface RewardERC1155Props extends i18nProps{
+import { TokenIdRowInputProps } from '../../types'
+import { TokenIdRow } from './components/TokenIdRow'
+
+export interface RewardERC1155Props {
   marketplaceUrlTextInputProps: TextInputProps
   rewardInputs: TokenIdRowInputProps[]
-  addTokenId: ()=>void
+  addTokenId: () => void
+  i18n: {
+    addTokenId: string
+  }
 }
 
 export function RewardERC1155({
   marketplaceUrlTextInputProps,
   rewardInputs,
   addTokenId,
-  i18n = i18nDefaultValues
+  i18n
 }: RewardERC1155Props) {
-    const tokenIdRows = rewardInputs.map((inputs_i, index)=><TokenIdRow key={index} {...inputs_i} onRemoveClick={}/>)
+  const tokenIdRows = rewardInputs.map((inputs_i, index) => (
+    <TokenIdRow
+      key={index}
+      {...inputs_i}
+      onRemoveClick={inputs_i.onRemoveClick}
+    />
+  ))
   return (
     <>
       <div>
         {tokenIdRows}
         <Button onClick={addTokenId}>{i18n.addTokenId}</Button>
-        <TextInput
-          placeholder="Enter Marketplace URL"
-          label="Marketplace URL"
-          {...marketplaceUrlTextInputProps}
-        />
+        <TextInput {...marketplaceUrlTextInputProps} />
       </div>
     </>
   )
