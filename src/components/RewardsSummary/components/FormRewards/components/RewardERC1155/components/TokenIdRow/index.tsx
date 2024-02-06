@@ -2,6 +2,8 @@
 
 import React from 'react'
 
+import cn from 'classnames'
+
 import { TrashCan } from '@/assets/images'
 import TextInput from '@/components/TextInput'
 
@@ -17,9 +19,14 @@ export function TokenIdRow({
     <div className={styles.root}>
       <TextInput {...tokenNameTextInputProps} />
       <TextInput {...amountPerUserTextInputProps} />
-      <button onClick={onRemoveClick} className={styles.removeButton}>
-        <TrashCan className={styles.removeIcon} />
-      </button>
+      <div className={styles.removeButtonContainer}>
+        <label className={cn('caption', styles.alignmentLabel)}>
+          only for alignment
+        </label>
+        <button onClick={onRemoveClick} className={styles.removeButton}>
+          <TrashCan className={styles.removeIcon} />
+        </button>
+      </div>
     </div>
   )
 }

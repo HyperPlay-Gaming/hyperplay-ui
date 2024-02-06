@@ -8,12 +8,28 @@
   > * {
     flex-grow: 1;
   }
-
-  > *.removeButton {
-    flex-grow: 0;
-  }
 }
 
 .removeIcon {
   fill: var(--color-neutral-400);
+}
+
+.removeButtonContainer {
+  display:flex;
+  flex-direction: column;
+  flex-grow: 0;
+  align-self: stretch;
+}
+
+
+.alignmentLabel {
+  font-size: 0;
+}
+
+.removeButton {
+  flex-grow: 1;
+  margin-top: var(--space-2xs);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
