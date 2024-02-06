@@ -20,5 +20,8 @@ $copiedColor: var(--color-success-400);
 
   &.copied {
     color: $copiedColor;
+    &:hover {
+      color: $copiedColor;
+    }
   }
 }
