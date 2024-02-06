@@ -4,6 +4,7 @@ import React from 'react'
 
 import { TokenType } from '@/common/types'
 
+import { ButtonCopy } from '../ButtonCopy'
 import styles from './RewardsDepositedTable.module.scss'
 
 export interface RewardsDepositedTableProps {
