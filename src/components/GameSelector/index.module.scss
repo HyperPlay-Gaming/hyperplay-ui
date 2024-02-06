@@ -1,0 +1,34 @@
+.searchLabel {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-2xs);
+}
+
+.selectDetails {
+  font-style: italic;
+  color: var(--color-neutral-500);
+}
+
+$dropdownBorderRadius: var(--space-xs);
+
+.menuDropdown {
+  background-color: var(--color-neutral-700) !important;
+  color: var(--color-neutral-400);
+  border: none;
+  padding: 0px;
+  border-radius: $dropdownBorderRadius;
+  position: absolute;
+  box-sizing: border-box;
+
+  > *:nth-child(2) {
+    border-radius: $dropdownBorderRadius $dropdownBorderRadius 0 0;
+  }
+
+  > *:last-child {
+    border-radius: 0 0 $dropdownBorderRadius $dropdownBorderRadius;
+  }
+}
+
+.underline {
+  border-bottom: 2px solid var(--color-neutral-600);
+}

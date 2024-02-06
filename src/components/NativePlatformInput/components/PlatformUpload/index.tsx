@@ -1,4 +1,4 @@
-import React, { HTMLProps, useRef } from 'react'
+import React, { HTMLProps } from 'react'
 
 import { Collapse, FileButton as FButton, Flex, Text } from '@mantine/core'
 import { IconFile, IconTrash } from '@tabler/icons-react'
@@ -38,10 +38,7 @@ export default function PlatformUpload({
   className,
   ...props
 }: PlatformUploadProps) {
-  const resetRef = useRef<() => void>(null)
-
   function onTrashClick() {
-    resetRef.current?.()
     onRemoveUpload()
   }
 
@@ -50,20 +47,16 @@ export default function PlatformUpload({
     uploadActionRow = (
       <>
         <Text color="#94A2B3">{uploadZipName}</Text>
-        <button onClick={onTrashClick} className="center">
+        <button onClick={onTrashClick} className="center" type="button">
           <IconTrash size={20} />
         </button>
       </>
     )
   } else {
     uploadActionRow = (
-      <FButton
-        resetRef={resetRef}
-        onChange={onExePathChanged}
-        accept="application/zip"
-      >
+      <FButton onChange={onExePathChanged} accept="application/zip">
         {(props) => (
-          <Button type="secondary" {...props}>
+          <Button type="secondary" htmlType="button" {...props}>
             {i18n.chooseFile}
           </Button>
         )}

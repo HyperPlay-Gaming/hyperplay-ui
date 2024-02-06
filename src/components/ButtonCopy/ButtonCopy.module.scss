@@ -1,0 +1,27 @@
+$iconWidth: 14px;
+$iconMaxHeight: 20px;
+$notCopiedColor: var(--color-neutral-400);
+$copiedColor: var(--color-success-400);
+
+.copyButton {
+  stroke: $notCopiedColor;
+  width: $iconWidth;
+  max-height: $iconMaxHeight;
+}
+
+.copiedCheckmark {
+  stroke: $copiedColor;
+  width: $iconWidth;
+  max-height: $iconMaxHeight;
+}
+
+.root {
+  color: $notCopiedColor;
+
+  &.copied {
+    color: $copiedColor;
+    &:hover {
+      color: $copiedColor;
+    }
+  }
+}

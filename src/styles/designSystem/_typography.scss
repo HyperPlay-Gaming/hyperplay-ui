@@ -193,6 +193,11 @@ $h1FontSize: --text-9xl;
   font-weight: var(--bold);
   line-height: calc(var($h1FontSize) * 76 / 67);
   letter-spacing: -1%;
+  /** 
+   * Letter height is greater than line-height so the letters overflow.
+   * This can cause scrolling in containers that have plenty of room for content.
+   */
+  overflow: hidden;
 }
 
 h1 {

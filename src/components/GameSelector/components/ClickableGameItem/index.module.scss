@@ -1,0 +1,17 @@
+.gameContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: var(--space-md) var(--space-md-fixed);
+  width: 100%;
+  overflow: hidden;
+
+  svg {
+    fill: var(--color-neutral-500);
+  }
+
+  &:hover {
+    background-color: var(--color-neutral-600);
+  }
+}

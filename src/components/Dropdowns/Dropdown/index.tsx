@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from 'react'
 
-import { Group, Menu } from '@mantine/core'
+import { Menu } from '@mantine/core'
 
 import GenericDropdown, {
   DropdownProps as GenericDropdownDropdownProps
@@ -19,7 +19,7 @@ export interface DropdownProps
   options: itemType[]
   selected: itemType
   onItemChange: (item: itemType) => void
-  targetWidth?: string
+  targetWidth?: number
   dropdownButtonDivProps?: HTMLAttributes<HTMLDivElement>
   dropdownButtonDataTestId?: string
   dropdownButtonProps?: HTMLAttributes<HTMLButtonElement>
@@ -51,22 +51,20 @@ export default function Dropdown({
     </Menu.Item>
   ))
   return (
-    <Group>
-      <GenericDropdown
-        target={
-          <GenericDropdown.GenericButton
-            text={selected.text}
-            style={{ width: targetWidth }}
-            divProps={dropdownButtonDivProps}
-            data-testid={dropdownButtonDataTestId}
-            {...dropdownButtonProps}
-          ></GenericDropdown.GenericButton>
-        }
-        classNames={{ item: styles.item }}
-        {...props}
-      >
-        {items}
-      </GenericDropdown>
-    </Group>
+    <GenericDropdown
+      target={
+        <GenericDropdown.GenericButton
+          text={selected.text}
+          style={{ width: targetWidth }}
+          divProps={dropdownButtonDivProps}
+          data-testid={dropdownButtonDataTestId}
+          {...dropdownButtonProps}
+        ></GenericDropdown.GenericButton>
+      }
+      classNames={{ item: styles.item }}
+      {...props}
+    >
+      {items}
+    </GenericDropdown>
   )
 }
