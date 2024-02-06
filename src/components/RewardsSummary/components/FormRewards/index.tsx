@@ -70,6 +70,8 @@ export function FormRewards(props: FormRewardsProps) {
             props.onDropdownSelectionChange(item)
           }}
           targetWidth={300}
+          dropdownButtonDivProps={{ className: styles.dropdownButton }}
+          classNames={{ item: styles.dropdownItem }}
         />
       </div>
       {content}

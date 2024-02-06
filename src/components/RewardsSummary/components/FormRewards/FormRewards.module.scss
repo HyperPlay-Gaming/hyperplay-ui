@@ -1,3 +1,5 @@
+@use '../../../../styles/designSystem/typography';
+
 .root {
   display: flex;
   flex-direction: column;
@@ -7,4 +9,13 @@
 .label {
   color: var(--color-neutral-400);
   margin-bottom: var(--space-2xs);
+}
+
+.dropdownButton {
+  @extend .caption;
+  color: var(--color-neutral-400);
+}
+
+.dropdownItem {
+  font-size: var(--text-md);
 }
