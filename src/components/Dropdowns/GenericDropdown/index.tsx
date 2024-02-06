@@ -24,6 +24,7 @@ const GenericButton = forwardRef<HTMLButtonElement, GenericButtonProps>(
   ({ className, divProps, ...props }: GenericButtonProps, ref) => {
     return (
       <Button
+        htmlType="button"
         type="tertiary"
         rightIcon={<DownArrow fill="var(--color-neutral-400)" />}
         className={`${styles.genericButton} ${className}`}
