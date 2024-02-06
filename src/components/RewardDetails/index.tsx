@@ -6,7 +6,7 @@ import cn from 'classnames'
 
 import { getTruncatedAddress } from '@/utils/addressUtils'
 
-import '../ButtonCopy'
+import { ButtonCopy } from '../ButtonCopy'
 import styles from './RewardDetails.module.scss'
 
 export interface RewardDetailsProps
