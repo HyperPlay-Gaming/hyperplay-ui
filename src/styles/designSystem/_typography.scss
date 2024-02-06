@@ -298,12 +298,12 @@ $headerFontSize: --text-3xl;
   line-height: calc(var($headerFontSize) * 32 / 28);
 }
 
-$headerFontSize: --text-sm;
+$captionFontSize: --text-sm;
 .caption {
   font-family: var(--secondary-font-family);
-  font-size: var($headerFontSize);
+  font-size: var($captionFontSize);
   font-weight: var(--medium);
-  line-height: calc(var($headerFontSize) * 20 / 14);
+  line-height: calc(var($captionFontSize) * 20 / 14);
 }
 
 $captionSmFontSize: --text-xs;

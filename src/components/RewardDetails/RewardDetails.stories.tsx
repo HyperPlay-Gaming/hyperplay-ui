@@ -4,14 +4,15 @@ import { RewardDetails, RewardDetailsProps } from '.'
 
 const meta: Meta<typeof RewardDetails> = {
   title: 'Quests/RewardDetails',
-  component: RewardDetails
+  component: RewardDetails,
+  excludeStories: ['rewardDetailsProps']
 }
 
 export default meta
 
 type Story = StoryObj<typeof RewardDetails>
 
-const props: RewardDetailsProps = {
+export const rewardDetailsProps: RewardDetailsProps = {
   title: 'Reward 1',
   chainName: 'Polygon',
   tokenType: 'ERC-721',
@@ -22,5 +23,5 @@ const props: RewardDetailsProps = {
 }
 
 export const Default: Story = {
-  args: { ...props }
+  args: { ...rewardDetailsProps }
 }
