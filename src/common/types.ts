@@ -9,3 +9,5 @@ export const platformLabels: Record<Platforms, string> = {
   darwin: 'macOS',
   web: 'Web'
 }
+
+export type TokenType = 'erc20' | 'erc1155' | 'erc721'

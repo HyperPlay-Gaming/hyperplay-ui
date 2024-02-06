@@ -1,0 +1,27 @@
+.root {
+  width: 100%;
+  border-collapse: collapse;
+  tr {
+    border-bottom: 1px solid var(--color-neutral-600);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    > td {
+      padding: var(--space-md) 0px;
+
+      &:last-of-type {
+        text-align: right;
+      }
+    }
+  }
+
+  td:first-of-type {
+    color: var(--color-neutral-400);
+  }
+}
+
+.copyButton {
+  margin-left: var(--space-md);
+}
