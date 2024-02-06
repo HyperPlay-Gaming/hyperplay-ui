@@ -4,7 +4,8 @@ import { RewardDetails, RewardDetailsProps } from '.'
 
 const meta: Meta<typeof RewardDetails> = {
   title: 'Quests/RewardDetails',
-  component: RewardDetails
+  component: RewardDetails,
+  excludeStories: ['rewardDetailsProps']
 }
 
 export default meta
