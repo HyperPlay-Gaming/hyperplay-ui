@@ -8,9 +8,9 @@ import {
   SelectCreatable,
   SelectCreatableProps
 } from '@/components/SelectCreatable'
-import TextInput from '@/components/TextInput'
+import TextInput, { TextInputProps } from '@/components/TextInput'
 
-import styles from './FormRewards.module.scss'
+import styles from './ .module.scss'
 
 const data = [
   { text: 'Select Reward Type' },
@@ -20,13 +20,13 @@ const data = [
 ]
 
 export interface FormRewardsProps {
-  onTokenAddressChange: (text: string) => void
+  tokenAddressTextInputProps: TextInputProps
   onDropdownSelectionChange: (item: itemType) => void
   networkSelectCreatableProps: SelectCreatableProps
 }
 
 export function FormRewards({
-  onTokenAddressChange,
+  tokenAddressTextInputProps,
   onDropdownSelectionChange,
   networkSelectCreatableProps
 }: FormRewardsProps) {
@@ -37,7 +37,7 @@ export function FormRewards({
       <TextInput
         placeholder="Paste token address"
         label="Token Contract Address"
-        onChange={(ev) => onTokenAddressChange(ev.target.value)}
+        {...tokenAddressTextInputProps}
       />
       <div>
         <div className={cn('caption', styles.label)}>Reward Token Type</div>
