@@ -9,6 +9,7 @@ import TextInput, { TextInputProps } from '@/components/TextInput'
 
 import { TokenIdRowInputProps } from '../../types'
 import { TokenIdRow } from './components/TokenIdRow'
+import styles from './index.module.scss'
 
 export interface RewardERC1155Props {
   marketplaceUrlTextInputProps: TextInputProps
@@ -35,11 +36,21 @@ export function RewardERC1155({
   return (
     <>
       <div>
-        {tokenIdRows}
-        <Button onClick={addTokenId} type="link" leftIcon={<IconPlus />}>
-          {i18n.addTokenId}
-        </Button>
-        <TextInput {...marketplaceUrlTextInputProps} />
+        <div className={styles.tokenIdContainer}>
+          {tokenIdRows}
+          <Button
+            onClick={addTokenId}
+            type="link"
+            leftIcon={<IconPlus />}
+            className={styles.addTokenIdButton}
+          >
+            {i18n.addTokenId}
+          </Button>
+        </div>
+        <TextInput
+          className={styles.marketplaceUrlInput}
+          {...marketplaceUrlTextInputProps}
+        />
       </div>
     </>
   )
