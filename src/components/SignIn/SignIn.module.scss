@@ -1,0 +1,41 @@
+@use '../../styles/designSystem/spacing';
+@use '../../styles/designSystem/colors';
+@use '../../styles/designSystem/typography';
+@use '../../styles/utilities/_variables';
+
+.root {
+  max-width: 600px;
+}
+
+.icon {
+  fill: var(--color-neutral-100);
+}
+
+.recommendedLabel {
+  color: var(--color-primary-200);
+}
+
+.emailRoundedIcon {
+  background: var(--color-primary-500);
+}
+
+.buttonContainer {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2lg);
+}
+
+.label {
+  font-weight: var(--bold);
+}
+
+.loadingButton {
+  min-width: 107px;
+  font-size: var(--text-xs);
+}
