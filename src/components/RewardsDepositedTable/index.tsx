@@ -87,7 +87,11 @@ export function RewardsDepositedTable({
       </tr>
       <tr>
         <td>{i18n.marketplaceUrl}</td>
-        <td>{marketplaceUrl}</td>
+        <td>
+          <a target="_blank" rel="noopener noreferrer" href={marketplaceUrl}>
+            {marketplaceUrl}
+          </a>
+        </td>
       </tr>
     </table>
   )
