@@ -1,0 +1,26 @@
+@use '../../styles/utilities/_variables';
+@use '../../styles/designSystem/typography';
+@use '../../styles/designSystem/spacing';
+
+.container {
+  background-color: var(--color-neutral-800);
+  color: var(--color-neutral-200);
+  font-family: var(--default-secondary-font-family);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--space-2lg);
+}
+
+.title {
+  @extend .title;
+
+  font-family: var(--secondary-font-family);
+  font-weight: var(--bold);
+}
+
+.seeMoreButton {
+  margin-top: var(--space-sm);
+  padding: 0;
+}

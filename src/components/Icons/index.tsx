@@ -44,7 +44,9 @@ const IconFill: { [key: string]: string } = {
 const IconStroke: { [key: string]: string } = {
   Discord: '#FFFFFF',
   GiftBox: '#FFFFFF',
-  AlertTriangle: '#FFFFFF'
+  AlertTriangle: '#FFFFFF',
+  PlusCircle: '#FFFFFF',
+  MinusCircle: '#FFFFFF'
 }
 
 export default function Icons() {
