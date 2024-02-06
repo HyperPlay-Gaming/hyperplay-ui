@@ -5,6 +5,7 @@ import React from 'react'
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
 import { TokenRewardInput } from '../../types'
+import styles from './index.module.scss'
 
 export interface RewardERC20_721Props extends TokenRewardInput {
   decimalsTextInputProps: TextInputProps
@@ -27,7 +28,7 @@ export function RewardERC20_721({
 
   return (
     <>
-      <div>
+      <div className={styles.tokenContainer}>
         <TextInput {...tokenNameTextInputProps} />
         {tokenInput}
       </div>
