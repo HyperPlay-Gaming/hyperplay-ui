@@ -2,7 +2,9 @@
 
 import React from 'react'
 
-import Button from '@/components/Fab/components/Button'
+import { IconPlus } from '@tabler/icons-react'
+
+import Button from '@/components/Button'
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
 import { TokenIdRowInputProps } from '../../types'
@@ -34,7 +36,9 @@ export function RewardERC1155({
     <>
       <div>
         {tokenIdRows}
-        <Button onClick={addTokenId}>{i18n.addTokenId}</Button>
+        <Button onClick={addTokenId} type="link" leftIcon={<IconPlus />}>
+          {i18n.addTokenId}
+        </Button>
         <TextInput {...marketplaceUrlTextInputProps} />
       </div>
     </>

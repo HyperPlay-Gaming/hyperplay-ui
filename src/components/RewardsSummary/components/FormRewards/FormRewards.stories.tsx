@@ -1,6 +1,8 @@
 import { chainMap } from '@hyperplay/chains'
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { itemType } from '@/components/Dropdowns/Dropdown'
+
 import { FormRewards, FormRewardsProps } from './index'
 
 type Story = StoryObj<typeof FormRewards>
@@ -20,18 +22,43 @@ const defaultNetworks = Object.keys(chainMap).map((val) => {
 })
 
 const props: FormRewardsProps = {
-  onTokenAddressChange: (val) => console.log(`token address changed to ${val}`),
-  onDropdownSelectionChange: (item) =>
-    console.log(`dropdown selection changed to ${item}`),
+  /* Form Rewards top level props */
+  tokenAddressTextInputProps: {
+    placeholder: 'Enter Token Address',
+    label: 'Token Contract Address'
+  },
+  onDropdownSelectionChange: (item: itemType) => console.log(item),
   networkSelectCreatableProps: {
-    options: defaultNetworks.map((val) => val.label),
-    inputProps: {
-      required: true,
-      label: 'Chain',
-      withAsterisk: true
+    i18n: {
+      searchValue: 'Search for Network'
     },
-    onChange: (val) => console.log(`network select changed to ${val}`),
-    onCreated: (val) => console.log(`network created as ${val}`)
+    options: defaultNetworks.map((val) => val.value),
+    onChange: (option) => console.log(option),
+    onCreated: (option) => console.log(option)
+  },
+
+  /* erc20 and erc721 props*/
+  tokenNameTextInputProps: {
+    placeholder: 'Enter Token Name',
+    label: 'Token Name'
+  },
+  amountPerUserTextInputProps: {
+    placeholder: 'Enter Amount Per User',
+    label: 'Amount Per User'
+  },
+  decimalsTextInputProps: { placeholder: '0', label: 'Decimals' },
+
+  /* erc1155 props*/
+  rewardInputs: [],
+  addTokenId: () => console.log('add token'),
+  i18n: {
+    addTokenId: 'Add Token ID'
+  },
+
+  /* all erc child component props */
+  marketplaceUrlTextInputProps: {
+    placeholder: 'Enter Marketplace URL',
+    label: 'Marketplace URL'
   }
 }
 
