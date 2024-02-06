@@ -26,3 +26,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   user-select: none;
 }
+
+.circle {
+  border-radius: 50%;
+  background-color: var(--color-neutral-400);
+  width: 4px;
+  height: 4px;
+}
