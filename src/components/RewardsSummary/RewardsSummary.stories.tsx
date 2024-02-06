@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { Ellipsis } from '@/assets/images'
+
+import { formRewardsProps } from './components/FormRewards/FormRewards.stories'
 import { RewardsSummary, RewardsSummaryProps } from './index'
 
 type Story = StoryObj<typeof RewardsSummary>
@@ -13,12 +16,10 @@ export default meta
 
 const props: RewardsSummaryProps = {
   title: 'Reward 1',
-  chainName: 'Polygon',
-  tokenType: 'ERC-721',
-  tokenSymbol: 'GOLD',
-  rewardPerPlayer: '1',
-  marketplace: 'Opensea',
-  tokenContractAddress: '0x955CF'
+  icon: <Ellipsis />,
+  rewardsProps: formRewardsProps,
+  addERC1155TokenId: () =>
+    console.log('add new input field for erc 1155 token id')
 }
 
 export const Default: Story = {

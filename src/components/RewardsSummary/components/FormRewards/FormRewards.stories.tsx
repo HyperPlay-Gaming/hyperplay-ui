@@ -21,7 +21,7 @@ const defaultNetworks = Object.keys(chainMap).map((val) => {
   }
 })
 
-const props: FormRewardsProps = {
+export const formRewardsProps: FormRewardsProps = {
   /* Form Rewards top level props */
   tokenAddressTextInputProps: {
     placeholder: 'Enter Token Address',
@@ -75,5 +75,5 @@ const props: FormRewardsProps = {
 }
 
 export const Default: Story = {
-  args: { ...props }
+  args: { ...formRewardsProps }
 }
