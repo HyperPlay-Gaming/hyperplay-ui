@@ -63,6 +63,7 @@ export { default as AchievementSummaryTable } from './components/AchievementSumm
 export { default as GameAchievements } from './components/GameAchievements'
 export { default as HyperPlayDesignProvider } from './components/HyperPlayDesignProvider'
 export { default as NoQuestContent } from './components/NoQuestsContent'
+export { default as FAQ } from './components/FAQ'
 export type { GameAdded } from './components/AchievementNav/index'
 export {
   default as ZkSyncQuestBanner,
@@ -125,6 +126,7 @@ export * from './components/SelectCreatable'
 export * from './components/TagsInput'
 export * from './components/TextArea'
 export * from './common/types'
+export * from './components/RewardsSummary'
 export * from './components/GameSelector'
 export * from './components/GameSelector/types'
 export { getTruncatedAddress } from './utils/addressUtils'

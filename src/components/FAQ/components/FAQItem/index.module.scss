@@ -1,0 +1,42 @@
+@use '../../../../styles/utilities/_variables';
+@use '../../../../styles/designSystem/typography';
+@use '../../../../styles/designSystem/spacing';
+
+.item {
+  margin-top: var(--space-2lg);
+  text-align: left;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.questionContainer {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question {
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-lg);
+  font-weight: var(--semibold);
+  line-height: 1.485rem;
+  width: 85%;
+  margin: 0;
+  display: flex;
+}
+
+.answer {
+  margin: var(--space-xs) 0 0 0;
+  color: var(--color-neutral-400);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-md);
+  font-weight: var(--regular);
+  line-height: 1.5rem;
+}
+
+.toggleIcon {
+  display: flex;
+  stroke: var(--color-neutral-400);
+}

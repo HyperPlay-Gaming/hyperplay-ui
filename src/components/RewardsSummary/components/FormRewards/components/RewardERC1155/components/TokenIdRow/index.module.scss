@@ -1,0 +1,21 @@
+.inputRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-md);
+  justify-content: stretch;
+
+  > * {
+    flex-grow: 1;
+  }
+}
+
+.removeButton {
+  fill: var(--color-neutral-400);
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
