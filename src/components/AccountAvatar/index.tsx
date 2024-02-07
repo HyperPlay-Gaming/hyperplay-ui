@@ -28,7 +28,6 @@ export default function AccountAvatar({ userId, className, ...others }: Props) {
         src={makeBlockie(userId)}
         size={10}
         className={cn(styles.avatar, styles.onlineAvatar)}
-        {...others}
       />
       <span className={cn(styles.status, styles.online)} />
     </div>
