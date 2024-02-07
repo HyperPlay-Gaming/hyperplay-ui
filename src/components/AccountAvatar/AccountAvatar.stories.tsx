@@ -15,6 +15,6 @@ export const Offline: Story = {}
 
 export const Online: Story = {
   args: {
-    userId: 'elio@hyperplay.xyz'
+    userId: 'johndoe@mail.com'
   }
 }
