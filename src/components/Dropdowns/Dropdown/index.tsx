@@ -1,6 +1,7 @@
 import React, { HTMLAttributes } from 'react'
 
 import { Menu } from '@mantine/core'
+import { GetInputPropsReturnType } from '@mantine/form/lib/types'
 
 import GenericDropdown, {
   DropdownProps as GenericDropdownDropdownProps
@@ -17,12 +18,14 @@ export interface itemType {
 export interface DropdownProps
   extends Omit<GenericDropdownDropdownProps, 'target'> {
   options: itemType[]
-  selected: itemType
-  onItemChange: (item: itemType) => void
+  selected?: itemType
+  onItemChange?: (item: itemType) => void
   targetWidth?: number
   dropdownButtonDivProps?: HTMLAttributes<HTMLDivElement>
   dropdownButtonDataTestId?: string
   dropdownButtonProps?: HTMLAttributes<HTMLButtonElement>
+  // formInputProps maintains compatibility with mantine forms hooks
+  formInputProps?: GetInputPropsReturnType
 }
 
 export default function Dropdown({
@@ -33,17 +36,33 @@ export default function Dropdown({
   dropdownButtonDivProps,
   dropdownButtonDataTestId,
   dropdownButtonProps,
+  formInputProps,
   ...props
 }: DropdownProps) {
+  if (selected === undefined) {
+    selected = formInputProps?.value
+  }
+
+  if (selected === undefined) {
+    throw 'Must pass a selected value to Dropdown!'
+  }
+
   const items = options.map((val, index) => (
     <Menu.Item
       key={'filterIndex' + index}
-      onClick={() => onItemChange(val)}
+      onClick={() => {
+        if (onItemChange) {
+          onItemChange(val)
+        }
+        if (formInputProps?.onChange) {
+          formInputProps.onChange(val)
+        }
+      }}
       data-testid={val.dataTestId}
     >
       <div
         className={`${
-          val.text === selected.text || val.selected ? styles.selected : ''
+          val.text === selected?.text || val.selected ? styles.selected : ''
         }`}
       >
         {val.text}
