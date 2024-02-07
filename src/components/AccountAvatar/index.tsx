@@ -1,7 +1,8 @@
 import { HTMLAttributes } from 'react'
-import Blockies from 'react-blockies'
 
+import { Avatar } from '@mantine/core'
 import cn from 'classnames'
+import makeBlockie from 'ethereum-blockies-base64'
 
 import styles from './styles.module.scss'
 
@@ -23,8 +24,8 @@ export default function AccountAvatar({ userId, className, ...others }: Props) {
 
   return (
     <div className={cn(styles.container, className)} {...others}>
-      <Blockies
-        seed={userId}
+      <Avatar
+        src={makeBlockie(userId)}
         size={10}
         className={cn(styles.avatar, styles.onlineAvatar)}
         {...others}
