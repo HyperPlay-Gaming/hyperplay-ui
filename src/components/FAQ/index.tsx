@@ -50,6 +50,7 @@ export default function FAQ({
           className={styles.seeMoreButton}
           type="link"
           onClick={() => setShowAll((prevState) => !prevState)}
+          htmlType="button"
         >
           {showAll ? i18n.seeLessButtonText : i18n.seeMoreButtonText}
         </Button>
