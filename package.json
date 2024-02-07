@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.1.25",
+  "version": "1.1.26",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
@@ -45,6 +45,7 @@
     "@testing-library/react": "^14.0.0",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/react": "^18.0.26",
+    "@types/react-blockies": "^1.4.4",
     "@types/react-dom": "^18.0.9",
     "@types/youtube": "^0.0.47",
     "@types/youtube-player": "^5.5.7",
@@ -132,6 +133,7 @@
     "@hyperplay/chains": "^0.0.2",
     "@tabler/icons-react": "^2.46.0",
     "@valist/sdk": "^2.9.1",
-    "ethereum-blockies-base64": "^1.0.2"
+    "ethereum-blockies-base64": "^1.0.2",
+    "react-blockies": "^1.4.1"
   }
 }

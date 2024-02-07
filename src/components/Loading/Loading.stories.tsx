@@ -12,3 +12,11 @@ export default meta
 type Story = StoryObj<typeof Loading>
 
 export const Default: Story = {}
+
+export const Big: Story = {
+  args: {
+    style: {
+      fontSize: '2rem'
+    }
+  }
+}
