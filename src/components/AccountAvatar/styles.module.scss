@@ -1,0 +1,45 @@
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-neutral-400);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--text-md);
+  font-weight: var(--medium);
+  position: relative;
+}
+
+.onlineAvatar {
+  border: 2.5px solid var(--color-success-200);
+}
+
+.offlineAvatar {
+  color: var(--color-neutral-900);
+  border: 2.5px solid var(--color-stroke-01);
+}
+
+.status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.offline {
+  border: 1.8px solid var(--color-neutral-900);
+  background: var(--color-stroke-01);
+}
+
+.online {
+  background: var(--color-success-500);
+  border: 1.8px solid var(--color-neutral-900);
+}
+
+.container {
+  display: inline-block;
+  position: relative;
+}
