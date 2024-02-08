@@ -1,0 +1,41 @@
+.searchBar {
+  position: relative;
+  margin-right: var(--space-2xl-fixed);
+  
+  input {
+    width: 240px;
+    height: 42px;
+    text-indent: 30px;
+    border-radius: 3rem;
+    border: solid 1px var(--color-stroke-01);
+    background: var(--color-neutral-700);
+    color: var(--color-neutral-100);
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .magnifyingGlass {
+    position: absolute;
+    top: 14px;
+    left: 8px;
+    height: 16px;
+    width: 16px;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 14px;
+    height: 16px;
+    right: var(--space-lg);
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .searchBar {
+    margin: 0;
+  }
+}
