@@ -19,6 +19,8 @@ $dropdownBorderRadius: var(--space-xs);
   border-radius: $dropdownBorderRadius;
   position: absolute;
   box-sizing: border-box;
+  max-height: 500px;
+  overflow-y: auto;
 
   > *:nth-child(2) {
     border-radius: $dropdownBorderRadius $dropdownBorderRadius 0 0;
@@ -31,4 +33,9 @@ $dropdownBorderRadius: var(--space-xs);
 
 .underline {
   border-bottom: 2px solid var(--color-neutral-600);
+}
+
+.selectedGamesContainer {
+  max-height: 500px;
+  overflow-y: auto;
 }
