@@ -36,10 +36,19 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+// mobile
+@media screen and (max-width: 640px) {
   .navbar {
     grid-template-areas: 'logo menu';
     grid-template-columns: 1fr;
+  }
+}
+
+// tablet portrait
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+  .navbar {
+    grid-template-areas: 'logo searchBar menu';
+    grid-template-columns: 1fr 2fr 1fr;
   }
 }
 
@@ -104,6 +113,8 @@
 }
 
 .burgerMenu {
+  grid-area: menu;
+  justify-self: flex-end;
   height: 24px;
   width: 24px;
   @include variables.imageWrapper;
@@ -133,7 +144,7 @@
   position: fixed;
   right: 0%;
   left: 0%;
-  top: 15%;
+  top: 85%;
   padding: 18px 0px;
   z-index: 100;
   background-color: black;
