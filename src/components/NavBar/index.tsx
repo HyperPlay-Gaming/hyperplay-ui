@@ -8,10 +8,25 @@ import githubLogo from '@/assets/logos/github.svg?url'
 import twitterLogo from '@/assets/logos/twitter.svg?url'
 
 import Button from '../Button'
+import SearchBar from '../SearchBar'
 import navBarStyles from './NavBar.module.scss'
 
-const NavBar = function () {
+type BaseProps = {
+  showSearchBar?: false
+}
+
+// ask for searchText and setSearchText only if showSearchBar is true
+type SearchBarProps = {
+  showSearchBar: true
+  searchText: string
+  setSearchText: (text: string) => void
+}
+
+type Props = BaseProps | SearchBarProps
+
+const NavBar = function (props: Props) {
   const [showNavBarDropDown, setShowNavBarDropDown] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
 
   useLayoutEffect(() => {
@@ -25,8 +40,28 @@ const NavBar = function () {
     )
   }, [])
 
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsMobile(true)
+      } else {
+        setIsMobile(false)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    handleResize()
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   const getLinks = () => (
     <>
+      {isMobile && props.showSearchBar && (
+        <SearchBar
+          searchText={props.searchText}
+          setSearchText={props.setSearchText}
+        />
+      )}  
+
       <a
         className={`${navBarStyles.navItem} menu`}
         href="https://store.hyperplay.xyz/"
@@ -87,6 +122,12 @@ const NavBar = function () {
               <div className={navBarStyles.hpLogoText}>HyperPlay</div>
             </div>
           </a>
+        {props.showSearchBar && !isMobile && (
+          <SearchBar
+            searchText={props.searchText}
+            setSearchText={props.setSearchText}
+          />
+        )}
           <button
             className={navBarStyles.burgerMenu}
             onClick={() => setShowNavBarDropDown(!showNavBarDropDown)}

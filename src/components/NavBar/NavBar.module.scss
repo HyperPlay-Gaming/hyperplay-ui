@@ -13,9 +13,14 @@
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr;
+  grid-template-areas: 'logo searchBar menu';
   align-items: center;
+
+  a {
+   grid-area: logo;
+  }
 
   @include variables.for-mobile-only {
     padding: var(--text-2xl) var(--space-lg-fixed);
@@ -28,6 +33,13 @@
   }
   @include variables.for-desktop-up {
     padding: var(--text-2xl) var(--text-4xl);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    grid-template-areas: 'logo menu';
+    grid-template-columns: 1fr;
   }
 }
 
@@ -44,7 +56,7 @@
 .navbarLogoImg {
   height: 24px;
   width: 24px;
-  transform: translateY(2px);
+  transform: translateY(5px);
   @include variables.imageWrapper;
 }
 
@@ -53,8 +65,10 @@
 }
 
 .menu {
+  grid-area: menu;
   align-items: center;
   display: flex;
+  justify-self: flex-end;
 
   @include variables.for-mobile-only {
     display: none;
@@ -119,7 +133,8 @@
   position: fixed;
   right: 0%;
   left: 0%;
-  top: 9%;
+  top: 15%;
+  padding: 18px 0px;
   z-index: 100;
   background-color: black;
   align-items: center;

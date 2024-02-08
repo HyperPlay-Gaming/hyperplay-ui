@@ -1,6 +1,7 @@
 .searchBar {
   position: relative;
   margin-right: var(--space-2xl-fixed);
+  grid-area: searchBar;
   
   input {
     width: 240px;
@@ -37,5 +38,14 @@
 @media screen and (max-width: 768px) {
   .searchBar {
     margin: 0;
+    width: 180px;
+
+    input {
+      width: 180px;
+    }
+
+    .closeButton {
+      right: var(--space-xs);
+    }
   }
 }
