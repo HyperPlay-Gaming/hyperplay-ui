@@ -62,7 +62,7 @@ const NavBar = function (props: Props) {
         <SearchBar
           searchText={props.searchText}
           setSearchText={props.setSearchText}
-          i18n={{ placeholder: 'Search For Games' }}
+          i18n={{ placeholder: 'Search for games' }}
         />
       )}  
 
@@ -130,7 +130,7 @@ const NavBar = function (props: Props) {
           <SearchBar
             searchText={props.searchText}
             setSearchText={props.setSearchText}
-            i18n={{ placeholder: 'Search For Games' }}
+            i18n={{ placeholder: 'Search for games' }}
           />
         )}
           <button

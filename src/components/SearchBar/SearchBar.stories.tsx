@@ -10,5 +10,5 @@ export default {
 export const Default: React.FC = () => {
   const [searchText, setSearchText] = useState('')
 
-  return <SearchBar searchText={searchText} setSearchText={setSearchText} />
+  return <SearchBar searchText={searchText} setSearchText={setSearchText} i18n={{placeholder: 'Search for games'}} />
 }

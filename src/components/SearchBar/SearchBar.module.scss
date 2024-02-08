@@ -6,10 +6,10 @@
   input {
     width: 240px;
     height: 42px;
-    text-indent: 30px;
+    text-indent: 40px;
     border-radius: 3rem;
     border: solid 1px var(--color-stroke-01);
-    background: var(--color-neutral-700);
+    background: var(--color-neutral-900);
     color: var(--color-neutral-100);
     font-size: 16px;
 
@@ -21,7 +21,7 @@
   .magnifyingGlass {
     position: absolute;
     top: 14px;
-    left: 8px;
+    left: 16px;
     height: 16px;
     width: 16px;
   }
