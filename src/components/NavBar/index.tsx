@@ -20,6 +20,9 @@ type SearchBarProps = {
   showSearchBar: true
   searchText: string
   setSearchText: (text: string) => void
+  i18n: {
+    placeholder: string
+  }
 }
 
 type Props = BaseProps | SearchBarProps
@@ -59,6 +62,7 @@ const NavBar = function (props: Props) {
         <SearchBar
           searchText={props.searchText}
           setSearchText={props.setSearchText}
+          i18n={{ placeholder: 'Search For Games' }}
         />
       )}  
 
@@ -126,6 +130,7 @@ const NavBar = function (props: Props) {
           <SearchBar
             searchText={props.searchText}
             setSearchText={props.setSearchText}
+            i18n={{ placeholder: 'Search For Games' }}
           />
         )}
           <button

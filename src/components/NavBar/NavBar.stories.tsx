@@ -15,7 +15,10 @@ export const WithSearchBar: React.FC = () => {
   const props = {
     showSearchBar: true,
     searchText,
-    setSearchText
+    setSearchText,
+    i18n: {
+      placeholder: 'Search for games'
+    }
   }
 
   return <NavBar {...props} />

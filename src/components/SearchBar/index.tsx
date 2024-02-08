@@ -7,9 +7,12 @@ import styles from './SearchBar.module.scss'
 type Props = {
   searchText: string
   setSearchText: (text: string) => void
+  i18n: {
+    placeholder: string
+  }
 }
 
-export default function SearchBar({ searchText, setSearchText }: Props) {
+export default function SearchBar({ searchText, setSearchText, i18n: {placeholder} }: Props) {
   const input = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -40,7 +43,7 @@ export default function SearchBar({ searchText, setSearchText }: Props) {
   return (
     <div className={styles.searchBar}>
       <MagnifyingGlass fill="white" className={styles.magnifyingGlass} />
-      <input ref={input} type="text" placeholder="Search for games" />
+      <input ref={input} type="text" placeholder={placeholder} />
       {showClearButton && (
         <CloseButton
           fill="white"
