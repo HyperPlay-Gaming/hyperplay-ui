@@ -23,6 +23,7 @@ export interface RewardERC721Props {
     callToActionAddToken: string
     addedTokenCounterText: string
     collapseAllIds: string
+    pressEnterToAdd: string
   }
 }
 
@@ -38,13 +39,14 @@ export function RewardERC721({
     orAddManually: 'Or add manually',
     callToActionAddToken: 'Add Token IDs',
     addedTokenCounterText: 'IDs added:',
-    collapseAllIds: 'Collapse all IDs'
+    collapseAllIds: 'Collapse all IDs',
+    pressEnterToAdd: 'Press enter to add',
   }
 }: RewardERC721Props) {
   const label = (
     <span>
       {amountPerUserTextInputProps.label}{' '}
-      <span className={styles.labelHint}>(Press enter to add)</span>
+      <span className={styles.labelHint}>({i18n.pressEnterToAdd})</span>
     </span>
   )
   const [showTokenIds, setShowTokenIds] = useState<boolean>(false)

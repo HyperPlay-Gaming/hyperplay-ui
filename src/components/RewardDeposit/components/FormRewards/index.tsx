@@ -34,6 +34,7 @@ export interface FormRewardsProps {
     callToActionAddToken: string
     addedTokenCounterText: string
     collapseAllIds: string
+    pressEnterToAdd: string
   }
 }
 

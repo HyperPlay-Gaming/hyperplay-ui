@@ -27,6 +27,7 @@ export interface RewardDepositProps {
     addedTokenCounterText: string
     collapseAllIds: string
     depositedLabel: string
+    pressEnterToAdd: string
   }
   rewardDetailsProps: RewardDetailsProps
 }
@@ -46,7 +47,8 @@ export function RewardDeposit({
     callToActionAddToken: 'Add Token IDs',
     addedTokenCounterText: 'IDs added:',
     collapseAllIds: 'Collapse all IDs',
-    depositedLabel: 'Deposited'
+    depositedLabel: 'Deposited',
+    pressEnterToAdd: 'Press enter to add',
   },
   rewardDetailsProps
 }: RewardDepositProps) {

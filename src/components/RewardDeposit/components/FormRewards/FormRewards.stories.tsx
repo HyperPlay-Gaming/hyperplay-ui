@@ -70,7 +70,8 @@ export const formRewardsProps: FormRewardsProps = {
     orAddManually: 'Or add manually',
     callToActionAddToken: 'Add Token IDs',
     addedTokenCounterText: 'IDs added:',
-    collapseAllIds: 'Collapse all IDs'
+    collapseAllIds: 'Collapse all IDs',
+    pressEnterToAdd: 'Press enter to add',
   }
 }
 
