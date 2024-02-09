@@ -3,18 +3,13 @@ import { useState } from 'react'
 import cn from 'classnames'
 
 import { Dropdown } from '@/components/Dropdowns'
-import { itemType } from '@/components/Dropdowns/Dropdown'
-import {
-  SelectCreatable,
-  SelectCreatableProps
-} from '@/components/SelectCreatable'
-import TextInput, { TextInputProps } from '@/components/TextInput'
+import { TextInputProps } from '@/components/TextInput'
 
 import styles from './FormRewards.module.scss'
 import { RewardERC721 } from './components/RewardERC721'
 import { RewardERC20 } from './components/RewardERC20'
 import { RewardERC1155 } from './components/RewardERC1155'
-import { TokenIdRowInputProps } from './types'
+import { TokenIdItemProps } from './types'
 
 const data = [
   { text: 'Select Reward Type' },
@@ -24,26 +19,22 @@ const data = [
 ]
 
 export interface FormRewardsProps {
-  /* Form Rewards top level props */
-  tokenAddressTextInputProps: TextInputProps
-  onDropdownSelectionChange: (item: itemType) => void
-  networkSelectCreatableProps: SelectCreatableProps
-
-  /* erc20 and erc721 props*/
-  tokenNameTextInputProps: TextInputProps
+  tokenFromNumberInputProps: TextInputProps
   amountPerUserTextInputProps: TextInputProps
   totalPlayerReachNumberInputProps: TextInputProps
-  decimalsTextInputProps: TextInputProps
-
-  /* erc1155 props*/
-  erc1155RewardInputs: TokenIdRowInputProps[]
-  addTokenId: () => void
-  i18n: {
-    addTokenId: string
-  }
-
-  /* all erc child component props */
-  marketplaceUrlTextInputProps: TextInputProps
+  tokenIdsNumberInputs: TextInputProps[]
+  totalPlayerReachNumberInputs: TextInputProps[]
+  tokenToNumberInputProps: TextInputProps
+  tokenIdsList: TokenIdItemProps[]
+  isAddTokenButtonDisabled?: boolean
+  onAddTokenTap: () => void
+  i18n?: {
+    tokenIdsTitle: string
+    orAddManually: string
+    callToActionAddToken: string
+    addedTokenCounterText: string
+    collapseAllIds: string
+  },
 }
 
 export function FormRewards(props: FormRewardsProps) {
@@ -51,7 +42,7 @@ export function FormRewards(props: FormRewardsProps) {
 
   let content = null
   if (selectedTokenType.text === 'ERC721') {
-    content = <RewardERC721 tokenType="erc721" {...props} />
+    content = <RewardERC721 {...props} />
   } else if (selectedTokenType.text === 'ERC20') {
     content = <RewardERC20 {...props} />
   } else if (selectedTokenType.text === 'ERC1155') {
@@ -60,8 +51,6 @@ export function FormRewards(props: FormRewardsProps) {
 
   return (
     <div className={styles.root}>
-      <SelectCreatable {...props.networkSelectCreatableProps} />
-      <TextInput {...props.tokenAddressTextInputProps} />
       <div>
         <div className={cn('caption', styles.label)}>Reward Token Type</div>
         <Dropdown
@@ -69,7 +58,6 @@ export function FormRewards(props: FormRewardsProps) {
           selected={selectedTokenType}
           onItemChange={(item) => {
             setSelectedTokenType(item)
-            props.onDropdownSelectionChange(item)
           }}
           targetWidth={300}
           dropdownButtonDivProps={{ className: styles.dropdownButton }}
