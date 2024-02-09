@@ -81,18 +81,26 @@ export function RewardsDepositedTable({
         <td>{i18n.amountPerPlayer}</td>
         <td>{amountPerPlayer}</td>
       </tr>
-      <tr>
-        <td>{i18n.totalClaimables}</td>
-        <td>{totalClaimables}</td>
-      </tr>
-      <tr>
-        <td>{i18n.marketplaceUrl}</td>
-        <td>
-          <a target="_blank" rel="noopener noreferrer" href={marketplaceUrl}>
-            {marketplaceUrl}
-          </a>
-        </td>
-      </tr>
+      {
+        totalClaimables !== null && (
+          <tr>
+            <td>{i18n.totalClaimables}</td>
+            <td>{totalClaimables}</td>
+          </tr>
+        )
+      }
+      {
+        marketplaceUrl !== null && (
+          <tr>
+            <td>{i18n.marketplaceUrl}</td>
+            <td>
+              <a target="_blank" rel="noopener noreferrer" href={marketplaceUrl}>
+                {marketplaceUrl}
+              </a>
+            </td>
+          </tr>
+        )
+      }
     </table>
   )
 }
