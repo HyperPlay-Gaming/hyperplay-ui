@@ -1,5 +1,7 @@
 import React from 'react'
+
 import Button from '@/components/Button'
+
 import styles from './FormDepositActions.module.scss'
 
 export interface FormDepositActionsProps {
@@ -31,13 +33,11 @@ export function FormDepositActions({
       >
         {i18n.submitBtn}
       </Button>
-      {
-        depositingAmount !== null && (
-          <span className={styles.totalDepositLabel}>
-            {i18n.totalDeposit} {depositingAmount}
-          </span>
-        )
-      } 
+      {depositingAmount !== null && (
+        <span className={styles.totalDepositLabel}>
+          {i18n.totalDeposit} {depositingAmount}
+        </span>
+      )}
     </div>
   )
 }

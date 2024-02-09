@@ -22,9 +22,9 @@ export const Default: Story = {
 }
 
 export const Disabled: Story = {
-  args: { ...props, isDisabledButton: true },
+  args: { ...props, isDisabledButton: true }
 }
 
 export const WithoutDepositAmount: Story = {
-  args: { ...props, depositingAmount: null },
+  args: { ...props, depositingAmount: null }
 }

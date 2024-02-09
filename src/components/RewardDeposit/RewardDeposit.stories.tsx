@@ -29,7 +29,9 @@ const props: RewardDepositProps = {
   rewardsProps: formDepositRewardsProps,
   editable: true,
   updateEditable: (editable) => console.log(`editable: ${editable}`),
-  onFormSubmit: async () => { console.log('submit') },
+  onFormSubmit: async () => {
+    console.log('submit')
+  },
   rewardDetailsProps: rewardDetailsProps,
   rewardDepositedTableProps: rewardDepositedTableProps
 }

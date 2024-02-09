@@ -9,8 +9,11 @@ import Sticker from '@/components/Sticker'
 import { ContainerInteractive } from '../ContainerInteractive'
 import { RewardDetails, RewardDetailsProps } from '../RewardDetails'
 import styles from './RewardDeposit.module.scss'
-import { FormDepositRewards, FormDepositRewardsProps } from './components/FormDepositRewards'
 import { FormDepositActions } from './components/FormDepositActions'
+import {
+  FormDepositRewards,
+  FormDepositRewardsProps
+} from './components/FormDepositRewards'
 
 export interface RewardDepositProps {
   title: string
