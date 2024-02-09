@@ -7,6 +7,7 @@ import { ContainerInteractive } from '../ContainerInteractive'
 import { RewardDetails, RewardDetailsProps } from '../RewardDetails'
 import styles from './RewardDeposit.module.scss'
 import { FormRewards, FormRewardsProps } from './components/FormRewards'
+import { RewardsDepositedTable, RewardsDepositedTableProps } from '@/components/RewardsDepositedTable'
 
 export interface RewardDepositProps {
   title: string
@@ -30,6 +31,7 @@ export interface RewardDepositProps {
     pressEnterToAdd: string
   }
   rewardDetailsProps: RewardDetailsProps
+  rewardDepositedTableProps: RewardsDepositedTableProps
 }
 
 export function RewardDeposit({
@@ -50,7 +52,8 @@ export function RewardDeposit({
     depositedLabel: 'Deposited',
     pressEnterToAdd: 'Press enter to add',
   },
-  rewardDetailsProps
+  rewardDetailsProps,
+  rewardDepositedTableProps
 }: RewardDepositProps) {
   const tag: ReactElement = isDeposited ? (
     <Sticker
@@ -91,6 +94,7 @@ export function RewardDeposit({
       classNames={{ root: styles.root }}
     >
       {content}
+      <RewardsDepositedTable {...rewardDepositedTableProps} />
       {confirmButton}
     </ContainerInteractive>
   )

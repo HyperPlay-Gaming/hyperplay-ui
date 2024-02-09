@@ -11,7 +11,7 @@ export default meta
 
 type Story = StoryObj<typeof RewardsDepositedTable>
 
-const props: RewardsDepositedTableProps = {
+export const rewardDepositedTableProps: RewardsDepositedTableProps = {
   playerReach: 120,
   network: 'Mainnet',
   tokenContractAddress: '0x912312312312321312312312312312',
@@ -23,5 +23,5 @@ const props: RewardsDepositedTableProps = {
 }
 
 export const Default: Story = {
-  args: { ...props }
+  args: { ...rewardDepositedTableProps }
 }

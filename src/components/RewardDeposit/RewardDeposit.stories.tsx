@@ -10,6 +10,7 @@ import { rewardDetailsProps } from '../RewardDetails/RewardDetails.stories'
 import { formRewardsProps } from './components/FormRewards/FormRewards.stories'
 import { TokenIdItemProps } from './components/FormRewards/types'
 import { RewardDeposit, RewardDepositProps } from './index'
+import { rewardDepositedTableProps } from '../RewardsDepositedTable/RewardsDepositedTable.stories'
 
 type Story = StoryObj<typeof RewardDeposit>
 
@@ -27,7 +28,8 @@ const props: RewardDepositProps = {
   rewardsProps: formRewardsProps,
   editable: true,
   updateEditable: (editable) => console.log(`editable: ${editable}`),
-  rewardDetailsProps: rewardDetailsProps
+  rewardDetailsProps: rewardDetailsProps,
+  rewardDepositedTableProps: rewardDepositedTableProps
 }
 
 export const Default: Story = {
