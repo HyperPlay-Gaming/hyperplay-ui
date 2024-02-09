@@ -16,13 +16,6 @@ const meta: Meta<typeof FormRewards> = {
 
 export default meta
 
-// const defaultNetworks = Object.keys(chainMap).map((val) => {
-//   return {
-//     value: chainMap[val].chain.chainId.toString(),
-//     label: chainMap[val].chain.name
-//   }
-// })
-
 const defaultNetworks = Object.keys(chainMap).map(
   (val) => chainMap[val].chain.name
 )
