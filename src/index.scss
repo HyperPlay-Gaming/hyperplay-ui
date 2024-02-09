@@ -27,6 +27,10 @@ body {
   user-select: none;
 }
 
+table {
+  user-select: auto;
+}
+
 .circle {
   border-radius: 50%;
   background-color: var(--color-neutral-400);
