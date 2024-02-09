@@ -9,6 +9,7 @@ import Button from '../Button'
 import { rewardDetailsProps } from '../RewardDetails/RewardDetails.stories'
 import { formRewardsProps } from './components/FormRewards/FormRewards.stories'
 import { RewardDeposit, RewardDepositProps } from './index'
+import { TokenIdItemProps } from './components/FormRewards/types'
 
 type Story = StoryObj<typeof RewardDeposit>
 
@@ -36,8 +37,9 @@ export const Confirmed: Story = {
   args: { ...props },
   render: (args) => {
     const [editable, setEditable] = useState(false)
-    const [erc1155Tokens, setErc1155Tokens] = useState(
-      args.rewardsProps.erc1155RewardInputs
+    const [rawTokenIds] = useState<number[]>([])
+    const [tokenIds, setTokenIds] = useState<TokenIdItemProps[]>(
+      args.rewardsProps.tokenIdsList
     )
 
     let iconButton = (
@@ -63,26 +65,26 @@ export const Confirmed: Story = {
         icon={iconButton}
         rewardsProps={{
           ...args.rewardsProps,
-          erc1155RewardInputs: erc1155Tokens,
-          addTokenId: () => {
+          tokenIdsList: tokenIds,
+          isAddTokenButtonDisabled: false,
+          onAddTokenTap: () => {
             console.log('add token id')
-            console.log(erc1155Tokens)
-            const newTokenId = {
-              onRemoveClick: () =>
-                console.log(`remove reward input ${erc1155Tokens.length}`),
-              tokenNameTextInputProps: {
-                placeholder: 'Enter Token Name',
-                label: 'Token Name'
-              },
-              totalPlayerReachNumberInputProps: {
-                placeholder: '0',
-                label: 'Total Player Reach'
+            console.log(tokenIds)
+            const newTokenIds = rawTokenIds.map((tokenId: number) => ({
+              tokenId,
+            }))
+
+            const newTokenArray: TokenIdItemProps[] = [...tokenIds, ...newTokenIds].map((token, index) => ({
+              tokenId: token.tokenId,
+              onRemoveTap: () => {
+                const newTokens = tokenIds.splice(index, 1)
+
+                setTokenIds(newTokens)
+                console.log('remove from storybook')
               }
-            }
-            console.log('asdfdas')
-            const newTokenArray = [...erc1155Tokens, newTokenId]
+            }))
             console.log(newTokenArray)
-            setErc1155Tokens(newTokenArray)
+            setTokenIds(newTokenArray)
           }
         }}
       />

@@ -1,7 +1,4 @@
-import { chainMap } from '@hyperplay/chains'
 import type { Meta, StoryObj } from '@storybook/react'
-
-import { itemType } from '@/components/Dropdowns/Dropdown'
 
 import { FormRewards, FormRewardsProps } from './index'
 
@@ -15,68 +12,64 @@ const meta: Meta<typeof FormRewards> = {
 
 export default meta
 
-const defaultNetworks = Object.keys(chainMap).map((val) => {
-  return {
-    value: chainMap[val].chain.chainId.toString(),
-    label: chainMap[val].chain.name
-  }
-})
-
 export const formRewardsProps: FormRewardsProps = {
-  /* Form Rewards top level props */
-  tokenAddressTextInputProps: {
-    placeholder: 'Enter Token Address',
-    label: 'Token Contract Address'
-  },
-  onDropdownSelectionChange: (item: itemType) => console.log(item),
-  networkSelectCreatableProps: {
-    i18n: {
-      searchValue: 'Search for Network'
-    },
-    options: defaultNetworks.map((val) => val.label),
-    onChange: (option) => console.log(option),
-    onCreated: (option) => console.log(option)
-  },
-
   /* erc20 and erc721 props*/
-  tokenNameTextInputProps: {
-    placeholder: 'Enter Token Name',
-    label: 'Token Name'
+  tokenFromNumberInputProps: {
+    placeholder: '0',
+    label: 'From'
+  },
+  tokenToNumberInputProps: {
+    placeholder: '99',
+    label: 'To' 
   },
   amountPerUserTextInputProps: {
-    placeholder: 'Enter Amount Per User',
-    label: 'Amount Per User'
+    placeholder: 'Paste token ID',
+    label: 'Token ID'
   },
   totalPlayerReachNumberInputProps: {
     placeholder: '0',
     label: 'Enter Total Player Reach'
   },
-  decimalsTextInputProps: { placeholder: '0', label: 'Decimals' },
-
-  /* erc1155 props*/
-  erc1155RewardInputs: [
+  tokenIdsNumberInputs: [
     {
-      onRemoveClick: () => console.log('remove reward input 0'),
-      tokenNameTextInputProps: {
-        placeholder: 'Enter Token Name',
-        label: 'Token Name'
-      },
-      amountPerUserTextInputProps: {
-        placeholder: '0',
-        label: 'Amount Per User'
-      }
+      placeholder: 'Paste token ID',
+      label: 'Token ID: GOLD'
+    },
+    {
+      placeholder: 'Paste token ID',
+      label: 'Token ID: SILVER'
+    },
+  ],
+  totalPlayerReachNumberInputs: [
+    {
+      placeholder: '0',
+      label: 'Total Player Reach: GOLD'
+    },
+    {
+      placeholder: '0',
+      label: 'Total Player Reach: SILVER'
+    },
+  ],
+  tokenIdsList: [
+    {
+      tokenId: 55,
+      onRemoveTap: () => console.log('remove1 ')
+    }, {
+      tokenId: 54,
+      onRemoveTap: () => console.log('remove2 ')
+    }, {
+      tokenId: 65,
+      onRemoveTap: () => console.log('remove3 ')
     }
   ],
-  addTokenId: () => console.log('add token'),
+  onAddTokenTap: () => console.log('add token'),
   i18n: {
-    addTokenId: 'Add Token ID'
+    tokenIdsTitle: 'Token IDs',
+    orAddManually: 'Or add manually',
+    callToActionAddToken: 'Add Token IDs',
+    addedTokenCounterText: 'IDs added:',
+    collapseAllIds: 'Collapse all IDs'
   },
-
-  /* all erc child component props */
-  marketplaceUrlTextInputProps: {
-    placeholder: 'Enter Marketplace URL',
-    label: 'Marketplace URL'
-  }
 }
 
 export const Default: Story = {
