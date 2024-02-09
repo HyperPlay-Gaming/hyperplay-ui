@@ -50,7 +50,7 @@ export {
   default as TextInput,
   type TextInputProps
 } from './components/TextInput'
-export { default as SignIn } from './components/SignIn'
+export { default as LoginModal } from './components/LoginModal'
 export { default as LinkExternalAccounts } from './components/LinkExternalAccounts'
 export { default as CheckEmail } from './components/CheckEmail'
 export { default as EmailVerified } from './components/EmailVerified'
