@@ -48,7 +48,6 @@ export function RewardERC721({
     </span>
   )
   const [showTokenIds, setShowTokenIds] = useState<boolean>(false)
-  const [tokensIdsList, setTokensIdsList] = useState<number[]>([])
   const onShowToken = () => {
     setShowTokenIds((prev) => !prev)
   }
