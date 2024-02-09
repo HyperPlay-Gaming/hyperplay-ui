@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { Dropdown } from '@/components/Dropdowns'
 import { TextInputProps } from '@/components/TextInput'
 
-import styles from './FormRewards.module.scss'
+import styles from './FormDepositRewards.module.scss'
 import { RewardERC20 } from './components/RewardERC20'
 import { RewardERC721 } from './components/RewardERC721'
 import { RewardERC1155 } from './components/RewardERC1155'
@@ -18,7 +18,7 @@ const data = [
   { text: 'ERC1155' }
 ]
 
-export interface FormRewardsProps {
+export interface FormDepositRewardsProps {
   tokenFromNumberInputProps: TextInputProps
   amountPerUserTextInputProps: TextInputProps
   totalPlayerReachNumberInputProps: TextInputProps
@@ -38,7 +38,7 @@ export interface FormRewardsProps {
   }
 }
 
-export function FormRewards(props: FormRewardsProps) {
+export function FormDepositRewards(props: FormDepositRewardsProps) {
   const [selectedTokenType, setSelectedTokenType] = useState(data[0])
 
   let content = null

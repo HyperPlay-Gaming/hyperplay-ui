@@ -10,7 +10,7 @@ import Button from '../Button'
 import { ContainerInteractive } from '../ContainerInteractive'
 import { RewardDetails, RewardDetailsProps } from '../RewardDetails'
 import styles from './RewardDeposit.module.scss'
-import { FormRewards, FormRewardsProps } from './components/FormRewards'
+import { FormDepositRewards, FormDepositRewardsProps } from './components/FormDepositRewards'
 
 export interface RewardDepositProps {
   title: string
@@ -18,7 +18,7 @@ export interface RewardDepositProps {
   classNames?: {
     root?: string
   }
-  rewardsProps: FormRewardsProps
+  rewardsProps: FormDepositRewardsProps
   editable: boolean
   isDeposited?: boolean
   updateEditable: (editable: boolean) => void
@@ -77,7 +77,7 @@ export function RewardDeposit({
   )
   let content = <RewardDetails {...rewardDetailsProps} />
   if (editable) {
-    content = <FormRewards {...rewardsProps} i18n={i18n} />
+    content = <FormDepositRewards {...rewardsProps} i18n={i18n} />
   }
 
   let confirmButton = null

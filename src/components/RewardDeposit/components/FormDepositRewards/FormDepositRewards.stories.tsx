@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { FormRewards, FormRewardsProps } from './index'
+import { FormDepositRewards, FormDepositRewardsProps } from './index'
 
-type Story = StoryObj<typeof FormRewards>
+type Story = StoryObj<typeof FormDepositRewards>
 
-const meta: Meta<typeof FormRewards> = {
-  title: 'Quests/RewardDeposit/FormRewards',
-  component: FormRewards,
-  excludeStories: ['formRewardsProps']
+const meta: Meta<typeof FormDepositRewards> = {
+  title: 'Quests/RewardDeposit/FormDepositRewards',
+  component: FormDepositRewards,
+  excludeStories: ['formDepositRewardsProps']
 }
 
 export default meta
 
-export const formRewardsProps: FormRewardsProps = {
+export const formDepositRewardsProps: FormDepositRewardsProps = {
   /* erc20 and erc721 props*/
   tokenFromNumberInputProps: {
     placeholder: '0',
@@ -76,5 +76,5 @@ export const formRewardsProps: FormRewardsProps = {
 }
 
 export const Default: Story = {
-  args: { ...formRewardsProps }
+  args: { ...formDepositRewardsProps }
 }

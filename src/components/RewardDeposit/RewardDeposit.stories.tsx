@@ -8,8 +8,8 @@ import { Ellipsis, TrashCan } from '@/assets/images'
 import Button from '../Button'
 import { rewardDetailsProps } from '../RewardDetails/RewardDetails.stories'
 import { rewardDepositedTableProps } from '../RewardsDepositedTable/RewardsDepositedTable.stories'
-import { formRewardsProps } from './components/FormRewards/FormRewards.stories'
-import { TokenIdItemProps } from './components/FormRewards/types'
+import { formDepositRewardsProps } from './components/FormDepositRewards/FormDepositRewards.stories'
+import { TokenIdItemProps } from './components/FormDepositRewards/types'
 import { RewardDeposit, RewardDepositProps } from './index'
 
 type Story = StoryObj<typeof RewardDeposit>
@@ -25,7 +25,7 @@ const props: RewardDepositProps = {
   title: 'Reward 1',
   icon: <Ellipsis />,
   isDeposited: false,
-  rewardsProps: formRewardsProps,
+  rewardsProps: formDepositRewardsProps,
   editable: true,
   updateEditable: (editable) => console.log(`editable: ${editable}`),
   rewardDetailsProps: rewardDetailsProps,
