@@ -26,6 +26,7 @@ export interface RewardsSummaryProps extends Omit<FormRewardsProps, 'i18n'> {
   }
   editable: boolean
   onEditableChange: (editable: boolean) => void
+  removeReward: () => void
 
   i18n?: RewardsSummaryI18n
 }
@@ -34,6 +35,7 @@ export function RewardsSummary({
   title,
   editable: editableInit,
   onEditableChange,
+  removeReward,
   i18n = {
     remove: 'Remove',
     confirm: 'Confirm Changes',
@@ -76,6 +78,7 @@ export function RewardsSummary({
       <Button
         type="tertiary"
         rightIcon={<TrashCan fill="var(--color-neutral-400)" />}
+        onClick={removeReward}
       >
         {i18n.remove}
       </Button>
@@ -84,12 +87,12 @@ export function RewardsSummary({
 
   let content = (
     <RewardDetails
-      chainName={props.networkInputProps.value}
-      tokenType={props.rewardTypeInputProps.value}
-      tokenSymbol={props.tokenNameInputProps.value}
-      rewardPerPlayer={props.amountPerUserInputProps.value}
-      marketplace={props.marketplaceUrlInputProps.value}
-      tokenContractAddress={props.contractAddressInputProps.value}
+      chainName={props.networkInputProps?.value}
+      tokenType={props.rewardTypeInputProps?.value}
+      tokenSymbol={props.tokenNameInputProps?.value}
+      rewardPerPlayer={props.amountPerUserInputProps?.value}
+      marketplace={props.marketplaceUrlInputProps?.value}
+      tokenContractAddress={props.contractAddressInputProps?.value}
     />
   )
   if (editable) {

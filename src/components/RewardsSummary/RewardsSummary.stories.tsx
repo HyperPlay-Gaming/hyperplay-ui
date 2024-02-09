@@ -32,6 +32,7 @@ const props: RewardsSummaryProps = {
   editable: true,
   onEditableChange: (editable) => console.log(`editable: ${editable}`),
   ...formRewardsProps,
+  removeReward: () => console.log('remove reward'),
   i18n
 }
 
