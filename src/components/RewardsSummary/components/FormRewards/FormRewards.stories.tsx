@@ -1,4 +1,5 @@
 import { chainMap } from '@hyperplay/chains'
+import { GetInputPropsReturnType } from '@mantine/form/lib/types'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { itemType } from '@/components/Dropdowns/Dropdown'
@@ -10,68 +11,70 @@ type Story = StoryObj<typeof FormRewards>
 const meta: Meta<typeof FormRewards> = {
   title: 'Quests/RewardsSummary/FormRewards',
   component: FormRewards,
-  excludeStories: ['formRewardsProps']
+  excludeStories: ['formRewardsProps', 'genericInputProp']
 }
 
 export default meta
 
-const defaultNetworks = Object.keys(chainMap).map((val) => {
-  return {
-    value: chainMap[val].chain.chainId.toString(),
-    label: chainMap[val].chain.name
+const defaultNetworks = Object.keys(chainMap).map(
+  (val) => chainMap[val].chain.name
+)
+
+/* eslint-disable-next-line */
+export const genericInputProp = (value: any) => {
+  const props: GetInputPropsReturnType = {
+    value: value,
+    /* eslint-disable-next-line */
+    onChange: (val: any) => console.log('on change ', val)
   }
-})
+  return props
+}
+
+const rewardTypeValue: itemType = {
+  text: 'ERC20'
+}
 
 export const formRewardsProps: FormRewardsProps = {
-  /* Form Rewards top level props */
-  tokenAddressTextInputProps: {
-    placeholder: 'Enter Token Address',
-    label: 'Token Contract Address'
-  },
-  onDropdownSelectionChange: (item: itemType) => console.log(item),
-  networkSelectCreatableProps: {
-    i18n: {
-      searchValue: 'Search for Network'
-    },
-    options: defaultNetworks.map((val) => val.label),
-    onChange: (option) => console.log(option),
-    onCreated: (option) => console.log(option)
-  },
+  rewardTypeInputProps: genericInputProp(rewardTypeValue),
+  networkInputProps: genericInputProp(defaultNetworks[0]),
+  contractAddressInputProps: genericInputProp('0x123456789123456789'),
+  tokenNameInputProps: genericInputProp('Token name'),
+  amountPerUserInputProps: genericInputProp('0'),
+  marketplaceUrlInputProps: genericInputProp('https://opensea.io'),
+  decimalsInputProps: genericInputProp('0'),
 
-  /* erc20 and erc721 props*/
-  tokenNameTextInputProps: {
-    placeholder: 'Enter Token Name',
-    label: 'Token Name'
-  },
-  amountPerUserTextInputProps: {
-    placeholder: 'Enter Amount Per User',
-    label: 'Amount Per User'
-  },
-  decimalsTextInputProps: { placeholder: '0', label: 'Decimals' },
-
-  /* erc1155 props*/
-  erc1155RewardInputs: [
+  networkOptions: defaultNetworks,
+  tokenTypeOptions: ['ERC20', 'ERC721', 'ERC1155'].map((val) => ({
+    text: val
+  })),
+  tokenIdsInputProps: [
     {
-      onRemoveClick: () => console.log('remove reward input 0'),
-      tokenNameTextInputProps: {
-        placeholder: 'Enter Token Name',
-        label: 'Token Name'
-      },
-      amountPerUserTextInputProps: {
-        placeholder: '0',
-        label: 'Amount Per User'
-      }
+      tokenNameInputProps: genericInputProp(''),
+      amountPerUserInputProps: genericInputProp(''),
+      onRemoveClick: () => console.log('remove this')
     }
   ],
-  addTokenId: () => console.log('add token'),
+  addTokenId: () => console.log('add another erc1155 token'),
   i18n: {
-    addTokenId: 'Add Token ID'
-  },
-
-  /* all erc child component props */
-  marketplaceUrlTextInputProps: {
-    placeholder: 'Enter Marketplace URL',
-    label: 'Marketplace URL'
+    addTokenId: 'Add Token ID',
+    placeholder: {
+      rewardType: 'Please Select a Reward Type',
+      network: 'Please Select a Network',
+      contractAddress: 'Please Enter a Contract Address',
+      tokenName: 'Please Enter a Token Name',
+      marketplaceUrl: 'Please Enter a Marketplace URL',
+      decimals: '0',
+      amountPerUser: '0'
+    },
+    label: {
+      rewardType: 'Reward Type',
+      network: 'Chain',
+      contractAddress: 'Contract Address',
+      tokenName: 'Token Name',
+      marketplaceUrl: 'Marketplace URL',
+      decimals: 'Decimals',
+      amountPerUser: 'Amount Per User'
+    }
   }
 }
 

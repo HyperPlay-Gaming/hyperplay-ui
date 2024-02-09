@@ -7,28 +7,28 @@ import { IconPlus } from '@tabler/icons-react'
 import Button from '@/components/Button'
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
+import { FormRewardsI18n } from '../..'
 import { TokenIdRowInputProps } from '../../types'
 import { TokenIdRow } from './components/TokenIdRow'
 import styles from './index.module.scss'
 
 export interface RewardERC1155Props {
-  marketplaceUrlTextInputProps: TextInputProps
-  erc1155RewardInputs: TokenIdRowInputProps[]
+  marketplaceUrlInputProps: TextInputProps
+  tokenIdsInputProps: TokenIdRowInputProps[]
   addTokenId: () => void
-  i18n: {
-    addTokenId: string
-  }
+  i18n: FormRewardsI18n
 }
 
 export function RewardERC1155({
-  marketplaceUrlTextInputProps,
-  erc1155RewardInputs,
+  marketplaceUrlInputProps,
+  tokenIdsInputProps,
   addTokenId,
   i18n
 }: RewardERC1155Props) {
-  const tokenIdRows = erc1155RewardInputs.map((inputs_i, index) => (
+  const tokenIdRows = tokenIdsInputProps.map((inputs_i, index) => (
     <TokenIdRow
       key={index}
+      i18n={i18n}
       {...inputs_i}
       onRemoveClick={inputs_i.onRemoveClick}
     />
@@ -49,7 +49,9 @@ export function RewardERC1155({
         </div>
         <TextInput
           className={styles.marketplaceUrlInput}
-          {...marketplaceUrlTextInputProps}
+          label={i18n.label.marketplaceUrl}
+          placeholder={i18n.placeholder.marketplaceUrl}
+          {...marketplaceUrlInputProps}
         />
       </div>
     </>

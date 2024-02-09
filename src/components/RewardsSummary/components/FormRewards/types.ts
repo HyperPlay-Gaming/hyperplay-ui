@@ -1,8 +1,8 @@
 import { TextInputProps } from '@/components/TextInput'
 
 export interface TokenRewardInput {
-  tokenNameTextInputProps: TextInputProps
-  amountPerUserTextInputProps: TextInputProps
+  tokenNameInputProps: TextInputProps
+  amountPerUserInputProps: TextInputProps
 }
 
 export interface TokenIdRowInputProps extends TokenRewardInput {
