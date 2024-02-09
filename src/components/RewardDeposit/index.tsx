@@ -1,5 +1,9 @@
 import React, { ReactElement } from 'react'
 
+import {
+  RewardsDepositedTable,
+  RewardsDepositedTableProps
+} from '@/components/RewardsDepositedTable'
 import Sticker from '@/components/Sticker'
 
 import Button from '../Button'
@@ -7,7 +11,6 @@ import { ContainerInteractive } from '../ContainerInteractive'
 import { RewardDetails, RewardDetailsProps } from '../RewardDetails'
 import styles from './RewardDeposit.module.scss'
 import { FormRewards, FormRewardsProps } from './components/FormRewards'
-import { RewardsDepositedTable, RewardsDepositedTableProps } from '@/components/RewardsDepositedTable'
 
 export interface RewardDepositProps {
   title: string
@@ -50,7 +53,7 @@ export function RewardDeposit({
     addedTokenCounterText: 'IDs added:',
     collapseAllIds: 'Collapse all IDs',
     depositedLabel: 'Deposited',
-    pressEnterToAdd: 'Press enter to add',
+    pressEnterToAdd: 'Press enter to add'
   },
   rewardDetailsProps,
   rewardDepositedTableProps

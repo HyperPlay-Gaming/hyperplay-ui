@@ -71,7 +71,7 @@ export const formRewardsProps: FormRewardsProps = {
     callToActionAddToken: 'Add Token IDs',
     addedTokenCounterText: 'IDs added:',
     collapseAllIds: 'Collapse all IDs',
-    pressEnterToAdd: 'Press enter to add',
+    pressEnterToAdd: 'Press enter to add'
   }
 }
 

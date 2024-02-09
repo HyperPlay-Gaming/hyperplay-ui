@@ -7,10 +7,10 @@ import { Ellipsis, TrashCan } from '@/assets/images'
 
 import Button from '../Button'
 import { rewardDetailsProps } from '../RewardDetails/RewardDetails.stories'
+import { rewardDepositedTableProps } from '../RewardsDepositedTable/RewardsDepositedTable.stories'
 import { formRewardsProps } from './components/FormRewards/FormRewards.stories'
 import { TokenIdItemProps } from './components/FormRewards/types'
 import { RewardDeposit, RewardDepositProps } from './index'
-import { rewardDepositedTableProps } from '../RewardsDepositedTable/RewardsDepositedTable.stories'
 
 type Story = StoryObj<typeof RewardDeposit>
 
