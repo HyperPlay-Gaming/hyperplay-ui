@@ -25,9 +25,11 @@ const props: RewardDepositProps = {
   title: 'Reward 1',
   icon: <Ellipsis />,
   isDeposited: false,
+  depositingAmount: '100 USDC',
   rewardsProps: formDepositRewardsProps,
   editable: true,
   updateEditable: (editable) => console.log(`editable: ${editable}`),
+  onFormSubmit: async () => { console.log('submit') },
   rewardDetailsProps: rewardDetailsProps,
   rewardDepositedTableProps: rewardDepositedTableProps
 }

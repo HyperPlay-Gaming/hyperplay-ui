@@ -6,11 +6,11 @@ import {
 } from '@/components/RewardsDepositedTable'
 import Sticker from '@/components/Sticker'
 
-import Button from '../Button'
 import { ContainerInteractive } from '../ContainerInteractive'
 import { RewardDetails, RewardDetailsProps } from '../RewardDetails'
 import styles from './RewardDeposit.module.scss'
 import { FormDepositRewards, FormDepositRewardsProps } from './components/FormDepositRewards'
+import { FormDepositActions } from './components/FormDepositActions'
 
 export interface RewardDepositProps {
   title: string
@@ -21,9 +21,11 @@ export interface RewardDepositProps {
   rewardsProps: FormDepositRewardsProps
   editable: boolean
   isDeposited?: boolean
+  isFormDepositDisabled?: boolean
+  depositingAmount?: string
+  onFormSubmit: () => Promise<void>
   updateEditable: (editable: boolean) => void
   i18n?: {
-    confirm?: string
     pendingDeposit?: string
     tokenIdsTitle: string
     orAddManually: string
@@ -32,6 +34,8 @@ export interface RewardDepositProps {
     collapseAllIds: string
     depositedLabel: string
     pressEnterToAdd: string
+    submitBtn: string
+    totalDeposit: string
   }
   rewardDetailsProps: RewardDetailsProps
   rewardDepositedTableProps: RewardsDepositedTableProps
@@ -44,8 +48,10 @@ export function RewardDeposit({
   editable,
   updateEditable,
   isDeposited,
+  isFormDepositDisabled,
+  depositingAmount,
+  onFormSubmit,
   i18n = {
-    confirm: 'Confirm Changes',
     pendingDeposit: 'Pending Deposit',
     tokenIdsTitle: 'Token IDs',
     orAddManually: 'Or add manually',
@@ -53,7 +59,9 @@ export function RewardDeposit({
     addedTokenCounterText: 'IDs added:',
     collapseAllIds: 'Collapse all IDs',
     depositedLabel: 'Deposited',
-    pressEnterToAdd: 'Press enter to add'
+    pressEnterToAdd: 'Press enter to add',
+    submitBtn: 'Deposit Reward',
+    totalDeposit: 'Total Deposit:'
   },
   rewardDetailsProps,
   rewardDepositedTableProps
@@ -64,7 +72,7 @@ export function RewardDeposit({
       variant="filled"
       className={styles.successDepositLabel}
     >
-      {i18n.pendingDeposit}
+      {i18n.depositedLabel}
     </Sticker>
   ) : (
     <Sticker
@@ -77,15 +85,20 @@ export function RewardDeposit({
   )
   let content = <RewardDetails {...rewardDetailsProps} />
   if (editable) {
-    content = <FormDepositRewards {...rewardsProps} i18n={i18n} />
-  }
-
-  let confirmButton = null
-  if (editable) {
-    confirmButton = (
-      <Button type="secondary" onClick={() => updateEditable(false)}>
-        {i18n.confirm}
-      </Button>
+    content = (
+      <>
+        <FormDepositRewards {...rewardsProps} i18n={i18n} />
+        <RewardsDepositedTable {...rewardDepositedTableProps} />
+        <FormDepositActions
+          onFormSubmit={async () => {
+            updateEditable(false)
+            await onFormSubmit()
+          }}
+          isDisabledButton={isFormDepositDisabled}
+          depositingAmount={depositingAmount}
+          i18n={i18n}
+        />
+      </>
     )
   }
 
@@ -97,11 +110,6 @@ export function RewardDeposit({
       classNames={{ root: styles.root }}
     >
       {content}
-      <RewardsDepositedTable {...rewardDepositedTableProps} />
-      {confirmButton}
-      <div className={styles.formActionsContainer}>
-
-      </div>
     </ContainerInteractive>
   )
 }

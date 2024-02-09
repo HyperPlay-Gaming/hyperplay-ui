@@ -1,26 +1,26 @@
 import React from 'react'
 import Button from '@/components/Button'
-import styles from './FormActions.module.scss'
+import styles from './FormDepositActions.module.scss'
 
-export interface FormActionsProps {
+export interface FormDepositActionsProps {
   onFormSubmit: () => void
   isDisabledButton?: boolean
-  depositAmount?: string | null
+  depositingAmount?: string | null
   i18n?: {
     submitBtn: string
     totalDeposit: string
   }
 }
 
-export function FormActions({
+export function FormDepositActions({
   onFormSubmit = () => null,
   isDisabledButton,
-  depositAmount,
+  depositingAmount,
   i18n = {
     submitBtn: 'Deposit Reward',
     totalDeposit: 'Total Deposit:'
   }
-}: FormActionsProps) {
+}: FormDepositActionsProps) {
   return (
     <div className={styles.base}>
       <Button
@@ -32,9 +32,9 @@ export function FormActions({
         {i18n.submitBtn}
       </Button>
       {
-        depositAmount !== null && (
+        depositingAmount !== null && (
           <span className={styles.totalDepositLabel}>
-            {i18n.totalDeposit} {depositAmount}
+            {i18n.totalDeposit} {depositingAmount}
           </span>
         )
       } 
