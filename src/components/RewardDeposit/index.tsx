@@ -46,7 +46,7 @@ export function RewardDeposit({
     callToActionAddToken: 'Add Token IDs',
     addedTokenCounterText: 'IDs added:',
     collapseAllIds: 'Collapse all IDs',
-    depositedLabel: 'Deposited',
+    depositedLabel: 'Deposited'
   },
   rewardDetailsProps
 }: RewardDepositProps) {
