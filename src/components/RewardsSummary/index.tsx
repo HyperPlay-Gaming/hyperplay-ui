@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-import { GetInputPropsReturnType } from '@mantine/form/lib/types'
 import { IconEdit } from '@tabler/icons-react'
 
 import { TrashCan } from '@/assets/images'
@@ -9,9 +8,18 @@ import Button from '../Button'
 import { ContainerInteractive } from '../ContainerInteractive'
 import { RewardDetails } from '../RewardDetails'
 import styles from './RewardsSummary.module.scss'
-import { FormRewards } from './components/FormRewards'
+import {
+  FormRewards,
+  FormRewardsI18n,
+  FormRewardsProps
+} from './components/FormRewards'
 
-export interface RewardsSummaryProps {
+export interface RewardsSummaryI18n extends FormRewardsI18n {
+  confirm?: string
+  remove?: string
+}
+
+export interface RewardsSummaryProps extends Omit<FormRewardsProps, 'i18n'> {
   title: string
   classNames?: {
     root?: string
@@ -19,32 +27,37 @@ export interface RewardsSummaryProps {
   editable: boolean
   onEditableChange: (editable: boolean) => void
 
-  // form props
-  rewardTypeInputProps: GetInputPropsReturnType
-  networkInputProps: GetInputPropsReturnType
-  tokenAddressInputProps: GetInputPropsReturnType
-  tokenNameInputProps: GetInputPropsReturnType
-  amountPerUserInputProps: GetInputPropsReturnType
-  marketplaceUrlInputProps: GetInputPropsReturnType
-  decimalsInputProps: GetInputPropsReturnType
-
-  i18n?: {
-    confirm?: string
-  }
+  i18n?: RewardsSummaryI18n
 }
 
 export function RewardsSummary({
   title,
   editable: editableInit,
   onEditableChange,
-  rewardTypeInputProps,
-  networkInputProps,
-  tokenAddressInputProps,
-  tokenNameInputProps,
-  amountPerUserInputProps,
-  marketplaceUrlInputProps,
-  decimalsInputProps,
-  i18n = { confirm: 'Confirm Changes' }
+  i18n = {
+    remove: 'Remove',
+    confirm: 'Confirm Changes',
+    addTokenId: 'Add Token ID',
+    placeholder: {
+      rewardType: 'Please Select a Reward Type',
+      network: 'Please Select a Network',
+      contractAddress: 'Please Enter a Contract Address',
+      tokenName: 'Please Enter a Token Name',
+      marketplaceUrl: 'Please Enter a Marketplace URL',
+      decimals: '0',
+      amountPerUser: '0'
+    },
+    label: {
+      rewardType: 'Reward Type',
+      network: 'Chain',
+      contractAddress: 'Contract Address',
+      tokenName: 'Token Name',
+      marketplaceUrl: 'Marketplace URL',
+      decimals: 'Decimals',
+      amountPerUser: 'Amount Per User'
+    }
+  },
+  ...props
 }: RewardsSummaryProps) {
   const [editable, setEditable] = useState(editableInit)
 
@@ -64,28 +77,23 @@ export function RewardsSummary({
         type="tertiary"
         rightIcon={<TrashCan fill="var(--color-neutral-400)" />}
       >
-        Remove
+        {i18n.remove}
       </Button>
     )
   }
 
   let content = (
     <RewardDetails
-      chainName={networkInputProps.value}
-      tokenType={rewardTypeInputProps.value}
-      tokenSymbol={tokenNameInputProps.value}
-      rewardPerPlayer={amountPerUserInputProps.value}
-      marketplace={marketplaceUrlInputProps.value}
-      tokenContractAddress={tokenAddressInputProps.value}
+      chainName={props.networkInputProps.value}
+      tokenType={props.rewardTypeInputProps.value}
+      tokenSymbol={props.tokenNameInputProps.value}
+      rewardPerPlayer={props.amountPerUserInputProps.value}
+      marketplace={props.marketplaceUrlInputProps.value}
+      tokenContractAddress={props.contractAddressInputProps.value}
     />
   )
   if (editable) {
-    content = (
-      <FormRewards
-        tokenAddressTextInputProps={tokenAddressInputProps}
-        marketplaceUrlTextInputProps={marketplaceUrlInputProps}
-      />
-    )
+    content = <FormRewards i18n={i18n} {...props} />
   }
 
   let confirmButton = null
