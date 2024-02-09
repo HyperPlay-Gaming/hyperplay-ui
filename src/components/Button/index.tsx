@@ -19,6 +19,7 @@ export interface ButtonProps
     | 'danger'
     | 'menuItem'
     | 'alert'
+    | 'gradientBorder'
   size?: 'small' | 'medium' | 'large' | 'icon'
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type']
   leftIcon?: JSX.Element
@@ -44,7 +45,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   }: ButtonProps,
   ref
 ) {
-  return (
+  const btnComponent = (
     <button
       disabled={disabled}
       ref={ref}
@@ -72,7 +73,27 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
         {rightIcon}
       </div>
     </button>
-  )
+  );
+
+  return (
+    type === 'gradientBorder' ? 
+    (
+      <div className={classNames(
+        styles.gradientBorderContainer,
+        'gradientBorder',
+        {
+          disabled: disabled
+        }
+      )}>
+        {btnComponent}
+      </div>
+    ) :
+    (
+      <>
+      {btnComponent}
+      </>
+    )
+  );
 })
 
 export default Button
