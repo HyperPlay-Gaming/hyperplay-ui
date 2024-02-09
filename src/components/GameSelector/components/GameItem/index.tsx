@@ -19,7 +19,11 @@ export default function GameItem({ game, className, ...props }: GameItemProps) {
       {...props}
     >
       <GameDisplayDetails game={game} />
-      <button onClick={game.onClick} data-testid={`selected-${game.gameId}`}>
+      <button
+        onClick={game.onClick}
+        data-testid={`selected-${game.gameId}`}
+        type="button"
+      >
         <TrashCan />
       </button>
     </div>

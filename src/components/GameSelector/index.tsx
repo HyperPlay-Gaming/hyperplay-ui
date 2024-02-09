@@ -89,7 +89,9 @@ export function GameSelector({
           {searchResults}
         </Menu.Dropdown>
       </Menu>
-      {selectedGamesElement}
+      <div className={styles.selectedGamesContainer}>
+        {selectedGamesElement}
+      </div>
     </div>
   )
 }
