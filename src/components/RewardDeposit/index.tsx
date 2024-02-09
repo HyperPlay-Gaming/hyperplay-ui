@@ -16,6 +16,7 @@ export interface RewardDepositProps {
   }
   rewardsProps: FormRewardsProps
   editable: boolean
+  isDeposited?: boolean
   updateEditable: (editable: boolean) => void
   i18n?: {
     confirm?: string
@@ -25,6 +26,7 @@ export interface RewardDepositProps {
     callToActionAddToken: string
     addedTokenCounterText: string
     collapseAllIds: string
+    depositedLabel: string
   }
   rewardDetailsProps: RewardDetailsProps
 }
@@ -35,6 +37,7 @@ export function RewardDeposit({
   rewardsProps,
   editable,
   updateEditable,
+  isDeposited,
   i18n = {
     confirm: 'Confirm Changes',
     pendingDeposit: 'Pending Deposit',
@@ -42,11 +45,20 @@ export function RewardDeposit({
     orAddManually: 'Or add manually',
     callToActionAddToken: 'Add Token IDs',
     addedTokenCounterText: 'IDs added:',
-    collapseAllIds: 'Collapse all IDs'
+    collapseAllIds: 'Collapse all IDs',
+    depositedLabel: 'Deposited',
   },
   rewardDetailsProps
 }: RewardDepositProps) {
-  const tag: ReactElement = (
+  const tag: ReactElement = isDeposited ? (
+    <Sticker
+      styleType="success"
+      variant="filled"
+      className={styles.successDepositLabel}
+    >
+      {i18n.pendingDeposit}
+    </Sticker>
+  ) : (
     <Sticker
       styleType="warning"
       variant="filled"

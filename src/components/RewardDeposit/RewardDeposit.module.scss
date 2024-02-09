@@ -4,7 +4,8 @@
   flex-direction: column;
 }
 
-.pendingDepositLabel {
+.pendingDepositLabel,
+.successDepositLabel {
   font-family: var(--secondary-font-family);
   font-size: var(--text-sm);
   font-weight: var(--medium);

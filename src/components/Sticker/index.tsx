@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import styles from './index.module.scss'
 
 export interface StickerProps extends HTMLProps<HTMLDivElement> {
-  styleType: 'secondary' | 'warning'
+  styleType: 'secondary' | 'warning' | 'success'
   variant: 'filled' | 'default' | 'outlined'
 }
 
@@ -18,6 +18,7 @@ export default function Sticker({
   const divClasses: Record<string, boolean> = {}
   divClasses[styles.secondary] = styleType === 'secondary'
   divClasses[styles.warning] = styleType === 'warning'
+  divClasses[styles.success] = styleType === 'success'
   divClasses[styles.outlined] = variant === 'outlined'
   divClasses[styles.filled] = variant === 'filled'
   return (

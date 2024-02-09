@@ -23,6 +23,7 @@ export default meta
 const props: RewardDepositProps = {
   title: 'Reward 1',
   icon: <Ellipsis />,
+  isDeposited: false,
   rewardsProps: formRewardsProps,
   editable: true,
   updateEditable: (editable) => console.log(`editable: ${editable}`),
@@ -63,6 +64,7 @@ export const Confirmed: Story = {
         editable={editable}
         updateEditable={setEditable}
         icon={iconButton}
+        isDeposited={true}
         rewardsProps={{
           ...args.rewardsProps,
           tokenIdsList: tokenIds,
