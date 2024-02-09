@@ -99,6 +99,9 @@ export function RewardDeposit({
       {content}
       <RewardsDepositedTable {...rewardDepositedTableProps} />
       {confirmButton}
+      <div className={styles.formActionsContainer}>
+
+      </div>
     </ContainerInteractive>
   )
 }
