@@ -3,29 +3,30 @@
 import React from 'react'
 
 import Button from '@/components/Button'
-import TextInput from '@/components/TextInput'
 
-import { TokenIdRowInputProps } from '../../../../types'
 import styles from './index.module.scss'
+import { TrashCan } from '@/assets/images'
+
+interface TokenIdRowInputProps {
+  tokenId: number
+  onRemoveTap: () => void
+}
 
 export function TokenIdRow({
-  tokenNameTextInputProps,
-  amountPerUserTextInputProps,
-  onRemoveClick
+  tokenId,
+  onRemoveTap
 }: TokenIdRowInputProps) {
   return (
     <div className={styles.root}>
-      <div className={styles.inputRow}>
-        <TextInput {...tokenNameTextInputProps} />
-        <TextInput {...amountPerUserTextInputProps} />
+      <div className={styles.detail}>
+       {tokenId} 
       </div>
       <Button
         type="tertiary"
-        onClick={onRemoveClick}
+        onClick={onRemoveTap}
+        rightIcon={(<TrashCan fill="var(--color-neutral-400)" />)}
         className={styles.removeButton}
-      >
-        Remove
-      </Button>
+      />
     </div>
   )
 }
