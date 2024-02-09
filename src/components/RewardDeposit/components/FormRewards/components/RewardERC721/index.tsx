@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react'
 
+import { ArrowTop, DownArrow } from '@/assets/images'
+import Button from '@/components/Button'
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
-import styles from './index.module.scss'
-import Button from '@/components/Button'
-import { TokenIdRow } from './components/TokenIdRow'
-import { ArrowTop, DownArrow } from '@/assets/images'
 import { TokenIdItemProps } from '../../types'
+import { TokenIdRow } from './components/TokenIdRow'
+import styles from './index.module.scss'
 
 export interface RewardERC721Props {
   tokenFromNumberInputProps: TextInputProps
@@ -23,7 +23,7 @@ export interface RewardERC721Props {
     callToActionAddToken: string
     addedTokenCounterText: string
     collapseAllIds: string
-  },
+  }
 }
 
 export function RewardERC721({
@@ -39,12 +39,19 @@ export function RewardERC721({
     callToActionAddToken: 'Add Token IDs',
     addedTokenCounterText: 'IDs added:',
     collapseAllIds: 'Collapse all IDs'
-  },
+  }
 }: RewardERC721Props) {
-  const label = (<span>{amountPerUserTextInputProps.label} <span className={styles.labelHint}>(Press enter to add)</span></span>);
+  const label = (
+    <span>
+      {amountPerUserTextInputProps.label}{' '}
+      <span className={styles.labelHint}>(Press enter to add)</span>
+    </span>
+  )
   const [showTokenIds, setShowTokenIds] = useState<boolean>(false)
-  const [tokensIdsList, setTokensIdsList] = useState<number[]>([]);
-  const onShowToken = () => { setShowTokenIds((prev) => !prev) }
+  const [tokensIdsList, setTokensIdsList] = useState<number[]>([])
+  const onShowToken = () => {
+    setShowTokenIds((prev) => !prev)
+  }
 
   return (
     <div className={styles.base}>
@@ -53,12 +60,15 @@ export function RewardERC721({
         <TextInput
           {...tokenFromNumberInputProps}
           classNames={{
-            label: styles.label,
+            label: styles.label
           }}
         />
-        <TextInput {...tokenToNumberInputProps} classNames={{
-          label: styles.label,
-        }} />
+        <TextInput
+          {...tokenToNumberInputProps}
+          classNames={{
+            label: styles.label
+          }}
+        />
         <div className={styles.addTokenIdButtonContainer}>
           <Button
             type="gradientBorder"
@@ -72,48 +82,51 @@ export function RewardERC721({
       </div>
       <div className={styles.addManuallyStatement}>
         <span className={styles.line}></span>
-        <span className={styles.addManuallyStatementText}>{i18n.orAddManually}</span>
+        <span className={styles.addManuallyStatementText}>
+          {i18n.orAddManually}
+        </span>
         <span className={styles.line}></span>
       </div>
       <TextInput
         {...amountPerUserTextInputProps}
         label={label}
         classNames={{
-          label: styles.label,
+          label: styles.label
         }}
       />
-      {
-        tokenIdsList.length > 0 &&
-        (
-          <div className={styles.tokensAddedContainer}>
-            <div className={styles.tokensAddedActionsContainer}>
-              <span>
-                {i18n.addedTokenCounterText} {tokenIdsList.length}
-              </span>
-              <div className={styles.tokensAddedActions}>
-                <span>
-                  {i18n.collapseAllIds}
-                </span>
-                {showTokenIds 
-                  ? <DownArrow onClick={onShowToken} className={styles.arrowDownIcon} /> 
-                  : <ArrowTop onClick={onShowToken} className={styles.arrowTopIcon}/>
-                }
-              </div>
+      {tokenIdsList.length > 0 && (
+        <div className={styles.tokensAddedContainer}>
+          <div className={styles.tokensAddedActionsContainer}>
+            <span>
+              {i18n.addedTokenCounterText} {tokenIdsList.length}
+            </span>
+            <div className={styles.tokensAddedActions}>
+              <span>{i18n.collapseAllIds}</span>
+              {showTokenIds ? (
+                <DownArrow
+                  onClick={onShowToken}
+                  className={styles.arrowDownIcon}
+                />
+              ) : (
+                <ArrowTop
+                  onClick={onShowToken}
+                  className={styles.arrowTopIcon}
+                />
+              )}
             </div>
-            {
-              showTokenIds && (
-                <div className={styles.tokensAddedList}>
-                  {
-                    tokenIdsList.map((tokenProps, index) => (
-                      <TokenIdRow key={`token-${tokenProps.tokenId}-${index}`} {...tokenProps} />
-                    ))
-                  }
-                </div>
-              )
-            }
           </div>
-        )
-      }
+          {showTokenIds && (
+            <div className={styles.tokensAddedList}>
+              {tokenIdsList.map((tokenProps, index) => (
+                <TokenIdRow
+                  key={`token-${tokenProps.tokenId}-${index}`}
+                  {...tokenProps}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   )
 }

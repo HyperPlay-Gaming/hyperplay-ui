@@ -11,7 +11,7 @@ export interface RewardERC1155Props {
   totalPlayerReachNumberInputs: TextInputProps[]
   i18n?: {
     tokenIdsTitle: string
-  },
+  }
 }
 
 export function RewardERC1155({
@@ -19,21 +19,22 @@ export function RewardERC1155({
   totalPlayerReachNumberInputs,
   i18n = {
     tokenIdsTitle: 'Token IDs'
-  },
+  }
 }: RewardERC1155Props) {
-  const tokenIdsNumberInput = tokenIdsNumberInputs.map((tokenIdInputProps, index) => (
-    <TextInput
-      key={index}
-      {...tokenIdInputProps}
-    />
-  ))
-  const totalPlayerReachNumberInput = totalPlayerReachNumberInputs.map((tokenIdInputProps, index) => (
-    <TextInput
-      key={index}
-      className={styles.totalPlayerReachNumberInput}
-      {...tokenIdInputProps}
-    />
-  ))
+  const tokenIdsNumberInput = tokenIdsNumberInputs.map(
+    (tokenIdInputProps, index) => (
+      <TextInput key={index} {...tokenIdInputProps} />
+    )
+  )
+  const totalPlayerReachNumberInput = totalPlayerReachNumberInputs.map(
+    (tokenIdInputProps, index) => (
+      <TextInput
+        key={index}
+        className={styles.totalPlayerReachNumberInput}
+        {...tokenIdInputProps}
+      />
+    )
+  )
 
   return (
     <div>

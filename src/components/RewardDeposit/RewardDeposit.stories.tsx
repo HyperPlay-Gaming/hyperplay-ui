@@ -8,8 +8,8 @@ import { Ellipsis, TrashCan } from '@/assets/images'
 import Button from '../Button'
 import { rewardDetailsProps } from '../RewardDetails/RewardDetails.stories'
 import { formRewardsProps } from './components/FormRewards/FormRewards.stories'
-import { RewardDeposit, RewardDepositProps } from './index'
 import { TokenIdItemProps } from './components/FormRewards/types'
+import { RewardDeposit, RewardDepositProps } from './index'
 
 type Story = StoryObj<typeof RewardDeposit>
 
@@ -71,10 +71,13 @@ export const Confirmed: Story = {
             console.log('add token id')
             console.log(tokenIds)
             const newTokenIds = rawTokenIds.map((tokenId: number) => ({
-              tokenId,
+              tokenId
             }))
 
-            const newTokenArray: TokenIdItemProps[] = [...tokenIds, ...newTokenIds].map((token, index) => ({
+            const newTokenArray: TokenIdItemProps[] = [
+              ...tokenIds,
+              ...newTokenIds
+            ].map((token, index) => ({
               tokenId: token.tokenId,
               onRemoveTap: () => {
                 const newTokens = tokenIds.splice(index, 1)

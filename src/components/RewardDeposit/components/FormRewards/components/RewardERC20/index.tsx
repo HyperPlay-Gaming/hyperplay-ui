@@ -9,7 +9,7 @@ export interface RewardERC20Props {
 }
 
 export function RewardERC20({
-  totalPlayerReachNumberInputProps,
+  totalPlayerReachNumberInputProps
 }: RewardERC20Props) {
   return (
     <>

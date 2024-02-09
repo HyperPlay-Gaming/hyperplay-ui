@@ -104,13 +104,13 @@
   }
 }
 
-.gradientBorderContainer{
+.gradientBorderContainer {
   --gradient-thickness-px: 1px;
 
   &:has(:disabled) {
     --gradient-thickness-px: 1px;
-    --gradient-border: linear-gradient(transparent, transparent), 
-    linear-gradient(86.63deg, #200f74 2.98%, #75055d 38.52%, #083553 89.36%)!important
+    --gradient-border: linear-gradient(transparent, transparent),
+      linear-gradient(86.63deg, #200f74 2.98%, #75055d 38.52%, #083553 89.36%) !important;
   }
 }
 
@@ -124,7 +124,7 @@
     color: var(--color-neutral-100);
     opacity: 100%;
   }
-  
+
   &:disabled,
   &[disabled] {
     opacity: 1;

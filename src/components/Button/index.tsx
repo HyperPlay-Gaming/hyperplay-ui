@@ -73,27 +73,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
         {rightIcon}
       </div>
     </button>
-  );
+  )
 
-  return (
-    type === 'gradientBorder' ? 
-    (
-      <div className={classNames(
-        styles.gradientBorderContainer,
-        'gradientBorder',
-        {
-          disabled: disabled
-        }
-      )}>
-        {btnComponent}
-      </div>
-    ) :
-    (
-      <>
+  return type === 'gradientBorder' ? (
+    <div
+      className={classNames(styles.gradientBorderContainer, 'gradientBorder', {
+        disabled: disabled
+      })}
+    >
       {btnComponent}
-      </>
-    )
-  );
+    </div>
+  ) : (
+    <>{btnComponent}</>
+  )
 })
 
 export default Button

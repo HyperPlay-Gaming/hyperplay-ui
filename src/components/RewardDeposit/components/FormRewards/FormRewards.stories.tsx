@@ -20,7 +20,7 @@ export const formRewardsProps: FormRewardsProps = {
   },
   tokenToNumberInputProps: {
     placeholder: '99',
-    label: 'To' 
+    label: 'To'
   },
   amountPerUserTextInputProps: {
     placeholder: 'Paste token ID',
@@ -38,7 +38,7 @@ export const formRewardsProps: FormRewardsProps = {
     {
       placeholder: 'Paste token ID',
       label: 'Token ID: SILVER'
-    },
+    }
   ],
   totalPlayerReachNumberInputs: [
     {
@@ -48,16 +48,18 @@ export const formRewardsProps: FormRewardsProps = {
     {
       placeholder: '0',
       label: 'Total Player Reach: SILVER'
-    },
+    }
   ],
   tokenIdsList: [
     {
       tokenId: 55,
       onRemoveTap: () => console.log('remove1 ')
-    }, {
+    },
+    {
       tokenId: 54,
       onRemoveTap: () => console.log('remove2 ')
-    }, {
+    },
+    {
       tokenId: 65,
       onRemoveTap: () => console.log('remove3 ')
     }
@@ -69,7 +71,7 @@ export const formRewardsProps: FormRewardsProps = {
     callToActionAddToken: 'Add Token IDs',
     addedTokenCounterText: 'IDs added:',
     collapseAllIds: 'Collapse all IDs'
-  },
+  }
 }
 
 export const Default: Story = {

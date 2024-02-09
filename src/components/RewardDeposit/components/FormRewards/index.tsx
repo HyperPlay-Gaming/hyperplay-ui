@@ -6,8 +6,8 @@ import { Dropdown } from '@/components/Dropdowns'
 import { TextInputProps } from '@/components/TextInput'
 
 import styles from './FormRewards.module.scss'
-import { RewardERC721 } from './components/RewardERC721'
 import { RewardERC20 } from './components/RewardERC20'
+import { RewardERC721 } from './components/RewardERC721'
 import { RewardERC1155 } from './components/RewardERC1155'
 import { TokenIdItemProps } from './types'
 
@@ -34,7 +34,7 @@ export interface FormRewardsProps {
     callToActionAddToken: string
     addedTokenCounterText: string
     collapseAllIds: string
-  },
+  }
 }
 
 export function FormRewards(props: FormRewardsProps) {
