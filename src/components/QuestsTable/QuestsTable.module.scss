@@ -35,3 +35,23 @@
   display: flex;
   gap: var(--space-sm);
 }
+
+$circleDiameter: 12px;
+
+.statusContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-xs-fixed);
+
+  .statusCircle {
+    width: $circleDiameter;
+    height: $circleDiameter;
+    &.DRAFT {
+      background-color: var(--color-neutral-300);
+    }
+    &.ACTIVE {
+      background-color: var(--color-success-400);
+    }
+  }
+}

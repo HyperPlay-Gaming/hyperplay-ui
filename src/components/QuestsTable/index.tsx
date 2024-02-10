@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react'
 
+import cn from 'classnames'
+
 import Button from '../Button'
 import styles from './QuestsTable.module.scss'
 
@@ -11,26 +13,45 @@ export interface RewardSimple {
   balance: number
 }
 
+type statusType = 'DRAFT' | 'ACTIVE'
+
+interface QuestsTableI18n {
+  name?: string
+  games?: string
+  reward?: string
+  balance?: string
+  claims?: string
+  status?: string
+  player?: string
+  active?: string
+  inactive?: string
+  draft?: string
+}
+
+function getStatusDisplayName(status: statusType, i18n: QuestsTableI18n) {
+  switch (status) {
+    case 'DRAFT':
+      return i18n.draft
+      break
+    case 'ACTIVE':
+      return i18n.active
+      break
+    default:
+      return '???'
+      break
+  }
+}
+
 export interface Quest {
   name: string
   rewards: RewardSimple[]
   numGames: number
-  status: 'DRAFT' | 'ACTIVE'
+  status: statusType
 }
 
 export interface QuestsTableProps {
   quests: Quest[]
-  i18n?: {
-    name?: string
-    games?: string
-    reward?: string
-    balance?: string
-    claims?: string
-    status?: string
-    player?: string
-    active?: string
-    inactive?: string
-  }
+  i18n?: QuestsTableI18n
 }
 
 export function QuestsTable({
@@ -44,7 +65,8 @@ export function QuestsTable({
     status: 'Status',
     player: 'Player',
     active: 'Active',
-    inactive: 'Inactive'
+    inactive: 'Inactive',
+    draft: 'Draft'
   }
 }: QuestsTableProps) {
   const [filter, setFilter] = useState<null | 'ACTIVE' | 'INACTIVE'>(null)
@@ -126,7 +148,16 @@ export function QuestsTable({
             </td>
             <td>
               <div>{i18n.status}</div>
-              <div>{quest.status}</div>
+              <div className={styles.statusContainer}>
+                <div
+                  className={cn(
+                    'circle',
+                    styles.statusCircle,
+                    styles[quest.status]
+                  )}
+                ></div>
+                {getStatusDisplayName(quest.status, i18n)}
+              </div>
             </td>
           </tr>
         ))}
