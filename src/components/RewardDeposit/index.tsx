@@ -39,6 +39,7 @@ export interface RewardDepositProps {
     pressEnterToAdd: string
     submitBtn: string
     totalDeposit: string
+    selectRewardTokenType: string
   }
   rewardDetailsProps: RewardDetailsProps
   rewardDepositedTableProps: RewardsDepositedTableProps
@@ -64,7 +65,8 @@ export function RewardDeposit({
     depositedLabel: 'Deposited',
     pressEnterToAdd: 'Press enter to add',
     submitBtn: 'Deposit Reward',
-    totalDeposit: 'Total Deposit:'
+    totalDeposit: 'Total Deposit:',
+    selectRewardTokenType: 'Select Reward Type'
   },
   rewardDetailsProps,
   rewardDepositedTableProps

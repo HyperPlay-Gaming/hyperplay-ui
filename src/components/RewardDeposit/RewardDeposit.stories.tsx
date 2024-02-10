@@ -102,3 +102,12 @@ export const Confirmed: Story = {
     )
   }
 }
+
+export const Disabled: Story = {
+  args: { 
+    ...props, 
+    editable: false,
+    isFormDepositDisabled: true,
+    isDeposited: true
+  },
+}

@@ -35,6 +35,7 @@ export interface FormDepositRewardsProps {
     addedTokenCounterText: string
     collapseAllIds: string
     pressEnterToAdd: string
+    selectRewardTokenType: string
   }
 }
 
@@ -53,7 +54,7 @@ export function FormDepositRewards(props: FormDepositRewardsProps) {
   return (
     <div className={styles.root}>
       <div>
-        <div className={cn('caption', styles.label)}>Reward Token Type</div>
+        <div className={cn('caption', styles.label)}>{props.i18n?.selectRewardTokenType}</div>
         <Dropdown
           options={data}
           selected={selectedTokenType}
