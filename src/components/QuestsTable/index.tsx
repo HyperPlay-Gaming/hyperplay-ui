@@ -18,7 +18,7 @@ type statusType = 'DRAFT' | 'ACTIVE'
 interface QuestsTableI18n {
   name?: string
   games?: string
-  reward?: string
+  rewardPerPlayer?: string
   balance?: string
   claims?: string
   status?: string
@@ -61,7 +61,7 @@ export function QuestsTable({
   i18n = {
     name: 'Name',
     games: 'Games',
-    reward: 'Reward',
+    rewardPerPlayer: 'Reward / Player',
     balance: 'Balance',
     claims: 'Claims',
     status: 'Status',
@@ -83,24 +83,40 @@ export function QuestsTable({
     filteredQuests = filteredQuests.filter((val) => val.status !== 'ACTIVE')
   }
 
+  function getStringFromArray(
+    rewards: RewardSimple[],
+    getStringFromReward: (reward: RewardSimple) => string
+  ) {
+    let rewardString = ''
+    for (let i = 0; i < 2 && i < rewards.length; ++i) {
+      const val = rewards[i]
+      if (i === 1) {
+        rewardString += ', '
+      }
+      rewardString += getStringFromReward(val)
+    }
+    const numOfRewardsLeft = rewards.length - 2
+    if (numOfRewardsLeft > 0) {
+      rewardString += `, +${numOfRewardsLeft} more`
+    }
+
+    return rewardString
+  }
+
   function getRewardString(quest: Quest) {
-    let rewardString = ''
-    quest.rewards.forEach(
-      (val) =>
-        (rewardString += `${val.amountPerPlayer}${val.symbol} / ${i18n.player}`)
+    return getStringFromArray(
+      quest.rewards,
+      (reward: RewardSimple) => `${reward.amountPerPlayer}${reward.symbol}`
     )
-    return rewardString
   }
+
   function getBalanceString(quest: Quest) {
-    let rewardString = ''
-    quest.rewards.forEach(
-      (val, index) =>
-        (rewardString += `${val.balance} ${val.symbol}${
-          index < quest.rewards.length - 1 ? ',' : ''
-        }`)
+    return getStringFromArray(
+      quest.rewards,
+      (reward: RewardSimple) => `${reward.balance} ${reward.symbol}`
     )
-    return rewardString
   }
+
   return (
     <div>
       <div className={styles.actionButtonRow}>
@@ -145,7 +161,7 @@ export function QuestsTable({
               <div>{quest.numGames}</div>
             </td>
             <td>
-              <div>{i18n.reward}</div>
+              <div>{i18n.rewardPerPlayer}</div>
               <div>{getRewardString(quest)}</div>
             </td>
             <td>

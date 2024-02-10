@@ -20,6 +20,21 @@ const props: QuestsTableProps = {
           amountPerPlayer: 100,
           symbol: 'USDC',
           balance: 10000
+        },
+        {
+          amountPerPlayer: 200,
+          symbol: 'GOLD',
+          balance: 100000
+        },
+        {
+          amountPerPlayer: 312,
+          symbol: 'KITS',
+          balance: 124000
+        },
+        {
+          amountPerPlayer: 0.01,
+          symbol: 'WETH',
+          balance: 10
         }
       ],
       numGames: 10,
