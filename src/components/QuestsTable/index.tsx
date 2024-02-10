@@ -50,9 +50,12 @@ export function QuestsTable({
   const [filter, setFilter] = useState<null | 'ACTIVE' | 'INACTIVE'>(null)
 
   let filteredQuests = quests
-  if (filter === 'ACTIVE') {
+  const isActive = filter === 'ACTIVE'
+  const isInactive = filter === 'INACTIVE'
+  const noFilterSelected = filter === null
+  if (isActive) {
     filteredQuests = filteredQuests.filter((val) => val.status === 'ACTIVE')
-  } else if (filter === 'INACTIVE') {
+  } else if (isInactive) {
     filteredQuests = filteredQuests.filter((val) => val.status !== 'ACTIVE')
   }
 
@@ -76,32 +79,56 @@ export function QuestsTable({
   }
   return (
     <div>
-      <div>
-        <Button type="tertiary" onClick={() => setFilter('ACTIVE')}>
+      <div className={styles.actionButtonRow}>
+        <Button
+          type={isActive ? 'secondary' : 'tertiary'}
+          onClick={() => {
+            if (isInactive || noFilterSelected) {
+              setFilter('ACTIVE')
+            } else if (isActive) {
+              setFilter(null)
+            }
+          }}
+        >
           {i18n.active}
         </Button>
-        <Button type="tertiary" onClick={() => setFilter('INACTIVE')}>
+        <Button
+          type={isInactive ? 'secondary' : 'tertiary'}
+          onClick={() => {
+            if (isActive || noFilterSelected) {
+              setFilter('INACTIVE')
+            } else if (isInactive) {
+              setFilter(null)
+            }
+          }}
+        >
           {i18n.inactive}
         </Button>
       </div>
-      <table>
+      <table className={styles.questsTableContainer}>
         {filteredQuests.map((quest) => (
-          <div key={quest.name} className={styles.rowContainer}>
-            <tr>
-              <td>{i18n.name}</td>
-              <td>{i18n.games}</td>
-              <td>{i18n.reward}</td>
-              <td>{i18n.balance}</td>
-              <td>{i18n.status}</td>
-            </tr>
-            <tr>
-              <td>{quest.name}</td>
-              <td>{quest.numGames}</td>
-              <td>{getRewardString(quest)}</td>
-              <td>{getBalanceString(quest)}</td>
-              <td>{quest.status}</td>
-            </tr>
-          </div>
+          <tr key={quest.name} className={styles.rowContainer}>
+            <td>
+              <div>{i18n.name}</div>
+              <div>{quest.name}</div>
+            </td>
+            <td>
+              <div>{i18n.games}</div>
+              <div>{quest.numGames}</div>
+            </td>
+            <td>
+              <div>{i18n.reward}</div>
+              <div>{getRewardString(quest)}</div>
+            </td>
+            <td>
+              <div>{i18n.balance}</div>
+              <div>{getBalanceString(quest)}</div>
+            </td>
+            <td>
+              <div>{i18n.status}</div>
+              <div>{quest.status}</div>
+            </td>
+          </tr>
         ))}
       </table>
     </div>
