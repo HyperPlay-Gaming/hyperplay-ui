@@ -24,7 +24,8 @@ const props: QuestsTableProps = {
       ],
       numGames: 10,
       status: 'DRAFT',
-      onClick: () => console.log('a quest clicked')
+      onClick: () => console.log('a quest clicked'),
+      claims: 100
     },
     {
       name: 'Another quest',
@@ -37,7 +38,8 @@ const props: QuestsTableProps = {
       ],
       numGames: 2,
       status: 'ACTIVE',
-      onClick: () => console.log('Another quest clicked')
+      onClick: () => console.log('Another quest clicked'),
+      claims: 300
     }
   ]
 }

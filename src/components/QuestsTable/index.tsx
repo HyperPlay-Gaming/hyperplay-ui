@@ -48,6 +48,7 @@ export interface Quest {
   numGames: number
   status: statusType
   onClick: () => void
+  claims: number
 }
 
 export interface QuestsTableProps {
@@ -163,6 +164,10 @@ export function QuestsTable({
                 ></div>
                 {getStatusDisplayName(quest.status, i18n)}
               </div>
+            </td>
+            <td>
+              <div>{i18n.claims}</div>
+              <div>{quest.claims}</div>
             </td>
           </tr>
         ))}
