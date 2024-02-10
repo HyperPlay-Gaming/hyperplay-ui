@@ -1,0 +1,57 @@
+.rowContainer {
+  background-color: var(--color-neutral-700);
+  margin-bottom: var(--space-sm-fixed);
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background-color: var(--color-neutral-600);
+  }
+
+  > td > div:first-child {
+    color: var(--color-neutral-400);
+  }
+
+  > * {
+    padding: var(--space-md);
+    &:first-child {
+      border-radius: var(--space-md) 0 0 var(--space-md);
+    }
+    &:last-child {
+      border-radius: 0 var(--space-md) var(--space-md) 0;
+    }
+  }
+}
+
+.questsTableContainer {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0 1em;
+}
+
+.actionButtonRow {
+  margin-bottom: var(--space-xs-fixed);
+  display: flex;
+  gap: var(--space-sm);
+}
+
+$circleDiameter: 12px;
+
+.statusContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-xs-fixed);
+
+  .statusCircle {
+    width: $circleDiameter;
+    height: $circleDiameter;
+    &.DRAFT {
+      background-color: var(--color-neutral-300);
+    }
+    &.ACTIVE {
+      background-color: var(--color-success-400);
+    }
+  }
+}
