@@ -47,6 +47,7 @@ export interface Quest {
   rewards: RewardSimple[]
   numGames: number
   status: statusType
+  onClick: () => void
 }
 
 export interface QuestsTableProps {
@@ -129,7 +130,11 @@ export function QuestsTable({
       </div>
       <table className={styles.questsTableContainer}>
         {filteredQuests.map((quest) => (
-          <tr key={quest.name} className={styles.rowContainer}>
+          <tr
+            key={quest.name}
+            className={styles.rowContainer}
+            onClick={quest.onClick}
+          >
             <td>
               <div>{i18n.name}</div>
               <div>{quest.name}</div>
