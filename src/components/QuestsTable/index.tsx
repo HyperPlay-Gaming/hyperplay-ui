@@ -13,9 +13,9 @@ export interface RewardSimple {
   balance: number
 }
 
-type statusType = 'DRAFT' | 'ACTIVE'
+export type statusType = 'DRAFT' | 'ACTIVE'
 
-interface QuestsTableI18n {
+export interface QuestsTableI18n {
   name?: string
   games?: string
   rewardPerPlayer?: string
