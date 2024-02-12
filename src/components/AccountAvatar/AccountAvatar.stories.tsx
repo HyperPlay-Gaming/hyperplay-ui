@@ -21,16 +21,14 @@ export const Online: Story = {
   }
 }
 
-export const WithMetaMaskIcon: Story = {
+export const WalletConnected: Story = {
   args: {
     userId: 'johndoe@mail.com',
     WalletIcon: <MetaMaskColored />
   }
 }
-
-export const WithWalletConnectIcon: Story = {
+export const WalletConnectedButOffline: Story = {
   args: {
-    userId: 'johndoe@mail.com',
     WalletIcon: <WalletConnectLogo />
   }
 }
