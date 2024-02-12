@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes, ReactNode } from 'react'
 
 import { Avatar } from '@mantine/core'
 import cn from 'classnames'
@@ -8,9 +8,15 @@ import styles from './styles.module.scss'
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   userId?: string
+  WalletIcon?: ReactNode
 }
 
-export default function AccountAvatar({ userId, className, ...others }: Props) {
+export default function AccountAvatar({
+  userId,
+  className,
+  WalletIcon,
+  ...others
+}: Props) {
   const offline = !userId
 
   if (offline) {
@@ -24,11 +30,10 @@ export default function AccountAvatar({ userId, className, ...others }: Props) {
 
   return (
     <div className={cn(styles.container, className)} {...others}>
-      <Avatar
-        src={makeBlockie(userId)}
-        size={10}
-        className={cn(styles.avatar, styles.onlineAvatar)}
-      />
+      <div className={styles.onlineAvatar}>
+        <Avatar src={makeBlockie(userId)} size={10} className={styles.avatar} />
+      </div>
+      {WalletIcon && <div className={styles.walletIcon}>{WalletIcon}</div>}
       <span className={cn(styles.status, styles.online)} />
     </div>
   )

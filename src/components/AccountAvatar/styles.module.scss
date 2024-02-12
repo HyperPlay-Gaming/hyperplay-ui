@@ -1,3 +1,5 @@
+@use '../../styles/utilities/_gradientBorder.scss';
+
 .avatar {
   width: 40px;
   height: 40px;
@@ -12,7 +14,8 @@
 }
 
 .onlineAvatar {
-  border: 2.5px solid var(--color-success-200);
+  position: relative;
+  @include gradientBorder.gradientBorder(2.5px, var(--color-gradient-01-border));
 }
 
 .offlineAvatar {
@@ -35,11 +38,26 @@
 }
 
 .online {
-  background: var(--color-success-500);
+  background: var(--color-gradient-01-border);
   border: 1.8px solid var(--color-neutral-900);
 }
 
 .container {
   display: inline-block;
   position: relative;
+}
+
+.walletIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+  border: 1.8px solid var(--color-success-200);
+  background: var(--color-neutral-700);
 }
