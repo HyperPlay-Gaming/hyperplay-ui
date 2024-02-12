@@ -69,22 +69,3 @@ $hoverBorderThickness: 2px;
 
   z-index: 1;
 }
-
-@mixin gradientBorder($width, $gradient, $radius: 50%) {
-  background-clip: padding-box;
-  border: solid $width transparent;
-  border-radius: $radius;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    margin: -$width;
-    border-radius: inherit;
-    background: $gradient;
-  }
-}
