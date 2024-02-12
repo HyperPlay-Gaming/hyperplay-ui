@@ -34,7 +34,7 @@ const Login = ({
   onClose,
   onSubmit,
   i18n = {
-    title: 'LoginModal HyperPlay',
+    title: 'Login to HyperPlay',
     subtitle: 'Use your email to create and access your HyperPlay profile.',
     inputPlaceholder: 'Enter your email',
     submitButton: 'Login'
