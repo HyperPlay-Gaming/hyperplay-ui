@@ -20,6 +20,7 @@ type SearchBarProps = {
   showSearchBar: true
   searchText: string
   setSearchText: (text: string) => void
+  suggestions?: string[]
   i18n: {
     placeholder: string
   }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 
 import { CloseButton, MagnifyingGlass } from '@/assets/images'
 
@@ -7,12 +7,13 @@ import styles from './SearchBar.module.scss'
 type Props = {
   searchText: string
   setSearchText: (text: string) => void
+  suggestions?: string[]
   i18n: {
     placeholder: string
   }
 }
 
-export default function SearchBar({ searchText, setSearchText, i18n: {placeholder} }: Props) {
+export default function SearchBar({ searchText, setSearchText, i18n: {placeholder}, suggestions }: Props) {
   const input = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -39,6 +40,13 @@ export default function SearchBar({ searchText, setSearchText, i18n: {placeholde
   }
 
   const showClearButton = searchText.length > 0
+  const gameList = useMemo(() => {
+    if (suggestions && searchText.length > 0) {
+      return suggestions.filter(el => el.toLowerCase().includes(searchText.toLowerCase()))
+    }
+    return []
+  }
+  , [suggestions, searchText])
 
   return (
     <div className={styles.searchBar}>
@@ -51,6 +59,20 @@ export default function SearchBar({ searchText, setSearchText, i18n: {placeholde
           onClick={() => clearSearch()}
         />
       )}
+      {
+        gameList.length > 0 && (
+          <ul className={styles.autoComplete}>
+            {
+              gameList?.length > 0 && gameList?.map(el => (
+                <li key={el}>
+                  {el}{' '}
+                </li>
+              ))
+            }
+          </ul>
+        )
+      }
     </div>
   )
 }
+
