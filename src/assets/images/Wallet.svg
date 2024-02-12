@@ -1,0 +1,12 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g id="Icons" clip-path="url(#walletIconPath)">
+        <path id="Vector"
+              d="M21 6H5C4.141 6 3.328 5.628 2.765 5.001C3.315 4.387 4.114 4 5 4H23C23.553 4 24 3.552 24 3C24 2.448 23.553 2 23 2H5C2.239 2 0 4.239 0 7V17C0 19.761 2.239 22 5 22H21C22.657 22 24 20.657 24 19V9C24 7.343 22.657 6 21 6ZM22 19C22 19.551 21.552 20 21 20H5C3.346 20 2 18.654 2 17V6.998C2.854 7.637 3.904 8 5 8H21C21.552 8 22 8.449 22 9V19ZM20 14C20 14.552 19.552 15 19 15C18.448 15 18 14.552 18 14C18 13.448 18.448 13 19 13C19.552 13 20 13.448 20 14Z"
+              fill="current"/>
+    </g>
+    <defs>
+        <clipPath id="walletIconPath">
+            <rect width="24" height="24" fill="current"/>
+        </clipPath>
+    </defs>
+</svg>
