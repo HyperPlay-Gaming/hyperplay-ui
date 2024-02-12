@@ -6,7 +6,14 @@ import AccountAvatar from './index'
 
 const meta: Meta<typeof AccountAvatar> = {
   title: 'AccountAvatar',
-  component: AccountAvatar
+  component: AccountAvatar,
+  argTypes: {
+    userId: {
+      control: {
+        type: 'text'
+      }
+    }
+  }
 }
 
 export default meta
