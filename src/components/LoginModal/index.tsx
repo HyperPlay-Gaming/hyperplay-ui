@@ -9,7 +9,7 @@ import Modal from '@/components/Modal/Modal'
 import { TextInput } from '@/index'
 
 import Alert from '../Alert'
-import styles from './SignIn.module.scss'
+import styles from './Login.module.scss'
 
 interface I18n {
   title: string
@@ -27,17 +27,17 @@ export interface SignInModalProps
   i18n?: I18n
 }
 
-const SignUp = ({
+const Login = ({
   loading,
   error,
   className,
   onClose,
   onSubmit,
   i18n = {
-    title: 'Access HyperPlay Profile',
-    subtitle: 'Connect your email address to create your HyperPlay account.',
+    title: 'Login to HyperPlay',
+    subtitle: 'Use your email to create and access your HyperPlay profile.',
     inputPlaceholder: 'Enter your email',
-    submitButton: 'Sign in'
+    submitButton: 'Login'
   },
   ...props
 }: SignInModalProps) => {
@@ -76,7 +76,7 @@ const SignUp = ({
             <Button
               disabled={loading}
               aria-label={loading ? 'loading' : undefined}
-              type="secondary"
+              type={loading ? 'tertiary' : 'secondary'}
               htmlType="submit"
               size="medium"
               className={cn(loading && styles.loadingButton)}
@@ -90,4 +90,4 @@ const SignUp = ({
   )
 }
 
-export default SignUp
+export default Login

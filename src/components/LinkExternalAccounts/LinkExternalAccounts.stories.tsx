@@ -17,12 +17,6 @@ import LinkExternalAccountsModal from './index'
 
 type Story = StoryObj<typeof LinkExternalAccountsModal>
 
-const connectedProviders = {
-  metamaskExtension: true,
-  metamaskMobile: false,
-  walletConnect: true
-}
-
 const authProviders = [
   {
     id: 'discord',
@@ -92,13 +86,10 @@ export const Default: Story = {
   }
 }
 
-export const WalletProvidersConnected: Story = {
+export const WalletLinked: Story = {
   render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
-      <LinkExternalAccountsModal
-        {...args}
-        walletProvidersConnectionState={connectedProviders}
-      />
+      <LinkExternalAccountsModal {...args} walletLinked={true} />
     </div>
   ),
   play: async ({ canvasElement, args }) => {

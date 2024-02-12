@@ -2,12 +2,7 @@ import React, { HTMLProps } from 'react'
 
 import cn from 'classnames'
 
-import {
-  HyperPlayLogoColored,
-  MetaMaskBrowserLogo,
-  MetaMaskMobileLogo,
-  WalletConnectLogo
-} from '@/assets/images'
+import { HyperPlayLogoColored, Wallet } from '@/assets/images'
 import Alert, { AlertProps } from '@/components/Alert'
 import { AuthProviderButton } from '@/index'
 
@@ -19,12 +14,6 @@ const SoonLabel = (
     Soon
   </AuthProviderButton.Label>
 )
-
-interface WalletProvidersConnectionState {
-  metamaskExtension: boolean
-  walletConnect: boolean
-  metamaskMobile: boolean
-}
 
 interface ProviderOption {
   id: string
@@ -39,7 +28,7 @@ interface AuthProps {
   providers: ProviderOption[]
   onAuthProviderClick: (provider: ProviderOption) => void
   onWalletClick: () => void
-  walletProvidersConnectionState?: WalletProvidersConnectionState
+  walletLinked?: boolean
 }
 
 interface I18n {
@@ -66,7 +55,7 @@ export default function LinkExternalAccountsModal({
     subtitle:
       'These accounts will not be shared outside of HyperPlay without your permission.'
   },
-  walletProvidersConnectionState,
+  walletLinked,
   ...props
 }: LinkExternalAccountsProps) {
   return (
@@ -83,22 +72,10 @@ export default function LinkExternalAccountsModal({
       {alert && <Alert {...alert}></Alert>}
       <div className={styles.providersContainer}>
         <AuthProviderButton
-          name="Browser"
-          icon={<MetaMaskBrowserLogo className={styles.icon} />}
+          name="Wallet"
+          icon={<Wallet className={styles.icon} />}
           onClick={onWalletClick}
-          connected={Boolean(walletProvidersConnectionState?.metamaskExtension)}
-        />
-        <AuthProviderButton
-          name="Mobile"
-          icon={<MetaMaskMobileLogo className={styles.icon} />}
-          onClick={onWalletClick}
-          connected={Boolean(walletProvidersConnectionState?.metamaskMobile)}
-        />
-        <AuthProviderButton
-          name="WalletConnect"
-          icon={<WalletConnectLogo />}
-          onClick={onWalletClick}
-          connected={Boolean(walletProvidersConnectionState?.walletConnect)}
+          connected={walletLinked}
         />
         {providers.map((provider) => (
           <AuthProviderButton

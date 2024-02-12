@@ -27,13 +27,7 @@ const AuthProviderButton = ({
       {connected && <GreenStatus className={styles.connectedIcon} />}
       {icon}
       <span className={cn('caption', styles.name)}>{name}</span>
-      {connected ? (
-        <span className={cn(styles.label, styles.labelConnected)}>
-          connected
-        </span>
-      ) : (
-        label
-      )}
+      {label}
     </button>
   )
 }

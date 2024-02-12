@@ -1,10 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { MetaMaskColored, WalletConnectLogo } from '@/assets/images'
+
 import AccountAvatar from './index'
 
 const meta: Meta<typeof AccountAvatar> = {
   title: 'AccountAvatar',
-  component: AccountAvatar
+  component: AccountAvatar,
+  argTypes: {
+    userId: {
+      control: {
+        type: 'text'
+      }
+    }
+  }
 }
 
 export default meta
@@ -16,5 +25,17 @@ export const Offline: Story = {}
 export const Online: Story = {
   args: {
     userId: 'johndoe@mail.com'
+  }
+}
+
+export const WalletConnected: Story = {
+  args: {
+    userId: 'johndoe@mail.com',
+    WalletIcon: <MetaMaskColored />
+  }
+}
+export const WalletConnectedButOffline: Story = {
+  args: {
+    WalletIcon: <WalletConnectLogo />
   }
 }
