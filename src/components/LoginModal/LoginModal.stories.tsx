@@ -30,7 +30,7 @@ export const Default: Story = {
     const canvas = within(canvasElement)
     const emailInput = canvas.getByPlaceholderText('Enter your email')
     await userEvent.type(emailInput, 'test@example.com')
-    await userEvent.click(canvas.getByRole('button', { name: /sign in/i }))
+    await userEvent.click(canvas.getByRole('button', { name: /login/i }))
     await expect(onEmailSubmit).toHaveBeenCalledWith('test@example.com')
   }
 }

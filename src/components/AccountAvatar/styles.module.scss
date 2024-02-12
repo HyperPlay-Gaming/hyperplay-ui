@@ -15,7 +15,10 @@
 
 .onlineAvatar {
   position: relative;
-  @include gradientBorder.gradientBorder(2.5px, var(--color-gradient-01-border));
+  @include gradientBorder.gradientBorder(
+    2.5px,
+    var(--color-gradient-01-border)
+  );
 }
 
 .offlineAvatar {
