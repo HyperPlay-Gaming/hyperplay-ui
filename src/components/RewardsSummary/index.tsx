@@ -69,7 +69,7 @@ export function RewardsSummary({
   }
 
   let iconButton = (
-    <button onClick={() => updateEditable(true)}>
+    <button onClick={() => updateEditable(true)} type="button">
       <IconEdit color="var(--color-neutral-400)" />
     </button>
   )
@@ -79,6 +79,7 @@ export function RewardsSummary({
         type="tertiary"
         rightIcon={<TrashCan fill="var(--color-neutral-400)" />}
         onClick={removeReward}
+        htmlType="button"
       >
         {i18n.remove}
       </Button>
@@ -102,7 +103,11 @@ export function RewardsSummary({
   let confirmButton = null
   if (editable) {
     confirmButton = (
-      <Button type="secondary" onClick={() => updateEditable(false)}>
+      <Button
+        type="secondary"
+        onClick={() => updateEditable(false)}
+        htmlType="button"
+      >
         {i18n.confirm}
       </Button>
     )

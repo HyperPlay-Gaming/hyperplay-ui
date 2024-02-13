@@ -37,6 +37,7 @@ export function TokenIdRow({
         type="tertiary"
         onClick={onRemoveClick}
         className={styles.removeButton}
+        htmlType="button"
       >
         Remove
       </Button>

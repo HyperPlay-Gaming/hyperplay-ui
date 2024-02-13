@@ -43,6 +43,7 @@ export function RewardERC1155({
             type="link"
             leftIcon={<IconPlus />}
             className={styles.addTokenIdButton}
+            htmlType="button"
           >
             {i18n.addTokenId}
           </Button>
