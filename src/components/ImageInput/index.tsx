@@ -12,7 +12,7 @@ import cn from 'classnames'
 
 import styles from './ImageInput.module.scss'
 
-const IMAGE_MIME_TYPE = ['image/png', 'image/jpeg', 'image/gif'] // Corrected MIME type array
+const IMAGE_MIME_TYPE = ['image/png', 'image/jpeg'] // Corrected MIME type array
 
 export interface ImageInputProps extends Omit<DropzoneProps, 'onDrop'> {
   onImageDropped: (value?: File | string) => void // Now can accept File or string
