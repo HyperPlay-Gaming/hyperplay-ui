@@ -1,19 +1,26 @@
-import React from 'react';
-import { Image } from '@mantine/core';
-import { Dropzone, DropzoneProps, DropzoneStylesNames, FileWithPath } from '@mantine/dropzone';
-import { IconPhoto } from '@tabler/icons-react';
-import cn from 'classnames';
-import styles from './ImageInput.module.scss';
+import React from 'react'
 
-const IMAGE_MIME_TYPE = ['image/png', 'image/jpeg', 'image/gif']; // Corrected MIME type array
+import { Image } from '@mantine/core'
+import {
+  Dropzone,
+  DropzoneProps,
+  DropzoneStylesNames,
+  FileWithPath
+} from '@mantine/dropzone'
+import { IconPhoto } from '@tabler/icons-react'
+import cn from 'classnames'
+
+import styles from './ImageInput.module.scss'
+
+const IMAGE_MIME_TYPE = ['image/png', 'image/jpeg', 'image/gif'] // Corrected MIME type array
 
 export interface ImageInputProps extends Omit<DropzoneProps, 'onDrop'> {
-  onImageDropped: (value?: File | string) => void; // Now can accept File or string
-  value?: File | string;
-  classNames?: PartialRecord<DropzoneStylesNames, string>;
+  onImageDropped: (value?: File | string) => void // Now can accept File or string
+  value?: File | string
+  classNames?: PartialRecord<DropzoneStylesNames, string>
   i18n?: {
-    hint?: string;
-  };
+    hint?: string
+  }
 }
 
 export default function ImageInput({
@@ -25,15 +32,15 @@ export default function ImageInput({
 }: ImageInputProps) {
   const onImageDroppedHandler = (files: FileWithPath[]) => {
     if (files.length > 0) {
-      onImageDropped(files[0]); // Directly pass the File object
+      onImageDropped(files[0]) // Directly pass the File object
     }
-  };
+  }
 
-  let imageSrc: string | undefined;
+  let imageSrc: string | undefined
   if (typeof value === 'string') {
-    imageSrc = value;
+    imageSrc = value
   } else if (value instanceof File) {
-    imageSrc = URL.createObjectURL(value);
+    imageSrc = URL.createObjectURL(value)
   }
 
   return (
@@ -42,7 +49,7 @@ export default function ImageInput({
       accept={IMAGE_MIME_TYPE}
       classNames={{
         inner: cn(styles.inner, classNames?.inner),
-        root: cn(styles.dropzoneRoot, classNames?.root),
+        root: cn(styles.dropzoneRoot, classNames?.root)
       }}
       {...props}
     >
@@ -55,5 +62,5 @@ export default function ImageInput({
         </div>
       )}
     </Dropzone>
-  );
+  )
 }

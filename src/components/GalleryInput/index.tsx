@@ -1,39 +1,41 @@
-import { useRef, useState } from 'react';
-import { ActionIcon, Center, Image } from '@mantine/core';
-import { IconPlus, IconTrash } from '@tabler/icons-react';
-import ImageInput, { ImageInputProps } from '../ImageInput';
-import styles from './GalleryInput.module.scss';
+import { useRef, useState } from 'react'
+
+import { ActionIcon, Center, Image } from '@mantine/core'
+import { IconPlus, IconTrash } from '@tabler/icons-react'
+
+import ImageInput, { ImageInputProps } from '../ImageInput'
+import styles from './GalleryInput.module.scss'
 
 export interface GalleryInputProps {
-  onChange: (files: Array<File | string>) => void; // Now accepts both File and string types
-  value?: Array<File | string>;
-  disabled?: boolean;
-  imageInputProps?: ImageInputProps;
+  onChange: (files: Array<File | string>) => void // Now accepts both File and string types
+  value?: Array<File | string>
+  disabled?: boolean
+  imageInputProps?: ImageInputProps
 }
 
 export default function GalleryInput(props: GalleryInputProps) {
-  const openRef = useRef<() => void>();
-  const [files, setFiles] = useState<Array<File | string>>(props.value ?? []);
-  const [index, setIndex] = useState<number>(0);
+  const openRef = useRef<() => void>()
+  const [files, setFiles] = useState<Array<File | string>>(props.value ?? [])
+  const [index, setIndex] = useState<number>(0)
 
   const updateFiles = (newFiles: Array<File | string>) => {
-    setFiles(newFiles);
-    props.onChange(newFiles);
-  };
+    setFiles(newFiles)
+    props.onChange(newFiles)
+  }
 
   const update = (file?: File | string) => {
-    if (!file) return;
-    const updatedFiles = [...files];
+    if (!file) return
+    const updatedFiles = [...files]
     if (index >= files.length) {
       updatedFiles.push(file)
     } else {
       updatedFiles[index] = file
     }
-    updateFiles(updatedFiles);
-  };
+    updateFiles(updatedFiles)
+  }
 
   const add = () => {
-    console.log({files})
+    console.log({ files })
     setIndex(files.length)
     openRef.current?.()
   }
@@ -65,7 +67,13 @@ export default function GalleryInput(props: GalleryInputProps) {
               onClick={() => setIndex(idx)}
               type="button"
             >
-              <Image className={styles.addedImageThumbnail} src={typeof file === 'string' ? file : URL.createObjectURL(file)} alt="" />
+              <Image
+                className={styles.addedImageThumbnail}
+                src={
+                  typeof file === 'string' ? file : URL.createObjectURL(file)
+                }
+                alt=""
+              />
             </button>
           </div>
         ))}
