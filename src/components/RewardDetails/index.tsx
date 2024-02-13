@@ -44,7 +44,7 @@ export function RewardDetails({
   const detailElements = detailTexts.map((text, index) => (
     <>
       <div key={text} className="body-sm color-neutral-400">
-        {text}
+        {`${text}`}
       </div>
       {index < detailTexts.length - 1 ? (
         <div className="center">
