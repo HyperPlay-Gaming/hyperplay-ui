@@ -19,7 +19,7 @@ export interface ButtonProps
     | 'danger'
     | 'menuItem'
     | 'alert'
-    | 'gradientBorder'
+    | 'secondary-gradient-button'
   size?: 'small' | 'medium' | 'large' | 'icon'
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type']
   leftIcon?: JSX.Element
