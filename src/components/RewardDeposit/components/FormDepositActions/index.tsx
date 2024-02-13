@@ -5,7 +5,7 @@ import Button from '@/components/Button'
 import styles from './FormDepositActions.module.scss'
 
 export interface FormDepositActionsProps {
-  onFormSubmit: () => void
+  onEditableChange: () => void
   isDisabledButton?: boolean
   depositingAmount?: string | null
   i18n?: {
@@ -15,7 +15,7 @@ export interface FormDepositActionsProps {
 }
 
 export function FormDepositActions({
-  onFormSubmit = () => null,
+  onEditableChange = () => null,
   isDisabledButton,
   depositingAmount,
   i18n = {
@@ -29,7 +29,7 @@ export function FormDepositActions({
         type="primary"
         size="large"
         disabled={isDisabledButton}
-        onClick={onFormSubmit}
+        onClick={onEditableChange}
       >
         {i18n.submitBtn}
       </Button>

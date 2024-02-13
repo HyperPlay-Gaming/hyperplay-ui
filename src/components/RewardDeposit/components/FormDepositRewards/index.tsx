@@ -18,25 +18,49 @@ const data = [
   { text: 'ERC1155' }
 ]
 
+export interface FormDepositRewardI18nProp {
+  tokenIdsTitle: string
+  orAddManually: string
+  callToActionAddToken: string
+  addedTokenCounterText: string
+  collapseAllIds: string
+  pressEnterToAdd: string
+  selectRewardTokenType: string
+  placeholder: {
+    tokenFrom: string
+    tokenTo: string
+    amountPerUser: string
+    totalPlayerReach: string
+    tokenIdGold: string
+    tokenIdSilver: string
+    totalPlayerReachGold: string
+    totalPlayerReachSilver: string
+  }
+  label: {
+    tokenFrom: string
+    tokenTo: string
+    amountPerUser: string
+    totalPlayerReach: string
+    tokenIdGold: string
+    tokenIdSilver: string
+    totalPlayerReachGold: string
+    totalPlayerReachSilver: string
+  }
+}
+
 export interface FormDepositRewardsProps {
   tokenFromNumberInputProps: TextInputProps
   amountPerUserTextInputProps: TextInputProps
   totalPlayerReachNumberInputProps: TextInputProps
-  tokenIdsNumberInputs: TextInputProps[]
-  totalPlayerReachNumberInputs: TextInputProps[]
+  tokenIdGoldNumberInputProps: TextInputProps
+  tokenIdSilverNumberInputProps: TextInputProps
+  totalPlayerReachGoldNumberInputProps: TextInputProps
+  totalPlayerReachSilverNumberInputProps: TextInputProps
   tokenToNumberInputProps: TextInputProps
   tokenIdsList: TokenIdItemProps[]
   isAddTokenButtonDisabled?: boolean
   onAddTokenTap: () => void
-  i18n?: {
-    tokenIdsTitle: string
-    orAddManually: string
-    callToActionAddToken: string
-    addedTokenCounterText: string
-    collapseAllIds: string
-    pressEnterToAdd: string
-    selectRewardTokenType: string
-  }
+  i18n?: FormDepositRewardI18nProp
 }
 
 export function FormDepositRewards(props: FormDepositRewardsProps) {
@@ -54,7 +78,9 @@ export function FormDepositRewards(props: FormDepositRewardsProps) {
   return (
     <div className={styles.root}>
       <div>
-        <div className={cn('caption', styles.label)}>{props.i18n?.selectRewardTokenType}</div>
+        <div className={cn('caption', styles.label)}>
+          {props.i18n?.selectRewardTokenType}
+        </div>
         <Dropdown
           options={data}
           selected={selectedTokenType}

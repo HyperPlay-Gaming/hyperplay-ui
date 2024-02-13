@@ -8,6 +8,27 @@ import { getTruncatedAddress } from '@/utils/addressUtils'
 import { ButtonCopy } from '../ButtonCopy'
 import styles from './RewardsDepositedTable.module.scss'
 
+export const defaultI18n = {
+  playerReach: 'Total Player Reach',
+  network: 'Network',
+  tokenContractAddress: 'Token Contract Address',
+  rewardType: 'Reward Type',
+  tokenName: 'Token Name',
+  amountPerPlayer: 'Amount Per Player',
+  totalClaimables: 'Total No of Claimables',
+  marketplaceUrl: 'Marketplace URL'
+}
+export interface RewardDepositedTableI18nProp {
+  playerReach?: string
+  network?: string
+  tokenContractAddress?: string
+  rewardType?: string
+  tokenName?: string
+  amountPerPlayer?: string
+  totalClaimables?: string
+  marketplaceUrl?: string
+}
+
 export interface RewardsDepositedTableProps {
   playerReach: number
   network: string
@@ -17,16 +38,7 @@ export interface RewardsDepositedTableProps {
   amountPerPlayer: number
   totalClaimables: number
   marketplaceUrl: string
-  i18n?: {
-    playerReach?: string
-    network?: string
-    tokenContractAddress?: string
-    rewardType?: string
-    tokenName?: string
-    amountPerPlayer?: string
-    totalClaimables?: string
-    marketplaceUrl?: string
-  }
+  i18n?: RewardDepositedTableI18nProp
 }
 
 export function RewardsDepositedTable({
@@ -38,16 +50,7 @@ export function RewardsDepositedTable({
   amountPerPlayer,
   totalClaimables,
   marketplaceUrl,
-  i18n = {
-    playerReach: 'Total Player Reach',
-    network: 'Network',
-    tokenContractAddress: 'Token Contract Address',
-    rewardType: 'Reward Type',
-    tokenName: 'Token Name',
-    amountPerPlayer: 'Amount Per Player',
-    totalClaimables: 'Total No of Claimables',
-    marketplaceUrl: 'Marketplace URL'
-  }
+  i18n = defaultI18n
 }: RewardsDepositedTableProps) {
   return (
     <table className={styles.root}>

@@ -24,6 +24,16 @@ export interface RewardERC721Props {
     addedTokenCounterText: string
     collapseAllIds: string
     pressEnterToAdd: string
+    placeholder: {
+      tokenFrom: string
+      tokenTo: string
+      amountPerUser: string
+    }
+    label: {
+      tokenFrom: string
+      tokenTo: string
+      amountPerUser: string
+    }
   }
 }
 
@@ -40,12 +50,22 @@ export function RewardERC721({
     callToActionAddToken: 'Add Token IDs',
     addedTokenCounterText: 'IDs added:',
     collapseAllIds: 'Collapse all IDs',
-    pressEnterToAdd: 'Press enter to add'
+    pressEnterToAdd: 'Press enter to add',
+    placeholder: {
+      tokenFrom: '0',
+      tokenTo: '99',
+      amountPerUser: 'Paste token ID'
+    },
+    label: {
+      tokenFrom: 'From',
+      tokenTo: 'To',
+      amountPerUser: 'Token ID'
+    }
   }
 }: RewardERC721Props) {
   const label = (
     <span>
-      {amountPerUserTextInputProps.label}{' '}
+      {i18n.label.amountPerUser}{' '}
       <span className={styles.labelHint}>({i18n.pressEnterToAdd})</span>
     </span>
   )
@@ -63,16 +83,20 @@ export function RewardERC721({
           classNames={{
             label: styles.label
           }}
+          label={i18n.label.tokenFrom}
+          placeholder={i18n.placeholder.tokenFrom}
         />
         <TextInput
           {...tokenToNumberInputProps}
           classNames={{
             label: styles.label
           }}
+          label={i18n.label.tokenTo}
+          placeholder={i18n.placeholder.tokenTo}
         />
         <div className={styles.addTokenIdButtonContainer}>
           <Button
-            type="gradientBorder"
+            type="secondary-gradient-button"
             size="large"
             onClick={onAddTokenTap}
             disabled={isAddTokenButtonDisabled}
@@ -91,6 +115,7 @@ export function RewardERC721({
       <TextInput
         {...amountPerUserTextInputProps}
         label={label}
+        placeholder={i18n.placeholder.amountPerUser}
         classNames={{
           label: styles.label
         }}
