@@ -1,26 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { Image } from '@mantine/core';
+import { Dropzone, DropzoneProps, DropzoneStylesNames, FileWithPath } from '@mantine/dropzone';
+import { IconPhoto } from '@tabler/icons-react';
+import cn from 'classnames';
+import styles from './ImageInput.module.scss';
 
-import { Image } from '@mantine/core'
-import {
-  Dropzone,
-  DropzoneProps,
-  DropzoneStylesNames,
-  FileWithPath
-} from '@mantine/dropzone'
-import { IconPhoto } from '@tabler/icons-react'
-import cn from 'classnames'
-
-import styles from './ImageInput.module.scss'
-
-const IMAGE_MIME_TYPE = ['image/png' || 'image/gif' || 'image/jpeg']
+const IMAGE_MIME_TYPE = ['image/png', 'image/jpeg', 'image/gif']; // Corrected MIME type array
 
 export interface ImageInputProps extends Omit<DropzoneProps, 'onDrop'> {
-  onImageDropped: (value?: string) => void
-  value?: File | string
-  classNames?: PartialRecord<DropzoneStylesNames, string>
+  onImageDropped: (value?: File | string) => void; // Now can accept File or string
+  value?: File | string;
+  classNames?: PartialRecord<DropzoneStylesNames, string>;
   i18n?: {
-    hint?: string
-  }
+    hint?: string;
+  };
 }
 
 export default function ImageInput({
@@ -32,22 +25,15 @@ export default function ImageInput({
 }: ImageInputProps) {
   const onImageDroppedHandler = (files: FileWithPath[]) => {
     if (files.length > 0) {
-      onImageDropped(URL.createObjectURL(files[0]))
-    } else {
-      onImageDropped(undefined)
+      onImageDropped(files[0]); // Directly pass the File object
     }
-  }
+  };
 
-  let image = null
-  if (value) {
-    image = <Image src={value} className={styles.image} />
-  } else {
-    image = (
-      <div className={styles.imageDropContainer}>
-        <IconPhoto color="#9595A8" size={64} />
-        <div className="body">{i18n.hint}</div>
-      </div>
-    )
+  let imageSrc: string | undefined;
+  if (typeof value === 'string') {
+    imageSrc = value;
+  } else if (value instanceof File) {
+    imageSrc = URL.createObjectURL(value);
   }
 
   return (
@@ -56,11 +42,18 @@ export default function ImageInput({
       accept={IMAGE_MIME_TYPE}
       classNames={{
         inner: cn(styles.inner, classNames?.inner),
-        root: cn(styles.dropzoneRoot, classNames?.root)
+        root: cn(styles.dropzoneRoot, classNames?.root),
       }}
       {...props}
     >
-      {image}
+      {imageSrc ? (
+        <Image src={imageSrc} className={styles.image} alt="" />
+      ) : (
+        <div className={styles.imageDropContainer}>
+          <IconPhoto color="#9595A8" size={64} />
+          <div className="body">{i18n.hint}</div>
+        </div>
+      )}
     </Dropzone>
-  )
+  );
 }
