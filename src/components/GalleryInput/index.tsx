@@ -24,7 +24,9 @@ export default function GalleryInput(props: GalleryInputProps) {
   }
 
   const update = (file?: File | string) => {
-    if (!file) return
+    if (file === undefined) {
+      throw 'Updating undefined file!'
+    }
     const updatedFiles = [...files]
     if (index >= files.length) {
       updatedFiles.push(file)
