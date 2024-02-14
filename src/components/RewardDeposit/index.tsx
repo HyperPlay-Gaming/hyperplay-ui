@@ -65,7 +65,6 @@ export interface RewardDepositProps
   onEditClick: (editable: boolean) => void
   onFormSubmit: () => void
   onRemoveClick: () => void
-  defaultSelected?: FormDepositRewardsProps['defaultSelected']
   i18n?: RewardDepositI18nProp
 }
 
