@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 
 import cn from 'classnames'
+import Link from 'next/link'
 
 import Button from '../Button'
 import styles from './QuestsTable.module.scss'
@@ -47,8 +48,11 @@ export interface Quest {
   rewards: RewardSimple[]
   numGames: number
   status: statusType
-  onClick: () => void
+  onClick?: () => void
   claims: number
+  id?: string
+  /* eslint-disable-next-line */
+  linkProps?: any
 }
 
 export interface QuestsTableProps {
@@ -148,45 +152,43 @@ export function QuestsTable({
       <table className={styles.questsTableContainer}>
         <tbody>
           {filteredQuests.map((quest) => (
-            <tr
-              key={quest.name}
-              className={styles.rowContainer}
-              onClick={quest.onClick}
-            >
-              <td>
-                <div>{i18n.name}</div>
-                <div>{quest.name}</div>
-              </td>
-              <td>
-                <div>{i18n.games}</div>
-                <div>{quest.numGames}</div>
-              </td>
-              <td>
-                <div>{i18n.rewardPerPlayer}</div>
-                <div>{getRewardString(quest)}</div>
-              </td>
-              <td>
-                <div>{i18n.balance}</div>
-                <div>{getBalanceString(quest)}</div>
-              </td>
-              <td>
-                <div>{i18n.status}</div>
-                <div className={styles.statusContainer}>
-                  <div
-                    className={cn(
-                      'circle',
-                      styles.statusCircle,
-                      styles[quest.status]
-                    )}
-                  ></div>
-                  {getStatusDisplayName(quest.status, i18n)}
-                </div>
-              </td>
-              <td>
-                <div>{i18n.claims}</div>
-                <div>{quest.claims}</div>
-              </td>
-            </tr>
+            <Link key={quest.name} {...quest.linkProps}>
+              <tr className={styles.rowContainer} onClick={quest.onClick}>
+                <td>
+                  <div>{i18n.name}</div>
+                  <div>{quest.name}</div>
+                </td>
+                <td>
+                  <div>{i18n.games}</div>
+                  <div>{quest.numGames}</div>
+                </td>
+                <td>
+                  <div>{i18n.rewardPerPlayer}</div>
+                  <div>{getRewardString(quest)}</div>
+                </td>
+                <td>
+                  <div>{i18n.balance}</div>
+                  <div>{getBalanceString(quest)}</div>
+                </td>
+                <td>
+                  <div>{i18n.status}</div>
+                  <div className={styles.statusContainer}>
+                    <div
+                      className={cn(
+                        'circle',
+                        styles.statusCircle,
+                        styles[quest.status]
+                      )}
+                    ></div>
+                    {getStatusDisplayName(quest.status, i18n)}
+                  </div>
+                </td>
+                <td>
+                  <div>{i18n.claims}</div>
+                  <div>{quest.claims}</div>
+                </td>
+              </tr>
+            </Link>
           ))}
         </tbody>
       </table>
