@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 
 import cn from 'classnames'
+import Link from 'next/link'
 
 import Button from '../Button'
 import styles from './QuestsTable.module.scss'
