@@ -146,47 +146,49 @@ export function QuestsTable({
         </Button>
       </div>
       <table className={styles.questsTableContainer}>
-        {filteredQuests.map((quest) => (
-          <tr
-            key={quest.name}
-            className={styles.rowContainer}
-            onClick={quest.onClick}
-          >
-            <td>
-              <div>{i18n.name}</div>
-              <div>{quest.name}</div>
-            </td>
-            <td>
-              <div>{i18n.games}</div>
-              <div>{quest.numGames}</div>
-            </td>
-            <td>
-              <div>{i18n.rewardPerPlayer}</div>
-              <div>{getRewardString(quest)}</div>
-            </td>
-            <td>
-              <div>{i18n.balance}</div>
-              <div>{getBalanceString(quest)}</div>
-            </td>
-            <td>
-              <div>{i18n.status}</div>
-              <div className={styles.statusContainer}>
-                <div
-                  className={cn(
-                    'circle',
-                    styles.statusCircle,
-                    styles[quest.status]
-                  )}
-                ></div>
-                {getStatusDisplayName(quest.status, i18n)}
-              </div>
-            </td>
-            <td>
-              <div>{i18n.claims}</div>
-              <div>{quest.claims}</div>
-            </td>
-          </tr>
-        ))}
+        <tbody>
+          {filteredQuests.map((quest) => (
+            <tr
+              key={quest.name}
+              className={styles.rowContainer}
+              onClick={quest.onClick}
+            >
+              <td>
+                <div>{i18n.name}</div>
+                <div>{quest.name}</div>
+              </td>
+              <td>
+                <div>{i18n.games}</div>
+                <div>{quest.numGames}</div>
+              </td>
+              <td>
+                <div>{i18n.rewardPerPlayer}</div>
+                <div>{getRewardString(quest)}</div>
+              </td>
+              <td>
+                <div>{i18n.balance}</div>
+                <div>{getBalanceString(quest)}</div>
+              </td>
+              <td>
+                <div>{i18n.status}</div>
+                <div className={styles.statusContainer}>
+                  <div
+                    className={cn(
+                      'circle',
+                      styles.statusCircle,
+                      styles[quest.status]
+                    )}
+                  ></div>
+                  {getStatusDisplayName(quest.status, i18n)}
+                </div>
+              </td>
+              <td>
+                <div>{i18n.claims}</div>
+                <div>{quest.claims}</div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   )

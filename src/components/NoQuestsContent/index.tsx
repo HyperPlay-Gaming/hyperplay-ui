@@ -1,6 +1,13 @@
-import { InputHTMLAttributes, PropsWithChildren, forwardRef } from 'react'
+'use client'
+
+import React, {
+  InputHTMLAttributes,
+  PropsWithChildren,
+  forwardRef
+} from 'react'
 
 import cn from 'classnames'
+import Link from 'next/link'
 
 import { QuestIcon } from '@/assets/images'
 import Button, { ButtonProps } from '@/components/Button'
@@ -9,10 +16,12 @@ import styles from './index.module.scss'
 
 interface NoQuestsContentProps
   extends PropsWithChildren<InputHTMLAttributes<HTMLDivElement>> {
-  onCreateNewQuest: () => void
+  onCreateNewQuest?: () => void
   i18n?: i18nNoQuestContentContext
   className?: string
   buttonProps?: ButtonProps
+  /* eslint-disable-next-line */
+  linkProps?: any
 }
 
 interface i18nNoQuestContentContext {
@@ -33,6 +42,7 @@ export default forwardRef<HTMLDivElement, NoQuestsContentProps>(
         buttonText: 'Create New Quest'
       },
       buttonProps = {},
+      linkProps,
       ...props
     }: NoQuestsContentProps,
     ref
@@ -42,9 +52,11 @@ export default forwardRef<HTMLDivElement, NoQuestsContentProps>(
         <QuestIcon className={styles.questIcon} />
         <h1 className={styles.title}>{i18n.title}</h1>
         <p className={styles.description}>{i18n.description}</p>
-        <Button onClick={onCreateNewQuest} {...buttonProps}>
-          {i18n.buttonText}
-        </Button>
+        <Link {...linkProps}>
+          <Button onClick={onCreateNewQuest} {...buttonProps}>
+            {i18n.buttonText}
+          </Button>
+        </Link>
       </div>
     )
   }
