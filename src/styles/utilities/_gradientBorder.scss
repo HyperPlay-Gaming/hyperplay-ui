@@ -1,16 +1,17 @@
 $hoverBorderThickness: 2px;
 
-
 @mixin gradientBorderHidden(
-  $gradient-border: (linear-gradient(transparent, transparent), 
-    linear-gradient(86.63deg, #4126e8 2.98%, #ea1aba 38.52%, #10a6d6 89.36%)), 
+  $gradient-border: (
+    linear-gradient(transparent, transparent),
+    linear-gradient(86.63deg, #4126e8 2.98%, #ea1aba 38.52%, #10a6d6 89.36%)
+  ),
   $gradient-thickness-px: 2px,
-  $gradient-border-radius: var(--space-xs), 
+  $gradient-border-radius: var(--space-xs)
 ) {
   --gradient-border-radius: #{$gradient-border-radius};
   --gradient-border: #{$gradient-border};
   --gradient-thickness-px: #{$gradient-thickness-px};
-  
+
   box-sizing: border-box;
   position: relative;
   display: inline-block;
@@ -30,11 +31,10 @@ $hoverBorderThickness: 2px;
 
 @mixin showGradientBorder($gradient-thickness-px: 2px) {
   --gradient-thickness-px: #{$gradient-thickness-px}; // This might not be necessary if it's only used within a context that already defines it
-  
+
   inset: calc(-1 * var(--gradient-thickness-px)) !important;
   transition: inset 0.2s ease-in-out;
 }
-
 
 .gradientBorderOnHover {
   @include gradientBorderHidden();

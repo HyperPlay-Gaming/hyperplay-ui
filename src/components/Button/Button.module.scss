@@ -109,13 +109,15 @@
 .secondary-gradient-button {
   --gradient-thickness-px: 1px;
   background-clip: padding-box;
-  
+
   @include gradientBorderHidden(
-    linear-gradient(0deg, rgba(167,51,245,1) 0%, rgba(83,118,236,1) 100%), 1px);
+    linear-gradient(0deg, rgba(167, 51, 245, 1) 0%, rgba(83, 118, 236, 1) 100%),
+    1px
+  );
 
   &:after {
     background-clip: padding-box;
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     height: 100%;
@@ -123,7 +125,7 @@
     border: solid 1.5px transparent;
     border-radius: calc(
       var(--gradient-border-radius) + var(--gradient-thickness-px)
-    ) !important; 
+    ) !important;
     background-color: var(--color-neutral-800);
     top: 0;
     left: 0;
@@ -142,7 +144,11 @@
 
   &:disabled,
   &[disabled] {
-    --gradient-border: linear-gradient(0deg, rgba(42,16,81,1) 0%, rgba(24,31,59,1) 100%)!important;
+    --gradient-border: linear-gradient(
+      0deg,
+      rgba(42, 16, 81, 1) 0%,
+      rgba(24, 31, 59, 1) 100%
+    ) !important;
 
     opacity: 1;
     color: var(--color-neutral-600);
