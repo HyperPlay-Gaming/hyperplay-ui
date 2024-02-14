@@ -49,7 +49,7 @@ export interface Quest {
   status: statusType
   onClick?: () => void
   claims: number
-  id?: string
+  id?: string | number
   /* eslint-disable-next-line */
   linkComponent?: any
   /* eslint-disable-next-line */
