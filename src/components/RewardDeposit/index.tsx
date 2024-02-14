@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from 'react'
 
 import { IconEdit } from '@tabler/icons-react'
 
-import { TrashCan } from '@/assets/images'
+import { DownArrow, TrashCan } from '@/assets/images'
 import {
   RewardDepositedTableI18nProp,
   RewardsDepositedTable,
@@ -32,6 +32,7 @@ export const defaultI18n = {
   remove: 'Remove',
   pendingDeposit: 'Pending Deposit',
   depositedLabel: 'Deposited',
+  viewDetails: 'View Details',
   ...defaultFormDepositRewardsI18n,
   ...defaultFormDepositActionsI18n,
   ...defaultRewardDepositedTableI18n,
@@ -45,10 +46,8 @@ interface RewardDepositI18nProp
     FormDepositActionsI18nProp {
   remove: string
   pendingDeposit?: string
-  tokenIdsTitle: string
   depositedLabel: string
-  submitBtn: string
-  totalDeposit: string
+  viewDetails: string
 }
 
 export interface RewardDepositProps
@@ -65,6 +64,7 @@ export interface RewardDepositProps
   onEditClick: (editable: boolean) => void
   onFormSubmit: () => void
   onRemoveClick: () => void
+  onViewDetailsTap: () => void
   i18n?: RewardDepositI18nProp
 }
 
@@ -80,6 +80,7 @@ export function RewardDeposit({
   i18n = defaultI18n,
   onEditClick,
   onRemoveClick,
+  onViewDetailsTap,
   ...props
 }: RewardDepositProps) {
   const tag: ReactElement = state === 'DEPOSITED' ? (
@@ -118,15 +119,28 @@ export function RewardDeposit({
   }
 
   let content = (
-    <RewardDetails
-      chainName={props.chainName}
-      tokenType={props.tokenType}
-      tokenSymbol={props.tokenSymbol}
-      rewardPerPlayer={props.rewardPerPlayer}
-      marketplace={props.marketplace}
-      tokenContractAddress={props.tokenContractAddress}
-      i18n={i18n}
-    />
+    <>
+      <RewardDetails
+        chainName={props.chainName}
+        tokenType={props.tokenType}
+        tokenSymbol={props.tokenSymbol}
+        rewardPerPlayer={props.rewardPerPlayer}
+        marketplace={props.marketplace}
+        tokenContractAddress={props.tokenContractAddress}
+        i18n={i18n}
+      />
+      <Button className={styles.viewDetailsButton} 
+        type="tertiary"
+        rightIcon={
+          <DownArrow
+            onClick={onViewDetailsTap}
+            className={styles.arrowDownIcon}
+          />
+        }
+      >
+      {i18n.viewDetails}
+      </Button>
+    </>
   )
   if (state === 'NOT_DEPOSITED') {
     content = (

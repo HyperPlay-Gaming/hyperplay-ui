@@ -26,15 +26,15 @@
 }
 
 .large {
-  padding: var(--space-md) var(--space-xl);
+  padding: var(--space-sm) var(--space-md);
 }
 
 .medium {
-  padding: var(--space-xs) var(--space-md);
+  padding: var(--space-3xs) var(--space-md);
 }
 
 .small {
-  padding: var(--space-3xs) var(--space-md);
+  padding: var(--space-3xs) var(--space-sm);
 }
 
 .input {

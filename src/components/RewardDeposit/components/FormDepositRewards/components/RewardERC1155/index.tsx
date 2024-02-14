@@ -59,26 +59,26 @@ export function RewardERC1155({
         <h6 className={styles.title}>{i18n.tokenIdsTitle}</h6>
         <TextInput
           {...tokenIdGoldNumberInputProps}
-          size="small"
+          size="medium"
           label={i18n.label.tokenIdGold}
           placeholder={i18n.placeholder.tokenIdGold}
         />
         <TextInput
           {...tokenIdSilverNumberInputProps}
-          size="small"
+          size="medium"
           label={i18n.label.tokenIdGold}
           placeholder={i18n.placeholder.tokenIdSilver}
         />
       </div>
       <TextInput
         {...totalPlayerReachGoldNumberInputProps}
-        size="small"
+        size="medium"
         label={i18n.label.totalPlayerReachGold}
         placeholder={i18n.placeholder.totalPlayerReachGold}
       />
       <TextInput
         {...totalPlayerReachSilverNumberInputProps}
-        size="small"
+        size="medium"
         label={i18n.label.totalPlayerReachSilver}
         placeholder={i18n.placeholder.totalPlayerReachSilver}
       />

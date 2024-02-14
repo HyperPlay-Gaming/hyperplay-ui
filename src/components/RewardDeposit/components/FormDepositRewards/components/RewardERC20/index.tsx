@@ -35,7 +35,7 @@ export function RewardERC20({
     <>
       <TextInput
         {...totalPlayerReachNumberInputProps}
-        size="small"
+        size="medium"
         label={i18n.label.totalPlayerReach}
         placeholder={i18n.placeholder.totalPlayerReach}
       />

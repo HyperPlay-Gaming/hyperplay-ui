@@ -89,7 +89,7 @@ export function RewardERC721({
           classNames={{
             label: styles.label
           }}
-          size="small"
+          size="medium"
           label={i18n.label.tokenFrom}
           placeholder={i18n.placeholder.tokenFrom}
         />
@@ -98,7 +98,7 @@ export function RewardERC721({
           classNames={{
             label: styles.label
           }}
-          size="small"
+          size="medium"
           label={i18n.label.tokenTo}
           placeholder={i18n.placeholder.tokenTo}
         />
@@ -123,7 +123,7 @@ export function RewardERC721({
       <TextInput
         {...amountPerUserTextInputProps}
         label={label}
-        size="small"
+        size="medium"
         placeholder={i18n.placeholder.tokenId}
         classNames={{
           label: styles.label
