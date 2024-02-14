@@ -53,9 +53,8 @@ export function RewardERC1155({
   totalPlayerReachSilverNumberInputProps,
   i18n = defaultI18n
 }: RewardERC1155Props) {
-  console.log('i18n', i18n)
   return (
-    <div>
+    <div className={styles.base}>
       <div className={styles.tokenIdContainer}>
         <h6 className={styles.title}>{i18n.tokenIdsTitle}</h6>
         <TextInput

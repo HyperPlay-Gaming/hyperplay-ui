@@ -59,36 +59,33 @@ export interface RewardDepositProps
   classNames?: {
     root?: string
   }
-  editable: boolean
-  isDeposited?: boolean
-  isFormDepositDisabled?: boolean
+  isAddTokenButtonDisabled: boolean
+  state: 'NOT_DEPOSITED' | 'DEPOSITED',
   depositingAmount?: string
   onFormSubmit: (editable: unknown) => void
-  onClick: () => void
+  onRemoveClick: () => void
+  defaultSelected?: FormDepositRewardsProps['defaultSelected']
   i18n?: RewardDepositI18nProp
 }
 
 export function RewardDeposit({
   title,
-  isDeposited,
-  isFormDepositDisabled,
+  state,
   depositingAmount,
-  editable: editableInit,
   onFormSubmit,
   tokenIdsList,
   isAddTokenButtonDisabled,
+  defaultSelected,
   onAddTokenTap = () => null,
   i18n = defaultI18n,
-  onClick,
+  onRemoveClick,
   ...props
 }: RewardDepositProps) {
-  const [editable, setEditable] = useState(editableInit)
   const updateEditable = (edit: boolean) => {
     onFormSubmit(edit)
-    setEditable(edit)
   }
 
-  const tag: ReactElement = isDeposited ? (
+  const tag: ReactElement = state === 'DEPOSITED' ? (
     <Sticker
       styleType="success"
       variant="filled"
@@ -111,12 +108,12 @@ export function RewardDeposit({
       <IconEdit color="var(--color-neutral-400)" />
     </button>
   )
-  if (editable) {
+  if (state === 'NOT_DEPOSITED') {
     iconButton = (
       <Button
         type="tertiary"
         rightIcon={<TrashCan fill="var(--color-neutral-400)" />}
-        onClick={onClick}
+        onClick={onRemoveClick}
       >
         {i18n.remove}
       </Button>
@@ -134,7 +131,7 @@ export function RewardDeposit({
       i18n={i18n}
     />
   )
-  if (editable) {
+  if (state === 'NOT_DEPOSITED') {
     content = (
       <>
         <FormDepositRewards
@@ -155,6 +152,7 @@ export function RewardDeposit({
           tokenIdsList={tokenIdsList}
           isAddTokenButtonDisabled={isAddTokenButtonDisabled}
           onAddTokenTap={onAddTokenTap}
+          defaultSelected={defaultSelected}
           i18n={i18n}
         />
         <RewardsDepositedTable
@@ -170,7 +168,6 @@ export function RewardDeposit({
         />
         <FormDepositActions
           onFormSubmit={async () => updateEditable(true)}
-          isDisabledButton={isFormDepositDisabled}
           depositingAmount={depositingAmount}
           i18n={i18n}
         />

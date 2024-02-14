@@ -20,13 +20,13 @@ export default meta
 const props: RewardDepositProps = {
   ...formDepositRewardsProps,
   title: 'Reward 1',
-  isDeposited: false,
+  state: 'NOT_DEPOSITED',
+  isAddTokenButtonDisabled: false,
   depositingAmount: '100 USDC',
-  editable: true,
   onFormSubmit: async () => {
     console.log('submit')
   },
-  onClick: () => {
+  onRemoveClick: () => {
     console.log('remove')
   },
   ...rewardDetailsProps,
@@ -49,7 +49,7 @@ export const Confirmed: Story = {
     return (
       <RewardDeposit
         {...args}
-        isDeposited={true}
+        state={'DEPOSITED'}
         tokenIdsList={tokenIds}
         isAddTokenButtonDisabled={false}
         onAddTokenTap={() => {
@@ -64,7 +64,7 @@ export const Confirmed: Story = {
             ...newTokenIds
           ].map((token, index) => ({
             tokenId: token.tokenId,
-            onClick: () => {
+            onRemoveTap: () => {
               const newTokens = tokenIds.splice(index, 1)
 
               setTokenIds(newTokens)
@@ -82,8 +82,8 @@ export const Confirmed: Story = {
 export const Disabled: Story = {
   args: {
     ...props,
-    editable: false,
-    isFormDepositDisabled: true,
-    isDeposited: true
+    state: 'NOT_DEPOSITED',
+    defaultSelected: 'ERC721',
+    isAddTokenButtonDisabled: true,
   }
 }

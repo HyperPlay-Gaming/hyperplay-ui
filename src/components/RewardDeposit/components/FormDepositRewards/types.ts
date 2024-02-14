@@ -1,4 +1,4 @@
 export interface TokenIdItemProps {
   tokenId: number
-  onClick: () => void
+  onRemoveTap: () => void
 }

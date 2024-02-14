@@ -53,7 +53,7 @@ export interface FormDepositRewardsProps {
   tokenToNumberInputProps: TextInputProps
   tokenIdsList: TokenIdItemProps[]
   isAddTokenButtonDisabled?: boolean
-  defaultTokenIdsListVisibilityState: boolean
+  defaultTokenIdsListVisibilityState?: boolean
   onAddTokenTap: () => void
   defaultSelected?: 'ERC721' | 'ERC20' | 'ERC1155'
   i18n?: FormDepositRewardI18nProp
