@@ -41,20 +41,25 @@ export function RewardDetails({
     getTruncatedAddress(tokenContractAddress)
   ]
 
-  const detailElements = detailTexts.map((text, index) => (
-    <>
-      <div key={text} className="body-sm color-neutral-400">
-        {`${text}`}
-      </div>
-      {index < detailTexts.length - 1 ? (
-        <div className="center">
-          <div className="circle" />
+  const detailElements = detailTexts.map((text, index) => {
+    if (!text) {
+      return <></>
+    }
+    return (
+      <>
+        <div key={text} className="body-sm color-neutral-400">
+          {`${text}`}
         </div>
-      ) : (
-        <ButtonCopy text={tokenContractAddress} />
-      )}
-    </>
-  ))
+        {index < detailTexts.length - 1 ? (
+          <div className="center">
+            <div className="circle" />
+          </div>
+        ) : (
+          <ButtonCopy text={tokenContractAddress} />
+        )}
+      </>
+    )
+  })
 
   return (
     <div className={cn(styles.detailsRow, className)} {...props}>
