@@ -9,16 +9,16 @@ import styles from './index.module.scss'
 
 interface TokenIdRowInputProps {
   tokenId: number
-  onRemoveTap: () => void
+  onClick: () => void
 }
 
-export function TokenIdRow({ tokenId, onRemoveTap }: TokenIdRowInputProps) {
+export function TokenIdRow({ tokenId, onClick }: TokenIdRowInputProps) {
   return (
     <div className={styles.root}>
       <div className={styles.detail}>{tokenId}</div>
       <Button
         type="tertiary"
-        onClick={onRemoveTap}
+        onClick={onClick}
         rightIcon={<TrashCan fill="var(--color-neutral-400)" />}
         className={styles.removeButton}
       />

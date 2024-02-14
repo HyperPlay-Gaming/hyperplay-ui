@@ -26,7 +26,7 @@ const props: RewardDepositProps = {
   onFormSubmit: async () => {
     console.log('submit')
   },
-  onRemoveTap: () => {
+  onClick: () => {
     console.log('remove')
   },
   ...rewardDetailsProps,
@@ -64,7 +64,7 @@ export const Confirmed: Story = {
             ...newTokenIds
           ].map((token, index) => ({
             tokenId: token.tokenId,
-            onRemoveTap: () => {
+            onClick: () => {
               const newTokens = tokenIds.splice(index, 1)
 
               setTokenIds(newTokens)

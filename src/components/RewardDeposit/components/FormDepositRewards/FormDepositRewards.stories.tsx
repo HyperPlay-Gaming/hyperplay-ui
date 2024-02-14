@@ -37,15 +37,15 @@ export const formDepositRewardsProps: FormDepositRewardsProps = {
   tokenIdsList: [
     {
       tokenId: 55,
-      onRemoveTap: fn()
+      onClick: fn()
     },
     {
       tokenId: 54,
-      onRemoveTap: fn()
+      onClick()
     },
     {
       tokenId: 65,
-      onRemoveTap: fn()
+      onClick: fn()
     }
   ],
   onAddTokenTap: fn(),

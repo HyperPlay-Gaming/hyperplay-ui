@@ -64,7 +64,7 @@ export interface RewardDepositProps
   isFormDepositDisabled?: boolean
   depositingAmount?: string
   onFormSubmit: (editable: unknown) => void
-  onRemoveTap: () => void
+  onClick: () => void
   i18n?: RewardDepositI18nProp
 }
 
@@ -79,7 +79,7 @@ export function RewardDeposit({
   isAddTokenButtonDisabled,
   onAddTokenTap = () => null,
   i18n = defaultI18n,
-  onRemoveTap,
+  onClick,
   ...props
 }: RewardDepositProps) {
   const [editable, setEditable] = useState(editableInit)
@@ -116,7 +116,7 @@ export function RewardDeposit({
       <Button
         type="tertiary"
         rightIcon={<TrashCan fill="var(--color-neutral-400)" />}
-        onClick={onRemoveTap}
+        onClick={onClick}
       >
         {i18n.remove}
       </Button>
