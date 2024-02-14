@@ -24,40 +24,15 @@ import { FormDepositActions, FormDepositActionsI18nProp, defaultI18n as defaultF
 import {
   FormDepositRewardI18nProp,
   FormDepositRewards,
-  FormDepositRewardsProps
+  FormDepositRewardsProps,
+  defaultI18n as defaultFormDepositRewardsI18n
 } from './components/FormDepositRewards'
 
 export const defaultI18n = {
   remove: 'Remove',
   pendingDeposit: 'Pending Deposit',
-  tokenIdsTitle: 'Token IDs',
-  orAddManually: 'Or add manually',
-  callToActionAddToken: 'Add Token IDs',
-  addedTokenCounterText: 'IDs added:',
-  collapseAllIds: 'Collapse all IDs',
   depositedLabel: 'Deposited',
-  pressEnterToAdd: 'Press enter to add',
-  selectRewardTokenType: 'Select Reward Type',
-  placeholder: {
-    tokenFrom: '0',
-    tokenTo: '99',
-    amountPerUser: 'Paste token ID',
-    totalPlayerReach: '0',
-    tokenIdGold: 'Paste token ID',
-    tokenIdSilver: 'Paste token ID',
-    totalPlayerReachGold: '0',
-    totalPlayerReachSilver: '0'
-  },
-  label: {
-    tokenFrom: 'From',
-    tokenTo: 'To',
-    amountPerUser: 'Token ID',
-    totalPlayerReach: 'Enter Total Player Reach',
-    tokenIdGold: 'Token ID: GOLD',
-    tokenIdSilver: 'Token ID: SILVER',
-    totalPlayerReachGold: 'Total Player Reach: GOLD',
-    totalPlayerReachSilver: 'Total Player Reach: SILVER'
-  },
+  ...defaultFormDepositRewardsI18n,
   ...defaultFormDepositActionsI18n,
   ...defaultRewardDepositedTableI18n,
   ...defaultRewardDetailsI18n

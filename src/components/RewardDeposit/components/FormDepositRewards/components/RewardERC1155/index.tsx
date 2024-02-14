@@ -6,26 +6,44 @@ import TextInput, { TextInputProps } from '@/components/TextInput'
 
 import styles from './index.module.scss'
 
+export const defaultI18n = {
+  tokenIdsTitle: 'Token IDs',
+  placeholder: {
+    tokenIdGold: 'Paste token ID',
+    tokenIdSilver: 'Paste token ID',
+    totalPlayerReachGold: '0',
+    totalPlayerReachSilver: '0'
+  },
+  label: {
+    tokenIdGold: 'Token ID: GOLD',
+    tokenIdSilver: 'Token ID: SILVER',
+    totalPlayerReachGold: 'Total Player Reach: GOLD',
+    totalPlayerReachSilver: 'Total Player Reach: SILVER'
+  }
+}
+
+export interface RewardERC1155I18nProp {
+  tokenIdsTitle: string
+  placeholder: {
+    tokenIdGold: string
+    tokenIdSilver: string
+    totalPlayerReachGold: string
+    totalPlayerReachSilver: string
+  }
+  label: {
+    tokenIdGold: string
+    tokenIdSilver: string
+    totalPlayerReachGold: string
+    totalPlayerReachSilver: string
+  }
+}
+
 export interface RewardERC1155Props {
   tokenIdGoldNumberInputProps: TextInputProps
   tokenIdSilverNumberInputProps: TextInputProps
   totalPlayerReachGoldNumberInputProps: TextInputProps
   totalPlayerReachSilverNumberInputProps: TextInputProps
-  i18n?: {
-    tokenIdsTitle: string
-    placeholder: {
-      tokenIdGold: string
-      tokenIdSilver: string
-      totalPlayerReachGold: string
-      totalPlayerReachSilver: string
-    }
-    label: {
-      tokenIdGold: string
-      tokenIdSilver: string
-      totalPlayerReachGold: string
-      totalPlayerReachSilver: string
-    }
-  }
+  i18n?: RewardERC1155I18nProp
 }
 
 export function RewardERC1155({
@@ -33,22 +51,9 @@ export function RewardERC1155({
   tokenIdSilverNumberInputProps,
   totalPlayerReachGoldNumberInputProps,
   totalPlayerReachSilverNumberInputProps,
-  i18n = {
-    tokenIdsTitle: 'Token IDs',
-    placeholder: {
-      tokenIdGold: 'Paste token ID',
-      tokenIdSilver: 'Paste token ID',
-      totalPlayerReachGold: '0',
-      totalPlayerReachSilver: '0'
-    },
-    label: {
-      tokenIdGold: 'Token ID: GOLD',
-      tokenIdSilver: 'Token ID: SILVER',
-      totalPlayerReachGold: 'Total Player Reach: GOLD',
-      totalPlayerReachSilver: 'Total Player Reach: SILVER'
-    }
-  }
+  i18n = defaultI18n
 }: RewardERC1155Props) {
+  console.log('i18n', i18n)
   return (
     <div>
       <div className={styles.tokenIdContainer}>

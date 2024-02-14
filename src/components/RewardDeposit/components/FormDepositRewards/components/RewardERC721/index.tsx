@@ -10,31 +10,53 @@ import { TokenIdItemProps } from '../../types'
 import { TokenIdRow } from './components/TokenIdRow'
 import styles from './index.module.scss'
 
+export const defaultI18n = {
+  tokenIdsTitle: 'Token IDs',
+  orAddManually: 'Or add manually',
+  callToActionAddToken: 'Add Token IDs',
+  addedTokenCounterText: 'IDs added:',
+  collapseAllIds: 'Collapse all IDs',
+  pressEnterToAdd: 'Press enter to add',
+  placeholder: {
+    tokenFrom: '0',
+    tokenTo: '99',
+    tokenId: 'Paste token ID'
+  },
+  label: {
+    tokenFrom: 'From',
+    tokenTo: 'To',
+    tokenId: 'Token ID'
+  }
+}
+
+export interface RewardERC721I18nProp {
+  tokenIdsTitle: string
+  orAddManually: string
+  callToActionAddToken: string
+  addedTokenCounterText: string
+  collapseAllIds: string
+  pressEnterToAdd: string
+  placeholder: {
+    tokenFrom: string
+    tokenTo: string
+    tokenId: string
+  }
+  label: {
+    tokenFrom: string
+    tokenTo: string
+    tokenId: string
+  }
+}
+
 export interface RewardERC721Props {
   tokenFromNumberInputProps: TextInputProps
   tokenToNumberInputProps: TextInputProps
   amountPerUserTextInputProps: TextInputProps
   tokenIdsList: TokenIdItemProps[]
   isAddTokenButtonDisabled?: boolean
+  defaultTokenIdsListVisibilityState?: boolean
   onAddTokenTap: () => void
-  i18n?: {
-    tokenIdsTitle: string
-    orAddManually: string
-    callToActionAddToken: string
-    addedTokenCounterText: string
-    collapseAllIds: string
-    pressEnterToAdd: string
-    placeholder: {
-      tokenFrom: string
-      tokenTo: string
-      amountPerUser: string
-    }
-    label: {
-      tokenFrom: string
-      tokenTo: string
-      amountPerUser: string
-    }
-  }
+  i18n?: RewardERC721I18nProp
 }
 
 export function RewardERC721({
@@ -44,32 +66,16 @@ export function RewardERC721({
   onAddTokenTap,
   tokenIdsList = [],
   isAddTokenButtonDisabled = false,
-  i18n = {
-    tokenIdsTitle: 'Token IDs',
-    orAddManually: 'Or add manually',
-    callToActionAddToken: 'Add Token IDs',
-    addedTokenCounterText: 'IDs added:',
-    collapseAllIds: 'Collapse all IDs',
-    pressEnterToAdd: 'Press enter to add',
-    placeholder: {
-      tokenFrom: '0',
-      tokenTo: '99',
-      amountPerUser: 'Paste token ID'
-    },
-    label: {
-      tokenFrom: 'From',
-      tokenTo: 'To',
-      amountPerUser: 'Token ID'
-    }
-  }
+  defaultTokenIdsListVisibilityState = false,
+  i18n = defaultI18n
 }: RewardERC721Props) {
   const label = (
     <span>
-      {i18n.label.amountPerUser}{' '}
+      {i18n.label.tokenId}{' '}
       <span className={styles.labelHint}>({i18n.pressEnterToAdd})</span>
     </span>
   )
-  const [showTokenIds, setShowTokenIds] = useState<boolean>(false)
+  const [showTokenIds, setShowTokenIds] = useState<boolean>(defaultTokenIdsListVisibilityState)
   const onShowToken = () => {
     setShowTokenIds((prev) => !prev)
   }
@@ -118,7 +124,7 @@ export function RewardERC721({
         {...amountPerUserTextInputProps}
         label={label}
         size="small"
-        placeholder={i18n.placeholder.amountPerUser}
+        placeholder={i18n.placeholder.tokenId}
         classNames={{
           label: styles.label
         }}
