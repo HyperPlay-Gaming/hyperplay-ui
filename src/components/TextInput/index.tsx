@@ -7,7 +7,7 @@ import styles from './TextInput.module.scss'
 
 export interface TextInputProps
   extends React.ComponentPropsWithoutRef<typeof MantineTextInput> {
-  size: 'small' | 'medium' | 'large'
+  size?: 'small' | 'medium' | 'large'
   classNames?: {
     root?: string
     input?: string
