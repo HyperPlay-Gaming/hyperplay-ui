@@ -3,7 +3,6 @@
 import React, { useState } from 'react'
 
 import cn from 'classnames'
-import Link from 'next/link'
 
 import Button from '../Button'
 import styles from './QuestsTable.module.scss'
@@ -161,24 +160,32 @@ export function QuestsTable({
                 className={styles.rowContainer}
                 onClick={quest.onClick}
               >
-                <LinkComponent {...quest.linkProps}>
-                  <td>
+                <td>
+                  <LinkComponent {...quest.linkProps}>
                     <div>{i18n.name}</div>
                     <div>{quest.name}</div>
-                  </td>
-                  <td>
+                  </LinkComponent>
+                </td>
+                <td>
+                  <LinkComponent {...quest.linkProps}>
                     <div>{i18n.games}</div>
                     <div>{quest.numGames}</div>
-                  </td>
-                  <td>
+                  </LinkComponent>
+                </td>
+                <td>
+                  <LinkComponent {...quest.linkProps}>
                     <div>{i18n.rewardPerPlayer}</div>
                     <div>{getRewardString(quest)}</div>
-                  </td>
-                  <td>
+                  </LinkComponent>
+                </td>
+                <td>
+                  <LinkComponent {...quest.linkProps}>
                     <div>{i18n.balance}</div>
                     <div>{getBalanceString(quest)}</div>
-                  </td>
-                  <td>
+                  </LinkComponent>
+                </td>
+                <td>
+                  <LinkComponent {...quest.linkProps}>
                     <div>{i18n.status}</div>
                     <div className={styles.statusContainer}>
                       <div
@@ -190,12 +197,14 @@ export function QuestsTable({
                       ></div>
                       {getStatusDisplayName(quest.status, i18n)}
                     </div>
-                  </td>
-                  <td>
+                  </LinkComponent>
+                </td>
+                <td>
+                  <LinkComponent {...quest.linkProps}>
                     <div>{i18n.claims}</div>
                     <div>{quest.claims}</div>
-                  </td>
-                </LinkComponent>
+                  </LinkComponent>
+                </td>
               </tr>
             )
           })}

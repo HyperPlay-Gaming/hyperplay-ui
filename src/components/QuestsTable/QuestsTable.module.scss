@@ -8,17 +8,35 @@
     background-color: var(--color-neutral-600);
   }
 
-  > td > div:first-child {
+  > td > div:first-child,
+  > td > a > div:first-child {
     color: var(--color-neutral-400);
   }
 
   > * {
-    padding: var(--space-md);
     &:first-child {
       border-radius: var(--space-md) 0 0 var(--space-md);
     }
     &:last-child {
       border-radius: 0 var(--space-md) var(--space-md) 0;
+    }
+  }
+
+  /* add the padding to the td element if there is no anchor tag child of td */
+  > *:not(:has(a)) {
+    padding: var(--space-md);
+  }
+
+  /* add the padding to the a element if td has an anchor tag child */
+  > *:has(a) {
+    padding: 0px;
+    height: 0px;
+    > a {
+      height: 100%;
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 }
