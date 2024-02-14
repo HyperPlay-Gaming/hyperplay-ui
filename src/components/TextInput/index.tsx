@@ -7,6 +7,7 @@ import styles from './TextInput.module.scss'
 
 export interface TextInputProps
   extends React.ComponentPropsWithoutRef<typeof MantineTextInput> {
+  size: 'small' | 'medium' | 'large'
   classNames?: {
     root?: string
     input?: string
@@ -22,7 +23,7 @@ export interface TextInputProps
 const TextInput = React.forwardRef<
   React.ElementRef<typeof MantineTextInput>,
   TextInputProps
->(({ classNames, rightSection, maxCharacters, onChange, ...props }, ref) => {
+>(({ classNames, rightSection, maxCharacters, onChange, size = 'medium', ...props }, ref) => {
   const [numChars, setNumChars] = useState(0)
 
   let rightSectionComponent = rightSection
@@ -40,7 +41,7 @@ const TextInput = React.forwardRef<
       classNames={{
         ...classNames,
         root: cn(styles.root, classNames?.root),
-        input: cn(styles.input, classNames?.input),
+        input: cn(styles.input, classNames?.input, styles[size]),
         wrapper: cn(styles.wrapper, classNames?.wrapper),
         label: cn('caption', styles.label, classNames?.label),
         section: cn(styles.section, classNames?.section),
