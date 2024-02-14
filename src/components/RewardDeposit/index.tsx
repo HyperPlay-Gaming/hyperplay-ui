@@ -62,7 +62,8 @@ export interface RewardDepositProps
   isAddTokenButtonDisabled: boolean
   state: 'NOT_DEPOSITED' | 'DEPOSITED',
   depositingAmount?: string
-  onFormSubmit: (editable: unknown) => void
+  onEditClick: (editable: boolean) => void
+  onFormSubmit: () => void
   onRemoveClick: () => void
   defaultSelected?: FormDepositRewardsProps['defaultSelected']
   i18n?: RewardDepositI18nProp
@@ -78,13 +79,10 @@ export function RewardDeposit({
   defaultSelected,
   onAddTokenTap = () => null,
   i18n = defaultI18n,
+  onEditClick,
   onRemoveClick,
   ...props
 }: RewardDepositProps) {
-  const updateEditable = (edit: boolean) => {
-    onFormSubmit(edit)
-  }
-
   const tag: ReactElement = state === 'DEPOSITED' ? (
     <Sticker
       styleType="success"
@@ -104,7 +102,7 @@ export function RewardDeposit({
   )
 
   let iconButton = (
-    <button onClick={() => updateEditable(true)}>
+    <button onClick={() => onEditClick(true)}>
       <IconEdit color="var(--color-neutral-400)" />
     </button>
   )
@@ -167,7 +165,7 @@ export function RewardDeposit({
           i18n={i18n}
         />
         <FormDepositActions
-          onFormSubmit={async () => updateEditable(true)}
+          onFormSubmit={onFormSubmit}
           depositingAmount={depositingAmount}
           i18n={i18n}
         />
