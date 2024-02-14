@@ -7,7 +7,6 @@ import React, {
 } from 'react'
 
 import cn from 'classnames'
-import Link from 'next/link'
 
 import { QuestIcon } from '@/assets/images'
 import Button, { ButtonProps } from '@/components/Button'
@@ -20,6 +19,8 @@ interface NoQuestsContentProps
   i18n?: i18nNoQuestContentContext
   className?: string
   buttonProps?: ButtonProps
+  /* eslint-disable-next-line */
+  linkComponent?: any
   /* eslint-disable-next-line */
   linkProps?: any
 }
@@ -43,20 +44,22 @@ export default forwardRef<HTMLDivElement, NoQuestsContentProps>(
       },
       buttonProps = {},
       linkProps,
+      linkComponent,
       ...props
     }: NoQuestsContentProps,
     ref
   ) {
+    const LinkComponent = linkComponent ?? React.Fragment
     return (
       <div className={cn(styles.container, classNameProp)} ref={ref} {...props}>
         <QuestIcon className={styles.questIcon} />
         <h1 className={styles.title}>{i18n.title}</h1>
         <p className={styles.description}>{i18n.description}</p>
-        <Link {...linkProps}>
+        <LinkComponent {...linkProps}>
           <Button onClick={onCreateNewQuest} {...buttonProps}>
             {i18n.buttonText}
           </Button>
-        </Link>
+        </LinkComponent>
       </div>
     )
   }
