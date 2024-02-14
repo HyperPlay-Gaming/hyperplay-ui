@@ -25,3 +25,7 @@ export const rewardDetailsProps: RewardDetailsProps = {
 export const Default: Story = {
   args: { ...rewardDetailsProps }
 }
+
+export const NoMarketplace: Story = {
+  args: { ...rewardDetailsProps, marketplace: '' }
+}
