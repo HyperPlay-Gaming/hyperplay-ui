@@ -99,7 +99,7 @@ export function RewardERC721({
         <div className={styles.addTokenIdButtonContainer}>
           <Button
             type="secondary-gradient-button"
-            size="large"
+            size="medium"
             onClick={onAddTokenTap}
             disabled={isAddTokenButtonDisabled}
           >
