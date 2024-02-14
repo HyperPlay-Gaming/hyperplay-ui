@@ -40,7 +40,10 @@ const props: QuestsTableProps = {
       numGames: 10,
       status: 'DRAFT',
       onClick: () => console.log('a quest clicked'),
-      claims: 100
+      claims: 100,
+      /* eslint-disable-next-line */
+      linkComponent: (props: any) => <a {...props} />,
+      linkProps: { href: 'https://hyperplay.xyz' }
     },
     {
       name: 'Another quest',
