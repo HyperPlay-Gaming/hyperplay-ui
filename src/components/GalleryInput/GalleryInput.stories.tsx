@@ -20,7 +20,7 @@ const props: GalleryInputProps = {
 export const Default: Story = {
   args: { ...props },
   render: () => {
-    const [files, setFiles] = useState<string[]>([])
+    const [files, setFiles] = useState<(string | File)[]>([])
     return <GalleryInput value={files} onChange={setFiles} />
   }
 }
