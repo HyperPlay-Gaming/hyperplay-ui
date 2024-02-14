@@ -20,7 +20,7 @@ import {
   defaultI18n as defaultRewardDetailsI18n
 } from '../RewardDetails'
 import styles from './RewardDeposit.module.scss'
-import { FormDepositActions } from './components/FormDepositActions'
+import { FormDepositActions, FormDepositActionsI18nProp, defaultI18n as defaultFormDepositActionsI18n } from './components/FormDepositActions'
 import {
   FormDepositRewardI18nProp,
   FormDepositRewards,
@@ -37,8 +37,6 @@ export const defaultI18n = {
   collapseAllIds: 'Collapse all IDs',
   depositedLabel: 'Deposited',
   pressEnterToAdd: 'Press enter to add',
-  submitBtn: 'Deposit Reward',
-  totalDeposit: 'Total Deposit:',
   selectRewardTokenType: 'Select Reward Type',
   placeholder: {
     tokenFrom: '0',
@@ -60,6 +58,7 @@ export const defaultI18n = {
     totalPlayerReachGold: 'Total Player Reach: GOLD',
     totalPlayerReachSilver: 'Total Player Reach: SILVER'
   },
+  ...defaultFormDepositActionsI18n,
   ...defaultRewardDepositedTableI18n,
   ...defaultRewardDetailsI18n
 }
@@ -67,7 +66,8 @@ export const defaultI18n = {
 interface RewardDepositI18nProp
   extends FormDepositRewardI18nProp,
     RewardDetailsI18nProp,
-    RewardDepositedTableI18nProp {
+    RewardDepositedTableI18nProp, 
+    FormDepositActionsI18nProp {
   remove: string
   pendingDeposit?: string
   tokenIdsTitle: string
@@ -88,7 +88,7 @@ export interface RewardDepositProps
   isDeposited?: boolean
   isFormDepositDisabled?: boolean
   depositingAmount?: string
-  onEditableChange: (editable: unknown) => void
+  onFormSubmit: (editable: unknown) => void
   onRemoveTap: () => void
   i18n?: RewardDepositI18nProp
 }
@@ -99,7 +99,7 @@ export function RewardDeposit({
   isFormDepositDisabled,
   depositingAmount,
   editable: editableInit,
-  onEditableChange,
+  onFormSubmit,
   tokenIdsList,
   isAddTokenButtonDisabled,
   onAddTokenTap = () => null,
@@ -109,7 +109,7 @@ export function RewardDeposit({
 }: RewardDepositProps) {
   const [editable, setEditable] = useState(editableInit)
   const updateEditable = (edit: boolean) => {
-    onEditableChange(edit)
+    onFormSubmit(edit)
     setEditable(edit)
   }
 
@@ -194,7 +194,7 @@ export function RewardDeposit({
           i18n={i18n}
         />
         <FormDepositActions
-          onEditableChange={async () => updateEditable(true)}
+          onFormSubmit={async () => updateEditable(true)}
           isDisabledButton={isFormDepositDisabled}
           depositingAmount={depositingAmount}
           i18n={i18n}

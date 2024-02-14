@@ -23,7 +23,7 @@ const props: RewardDepositProps = {
   isDeposited: false,
   depositingAmount: '100 USDC',
   editable: true,
-  onEditableChange: async () => {
+  onFormSubmit: async () => {
     console.log('submit')
   },
   onRemoveTap: () => {
