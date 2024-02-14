@@ -21,6 +21,8 @@ export interface ImageInputProps extends Omit<DropzoneProps, 'onDrop'> {
   i18n?: {
     hint?: string
   }
+  /* eslint-disable-next-line */
+  imageComponent?: any
 }
 
 export default function ImageInput({
@@ -28,6 +30,7 @@ export default function ImageInput({
   value,
   classNames,
   i18n = { hint: 'Click or drag and drop to upload' },
+  imageComponent,
   ...props
 }: ImageInputProps) {
   const onImageDroppedHandler = (files: FileWithPath[]) => {
@@ -54,7 +57,12 @@ export default function ImageInput({
       {...props}
     >
       {imageSrc ? (
-        <Image src={imageSrc} className={styles.image} alt="" />
+        <Image
+          src={imageSrc}
+          className={styles.image}
+          alt=""
+          component={imageComponent}
+        />
       ) : (
         <div className={styles.imageDropContainer}>
           <IconPhoto color="#9595A8" size={64} />

@@ -11,6 +11,8 @@ export interface GalleryInputProps {
   value?: Array<File | string>
   disabled?: boolean
   imageInputProps?: ImageInputProps
+  /* eslint-disable-next-line */
+  imageComponent?: any
 }
 
 export default function GalleryInput(props: GalleryInputProps) {
@@ -56,6 +58,7 @@ export default function GalleryInput(props: GalleryInputProps) {
         openRef={openRef as React.MutableRefObject<() => void>}
         disabled={props.disabled}
         classNames={{ root: styles.imageInputRoot }}
+        imageComponent={props.imageComponent}
         {...props.imageInputProps}
       />
       <div className={styles.actionButtonContainer}>
@@ -75,6 +78,7 @@ export default function GalleryInput(props: GalleryInputProps) {
                   typeof file === 'string' ? file : URL.createObjectURL(file)
                 }
                 alt=""
+                component={props.imageComponent}
               />
             </button>
           </div>
