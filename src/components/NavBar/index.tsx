@@ -8,29 +8,10 @@ import githubLogo from '@/assets/logos/github.svg?url'
 import twitterLogo from '@/assets/logos/twitter.svg?url'
 
 import Button from '../Button'
-import SearchBar from '../SearchBar'
 import navBarStyles from './NavBar.module.scss'
 
-type BaseProps = {
-  showSearchBar?: false
-}
-
-// ask for searchText and setSearchText only if showSearchBar is true
-type SearchBarProps = {
-  showSearchBar: true
-  searchText: string
-  setSearchText: (text: string) => void
-  suggestions?: string[]
-  i18n: {
-    placeholder: string
-  }
-}
-
-type Props = BaseProps | SearchBarProps
-
-const NavBar = function (props: Props) {
+const NavBar = function () {
   const [showNavBarDropDown, setShowNavBarDropDown] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
 
   useLayoutEffect(() => {
@@ -44,29 +25,8 @@ const NavBar = function (props: Props) {
     )
   }, [])
 
-  useLayoutEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setIsMobile(true)
-      } else {
-        setIsMobile(false)
-      }
-    }
-    window.addEventListener('resize', handleResize)
-    handleResize()
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
   const getLinks = () => (
     <>
-      {isMobile && props.showSearchBar && (
-        <SearchBar
-          searchText={props.searchText}
-          setSearchText={props.setSearchText}
-          i18n={{ placeholder: 'Search for games' }}
-        />
-      )}  
-
       <a
         className={`${navBarStyles.navItem} menu`}
         href="https://store.hyperplay.xyz/"
@@ -127,13 +87,6 @@ const NavBar = function (props: Props) {
               <div className={navBarStyles.hpLogoText}>HyperPlay</div>
             </div>
           </a>
-        {props.showSearchBar && !isMobile && (
-          <SearchBar
-            searchText={props.searchText}
-            setSearchText={props.setSearchText}
-            i18n={{ placeholder: 'Search for games' }}
-          />
-        )}
           <button
             className={navBarStyles.burgerMenu}
             onClick={() => setShowNavBarDropDown(!showNavBarDropDown)}

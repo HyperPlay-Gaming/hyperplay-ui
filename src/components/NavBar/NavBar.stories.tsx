@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import NavBar from '.'
 
@@ -8,18 +8,3 @@ export default {
 }
 
 export const Default = () => <NavBar />
-
-export const WithSearchBar: React.FC = () => {
-  const [searchText, setSearchText] = useState('')
-
-  const props = {
-    showSearchBar: true,
-    searchText,
-    setSearchText,
-    i18n: {
-      placeholder: 'Search for games'
-    }
-  }
-
-  return <NavBar {...props} />
-}
