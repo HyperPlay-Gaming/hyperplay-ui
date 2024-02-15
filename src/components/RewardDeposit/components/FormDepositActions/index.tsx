@@ -7,7 +7,7 @@ import styles from './FormDepositActions.module.scss'
 export const defaultI18n = {
   submitBtn: 'Deposit Reward',
   totalDeposit: 'Total Deposit:'
-};
+}
 
 export interface FormDepositActionsI18nProp {
   submitBtn?: string

@@ -29,7 +29,7 @@ export interface RewardERC20Props {
 
 export function RewardERC20({
   totalPlayerReachNumberInputProps,
-  i18n = defaultI18n,
+  i18n = defaultI18n
 }: RewardERC20Props) {
   return (
     <>

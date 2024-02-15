@@ -6,9 +6,21 @@ import { Dropdown } from '@/components/Dropdowns'
 import { TextInputProps } from '@/components/TextInput'
 
 import styles from './FormDepositRewards.module.scss'
-import { RewardERC20, RewardERC20I18nProp, defaultI18n as defaultRewardERC20I18n } from './components/RewardERC20'
-import { RewardERC721, RewardERC721I18nProp, defaultI18n as defaultRewardERC721I18n } from './components/RewardERC721'
-import { RewardERC1155, RewardERC1155I18nProp, defaultI18n as defaultRewardERC1155I18n } from './components/RewardERC1155'
+import {
+  RewardERC20,
+  RewardERC20I18nProp,
+  defaultI18n as defaultRewardERC20I18n
+} from './components/RewardERC20'
+import {
+  RewardERC721,
+  RewardERC721I18nProp,
+  defaultI18n as defaultRewardERC721I18n
+} from './components/RewardERC721'
+import {
+  RewardERC1155,
+  RewardERC1155I18nProp,
+  defaultI18n as defaultRewardERC1155I18n
+} from './components/RewardERC1155'
 import { TokenIdItemProps } from './types'
 
 const data = [
@@ -18,11 +30,18 @@ const data = [
   { text: 'ERC1155' }
 ]
 
-export interface FormDepositRewardI18nProp extends RewardERC1155I18nProp, RewardERC721I18nProp, RewardERC20I18nProp {
+export interface FormDepositRewardI18nProp
+  extends RewardERC1155I18nProp,
+    RewardERC721I18nProp,
+    RewardERC20I18nProp {
   tokenIdsTitle: string
   selectRewardTokenType: string
-  placeholder: RewardERC1155I18nProp['placeholder'] & RewardERC721I18nProp['placeholder'] & RewardERC20I18nProp['placeholder']
-  label: RewardERC1155I18nProp['label'] & RewardERC721I18nProp['label'] & RewardERC20I18nProp['label']
+  placeholder: RewardERC1155I18nProp['placeholder'] &
+    RewardERC721I18nProp['placeholder'] &
+    RewardERC20I18nProp['placeholder']
+  label: RewardERC1155I18nProp['label'] &
+    RewardERC721I18nProp['label'] &
+    RewardERC20I18nProp['label']
 }
 
 export const defaultI18n: FormDepositRewardI18nProp = {
@@ -63,7 +82,9 @@ export function FormDepositRewards({
   i18n = defaultI18n,
   ...props
 }: FormDepositRewardsProps) {
-  const [selectedTokenType, setSelectedTokenType] = useState(props.defaultSelected ? { text: props.defaultSelected } : data[0])
+  const [selectedTokenType, setSelectedTokenType] = useState(
+    props.defaultSelected ? { text: props.defaultSelected } : data[0]
+  )
 
   let content = null
   if (selectedTokenType.text === 'ERC721') {

@@ -84,6 +84,6 @@ export const Disabled: Story = {
     ...props,
     state: 'NOT_DEPOSITED',
     defaultSelected: 'ERC721',
-    isAddTokenButtonDisabled: true,
+    isAddTokenButtonDisabled: true
   }
 }

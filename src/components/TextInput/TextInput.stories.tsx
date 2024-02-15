@@ -24,8 +24,14 @@ export const Error = () => (
   />
 )
 
-export const SmallSize = () => <TextInput size="small" placeholder="Enter your email" />
+export const SmallSize = () => (
+  <TextInput size="small" placeholder="Enter your email" />
+)
 
-export const MediumSize = () => <TextInput size="medium" placeholder="Enter your email" />
+export const MediumSize = () => (
+  <TextInput size="medium" placeholder="Enter your email" />
+)
 
-export const LargeSize = () => <TextInput size="large" placeholder="Enter your email" />
+export const LargeSize = () => (
+  <TextInput size="large" placeholder="Enter your email" />
+)

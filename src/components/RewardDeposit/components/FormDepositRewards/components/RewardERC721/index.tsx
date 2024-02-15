@@ -75,7 +75,9 @@ export function RewardERC721({
       <span className={styles.labelHint}>({i18n.pressEnterToAdd})</span>
     </span>
   )
-  const [showTokenIds, setShowTokenIds] = useState<boolean>(defaultTokenIdsListVisibilityState)
+  const [showTokenIds, setShowTokenIds] = useState<boolean>(
+    defaultTokenIdsListVisibilityState
+  )
   const onShowToken = () => {
     setShowTokenIds((prev) => !prev)
   }

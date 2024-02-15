@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from 'react'
 
 import { IconEdit } from '@tabler/icons-react'
 
-import { DownArrow, TrashCan } from '@/assets/images'
+import { ArrowTop, DownArrow, TrashCan } from '@/assets/images'
 import {
   RewardDepositedTableI18nProp,
   RewardsDepositedTable,
@@ -20,7 +20,11 @@ import {
   defaultI18n as defaultRewardDetailsI18n
 } from '../RewardDetails'
 import styles from './RewardDeposit.module.scss'
-import { FormDepositActions, FormDepositActionsI18nProp, defaultI18n as defaultFormDepositActionsI18n } from './components/FormDepositActions'
+import {
+  FormDepositActions,
+  FormDepositActionsI18nProp,
+  defaultI18n as defaultFormDepositActionsI18n
+} from './components/FormDepositActions'
 import {
   FormDepositRewardI18nProp,
   FormDepositRewards,
@@ -33,6 +37,7 @@ export const defaultI18n = {
   pendingDeposit: 'Pending Deposit',
   depositedLabel: 'Deposited',
   viewDetails: 'View Details',
+  hideDetails: 'Hide Details',
   ...defaultFormDepositRewardsI18n,
   ...defaultFormDepositActionsI18n,
   ...defaultRewardDepositedTableI18n,
@@ -42,12 +47,13 @@ export const defaultI18n = {
 interface RewardDepositI18nProp
   extends FormDepositRewardI18nProp,
     RewardDetailsI18nProp,
-    RewardDepositedTableI18nProp, 
+    RewardDepositedTableI18nProp,
     FormDepositActionsI18nProp {
   remove: string
   pendingDeposit?: string
   depositedLabel: string
   viewDetails: string
+  hideDetails: string
 }
 
 export interface RewardDepositProps
@@ -59,12 +65,11 @@ export interface RewardDepositProps
     root?: string
   }
   isAddTokenButtonDisabled: boolean
-  state: 'NOT_DEPOSITED' | 'DEPOSITED',
+  state: 'NOT_DEPOSITED' | 'DEPOSITED'
   depositingAmount?: string
   onEditClick: (editable: boolean) => void
   onFormSubmit: () => void
   onRemoveClick: () => void
-  onViewDetailsTap: () => void
   i18n?: RewardDepositI18nProp
 }
 
@@ -80,26 +85,31 @@ export function RewardDeposit({
   i18n = defaultI18n,
   onEditClick,
   onRemoveClick,
-  onViewDetailsTap,
   ...props
 }: RewardDepositProps) {
-  const tag: ReactElement = state === 'DEPOSITED' ? (
-    <Sticker
-      styleType="success"
-      variant="filled"
-      className={styles.successDepositLabel}
-    >
-      {i18n.depositedLabel}
-    </Sticker>
-  ) : (
-    <Sticker
-      styleType="warning"
-      variant="filled"
-      className={styles.pendingDepositLabel}
-    >
-      {i18n.pendingDeposit}
-    </Sticker>
-  )
+  const [isDetailsVisible, setDetailsVisible] = useState(false)
+  const onViewDetailsTap = () => {
+    setDetailsVisible((prev) => !prev)
+  }
+
+  const tag: ReactElement =
+    state === 'DEPOSITED' ? (
+      <Sticker
+        styleType="success"
+        variant="filled"
+        className={styles.successDepositLabel}
+      >
+        {i18n.depositedLabel}
+      </Sticker>
+    ) : (
+      <Sticker
+        styleType="warning"
+        variant="filled"
+        className={styles.pendingDepositLabel}
+      >
+        {i18n.pendingDeposit}
+      </Sticker>
+    )
 
   let iconButton = (
     <button onClick={() => onEditClick(true)}>
@@ -118,28 +128,56 @@ export function RewardDeposit({
     )
   }
 
+  const rewardDepositedTableComponent = (
+    <RewardsDepositedTable
+      playerReach={props.playerReach}
+      network={props.network}
+      tokenContractAddress={props.tokenContractAddress}
+      rewardType={props.rewardType}
+      tokenName={props.tokenName}
+      amountPerPlayer={props.amountPerPlayer}
+      totalClaimables={props.totalClaimables}
+      marketplaceUrl={props.marketplaceUrl}
+      i18n={i18n}
+    />
+  )
+
   let content = (
     <>
-      <RewardDetails
-        chainName={props.chainName}
-        tokenType={props.tokenType}
-        tokenSymbol={props.tokenSymbol}
-        rewardPerPlayer={props.rewardPerPlayer}
-        marketplace={props.marketplace}
-        tokenContractAddress={props.tokenContractAddress}
-        i18n={i18n}
-      />
-      <Button className={styles.viewDetailsButton} 
-        type="tertiary"
-        rightIcon={
-          <DownArrow
-            onClick={onViewDetailsTap}
-            className={styles.arrowDownIcon}
+      {!isDetailsVisible && (
+        <>
+          <RewardDetails
+            chainName={props.chainName}
+            tokenType={props.tokenType}
+            tokenSymbol={props.tokenSymbol}
+            rewardPerPlayer={props.rewardPerPlayer}
+            marketplace={props.marketplace}
+            tokenContractAddress={props.tokenContractAddress}
+            i18n={i18n}
           />
-        }
-      >
-      {i18n.viewDetails}
-      </Button>
+          <Button
+            className={styles.viewDetailsButton}
+            type="tertiary"
+            onClick={onViewDetailsTap}
+            rightIcon={<DownArrow className={styles.arrowDownIcon} />}
+          >
+            {i18n.viewDetails}
+          </Button>
+        </>
+      )}
+      {isDetailsVisible && (
+        <>
+          <div>{rewardDepositedTableComponent}</div>
+          <Button
+            className={styles.viewDetailsButton}
+            type="tertiary"
+            onClick={onViewDetailsTap}
+            rightIcon={<ArrowTop className={styles.arrowUpIcon} />}
+          >
+            {i18n.hideDetails}
+          </Button>
+        </>
+      )}
     </>
   )
   if (state === 'NOT_DEPOSITED') {
@@ -166,17 +204,7 @@ export function RewardDeposit({
           defaultSelected={defaultSelected}
           i18n={i18n}
         />
-        <RewardsDepositedTable
-          playerReach={props.playerReach}
-          network={props.network}
-          tokenContractAddress={props.tokenContractAddress}
-          rewardType={props.rewardType}
-          tokenName={props.tokenName}
-          amountPerPlayer={props.amountPerPlayer}
-          totalClaimables={props.totalClaimables}
-          marketplaceUrl={props.marketplaceUrl}
-          i18n={i18n}
-        />
+        {rewardDepositedTableComponent}
         <FormDepositActions
           onFormSubmit={onFormSubmit}
           depositingAmount={depositingAmount}
