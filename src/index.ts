@@ -50,7 +50,8 @@ export {
   default as TextInput,
   type TextInputProps
 } from './components/TextInput'
-export { default as SignUp } from './components/SignUp'
+export { default as LoginModal } from './components/LoginModal'
+export { default as LinkExternalAccounts } from './components/LinkExternalAccounts'
 export { default as CheckEmail } from './components/CheckEmail'
 export { default as EmailVerified } from './components/EmailVerified'
 export { default as StoreRow } from './components/StoreRow'
@@ -63,6 +64,7 @@ export { default as AchievementSummaryTable } from './components/AchievementSumm
 export { default as GameAchievements } from './components/GameAchievements'
 export { default as HyperPlayDesignProvider } from './components/HyperPlayDesignProvider'
 export { default as NoQuestContent } from './components/NoQuestsContent'
+export { default as FAQ } from './components/FAQ'
 export type { GameAdded } from './components/AchievementNav/index'
 export {
   default as ZkSyncQuestBanner,
@@ -125,8 +127,13 @@ export * from './components/SelectCreatable'
 export * from './components/TagsInput'
 export * from './components/TextArea'
 export * from './common/types'
+export * from './components/RewardsSummary'
 export * from './components/GameSelector'
 export * from './components/GameSelector/types'
 export { getTruncatedAddress } from './utils/addressUtils'
 export * from './components/ButtonCopy'
 export * from './components/ContainerInteractive'
+export { default as LoadingSpinner } from './components/Loading'
+export { default as AccountAvatar } from './components/AccountAvatar'
+export * from './components/RewardsSummary/components/FormRewards/types'
+export * from './components/QuestsTable'

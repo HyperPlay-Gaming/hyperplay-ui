@@ -12,15 +12,17 @@ import cn from 'classnames'
 
 import styles from './ImageInput.module.scss'
 
-const IMAGE_MIME_TYPE = ['image/png' || 'image/gif' || 'image/jpeg']
+const IMAGE_MIME_TYPE = ['image/png', 'image/jpeg'] // Corrected MIME type array
 
 export interface ImageInputProps extends Omit<DropzoneProps, 'onDrop'> {
-  onImageDropped: (value?: string) => void
+  onImageDropped: (value?: File | string) => void // Now can accept File or string
   value?: File | string
   classNames?: PartialRecord<DropzoneStylesNames, string>
   i18n?: {
     hint?: string
   }
+  /* eslint-disable-next-line */
+  imageComponent?: any
 }
 
 export default function ImageInput({
@@ -28,26 +30,20 @@ export default function ImageInput({
   value,
   classNames,
   i18n = { hint: 'Click or drag and drop to upload' },
+  imageComponent,
   ...props
 }: ImageInputProps) {
   const onImageDroppedHandler = (files: FileWithPath[]) => {
     if (files.length > 0) {
-      onImageDropped(URL.createObjectURL(files[0]))
-    } else {
-      onImageDropped(undefined)
+      onImageDropped(files[0]) // Directly pass the File object
     }
   }
 
-  let image = null
-  if (value) {
-    image = <Image src={value} className={styles.image} />
-  } else {
-    image = (
-      <div className={styles.imageDropContainer}>
-        <IconPhoto color="#9595A8" size={64} />
-        <div className="body">{i18n.hint}</div>
-      </div>
-    )
+  let imageSrc: string | undefined
+  if (typeof value === 'string') {
+    imageSrc = value
+  } else if (value instanceof File) {
+    imageSrc = URL.createObjectURL(value)
   }
 
   return (
@@ -60,7 +56,19 @@ export default function ImageInput({
       }}
       {...props}
     >
-      {image}
+      {imageSrc ? (
+        <Image
+          src={imageSrc}
+          className={styles.image}
+          alt=""
+          component={imageComponent}
+        />
+      ) : (
+        <div className={styles.imageDropContainer}>
+          <IconPhoto color="#9595A8" size={64} />
+          <div className="body">{i18n.hint}</div>
+        </div>
+      )}
     </Dropzone>
   )
 }

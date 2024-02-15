@@ -1,0 +1,60 @@
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-neutral-500);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--text-md);
+  font-weight: var(--medium);
+  position: relative;
+}
+
+.onlineAvatar {
+  border: 2.5px solid var(--color-primary-500);
+  border-radius: 50%;
+}
+
+.offlineAvatar {
+  border: 2.5px solid var(--color-neutral-700);
+}
+
+.status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.offline {
+  border: 1.8px solid var(--color-neutral-700);
+  background: var(--color-neutral-500);
+}
+
+.online {
+  background: var(--color-primary-500);
+  border: 1.8px solid var(--color-neutral-700);
+}
+
+.container {
+  display: inline-block;
+  position: relative;
+}
+
+.walletIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+  border: 1.8px solid var(--color-success-200);
+  background: var(--color-neutral-700);
+}

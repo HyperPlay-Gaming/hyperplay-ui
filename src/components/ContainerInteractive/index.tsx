@@ -8,7 +8,7 @@ import styles from './ContainerInteractive.module.scss'
 export interface ContainerInteractiveProps extends HTMLProps<HTMLDivElement> {
   title: string
   tag?: ReactElement
-  icon: ReactElement
+  icon?: ReactElement
   classNames?: {
     root?: string
     header?: string
@@ -35,7 +35,7 @@ export function ContainerInteractive({
           <div className="title">{title}</div>
           {tag ?? null}
         </div>
-        {icon}
+        {icon ?? null}
       </div>
       {children}
     </DarkContainer>

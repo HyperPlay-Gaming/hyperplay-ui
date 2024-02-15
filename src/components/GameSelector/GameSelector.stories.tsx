@@ -5,11 +5,13 @@ import { userEvent, within } from '@storybook/testing-library'
 
 import { GameSelector } from '.'
 import { wait } from '../../../tests/utils/wait'
+import LongListOfGameDetails from './storyData.json'
 import { GameSelectorProps } from './types'
 
 const meta: Meta<typeof GameSelector> = {
   title: 'Quests/GameSelector',
-  component: GameSelector
+  component: GameSelector,
+  excludeStories: ['props']
 }
 
 export default meta
@@ -117,5 +119,19 @@ export const Default: Story = {
         expect(newlyAddedGame).toBeInTheDocument()
       })
     })
+  }
+}
+
+const longGameDetailsList = LongListOfGameDetails.map((val, index) => ({
+  ...val,
+  gameId: val.gameId.toString(),
+  onClick: () => console.log(`index clicked ${index}`)
+}))
+
+export const ManySearchResults: Story = {
+  args: {
+    ...props,
+    selectedGames: longGameDetailsList,
+    searchResultGames: longGameDetailsList
   }
 }

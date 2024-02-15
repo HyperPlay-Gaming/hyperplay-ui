@@ -38,13 +38,17 @@ const IconFill: { [key: string]: string } = {
   TrophyOutline: '#FFFFFF',
   CheckmarkCircleOutline: '#FFFFFF',
   TrashCan: '#FFFFFF',
-  QuestIcon: '#FFFFFF'
+  QuestIcon: '#FFFFFF',
+  QuestionMark: '#FFFFFF',
+  Wallet: '#FFFFFF'
 }
 
 const IconStroke: { [key: string]: string } = {
   Discord: '#FFFFFF',
   GiftBox: '#FFFFFF',
-  AlertTriangle: '#FFFFFF'
+  AlertTriangle: '#FFFFFF',
+  PlusCircle: '#FFFFFF',
+  MinusCircle: '#FFFFFF'
 }
 
 export default function Icons() {
