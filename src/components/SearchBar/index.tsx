@@ -13,7 +13,12 @@ type Props = {
   }
 }
 
-export default function SearchBar({ searchText, setSearchText, i18n: {placeholder}, suggestions }: Props) {
+export default function SearchBar({
+  searchText,
+  setSearchText,
+  i18n: { placeholder },
+  suggestions
+}: Props) {
   const input = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -42,11 +47,12 @@ export default function SearchBar({ searchText, setSearchText, i18n: {placeholde
   const showClearButton = searchText.length > 0
   const gameList = useMemo(() => {
     if (suggestions && searchText.length > 0) {
-      return suggestions.filter(el => el.toLowerCase().includes(searchText.toLowerCase()))
+      return suggestions.filter((el) =>
+        el.toLowerCase().includes(searchText.toLowerCase())
+      )
     }
     return []
-  }
-  , [suggestions, searchText])
+  }, [suggestions, searchText])
 
   return (
     <div className={styles.searchBar}>
@@ -59,20 +65,12 @@ export default function SearchBar({ searchText, setSearchText, i18n: {placeholde
           onClick={() => clearSearch()}
         />
       )}
-      {
-        gameList.length > 0 && (
-          <ul className={styles.autoComplete}>
-            {
-              gameList?.length > 0 && gameList?.map(el => (
-                <li key={el}>
-                  {el}{' '}
-                </li>
-              ))
-            }
-          </ul>
-        )
-      }
+      {gameList.length > 0 && (
+        <ul className={styles.autoComplete}>
+          {gameList?.length > 0 &&
+            gameList?.map((el) => <li key={el}>{el} </li>)}
+        </ul>
+      )}
     </div>
   )
 }
-
