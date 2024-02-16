@@ -74,7 +74,7 @@ export default function QuestDetails({
         opened={opened}
         toggle={toggle}
         i18n={i18n}
-        games={eligibility.reputation.games}
+        eligibility={eligibility}
       />
     )
   }

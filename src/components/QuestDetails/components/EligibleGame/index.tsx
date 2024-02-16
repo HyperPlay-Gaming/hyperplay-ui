@@ -1,6 +1,9 @@
+import cn from 'classnames'
+
+import { AlertHexagon } from '@/assets/images'
 import Button from '@/components/Button'
 
-import { Game } from '../../types'
+import { Eligbility, Game } from '../../types'
 import styles from './index.module.scss'
 
 export interface EligibleGameInterface {
@@ -10,9 +13,14 @@ export interface EligibleGameInterface {
     sync: string
     refresh: string
   }
+  eligibility: Eligbility
 }
 
-export function EligibleGame({ game, i18n }: EligibleGameInterface) {
+export function EligibleGame({
+  game,
+  i18n,
+  eligibility
+}: EligibleGameInterface) {
   function getRoundedPercent(numerator: number, denominator: number) {
     return Math.round((100 * numerator) / denominator)
   }
@@ -25,11 +33,20 @@ export function EligibleGame({ game, i18n }: EligibleGameInterface) {
     game.mintableAchievementsCount,
     game.totalAchievementsCount
   )
-  console.log('i18n ', i18n)
+
+  const alertClasses: Record<string, boolean> = {}
+  const completionPercentRequired = eligibility.reputation?.completionPercent
+  if (completionPercentRequired) {
+    alertClasses[styles.success] =
+      onChainPercentComplete > completionPercentRequired
+    alertClasses[styles.error] =
+      onChainPercentComplete < completionPercentRequired
+  }
 
   return (
     <div key={game.title} className={styles.associatedGameContainer}>
       <div className={styles.gameDetailsContainer}>
+        <AlertHexagon className={cn(styles.alertIcon, alertClasses)} />
         <img src={game.imageUrl} className={styles.associatedGameThumbnail} />
         <div>
           <div className="body-sm">{game.title}</div>

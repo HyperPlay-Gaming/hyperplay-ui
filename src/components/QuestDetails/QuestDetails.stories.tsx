@@ -52,7 +52,7 @@ const props: QuestDetailsProps = {
           totalAchievementsCount: 100
         }
       ],
-      completionPercent: 50,
+      completionPercent: 15,
       eligible: true,
       steamAccountLinked: true
     }

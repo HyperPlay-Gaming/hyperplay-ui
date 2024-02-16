@@ -25,13 +25,15 @@ export interface QuestReward {
   imageUrl: string
 }
 
+export interface Eligbility {
+  reputation?: ReputationQuestEligibility
+}
+
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string
   description: string
   // More quest eligibilty interfaces will be added here in future iterations
-  eligibility: {
-    reputation?: ReputationQuestEligibility
-  }
+  eligibility: Eligbility
   rewards: QuestReward[]
   onClaimClick: () => void
   i18n?: {

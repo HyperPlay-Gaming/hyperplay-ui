@@ -13,11 +13,27 @@ $thumbnailSize: 24px;
   gap: var(--space-sm);
   justify-content: space-between;
   align-content: center;
+  position: relative;
 
   > .gameDetailsContainer {
     display: flex;
     flex-direction: row;
     gap: var(--space-sm);
     align-content: center;
+  }
+}
+
+.alertIcon {
+  fill: var(--color-alert-400);
+  position: absolute;
+  top: -12px;
+  left: -12px;
+
+  &.success {
+    fill: var(--color-success-400);
+  }
+
+  &.error {
+    fill: var(--color-error-400);
   }
 }
