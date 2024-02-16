@@ -66,7 +66,7 @@ export default function SearchBar({
             fill="var(--color-neutral-100)"
             onClick={() => clearSearch()}
           />
-      </button>
+        </button>
       )}
       {gameList.length > 0 && (
         <ul className={styles.autoComplete}>
