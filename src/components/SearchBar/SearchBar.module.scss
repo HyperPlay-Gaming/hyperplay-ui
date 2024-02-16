@@ -1,41 +1,47 @@
 .searchBar {
   position: relative;
-  margin-right: var(--space-2xl-fixed);
-  grid-area: searchBar;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 240px;
+  height: 42px;
+  border-radius: 1000px;
+  background: var(--color-neutral-900);
+  border: solid 1px var(--color-stroke-01);
 
   input {
-    width: 240px;
-    height: 42px;
-    text-indent: 40px;
-    border-radius: 3rem;
-    border: solid 1px var(--color-stroke-01);
-    background: var(--color-neutral-900);
+    background: transparent;
+    width: 100%;
+    border: none;
     color: var(--color-neutral-100);
-    font-size: 16px;
+    font-size: var(--text-md);
 
-    &:focus {
+    &:focus-within {
       outline: none;
     }
   }
 
-  .magnifyingGlass {
-    position: absolute;
-    top: 14px;
-    left: 16px;
-    height: 16px;
-    width: 16px;
+  .searchButton {
+    padding: 0 var(--space-xs) 0 var(--space-xs);
+    height: fit-content;
+    display: flex;
+    justify-content: center;
   }
 
-  .closeButton {
-    position: absolute;
-    top: 14px;
-    height: 16px;
-    right: var(--space-lg);
-    cursor: pointer;
+  .clearButton {
+    transition: color 250ms;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding-right: var(--space-xs);
   }
 
-  &:focus-within .autoComplete {
+  svg {
+    height: var(--text-md);
+    width: var(--text-md);
+  }
+
+  &:focus-within ul.autoComplete {
     display: block;
   }
 }
@@ -50,6 +56,7 @@
   max-height: 200px;
   width: 85%;
   overflow: auto;
+  display: none;
   list-style: none;
   text-align: left;
   overflow-x: hidden;

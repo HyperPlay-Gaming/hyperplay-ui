@@ -56,14 +56,17 @@ export default function SearchBar({
 
   return (
     <div className={styles.searchBar}>
-      <MagnifyingGlass fill="white" className={styles.magnifyingGlass} />
+      <button className={styles.searchButton}>
+        <MagnifyingGlass fill="var(--color-neutral-100)" />
+      </button>
       <input ref={input} type="text" placeholder={placeholder} />
       {showClearButton && (
-        <CloseButton
-          fill="white"
-          className={styles.closeButton}
-          onClick={() => clearSearch()}
-        />
+        <button className={styles.clearButton} onClick={() => clearSearch()}>
+          <CloseButton
+            fill="var(--color-neutral-100)"
+            onClick={() => clearSearch()}
+          />
+      </button>
       )}
       {gameList.length > 0 && (
         <ul className={styles.autoComplete}>
