@@ -48,7 +48,7 @@
 
 .autoComplete {
   position: absolute;
-  top: 26px;
+  top: 30px;
   left: 18px;
   color: var(--text-color-001);
   background: var(--color-neutral-900);
@@ -65,10 +65,14 @@
   border-bottom-left-radius: var(--space-sm);
   border-bottom-right-radius: var(--space-sm);
   padding-left: 0;
+  font-size: var(--text-xs);
 
   li {
-    padding: var(--space-xs) var(--space-sm);
+    padding: var(--space-2xs) var(--space-sm);
     width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &:hover {
       background: var(--color-neutral-700);

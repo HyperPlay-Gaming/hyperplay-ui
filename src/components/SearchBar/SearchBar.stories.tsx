@@ -52,7 +52,8 @@ export const WithGameList: React.FC = () => {
     'The Last of Us Part 1',
     'Uncharted',
     'Fortnite',
-    'Rocket League'
+    'Rocket League',
+    'Game with really long name that for some reason might break the input'
   ]
 
   return (
