@@ -5,6 +5,12 @@ import { QuestTypeTranslations } from '@/common/types'
 export interface Game {
   title: string
   imageUrl: string
+  mintableAchievementsCount: number
+  mintedAchievementsCount: number
+  totalAchievementsCount: number
+  onMintClick: () => void
+  onRefreshClick: () => void
+  onSyncClick: () => void
 }
 
 export interface ReputationQuestEligibility {
@@ -35,5 +41,8 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     needMoreAchievements: string
     claim: string
     questType: QuestTypeTranslations
+    mint: string
+    sync: string
+    refresh: string
   }
 }

@@ -24,21 +24,6 @@
   }
 }
 
-$thumbnailSize: 24px;
-.associatedGameThumbnail {
-  max-width: $thumbnailSize;
-  max-height: $thumbnailSize;
-  height: $thumbnailSize;
-  object-fit: cover;
-  border-radius: calc($thumbnailSize / 6);
-}
-
-.associatedGameContainer {
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-sm);
-}
-
 .associatedGamesCollapseContainer {
   display: flex;
   flex-direction: column;

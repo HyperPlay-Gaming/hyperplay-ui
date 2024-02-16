@@ -31,8 +31,26 @@ const props: QuestDetailsProps = {
   eligibility: {
     reputation: {
       games: [
-        { title: 'Call of Duty', imageUrl: cupheadCard },
-        { title: 'Skyrim', imageUrl: cyberpunkCard }
+        {
+          title: 'Call of Duty',
+          imageUrl: cupheadCard,
+          onMintClick: () => console.log('mint click'),
+          onRefreshClick: () => console.log('refresh clicked'),
+          onSyncClick: () => console.log('sync clicked'),
+          mintableAchievementsCount: 26,
+          mintedAchievementsCount: 12,
+          totalAchievementsCount: 67
+        },
+        {
+          title: 'Skyrim',
+          imageUrl: cyberpunkCard,
+          onMintClick: () => console.log('mint click'),
+          onRefreshClick: () => console.log('refresh clicked'),
+          onSyncClick: () => console.log('sync clicked'),
+          mintableAchievementsCount: 10,
+          mintedAchievementsCount: 4,
+          totalAchievementsCount: 100
+        }
       ],
       completionPercent: 50,
       eligible: true,

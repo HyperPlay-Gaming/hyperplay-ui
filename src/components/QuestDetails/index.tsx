@@ -38,7 +38,10 @@ export default function QuestDetails({
     claim: 'Claim all',
     questType: {
       REPUTATION: 'Reputation'
-    }
+    },
+    mint: 'Mint',
+    sync: 'Sync',
+    refresh: 'Refresh'
   },
   onClaimClick,
   ...props
@@ -70,7 +73,7 @@ export default function QuestDetails({
       <AssociatedGamesCollapse
         opened={opened}
         toggle={toggle}
-        i18n={{ associatedGames: i18n.associatedGames }}
+        i18n={i18n}
         games={eligibility.reputation.games}
       />
     )

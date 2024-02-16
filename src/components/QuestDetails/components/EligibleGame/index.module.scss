@@ -1,0 +1,23 @@
+$thumbnailSize: 24px;
+.associatedGameThumbnail {
+  max-width: $thumbnailSize;
+  max-height: $thumbnailSize;
+  height: $thumbnailSize;
+  object-fit: cover;
+  border-radius: calc($thumbnailSize / 6);
+}
+
+.associatedGameContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm);
+  justify-content: space-between;
+  align-content: center;
+
+  > .gameDetailsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-sm);
+    align-content: center;
+  }
+}
