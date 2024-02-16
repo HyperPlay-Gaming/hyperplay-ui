@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from 'react'
 
 import { IconEdit } from '@tabler/icons-react'
+import { TokenType } from '@/common/types'
 
 import { ArrowTop, DownArrow, TrashCan } from '@/assets/images'
 import {
@@ -32,18 +33,6 @@ import {
   defaultI18n as defaultFormDepositRewardsI18n
 } from './components/FormDepositRewards'
 
-export const defaultI18n = {
-  remove: 'Remove',
-  pendingDeposit: 'Pending Deposit',
-  depositedLabel: 'Deposited',
-  viewDetails: 'View Details',
-  hideDetails: 'Hide Details',
-  ...defaultFormDepositRewardsI18n,
-  ...defaultFormDepositActionsI18n,
-  ...defaultRewardDepositedTableI18n,
-  ...defaultRewardDetailsI18n
-}
-
 interface RewardDepositI18nProp
   extends FormDepositRewardI18nProp,
     RewardDetailsI18nProp,
@@ -53,7 +42,8 @@ interface RewardDepositI18nProp
   pendingDeposit?: string
   depositedLabel: string
   viewDetails: string
-  hideDetails: string
+  hideDetails: string,
+  tokenType: Record<TokenType, string>
 }
 
 export interface RewardDepositProps
@@ -71,6 +61,18 @@ export interface RewardDepositProps
   onFormSubmit: () => void
   onRemoveClick: () => void
   i18n?: RewardDepositI18nProp
+}
+
+export const defaultI18n: RewardDepositI18nProp = {
+  remove: 'Remove',
+  pendingDeposit: 'Pending Deposit',
+  depositedLabel: 'Deposited',
+  viewDetails: 'View Details',
+  hideDetails: 'Hide Details',
+  ...defaultFormDepositRewardsI18n,
+  ...defaultFormDepositActionsI18n,
+  ...defaultRewardDepositedTableI18n,
+  ...defaultRewardDetailsI18n
 }
 
 export function RewardDeposit({

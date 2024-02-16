@@ -10,25 +10,6 @@ import { TokenIdItemProps } from '../../types'
 import { TokenIdRow } from './components/TokenIdRow'
 import styles from './index.module.scss'
 
-export const defaultI18n = {
-  tokenIdsTitle: 'Token IDs',
-  orAddManually: 'Or add manually',
-  callToActionAddToken: 'Add Token IDs',
-  addedTokenCounterText: 'IDs added:',
-  collapseAllIds: 'Collapse all IDs',
-  pressEnterToAdd: 'Press enter to add',
-  placeholder: {
-    tokenFrom: '0',
-    tokenTo: '99',
-    tokenId: 'Paste token ID'
-  },
-  label: {
-    tokenFrom: 'From',
-    tokenTo: 'To',
-    tokenId: 'Token ID'
-  }
-}
-
 export interface RewardERC721I18nProp {
   tokenIdsTitle: string
   orAddManually: string
@@ -57,6 +38,25 @@ export interface RewardERC721Props {
   defaultTokenIdsListVisibilityState?: boolean
   onAddTokenTap: () => void
   i18n?: RewardERC721I18nProp
+}
+
+export const defaultI18n: RewardERC721I18nProp = {
+  tokenIdsTitle: 'Token IDs',
+  orAddManually: 'Or add manually',
+  callToActionAddToken: 'Add Token IDs',
+  addedTokenCounterText: 'IDs added:',
+  collapseAllIds: 'Collapse all IDs',
+  pressEnterToAdd: 'Press enter to add',
+  placeholder: {
+    tokenFrom: '0',
+    tokenTo: '99',
+    tokenId: 'Paste token ID'
+  },
+  label: {
+    tokenFrom: 'From',
+    tokenTo: 'To',
+    tokenId: 'Token ID'
+  }
 }
 
 export function RewardERC721({
@@ -106,7 +106,7 @@ export function RewardERC721({
         />
         <div className={styles.addTokenIdButtonContainer}>
           <Button
-            type="secondary-gradient-button"
+            type="secondaryGradient"
             size="medium"
             onClick={onAddTokenTap}
             disabled={isAddTokenButtonDisabled}

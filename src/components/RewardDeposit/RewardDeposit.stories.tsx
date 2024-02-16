@@ -83,7 +83,7 @@ export const Disabled: Story = {
   args: {
     ...props,
     state: 'NOT_DEPOSITED',
-    defaultSelected: 'ERC721',
+    defaultSelected: 'erc721',
     isAddTokenButtonDisabled: true
   }
 }

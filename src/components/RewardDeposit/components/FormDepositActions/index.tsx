@@ -4,11 +4,6 @@ import Button from '@/components/Button'
 
 import styles from './FormDepositActions.module.scss'
 
-export const defaultI18n = {
-  submitBtn: 'Deposit Reward',
-  totalDeposit: 'Total Deposit:'
-}
-
 export interface FormDepositActionsI18nProp {
   submitBtn?: string
   totalDeposit?: string
@@ -21,6 +16,12 @@ export interface FormDepositActionsProps {
   i18n?: FormDepositActionsI18nProp
 }
 
+export const defaultI18n: FormDepositActionsI18nProp = {
+  submitBtn: 'Deposit Reward',
+  totalDeposit: 'Total Deposit:'
+}
+
+
 export function FormDepositActions({
   onFormSubmit = () => null,
   isDisabledButton,
@@ -31,7 +32,7 @@ export function FormDepositActions({
     <div className={styles.base}>
       <Button
         type="primary"
-        size="large"
+        size="medium"
         disabled={isDisabledButton}
         onClick={onFormSubmit}
       >

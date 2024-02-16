@@ -6,22 +6,6 @@ import TextInput, { TextInputProps } from '@/components/TextInput'
 
 import styles from './index.module.scss'
 
-export const defaultI18n = {
-  tokenIdsTitle: 'Token IDs',
-  placeholder: {
-    tokenIdGold: 'Paste token ID',
-    tokenIdSilver: 'Paste token ID',
-    totalPlayerReachGold: '0',
-    totalPlayerReachSilver: '0'
-  },
-  label: {
-    tokenIdGold: 'Token ID: GOLD',
-    tokenIdSilver: 'Token ID: SILVER',
-    totalPlayerReachGold: 'Total Player Reach: GOLD',
-    totalPlayerReachSilver: 'Total Player Reach: SILVER'
-  }
-}
-
 export interface RewardERC1155I18nProp {
   tokenIdsTitle: string
   placeholder: {
@@ -44,6 +28,22 @@ export interface RewardERC1155Props {
   totalPlayerReachGoldNumberInputProps: TextInputProps
   totalPlayerReachSilverNumberInputProps: TextInputProps
   i18n?: RewardERC1155I18nProp
+}
+
+export const defaultI18n: RewardERC1155I18nProp = {
+  tokenIdsTitle: 'Token IDs',
+  placeholder: {
+    tokenIdGold: 'Paste token ID',
+    tokenIdSilver: 'Paste token ID',
+    totalPlayerReachGold: '0',
+    totalPlayerReachSilver: '0'
+  },
+  label: {
+    tokenIdGold: 'Token ID: GOLD',
+    tokenIdSilver: 'Token ID: SILVER',
+    totalPlayerReachGold: 'Total Player Reach: GOLD',
+    totalPlayerReachSilver: 'Total Player Reach: SILVER'
+  }
 }
 
 export function RewardERC1155({

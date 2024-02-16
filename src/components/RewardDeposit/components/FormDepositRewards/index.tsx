@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import cn from 'classnames'
+import { TokenType } from '@/common/types'
 
 import { Dropdown } from '@/components/Dropdowns'
 import { TextInputProps } from '@/components/TextInput'
@@ -74,7 +75,7 @@ export interface FormDepositRewardsProps {
   isAddTokenButtonDisabled?: boolean
   defaultTokenIdsListVisibilityState?: boolean
   onAddTokenTap: () => void
-  defaultSelected?: 'ERC721' | 'ERC20' | 'ERC1155'
+  defaultSelected?: TokenType
   i18n?: FormDepositRewardI18nProp
 }
 

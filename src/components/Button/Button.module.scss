@@ -106,7 +106,7 @@
   }
 }
 
-.secondary-gradient-button {
+.secondaryGradient {
   --gradient-thickness-px: 1px;
   background-clip: padding-box;
 
@@ -123,9 +123,7 @@
     height: 100%;
     color: var(--color-neutral-100);
     border: solid 1.5px transparent;
-    border-radius: calc(
-      var(--gradient-border-radius) + var(--gradient-thickness-px)
-    ) !important;
+    border-radius: var(--gradient-border-radius);
     background-color: var(--color-neutral-800);
     top: 0;
     left: 0;
@@ -134,12 +132,6 @@
 
   &:before {
     @include showGradientBorder(1px);
-  }
-
-  &:hover:not(:disabled) {
-    background-color: var(--color-neutral-600);
-    color: var(--color-neutral-100);
-    opacity: 100%;
   }
 
   &:disabled,

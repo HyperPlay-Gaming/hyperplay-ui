@@ -61,7 +61,10 @@ export const Default: Story = {
 }
 
 export const ERC20: Story = {
-  args: { ...formDepositRewardsProps, defaultSelected: 'ERC20' },
+  args: { 
+    ...formDepositRewardsProps, 
+    defaultSelected: 'erc20' 
+  },
   play: async ({ step }) => {
     await step(
       'Expect Total Player Reach Input to have value',
@@ -80,7 +83,7 @@ export const ERC20: Story = {
 
 export const ERC721: Story = {
   args: {
-    defaultSelected: 'ERC721',
+    defaultSelected: 'erc721',
     i18n: {
       ...defaultFormDepositI18n,
       placeholder: {
@@ -179,7 +182,7 @@ export const ERC721: Story = {
 export const ERC721DisabledAddTokenId: Story = {
   args: {
     ...formDepositRewardsProps,
-    defaultSelected: 'ERC721',
+    defaultSelected: 'erc721',
     isAddTokenButtonDisabled: true
   },
   play: async ({ step }) => {
@@ -202,7 +205,7 @@ export const ERC721DisabledAddTokenId: Story = {
 export const ERC1155: Story = {
   args: {
     ...formDepositRewardsProps,
-    defaultSelected: 'ERC1155',
+    defaultSelected: 'erc1155',
     i18n: {
       ...defaultFormDepositI18n,
       placeholder: {

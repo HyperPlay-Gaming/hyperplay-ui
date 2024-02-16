@@ -3,21 +3,12 @@
 import React from 'react'
 
 import { TokenType } from '@/common/types'
+import { getTruncatedUrl } from '@/utils/urlUtil'
 import { getTruncatedAddress } from '@/utils/addressUtils'
 
 import { ButtonCopy } from '../ButtonCopy'
 import styles from './RewardsDepositedTable.module.scss'
 
-export const defaultI18n = {
-  playerReach: 'Total Player Reach',
-  network: 'Network',
-  tokenContractAddress: 'Token Contract Address',
-  rewardType: 'Reward Type',
-  tokenName: 'Token Name',
-  amountPerPlayer: 'Amount Per Player',
-  totalClaimables: 'Total No of Claimables',
-  marketplaceUrl: 'Marketplace URL'
-}
 export interface RewardDepositedTableI18nProp {
   playerReach?: string
   network?: string
@@ -27,6 +18,7 @@ export interface RewardDepositedTableI18nProp {
   amountPerPlayer?: string
   totalClaimables?: string
   marketplaceUrl?: string
+  tokenType: Record<TokenType, string>,
 }
 
 export interface RewardsDepositedTableProps {
@@ -39,6 +31,22 @@ export interface RewardsDepositedTableProps {
   totalClaimables: number
   marketplaceUrl: string
   i18n?: RewardDepositedTableI18nProp
+}
+
+export const defaultI18n: RewardDepositedTableI18nProp = {
+  playerReach: 'Total Player Reach',
+  network: 'Network',
+  tokenContractAddress: 'Token Contract Address',
+  rewardType: 'Reward Type',
+  tokenName: 'Token Name',
+  amountPerPlayer: 'Amount Per Player',
+  totalClaimables: 'Total No of Claimables',
+  marketplaceUrl: 'Marketplace URL',
+  tokenType: {
+    erc20: 'ERC-20',
+    erc721: 'ERC-721',
+    erc1155: 'ERC-1155'
+  },
 }
 
 export function RewardsDepositedTable({
@@ -74,7 +82,7 @@ export function RewardsDepositedTable({
       </tr>
       <tr>
         <td>{i18n.rewardType}</td>
-        <td>{rewardType}</td>
+        <td>{i18n.tokenType[rewardType]}</td>
       </tr>
       <tr>
         <td>{i18n.tokenName}</td>
@@ -95,7 +103,7 @@ export function RewardsDepositedTable({
           <td>{i18n.marketplaceUrl}</td>
           <td>
             <a target="_blank" rel="noopener noreferrer" href={marketplaceUrl}>
-              {marketplaceUrl}
+              {getTruncatedUrl(marketplaceUrl)}
             </a>
           </td>
         </tr>
