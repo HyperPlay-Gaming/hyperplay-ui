@@ -2,21 +2,16 @@ import React from 'react'
 
 import classNames from 'classnames'
 
-import { QuestReward } from '../../types'
+import { QuestDetailsI18n, QuestReward } from '../../types'
 import Reward from '../Reward'
 import styles from './index.module.scss'
 
 export interface RewardsProps {
   rewards: QuestReward[]
-  i18n?: {
-    reward: string
-  }
+  i18n: Pick<QuestDetailsI18n, 'reward'>
 }
 
-export default function Rewards({
-  rewards,
-  i18n = { reward: 'Reward' }
-}: RewardsProps) {
+export default function Rewards({ rewards, i18n }: RewardsProps) {
   return (
     <div className={styles.rewardsContainer}>
       <div className={classNames('menu', styles.rewardTitle)}>

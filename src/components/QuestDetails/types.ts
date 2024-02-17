@@ -5,12 +5,18 @@ import { QuestTypeTranslations } from '@/common/types'
 export interface Game {
   title: string
   imageUrl: string
+  minted: boolean
+  mintableAchievementsCount: number
+  mintedAchievementsCount: number
+  totalAchievementsCount: number
+  onMintClick: () => void
+  onRefreshClick: () => void
+  onSyncClick: () => void
 }
 
 export interface ReputationQuestEligibility {
   games: Game[]
   completionPercent: number
-  eligible: boolean
   steamAccountLinked: boolean
 }
 
@@ -19,21 +25,32 @@ export interface QuestReward {
   imageUrl: string
 }
 
+export interface Eligbility {
+  reputation?: ReputationQuestEligibility
+}
+
+export interface QuestDetailsI18n {
+  reward: string
+  eligibleGames: string
+  linkSteamAccount: string
+  claim: string
+  questType: QuestTypeTranslations
+  mint: string
+  sync: string
+  refresh: string
+  achievements: string
+  minted: string
+  completed: string
+  questRequiresCompletion: string
+  needMoreAchievements: string
+}
+
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string
   description: string
   // More quest eligibilty interfaces will be added here in future iterations
-  eligibility: {
-    reputation?: ReputationQuestEligibility
-  }
+  eligibility: Eligbility
   rewards: QuestReward[]
   onClaimClick: () => void
-  i18n?: {
-    reward: string
-    associatedGames: string
-    linkSteamAccount: string
-    needMoreAchievements: string
-    claim: string
-    questType: QuestTypeTranslations
-  }
+  i18n?: QuestDetailsI18n
 }

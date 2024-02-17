@@ -1,0 +1,11 @@
+.alertTriangle {
+  stroke: var(--color-alert-400);
+}
+
+.alertTextContainer {
+  display: flex;
+  flex-direction: row;
+  color: var(--color-alert-200);
+  gap: var(--space-sm);
+  align-items: center;
+}

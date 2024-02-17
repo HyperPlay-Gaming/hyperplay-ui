@@ -1,27 +1,20 @@
-import React, { HTMLProps } from 'react'
+import React from 'react'
 
 import { useDisclosure } from '@mantine/hooks'
 import classNames from 'classnames'
 
-import { AlertTriangle } from '@/assets/images'
 import { getQuestTypeDisplayName } from '@/utils/getQuestTypeDisplayName'
 
 import Button from '../Button'
 import DarkContainer from '../DarkContainer'
 import Sticker from '../Sticker'
+import { AlertText } from './components/AlertText'
 import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
 import Rewards from './components/Rewards'
+import { i18nDefault } from './constants'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
-
-function AlertText(props: HTMLProps<HTMLDivElement>) {
-  return (
-    <div className={styles.alertTextContainer} {...props}>
-      <AlertTriangle className={styles.alertTriangle} />
-      <div>{props.children}</div>
-    </div>
-  )
-}
+import { isEligible, replacePercentInString } from './utils'
 
 export default function QuestDetails({
   className,
@@ -29,17 +22,7 @@ export default function QuestDetails({
   description,
   eligibility,
   rewards,
-  i18n = {
-    reward: 'Reward',
-    associatedGames: 'Associated games',
-    linkSteamAccount: 'Link your Steam account to check eligibility.',
-    needMoreAchievements:
-      'You need to have completed 15% of the achievements in one of these games.',
-    claim: 'Claim all',
-    questType: {
-      REPUTATION: 'Reputation'
-    }
-  },
+  i18n = i18nDefault,
   onClaimClick,
   ...props
 }: QuestDetailsProps) {
@@ -50,10 +33,12 @@ export default function QuestDetails({
   let sticker = null
   let gamesCollapsable = null
   if (eligibility.reputation !== undefined) {
-    if (!eligibility.reputation?.eligible) {
-      needMoreAchievementsText = (
-        <AlertText>{i18n.needMoreAchievements}</AlertText>
+    if (!isEligible(eligibility)) {
+      const needMoreAchievements = replacePercentInString(
+        i18n.needMoreAchievements,
+        eligibility.reputation?.completionPercent
       )
+      needMoreAchievementsText = <AlertText>{needMoreAchievements}</AlertText>
     }
 
     if (!eligibility.reputation.steamAccountLinked) {
@@ -70,8 +55,8 @@ export default function QuestDetails({
       <AssociatedGamesCollapse
         opened={opened}
         toggle={toggle}
-        i18n={{ associatedGames: i18n.associatedGames }}
-        games={eligibility.reputation.games}
+        i18n={i18n}
+        eligibility={eligibility}
       />
     )
   }
@@ -98,8 +83,8 @@ export default function QuestDetails({
 
         <Rewards rewards={rewards} i18n={{ reward: i18n.reward }} />
         <Button
-          type="secondary"
-          className={styles.claimButton}
+          type="primary"
+          className={classNames('button-sm', styles.claimButton)}
           onClick={onClaimClick}
         >
           {i18n.claim}

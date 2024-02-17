@@ -1,6 +1,6 @@
 .darkContainer {
   padding: var(--space-2lg);
-  max-width: 576px;
+  max-width: 596px;
   height: 100%;
   margin: var(--space-xl) var(--space-xs);
 }
@@ -22,18 +22,6 @@
   white-space: pre-wrap;
   text-wrap: wrap;
   line-height: var(--space-xl);
-}
-
-.alertTriangle {
-  stroke: var(--color-alert-400);
-}
-
-.alertTextContainer {
-  display: flex;
-  flex-direction: row;
-  color: var(--color-alert-200);
-  gap: var(--space-sm);
-  align-items: center;
 }
 
 .title {

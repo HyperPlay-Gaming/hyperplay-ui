@@ -26,7 +26,7 @@ $rewardTitleSideMargin: var(--space-2lg);
 .rewardItemsContainer {
   display: flex;
   flex-direction: row;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   flex-wrap: wrap;
   justify-content: space-around;
 }
