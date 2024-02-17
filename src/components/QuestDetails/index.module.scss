@@ -24,18 +24,6 @@
   line-height: var(--space-xl);
 }
 
-.alertTriangle {
-  stroke: var(--color-alert-400);
-}
-
-.alertTextContainer {
-  display: flex;
-  flex-direction: row;
-  color: var(--color-alert-200);
-  gap: var(--space-sm);
-  align-items: center;
-}
-
 .title {
   line-height: var(--text-2xl);
 }

@@ -1,29 +1,20 @@
-import React, { HTMLProps } from 'react'
+import React from 'react'
 
 import { useDisclosure } from '@mantine/hooks'
 import classNames from 'classnames'
 
-import { AlertTriangle } from '@/assets/images'
 import { getQuestTypeDisplayName } from '@/utils/getQuestTypeDisplayName'
 
 import Button from '../Button'
 import DarkContainer from '../DarkContainer'
 import Sticker from '../Sticker'
+import { AlertText } from './components/AlertText'
 import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
 import Rewards from './components/Rewards'
 import { i18nDefault } from './constants'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
 import { isEligible, replacePercentInString } from './utils'
-
-function AlertText(props: HTMLProps<HTMLDivElement>) {
-  return (
-    <div className={styles.alertTextContainer} {...props}>
-      <AlertTriangle className={styles.alertTriangle} />
-      <div>{props.children}</div>
-    </div>
-  )
-}
 
 export default function QuestDetails({
   className,
