@@ -3,19 +3,12 @@ import cn from 'classnames'
 import { AlertHexagon } from '@/assets/images'
 import Button from '@/components/Button'
 
-import { Eligbility, Game } from '../../types'
+import { Eligbility, Game, QuestDetailsI18n } from '../../types'
 import styles from './index.module.scss'
 
 export interface EligibleGameInterface {
   game: Game
-  i18n: {
-    mint: string
-    sync: string
-    refresh: string
-    achievements: string
-    minted: string
-    completed: string
-  }
+  i18n: QuestDetailsI18n
   eligibility: Eligbility
 }
 

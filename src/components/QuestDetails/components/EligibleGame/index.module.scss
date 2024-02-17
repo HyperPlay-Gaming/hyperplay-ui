@@ -1,7 +1,5 @@
-$thumbnailSize: 24px;
+$thumbnailSize: 40px;
 .associatedGameThumbnail {
-  max-width: $thumbnailSize;
-  max-height: $thumbnailSize;
   height: $thumbnailSize;
   object-fit: cover;
   border-radius: calc($thumbnailSize / 6);
@@ -29,8 +27,8 @@ $errorColor: var(--color-error-400);
 .alertIcon {
   fill: var(--color-alert-400);
   position: absolute;
-  top: -12px;
-  left: -12px;
+  top: -8px;
+  left: -14px;
 
   &.success {
     fill: $successColor;

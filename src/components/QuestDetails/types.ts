@@ -30,6 +30,21 @@ export interface Eligbility {
   reputation?: ReputationQuestEligibility
 }
 
+export interface QuestDetailsI18n {
+  reward: string
+  eligibleGames: string
+  linkSteamAccount: string
+  claim: string
+  questType: QuestTypeTranslations
+  mint: string
+  sync: string
+  refresh: string
+  achievements: string
+  minted: string
+  completed: string
+  questRequiresCompletion: string
+}
+
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string
   description: string
@@ -37,18 +52,5 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   eligibility: Eligbility
   rewards: QuestReward[]
   onClaimClick: () => void
-  i18n?: {
-    reward: string
-    associatedGames: string
-    linkSteamAccount: string
-    needMoreAchievements: string
-    claim: string
-    questType: QuestTypeTranslations
-    mint: string
-    sync: string
-    refresh: string
-    achievements: string
-    minted: string
-    completed: string
-  }
+  i18n?: QuestDetailsI18n
 }
