@@ -5,7 +5,7 @@ export function isEligible(eligibility: Eligbility) {
   eligibility.reputation?.games.forEach((val) => {
     if (
       eligibility.reputation?.completionPercent &&
-      val.mintedAchievementsCount / val.totalAchievementsCount >
+      (val.mintedAchievementsCount / val.totalAchievementsCount) * 100 >
         eligibility.reputation?.completionPercent
     ) {
       isEligible = true
