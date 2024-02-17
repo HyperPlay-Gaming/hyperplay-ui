@@ -1,10 +1,9 @@
 import React from 'react'
 
-import { Tabs } from '@mantine/core'
 import classNames from 'classnames'
 
 import DarkContainer from '../DarkContainer'
-import { getTabsClassNames } from '../Tabs'
+import { Tabs, getTabsClassNames } from '../Tabs'
 import QuestItem from './components/QuestItem'
 import styles from './index.module.scss'
 import { QuestLogProps } from './types'
