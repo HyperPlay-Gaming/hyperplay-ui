@@ -56,9 +56,11 @@ export function EligibleGame({
           <div className={cn('eyebrow', alertClasses)}>{mintedTextCaption}</div>
         </div>
       </div>
-      <Button type="secondary" size="small">
-        {i18n.mint}
-      </Button>
+      {game.minted ? null : (
+        <Button type="secondary" size="small">
+          {i18n.mint}
+        </Button>
+      )}
     </div>
   )
 }
