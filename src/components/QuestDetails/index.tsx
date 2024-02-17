@@ -90,7 +90,7 @@ export default function QuestDetails({
 
         <Rewards rewards={rewards} i18n={{ reward: i18n.reward }} />
         <Button
-          type="secondary"
+          type="primary"
           className={styles.claimButton}
           onClick={onClaimClick}
         >
