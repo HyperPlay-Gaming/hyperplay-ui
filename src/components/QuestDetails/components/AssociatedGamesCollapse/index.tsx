@@ -6,6 +6,7 @@ import classNames from 'classnames'
 import { DownArrow } from '@/assets/images'
 
 import { Eligbility, QuestDetailsI18n } from '../../types'
+import { replacePercentInString } from '../../utils'
 import { EligibleGame } from '../EligibleGame'
 import styles from './index.module.scss'
 
@@ -29,9 +30,9 @@ export default function AssociatedGamesCollapse({
   associatedGamesClassNames[styles.associatedGamesButton] = true
   associatedGamesClassNames[styles.collpased] = !opened
 
-  const requiresCompletion = i18n.questRequiresCompletion.replace(
-    '{{percent}}',
-    eligibility.reputation?.completionPercent.toString() ?? '??'
+  const requiresCompletion = replacePercentInString(
+    i18n.questRequiresCompletion,
+    eligibility.reputation?.completionPercent ?? 100
   )
 
   return (

@@ -17,7 +17,6 @@ export interface Game {
 export interface ReputationQuestEligibility {
   games: Game[]
   completionPercent: number
-  eligible: boolean
   steamAccountLinked: boolean
 }
 
@@ -43,6 +42,7 @@ export interface QuestDetailsI18n {
   minted: string
   completed: string
   questRequiresCompletion: string
+  needMoreAchievements: string
 }
 
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {

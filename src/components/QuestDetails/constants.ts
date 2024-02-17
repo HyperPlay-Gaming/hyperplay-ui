@@ -15,5 +15,7 @@ export const i18nDefault: QuestDetailsI18n = {
   minted: 'Minted',
   completed: 'Completed',
   questRequiresCompletion:
-    'This quest requires a {{percent}}% achievement completion of the games listed below. '
+    'This quest requires a {{percent}}% achievement completion of the games listed below.',
+  needMoreAchievements:
+    'You need to have completed {{percent}}% of the achievements in one of these games.'
 }

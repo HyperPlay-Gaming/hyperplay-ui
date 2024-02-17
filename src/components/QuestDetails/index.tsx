@@ -14,6 +14,7 @@ import Rewards from './components/Rewards'
 import { i18nDefault } from './constants'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
+import { isEligible, replacePercentInString } from './utils'
 
 function AlertText(props: HTMLProps<HTMLDivElement>) {
   return (
@@ -37,16 +38,18 @@ export default function QuestDetails({
   console.log('i18n ', i18n)
   const [opened, { toggle }] = useDisclosure(false)
 
-  // let needMoreAchievementsText = null
+  let needMoreAchievementsText = null
   let linkSteamAccountText = null
   let sticker = null
   let gamesCollapsable = null
   if (eligibility.reputation !== undefined) {
-    // if (!eligibility.reputation?.eligible) {
-    //   needMoreAchievementsText = (
-    //     <AlertText>{i18n.needMoreAchievements}</AlertText>
-    //   )
-    // }
+    if (!isEligible(eligibility)) {
+      const needMoreAchievements = replacePercentInString(
+        i18n.needMoreAchievements,
+        eligibility.reputation?.completionPercent
+      )
+      needMoreAchievementsText = <AlertText>{needMoreAchievements}</AlertText>
+    }
 
     if (!eligibility.reputation.steamAccountLinked) {
       linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
@@ -85,13 +88,13 @@ export default function QuestDetails({
 
         {gamesCollapsable}
 
-        {/* {needMoreAchievementsText} */}
+        {needMoreAchievementsText}
         {linkSteamAccountText}
 
         <Rewards rewards={rewards} i18n={{ reward: i18n.reward }} />
         <Button
           type="primary"
-          className={styles.claimButton}
+          className={classNames('button-sm', styles.claimButton)}
           onClick={onClaimClick}
         >
           {i18n.claim}
