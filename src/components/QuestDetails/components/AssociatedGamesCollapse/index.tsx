@@ -17,6 +17,9 @@ export interface AssociatedGamesCollapseProps {
     mint: string
     sync: string
     refresh: string
+    achievements: string
+    minted: string
+    completed: string
   }
   eligibility: Eligbility
 }
@@ -28,7 +31,10 @@ export default function AssociatedGamesCollapse({
     associatedGames: 'Associated games',
     mint: 'Mint',
     sync: 'Sync',
-    refresh: 'Refresh'
+    refresh: 'Refresh',
+    achievements: 'Achievements',
+    minted: 'Minted',
+    completed: 'Completed'
   },
   eligibility
 }: AssociatedGamesCollapseProps) {

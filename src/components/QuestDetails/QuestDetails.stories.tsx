@@ -39,7 +39,8 @@ const props: QuestDetailsProps = {
           onSyncClick: () => console.log('sync clicked'),
           mintableAchievementsCount: 26,
           mintedAchievementsCount: 12,
-          totalAchievementsCount: 67
+          totalAchievementsCount: 67,
+          minted: true
         },
         {
           title: 'Skyrim',
@@ -49,7 +50,8 @@ const props: QuestDetailsProps = {
           onSyncClick: () => console.log('sync clicked'),
           mintableAchievementsCount: 10,
           mintedAchievementsCount: 4,
-          totalAchievementsCount: 100
+          totalAchievementsCount: 100,
+          minted: false
         }
       ],
       completionPercent: 15,

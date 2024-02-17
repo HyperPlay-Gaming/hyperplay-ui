@@ -12,6 +12,9 @@ export interface EligibleGameInterface {
     mint: string
     sync: string
     refresh: string
+    achievements: string
+    minted: string
+    completed: string
   }
   eligibility: Eligbility
 }
@@ -34,6 +37,13 @@ export function EligibleGame({
     game.totalAchievementsCount
   )
 
+  let mintedTextCaption = ''
+  if (game.minted) {
+    mintedTextCaption = `${onChainPercentComplete}% ${i18n.achievements} ${i18n.minted}`
+  } else {
+    mintedTextCaption = `${offChainPercentComplete}% ${i18n.achievements} ${i18n.completed}`
+  }
+
   const alertClasses: Record<string, boolean> = {}
   const completionPercentRequired = eligibility.reputation?.completionPercent
   if (completionPercentRequired) {
@@ -50,10 +60,12 @@ export function EligibleGame({
         <img src={game.imageUrl} className={styles.associatedGameThumbnail} />
         <div>
           <div className="body-sm">{game.title}</div>
-          <div className="eyebrow">{`${onChainPercentComplete}% achievements`}</div>
+          <div className={cn('eyebrow', alertClasses)}>{mintedTextCaption}</div>
         </div>
       </div>
-      <Button type="secondary">{i18n.mint}</Button>
+      <Button type="secondary" size="small">
+        {i18n.mint}
+      </Button>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import { QuestTypeTranslations } from '@/common/types'
 export interface Game {
   title: string
   imageUrl: string
+  minted: boolean
   mintableAchievementsCount: number
   mintedAchievementsCount: number
   totalAchievementsCount: number
@@ -46,5 +47,8 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     mint: string
     sync: string
     refresh: string
+    achievements: string
+    minted: string
+    completed: string
   }
 }

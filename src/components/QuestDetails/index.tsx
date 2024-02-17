@@ -41,7 +41,10 @@ export default function QuestDetails({
     },
     mint: 'Mint',
     sync: 'Sync',
-    refresh: 'Refresh'
+    refresh: 'Refresh',
+    achievements: 'Achievements',
+    minted: 'Minted',
+    completed: 'Completed'
   },
   onClaimClick,
   ...props

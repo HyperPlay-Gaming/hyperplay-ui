@@ -23,6 +23,9 @@ $thumbnailSize: 24px;
   }
 }
 
+$successColor: var(--color-success-400);
+$errorColor: var(--color-error-400);
+
 .alertIcon {
   fill: var(--color-alert-400);
   position: absolute;
@@ -30,10 +33,18 @@ $thumbnailSize: 24px;
   left: -12px;
 
   &.success {
-    fill: var(--color-success-400);
+    fill: $successColor;
   }
 
   &.error {
-    fill: var(--color-error-400);
+    fill: $errorColor;
   }
+}
+
+.success {
+  color: $successColor;
+}
+
+.error {
+  color: $errorColor;
 }
