@@ -35,7 +35,6 @@ export default function QuestDetails({
   onClaimClick,
   ...props
 }: QuestDetailsProps) {
-  console.log('i18n ', i18n)
   const [opened, { toggle }] = useDisclosure(false)
 
   let needMoreAchievementsText = null
