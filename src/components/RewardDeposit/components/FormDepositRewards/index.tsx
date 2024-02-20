@@ -90,7 +90,12 @@ export function FormDepositRewards({
   ...props
 }: FormDepositRewardsProps) {
   const [selectedTokenType, setSelectedTokenType] = useState(
-    props.defaultSelected ? { text: i18n.tokenType[props.defaultSelected], id: props.defaultSelected } : data[0]
+    props.defaultSelected
+      ? {
+          text: i18n.tokenType[props.defaultSelected],
+          id: props.defaultSelected
+        }
+      : data[0]
   )
 
   let content = null
