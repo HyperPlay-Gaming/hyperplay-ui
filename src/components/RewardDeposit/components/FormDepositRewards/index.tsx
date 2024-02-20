@@ -26,9 +26,9 @@ import { TokenIdItemProps } from './types'
 
 const data = [
   { text: 'Select Reward Type' },
-  { text: 'ERC721' },
-  { text: 'ERC20' },
-  { text: 'ERC1155' }
+  { text: 'ERC721', id: 'erc721' },
+  { text: 'ERC20', id: 'erc20' },
+  { text: 'ERC1155', id: 'erc1155' }
 ]
 
 export interface FormDepositRewardI18nProp
@@ -37,6 +37,7 @@ export interface FormDepositRewardI18nProp
     RewardERC20I18nProp {
   tokenIdsTitle: string
   selectRewardTokenType: string
+  tokenType: Record<TokenType, string>
   placeholder: RewardERC1155I18nProp['placeholder'] &
     RewardERC721I18nProp['placeholder'] &
     RewardERC20I18nProp['placeholder']
@@ -50,6 +51,11 @@ export const defaultI18n: FormDepositRewardI18nProp = {
   ...defaultRewardERC1155I18n,
   ...defaultRewardERC721I18n,
   ...defaultRewardERC20I18n,
+  tokenType: {
+    erc20: 'ERC-20',
+    erc721: 'ERC-721',
+    erc1155: 'ERC-1155'
+  },
   placeholder: {
     ...defaultRewardERC1155I18n.placeholder,
     ...defaultRewardERC721I18n.placeholder,
@@ -84,15 +90,15 @@ export function FormDepositRewards({
   ...props
 }: FormDepositRewardsProps) {
   const [selectedTokenType, setSelectedTokenType] = useState(
-    props.defaultSelected ? { text: props.defaultSelected } : data[0]
+    props.defaultSelected ? { text: i18n.tokenType[props.defaultSelected], id: props.defaultSelected } : data[0]
   )
 
   let content = null
-  if (selectedTokenType.text === 'ERC721') {
+  if (selectedTokenType.id === 'erc721') {
     content = <RewardERC721 {...props} i18n={i18n} />
-  } else if (selectedTokenType.text === 'ERC20') {
+  } else if (selectedTokenType.id === 'erc20') {
     content = <RewardERC20 {...props} i18n={i18n} />
-  } else if (selectedTokenType.text === 'ERC1155') {
+  } else if (selectedTokenType.id === 'erc1155') {
     content = <RewardERC1155 {...props} i18n={i18n} />
   }
 
