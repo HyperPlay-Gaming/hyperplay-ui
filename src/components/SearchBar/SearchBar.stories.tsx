@@ -9,18 +9,6 @@ export default {
 
 export const Default: React.FC = () => {
   const [searchText, setSearchText] = useState('')
-
-  return (
-    <SearchBar
-      searchText={searchText}
-      setSearchText={setSearchText}
-      i18n={{ placeholder: 'Search for games' }}
-    />
-  )
-}
-
-export const WithGameList: React.FC = () => {
-  const [searchText, setSearchText] = useState('')
   const gameList = [
     'Bushi',
     'DarkThrone',
@@ -53,7 +41,7 @@ export const WithGameList: React.FC = () => {
     'Uncharted',
     'Fortnite',
     'Rocket League',
-    'Game with really long name that for some reason might break the input'
+    'Game with really long name that for some reason might break the lines'
   ]
 
   return (
