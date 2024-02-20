@@ -2374,9 +2374,9 @@
     react-dropzone-esm "15.0.1"
 
 "@mantine/form@^7.5.1":
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/@mantine/form/-/form-7.5.1.tgz#4c812c643e77ba279e8a02ede5bd9b1afef5e5df"
-  integrity sha512-NPc6sYXZGImFsZvr9Md5DM8C+vpC14rqLcOJlW4DFqze1/MBblVxR+abCNM12r5hrqUxHXEu55yPzxcR9Hoj3Q==
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/@mantine/form/-/form-7.5.2.tgz#cfe66a62aa4b0aadd16e8a1ace2c2edd512e5800"
+  integrity sha512-Kz4UNLvAvxB1utKflt4gr5Uzt1Dxj17thcnlLzB2JX6unzV3OkvC36b5XoXAtuoFxt/RzEyUrp5M38jZLwCLEA==
   dependencies:
     fast-deep-equal "^3.1.3"
     klona "^2.0.6"

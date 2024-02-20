@@ -1,0 +1,24 @@
+.removeButton {
+  background: transparent;
+  border-color: transparent;
+}
+
+.base {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+  border-top: 1px solid var(--color-neutral-700);
+
+  &:first-child {
+    padding-top: 0;
+    border-width: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}

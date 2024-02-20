@@ -56,6 +56,10 @@ export const MediumLink = () => <Button type="link">{medButtonText}</Button>
 
 export const MediumDanger = () => <Button type="danger">{medButtonText}</Button>
 
+export const SecondaryGradient = () => (
+  <Button type="secondaryGradient">{medButtonText}</Button>
+)
+
 export const MediumMenuButton = () => (
   <Button type="menuItem">{medButtonText}</Button>
 )

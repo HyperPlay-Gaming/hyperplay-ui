@@ -25,29 +25,30 @@
   }
 }
 
-.input {
+.large {
   padding: var(--space-sm) var(--space-md);
-  color: var(--color-neutral-100);
-  font-family: var(--default-secondary-font-family);
-  line-height: var(--text-4xl);
-  width: 100%;
-  background-color: transparent;
-  outline: none;
-  border: none;
+}
 
-  &[data-error='true'] {
-    color: var(--color-error-500);
-  }
+.medium {
+  padding: var(--space-3xs) var(--space-md);
+}
+
+.small {
+  padding: var(--space-3xs) var(--space-sm);
 }
 
 .input {
   width: 100%;
   background-color: transparent;
   border: none;
+  outline: none;
   color: var(--color-neutral-100);
   line-height: var(--text-4xl);
   font-family: var(--default-secondary-font-family);
-  padding: var(--space-sm) var(--space-md);
+
+  &[data-error='true'] {
+    color: var(--color-error-500);
+  }
 
   &:focus-visible {
     border: none;

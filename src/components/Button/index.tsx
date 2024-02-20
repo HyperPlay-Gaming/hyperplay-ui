@@ -19,6 +19,7 @@ export interface ButtonProps
     | 'danger'
     | 'menuItem'
     | 'alert'
+    | 'secondaryGradient'
   size?: 'small' | 'medium' | 'large' | 'icon'
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type']
   leftIcon?: JSX.Element
