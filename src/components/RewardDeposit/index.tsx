@@ -1,9 +1,9 @@
 import React, { ReactElement, useState } from 'react'
 
 import { IconEdit } from '@tabler/icons-react'
-import { TokenType } from '@/common/types'
 
 import { ArrowTop, DownArrow, TrashCan } from '@/assets/images'
+import { TokenType } from '@/common/types'
 import {
   RewardDepositedTableI18nProp,
   RewardsDepositedTable,
@@ -42,7 +42,7 @@ interface RewardDepositI18nProp
   pendingDeposit?: string
   depositedLabel: string
   viewDetails: string
-  hideDetails: string,
+  hideDetails: string
   tokenType: Record<TokenType, string>
 }
 

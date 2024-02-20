@@ -21,7 +21,6 @@ export const defaultI18n: FormDepositActionsI18nProp = {
   totalDeposit: 'Total Deposit:'
 }
 
-
 export function FormDepositActions({
   onFormSubmit = () => null,
   isDisabledButton,

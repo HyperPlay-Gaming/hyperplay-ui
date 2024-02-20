@@ -3,8 +3,8 @@
 import React from 'react'
 
 import { TokenType } from '@/common/types'
-import { getTruncatedUrl } from '@/utils/urlUtil'
 import { getTruncatedAddress } from '@/utils/addressUtils'
+import { getTruncatedUrl } from '@/utils/urlUtil'
 
 import { ButtonCopy } from '../ButtonCopy'
 import styles from './RewardsDepositedTable.module.scss'
@@ -18,7 +18,7 @@ export interface RewardDepositedTableI18nProp {
   amountPerPlayer?: string
   totalClaimables?: string
   marketplaceUrl?: string
-  tokenType: Record<TokenType, string>,
+  tokenType: Record<TokenType, string>
 }
 
 export interface RewardsDepositedTableProps {
@@ -46,7 +46,7 @@ export const defaultI18n: RewardDepositedTableI18nProp = {
     erc20: 'ERC-20',
     erc721: 'ERC-721',
     erc1155: 'ERC-1155'
-  },
+  }
 }
 
 export function RewardsDepositedTable({

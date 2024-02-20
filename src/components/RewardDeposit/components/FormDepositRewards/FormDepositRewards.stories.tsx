@@ -61,9 +61,9 @@ export const Default: Story = {
 }
 
 export const ERC20: Story = {
-  args: { 
-    ...formDepositRewardsProps, 
-    defaultSelected: 'erc20' 
+  args: {
+    ...formDepositRewardsProps,
+    defaultSelected: 'erc20'
   },
   play: async ({ step }) => {
     await step(

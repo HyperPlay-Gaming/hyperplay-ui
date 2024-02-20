@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 import cn from 'classnames'
-import { TokenType } from '@/common/types'
 
+import { TokenType } from '@/common/types'
 import { Dropdown } from '@/components/Dropdowns'
 import { TextInputProps } from '@/components/TextInput'
 
