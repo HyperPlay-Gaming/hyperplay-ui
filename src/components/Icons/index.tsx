@@ -40,7 +40,8 @@ const IconFill: { [key: string]: string } = {
   TrashCan: '#FFFFFF',
   QuestIcon: '#FFFFFF',
   QuestionMark: '#FFFFFF',
-  Wallet: '#FFFFFF'
+  Wallet: '#FFFFFF',
+  ArrowTop: '#FFFFFF'
 }
 
 const IconStroke: { [key: string]: string } = {

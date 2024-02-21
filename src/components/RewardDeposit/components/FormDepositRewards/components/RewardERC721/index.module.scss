@@ -1,0 +1,111 @@
+.base {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  justify-content: stretch;
+  padding: var(--space-md);
+  border: 1px solid var(--color-neutral-700);
+  border-radius: var(--space-md);
+}
+
+.tokenContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-md);
+  justify-content: stretch;
+
+  > * {
+    flex-grow: 1;
+  }
+}
+
+.addTokenIdButtonContainer {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-grow: 0;
+}
+
+.labelHint {
+  font-style: italic;
+  color: var(--color-neutral-400);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-sm);
+  line-height: var(--space-md);
+}
+
+.addManuallyStatement {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  align-self: stretch;
+  flex-direction: row;
+}
+
+.line {
+  background: var(--color-neutral-700);
+  height: 1px;
+  width: 50%;
+}
+
+.label {
+  color: var(--color-neutral-100);
+}
+
+.addManuallyStatementText {
+  white-space: nowrap;
+  color: var(--color-neutral-400);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-md);
+  line-height: var(--space-2lg);
+}
+
+.title {
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-lg);
+  font-weight: var(--semibold);
+  color: var(--color-neutral-100);
+}
+
+.tokensAddedList {
+  border: 1px solid var(--color-neutral-700);
+  padding: var(--space-md);
+  border-radius: var(--space-xs);
+  width: 100%;
+}
+
+.tokensAddedActionsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-md);
+  justify-content: space-between;
+  width: 100%;
+}
+
+.tokensAddedActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.tokensAddedContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  align-self: stretch;
+  gap: var(--space-xs);
+}
+
+.arrowTopIcon {
+  fill: var(--color-neutral-100);
+  stroke: var(--color-neutral-100);
+  width: 20px;
+  height: 20px;
+}
+
+.arrowDownIcon {
+  fill: var(--color-neutral-100);
+  stroke: var(--color-neutral-100);
+  width: 14px;
+  height: 14px;
+}

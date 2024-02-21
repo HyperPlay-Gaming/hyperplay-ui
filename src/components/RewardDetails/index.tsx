@@ -9,6 +9,12 @@ import { getTruncatedAddress } from '@/utils/addressUtils'
 import { ButtonCopy } from '../ButtonCopy'
 import styles from './RewardDetails.module.scss'
 
+export const defaultI18n = { player: 'Player' }
+
+export interface RewardDetailsI18nProp {
+  player: string
+}
+
 export interface RewardDetailsProps
   extends React.HTMLAttributes<HTMLDivElement> {
   chainName: string
@@ -17,9 +23,7 @@ export interface RewardDetailsProps
   rewardPerPlayer: string
   marketplace: string
   tokenContractAddress: string
-  i18n?: {
-    player: string
-  }
+  i18n?: RewardDetailsI18nProp
 }
 
 export function RewardDetails({
@@ -29,7 +33,7 @@ export function RewardDetails({
   rewardPerPlayer,
   marketplace,
   tokenContractAddress,
-  i18n = { player: 'Player' },
+  i18n = defaultI18n,
   className,
   ...props
 }: RewardDetailsProps) {
