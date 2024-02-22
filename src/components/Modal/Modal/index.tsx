@@ -50,12 +50,15 @@ const Root = ({ className, children, ...props }: HTMLProps<HTMLDivElement>) => {
 
 export interface ModalProps extends ModalAnimationProps {
   withCloseButton?: boolean
+  classNames?: {
+    root?: string
+  }
 }
 
 const Modal = (props: ModalProps) => {
   return (
     <ModalAnimation {...props}>
-      <Modal.Root>
+      <Modal.Root className={props.classNames?.root}>
         {props.withCloseButton && <CloseButton onClick={props.onClose} />}
         {props.children}
       </Modal.Root>
