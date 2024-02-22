@@ -17,7 +17,7 @@
   outline: none;
 
   &[data-error='true'] {
-    border: 1px solid var(--color-error-500);
+    border: 1px solid var(--color-error-400);
   }
 
   &:not([data-error='true']):has(*:focus-visible) {
@@ -47,7 +47,7 @@
   font-family: var(--default-secondary-font-family);
 
   &[data-error='true'] {
-    color: var(--color-error-500);
+    color: var(--color-error-400);
   }
 
   &:focus-visible {
@@ -68,7 +68,8 @@
 }
 
 .error {
-  color: var(--color-error-500);
+  color: var(--color-error-400);
+  margin: var(--space-xs) 0 0 0;
 }
 
 .charCounter {
