@@ -4,8 +4,7 @@ import { useForm } from '@mantine/form'
 
 import { AlertTriangle } from '@/assets/images'
 import Button from '@/components/Button'
-import { Modal } from '@/components/Modal'
-import { ModalProps } from '@/components/Modal/Modal'
+import { Modal, ModalProps } from '@/components/Modal'
 import TextInput from '@/components/TextInput'
 
 import styles from './RemoveWalletModal.module.scss'
