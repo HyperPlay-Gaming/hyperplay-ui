@@ -1,47 +1,82 @@
-import { AlertTriangle } from '@/assets/images'
+import { AlertBell } from '@/assets/images'
 import Button from '@/components/Button'
 import { Modal, ModalProps } from '@/components/Modal'
-import styles from '@/components/RemoveWalletModal/RemoveWalletModal.module.scss'
+import styles from './UpdatesSubscriptionModal.module.scss'
 import TextInput from '@/components/TextInput'
+import { useForm } from '@mantine/form'
 
-interface Props extends ModalProps {
-  onSubmit: () => string
-  i18n?: {
-    title: string
-    body: string
-    inputLabel: string
-    submitButtonLabel: string
-    cancelButtonLabel: string
-  }
+interface UpdatesSubscriptionModalI18nProp {
+  title: string
+  body: string
+  inputLabel: string
+  inputPlaceholder: string
+  submitButtonLabel: string
+  cancelButtonLabel: string
+  invalidEmailError: string
+}
+
+export const defaultI18n: UpdatesSubscriptionModalI18nProp = {
+  title: 'Get notified on our latest updates',
+  body: 'Get notified about our upcoming events, Quests, features and more!',
+  inputLabel: 'Email',
+  inputPlaceholder: 'Enter your email',
+  submitButtonLabel: 'Let’s do it!',
+  cancelButtonLabel: 'No, another time',
+  invalidEmailError: 'Invalid Email'
+}
+
+export interface UpdatesSubscriptionModalProps extends ModalProps {
+  onSubmitClick: () => void
+  onCancelClick?: () => void
+  i18n?: UpdatesSubscriptionModalI18nProp
 }
 
 export default function UpdatesSubscriptionModal({
-  i18n = {
-    title: 'Get notified on our latest updates',
-    body: 'Get notified about our upcoming events, Quests, features and more!',
-    inputLabel: 'Email',
-    submitButtonLabel: 'Let’s do it!',
-    cancelButtonLabel: 'No, another time'
-  },
+  i18n = defaultI18n,
   ...props
-}: Props) {
+}: UpdatesSubscriptionModalProps) {
+  const form = useForm({
+    initialValues: {
+      email: ''
+    },
+    validate: {
+      email: (value) => /^\S+@\S+$/.test(value) ? null : i18n.invalidEmailError,
+    }
+  })
+
   return (
-    <Modal {...props} withCloseButton>
+    <Modal 
+      withCloseButton
+      classNames={{
+        root: styles.root
+      }}
+      {...props}
+    >
       <Modal.HeadingIcon className={styles.iconContainer}>
-        <AlertTriangle className={styles.icon} width={20} height={20} />
+        <AlertBell className={styles.icon} width={20} height={20} />
       </Modal.HeadingIcon>
       <Modal.Header>
         <Modal.Title>{i18n?.title}</Modal.Title>
         <Modal.Body className="body-sm">{i18n?.body}</Modal.Body>
       </Modal.Header>
-      <form className={styles.form} onSubmit={props.onSubmit}>
-        <TextInput label={i18n?.inputLabel} type="email" />
+      <form className={styles.form} 
+        onSubmit={form.onSubmit(() => {
+          if (form.isValid()) {
+            props.onSubmitClick()
+          }
+        })}
+      >
+        <TextInput 
+          label={i18n?.inputLabel} 
+          placeholder={i18n?.inputPlaceholder}
+          { ...form.getInputProps('email') } 
+        />
         <div className={styles.footer}>
-          <Button type="tertiary" htmlType="button">
-            {i18n?.cancelButtonLabel}
-          </Button>
-          <Button type="danger" htmlType="submit">
+          <Button type="secondary" htmlType="submit" className={styles.submit}>
             {i18n?.submitButtonLabel}
+          </Button>
+          <Button type="link" htmlType="button" onClick={props.onCancelClick}>
+            {i18n?.cancelButtonLabel}
           </Button>
         </div>
       </form>
