@@ -1,9 +1,12 @@
-import { useForm } from '@mantine/form'
+import React, { HTMLProps } from 'react'
 
+import cn from 'classnames'
 import { AlertBell } from '@/assets/images'
 import Button from '@/components/Button'
 import { Modal, ModalProps } from '@/components/Modal'
 import TextInput from '@/components/TextInput'
+import Loading from '@/components/Loading'
+import Alert from '@/components/Alert'
 
 import styles from './UpdatesSubscriptionModal.module.scss'
 
@@ -27,33 +30,40 @@ export const defaultI18n: UpdatesSubscriptionModalI18nProp = {
   invalidEmailError: 'Invalid Email'
 }
 
-export interface UpdatesSubscriptionModalProps extends ModalProps {
-  onSubmitClick: () => void
-  onCancelClick?: () => void
+export interface UpdatesSubscriptionModalProps extends Omit<HTMLProps<HTMLDivElement>, 'onSubmit'>, Omit<ModalProps, 'onSubmit'> {
+  error?: string
+  loading?: boolean
+  className?: string
+  onSubmit: (email: string) => void
+  onCancel: () => void
+  onClose: () => void
   i18n?: UpdatesSubscriptionModalI18nProp
 }
 
 export default function UpdatesSubscriptionModal({
+  loading,
+  error,
+  className,
+  onClose,
+  onSubmit,
   i18n = defaultI18n,
   ...props
 }: UpdatesSubscriptionModalProps) {
-  const form = useForm({
-    initialValues: {
-      email: ''
-    },
-    validate: {
-      email: (value) =>
-        /^\S+@\S+$/.test(value) ? null : i18n.invalidEmailError
+  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const form = event.currentTarget
+    const formElements = form.elements as typeof form.elements & {
+      email: { value: string }
     }
-  })
+    onSubmit(formElements.email.value)
+  }
 
   return (
     <Modal
-      withCloseButton
-      classNames={{
-        root: styles.root
-      }}
       {...props}
+      onClose={onClose}
+      withCloseButton
+      className={cn(className, styles.root)}
     >
       <Modal.HeadingIcon className={styles.iconContainer}>
         <AlertBell className={styles.icon} width={20} height={20} />
@@ -64,22 +74,28 @@ export default function UpdatesSubscriptionModal({
       </Modal.Header>
       <form
         className={styles.form}
-        onSubmit={form.onSubmit(() => {
-          if (form.isValid()) {
-            props.onSubmitClick()
-          }
-        })}
+        onSubmit={handleSubmit}
       >
+        {error && <Alert variant="danger" message={error} />}
         <TextInput
+          required
+          disabled={loading}
           label={i18n?.inputLabel}
           placeholder={i18n?.inputPlaceholder}
-          {...form.getInputProps('email')}
+          name="email"
+          type="email"
         />
-        <div className={styles.footer}>
-          <Button type="secondary" htmlType="submit" className={styles.submit}>
-            {i18n?.submitButtonLabel}
+        <div className={styles.formActions}>
+          <Button
+            disabled={loading}
+            aria-label={loading ? 'loading' : undefined}
+            type={loading ? 'tertiary' : 'secondary'}
+            htmlType="submit"
+            className={cn(loading && styles.loadingButton, styles.submit)}
+          >
+            {loading ? <Loading /> : i18n?.submitButtonLabel}
           </Button>
-          <Button type="link" htmlType="button" onClick={props.onCancelClick}>
+          <Button type="link" htmlType="button" onClick={props.onCancel}>
             {i18n?.cancelButtonLabel}
           </Button>
         </div>
