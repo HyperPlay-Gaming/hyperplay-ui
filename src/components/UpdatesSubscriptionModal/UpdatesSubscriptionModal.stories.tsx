@@ -90,7 +90,7 @@ export const Loading: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    await expect(canvas.getByLabelText('Loading')).toBeInTheDocument();
+    await expect(canvas.getByLabelText('Loading')).toBeInTheDocument()
   }
 }
 

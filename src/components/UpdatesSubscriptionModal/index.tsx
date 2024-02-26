@@ -1,12 +1,13 @@
 import React, { HTMLProps } from 'react'
 
 import cn from 'classnames'
+
 import { AlertBell } from '@/assets/images'
+import Alert from '@/components/Alert'
 import Button from '@/components/Button'
+import Loading from '@/components/Loading'
 import { Modal, ModalProps } from '@/components/Modal'
 import TextInput from '@/components/TextInput'
-import Loading from '@/components/Loading'
-import Alert from '@/components/Alert'
 
 import styles from './UpdatesSubscriptionModal.module.scss'
 
@@ -30,7 +31,9 @@ export const defaultI18n: UpdatesSubscriptionModalI18nProp = {
   invalidEmailError: 'Invalid Email'
 }
 
-export interface UpdatesSubscriptionModalProps extends Omit<HTMLProps<HTMLDivElement>, 'onSubmit'>, Omit<ModalProps, 'onSubmit'> {
+export interface UpdatesSubscriptionModalProps
+  extends Omit<HTMLProps<HTMLDivElement>, 'onSubmit'>,
+    Omit<ModalProps, 'onSubmit'> {
   error?: string
   loading?: boolean
   className?: string
@@ -72,10 +75,7 @@ export default function UpdatesSubscriptionModal({
         <Modal.Title>{i18n?.title}</Modal.Title>
         <Modal.Body className="body-sm">{i18n?.body}</Modal.Body>
       </Modal.Header>
-      <form
-        className={styles.form}
-        onSubmit={handleSubmit}
-      >
+      <form className={styles.form} onSubmit={handleSubmit}>
         {error && <Alert variant="danger" message={error} />}
         <TextInput
           required
