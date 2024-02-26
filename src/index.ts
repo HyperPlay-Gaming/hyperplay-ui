@@ -136,3 +136,7 @@ export { default as AccountAvatar } from './components/AccountAvatar'
 export * from './components/RewardsSummary/components/FormRewards/types'
 export * from './components/QuestsTable'
 export { default as RemoveWalletModal } from './components/RemoveWalletModal'
+export {
+  default as UpdatesSubscriptionModal,
+  type UpdatesSubscriptionModalProps
+} from './components/UpdatesSubscriptionModal'
