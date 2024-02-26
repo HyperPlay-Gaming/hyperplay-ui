@@ -35,7 +35,11 @@ export const Valid: Story = {
     const canvas = within(canvasElement)
     const emailInput = canvas.getByLabelText('Email')
     await userEvent.type(emailInput, 'red.pace.dev@gmail.com')
-    await userEvent.click(canvas.getByRole('button', { name: new RegExp(defaultI18n.submitButtonLabel, 'i') }))
+    await userEvent.click(
+      canvas.getByRole('button', {
+        name: new RegExp(defaultI18n.submitButtonLabel, 'i')
+      })
+    )
     await expect(onSubmitClick).toHaveBeenCalledOnce()
   }
 }
@@ -47,12 +51,15 @@ export const Invalid: Story = {
     const canvas = within(canvasElement)
     const emailInput = canvas.getByLabelText('Email')
     await userEvent.type(emailInput, 'red.pace.dev')
-    await userEvent.click(canvas.getByRole('button', { name: new RegExp(defaultI18n.submitButtonLabel, 'i') }))
+    await userEvent.click(
+      canvas.getByRole('button', {
+        name: new RegExp(defaultI18n.submitButtonLabel, 'i')
+      })
+    )
     await expect(onSubmitClick).not.toHaveBeenCalled()
     await expect(onCancelClick).not.toHaveBeenCalled()
   }
 }
-
 
 export const Cancel: Story = {
   play: async ({ canvasElement, args }) => {
@@ -60,7 +67,11 @@ export const Cancel: Story = {
     const canvas = within(canvasElement)
     const emailInput = canvas.getByLabelText('Email')
     await userEvent.type(emailInput, 'red.pace.dev@gmail.com')
-    await userEvent.click(canvas.getByRole('button', { name: new RegExp(defaultI18n.cancelButtonLabel, 'i') }))
+    await userEvent.click(
+      canvas.getByRole('button', {
+        name: new RegExp(defaultI18n.cancelButtonLabel, 'i')
+      })
+    )
     await expect(onCancelClick).toHaveBeenCalledOnce()
   }
 }

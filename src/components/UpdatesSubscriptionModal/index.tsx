@@ -1,9 +1,11 @@
+import { useForm } from '@mantine/form'
+
 import { AlertBell } from '@/assets/images'
 import Button from '@/components/Button'
 import { Modal, ModalProps } from '@/components/Modal'
-import styles from './UpdatesSubscriptionModal.module.scss'
 import TextInput from '@/components/TextInput'
-import { useForm } from '@mantine/form'
+
+import styles from './UpdatesSubscriptionModal.module.scss'
 
 interface UpdatesSubscriptionModalI18nProp {
   title: string
@@ -40,12 +42,13 @@ export default function UpdatesSubscriptionModal({
       email: ''
     },
     validate: {
-      email: (value) => /^\S+@\S+$/.test(value) ? null : i18n.invalidEmailError,
+      email: (value) =>
+        /^\S+@\S+$/.test(value) ? null : i18n.invalidEmailError
     }
   })
 
   return (
-    <Modal 
+    <Modal
       withCloseButton
       classNames={{
         root: styles.root
@@ -59,17 +62,18 @@ export default function UpdatesSubscriptionModal({
         <Modal.Title>{i18n?.title}</Modal.Title>
         <Modal.Body className="body-sm">{i18n?.body}</Modal.Body>
       </Modal.Header>
-      <form className={styles.form} 
+      <form
+        className={styles.form}
         onSubmit={form.onSubmit(() => {
           if (form.isValid()) {
             props.onSubmitClick()
           }
         })}
       >
-        <TextInput 
-          label={i18n?.inputLabel} 
+        <TextInput
+          label={i18n?.inputLabel}
           placeholder={i18n?.inputPlaceholder}
-          { ...form.getInputProps('email') } 
+          {...form.getInputProps('email')}
         />
         <div className={styles.footer}>
           <Button type="secondary" htmlType="submit" className={styles.submit}>
