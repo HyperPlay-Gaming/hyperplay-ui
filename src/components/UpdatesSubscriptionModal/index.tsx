@@ -72,7 +72,7 @@ export default function UpdatesSubscriptionModal({
         <Modal.Body className="body-sm">{i18n?.body}</Modal.Body>
       </Modal.Header>
       <form className={styles.form} onSubmit={handleSubmit}>
-        {error && <Alert variant="danger" message={error} />}
+        {error && <Alert variant="warning" message={error} />}
         <TextInput
           required
           disabled={loading}
@@ -87,7 +87,7 @@ export default function UpdatesSubscriptionModal({
             aria-label={loading ? 'loading' : undefined}
             type={loading ? 'tertiary' : 'secondary'}
             htmlType="submit"
-            className={cn(loading && styles.loadingButton, styles.submit)}
+            className={cn(loading && styles.loadingButton)}
           >
             {loading ? <Loading /> : i18n?.submitButtonLabel}
           </Button>
