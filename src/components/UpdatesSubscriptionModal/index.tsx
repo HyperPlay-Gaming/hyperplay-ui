@@ -62,12 +62,8 @@ export default function UpdatesSubscriptionModal({
   }
 
   return (
-    <Modal
-      {...props}
-      onClose={onClose}
-      withCloseButton
-      className={cn(className, styles.root)}
-    >
+    <Modal.Root {...props} className={cn(className, styles.root)}>
+      <Modal.CloseButton aria-label="close signup modal" onClick={onClose} />
       <Modal.HeadingIcon className={styles.iconContainer}>
         <AlertBell className={styles.icon} width={20} height={20} />
       </Modal.HeadingIcon>
@@ -100,6 +96,6 @@ export default function UpdatesSubscriptionModal({
           </Button>
         </div>
       </form>
-    </Modal>
+    </Modal.Root>
   )
 }
