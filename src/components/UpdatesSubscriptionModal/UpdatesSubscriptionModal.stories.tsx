@@ -4,7 +4,6 @@ import { expect, fn, userEvent, within } from '@storybook/test'
 import UpdatesSubscriptionModal, { defaultI18n } from './index'
 
 const args = {
-  isOpen: true,
   onSubmit: fn(),
   onCancel: fn(),
   onClose: fn(),
