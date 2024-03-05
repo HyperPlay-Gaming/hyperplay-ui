@@ -12,6 +12,7 @@ export default function Loading(props: HTMLProps<HTMLDivElement>) {
         size={'2x'}
         fill="var(--color-neutral-100)"
         icon={faSpinner}
+        aria-label="Loading"
         className={styles.spinning}
       />
     </div>
