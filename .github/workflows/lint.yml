@@ -17,5 +17,6 @@ jobs:
       command_one_name: 'Lint code.'
       command_two: 'yarn prettier'
       command_two_name: 'Prettier code.'
+      checkout_recursive: false
     secrets:
       NPM_TOKEN: "${{ secrets.NPM_TOKEN }}"
