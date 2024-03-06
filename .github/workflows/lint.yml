@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
+  lint_and_prettier_job:
     uses: HyperPlay-Gaming/workflows/.github/workflows/nodejs_commands.yml@main
     with:
       node_version: '16'
