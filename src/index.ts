@@ -48,6 +48,8 @@ export {
   default as TextInput,
   type TextInputProps
 } from './components/TextInput'
+export { default as SearchBar } from './components/SearchBar'
+
 export { default as LoginModal } from './components/LoginModal'
 export { default as LinkExternalAccounts } from './components/LinkExternalAccounts'
 export { default as CheckEmail } from './components/CheckEmail'
