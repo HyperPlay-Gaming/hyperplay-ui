@@ -1,5 +1,7 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 
+import { createTheme } from '@mantine/core'
+
 import './fonts.css'
 import './index.scss'
 
