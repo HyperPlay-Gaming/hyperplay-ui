@@ -1,25 +1,25 @@
-import { Select as MantineSelect, SelectProps } from '@mantine/core'
+import { Select, SelectProps } from '@mantine/core'
+import { IconChevronDown } from '@tabler/icons-react'
 import cn from 'classnames'
 
 import styles from './index.module.scss'
 
-export default function Select({
-  classNames,
-  size = 'md',
-  ...props
-}: SelectProps) {
+export function HpSelect({ classNames, size = 'md', ...props }: SelectProps) {
   return (
-    <MantineSelect
+    <Select
       classNames={{
-        ...classNames,
         wrapper: styles.wrapper,
         input: cn(styles.input, styles[size]),
         label: styles.label,
         dropdown: styles.dropdown,
         options: styles.options,
-        option: styles.option
+        option: styles.option,
+        ...classNames
       }}
+      rightSection={<IconChevronDown />}
       {...props}
     />
   )
 }
+
+export default HpSelect

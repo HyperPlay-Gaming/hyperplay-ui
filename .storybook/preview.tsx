@@ -1,7 +1,6 @@
 import React from 'react'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import { HP_MANTINE_THEME } from '../src'
 import HyperPlayDesignProvider from '../src/components/HyperPlayDesignProvider'
 import './styles.css'
 
@@ -26,7 +25,7 @@ export const parameters = {
 
 export const decorators = [
   (Story: any) => (
-    <HyperPlayDesignProvider defaultColorScheme="dark" theme={HP_MANTINE_THEME}>
+    <HyperPlayDesignProvider defaultColorScheme="dark">
       <Story />
     </HyperPlayDesignProvider>
   )
