@@ -9,16 +9,18 @@ interface Props extends Omit<SelectProps, 'size'> {
 }
 
 export function HpSelect({ classNames, size = 'medium', ...props }: Props) {
+  // for some reason, the classNames props intellisense is not working for accessing the properties
+  const propClasses = (classNames ?? {}) as Record<string, string>
   return (
     <Select
       classNames={{
-        wrapper: styles.wrapper,
-        input: cn(styles.input, styles[size]),
-        label: styles.label,
-        dropdown: styles.dropdown,
-        options: styles.options,
-        option: styles.option,
-        ...classNames
+        ...propClasses,
+        wrapper: cn(styles.wrapper, propClasses.wrapper),
+        input: cn(styles.input, styles[size], propClasses.input),
+        label: cn(styles.label, propClasses.label),
+        dropdown: cn(styles.dropdown, propClasses.dropdown),
+        options: cn(styles.options, propClasses.options),
+        option: cn(styles.option, propClasses.option)
       }}
       rightSection={<IconChevronDown />}
       {...props}
