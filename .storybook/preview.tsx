@@ -25,7 +25,7 @@ export const parameters = {
 
 export const decorators = [
   (Story: any) => (
-    <HyperPlayDesignProvider defaultColorScheme="dark">
+    <HyperPlayDesignProvider>
       <Story />
     </HyperPlayDesignProvider>
   )
