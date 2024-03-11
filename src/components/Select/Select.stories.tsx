@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import TextInput from '@/components/TextInput'
+
 import Select from './index'
 
 const meta: Meta<typeof Select> = {
@@ -60,4 +62,13 @@ export const LargeSize: Story = {
   args: {
     size: 'large'
   }
+}
+
+export const NextToTextInput: Story = {
+  render: (args) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <Select placeholder="Select Option" data={args.data} />
+      <TextInput placeholder="Enter text" />
+    </div>
+  )
 }

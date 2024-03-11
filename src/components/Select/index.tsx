@@ -4,7 +4,11 @@ import cn from 'classnames'
 
 import styles from './index.module.scss'
 
-export function HpSelect({ classNames, size = 'md', ...props }: SelectProps) {
+interface Props extends Omit<SelectProps, 'size'> {
+  size?: 'small' | 'medium' | 'large'
+}
+
+export function HpSelect({ classNames, size = 'medium', ...props }: Props) {
   return (
     <Select
       classNames={{
