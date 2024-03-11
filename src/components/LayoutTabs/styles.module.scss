@@ -1,7 +1,7 @@
 
 .tab {
   color: var(--color-neutral-500);
-  padding: 8px;
+  padding: var(--space-xs);
   border-bottom: 4px solid #22252F;
   transition: none;
   &[data-active='true'] {
