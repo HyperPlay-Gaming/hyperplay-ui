@@ -4,6 +4,7 @@
   padding: var(--space-xs);
   border-bottom: 4px solid #22252F;
   transition: none;
+
   &[data-active='true'] {
     color: var(--color-neutral-100);
     font-weight: var(--bold);
@@ -15,9 +16,4 @@
   }
 }
 
-.list {
-  &:before {
-    border-width: 0;
-  }
-}
 
