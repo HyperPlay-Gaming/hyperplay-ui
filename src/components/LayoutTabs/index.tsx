@@ -3,14 +3,16 @@ import cn from 'classnames'
 
 import styles from './styles.module.scss'
 
-function LayoutTabs(props: TabsProps) {
+function LayoutTabs({ classNames, ...props }: TabsProps) {
+  const propsClassNames = (classNames ?? {}) as Record<string, string>
   return (
     <Tabs
       unstyled
       defaultValue="basic"
       classNames={{
-        tab: cn('body', styles.tab),
-        list: styles.list
+        ...classNames,
+        tab: cn('body', styles.tab, propsClassNames?.tab),
+        list: cn(styles.list, propsClassNames?.list)
       }}
       {...props}
     >
