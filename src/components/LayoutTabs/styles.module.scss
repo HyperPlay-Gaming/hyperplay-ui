@@ -1,0 +1,16 @@
+.tab {
+  color: var(--color-neutral-500);
+  padding: var(--space-xs);
+  border-bottom: 4px solid var(--color-neutral-600);
+  transition: none;
+
+  &[data-active='true'] {
+    color: var(--color-neutral-100);
+    font-weight: var(--bold);
+    border-image-slice: 1;
+    border-image-source: var(--color-stroke-02);
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+  }
+}

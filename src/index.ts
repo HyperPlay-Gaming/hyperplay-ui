@@ -142,3 +142,5 @@ export {
   default as UpdatesSubscriptionModal,
   type UpdatesSubscriptionModalProps
 } from './components/UpdatesSubscriptionModal'
+export { default as LayoutTabs } from './components/LayoutTabs'
+export { default as Select } from './components/Select'

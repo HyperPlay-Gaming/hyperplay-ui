@@ -1,0 +1,58 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  color: var(--color-neutral-100);
+}
+
+.input {
+  font-size: inherit;
+  height: inherit;
+  line-height: var(--text-4xl);
+  font-family: var(--default-secondary-font-family);
+  color: var(--color-neutral-100);
+  display: flex;
+  background: var(--color-neutral-700);
+  border-radius: var(--space-xs);
+  border: 1px solid var(--color-stroke-01);
+  box-shadow: var(----box-shadow-01);
+  align-items: center;
+  outline: none;
+}
+
+.large {
+  padding: var(--space-sm) var(--space-md);
+}
+
+.medium {
+  padding: var(--space-3xs) var(--space-md);
+}
+
+.small {
+  padding: var(--space-3xs) var(--space-sm);
+}
+
+.label {
+  color: var(--color-neutral-400);
+  margin-bottom: var(--space-2xs);
+}
+
+.options {
+  background: var(--color-neutral-700);
+}
+
+.dropdown {
+  background: var(--color-neutral-700);
+  --popover-border-color: var(--color-stroke-01) !important;
+  background-color: var(--color-neutral-700) !important;
+}
+
+.option {
+  color: var(--color-neutral-200);
+
+  &:hover {
+    background-color: var(--color-neutral-600);
+  }
+}
