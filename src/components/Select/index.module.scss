@@ -8,6 +8,9 @@
 }
 
 .input {
+  font-size: inherit;
+  height: inherit;
+  line-height: var(--text-4xl);
   font-family: var(--default-secondary-font-family);
   color: var(--color-neutral-100);
   display: flex;
