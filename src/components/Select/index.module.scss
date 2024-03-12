@@ -20,6 +20,14 @@
   box-shadow: var(----box-shadow-01);
   align-items: center;
   outline: none;
+
+  &[data-error='true'] {
+    border-color: var(--color-error-400);
+  }
+}
+
+.error {
+  margin: var(--space-xs) 0 0 0;
 }
 
 .large {
