@@ -20,16 +20,15 @@
   * an initial value prevents layout shifting after the first render
   */
   --nav-bar-height: 92.6px;
-
-  // Mantine Overrides
-  --mantine-color-error: var(--color-error-400);
-
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   user-select: none;
+
+  // Mantine Overrides
+  --mantine-color-error: var(--color-error-400);
 }
 
 .circle {
