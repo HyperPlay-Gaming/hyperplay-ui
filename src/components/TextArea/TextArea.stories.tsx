@@ -29,10 +29,6 @@ export const LargeSize: Story = {
   args: { size: 'large' }
 }
 
-export const WithCharacterLimit: Story = {
-  args: { maxCharacters: 10 }
-}
-
 export const Error: Story = {
   args: { error: 'Required', withAsterisk: true }
 }
