@@ -16,6 +16,7 @@ export interface TextInputProps
     section?: string
     error?: string
     charCounter?: string
+    required?: string
   }
   maxCharacters?: number
 }
@@ -56,7 +57,8 @@ const TextInput = React.forwardRef<
           wrapper: cn(styles.wrapper, classNames?.wrapper),
           label: cn('caption', styles.label, classNames?.label),
           section: cn(styles.section, classNames?.section),
-          error: cn('caption-sm', styles.error, classNames?.error)
+          error: cn('caption-sm', styles.error, classNames?.error),
+          required: cn(styles.required, classNames?.required)
         }}
         unstyled
         ref={ref}

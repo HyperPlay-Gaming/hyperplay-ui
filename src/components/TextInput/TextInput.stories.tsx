@@ -21,6 +21,7 @@ export const Error = () => (
     placeholder="Enter your email"
     label="Email"
     error="Invalid email"
+    withAsterisk
   />
 )
 
