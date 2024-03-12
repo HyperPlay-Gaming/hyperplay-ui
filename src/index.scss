@@ -4,6 +4,7 @@
 @use './styles/designSystem/buttons';
 @use './styles/utilities/variables';
 @use './styles/utilities/gradientBorder';
+
 :root {
   @include typography.typeSystem;
   @include spacing.spacingSystem;
@@ -15,7 +16,7 @@
   --blur-strong: 16px;
 
   /*
-  * This is overridden in the top nav bar, but providing 
+  * This is overridden in the top nav bar, but providing
   * an initial value prevents layout shifting after the first render
   */
   --nav-bar-height: 92.6px;
@@ -25,6 +26,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   user-select: none;
+
+  // Mantine Overrides
+  --mantine-color-error: var(--color-error-400);
 }
 
 .circle {
