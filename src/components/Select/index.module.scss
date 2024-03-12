@@ -5,6 +5,10 @@
 
 .wrapper {
   color: var(--color-neutral-100);
+  &[data-error='true'] {
+    border-color: var(--color-error-400);
+    --_input-section-color: var(--color-error-400) !important;
+  }
 }
 
 .input {
@@ -20,6 +24,19 @@
   box-shadow: var(----box-shadow-01);
   align-items: center;
   outline: none;
+
+  &[data-error='true'] {
+    border-color: var(--color-error-400);
+
+    &::placeholder {
+      color: var(--color-error-400);
+    }
+  }
+}
+
+.error {
+  color: var(--color-error-400);
+  margin: var(--space-xs) 0 0 0;
 }
 
 .large {
