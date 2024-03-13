@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 
 import cn from 'classnames'
 
@@ -57,12 +57,16 @@ export interface Quest {
 }
 
 export interface QuestsTableProps {
+  filter: 'ACTIVE' | 'INACTIVE' | null
+  onFilterChange: (filter: 'ACTIVE' | 'INACTIVE' | null) => void
   quests: Quest[]
   i18n?: QuestsTableI18n
 }
 
 export function QuestsTable({
   quests,
+  filter,
+  onFilterChange,
   i18n = {
     name: 'Name',
     games: 'Games',
@@ -76,8 +80,6 @@ export function QuestsTable({
     draft: 'Draft'
   }
 }: QuestsTableProps) {
-  const [filter, setFilter] = useState<null | 'ACTIVE' | 'INACTIVE'>(null)
-
   let filteredQuests = quests
   const isActive = filter === 'ACTIVE'
   const isInactive = filter === 'INACTIVE'
@@ -129,9 +131,9 @@ export function QuestsTable({
           type={isActive ? 'secondary' : 'tertiary'}
           onClick={() => {
             if (isInactive || noFilterSelected) {
-              setFilter('ACTIVE')
+              onFilterChange('ACTIVE')
             } else if (isActive) {
-              setFilter(null)
+              onFilterChange(null)
             }
           }}
         >
@@ -141,9 +143,9 @@ export function QuestsTable({
           type={isInactive ? 'secondary' : 'tertiary'}
           onClick={() => {
             if (isActive || noFilterSelected) {
-              setFilter('INACTIVE')
+              onFilterChange('INACTIVE')
             } else if (isInactive) {
-              setFilter(null)
+              onFilterChange(null)
             }
           }}
         >
