@@ -26,3 +26,15 @@
   font-weight: var(--regular);
   line-height: calc(var(--text-md) * 20 / 16);
 }
+
+.arrowTopIcon {
+  color: var(--color-neutral-400);
+  width: 16px;
+  height: 16px;
+}
+
+.arrowDownIcon {
+  color: var(--color-neutral-400);
+  width: 12px;
+  height: 12px;
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import cn from 'classnames'
 
-import { DownArrow } from '@/assets/images'
+import { ArrowTop, DownArrow } from '@/assets/images'
 
 import styles from './Collapse.module.scss'
 
@@ -36,7 +36,11 @@ const Collapse = ({ title, classNames, children }: CollapseProps) => {
         <span className={cn('title', styles.buttonTitle, classNames?.title)}>
           {title}
         </span>
-        <DownArrow fill="var(--color-neutral-400)" />
+        {isOpen ? (
+          <ArrowTop className={styles.arrowTopIcon} />
+        ) : (
+          <DownArrow className={styles.arrowDownIcon} />
+        )}
       </div>
       {isOpen ? (
         <div className={cn(styles.content, classNames?.content)}>
