@@ -144,3 +144,4 @@ export {
 } from './components/UpdatesSubscriptionModal'
 export { default as LayoutTabs } from './components/LayoutTabs'
 export { default as Select } from './components/Select'
+export { default as Accordion, type AccordionProps } from './components/Accordion'
