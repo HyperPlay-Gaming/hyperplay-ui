@@ -1,7 +1,8 @@
-import Accordion, { AccordionProps } from '.'
 import { expect } from '@storybook/jest'
 import type { Meta, StoryObj } from '@storybook/react'
 import { userEvent, within } from '@storybook/testing-library'
+
+import Accordion, { AccordionProps } from '.'
 
 type Component = AccordionProps
 type Story = StoryObj<Component>
@@ -11,17 +12,18 @@ const meta: Meta<typeof Accordion> = {
   component: Accordion
 }
 
-export default meta;
+export default meta
 
-const textChildren = 'This feature is recommended for advanced users and developers. Learn more';
+const textChildren =
+  'This feature is recommended for advanced users and developers. Learn more'
 
 const props: AccordionProps = {
   title: 'Advanced Options',
   children: textChildren
-} 
+}
 
 export const Default: Story = {
-  args: { ...props },
+  args: { ...props }
 }
 
 export const OpenedAccordion: Story = {
@@ -29,7 +31,8 @@ export const OpenedAccordion: Story = {
   render: () => (
     <div>
       <Accordion title="Advanced Options">
-        This feature is recommended for advanced users and developers. Learn more
+        This feature is recommended for advanced users and developers. Learn
+        more
       </Accordion>
     </div>
   ),
