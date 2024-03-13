@@ -144,7 +144,4 @@ export {
 } from './components/UpdatesSubscriptionModal'
 export { default as LayoutTabs } from './components/LayoutTabs'
 export { default as Select } from './components/Select'
-export {
-  default as Collapse,
-  type CollapseProps
-} from './components/Collapse'
+export { default as Collapse, type CollapseProps } from './components/Collapse'
