@@ -145,6 +145,6 @@ export {
 export { default as LayoutTabs } from './components/LayoutTabs'
 export { default as Select } from './components/Select'
 export {
-  default as Accordion,
-  type AccordionProps
-} from './components/Accordion'
+  default as Collapse,
+  type CollapseProps
+} from './components/Collapse'

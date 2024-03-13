@@ -4,9 +4,9 @@ import cn from 'classnames'
 
 import { DownArrow } from '@/assets/images'
 
-import styles from './Accordion.module.scss'
+import styles from './Collapse.module.scss'
 
-export interface AccordionProps {
+export interface CollapseProps {
   title: string
   children: React.ReactNode
   classNames?: {
@@ -18,7 +18,7 @@ export interface AccordionProps {
   }
 }
 
-const Accordion = ({ title, classNames, children }: AccordionProps) => {
+const Collapse = ({ title, classNames, children }: CollapseProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -47,4 +47,4 @@ const Accordion = ({ title, classNames, children }: AccordionProps) => {
   )
 }
 
-export default Accordion
+export default Collapse
