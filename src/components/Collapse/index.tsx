@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { HTMLAttributes, PropsWithChildren, useState } from 'react'
 
 import cn from 'classnames'
 
@@ -6,7 +6,8 @@ import { ArrowTop, DownArrow } from '@/assets/images'
 
 import styles from './Collapse.module.scss'
 
-export interface CollapseProps {
+export interface CollapseProps
+  extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
   title: string
   children: React.ReactNode
   classNames?: {
@@ -18,8 +19,16 @@ export interface CollapseProps {
   }
 }
 
-const Collapse = ({ title, classNames, children }: CollapseProps) => {
+const Collapse = ({ title, classNames, children, ...props }: CollapseProps) => {
   const [isOpen, setIsOpen] = useState(false)
+
+  const handleToggle = () => setIsOpen((prev) => !prev)
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault()
+      handleToggle()
+    }
+  }
 
   return (
     <div
@@ -30,8 +39,13 @@ const Collapse = ({ title, classNames, children }: CollapseProps) => {
       )}
     >
       <div
+        {...props}
         className={styles.toggleButton}
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={handleToggle}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        role="button"
+        aria-expanded={isOpen}
       >
         <span className={cn('title', styles.buttonTitle, classNames?.title)}>
           {title}
