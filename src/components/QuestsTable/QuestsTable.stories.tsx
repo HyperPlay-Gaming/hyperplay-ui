@@ -4,7 +4,15 @@ import { QuestsTable, QuestsTableProps } from '.'
 
 const meta: Meta<typeof QuestsTable> = {
   title: 'Quests/QuestsTable',
-  component: QuestsTable
+  component: QuestsTable,
+  argTypes: {
+    filter: {
+      control: {
+        type: 'select',
+        options: ['ACTIVE', 'INACTIVE', null]
+      }
+    }
+  }
 }
 
 export default meta
@@ -12,6 +20,8 @@ export default meta
 type Story = StoryObj<typeof QuestsTable>
 
 const props: QuestsTableProps = {
+  filter: null,
+  onFilterChange: (filter) => alert(`filter changed: ${filter}`),
   quests: [
     {
       name: 'A quest',
