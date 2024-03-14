@@ -38,7 +38,7 @@ const Collapse = ({ title, classNames, children, ...props }: CollapseProps) => {
         isOpen ? classNames?.open : classNames?.closed
       )}
     >
-      <div
+      <button
         {...props}
         className={styles.toggleButton}
         onClick={handleToggle}
@@ -55,7 +55,7 @@ const Collapse = ({ title, classNames, children, ...props }: CollapseProps) => {
         ) : (
           <DownArrow className={styles.arrowDownIcon} />
         )}
-      </div>
+      </button>
       {isOpen ? (
         <div className={cn(styles.content, classNames?.content)}>
           {children}
