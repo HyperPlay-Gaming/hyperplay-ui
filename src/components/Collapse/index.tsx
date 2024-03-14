@@ -7,7 +7,7 @@ import { ArrowTop, DownArrow } from '@/assets/images'
 import styles from './Collapse.module.scss'
 
 export interface CollapseProps
-  extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
+  extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
   title: string
   children: React.ReactNode
   classNames?: {
