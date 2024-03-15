@@ -8,7 +8,7 @@ import cn from 'classnames'
 
 import styles from './NumberInput.module.scss'
 
-interface NumberInputProps extends MantineNumberInputProps {
+export interface NumberInputProps extends MantineNumberInputProps {
   size?: 'small' | 'medium' | 'large'
 }
 
