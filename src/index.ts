@@ -145,3 +145,5 @@ export {
 export { default as LayoutTabs } from './components/LayoutTabs'
 export { default as Select } from './components/Select'
 export { default as Collapse, type CollapseProps } from './components/Collapse'
+export { default as NumberInput } from './components/NumberInput'
+export type { NumberInputProps } from './components/NumberInput'
