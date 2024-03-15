@@ -135,3 +135,12 @@ export const ManySearchResults: Story = {
     searchResultGames: longGameDetailsList
   }
 }
+
+export const InputError: Story = {
+  args: {
+    ...props,
+    inputProps: {
+      error: 'Please enter a valid game'
+    }
+  }
+}

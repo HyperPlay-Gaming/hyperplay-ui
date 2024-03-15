@@ -13,6 +13,8 @@ export function GameSelector({
   selectedGames,
   searchResultGames,
   onSearchInput,
+  inputProps,
+  menuProps,
   i18n = {
     selectGame: 'Select Game',
     selectUpTo: '(select up to 15 games)',
@@ -71,6 +73,7 @@ export function GameSelector({
       label={labelNode}
       data-autofocus="true"
       data-testid="search-input"
+      {...inputProps}
     />
   )
 
@@ -83,6 +86,7 @@ export function GameSelector({
         position="bottom-start"
         width={'target'}
         offset={8}
+        {...menuProps}
       >
         <Menu.Target>{target}</Menu.Target>
         <Menu.Dropdown className={styles.menuDropdown}>
