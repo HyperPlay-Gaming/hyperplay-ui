@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { expect } from '@storybook/jest'
 import { useArgs } from '@storybook/preview-api'
 import type { Meta, StoryObj } from '@storybook/react'
@@ -142,5 +144,26 @@ export const InputError: Story = {
     inputProps: {
       error: 'Please enter a valid game'
     }
+  }
+}
+
+export const ControlledMenu: Story = {
+  args: { ...props },
+  render: function Render(args) {
+    const [menuOpened, setMenuOpened] = useState(false)
+    const searchResultGames = args.searchResultGames.map((val) => ({
+      ...val,
+      onClick: () => {
+        val.onClick()
+        setMenuOpened(false)
+      }
+    }))
+    return (
+      <GameSelector
+        {...args}
+        searchResultGames={searchResultGames}
+        menuProps={{ opened: menuOpened, onChange: setMenuOpened }}
+      />
+    )
   }
 }
