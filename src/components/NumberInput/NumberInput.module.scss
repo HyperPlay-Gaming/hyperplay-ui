@@ -59,13 +59,12 @@
 }
 
 .section {
-  --_input-bd: var(--color-stroke-01)
+  --_input-bd: var(--color-stroke-01);
 }
 
 .controls {
   height: 100%;
 }
-
 
 .control {
   color: var(--color-neutral-400);
