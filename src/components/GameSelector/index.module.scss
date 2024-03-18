@@ -39,3 +39,10 @@ $dropdownBorderRadius: var(--space-xs);
   max-height: 500px;
   overflow-y: auto;
 }
+
+.messageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-md) var(--space-md-fixed);
+}

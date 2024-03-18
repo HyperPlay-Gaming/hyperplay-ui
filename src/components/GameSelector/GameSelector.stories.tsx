@@ -147,6 +147,25 @@ export const InputError: Story = {
   }
 }
 
+export const Loading: Story = {
+  args: {
+    ...props,
+    open: true,
+    isLoading: true,
+    selectedGames: [],
+    menuProps: { opened: true }
+  }
+}
+
+export const EmptySearchResults: Story = {
+  args: {
+    ...props,
+    selectedGames: [],
+    menuProps: { opened: true },
+    searchResultGames: []
+  }
+}
+
 export const ControlledMenu: Story = {
   args: { ...props },
   render: function Render(args) {
