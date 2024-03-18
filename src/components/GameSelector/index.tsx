@@ -10,6 +10,7 @@ import styles from './index.module.scss'
 import { GameDetails, GameSelectorProps } from './types'
 
 export function GameSelector({
+  isLoading,
   selectedGames,
   searchResultGames,
   onSearchInput,
@@ -18,7 +19,9 @@ export function GameSelector({
   i18n = {
     selectGame: 'Select Game',
     selectUpTo: '(select up to 15 games)',
-    searchForGames: 'Search for game(s)'
+    searchForGames: 'Search for game(s)',
+    loading: 'Loading...',
+    emptySearchResults: 'Nothing found...'
   }
 }: GameSelectorProps) {
   const [opened, setOpened] = useState(false)
@@ -26,7 +29,9 @@ export function GameSelector({
   function getGameItems(games: GameDetails[], isClickable?: boolean) {
     // check undefined to satisfy smoke test
     if (games === undefined || games.length === 0) {
-      return null
+      return (
+        <div className={styles.messageContainer}>{i18n.emptySearchResults}</div>
+      )
     }
 
     return games.map((val, index) => {
@@ -53,6 +58,10 @@ export function GameSelector({
       )
     })
   }
+
+  const loadingState = (
+    <div className={styles.messageContainer}>{i18n.loading}</div>
+  )
 
   const selectedGamesElement = getGameItems(selectedGames)
 
@@ -90,7 +99,7 @@ export function GameSelector({
       >
         <Menu.Target>{target}</Menu.Target>
         <Menu.Dropdown className={styles.menuDropdown}>
-          {searchResults}
+          {isLoading ? loadingState : searchResults}
         </Menu.Dropdown>
       </Menu>
       <div className={styles.selectedGamesContainer}>

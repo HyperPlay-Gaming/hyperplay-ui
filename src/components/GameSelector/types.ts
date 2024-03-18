@@ -12,6 +12,7 @@ export interface GameDetails {
 }
 
 export interface GameSelectorProps extends HTMLProps<HTMLDivElement> {
+  isLoading?: boolean
   selectedGames: GameDetails[]
   searchResultGames: GameDetails[]
   onSearchInput: (text: string) => void
@@ -21,5 +22,7 @@ export interface GameSelectorProps extends HTMLProps<HTMLDivElement> {
     selectGame: string
     selectUpTo: string
     searchForGames: string
+    loading: string
+    emptySearchResults: string
   }
 }
