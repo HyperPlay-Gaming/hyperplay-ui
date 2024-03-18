@@ -160,9 +160,26 @@ export const Loading: Story = {
 export const EmptySearchResults: Story = {
   args: {
     ...props,
-    selectedGames: [],
-    menuProps: { opened: true },
-    searchResultGames: []
+    selectedGames: []
+  },
+  render: function Render(args) {
+    const [isLoading, setIsLoading] = useState(false)
+    const [searchString, setSearchString] = useState('')
+    const handleSearch = (search: string) => {
+      setSearchString(search)
+      setIsLoading(true)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 300)
+    }
+    return (
+      <GameSelector
+        {...args}
+        isLoading={isLoading}
+        searchResultGames={searchString === '' ? [] : args.searchResultGames}
+        onSearchInput={handleSearch}
+      />
+    )
   }
 }
 

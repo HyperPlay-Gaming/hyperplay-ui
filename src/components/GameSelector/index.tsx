@@ -24,14 +24,22 @@ export function GameSelector({
     emptySearchResults: 'Nothing found...'
   }
 }: GameSelectorProps) {
+  const inputRef = React.useRef<HTMLInputElement>(null)
   const [opened, setOpened] = useState(false)
+  const isEmptySearchString = inputRef.current?.value === ''
+
+  const loadingState = (
+    <div className={styles.messageContainer}>{i18n.loading}</div>
+  )
+
+  const emptySearchState = (
+    <div className={styles.messageContainer}>{i18n.emptySearchResults}</div>
+  )
 
   function getGameItems(games: GameDetails[], isClickable?: boolean) {
     // check undefined to satisfy smoke test
     if (games === undefined || games.length === 0) {
-      return (
-        <div className={styles.messageContainer}>{i18n.emptySearchResults}</div>
-      )
+      return null
     }
 
     return games.map((val, index) => {
@@ -59,10 +67,6 @@ export function GameSelector({
     })
   }
 
-  const loadingState = (
-    <div className={styles.messageContainer}>{i18n.loading}</div>
-  )
-
   const selectedGamesElement = getGameItems(selectedGames)
 
   const labelNode = (
@@ -72,10 +76,14 @@ export function GameSelector({
     </div>
   )
 
-  const searchResults = getGameItems(searchResultGames, true)
+  const gameItems = getGameItems(searchResultGames, true)
+  const areSearchResultsEmpty = gameItems === null
+  const isSearchResultsEmpty = areSearchResultsEmpty && !isEmptySearchString
+  const searchResults = isSearchResultsEmpty ? emptySearchState : gameItems
 
   const target = (
     <TextInput
+      ref={inputRef}
       placeholder={i18n.searchForGames}
       enterKeyHint="search"
       onChange={(ev) => onSearchInput(ev.target.value)}
