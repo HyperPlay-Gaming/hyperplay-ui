@@ -33,6 +33,7 @@
 
 .pill {
   background-color: var(--color-neutral-400);
+  color: var(--color-neutral-700);
   @include typography.body-sm-mixin;
 }
 
