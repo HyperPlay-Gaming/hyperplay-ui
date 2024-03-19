@@ -34,7 +34,7 @@ const CloseButton = (
   >
 ) => {
   return (
-    <button className={styles.close} {...props}>
+    <button type="button" className={styles.close} {...props}>
       <CloseModalIcon />
     </button>
   )
