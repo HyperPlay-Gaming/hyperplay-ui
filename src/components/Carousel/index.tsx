@@ -71,11 +71,13 @@ const Carouselv2 = ({
         }}
         plugins={[autoplay.current]}
         onMouseEnter={() => {
+          console.log('canAutoRotate onMouseEnter', canAutoRotate)
           if (canAutoRotate) {
             autoplay.current.stop()
           }
         }}
         onMouseLeave={() => {
+          console.log('canAutoRotate onMouseLeave', canAutoRotate)
           if (canAutoRotate) {
             // Internally it is checking if timer is set, and since it can be, it will make .reset() never work
             autoplay.current.stop()
@@ -83,6 +85,7 @@ const Carouselv2 = ({
           }
         }}
         onSlideChange={(index) => {
+          console.log('onSlideChange', index)
           setActiveIndex(index)
         }}
         loop={true}
@@ -104,6 +107,7 @@ const Carouselv2 = ({
           )}
           onChange={(index) => {
             emblaApiRef?.scrollTo(index)
+            console.log('Controller onChange scrollTo', index)
 
             onThumbnailHandler?.(index)
           }}
