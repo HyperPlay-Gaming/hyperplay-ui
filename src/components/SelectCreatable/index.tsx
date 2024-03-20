@@ -8,9 +8,9 @@ import { TextInput, TextInputProps } from '@/index'
 import styles from './SelectCreatable.module.scss'
 
 export interface SelectCreatableProps extends ComboboxProps {
-  options: string[]
-  onChange: (option: string) => void
-  onCreated: (option: string) => void
+  options?: string[]
+  onChange?: (option: string) => void
+  onCreated?: (option: string) => void
   inputProps?: TextInputProps
   i18n?: {
     create?: string
@@ -19,7 +19,7 @@ export interface SelectCreatableProps extends ComboboxProps {
 }
 
 export function SelectCreatable({
-  options,
+  options = [],
   onChange,
   onCreated,
   inputProps,
@@ -55,11 +55,11 @@ export function SelectCreatable({
         if (val === '$create') {
           setData((current) => [...current, search])
           setValue(search)
-          onCreated(search)
+          onCreated?.(search)
         } else {
           setValue(val)
           setSearch(val)
-          onChange(val)
+          onChange?.(val)
         }
 
         combobox.closeDropdown()
