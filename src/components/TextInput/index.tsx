@@ -55,12 +55,8 @@ const TextInput = React.forwardRef<
           root: cn(styles.root, classNames?.root),
           input: cn(styles.input, classNames?.input, styles[size]),
           wrapper: cn(styles.wrapper, classNames?.wrapper),
-          label: cn('caption', styles.label, classNames?.label),
-          section: cn(styles.section, classNames?.section),
-          error: cn('caption-sm', styles.error, classNames?.error),
-          required: cn(styles.required, classNames?.required)
+          label: cn(styles.label, classNames?.label)
         }}
-        unstyled
         ref={ref}
         onChange={(ev) => {
           setNumChars(ev.target.value.length)
