@@ -20,8 +20,7 @@ export function HpSelect({ classNames, size = 'medium', ...props }: Props) {
         label: cn(styles.label, propClasses.label),
         dropdown: cn(styles.dropdown, propClasses.dropdown),
         options: cn(styles.options, propClasses.options),
-        option: cn(styles.option, propClasses.option),
-        error: cn(styles.error, propClasses.error)
+        option: cn(styles.option, propClasses.option)
       }}
       rightSection={<IconChevronDown />}
       {...props}

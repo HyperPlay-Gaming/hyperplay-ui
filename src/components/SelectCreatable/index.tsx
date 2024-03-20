@@ -1,12 +1,9 @@
 import { useState } from 'react'
 
-import {
-  Combobox,
-  ComboboxProps,
-  InputBase,
-  InputBaseProps,
-  useCombobox
-} from '@mantine/core'
+import { Combobox, ComboboxProps, useCombobox } from '@mantine/core'
+import { IconChevronDown } from '@tabler/icons-react'
+
+import { TextInput, TextInputProps } from '@/index'
 
 import styles from './SelectCreatable.module.scss'
 
@@ -14,7 +11,7 @@ export interface SelectCreatableProps extends ComboboxProps {
   options: string[]
   onChange: (option: string) => void
   onCreated: (option: string) => void
-  inputProps?: InputBaseProps
+  inputProps?: TextInputProps
   i18n?: {
     create?: string
     searchValue?: string
@@ -71,8 +68,8 @@ export function SelectCreatable({
       {...props}
     >
       <Combobox.Target>
-        <InputBase
-          rightSection={<Combobox.Chevron />}
+        <TextInput
+          rightSection={<IconChevronDown />}
           value={search}
           onChange={(event) => {
             combobox.openDropdown()
@@ -87,7 +84,6 @@ export function SelectCreatable({
           }}
           placeholder={i18n.searchValue}
           rightSectionPointerEvents="none"
-          classNames={{ input: styles.input }}
           {...inputProps}
         />
       </Combobox.Target>
