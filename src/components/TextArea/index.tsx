@@ -25,7 +25,7 @@ export function Textarea({
         root: cn(styles.root, propsClassName?.root),
         input: cn(styles.input, propsClassName?.input, styles[size]),
         wrapper: cn(styles.wrapper, propsClassName?.wrapper),
-        label: cn('caption', styles.label, propsClassName?.label),
+        label: cn(styles.label, propsClassName?.label),
         section: cn(styles.section, propsClassName?.section)
       }}
       {...props}
