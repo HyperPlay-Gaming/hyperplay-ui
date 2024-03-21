@@ -1,5 +1,5 @@
 import { Code } from '@mantine/core'
-import { UseFormReturnType, useForm, zodResolver } from '@mantine/form'
+import { useForm, zodResolver } from '@mantine/form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { IconTrash } from '@tabler/icons-react'
 import { z } from 'zod'
@@ -101,83 +101,70 @@ const rewardsDetailsSchema = z.object({
 type FormSchema = z.infer<typeof rewardsDetailsSchema>
 type TokenType = FormSchema['reward_type']
 
-function ControlledRewardForm({
-  title,
-  form
-}: {
-  title: string
-  form: UseFormReturnType<FormSchema>
-}) {
-  const formTokenType = form.values.reward_type
-  let children = null
-
-  if (formTokenType === 'ERC1155') {
-    children = (
-      <RewardERC1155
-        addTokenId={() => form.insertListItem('token_ids', {})}
-        tokenIdsInputProps={form.values.token_ids?.map((_, index) => ({
-          tokenNameInputProps: form.getInputProps(`token_ids.${index}.name`),
-          amountPerUserInputProps: form.getInputProps(
-            `token_ids.${index}.amount_per_user`
-          ),
-          onRemoveClick: () => {
-            if (form.values.token_ids?.length === 1) return
-            form.removeListItem('token_ids', index)
-          }
-        }))}
-        marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
-      />
-    )
-  } else if (formTokenType) {
-    children = (
-      <RewardERC20_721
-        tokenType={formTokenType}
-        tokenNameInputProps={form.getInputProps('name')}
-        decimalsInputProps={form.getInputProps('decimals')}
-        amountPerUserInputProps={form.getInputProps('amount_per_user')}
-        marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
-      />
-    )
-  }
-
-  return (
-    <RewardFormCard
-      title={title}
-      tokenContractAddressInputProps={{
-        ...defaultTokenContractAddressInputProps,
-        ...form.getInputProps('contract_address')
-      }}
-      networkInputProps={{
-        ...defaultNetworkInputProps,
-        ...form.getInputProps('chain_id')
-      }}
-      tokenTypeInputProps={{
-        ...defaultTokenTypeInputProps,
-        ...form.getInputProps('reward_type'),
-        value: formTokenType,
-        onChange: (value) => {
-          if (!value) return
-          form.setFieldValue('reward_type', value as TokenType)
-        }
-      }}
-    >
-      {children}
-    </RewardFormCard>
-  )
-}
-
 export const Controlled: Story = {
   render: () => {
-    // @ts-expect-error: token_ids need to be initialized as an empty array
     const form = useForm<FormSchema>({
-      // @ts-expect-error: same as above ^^
+      // @ts-expect-error: token_ids need to be initialized as an empty array
       initialValues: { token_ids: [] },
       validate: zodResolver(rewardsDetailsSchema)
-    }) as UseFormReturnType<FormSchema>;
+    })
+
+    const formTokenType = form.values.reward_type
+    let children = null
+
+    if (formTokenType === 'ERC1155') {
+      children = (
+        <RewardERC1155
+          addTokenId={() => form.insertListItem('token_ids', {})}
+          tokenIdsInputProps={form.values.token_ids?.map((_, index) => ({
+            tokenNameInputProps: form.getInputProps(`token_ids.${index}.name`),
+            amountPerUserInputProps: form.getInputProps(
+              `token_ids.${index}.amount_per_user`
+            ),
+            onRemoveClick: () => {
+              if (form.values.token_ids?.length === 1) return
+              form.removeListItem('token_ids', index)
+            }
+          }))}
+          marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
+        />
+      )
+    } else if (formTokenType) {
+      children = (
+        <RewardERC20_721
+          tokenType={formTokenType}
+          tokenNameInputProps={form.getInputProps('name')}
+          decimalsInputProps={form.getInputProps('decimals')}
+          amountPerUserInputProps={form.getInputProps('amount_per_user')}
+          marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
+        />
+      )
+    }
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <ControlledRewardForm title="Controlled" form={form} />
+        <RewardFormCard
+          title="Reward"
+          tokenContractAddressInputProps={{
+            ...defaultTokenContractAddressInputProps,
+            ...form.getInputProps('contract_address')
+          }}
+          networkInputProps={{
+            ...defaultNetworkInputProps,
+            ...form.getInputProps('chain_id')
+          }}
+          tokenTypeInputProps={{
+            ...defaultTokenTypeInputProps,
+            ...form.getInputProps('reward_type'),
+            value: formTokenType,
+            onChange: (value) => {
+              if (!value) return
+              form.setFieldValue('reward_type', value as TokenType)
+            }
+          }}
+        >
+          {children}
+        </RewardFormCard>
         <Button
           onClick={() => form.validate()}
           type="secondary"
