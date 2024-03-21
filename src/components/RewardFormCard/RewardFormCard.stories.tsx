@@ -179,3 +179,131 @@ export const Controlled: Story = {
     )
   }
 }
+
+const multipleRewardsSchema = z.object({
+  rewards: z.array(rewardsDetailsSchema)
+})
+
+type MultipleRewardsFormSchema = z.infer<typeof multipleRewardsSchema>
+
+export const DynamicForm: Story = {
+  render: () => {
+    const form = useForm<MultipleRewardsFormSchema>({
+      initialValues: {
+        rewards: [
+          // @ts-expect-error: token_ids need to be initialized as an empty array
+          {
+            token_ids: []
+          }
+        ]
+      },
+      validate: zodResolver(multipleRewardsSchema)
+    })
+
+    const rewardsForms = form.values.rewards.map((_, index) => {
+      const formValues = form.values.rewards[index]
+      const formTokenType = formValues.reward_type
+      let children = null
+
+      if (formTokenType === 'ERC1155') {
+        children = (
+          <RewardERC1155
+            addTokenId={() =>
+              form.insertListItem(`rewards.${index}.token_ids`, {})
+            }
+            tokenIdsInputProps={formValues.token_ids?.map((_, tokenIndex) => ({
+              tokenNameInputProps: form.getInputProps(
+                `rewards.${index}.token_ids.${tokenIndex}.name`
+              ),
+              amountPerUserInputProps: form.getInputProps(
+                `rewards.${index}.token_ids.${index}.amount_per_user`
+              ),
+              onRemoveClick: () => {
+                if (formValues.token_ids?.length === 1) return
+                form.removeListItem(`rewards.${index}.token_ids`, index)
+              }
+            }))}
+            marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
+          />
+        )
+      } else if (formTokenType) {
+        children = (
+          <RewardERC20_721
+            tokenType={formTokenType}
+            tokenNameInputProps={form.getInputProps(`rewards.${index}.name`)}
+            decimalsInputProps={form.getInputProps(`rewards.${index}.decimals`)}
+            amountPerUserInputProps={form.getInputProps(
+              `rewards.${index}.amount_per_user`
+            )}
+            marketplaceUrlInputProps={form.getInputProps(
+              `rewards.${index}.marketplace_url`
+            )}
+          />
+        )
+      }
+
+      return (
+        <div
+          key={index}
+          style={{ display: 'flex', flexDirection: 'column', gap: 10 }}
+        >
+          <RewardFormCard
+            title={`Reward ${index + 1}`}
+            tokenContractAddressInputProps={{
+              ...defaultTokenContractAddressInputProps,
+              ...form.getInputProps(`rewards.${index}.contract_address`)
+            }}
+            networkInputProps={{
+              ...defaultNetworkInputProps,
+              ...form.getInputProps(`rewards.${index}.chain_id`)
+            }}
+            tokenTypeInputProps={{
+              ...defaultTokenTypeInputProps,
+              ...form.getInputProps(`rewards.${index}.reward_type`),
+              value: formTokenType,
+              onChange: (value) => {
+                if (!value) return
+                form.setFieldValue(
+                  `rewards.${index}.reward_type`,
+                  value as TokenType
+                )
+              }
+            }}
+          >
+            {children}
+          </RewardFormCard>
+        </div>
+      )
+    })
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <Button
+          onClick={() =>
+            form.insertListItem('rewards', {
+              token_ids: []
+            })
+          }
+          type="secondary"
+          size="small"
+          style={{ width: 'fit-content', marginLeft: 'auto' }}
+        >
+          Add reward
+        </Button>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
+          {rewardsForms}
+        </div>
+        Form Value:
+        <Code block>{JSON.stringify(form.values, null, 2)}</Code>
+        <Button
+          onClick={() => form.validate()}
+          type="secondary"
+          size="small"
+          style={{ width: 'fit-content', marginLeft: 'auto' }}
+        >
+          Submit
+        </Button>
+      </div>
+    )
+  }
+}
