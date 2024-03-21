@@ -12,11 +12,14 @@ import RewardFormCard from './index'
 const ethContractAddressRegex = /^0x[a-fA-F0-9]{40}$/g
 
 const defaultNetworkInputProps = {
-  options: ['Mainnet', 'Polygon', 'Binance Smart Chain'],
-  inputProps: {
-    label: 'Network',
-    placeholder: 'Select a Network'
-  }
+  data: [
+    { value: '1', label: 'Ethereum' },
+    { value: '0x38', label: 'Binance Smart Chain' },
+    { value: '0x89', label: 'Polygon' },
+    { value: '0x4', label: 'Rinkeby' }
+  ],
+  label: 'Network',
+  placeholder: 'Select a Network'
 }
 
 const defaultTokenContractAddressInputProps = {

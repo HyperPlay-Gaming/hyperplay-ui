@@ -5,16 +5,12 @@ import {
   ContainerInteractiveProps
 } from '@/components/ContainerInteractive'
 import Select, { SelectProps } from '@/components/Select'
-import {
-  SelectCreatable,
-  SelectCreatableProps
-} from '@/components/SelectCreatable'
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
 import styles from './RewardFormCard.module.scss'
 
 export interface RewardFormCardProps extends ContainerInteractiveProps {
-  networkInputProps?: SelectCreatableProps
+  networkInputProps?: SelectProps
   tokenContractAddressInputProps?: TextInputProps
   tokenTypeInputProps?: SelectProps
 }
@@ -29,7 +25,7 @@ function RewardFormCard({ classNames, ...props }: RewardFormCardProps) {
       }}
       {...props}
     >
-      <SelectCreatable {...props.networkInputProps} />
+      <Select {...props.networkInputProps} />
       <TextInput {...props.tokenContractAddressInputProps} />
       <Select {...props.tokenTypeInputProps} />
       {props.children}
