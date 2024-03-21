@@ -2,22 +2,23 @@
 
 import React from 'react'
 
-import Button from '@/components/Button'
+import { IconTrash } from '@tabler/icons-react'
+
 import TextInput from '@/components/TextInput'
 
-import { FormRewardsI18n } from '../../../..'
+import { DEFAULT_FORM_REWARDS_i18n, FormRewardsI18n } from '../../../..'
 import { TokenIdRowInputProps } from '../../../../types'
 import styles from './index.module.scss'
 
 export interface TokenIdRowProps extends TokenIdRowInputProps {
-  i18n: FormRewardsI18n
+  i18n?: FormRewardsI18n
 }
 
 export function TokenIdRow({
   tokenNameInputProps,
   amountPerUserInputProps,
   onRemoveClick,
-  i18n
+  i18n = DEFAULT_FORM_REWARDS_i18n
 }: TokenIdRowProps) {
   return (
     <div className={styles.root}>
@@ -32,15 +33,10 @@ export function TokenIdRow({
           placeholder={i18n.placeholder.amountPerUser}
           {...amountPerUserInputProps}
         />
+        <button onClick={onRemoveClick} className={styles.removeButton}>
+          <IconTrash color="var(--color-neutral-400)" />
+        </button>
       </div>
-      <Button
-        type="tertiary"
-        onClick={onRemoveClick}
-        className={styles.removeButton}
-        htmlType="button"
-      >
-        Remove
-      </Button>
     </div>
   )
 }

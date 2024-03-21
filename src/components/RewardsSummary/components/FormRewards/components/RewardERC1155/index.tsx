@@ -7,31 +7,26 @@ import { IconPlus } from '@tabler/icons-react'
 import Button from '@/components/Button'
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
-import { FormRewardsI18n } from '../..'
+import { DEFAULT_FORM_REWARDS_i18n, FormRewardsI18n } from '../..'
 import { TokenIdRowInputProps } from '../../types'
 import { TokenIdRow } from './components/TokenIdRow'
 import styles from './index.module.scss'
 
 export interface RewardERC1155Props {
-  marketplaceUrlInputProps: TextInputProps
-  tokenIdsInputProps: TokenIdRowInputProps[]
-  addTokenId: () => void
-  i18n: FormRewardsI18n
+  marketplaceUrlInputProps?: TextInputProps
+  tokenIdsInputProps?: TokenIdRowInputProps[]
+  addTokenId?: () => void
+  i18n?: FormRewardsI18n
 }
 
 export function RewardERC1155({
   marketplaceUrlInputProps,
-  tokenIdsInputProps,
+  tokenIdsInputProps = [],
   addTokenId,
-  i18n
+  i18n = DEFAULT_FORM_REWARDS_i18n
 }: RewardERC1155Props) {
   const tokenIdRows = tokenIdsInputProps.map((inputs_i, index) => (
-    <TokenIdRow
-      key={index}
-      i18n={i18n}
-      {...inputs_i}
-      onRemoveClick={inputs_i.onRemoveClick}
-    />
+    <TokenIdRow key={index} i18n={i18n} {...inputs_i} />
   ))
   return (
     <>
@@ -41,7 +36,9 @@ export function RewardERC1155({
           <Button
             onClick={addTokenId}
             type="link"
-            leftIcon={<IconPlus />}
+            size="small"
+            leftIcon={<IconPlus width={14} height={14} />}
+            spacing="xs"
             className={styles.addTokenIdButton}
             htmlType="button"
           >

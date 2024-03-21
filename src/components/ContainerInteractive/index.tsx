@@ -13,6 +13,7 @@ export interface ContainerInteractiveProps extends HTMLProps<HTMLDivElement> {
     root?: string
     header?: string
     titleContainer?: string
+    title?: string
   }
 }
 
@@ -32,7 +33,7 @@ export function ContainerInteractive({
     >
       <div className={cn(styles.headerRow, classNames?.header)}>
         <div className={cn(styles.titleContainer, classNames?.titleContainer)}>
-          <div className="title">{title}</div>
+          <div className={cn('title', classNames?.title)}>{title}</div>
           {tag ?? null}
         </div>
         {icon ?? null}

@@ -12,6 +12,28 @@ import { RewardERC20_721 } from './components/RewardERC20_721'
 import { RewardERC1155 } from './components/RewardERC1155'
 import { TokenIdRowInputProps } from './types'
 
+export const DEFAULT_FORM_REWARDS_i18n: FormRewardsI18n = {
+  addTokenId: 'Add Token ID',
+  placeholder: {
+    rewardType: 'Reward Type',
+    network: 'Network',
+    contractAddress: 'Contract Address',
+    tokenName: 'Token',
+    marketplaceUrl: 'Marketplace URL',
+    decimals: 'Decimals',
+    amountPerUser: 'Amount Per User'
+  },
+  label: {
+    rewardType: 'Reward Type',
+    network: 'Network',
+    contractAddress: 'Contract Address',
+    tokenName: 'Token',
+    marketplaceUrl: 'Marketplace URL',
+    decimals: 'Decimals',
+    amountPerUser: 'Amount Per User'
+  }
+}
+
 export interface FormRewardsI18n {
   addTokenId: string
   placeholder: {

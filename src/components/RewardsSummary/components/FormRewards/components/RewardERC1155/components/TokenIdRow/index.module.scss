@@ -11,7 +11,8 @@
 }
 
 .removeButton {
-  fill: var(--color-neutral-400);
+  flex: 0;
+  align-self: flex-end;
 }
 
 .root {

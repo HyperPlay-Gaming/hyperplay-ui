@@ -147,3 +147,9 @@ export { default as Select } from './components/Select'
 export { default as Collapse, type CollapseProps } from './components/Collapse'
 export { default as NumberInput } from './components/NumberInput'
 export type { NumberInputProps } from './components/NumberInput'
+
+export { RewardERC20_721 } from './components/RewardsSummary/components/FormRewards/components/RewardERC20_721'
+export type { RewardERC20_721Props } from './components/RewardsSummary/components/FormRewards/components/RewardERC20_721'
+
+export { RewardERC1155 } from './components/RewardsSummary/components/FormRewards/components/RewardERC1155'
+export type { RewardERC1155Props } from './components/RewardsSummary/components/FormRewards/components/RewardERC1155'
