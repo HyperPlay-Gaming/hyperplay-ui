@@ -2,7 +2,8 @@
 
 import React from 'react'
 
-import Button from '@/components/Button'
+import { IconTrash } from '@tabler/icons-react'
+
 import TextInput from '@/components/TextInput'
 
 import { DEFAULT_FORM_REWARDS_i18n, FormRewardsI18n } from '../../../..'
@@ -32,15 +33,10 @@ export function TokenIdRow({
           placeholder={i18n.placeholder.amountPerUser}
           {...amountPerUserInputProps}
         />
+        <button onClick={onRemoveClick} className={styles.removeButton}>
+          <IconTrash color="var(--color-neutral-400)" />
+        </button>
       </div>
-      <Button
-        type="tertiary"
-        onClick={onRemoveClick}
-        className={styles.removeButton}
-        htmlType="button"
-      >
-        Remove
-      </Button>
     </div>
   )
 }
