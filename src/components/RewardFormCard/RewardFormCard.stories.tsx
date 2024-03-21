@@ -41,11 +41,13 @@ const meta: Meta<typeof RewardFormCard> = {
   }
 }
 
-const IconButton = (
-  <button onClick={() => alert('Deleted clicked')}>
-    <IconTrash color="var(--color-neutral-400)" />
-  </button>
-)
+function DeleteButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button onClick={onClick}>
+      <IconTrash color="var(--color-neutral-400)" />
+    </button>
+  )
+}
 
 export default meta
 
@@ -55,7 +57,7 @@ export const Default: Story = {}
 
 export const WithIcon: Story = {
   args: {
-    icon: IconButton
+    icon: <DeleteButton onClick={() => alert('Delete reward clicked')} />
   }
 }
 
@@ -249,6 +251,13 @@ export const DynamicForm: Story = {
         >
           <RewardFormCard
             title={`Reward ${index + 1}`}
+            icon={
+              index > 0 ? (
+                <DeleteButton
+                  onClick={() => form.removeListItem('rewards', index)}
+                />
+              ) : undefined
+            }
             tokenContractAddressInputProps={{
               ...defaultTokenContractAddressInputProps,
               ...form.getInputProps(`rewards.${index}.contract_address`)
