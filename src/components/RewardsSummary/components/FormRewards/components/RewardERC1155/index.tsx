@@ -26,12 +26,7 @@ export function RewardERC1155({
   i18n = DEFAULT_FORM_REWARDS_i18n
 }: RewardERC1155Props) {
   const tokenIdRows = tokenIdsInputProps.map((inputs_i, index) => (
-    <TokenIdRow
-      key={index}
-      i18n={i18n}
-      {...inputs_i}
-      onRemoveClick={inputs_i.onRemoveClick}
-    />
+    <TokenIdRow key={index} i18n={i18n} {...inputs_i} />
   ))
   return (
     <>
@@ -41,7 +36,9 @@ export function RewardERC1155({
           <Button
             onClick={addTokenId}
             type="link"
-            leftIcon={<IconPlus />}
+            size="small"
+            leftIcon={<IconPlus width={14} height={14} />}
+            spacing="xs"
             className={styles.addTokenIdButton}
             htmlType="button"
           >
