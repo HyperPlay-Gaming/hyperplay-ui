@@ -12,7 +12,7 @@ import Button from '@/components/Button'
 import Menu from './index'
 
 const meta: Meta<typeof Menu> = {
-  title: 'Components/Menu',
+  title: 'Menu',
   component: Menu,
   args: {
     width: 200,
