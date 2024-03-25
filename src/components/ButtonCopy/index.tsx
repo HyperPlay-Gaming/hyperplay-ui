@@ -2,15 +2,16 @@
 
 import React, { HTMLAttributes } from 'react'
 
+import { Tooltip, TooltipProps } from '@mantine/core'
 import { useClipboard } from '@mantine/hooks'
-import classNames from 'classnames'
+import { IconCopy, TablerIconsProps } from '@tabler/icons-react'
+import cn from 'classnames'
 
-import { Checkmark, Copy } from '@/assets/images'
-
-import Button from '../Button'
 import styles from './ButtonCopy.module.scss'
 
 export interface ButtonCopyProps extends HTMLAttributes<HTMLButtonElement> {
+  tooltipProps?: TooltipProps
+  iconProps?: TablerIconsProps
   text: string
   i18n?: {
     copy?: string
@@ -21,32 +22,27 @@ export interface ButtonCopyProps extends HTMLAttributes<HTMLButtonElement> {
 export function ButtonCopy({
   text,
   className,
+  iconProps,
+  tooltipProps,
   i18n = { copy: 'Copy', copied: 'Copied' },
   ...props
 }: ButtonCopyProps) {
   const clipboard = useClipboard()
-  let copyButton = <Copy className={styles.copyButton} />
-
-  let copyText = i18n.copy
-
-  if (clipboard.copied) {
-    copyButton = <Checkmark className={styles.copiedCheckmark} />
-    copyText = i18n.copied
-  }
-
-  const rootClassNames: Record<string, boolean> = {}
-  rootClassNames[styles.copied] = clipboard.copied
-
   return (
-    <Button
-      size="small"
-      type="tertiary"
-      rightIcon={copyButton}
-      onClick={() => clipboard.copy(text)}
-      className={classNames(styles.root, rootClassNames, className)}
-      {...props}
+    <Tooltip
+      label={clipboard.copied ? i18n.copied : i18n.copy}
+      position="top"
+      withArrow
+      {...tooltipProps}
     >
-      {copyText}
-    </Button>
+      <button
+        type="button"
+        className={cn(styles.button, className)}
+        onClick={() => clipboard.copy(text)}
+        {...props}
+      >
+        <IconCopy color="var(--color-neutral-400)" {...iconProps} />
+      </button>
+    </Tooltip>
   )
 }

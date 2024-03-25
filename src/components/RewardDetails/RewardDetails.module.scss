@@ -1,5 +1,24 @@
 .detailsRow {
   display: flex;
-  flex-direction: row;
+  align-items: center;
   gap: var(--space-md);
+}
+
+.title {
+  font-family: var(--secondary-font-family);
+}
+
+.container {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.menuButton {
+  padding: 0;
+}
+
+.deleteButton {
+  &:hover {
+    background-color: var(--color-error-500);
+  }
 }
