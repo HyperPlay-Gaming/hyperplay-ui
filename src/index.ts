@@ -33,7 +33,6 @@ export {
 } from './components/Dropdowns'
 export { default as OptionsAccordion } from './components/OptionsAccordion'
 export type { itemType as DropdownItemType } from './components/Dropdowns/Dropdown'
-export { Menu } from '@mantine/core'
 
 export * as Typography from './components/Typography'
 export * as Images from './assets/images'
@@ -153,3 +152,6 @@ export type { RewardERC20_721Props } from './components/RewardsSummary/component
 
 export { RewardERC1155 } from './components/RewardsSummary/components/FormRewards/components/RewardERC1155'
 export type { RewardERC1155Props } from './components/RewardsSummary/components/FormRewards/components/RewardERC1155'
+
+export { default as Menu } from './components/Menu'
+export type { MenuProps } from './components/Menu'

@@ -4,9 +4,13 @@ import React from 'react'
 
 import cn from 'classnames'
 
+import { ButtonCopy } from '@/components/ButtonCopy'
+import {
+  ContainerInteractive,
+  ContainerInteractiveProps
+} from '@/components/ContainerInteractive'
 import { getTruncatedAddress } from '@/utils/addressUtils'
 
-import { ButtonCopy } from '../ButtonCopy'
 import styles from './RewardDetails.module.scss'
 
 export const defaultI18n = { player: 'Player' }
@@ -15,8 +19,7 @@ export interface RewardDetailsI18nProp {
   player: string
 }
 
-export interface RewardDetailsProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface RewardDetailsProps extends ContainerInteractiveProps {
   chainName: string
   tokenType: string
   tokenSymbol: string
@@ -27,6 +30,7 @@ export interface RewardDetailsProps
 }
 
 export function RewardDetails({
+  classNames,
   chainName,
   tokenType,
   tokenSymbol,
@@ -34,7 +38,6 @@ export function RewardDetails({
   marketplace,
   tokenContractAddress,
   i18n = defaultI18n,
-  className,
   ...props
 }: RewardDetailsProps) {
   const detailTexts = [
@@ -58,16 +61,23 @@ export function RewardDetails({
           <div className="center">
             <div className="circle" />
           </div>
-        ) : (
-          <ButtonCopy text={tokenContractAddress} />
-        )}
+        ) : null}
       </>
     )
   })
 
   return (
-    <div className={cn(styles.detailsRow, className)} {...props}>
-      {detailElements}
-    </div>
+    <ContainerInteractive
+      classNames={{
+        ...classNames,
+        title: cn(styles.title, classNames?.title)
+      }}
+      {...props}
+    >
+      <div className={styles.container}>
+        <div className={styles.detailsRow}>{detailElements}</div>
+        <ButtonCopy text={tokenContractAddress} />
+      </div>
+    </ContainerInteractive>
   )
 }
