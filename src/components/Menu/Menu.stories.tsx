@@ -3,7 +3,6 @@ import {
   IconArrowsLeftRight,
   IconMessageCircle,
   IconPhoto,
-  IconSearch,
   IconSettings,
   IconTrash
 } from '@tabler/icons-react'

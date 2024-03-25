@@ -8,7 +8,7 @@ import cn from 'classnames'
 
 import styles from './Menu.module.scss'
 
-export interface MenuProps extends MantineMenuProps {}
+export type MenuProps = MantineMenuProps
 
 const Menu = ({ classNames, ...props }: MantineMenuProps) => {
   const propClassNames = classNames as Record<string, string>
