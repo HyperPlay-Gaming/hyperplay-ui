@@ -4,6 +4,7 @@ import React from 'react'
 
 import { IconTrash } from '@tabler/icons-react'
 
+import NumberInput from '@/components/NumberInput'
 import TextInput from '@/components/TextInput'
 
 import { DEFAULT_FORM_REWARDS_i18n, FormRewardsI18n } from '../../../..'
@@ -28,12 +29,16 @@ export function TokenIdRow({
           placeholder={i18n.placeholder.tokenName}
           {...tokenNameInputProps}
         />
-        <TextInput
+        <NumberInput
           label={i18n.label.amountPerUser}
           placeholder={i18n.placeholder.amountPerUser}
           {...amountPerUserInputProps}
         />
-        <button onClick={onRemoveClick} className={styles.removeButton}>
+        <button
+          type="button"
+          onClick={onRemoveClick}
+          className={styles.removeButton}
+        >
           <IconTrash color="var(--color-neutral-400)" />
         </button>
       </div>
