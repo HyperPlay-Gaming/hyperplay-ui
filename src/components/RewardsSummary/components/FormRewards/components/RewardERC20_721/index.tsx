@@ -2,6 +2,7 @@
 
 import React from 'react'
 
+import NumberInput, { NumberInputProps } from '@/components/NumberInput'
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
 import { DEFAULT_FORM_REWARDS_i18n, FormRewardsI18n } from '../..'
@@ -9,7 +10,7 @@ import { TokenRewardInput } from '../../types'
 import styles from './index.module.scss'
 
 export interface RewardERC20_721Props extends TokenRewardInput {
-  decimalsInputProps?: TextInputProps
+  decimalsInputProps?: NumberInputProps
   tokenType: 'ERC20' | 'ERC721'
   marketplaceUrlInputProps?: TextInputProps
   i18n?: FormRewardsI18n
@@ -33,7 +34,7 @@ export function RewardERC20_721({
 
   if (tokenType === 'ERC20') {
     tokenInput = (
-      <TextInput
+      <NumberInput
         label={i18n.label.decimals}
         placeholder={i18n.placeholder.decimals}
         {...decimalsInputProps}
@@ -51,7 +52,7 @@ export function RewardERC20_721({
         />
         {tokenInput}
       </div>
-      <TextInput
+      <NumberInput
         label={i18n.label.amountPerUser}
         placeholder={i18n.placeholder.amountPerUser}
         {...amountPerUserInputProps}
