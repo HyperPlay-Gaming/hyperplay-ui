@@ -35,17 +35,18 @@ export interface DetailsListSectionProps {
   title: string;
   list: DetailsListProps[];
   expandButton?: ButtonProps
+  isExpanded?: boolean
   classNames?: DetailsListSectionClassNamesProp
-  i18n?: DetailsListSectionI18nProp
+  i18n?: DetailsListSectionI18nProp,
 }
 
-const DetailsListSection: React.FC<DetailsListSectionProps> = ({ title, expandButton, classNames = {}, list = [], i18n = defaultI81n }) => {
+const DetailsListSection: React.FC<DetailsListSectionProps> = ({ title, expandButton, isExpanded = false, classNames = {}, list = [], i18n = defaultI81n }) => {
   const [collapseStates, setCollapseStates] = useState<Record<number, boolean>>({});
-  const [areAllExpanded, setAreAllExpanded] = useState<boolean>(false);
+  const [areAllExpanded, setAreAllExpanded] = useState<boolean>(isExpanded);
 
   useEffect(() => {
     setCollapseStates(
-      list.reduce((acc, _, index) => ({ ...acc, [index]: false }), {})
+      list.reduce((acc, _, index) => ({ ...acc, [index]: isExpanded }), {})
     );
   }, [list]);
 
@@ -67,22 +68,25 @@ const DetailsListSection: React.FC<DetailsListSectionProps> = ({ title, expandBu
     <div className={cn(styles.root, classNames?.detailsList?.root)}>
       <div className={cn(styles.intro, classNames?.detailsList?.intro)}>
         <h2 className={cn('title', classNames?.detailsList?.title)}>{title}</h2>
-        <Button 
-          type="tertiary" 
-          size="small" 
-          className={cn(styles.expandAllButton, classNames?.detailsList?.expandButtonRoot)}
-          onClick={toggleAll}
-          {...expandButton}
-        >
-          {areAllExpanded ? i18n.collapseAll : i18n.expandAll}
-        </Button>
+        {list.length > 1 ? (
+            <Button 
+              type="tertiary" 
+              size="small" 
+              className={cn(styles.expandAllButton, classNames?.detailsList?.expandButtonRoot)}
+              onClick={toggleAll}
+              {...expandButton}
+            >
+              {areAllExpanded ? i18n.collapseAll : i18n.expandAll}
+            </Button>
+          ) : null
+        }
       </div>
       <div className={cn(styles.list, classNames?.detailsList?.list)}>
         {list.map(({ content, ...props }, index) => (
           <Collapse 
               key={index} 
               tabIndex={index}
-              isOpen={collapseStates[index]}
+              isOpen={collapseStates[index] !== undefined ?? isExpanded}
               onToggle={handleToggle(index)}
               classNames={{ 
                 root: cn(styles.collapseRoot, classNames?.collapse?.root), 
