@@ -1,0 +1,50 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.collapseRoot {
+  padding: var(--space-2lg);
+}
+
+.collapseContent {
+  color: var(--color-neutral-400);
+  white-space: pre-line;
+}
+
+.collapseTitle, 
+.collapseToggleButton {
+  padding: 0;
+}
+
+.title {
+  color: var(--color-neutral-400);
+  font-weight: var(--bold);
+}
+
+.open {
+  background-color: var(--color-neutral-800);
+}
+
+.intro {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2lg);
+  padding: var(--space-xs) 0;
+  width: 100%;
+  align-self: stretch;
+  align-items: center;
+  flex: 1 0 0;
+  flex-wrap: nowrap;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 100%;
+}
