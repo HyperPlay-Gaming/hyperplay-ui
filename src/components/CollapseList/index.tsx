@@ -38,7 +38,7 @@ export interface CollapseListSectionProps {
   title: string
   list: CollapseListProps[]
   expandButton?: ButtonProps
-  isExpanded: boolean
+  isExpanded?: boolean
   classNames?: CollapseListSectionClassNamesProp
   i18n?: CollapseListSectionI18nProp
 }
