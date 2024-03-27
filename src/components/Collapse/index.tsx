@@ -1,4 +1,9 @@
-import React, { HTMLAttributes, PropsWithChildren, useEffect, useState } from 'react'
+import React, {
+  HTMLAttributes,
+  PropsWithChildren,
+  useEffect,
+  useState
+} from 'react'
 
 import cn from 'classnames'
 
@@ -26,35 +31,35 @@ export interface CollapseProps
   classNames?: CollapseClassNamesProp
 }
 
-const Collapse = ({ 
-  title, 
-  subtitle, 
-  isOpen: externalIsOpen, 
-  onToggle, 
-  classNames, 
-  children, 
-  ...props 
+const Collapse = ({
+  title,
+  subtitle,
+  isOpen: externalIsOpen,
+  onToggle,
+  classNames,
+  children,
+  ...props
 }: CollapseProps) => {
   const [isOpen, setIsOpen] = useState(externalIsOpen)
 
   useEffect(() => {
     if (externalIsOpen !== undefined) {
-      setIsOpen(externalIsOpen);
+      setIsOpen(externalIsOpen)
     }
-  }, [externalIsOpen]);
+  }, [externalIsOpen])
 
   const handleToggle = () => {
-    const newState = externalIsOpen === undefined ? !isOpen : !externalIsOpen;
-    setIsOpen(newState);
+    const newState = externalIsOpen === undefined ? !isOpen : !externalIsOpen
+    setIsOpen(newState)
 
-    onToggle?.(newState);
-  };
+    onToggle?.(newState)
+  }
 
   useEffect(() => {
     if (externalIsOpen !== undefined) {
-      setIsOpen(externalIsOpen);
+      setIsOpen(externalIsOpen)
     }
-  }, [externalIsOpen]);
+  }, [externalIsOpen])
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === ' ' || e.key === 'Enter') {
