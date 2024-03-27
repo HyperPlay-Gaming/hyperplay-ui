@@ -42,6 +42,10 @@
   flex-wrap: nowrap;
 }
 
+.noTitle {
+  justify-content: flex-end;
+}
+
 .list {
   display: flex;
   flex-direction: column;

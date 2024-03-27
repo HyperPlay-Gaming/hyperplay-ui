@@ -125,6 +125,29 @@ export const WithoutSubtitle: Story = {
   }
 }
 
+export const WithoutTitle: Story = {
+  render: (props) => (
+    <div>
+      <CollapseListSection
+        {...props}
+        title={undefined}
+        list={props.list.map(({ title, content }) => ({
+          title,
+          content
+        }))}
+      />
+    </div>
+  ),
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement)
+    const title = args.title || 'Title'
+
+    const item = canvas.queryByText(title)
+
+    expect(item).toBeNull()
+  }
+}
+
 export const OpenedCollapseList: Story = {
   args: { ...simpleContentProps },
   play: async ({ canvasElement, args }) => {
