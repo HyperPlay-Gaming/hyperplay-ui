@@ -109,7 +109,7 @@ export const WithoutSubtitle: Story = {
       <CollapseListSection
         {...props}
         list={props.list.map(({ title, content }) => ({
-          title, 
+          title,
           content
         }))}
       />
