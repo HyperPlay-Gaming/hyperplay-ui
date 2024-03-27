@@ -29,7 +29,7 @@ interface CollapseListSectionClassNamesProp {
     root?: string
     title?: string
     intro?: string
-    list: string
+    list?: string
     expandButtonRoot?: string
   }
 }
