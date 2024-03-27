@@ -13,11 +13,29 @@
 .toggleButton {
   color: var(--color-neutral-100);
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
   text-align: left;
   cursor: pointer;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  align-self: stretch;
+}
+
+.subtitle {
+  font-size: var(--text-xs);
+  color: var(--color-neutral-100);
+}
+
+.content {
+  width: 100%;
 }
 
 .buttonTitle {

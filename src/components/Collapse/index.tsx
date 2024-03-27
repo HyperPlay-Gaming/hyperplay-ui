@@ -1,4 +1,9 @@
-import React, { HTMLAttributes, PropsWithChildren, useState } from 'react'
+import React, {
+  HTMLAttributes,
+  PropsWithChildren,
+  useEffect,
+  useState
+} from 'react'
 
 import cn from 'classnames'
 
@@ -6,23 +11,56 @@ import { ArrowTop, DownArrow } from '@/assets/images'
 
 import styles from './Collapse.module.scss'
 
+export interface CollapseClassNamesProp {
+  root?: string
+  content?: string
+  title?: string
+  subtitle?: string
+  open?: string
+  closed?: string
+  toggleButton?: string
+}
+
 export interface CollapseProps
   extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
   title: string
+  subtitle?: string
+  isOpen?: boolean
+  onToggle?: (isNowOpen: boolean) => boolean | void
   children: React.ReactNode
-  classNames?: {
-    root?: string
-    content?: string
-    title?: string
-    open?: string
-    closed?: string
-  }
+  classNames?: CollapseClassNamesProp
 }
 
-const Collapse = ({ title, classNames, children, ...props }: CollapseProps) => {
+const Collapse = ({
+  title,
+  subtitle,
+  isOpen: externalIsOpen,
+  onToggle,
+  classNames,
+  children,
+  ...props
+}: CollapseProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleToggle = () => setIsOpen((prev) => !prev)
+  useEffect(() => {
+    if (externalIsOpen !== undefined) {
+      setIsOpen(externalIsOpen)
+    }
+  }, [externalIsOpen])
+
+  const handleToggle = () => {
+    const newState = externalIsOpen === undefined ? !isOpen : !externalIsOpen
+    setIsOpen(newState)
+
+    onToggle?.(newState)
+  }
+
+  useEffect(() => {
+    if (externalIsOpen !== undefined) {
+      setIsOpen(externalIsOpen)
+    }
+  }, [externalIsOpen])
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault()
@@ -40,16 +78,23 @@ const Collapse = ({ title, classNames, children, ...props }: CollapseProps) => {
     >
       <button
         {...props}
-        className={styles.toggleButton}
+        className={cn(styles.toggleButton, classNames?.toggleButton)}
         onClick={handleToggle}
         onKeyDown={handleKeyDown}
         tabIndex={0}
         role="button"
-        aria-expanded={isOpen}
+        aria-expanded={isOpen || externalIsOpen}
       >
-        <span className={cn('title', styles.buttonTitle, classNames?.title)}>
-          {title}
-        </span>
+        <div className={styles.info}>
+          <span className={cn('title', styles.buttonTitle, classNames?.title)}>
+            {title}
+          </span>
+          {subtitle && (
+            <span className={cn(styles.subtitle, classNames?.subtitle)}>
+              {subtitle}
+            </span>
+          )}
+        </div>
         {isOpen ? (
           <ArrowTop className={styles.arrowTopIcon} />
         ) : (
