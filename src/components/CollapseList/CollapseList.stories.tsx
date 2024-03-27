@@ -108,8 +108,10 @@ export const WithoutSubtitle: Story = {
     <div>
       <CollapseListSection
         {...props}
-        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
-        list={props.list.map(({ subtitle, ...others }) => others)}
+        list={props.list.map(({ title, content }) => ({
+          title, 
+          content
+        }))}
       />
     </div>
   ),
