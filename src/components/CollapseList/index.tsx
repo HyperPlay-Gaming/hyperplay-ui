@@ -82,7 +82,9 @@ const CollapseListSection: React.FC<CollapseListSectionProps> = ({
   return (
     <div className={cn(styles.root, classNames?.collapseList?.root)}>
       <div className={cn(styles.intro, classNames?.collapseList?.intro)}>
-        <h2 className={cn('title', classNames?.collapseList?.title)}>{title}</h2>
+        <h2 className={cn('title', classNames?.collapseList?.title)}>
+          {title}
+        </h2>
         {list.length > 1 ? (
           <Button
             type="tertiary"
