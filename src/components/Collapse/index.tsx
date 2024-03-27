@@ -40,7 +40,7 @@ const Collapse = ({
   children,
   ...props
 }: CollapseProps) => {
-  const [isOpen, setIsOpen] = useState(externalIsOpen)
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     if (externalIsOpen !== undefined) {

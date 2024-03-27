@@ -5,27 +5,27 @@ import cn from 'classnames'
 import Button, { ButtonProps } from '@/components/Button'
 import Collapse, { CollapseProps } from '@/components/Collapse'
 
-import styles from './DetailsList.module.scss'
+import styles from './CollapseList.module.scss'
 
-export const defaultI81n: DetailsListSectionI18nProp = {
+export const defaultI81n: CollapseListSectionI18nProp = {
   expandAll: 'Expand All',
   collapseAll: 'Collapse All'
 }
 
-interface DetailsListProps {
+interface CollapseListProps {
   title: string
   subtitle?: string
   content: string | React.ReactNode
 }
 
-export interface DetailsListSectionI18nProp {
+export interface CollapseListSectionI18nProp {
   expandAll?: 'Expand All'
   collapseAll?: 'Collapse All'
 }
 
-interface DetailsListSectionClassNamesProp {
+interface CollapseListSectionClassNamesProp {
   collapse?: CollapseProps['classNames']
-  detailsList?: {
+  collapseList?: {
     root?: string
     title?: string
     intro?: string
@@ -34,20 +34,20 @@ interface DetailsListSectionClassNamesProp {
   }
 }
 
-export interface DetailsListSectionProps {
+export interface CollapseListSectionProps {
   title: string
-  list: DetailsListProps[]
+  list: CollapseListProps[]
   expandButton?: ButtonProps
-  isExpanded?: boolean
-  classNames?: DetailsListSectionClassNamesProp
-  i18n?: DetailsListSectionI18nProp
+  isExpanded: boolean
+  classNames?: CollapseListSectionClassNamesProp
+  i18n?: CollapseListSectionI18nProp
 }
 
-const DetailsListSection: React.FC<DetailsListSectionProps> = ({
+const CollapseListSection: React.FC<CollapseListSectionProps> = ({
   title,
   expandButton,
-  isExpanded = false,
   classNames = {},
+  isExpanded = false,
   list = [],
   i18n = defaultI81n
 }) => {
@@ -80,16 +80,16 @@ const DetailsListSection: React.FC<DetailsListSectionProps> = ({
   }
 
   return (
-    <div className={cn(styles.root, classNames?.detailsList?.root)}>
-      <div className={cn(styles.intro, classNames?.detailsList?.intro)}>
-        <h2 className={cn('title', classNames?.detailsList?.title)}>{title}</h2>
+    <div className={cn(styles.root, classNames?.collapseList?.root)}>
+      <div className={cn(styles.intro, classNames?.collapseList?.intro)}>
+        <h2 className={cn('title', classNames?.collapseList?.title)}>{title}</h2>
         {list.length > 1 ? (
           <Button
             type="tertiary"
             size="small"
             className={cn(
               styles.expandAllButton,
-              classNames?.detailsList?.expandButtonRoot
+              classNames?.collapseList?.expandButtonRoot
             )}
             onClick={toggleAll}
             {...expandButton}
@@ -98,12 +98,12 @@ const DetailsListSection: React.FC<DetailsListSectionProps> = ({
           </Button>
         ) : null}
       </div>
-      <div className={cn(styles.list, classNames?.detailsList?.list)}>
+      <div className={cn(styles.list, classNames?.collapseList?.list)}>
         {list.map(({ content, ...props }, index) => (
           <Collapse
             key={index}
             tabIndex={index}
-            isOpen={collapseStates[index] !== undefined ?? isExpanded}
+            isOpen={collapseStates[index]}
             onToggle={handleToggle(index)}
             classNames={{
               root: cn(styles.collapseRoot, classNames?.collapse?.root),
@@ -129,4 +129,4 @@ const DetailsListSection: React.FC<DetailsListSectionProps> = ({
   )
 }
 
-export default DetailsListSection
+export default CollapseListSection
