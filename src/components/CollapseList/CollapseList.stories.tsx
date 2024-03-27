@@ -106,9 +106,9 @@ export const Default: Story = {}
 export const WithoutSubtitle: Story = {
   render: (props) => (
     <div>
-      {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
       <CollapseListSection
         {...props}
+        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
         list={props.list.map(({ subtitle, ...others }) => others)}
       />
     </div>
