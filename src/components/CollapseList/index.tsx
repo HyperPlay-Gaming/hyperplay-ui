@@ -82,7 +82,14 @@ const CollapseListSection: React.FC<CollapseListSectionProps> = ({
 
   return (
     <div className={cn(styles.root, classNames?.collapseList?.root)}>
-      <div className={cn(styles.intro, title === undefined ? styles.noTitle : null, classNames?.collapseList?.intro, classNames?.collapseList?.noTitle)}>
+      <div
+        className={cn(
+          styles.intro,
+          title === undefined ? styles.noTitle : null,
+          classNames?.collapseList?.intro,
+          classNames?.collapseList?.noTitle
+        )}
+      >
         {title ? (
           <h2 className={cn('title', classNames?.collapseList?.title)}>
             {title}
