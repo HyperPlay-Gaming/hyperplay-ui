@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef } from 'react'
 
+import classNames from 'classnames'
+
 import { CloseButton, MagnifyingGlass } from '@/assets/images'
 
 import styles from './SearchBar.module.scss'
@@ -72,7 +74,7 @@ export default function SearchBar({
   }
 
   return (
-    <div className={`${styles.searchBar} ${containerClass ?? ''}`}>
+    <div className={classNames(styles.searchBar, containerClass)}>
       <button className={styles.searchButton}>
         <MagnifyingGlass fill="var(--color-neutral-100)" />
       </button>
@@ -83,21 +85,17 @@ export default function SearchBar({
         {...inputProps}
       />
       {showClearButton && (
-        <button className={styles.clearButton} onClick={() => clearSearch()}>
-          <CloseButton
-            fill="var(--color-neutral-100)"
-            onClick={() => clearSearch()}
-          />
+        <button className={styles.clearButton} onClick={clearSearch}>
+          <CloseButton fill="var(--color-neutral-100)" onClick={clearSearch} />
         </button>
       )}
       {gameList.length > 0 && (
         <ul className={styles.autoComplete}>
-          {gameList?.length > 0 &&
-            gameList?.map((el) => (
-              <li onClick={() => handleOnClickSuggestion(el)} key={el}>
-                {el}{' '}
-              </li>
-            ))}
+          {gameList.map((el) => (
+            <li onClick={() => handleOnClickSuggestion(el)} key={el}>
+              {el}{' '}
+            </li>
+          ))}
         </ul>
       )}
     </div>
