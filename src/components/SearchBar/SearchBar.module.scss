@@ -8,6 +8,7 @@
   border-radius: 100px;
   background: var(--color-neutral-900);
   border: solid 1px var(--color-stroke-01);
+  z-index: 1;
 
   input {
     background: transparent;
