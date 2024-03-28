@@ -65,12 +65,12 @@ export default function SearchBar({
   const handleOnClickSuggestion = (suggestion: string) => {
     if (onClickSuggestion) {
       onClickSuggestion()
-      setSearchText('')
       if (input.current) input.current.value = ''
+      setSearchText('')
       return
     }
-    setSearchText(suggestion)
     if (input.current) input.current.value = suggestion
+    setSearchText(suggestion)
   }
 
   return (
