@@ -34,7 +34,7 @@
     background: transparent;
     border: none;
     color: var(--text-secondary);
-    padding-right: var(--space-xs);
+    padding: var(--space-2xs) var(--space-xs) 0 0;
   }
 
   svg {
@@ -72,6 +72,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      cursor: pointer;
 
       &:hover {
         background: var(--color-neutral-700);
