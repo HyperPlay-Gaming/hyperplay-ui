@@ -22,15 +22,21 @@ export default function QuestLog({
 }: QuestLogProps) {
   const activeQuests = quests
     .filter((val) => val.state === 'ACTIVE')
-    .map((val) => <QuestItem key={val.title} info={val} i18n={i18n} onClick={val.onClick} />)
+    .map((val) => (
+      <QuestItem key={val.title} info={val} i18n={i18n} onClick={val.onClick} />
+    ))
 
   const claimedQuests = quests
     .filter((val) => val.state === 'CLAIMED')
-    .map((val) => <QuestItem key={val.title} info={val} i18n={i18n} onClick={val.onClick} />)
+    .map((val) => (
+      <QuestItem key={val.title} info={val} i18n={i18n} onClick={val.onClick} />
+    ))
 
   const readyForClaimQuests = quests
     .filter((val) => val.state === 'READY_FOR_CLAIM')
-    .map((val) => <QuestItem key={val.title} info={val} i18n={i18n} onClick={val.onClick} />)
+    .map((val) => (
+      <QuestItem key={val.title} info={val} i18n={i18n} onClick={val.onClick} />
+    ))
 
   const numClaimable = readyForClaimQuests.length
   let claimableQuestsCounter = null
