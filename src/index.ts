@@ -162,3 +162,9 @@ export type { MenuProps } from './components/Menu'
 
 export { default as RewardFormCard } from './components/RewardFormCard'
 export type { RewardFormCardProps } from './components/RewardFormCard'
+
+export { default as QuestLog } from './components/QuestLog'
+export * from './components/QuestLog/types'
+
+export { default as QuestDetails } from './components/QuestDetails'
+export * from './components/QuestDetails/types'
