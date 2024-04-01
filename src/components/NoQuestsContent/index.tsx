@@ -38,8 +38,7 @@ export default forwardRef<HTMLDivElement, NoQuestsContentProps>(
       onCreateNewQuest,
       i18n = {
         title: 'Create your first Quest',
-        description:
-          'Incentivize players with previous Steam Achievements to try out your game.',
+        description: 'Recognize your most valuable players with Quest Rewards.',
         buttonText: 'Create New Quest'
       },
       buttonProps = {},
@@ -52,11 +51,17 @@ export default forwardRef<HTMLDivElement, NoQuestsContentProps>(
     const LinkComponent = linkComponent ?? React.Fragment
     return (
       <div className={cn(styles.container, classNameProp)} ref={ref} {...props}>
-        <QuestIcon className={styles.questIcon} />
+        <div className={styles.questIconContainer}>
+          <QuestIcon className={styles.questIcon} />
+        </div>
         <h1 className={styles.title}>{i18n.title}</h1>
         <p className={styles.description}>{i18n.description}</p>
         <LinkComponent {...linkProps}>
-          <Button onClick={onCreateNewQuest} {...buttonProps}>
+          <Button
+            className={styles.ctaButton}
+            onClick={onCreateNewQuest}
+            {...buttonProps}
+          >
             {i18n.buttonText}
           </Button>
         </LinkComponent>

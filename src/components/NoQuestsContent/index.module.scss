@@ -12,11 +12,12 @@
   align-items: center;
   padding: var(--space-xl);
   text-align: center;
+  border-radius: var(--space-xs);
 }
 
 .title {
   @extend .title;
-
+  font-family: var(--secondary-font-family);
   margin-top: var(--space-lg);
 }
 
@@ -38,6 +39,21 @@
 }
 
 .questIcon {
-  width: 120;
-  height: 120;
+  width: 60px;
+  height: 60px;
+}
+
+.questIconContainer {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 6px solid var(--color-stroke-01);
+}
+
+.ctaButton {
+  // TODO: revisit button component and find out why we need to use !important to apply the font-size
+  font-size: var(--text-sm) !important;
 }
