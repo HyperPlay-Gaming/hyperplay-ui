@@ -47,7 +47,7 @@ const props: QuestsTableProps = {
           balance: 10
         }
       ],
-      numGames: 10,
+      type: 'Reputation',
       status: 'DRAFT',
       onClick: () => console.log('a quest clicked'),
       claims: 100,
@@ -64,7 +64,7 @@ const props: QuestsTableProps = {
           balance: 100000
         }
       ],
-      numGames: 2,
+      type: 'Reputation',
       status: 'ACTIVE',
       onClick: () => console.log('Another quest clicked'),
       claims: 300

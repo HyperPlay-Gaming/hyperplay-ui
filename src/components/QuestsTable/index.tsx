@@ -17,7 +17,7 @@ export type statusType = 'DRAFT' | 'ACTIVE'
 
 export interface QuestsTableI18n {
   name?: string
-  games?: string
+  type?: string
   rewardPerPlayer?: string
   balance?: string
   claims?: string
@@ -44,8 +44,8 @@ function getStatusDisplayName(status: statusType, i18n: QuestsTableI18n) {
 
 export interface Quest {
   name: string
+  type?: string
   rewards: RewardSimple[]
-  numGames: number
   status: statusType
   onClick?: () => void
   claims: number
@@ -69,7 +69,7 @@ export function QuestsTable({
   onFilterChange,
   i18n = {
     name: 'Name',
-    games: 'Games',
+    type: 'Type',
     rewardPerPlayer: 'Reward / Player',
     balance: 'Balance',
     claims: 'Claims',
@@ -170,8 +170,8 @@ export function QuestsTable({
                 </td>
                 <td>
                   <LinkComponent {...quest.linkProps}>
-                    <div>{i18n.games}</div>
-                    <div>{quest.numGames}</div>
+                    <div>{i18n.type}</div>
+                    <div>{quest.type}</div>
                   </LinkComponent>
                 </td>
                 <td>
@@ -188,6 +188,12 @@ export function QuestsTable({
                 </td>
                 <td>
                   <LinkComponent {...quest.linkProps}>
+                    <div>{i18n.claims}</div>
+                    <div>{quest.claims}</div>
+                  </LinkComponent>
+                </td>
+                <td>
+                  <LinkComponent {...quest.linkProps}>
                     <div>{i18n.status}</div>
                     <div className={styles.statusContainer}>
                       <div
@@ -199,12 +205,6 @@ export function QuestsTable({
                       ></div>
                       {getStatusDisplayName(quest.status, i18n)}
                     </div>
-                  </LinkComponent>
-                </td>
-                <td>
-                  <LinkComponent {...quest.linkProps}>
-                    <div>{i18n.claims}</div>
-                    <div>{quest.claims}</div>
                   </LinkComponent>
                 </td>
               </tr>
