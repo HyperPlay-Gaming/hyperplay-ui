@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef } from 'react'
 
+import classNames from 'classnames'
+
 import { CloseButton, MagnifyingGlass } from '@/assets/images'
 
 import styles from './SearchBar.module.scss'
@@ -7,17 +9,23 @@ import styles from './SearchBar.module.scss'
 type Props = {
   searchText: string
   setSearchText: (text: string) => void
+  onClickSuggestion?: () => void
   suggestions?: string[]
   i18n: {
     placeholder: string
   }
+  containerClass?: string
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
 }
 
 export default function SearchBar({
   searchText,
   setSearchText,
   i18n: { placeholder },
-  suggestions
+  suggestions,
+  onClickSuggestion,
+  containerClass,
+  inputProps
 }: Props) {
   const input = useRef<HTMLInputElement>(null)
 
@@ -54,24 +62,40 @@ export default function SearchBar({
     return []
   }, [suggestions, searchText])
 
+  const handleOnClickSuggestion = (suggestion: string) => {
+    if (onClickSuggestion) {
+      onClickSuggestion()
+      if (input.current) input.current.value = ''
+      setSearchText('')
+      return
+    }
+    if (input.current) input.current.value = suggestion
+    setSearchText(suggestion)
+  }
+
   return (
-    <div className={styles.searchBar}>
+    <div className={classNames(styles.searchBar, containerClass)}>
       <button className={styles.searchButton}>
         <MagnifyingGlass fill="var(--color-neutral-100)" />
       </button>
-      <input ref={input} type="text" placeholder={placeholder} />
+      <input
+        ref={input}
+        type="text"
+        placeholder={placeholder}
+        {...inputProps}
+      />
       {showClearButton && (
-        <button className={styles.clearButton} onClick={() => clearSearch()}>
-          <CloseButton
-            fill="var(--color-neutral-100)"
-            onClick={() => clearSearch()}
-          />
+        <button className={styles.clearButton} onClick={clearSearch}>
+          <CloseButton fill="var(--color-neutral-100)" onClick={clearSearch} />
         </button>
       )}
       {gameList.length > 0 && (
         <ul className={styles.autoComplete}>
-          {gameList?.length > 0 &&
-            gameList?.map((el) => <li key={el}>{el} </li>)}
+          {gameList.map((el) => (
+            <li onClick={() => handleOnClickSuggestion(el)} key={el}>
+              {el}{' '}
+            </li>
+          ))}
         </ul>
       )}
     </div>
