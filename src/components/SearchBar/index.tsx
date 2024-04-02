@@ -9,7 +9,7 @@ import styles from './SearchBar.module.scss'
 type Props = {
   searchText: string
   setSearchText: (text: string) => void
-  onClickSuggestion?: () => void
+  onClickSuggestion?: (suggestion: string) => void
   suggestions?: string[]
   i18n: {
     placeholder: string
@@ -64,7 +64,7 @@ export default function SearchBar({
 
   const handleOnClickSuggestion = (suggestion: string) => {
     if (onClickSuggestion) {
-      onClickSuggestion()
+      onClickSuggestion(suggestion)
       if (input.current) input.current.value = ''
       setSearchText('')
       return
