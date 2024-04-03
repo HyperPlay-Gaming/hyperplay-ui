@@ -29,6 +29,7 @@ export default function QuestDetails({
   description,
   eligibility,
   rewards,
+  rewardsLoading,
   i18n = {
     reward: 'Reward',
     associatedGames: 'Associated games',
@@ -96,7 +97,7 @@ export default function QuestDetails({
         {needMoreAchievementsText}
         {linkSteamAccountText}
 
-        <Rewards rewards={rewards} i18n={{ reward: i18n.reward }} />
+        <Rewards rewards={rewards} i18n={{ reward: i18n.reward }} loading={rewardsLoading}/>
         <Button
           type="secondary"
           className={styles.claimButton}

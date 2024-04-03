@@ -82,3 +82,26 @@ export const SmallMaxHeight: Story = {
     )
   }
 }
+
+export const NoRewards: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div style={{ height: '500px', width: '100%' }}>
+        <QuestDetails {...args} rewards={[]} />
+      </div>
+    )
+  }
+}
+
+
+export const LoadingRewards: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div style={{ height: '500px', width: '100%' }}>
+        <QuestDetails {...args} rewards={[]} rewardsLoading={true}/>
+      </div>
+    )
+  }
+}

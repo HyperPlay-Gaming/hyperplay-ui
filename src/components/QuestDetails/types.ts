@@ -36,4 +36,5 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     claim: string
     questType: QuestTypeTranslations
   }
+  rewardsLoading?: boolean
 }
