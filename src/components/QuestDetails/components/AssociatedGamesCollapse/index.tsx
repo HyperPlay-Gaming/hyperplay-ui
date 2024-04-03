@@ -26,15 +26,15 @@ export default function AssociatedGamesCollapse({
     associatedGames: 'Associated games'
   }
 }: AssociatedGamesCollapseProps) {
-  const downArrowClassNames: { [key: string]: boolean } = {}
-  downArrowClassNames[styles.opened] = opened
+  const openedClassNames: { [key: string]: boolean } = {}
+  openedClassNames[styles.opened] = opened
 
   const associatedGamesClassNames: { [key: string]: boolean } = {}
   associatedGamesClassNames[styles.associatedGamesButton] = true
   associatedGamesClassNames[styles.collpased] = !opened
-
+  
   return (
-    <div className={styles.associatedGamesContainer}>
+    <div className={classNames(styles.associatedGamesContainer, openedClassNames)}>
       <button
         onClick={toggle}
         className={classNames(associatedGamesClassNames)}
@@ -42,7 +42,7 @@ export default function AssociatedGamesCollapse({
         <div className="body-sm">{i18n.associatedGames}</div>
         <DownArrow
           fill="var(--color-neutral-400)"
-          className={classNames(downArrowClassNames)}
+          className={classNames(openedClassNames)}
         />
       </button>
       <Collapse in={opened} className={styles.associatedGamesCollapseContainer}>
@@ -56,7 +56,7 @@ export default function AssociatedGamesCollapse({
               src={game.imageUrl}
               className={styles.associatedGameThumbnail}
             />
-            <div className="body-sm">{game.title}</div>
+            <div className={classNames('body-sm', styles.title)}>{game.title}</div>
           </div>
         )
           })}
