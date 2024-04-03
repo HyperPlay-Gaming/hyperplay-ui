@@ -22,4 +22,5 @@ export interface QuestLogTranslations {
 export interface QuestLogProps extends HTMLProps<HTMLDivElement> {
   quests: QuestLogInfo[]
   i18n?: QuestLogTranslations
+  loading?: boolean
 }
