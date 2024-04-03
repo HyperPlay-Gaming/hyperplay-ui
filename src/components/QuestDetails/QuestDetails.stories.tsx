@@ -82,3 +82,55 @@ export const SmallMaxHeight: Story = {
     )
   }
 }
+
+export const NoRewards: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div style={{ height: '500px', width: '100%' }}>
+        <QuestDetails {...args} rewards={[]} />
+      </div>
+    )
+  }
+}
+
+export const LoadingRewards: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div style={{ height: '500px', width: '100%' }}>
+        <QuestDetails {...args} rewards={[]} rewardsLoading={true} />
+      </div>
+    )
+  }
+}
+
+export const LoadingDetails: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div style={{ height: '500px', width: '100%' }}>
+        <QuestDetails {...args} loading={true} />
+      </div>
+    )
+  }
+}
+
+export const LoadingEligibilityGame: Story = {
+  args: { ...props },
+  render: (args) => {
+    // need to parse or else we change the value for the other stories
+    args = JSON.parse(JSON.stringify(args))
+    if (
+      args.eligibility.reputation &&
+      args.eligibility.reputation.games.length > 0
+    ) {
+      args.eligibility.reputation.games[0].loading = true
+    }
+    return (
+      <div style={{ height: '500px', width: '100%' }}>
+        <QuestDetails {...args} />
+      </div>
+    )
+  }
+}

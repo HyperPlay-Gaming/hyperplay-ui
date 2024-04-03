@@ -8,6 +8,7 @@ export interface QuestLogInfo {
   state: 'READY_FOR_CLAIM' | 'ACTIVE' | 'CLAIMED'
   onClick?: () => void
   selected?: boolean
+  id: number
 }
 
 export interface QuestLogTranslations {
@@ -21,4 +22,5 @@ export interface QuestLogTranslations {
 export interface QuestLogProps extends HTMLProps<HTMLDivElement> {
   quests: QuestLogInfo[]
   i18n?: QuestLogTranslations
+  loading?: boolean
 }
