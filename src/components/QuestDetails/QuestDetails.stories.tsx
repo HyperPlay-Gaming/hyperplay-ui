@@ -120,6 +120,8 @@ export const LoadingDetails: Story = {
 export const LoadingEligibilityGame: Story = {
   args: { ...props },
   render: (args) => {
+    // need to parse or else we change the value for the other stories
+    args = JSON.parse(JSON.stringify(args))
     if (args.eligibility.reputation && args.eligibility.reputation.games.length > 0){
       args.eligibility.reputation.games[0].loading = true
     }
