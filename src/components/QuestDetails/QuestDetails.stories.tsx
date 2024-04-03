@@ -105,3 +105,14 @@ export const LoadingRewards: Story = {
     )
   }
 }
+
+export const LoadingDetails: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div style={{ height: '500px', width: '100%' }}>
+        <QuestDetails {...args} loading={true}/>
+      </div>
+    )
+  }
+}

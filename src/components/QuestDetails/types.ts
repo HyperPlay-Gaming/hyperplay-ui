@@ -37,4 +37,5 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     questType: QuestTypeTranslations
   }
   rewardsLoading?: boolean
+  loading?: boolean
 }

@@ -13,6 +13,7 @@ import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
 import Rewards from './components/Rewards'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
+import Loading from '../Loading'
 
 function AlertText(props: HTMLProps<HTMLDivElement>) {
   return (
@@ -42,6 +43,7 @@ export default function QuestDetails({
     }
   },
   onClaimClick,
+  loading,
   ...props
 }: QuestDetailsProps) {
   const [opened, { toggle }] = useDisclosure(false)
@@ -77,35 +79,40 @@ export default function QuestDetails({
     )
   }
 
+  let content = (<div className={classNames(className, styles.container)} {...props}>
+  {sticker}
+  <div className={classNames('title', styles.title)}>{title}</div>
+  <div
+    className={classNames(
+      'body-sm',
+      'color-neutral-400',
+      styles.description
+    )}
+  >
+    {description}
+  </div>
+
+  {gamesCollapsable}
+
+  {needMoreAchievementsText}
+  {linkSteamAccountText}
+
+  <Rewards rewards={rewards} i18n={{ reward: i18n.reward }} loading={rewardsLoading}/>
+  <Button
+    type="secondary"
+    className={styles.claimButton}
+    onClick={onClaimClick}
+  >
+    {i18n.claim}
+  </Button>
+</div>)
+  if (loading){
+    content = <Loading className={styles.loader}/>
+  }
+
   return (
     <DarkContainer className={styles.darkContainer}>
-      <div className={classNames(className, styles.container)} {...props}>
-        {sticker}
-        <div className={classNames('title', styles.title)}>{title}</div>
-        <div
-          className={classNames(
-            'body-sm',
-            'color-neutral-400',
-            styles.description
-          )}
-        >
-          {description}
-        </div>
-
-        {gamesCollapsable}
-
-        {needMoreAchievementsText}
-        {linkSteamAccountText}
-
-        <Rewards rewards={rewards} i18n={{ reward: i18n.reward }} loading={rewardsLoading}/>
-        <Button
-          type="secondary"
-          className={styles.claimButton}
-          onClick={onClaimClick}
-        >
-          {i18n.claim}
-        </Button>
-      </div>
+      {content}
     </DarkContainer>
   )
 }
