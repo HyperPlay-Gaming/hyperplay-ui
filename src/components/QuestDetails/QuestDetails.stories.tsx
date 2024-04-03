@@ -116,3 +116,17 @@ export const LoadingDetails: Story = {
     )
   }
 }
+
+export const LoadingEligibilityGame: Story = {
+  args: { ...props },
+  render: (args) => {
+    if (args.eligibility.reputation && args.eligibility.reputation.games.length > 0){
+      args.eligibility.reputation.games[0].loading = true
+    }
+    return (
+      <div style={{ height: '500px', width: '100%' }}>
+        <QuestDetails {...args} />
+      </div>
+    )
+  }
+}

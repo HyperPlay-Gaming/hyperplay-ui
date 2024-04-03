@@ -5,6 +5,7 @@ import { QuestTypeTranslations } from '@/common/types'
 export interface Game {
   title: string
   imageUrl: string
+  loading?: boolean
 }
 
 export interface ReputationQuestEligibility {

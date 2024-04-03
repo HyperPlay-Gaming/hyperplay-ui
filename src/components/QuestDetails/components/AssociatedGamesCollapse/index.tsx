@@ -7,6 +7,7 @@ import { DownArrow } from '@/assets/images'
 
 import { Game } from '../../types'
 import styles from './index.module.scss'
+import Loading from '@/components/Loading'
 
 export interface AssociatedGamesCollapseProps {
   opened: boolean
@@ -45,7 +46,11 @@ export default function AssociatedGamesCollapse({
         />
       </button>
       <Collapse in={opened} className={styles.associatedGamesCollapseContainer}>
-        {games.map((game) => (
+        {games.map((game) => {
+          if (game.loading){
+            return <Loading key={`${game.title}-loading`}/>
+          }
+          return (
           <div key={game.title} className={styles.associatedGameContainer}>
             <img
               src={game.imageUrl}
@@ -53,7 +58,8 @@ export default function AssociatedGamesCollapse({
             />
             <div className="body-sm">{game.title}</div>
           </div>
-        ))}
+        )
+          })}
       </Collapse>
     </div>
   )
