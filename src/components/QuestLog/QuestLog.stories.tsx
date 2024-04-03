@@ -66,7 +66,7 @@ export const Default: Story = {
 
 export const Loading: Story = {
   args: { ...props },
-  render: (args)=>{
-    return <QuestLog {...args} loading={true}/>
+  render: (args) => {
+    return <QuestLog {...args} loading={true} />
   }
 }

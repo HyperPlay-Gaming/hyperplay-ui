@@ -3,11 +3,11 @@ import React from 'react'
 import classNames from 'classnames'
 
 import DarkContainer from '../DarkContainer'
+import Loading from '../Loading'
 import { Tabs, getTabsClassNames } from '../Tabs'
 import QuestItem from './components/QuestItem'
 import styles from './index.module.scss'
 import { QuestLogProps } from './types'
-import Loading from '../Loading'
 
 export default function QuestLog({
   quests,
@@ -48,29 +48,29 @@ export default function QuestLog({
     )
 
   let tab1Content = null
-  if (loading){
-    tab1Content = <Loading className={styles.loader}/>
-  }
-  else {
-    tab1Content = (<div>
-      <div className={styles.sectionTitle}>{i18n.readyForClaim}</div>
-      <div className={styles.questItemsContainer}>
-        {readyForClaimQuests}
+  if (loading) {
+    tab1Content = <Loading className={styles.loader} />
+  } else {
+    tab1Content = (
+      <div>
+        <div className={styles.sectionTitle}>{i18n.readyForClaim}</div>
+        <div className={styles.questItemsContainer}>{readyForClaimQuests}</div>
+        <div className={styles.sectionTitle}>{i18n.active}</div>
+        <div className={styles.questItemsContainer}>{activeQuests}</div>
       </div>
-      <div className={styles.sectionTitle}>{i18n.active}</div>
-      <div className={styles.questItemsContainer}>{activeQuests}</div>
-    </div>)
+    )
   }
 
   let tab2Content = null
   if (loading) {
-    tab2Content = <Loading className={styles.loader}/>
-  }
-  else {
-    tab2Content = (<div>
-      <div className={styles.sectionTitle}>{i18n.claimed}</div>
-      <div className={styles.questItemsContainer}>{claimedQuests}</div>
-    </div>)
+    tab2Content = <Loading className={styles.loader} />
+  } else {
+    tab2Content = (
+      <div>
+        <div className={styles.sectionTitle}>{i18n.claimed}</div>
+        <div className={styles.questItemsContainer}>{claimedQuests}</div>
+      </div>
+    )
   }
 
   return (
@@ -93,12 +93,8 @@ export default function QuestLog({
             <div className="menu">{i18n.claimed}</div>
           </Tabs.Tab>
         </Tabs.List>
-        <Tabs.Panel value={'tab1'}>
-          {tab1Content}
-        </Tabs.Panel>
-        <Tabs.Panel value={'tab2'}>
-          {tab2Content}
-        </Tabs.Panel>
+        <Tabs.Panel value={'tab1'}>{tab1Content}</Tabs.Panel>
+        <Tabs.Panel value={'tab2'}>{tab2Content}</Tabs.Panel>
       </Tabs>
     </DarkContainer>
   )

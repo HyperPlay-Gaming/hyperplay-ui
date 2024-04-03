@@ -2,10 +2,11 @@ import React from 'react'
 
 import classNames from 'classnames'
 
+import Loading from '@/components/Loading'
+
 import { QuestReward } from '../../types'
 import Reward from '../Reward'
 import styles from './index.module.scss'
-import Loading from '@/components/Loading'
 
 export interface RewardsProps {
   rewards: QuestReward[]
@@ -21,12 +22,11 @@ export default function Rewards({
   i18n = { reward: 'Reward' }
 }: RewardsProps) {
   let rewardsContent = null
-  if (rewards.length > 0){
+  if (rewards.length > 0) {
     rewardsContent = rewards.map((reward_i) => (
       <Reward reward={reward_i} key={reward_i.title} />
     ))
-  }
-  else if (loading){
+  } else if (loading) {
     rewardsContent = <Loading />
   }
   return (
@@ -34,9 +34,7 @@ export default function Rewards({
       <div className={classNames('menu', styles.rewardTitle)}>
         {i18n.reward}
       </div>
-      <div className={styles.rewardItemsContainer}>
-        {rewardsContent}
-      </div>
+      <div className={styles.rewardItemsContainer}>{rewardsContent}</div>
     </div>
   )
 }

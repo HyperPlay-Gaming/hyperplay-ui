@@ -8,12 +8,12 @@ import { getQuestTypeDisplayName } from '@/utils/getQuestTypeDisplayName'
 
 import Button from '../Button'
 import DarkContainer from '../DarkContainer'
+import Loading from '../Loading'
 import Sticker from '../Sticker'
 import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
 import Rewards from './components/Rewards'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
-import Loading from '../Loading'
 
 function AlertText(props: HTMLProps<HTMLDivElement>) {
   return (
@@ -79,40 +79,44 @@ export default function QuestDetails({
     )
   }
 
-  let content = (<div className={classNames(className, styles.container)} {...props}>
-  {sticker}
-  <div className={classNames('title', styles.title)}>{title}</div>
-  <div
-    className={classNames(
-      'body-sm',
-      'color-neutral-400',
-      styles.description
-    )}
-  >
-    {description}
-  </div>
+  let content = (
+    <div className={classNames(className, styles.container)} {...props}>
+      {sticker}
+      <div className={classNames('title', styles.title)}>{title}</div>
+      <div
+        className={classNames(
+          'body-sm',
+          'color-neutral-400',
+          styles.description
+        )}
+      >
+        {description}
+      </div>
 
-  {gamesCollapsable}
+      {gamesCollapsable}
 
-  {needMoreAchievementsText}
-  {linkSteamAccountText}
+      {needMoreAchievementsText}
+      {linkSteamAccountText}
 
-  <Rewards rewards={rewards} i18n={{ reward: i18n.reward }} loading={rewardsLoading}/>
-  <Button
-    type="secondary"
-    className={styles.claimButton}
-    onClick={onClaimClick}
-  >
-    {i18n.claim}
-  </Button>
-</div>)
-  if (loading){
-    content = <Loading className={styles.loader}/>
+      <Rewards
+        rewards={rewards}
+        i18n={{ reward: i18n.reward }}
+        loading={rewardsLoading}
+      />
+      <Button
+        type="secondary"
+        className={styles.claimButton}
+        onClick={onClaimClick}
+      >
+        {i18n.claim}
+      </Button>
+    </div>
+  )
+  if (loading) {
+    content = <Loading className={styles.loader} />
   }
 
   return (
-    <DarkContainer className={styles.darkContainer}>
-      {content}
-    </DarkContainer>
+    <DarkContainer className={styles.darkContainer}>{content}</DarkContainer>
   )
 }
