@@ -4,7 +4,7 @@ import {
   ContainerInteractive,
   ContainerInteractiveProps
 } from '@/components/ContainerInteractive'
-import RewardImage from '@/components/RewardImage'
+import RewardImage, { RewardImageProps } from '@/components/RewardImage'
 import Select, { SelectProps } from '@/components/Select'
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
@@ -14,6 +14,7 @@ export interface RewardFormCardProps extends ContainerInteractiveProps {
   networkInputProps?: SelectProps
   tokenContractAddressInputProps?: TextInputProps
   tokenTypeInputProps?: SelectProps
+  rewardImageProps?: RewardImageProps
 }
 
 function RewardFormCard({ classNames, ...props }: RewardFormCardProps) {
@@ -29,7 +30,7 @@ function RewardFormCard({ classNames, ...props }: RewardFormCardProps) {
       <Select {...props.networkInputProps} />
       <div className={styles.split}>
         <div>
-          <RewardImage label="Reward Image" />
+          <RewardImage label="Reward Image" {...props.rewardImageProps} />
           <span className="text--sm color-neutral-400 text--semibold">
             Requirements:
           </span>
