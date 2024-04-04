@@ -4,6 +4,10 @@
   border-radius: var(--space-sm);
   background-color: var(--color-neutral-800);
   align-self: stretch;
+
+  &.opened {
+    padding: var(--space-2lg);
+  }
 }
 
 .associatedGamesButton {
@@ -24,23 +28,27 @@
   }
 }
 
-$thumbnailSize: 24px;
+$thumbnailSize: 40px;
 .associatedGameThumbnail {
-  max-width: $thumbnailSize;
   max-height: $thumbnailSize;
   height: $thumbnailSize;
   object-fit: cover;
-  border-radius: calc($thumbnailSize / 6);
+  border-radius: calc($thumbnailSize / 5);
 }
 
 .associatedGameContainer {
   display: flex;
   flex-direction: row;
-  gap: var(--space-sm);
+  gap: var(--space-md);
 }
 
 .associatedGamesCollapseContainer {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-lg);
+}
+
+.title {
+  display: flex;
+  align-items: center;
 }

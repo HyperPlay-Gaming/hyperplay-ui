@@ -2,12 +2,19 @@ import React, { HTMLProps } from 'react'
 
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import classNames from 'classnames'
 
 import styles from './Loading.module.scss'
 
-export default function Loading(props: HTMLProps<HTMLDivElement>) {
+export default function Loading({
+  className,
+  ...props
+}: HTMLProps<HTMLDivElement>) {
   return (
-    <div className={styles.loadingSpinnerContainer} {...props}>
+    <div
+      className={classNames(styles.loadingSpinnerContainer, className)}
+      {...props}
+    >
       <FontAwesomeIcon
         size={'2x'}
         fill="var(--color-neutral-100)"

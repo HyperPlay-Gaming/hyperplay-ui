@@ -2,12 +2,15 @@ import React from 'react'
 
 import classNames from 'classnames'
 
+import Loading from '@/components/Loading'
+
 import { QuestReward } from '../../types'
 import Reward from '../Reward'
 import styles from './index.module.scss'
 
 export interface RewardsProps {
   rewards: QuestReward[]
+  loading?: boolean
   i18n?: {
     reward: string
   }
@@ -15,18 +18,23 @@ export interface RewardsProps {
 
 export default function Rewards({
   rewards,
+  loading,
   i18n = { reward: 'Reward' }
 }: RewardsProps) {
+  let rewardsContent = null
+  if (rewards.length > 0) {
+    rewardsContent = rewards.map((reward_i) => (
+      <Reward reward={reward_i} key={reward_i.title} />
+    ))
+  } else if (loading) {
+    rewardsContent = <Loading />
+  }
   return (
     <div className={styles.rewardsContainer}>
       <div className={classNames('menu', styles.rewardTitle)}>
         {i18n.reward}
       </div>
-      <div className={styles.rewardItemsContainer}>
-        {rewards.map((reward_i) => (
-          <Reward reward={reward_i} key={reward_i.title} />
-        ))}
-      </div>
+      <div className={styles.rewardItemsContainer}>{rewardsContent}</div>
     </div>
   )
 }

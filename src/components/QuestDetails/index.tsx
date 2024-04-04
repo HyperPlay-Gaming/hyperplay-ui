@@ -8,6 +8,7 @@ import { getQuestTypeDisplayName } from '@/utils/getQuestTypeDisplayName'
 
 import Button from '../Button'
 import DarkContainer from '../DarkContainer'
+import Loading from '../Loading'
 import Sticker from '../Sticker'
 import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
 import Rewards from './components/Rewards'
@@ -29,6 +30,7 @@ export default function QuestDetails({
   description,
   eligibility,
   rewards,
+  rewardsLoading,
   i18n = {
     reward: 'Reward',
     associatedGames: 'Associated games',
@@ -41,6 +43,7 @@ export default function QuestDetails({
     }
   },
   onClaimClick,
+  loading,
   ...props
 }: QuestDetailsProps) {
   const [opened, { toggle }] = useDisclosure(false)
@@ -76,35 +79,44 @@ export default function QuestDetails({
     )
   }
 
-  return (
-    <DarkContainer className={styles.darkContainer}>
-      <div className={classNames(className, styles.container)} {...props}>
-        {sticker}
-        <div className={classNames('title', styles.title)}>{title}</div>
-        <div
-          className={classNames(
-            'body-sm',
-            'color-neutral-400',
-            styles.description
-          )}
-        >
-          {description}
-        </div>
-
-        {gamesCollapsable}
-
-        {needMoreAchievementsText}
-        {linkSteamAccountText}
-
-        <Rewards rewards={rewards} i18n={{ reward: i18n.reward }} />
-        <Button
-          type="secondary"
-          className={styles.claimButton}
-          onClick={onClaimClick}
-        >
-          {i18n.claim}
-        </Button>
+  let content = (
+    <div className={classNames(className, styles.container)} {...props}>
+      {sticker}
+      <div className={classNames('title', styles.title)}>{title}</div>
+      <div
+        className={classNames(
+          'body-sm',
+          'color-neutral-400',
+          styles.description
+        )}
+      >
+        {description}
       </div>
-    </DarkContainer>
+
+      {gamesCollapsable}
+
+      {needMoreAchievementsText}
+      {linkSteamAccountText}
+
+      <Rewards
+        rewards={rewards}
+        i18n={{ reward: i18n.reward }}
+        loading={rewardsLoading}
+      />
+      <Button
+        type="secondary"
+        className={styles.claimButton}
+        onClick={onClaimClick}
+      >
+        {i18n.claim}
+      </Button>
+    </div>
+  )
+  if (loading) {
+    content = <Loading className={styles.loader} />
+  }
+
+  return (
+    <DarkContainer className={styles.darkContainer}>{content}</DarkContainer>
   )
 }
