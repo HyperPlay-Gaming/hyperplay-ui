@@ -163,7 +163,24 @@ export const Controlled: Story = {
             url: form.values.image,
             onFileChange: (file) => {
               if (!file) return
-              form.setFieldValue('image', URL.createObjectURL(file))
+              let img = new Image()
+              img.src = URL.createObjectURL(file)
+              img.onload = () => {
+                form.setFieldValue('image', img.src)
+                if (img.width < 48 || img.height < 48) {
+                  form.setFieldError(
+                    'image',
+                    'Image too small, must be at least 48x48'
+                  )
+                } else if (img.width / img.height !== 1) {
+                  form.setFieldError(
+                    'image',
+                    'Image must have a 1:1 aspect ratio'
+                  )
+                } else {
+                  form.setFieldError('image', '')
+                }
+              }
             }
           }}
           networkInputProps={{
@@ -281,7 +298,25 @@ export const DynamicForm: Story = {
               url: formValues.image,
               onFileChange: (file) => {
                 if (!file) return
-                form.setFieldValue('image', URL.createObjectURL(file))
+                let img = new Image()
+                img.src = URL.createObjectURL(file)
+                img.onload = () => {
+                  const fieldName = `rewards.${index}.image`
+                  form.setFieldValue(fieldName, img.src)
+                  if (img.width < 48 || img.height < 48) {
+                    form.setFieldError(
+                      fieldName,
+                      'Image too small, must be at least 48x48'
+                    )
+                  } else if (img.width / img.height !== 1) {
+                    form.setFieldError(
+                      fieldName,
+                      'Image must have a 1:1 aspect ratio'
+                    )
+                  } else {
+                    form.setFieldError(fieldName, '')
+                  }
+                }
               }
             }}
             tokenContractAddressInputProps={{
