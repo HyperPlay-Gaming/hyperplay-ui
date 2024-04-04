@@ -89,6 +89,7 @@ const rewardsDetailsSchema = z.object({
     z.literal('ERC20')
   ]),
   chain_id: z.string(),
+  image: z.string().url(),
   contract_address: z.string().regex(ethContractAddressRegex),
   name: z.string().min(1),
   amount_per_user: z.string(),
@@ -153,6 +154,17 @@ export const Controlled: Story = {
           tokenContractAddressInputProps={{
             ...defaultTokenContractAddressInputProps,
             ...form.getInputProps('contract_address')
+          }}
+          rewardImageProps={{
+            inputProps: {
+              accept: 'image/svg+xml,image/png,image/jpeg'
+            },
+            ...form.getInputProps('image'),
+            url: form.values.image,
+            onFileChange: (file) => {
+              if (!file) return
+              form.setFieldValue('image', URL.createObjectURL(file))
+            }
           }}
           networkInputProps={{
             ...defaultNetworkInputProps,
@@ -261,6 +273,17 @@ export const DynamicForm: Story = {
                 />
               ) : undefined
             }
+            rewardImageProps={{
+              ...form.getInputProps(`rewards.${index}.image`),
+              inputProps: {
+                accept: 'image/svg+xml,image/png,image/jpeg'
+              },
+              url: formValues.image,
+              onFileChange: (file) => {
+                if (!file) return
+                form.setFieldValue('image', URL.createObjectURL(file))
+              }
+            }}
             tokenContractAddressInputProps={{
               ...defaultTokenContractAddressInputProps,
               ...form.getInputProps(`rewards.${index}.contract_address`)
