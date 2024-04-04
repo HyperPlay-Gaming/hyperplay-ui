@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import _ReactPlayer, { ReactPlayerProps } from 'react-player'
-const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>
 
 import dtCover from '@/assets/DarkThroneLandscape.png?url'
 import onisCover from '@/assets/OnisQuestLandscape.png?url'
@@ -9,6 +8,8 @@ import wakeCover from '@/assets/TheWakeLandscape.png?url'
 
 import Carousel, { SlideData } from '.'
 import Button from '../Button'
+
+const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>
 
 export default {
   title: 'Carousel/Carousel'
