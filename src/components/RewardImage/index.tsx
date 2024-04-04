@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, HTMLProps, useRef } from 'react'
 
 import { IconCamera } from '@tabler/icons-react'
 import cn from 'classnames'
@@ -7,10 +7,11 @@ import Button from '@/components/Button'
 
 import styles from './RewardImage.module.scss'
 
-export interface FileInputProps {
+export interface RewardImageProps {
   url?: string
   onFileChange?: (file: File | null) => void
   error?: string
+  inputProps?: HTMLProps<HTMLInputElement>
   classNames?: {
     root?: string
     box?: string
@@ -23,6 +24,7 @@ export interface FileInputProps {
 }
 
 function RewardImage({
+  inputProps,
   url,
   classNames,
   onFileChange,
@@ -30,7 +32,7 @@ function RewardImage({
   i18n = {
     changeImage: 'Change image'
   }
-}: FileInputProps) {
+}: RewardImageProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const triggerFileInputClick = () => fileInputRef.current?.click()
@@ -76,6 +78,7 @@ function RewardImage({
         style={{ display: 'none' }}
         onChange={handleInputChange}
         ref={fileInputRef}
+        {...inputProps}
       />
       {content}
       <span className={cn(styles.errorText, 'caption', classNames?.errorText)}>

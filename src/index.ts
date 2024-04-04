@@ -170,3 +170,4 @@ export { default as QuestDetails } from './components/QuestDetails'
 export * from './components/QuestDetails/types'
 
 export { default as RewardImage } from './components/RewardImage'
+export type { RewardImageProps } from './components/RewardImage'
