@@ -8,6 +8,7 @@ import Button from '@/components/Button'
 import styles from './RewardImage.module.scss'
 
 export interface RewardImageProps {
+  label?: string
   url?: string
   onFileChange?: (file: File | null) => void
   error?: string
@@ -17,6 +18,8 @@ export interface RewardImageProps {
     box?: string
     innerBox?: string
     errorText?: string
+    label?: string
+    changeButton?: string
   }
   i18n?: {
     changeImage: string
@@ -24,6 +27,7 @@ export interface RewardImageProps {
 }
 
 function RewardImage({
+  label,
   inputProps,
   url,
   classNames,
@@ -51,6 +55,7 @@ function RewardImage({
         <Button
           htmlType="button"
           type="secondaryGradient"
+          className={cn(styles.changeButton, classNames?.changeButton)}
           onClick={triggerFileInputClick}
         >
           {i18n.changeImage}
@@ -80,6 +85,9 @@ function RewardImage({
         ref={fileInputRef}
         {...inputProps}
       />
+      {label && (
+        <label className={cn(styles.label, classNames?.label)}>{label}</label>
+      )}
       {content}
       <span className={cn(styles.errorText, 'caption', classNames?.errorText)}>
         {error}

@@ -4,7 +4,10 @@ import RewardImage from '@/components/RewardImage/index'
 
 const meta: Meta<typeof RewardImage> = {
   title: 'Components/RewardImage',
-  component: RewardImage
+  component: RewardImage,
+  args: {
+    label: 'Reward Image'
+  }
 }
 
 export default meta
