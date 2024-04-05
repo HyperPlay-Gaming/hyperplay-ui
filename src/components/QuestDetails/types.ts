@@ -39,4 +39,10 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   }
   rewardsLoading?: boolean
   loading?: boolean
+  classNames?: {
+    root?: string
+    content?: string
+    loading?: string
+  }
+  ctaDisabled?: boolean
 }

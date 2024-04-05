@@ -1,7 +1,7 @@
 import React, { HTMLProps } from 'react'
 
 import { useDisclosure } from '@mantine/hooks'
-import classNames from 'classnames'
+import cn from 'classnames'
 
 import { AlertTriangle } from '@/assets/images'
 import { getQuestTypeDisplayName } from '@/utils/getQuestTypeDisplayName'
@@ -25,7 +25,6 @@ function AlertText(props: HTMLProps<HTMLDivElement>) {
 }
 
 export default function QuestDetails({
-  className,
   title,
   description,
   eligibility,
@@ -44,6 +43,8 @@ export default function QuestDetails({
   },
   onClaimClick,
   loading,
+  classNames,
+  ctaDisabled,
   ...props
 }: QuestDetailsProps) {
   const [opened, { toggle }] = useDisclosure(false)
@@ -80,16 +81,10 @@ export default function QuestDetails({
   }
 
   let content = (
-    <div className={classNames(className, styles.container)} {...props}>
+    <div className={cn(styles.container, classNames?.content)}>
       {sticker}
-      <div className={classNames('title', styles.title)}>{title}</div>
-      <div
-        className={classNames(
-          'body-sm',
-          'color-neutral-400',
-          styles.description
-        )}
-      >
+      <div className={cn('title', styles.title)}>{title}</div>
+      <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
         {description}
       </div>
 
@@ -107,16 +102,22 @@ export default function QuestDetails({
         type="secondary"
         className={styles.claimButton}
         onClick={onClaimClick}
+        disabled={ctaDisabled}
       >
         {i18n.claim}
       </Button>
     </div>
   )
   if (loading) {
-    content = <Loading className={styles.loader} />
+    content = <Loading className={cn(styles.loader, classNames?.loading)} />
   }
 
   return (
-    <DarkContainer className={styles.darkContainer}>{content}</DarkContainer>
+    <DarkContainer
+      className={cn(styles.darkContainer, classNames?.root)}
+      {...props}
+    >
+      {content}
+    </DarkContainer>
   )
 }
