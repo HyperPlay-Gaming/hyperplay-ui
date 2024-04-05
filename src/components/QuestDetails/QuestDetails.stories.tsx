@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
 import droid from '@/assets/Droid.png'
@@ -65,7 +67,9 @@ const props: QuestDetailsProps = {
       imageUrl: droid
     }
   ],
-  onClaimClick: () => console.log('claim clicked!')
+  onClaimClick: () => console.log('claim clicked!'),
+  collapseIsOpen: false,
+  toggleCollapse: () => console.log('toggle')
 }
 
 export const Default: Story = {
@@ -75,9 +79,14 @@ export const Default: Story = {
 export const SmallMaxHeight: Story = {
   args: { ...props },
   render: (args) => {
+    const [open, setOpen] = useState(false)
     return (
       <div style={{ height: '500px', width: '100%' }}>
-        <QuestDetails {...args} />
+        <QuestDetails
+          {...args}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
       </div>
     )
   }
@@ -86,9 +95,15 @@ export const SmallMaxHeight: Story = {
 export const NoRewards: Story = {
   args: { ...props },
   render: (args) => {
+    const [open, setOpen] = useState(false)
     return (
       <div style={{ height: '500px', width: '100%' }}>
-        <QuestDetails {...args} rewards={[]} />
+        <QuestDetails
+          {...args}
+          rewards={[]}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
       </div>
     )
   }
@@ -97,9 +112,16 @@ export const NoRewards: Story = {
 export const LoadingRewards: Story = {
   args: { ...props },
   render: (args) => {
+    const [open, setOpen] = useState(false)
     return (
       <div style={{ height: '500px', width: '100%' }}>
-        <QuestDetails {...args} rewards={[]} rewardsLoading={true} />
+        <QuestDetails
+          {...args}
+          rewards={[]}
+          rewardsLoading={true}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
       </div>
     )
   }
@@ -108,9 +130,15 @@ export const LoadingRewards: Story = {
 export const LoadingDetails: Story = {
   args: { ...props },
   render: (args) => {
+    const [open, setOpen] = useState(false)
     return (
       <div style={{ height: '500px', width: '100%' }}>
-        <QuestDetails {...args} loading={true} />
+        <QuestDetails
+          {...args}
+          loading={true}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
       </div>
     )
   }
@@ -119,6 +147,7 @@ export const LoadingDetails: Story = {
 export const LoadingEligibilityGame: Story = {
   args: { ...props },
   render: (args) => {
+    const [open, setOpen] = useState(false)
     // need to parse or else we change the value for the other stories
     args = JSON.parse(JSON.stringify(args))
     if (
@@ -129,7 +158,11 @@ export const LoadingEligibilityGame: Story = {
     }
     return (
       <div style={{ height: '500px', width: '100%' }}>
-        <QuestDetails {...args} />
+        <QuestDetails
+          {...args}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
       </div>
     )
   }

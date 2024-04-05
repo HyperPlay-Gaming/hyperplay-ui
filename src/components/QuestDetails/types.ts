@@ -45,4 +45,6 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     loading?: string
   }
   ctaDisabled?: boolean
+  collapseIsOpen: boolean
+  toggleCollapse: () => void
 }

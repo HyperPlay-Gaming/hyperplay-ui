@@ -1,6 +1,5 @@
 import React, { HTMLProps } from 'react'
 
-import { useDisclosure } from '@mantine/hooks'
 import cn from 'classnames'
 
 import { AlertTriangle } from '@/assets/images'
@@ -45,10 +44,10 @@ export default function QuestDetails({
   loading,
   classNames,
   ctaDisabled,
+  collapseIsOpen: opened,
+  toggleCollapse: toggle,
   ...props
 }: QuestDetailsProps) {
-  const [opened, { toggle }] = useDisclosure(false)
-
   let needMoreAchievementsText = null
   let linkSteamAccountText = null
   let sticker = null
