@@ -88,6 +88,7 @@ export function RewardsSummary({
 
   let content = (
     <RewardDetails
+      title={title}
       chainName={props.networkInputProps?.value}
       tokenType={props.rewardTypeInputProps?.value?.text}
       tokenSymbol={props.tokenNameInputProps?.value}
