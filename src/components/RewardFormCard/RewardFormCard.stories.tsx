@@ -163,7 +163,7 @@ export const Controlled: Story = {
             url: form.values.image,
             onFileChange: (file) => {
               if (!file) return
-              let img = new Image()
+              const img = new Image()
               img.src = URL.createObjectURL(file)
               img.onload = () => {
                 form.setFieldValue('image', img.src)
@@ -298,7 +298,7 @@ export const DynamicForm: Story = {
               url: formValues.image,
               onFileChange: (file) => {
                 if (!file) return
-                let img = new Image()
+                const img = new Image()
                 img.src = URL.createObjectURL(file)
                 img.onload = () => {
                   const fieldName = `rewards.${index}.image`
