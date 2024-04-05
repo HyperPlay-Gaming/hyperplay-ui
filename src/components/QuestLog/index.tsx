@@ -76,7 +76,10 @@ export default function QuestLog({
   }
 
   return (
-    <DarkContainer className={classNames(styles.darkContainer, className)} {...props}>
+    <DarkContainer
+      className={classNames(styles.darkContainer, className)}
+      {...props}
+    >
       <Tabs
         defaultValue={'tab1'}
         classNames={getTabsClassNames(
