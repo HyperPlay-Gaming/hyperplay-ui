@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
 import droid from '@/assets/Droid.png'
@@ -14,7 +16,6 @@ import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg'
 
 import QuestDetails from '.'
 import { QuestDetailsProps } from './types'
-import { useState } from 'react'
 
 const meta: Meta<typeof QuestDetails> = {
   title: 'Quests/QuestDetails',
@@ -81,7 +82,11 @@ export const SmallMaxHeight: Story = {
     const [open, setOpen] = useState(false)
     return (
       <div style={{ height: '500px', width: '100%' }}>
-        <QuestDetails {...args} collapseIsOpen={open} toggleCollapse={()=>setOpen(!open)}/>
+        <QuestDetails
+          {...args}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
       </div>
     )
   }
@@ -93,7 +98,12 @@ export const NoRewards: Story = {
     const [open, setOpen] = useState(false)
     return (
       <div style={{ height: '500px', width: '100%' }}>
-        <QuestDetails {...args} rewards={[]} collapseIsOpen={open} toggleCollapse={()=>setOpen(!open)}/>
+        <QuestDetails
+          {...args}
+          rewards={[]}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
       </div>
     )
   }
@@ -105,7 +115,13 @@ export const LoadingRewards: Story = {
     const [open, setOpen] = useState(false)
     return (
       <div style={{ height: '500px', width: '100%' }}>
-        <QuestDetails {...args} rewards={[]} rewardsLoading={true} collapseIsOpen={open} toggleCollapse={()=>setOpen(!open)}/>
+        <QuestDetails
+          {...args}
+          rewards={[]}
+          rewardsLoading={true}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
       </div>
     )
   }
@@ -117,7 +133,12 @@ export const LoadingDetails: Story = {
     const [open, setOpen] = useState(false)
     return (
       <div style={{ height: '500px', width: '100%' }}>
-        <QuestDetails {...args} loading={true}  collapseIsOpen={open} toggleCollapse={()=>setOpen(!open)}/>
+        <QuestDetails
+          {...args}
+          loading={true}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
       </div>
     )
   }
@@ -137,7 +158,11 @@ export const LoadingEligibilityGame: Story = {
     }
     return (
       <div style={{ height: '500px', width: '100%' }}>
-        <QuestDetails {...args} collapseIsOpen={open} toggleCollapse={()=>setOpen(!open)}/>
+        <QuestDetails
+          {...args}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
       </div>
     )
   }
