@@ -42,6 +42,8 @@
 }
 
 .changeButton {
-  font-size: var(--text-md);
+  font-size: var(
+    --text-md
+  ) !important; // override font-size from global .button styles
   margin-top: var(--space-sm);
 }
