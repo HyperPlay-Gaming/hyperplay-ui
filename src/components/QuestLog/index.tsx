@@ -20,7 +20,9 @@ export default function QuestLog({
     type: {
       REPUTATION: 'Reputation'
     }
-  }
+  },
+  className,
+  ...props
 }: QuestLogProps) {
   const activeQuests = quests
     .filter((val) => val.state === 'ACTIVE')
@@ -74,7 +76,10 @@ export default function QuestLog({
   }
 
   return (
-    <DarkContainer className={styles.darkContainer}>
+    <DarkContainer
+      className={classNames(styles.darkContainer, className)}
+      {...props}
+    >
       <Tabs
         defaultValue={'tab1'}
         classNames={getTabsClassNames(
