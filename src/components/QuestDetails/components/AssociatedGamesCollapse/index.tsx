@@ -47,7 +47,13 @@ export default function AssociatedGamesCollapse({
           className={classNames(openedClassNames)}
         />
       </button>
-      <Collapse in={opened} className={styles.associatedGamesCollapseContainer}>
+      {/** 
+        * This collapse key is necessary for use in the overlay. Without it, the user may open a game with n games and expand
+        * then click a quest with m > n eligibility games. This does not cause a re-calculation of the Mantine Collapse height,
+        * so m - n games overflow the component and are hidden.
+        * Also note that the HyperPlay Collapse component is not usable here as it is styled differently.
+        */}
+      <Collapse in={opened} className={styles.associatedGamesCollapseContainer} key={`collapse-game-eligibility=${games.length}`}>
         {games.map((game) => {
           if (game.loading) {
             return <Loading key={`${game.title}-loading`} />
