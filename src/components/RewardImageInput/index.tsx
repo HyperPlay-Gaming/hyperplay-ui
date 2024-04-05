@@ -7,7 +7,7 @@ import Button from '@/components/Button'
 
 import styles from './RewardImage.module.scss'
 
-export interface RewardImageProps {
+export interface RewardImageInputProps {
   label?: string
   url?: string
   onFileChange?: (file: File | null) => void
@@ -26,7 +26,7 @@ export interface RewardImageProps {
   }
 }
 
-function RewardImage({
+function RewardImageInput({
   label,
   inputProps,
   url,
@@ -36,7 +36,7 @@ function RewardImage({
   i18n = {
     changeImage: 'Change image'
   }
-}: RewardImageProps) {
+}: RewardImageInputProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const triggerFileInputClick = () => fileInputRef.current?.click()
@@ -96,4 +96,4 @@ function RewardImage({
   )
 }
 
-export default RewardImage
+export default RewardImageInput

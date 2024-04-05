@@ -2,11 +2,11 @@ import { useState } from 'react'
 
 import { Meta, StoryObj } from '@storybook/react'
 
-import RewardImage from '@/components/RewardImage/index'
+import RewardImageInput from '@/components/RewardImageInput/index'
 
-const meta: Meta<typeof RewardImage> = {
-  title: 'Components/RewardImage',
-  component: RewardImage,
+const meta: Meta<typeof RewardImageInput> = {
+  title: 'Components/RewardImageInput',
+  component: RewardImageInput,
   args: {
     label: 'Reward Image'
   }
@@ -14,7 +14,7 @@ const meta: Meta<typeof RewardImage> = {
 
 export default meta
 
-type Story = StoryObj<typeof RewardImage>
+type Story = StoryObj<typeof RewardImageInput>
 
 export const Default: Story = {
   args: {}
@@ -36,7 +36,7 @@ export const Controlled: Story = {
   render: () => {
     const [url, setUrl] = useState('')
     return (
-      <RewardImage
+      <RewardImageInput
         url={url}
         onFileChange={(file) => {
           if (file) {
