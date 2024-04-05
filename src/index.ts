@@ -168,3 +168,6 @@ export * from './components/QuestLog/types'
 
 export { default as QuestDetails } from './components/QuestDetails'
 export * from './components/QuestDetails/types'
+
+export { default as RewardImageInput } from './components/RewardImageInput'
+export type { RewardImageInputProps } from './components/RewardImageInput'

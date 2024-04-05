@@ -89,6 +89,7 @@ const rewardsDetailsSchema = z.object({
     z.literal('ERC20')
   ]),
   chain_id: z.string(),
+  image: z.string().url(),
   contract_address: z.string().regex(ethContractAddressRegex),
   name: z.string().min(1),
   amount_per_user: z.string(),
@@ -153,6 +154,34 @@ export const Controlled: Story = {
           tokenContractAddressInputProps={{
             ...defaultTokenContractAddressInputProps,
             ...form.getInputProps('contract_address')
+          }}
+          rewardImageProps={{
+            inputProps: {
+              accept: 'image/svg+xml,image/png,image/jpeg'
+            },
+            ...form.getInputProps('image'),
+            url: form.values.image,
+            onFileChange: (file) => {
+              if (!file) return
+              const img = new Image()
+              img.src = URL.createObjectURL(file)
+              img.onload = () => {
+                form.setFieldValue('image', img.src)
+                if (img.width < 48 || img.height < 48) {
+                  form.setFieldError(
+                    'image',
+                    'Image too small, must be at least 48x48'
+                  )
+                } else if (img.width / img.height !== 1) {
+                  form.setFieldError(
+                    'image',
+                    'Image must have a 1:1 aspect ratio'
+                  )
+                } else {
+                  form.setFieldError('image', '')
+                }
+              }
+            }
           }}
           networkInputProps={{
             ...defaultNetworkInputProps,
@@ -261,6 +290,35 @@ export const DynamicForm: Story = {
                 />
               ) : undefined
             }
+            rewardImageProps={{
+              ...form.getInputProps(`rewards.${index}.image`),
+              inputProps: {
+                accept: 'image/svg+xml,image/png,image/jpeg'
+              },
+              url: formValues.image,
+              onFileChange: (file) => {
+                if (!file) return
+                const img = new Image()
+                img.src = URL.createObjectURL(file)
+                img.onload = () => {
+                  const fieldName = `rewards.${index}.image`
+                  form.setFieldValue(fieldName, img.src)
+                  if (img.width < 48 || img.height < 48) {
+                    form.setFieldError(
+                      fieldName,
+                      'Image too small, must be at least 48x48'
+                    )
+                  } else if (img.width / img.height !== 1) {
+                    form.setFieldError(
+                      fieldName,
+                      'Image must have a 1:1 aspect ratio'
+                    )
+                  } else {
+                    form.setFieldError(fieldName, '')
+                  }
+                }
+              }
+            }}
             tokenContractAddressInputProps={{
               ...defaultTokenContractAddressInputProps,
               ...form.getInputProps(`rewards.${index}.contract_address`)
