@@ -1,6 +1,7 @@
 .root {
   width: 100%;
   border-collapse: collapse;
+
   tr {
     border-bottom: 1px solid var(--color-neutral-600);
 
@@ -22,6 +23,9 @@
   }
 }
 
-.copyButton {
-  margin-left: var(--space-md);
+.copyCell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-xs);
 }

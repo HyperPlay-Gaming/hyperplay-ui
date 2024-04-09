@@ -149,6 +149,7 @@ export function RewardDeposit({
       {!isDetailsVisible && (
         <>
           <RewardDetails
+            title={title}
             chainName={props.chainName}
             tokenType={props.tokenType}
             tokenSymbol={props.tokenSymbol}
