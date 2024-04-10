@@ -86,12 +86,6 @@ export function RewardsDepositedTable({
           <td>{i18n.rewardType}</td>
           <td>{i18n.tokenType[rewardType]}</td>
         </tr>
-        {amountPerPlayer !== undefined && (
-          <tr>
-            <td>{i18n.amountPerPlayer}</td>
-            <td>{amountPerPlayer}</td>
-          </tr>
-        )}
         {totalClaimables !== undefined && (
           <tr>
             <td>{i18n.totalClaimables}</td>
@@ -102,6 +96,12 @@ export function RewardsDepositedTable({
           <td>{i18n.tokenName}</td>
           <td>{tokenName}</td>
         </tr>
+        {amountPerPlayer !== undefined && (
+          <tr>
+            <td>{i18n.amountPerPlayer}</td>
+            <td>{amountPerPlayer}</td>
+          </tr>
+        )}
         {marketplaceUrl !== undefined && (
           <tr>
             <td>{i18n.marketplaceUrl}</td>
