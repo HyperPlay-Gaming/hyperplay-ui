@@ -3,12 +3,6 @@ import React, { ReactElement } from 'react'
 import { IconExclamationCircle } from '@tabler/icons-react'
 
 import {
-  FormDepositActions,
-  FormDepositActionsI18nProp,
-  FormDepositActionsProps,
-  defaultI18n as defaultFormDepositActionsI18n
-} from '@/components/RewardDeposit/components/FormDepositActions'
-import {
   RewardDepositedTableI18nProp,
   RewardsDepositedTable,
   RewardsDepositedTableProps,
@@ -22,28 +16,26 @@ import {
 } from '../ContainerInteractive'
 import styles from './RewardDeposit.module.scss'
 
-interface RewardDepositI18nProp
-  extends RewardDepositedTableI18nProp,
-    FormDepositActionsI18nProp {
+interface RewardDepositI18nProp extends RewardDepositedTableI18nProp {
   pendingDeposit?: string
   depositedLabel: string
 }
 
 export interface RewardDepositProps
   extends ContainerInteractiveProps,
-    Omit<FormDepositActionsProps, 'i18n'>,
     Omit<RewardsDepositedTableProps, 'i18n'> {
   state: 'NOT_DEPOSITED' | 'DEPOSITED'
   message?: string
   warning?: string
   i18n?: RewardDepositI18nProp
+  DepositComponent?: ReactElement
+  ActionComponent?: ReactElement
 }
 
 export const defaultI18n: RewardDepositI18nProp = {
   pendingDeposit: 'Pending Deposit',
   depositedLabel: 'Deposited',
-  ...defaultRewardDepositedTableI18n,
-  ...defaultFormDepositActionsI18n
+  ...defaultRewardDepositedTableI18n
 }
 
 export function RewardDeposit({
@@ -85,7 +77,7 @@ export function RewardDeposit({
       classNames={{ root: styles.root, title: styles.title }}
       {...props}
     >
-      {props.children}
+      {props.DepositComponent}
       {message && (
         <div className={styles.messageContainer}>
           <span className={styles.message}>{message}</span>
@@ -98,7 +90,7 @@ export function RewardDeposit({
           <span className={styles.warningMessage}>{warning}</span>
         </div>
       )}
-      <FormDepositActions {...props} />
+      {props.ActionComponent}
     </ContainerInteractive>
   )
 }

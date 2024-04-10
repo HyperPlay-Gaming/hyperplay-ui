@@ -2,6 +2,8 @@ import { useForm, zodResolver } from '@mantine/form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { z } from 'zod'
 
+import { FormDepositActions } from '@/components/RewardDeposit/components/FormDepositActions'
+
 import { RewardERC20 } from './components/FormDepositRewards/components/RewardERC20'
 import { RewardDeposit } from './index'
 
@@ -31,7 +33,7 @@ type ERC20Form = z.infer<typeof erc20Schema>
 
 const formatAmount = (amount: number) => amount.toLocaleString('en-US')
 
-export const ERC20: Story = {
+export const ERC20PendingDeposit: Story = {
   render: (args) => {
     const form = useForm<ERC20Form>({
       validate: zodResolver(erc20Schema)
@@ -52,19 +54,53 @@ export const ERC20: Story = {
     return (
       <RewardDeposit
         {...args}
+        message={depositingAmount > 0 ? message : undefined}
+        DepositComponent={
+          <RewardERC20
+            totalPlayerReachNumberInputProps={form.getInputProps('playerReach')}
+          />
+        }
+        ActionComponent={
+          <FormDepositActions
+            depositingAmount={`${formatAmount(depositingAmount)} ${
+              args.tokenName
+            }`}
+            onFormSubmit={onDeposit}
+          />
+        }
         warning={
           depositingAmount > 0
             ? 'Please ensure the desired Reward token(s) are in your wallet.'
             : undefined
         }
-        message={depositingAmount > 0 ? message : undefined}
-        depositingAmount={`${formatAmount(depositingAmount)} ${args.tokenName}`}
-        onFormSubmit={onDeposit}
-      >
-        <RewardERC20
-          totalPlayerReachNumberInputProps={form.getInputProps('playerReach')}
-        />
-      </RewardDeposit>
+      />
+    )
+  }
+}
+
+export const ERC20Deposited: Story = {
+  render: (args) => {
+    const playerReach = 100
+    const message = `A total of ${formatAmount(playerReach)} player${
+      playerReach > 1 ? 's' : ''
+    } will each be able to claim ${args.amountPerPlayer} ${
+      args.tokenName
+    } for successfully completing this Quest.`
+
+    return (
+      <RewardDeposit
+        {...args}
+        state="DEPOSITED"
+        message={message}
+        DepositComponent={
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ color: 'var(--color-neutral-400)' }}>
+              Total Player Reach
+            </span>
+            <span>{playerReach}</span>
+          </div>
+        }
+      />
     )
   }
 }
