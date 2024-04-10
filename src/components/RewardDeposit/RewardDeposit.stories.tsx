@@ -1,89 +1,70 @@
-import { useState } from 'react'
-
+import { useForm, zodResolver } from '@mantine/form'
 import type { Meta, StoryObj } from '@storybook/react'
+import { z } from 'zod'
 
-import { rewardDetailsProps } from '../RewardDetails/RewardDetails.stories'
-import { rewardDepositedTableProps } from '../RewardsDepositedTable/RewardsDepositedTable.stories'
-import { formDepositRewardsProps } from './components/FormDepositRewards/FormDepositRewards.stories'
-import { TokenIdItemProps } from './components/FormDepositRewards/types'
-import { RewardDeposit, RewardDepositProps, defaultI18n } from './index'
+import { RewardERC20 } from './components/FormDepositRewards/components/RewardERC20'
+import { RewardDeposit } from './index'
 
 type Story = StoryObj<typeof RewardDeposit>
 
 const meta: Meta<typeof RewardDeposit> = {
   title: 'Quests/RewardDeposit',
-  component: RewardDeposit
+  component: RewardDeposit,
+  args: {
+    title: 'Reward',
+    state: 'NOT_DEPOSITED',
+    network: 'Polygon',
+    tokenContractAddress: '0x216e17c29c175c043CF218a9105Aa1b6fa6dB31A',
+    rewardType: 'erc20',
+    tokenName: 'USDC',
+    amountPerPlayer: 10
+  }
 }
 
 export default meta
 
-const props: RewardDepositProps = {
-  ...formDepositRewardsProps,
-  title: 'Reward 1',
-  state: 'NOT_DEPOSITED',
-  isAddTokenButtonDisabled: false,
-  depositingAmount: '100 USDC',
-  onFormSubmit: async () => {
-    console.log('submit')
-  },
-  onRemoveClick: () => {
-    console.log('remove')
-  },
-  ...rewardDetailsProps,
-  ...rewardDepositedTableProps,
-  i18n: defaultI18n
-}
+const erc20Schema = z.object({
+  playerReach: z.number().min(1)
+})
 
-export const Default: Story = {
-  args: { ...props }
-}
+type ERC20Form = z.infer<typeof erc20Schema>
 
-export const Confirmed: Story = {
-  args: { ...props },
+const formatAmount = (amount: number) => amount.toLocaleString('en-US')
+
+export const ERC20: Story = {
   render: (args) => {
-    const [rawTokenIds] = useState<number[]>([])
-    const [tokenIds, setTokenIds] = useState<TokenIdItemProps[]>(
-      args.tokenIdsList
-    )
+    const form = useForm<ERC20Form>({
+      validate: zodResolver(erc20Schema)
+    })
+
+    const playerReach = form.values.playerReach ?? 0
+    const depositingAmount = playerReach * (args.amountPerPlayer ?? 0)
+    const message = `A total of ${formatAmount(playerReach)} player${
+      playerReach > 1 ? 's' : ''
+    } will each be able to claim ${args.amountPerPlayer} ${
+      args.tokenName
+    } for successfully completing this Quest.`
+
+    const onDeposit = form.onSubmit(() => {
+      alert(`Depositing ${depositingAmount} ${args.tokenName}`)
+    })
 
     return (
       <RewardDeposit
         {...args}
-        state={'DEPOSITED'}
-        tokenIdsList={tokenIds}
-        isAddTokenButtonDisabled={false}
-        onAddTokenTap={() => {
-          console.log('add token id')
-          console.log(tokenIds)
-          const newTokenIds = rawTokenIds.map((tokenId: number) => ({
-            tokenId
-          }))
-
-          const newTokenArray: TokenIdItemProps[] = [
-            ...tokenIds,
-            ...newTokenIds
-          ].map((token, index) => ({
-            tokenId: token.tokenId,
-            onRemoveTap: () => {
-              const newTokens = tokenIds.splice(index, 1)
-
-              setTokenIds(newTokens)
-              console.log('remove from storybook')
-            }
-          }))
-          console.log(newTokenArray)
-          setTokenIds(newTokenArray)
-        }}
-      />
+        warning={
+          depositingAmount > 0
+            ? 'Please ensure the desired Reward token(s) are in your wallet.'
+            : undefined
+        }
+        message={depositingAmount > 0 ? message : undefined}
+        depositingAmount={`${formatAmount(depositingAmount)} ${args.tokenName}`}
+        onFormSubmit={onDeposit}
+      >
+        <RewardERC20
+          totalPlayerReachNumberInputProps={form.getInputProps('playerReach')}
+        />
+      </RewardDeposit>
     )
-  }
-}
-
-export const Disabled: Story = {
-  args: {
-    ...props,
-    state: 'NOT_DEPOSITED',
-    defaultSelected: 'erc721',
-    isAddTokenButtonDisabled: true
   }
 }

@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import TextInput, { TextInputProps } from '@/components/TextInput'
+import { NumberInput, NumberInputProps } from '@/index'
 
 export interface RewardERC20I18nProp {
   placeholder: {
@@ -14,7 +14,7 @@ export interface RewardERC20I18nProp {
 }
 
 export interface RewardERC20Props {
-  totalPlayerReachNumberInputProps: TextInputProps
+  totalPlayerReachNumberInputProps?: NumberInputProps
   i18n?: RewardERC20I18nProp
 }
 
@@ -33,7 +33,7 @@ export function RewardERC20({
 }: RewardERC20Props) {
   return (
     <>
-      <TextInput
+      <NumberInput
         {...totalPlayerReachNumberInputProps}
         size="medium"
         label={i18n.label.totalPlayerReach}
