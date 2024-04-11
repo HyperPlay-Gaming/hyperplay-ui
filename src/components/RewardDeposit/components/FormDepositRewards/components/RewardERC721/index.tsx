@@ -4,7 +4,9 @@ import React, { useState } from 'react'
 
 import { ArrowTop, DownArrow } from '@/assets/images'
 import Button from '@/components/Button'
+import DepositMessage from '@/components/RewardDeposit/components/DepositMessage'
 import TextInput, { TextInputProps } from '@/components/TextInput'
+import { NumberInput, NumberInputProps } from '@/index'
 
 import { TokenIdItemProps } from '../../types'
 import { TokenIdRow } from './components/TokenIdRow'
@@ -30,13 +32,15 @@ export interface RewardERC721I18nProp {
 }
 
 export interface RewardERC721Props {
-  tokenFromNumberInputProps: TextInputProps
-  tokenToNumberInputProps: TextInputProps
-  amountPerUserTextInputProps: TextInputProps
-  tokenIdsList: TokenIdItemProps[]
+  tokenFromNumberInputProps?: NumberInputProps
+  tokenToNumberInputProps?: NumberInputProps
+  manualTokenIdProps?: NumberInputProps
+  tokenIdsList?: TokenIdItemProps[]
+  message?: string
   isAddTokenButtonDisabled?: boolean
   defaultTokenIdsListVisibilityState?: boolean
-  onAddTokenTap: () => void
+  onAddTokenTap?: () => void
+  onManualTokenAdd?: () => void
   i18n?: RewardERC721I18nProp
 }
 
@@ -62,11 +66,13 @@ export const defaultI18n: RewardERC721I18nProp = {
 export function RewardERC721({
   tokenFromNumberInputProps,
   tokenToNumberInputProps,
-  amountPerUserTextInputProps,
+  manualTokenIdProps,
   onAddTokenTap,
+  message,
   tokenIdsList = [],
   isAddTokenButtonDisabled = false,
   defaultTokenIdsListVisibilityState = false,
+  onManualTokenAdd,
   i18n = defaultI18n
 }: RewardERC721Props) {
   const label = (
@@ -86,7 +92,7 @@ export function RewardERC721({
     <div className={styles.base}>
       <h6 className={styles.title}>{i18n.tokenIdsTitle}</h6>
       <div className={styles.tokenContainer}>
-        <TextInput
+        <NumberInput
           {...tokenFromNumberInputProps}
           classNames={{
             label: styles.label
@@ -95,7 +101,7 @@ export function RewardERC721({
           label={i18n.label.tokenFrom}
           placeholder={i18n.placeholder.tokenFrom}
         />
-        <TextInput
+        <NumberInput
           {...tokenToNumberInputProps}
           classNames={{
             label: styles.label
@@ -122,15 +128,21 @@ export function RewardERC721({
         </span>
         <span className={styles.line}></span>
       </div>
-      <TextInput
-        {...amountPerUserTextInputProps}
+      <NumberInput
+        {...manualTokenIdProps}
         label={label}
         size="medium"
         placeholder={i18n.placeholder.tokenId}
         classNames={{
           label: styles.label
         }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            onManualTokenAdd?.()
+          }
+        }}
       />
+      {message && <DepositMessage message={message} />}
       {tokenIdsList.length > 0 && (
         <div className={styles.tokensAddedContainer}>
           <div className={styles.tokensAddedActionsContainer}>

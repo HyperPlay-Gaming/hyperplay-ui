@@ -1,8 +1,11 @@
+import { useState } from 'react'
+
 import { useForm, zodResolver } from '@mantine/form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { z } from 'zod'
 
 import { FormDepositActions } from '@/components/RewardDeposit/components/FormDepositActions'
+import { RewardERC721 } from '@/components/RewardDeposit/components/FormDepositRewards/components/RewardERC721'
 
 import { RewardERC20 } from './components/FormDepositRewards/components/RewardERC20'
 import { RewardDeposit } from './index'
@@ -99,6 +102,109 @@ export const ERC20Deposited: Story = {
             </span>
             <span>{playerReach}</span>
           </div>
+        }
+      />
+    )
+  }
+}
+
+const tokenIdSchema = z
+  .object({
+    from: z.number(),
+    to: z.number()
+  })
+  .refine((data) => data.from < data.to, {
+    message: 'From ID must be smaller than To ID',
+    path: ['from'] // specify the path of the field that the error message is associated with
+  })
+
+type TokenIdsForm = z.infer<typeof tokenIdSchema>
+
+const manualTokenIdSchema = z.object({
+  tokenId: z.number()
+})
+
+type ManualTokenIdForm = z.infer<typeof manualTokenIdSchema>
+
+export const ERC721PendingDeposit: Story = {
+  args: {
+    tokenName: 'AZUKI',
+    amountPerPlayer: undefined
+  },
+  render: (args) => {
+    const [tokenIds, setTokenIds] = useState<number[]>([])
+
+    const addTokenForm = useForm<TokenIdsForm>({
+      validate: zodResolver(tokenIdSchema)
+    })
+
+    const manualTokenForm = useForm<ManualTokenIdForm>({
+      validate: zodResolver(manualTokenIdSchema)
+    })
+
+    const onDeposit = () => {
+      addTokenForm.validate()
+      if (tokenIds.length > 0) {
+        alert(`Depositing ${tokenIds.length} ERC721 tokens`)
+      }
+    }
+
+    const onAddToken = addTokenForm.onSubmit(() => {
+      const { from, to } = addTokenForm.values
+      const newTokenIds: number[] = []
+      for (let i = from; i <= to; i++) {
+        newTokenIds.push(i)
+      }
+      setTokenIds(Array.from(new Set([...tokenIds, ...newTokenIds])))
+    })
+
+    const tokenIdsList = tokenIds.map((tokenId) => ({
+      tokenId,
+      onRemoveTap: () => {
+        setTokenIds(tokenIds.filter((id) => id !== tokenId))
+      }
+    }))
+
+    const totalPlayerReach = tokenIds.length
+
+    const message = `A total of ${totalPlayerReach} players be each able to claim 1 ${args.tokenName} for successfully completing this Quest.`
+
+    return (
+      <RewardDeposit
+        {...args}
+        playerReach={totalPlayerReach ? totalPlayerReach.toString() : '-'}
+        DepositComponent={
+          <RewardERC721
+            message={totalPlayerReach > 0 ? message : undefined}
+            defaultTokenIdsListVisibilityState={true}
+            onAddTokenTap={onAddToken}
+            tokenIdsList={tokenIdsList}
+            onManualTokenAdd={() => {
+              setTokenIds(
+                Array.from(
+                  new Set([...tokenIds, manualTokenForm.values.tokenId])
+                )
+              )
+            }}
+            manualTokenIdProps={{
+              allowNegative: false,
+              ...manualTokenForm.getInputProps('tokenId')
+            }}
+            tokenFromNumberInputProps={{
+              ...addTokenForm.getInputProps('from'),
+              allowNegative: false
+            }}
+            tokenToNumberInputProps={{
+              ...addTokenForm.getInputProps('to'),
+              allowNegative: false
+            }}
+          />
+        }
+        ActionComponent={
+          <FormDepositActions
+            onFormSubmit={onDeposit}
+            depositingAmount={null}
+          />
         }
       />
     )
