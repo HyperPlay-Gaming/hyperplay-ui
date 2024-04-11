@@ -16,7 +16,7 @@ import {
 } from '../ContainerInteractive'
 import styles from './RewardDeposit.module.scss'
 
-interface RewardDepositI18nProp extends RewardDepositedTableI18nProp {
+export interface RewardDepositI18nProp extends RewardDepositedTableI18nProp {
   pendingDeposit?: string
   depositedLabel: string
 }
@@ -94,3 +94,5 @@ export function RewardDeposit({
     </ContainerInteractive>
   )
 }
+
+export default RewardDeposit
