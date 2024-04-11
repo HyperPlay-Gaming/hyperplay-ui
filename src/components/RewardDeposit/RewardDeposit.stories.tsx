@@ -300,7 +300,7 @@ type Token = {
   amount: number
 }
 
-function createQuestMessage(tokenOne: Token, tokenTwo: Token): string {
+function createErc1155QuestMessage(tokenOne: Token, tokenTwo: Token): string {
   // Identify the token with the lesser and greater amounts
   const lesserToken = tokenOne.amount < tokenTwo.amount ? tokenOne : tokenTwo
   const greaterToken = tokenOne.amount >= tokenTwo.amount ? tokenOne : tokenTwo
@@ -336,12 +336,14 @@ export const ERC1155PendingDeposit: Story = {
     const playerReach = Math.max(tokenOneReach, tokenTwoReach)
 
     const onDeposit = form.onSubmit(() => {
-      alert('Depositing tokens')
+      alert(
+        `We need to deposit ${tokenOneReach} ${tokenOneName} and ${tokenTwoReach} ${tokenTwoName}`
+      )
     })
 
     const depositAmount = `${tokenOneReach} ${tokenOneName}, ${tokenTwoReach} ${tokenTwoName}`
 
-    const depositMessage = createQuestMessage(
+    const depositMessage = createErc1155QuestMessage(
       { name: tokenOneName, amount: tokenOneReach },
       { name: tokenTwoName, amount: tokenTwoReach }
     )
@@ -384,6 +386,55 @@ export const ERC1155PendingDeposit: Story = {
             onFormSubmit={onDeposit}
             depositingAmount={depositAmount}
           />
+        }
+      />
+    )
+  }
+}
+
+export const ERC1155Deposited: Story = {
+  args: {
+    amountPerPlayer: undefined,
+    rewardType: 'erc1155',
+    tokenName: 'GOLD, SILVER',
+    marketplaceUrl: 'https://opensea.io/collection/azuki'
+  },
+  render: (args) => {
+    const tokenOneName = 'GOLD'
+    const tokenTwoName = 'SILVER'
+
+    const tokenOneReach = 20
+    const tokenTwoReach = 80
+
+    const depositMessage = createErc1155QuestMessage(
+      { name: tokenOneName, amount: tokenOneReach },
+      { name: tokenTwoName, amount: tokenTwoReach }
+    )
+
+    return (
+      <RewardDeposit
+        {...args}
+        state="DEPOSITED"
+        message={depositMessage}
+        extraFields={{
+          [`Amount Per Play: ${tokenOneName}`]: '1',
+          [`Amount Per Play: ${tokenTwoName}`]: '1'
+        }}
+        DepositComponent={
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: 'var(--color-neutral-400)' }}>
+                Total Player Reach ({tokenOneName})
+              </span>
+              <span>{tokenOneReach}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: 'var(--color-neutral-400)' }}>
+                Total Player Reach ({tokenTwoName})
+              </span>
+              <span>{tokenTwoReach}</span>
+            </div>
+          </div>
         }
       />
     )
