@@ -4,8 +4,10 @@ import { useForm, zodResolver } from '@mantine/form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { z } from 'zod'
 
+import DepositMessage from '@/components/RewardDeposit/components/DepositMessage'
 import { FormDepositActions } from '@/components/RewardDeposit/components/FormDepositActions'
 import { RewardERC721 } from '@/components/RewardDeposit/components/FormDepositRewards/components/RewardERC721'
+import RewardDepositTokenList from '@/components/RewardDepositTokensList'
 
 import { RewardERC20 } from './components/FormDepositRewards/components/RewardERC20'
 import { RewardDeposit } from './index'
@@ -205,6 +207,49 @@ export const ERC721PendingDeposit: Story = {
             onFormSubmit={onDeposit}
             depositingAmount={null}
           />
+        }
+      />
+    )
+  }
+}
+
+export const ERC721Deposited: Story = {
+  args: {
+    tokenName: 'AZUKI',
+    amountPerPlayer: undefined
+  },
+  render: (args) => {
+    const tokenIdsList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    return (
+      <RewardDeposit
+        {...args}
+        state="DEPOSITED"
+        playerReach={tokenIdsList.length.toString()}
+        DepositComponent={
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              padding: 12,
+              border: `1px solid var(--color-neutral-700)`,
+              borderRadius: 'var(--space-md)',
+              gap: 16
+            }}
+          >
+            <DepositMessage
+              message={`A total of ${tokenIdsList.length} players will each be able to claim 1 ${args.tokenName} for successfully completing this Quest.`}
+            />
+            <RewardDepositTokenList
+              tokenCount={tokenIdsList.length}
+              visibleByDefault={true}
+            >
+              {tokenIdsList.map((tokenId, index) => (
+                <RewardDepositTokenList.Row key={`token-${tokenId}-${index}`}>
+                  {tokenId}
+                </RewardDepositTokenList.Row>
+              ))}
+            </RewardDepositTokenList>
+          </div>
         }
       />
     )
