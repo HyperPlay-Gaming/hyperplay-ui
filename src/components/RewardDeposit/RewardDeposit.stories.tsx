@@ -5,6 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { z } from 'zod'
 
 import { RewardERC721 } from '@/components/RewardDeposit/components/FormDepositRewards/components/RewardERC721'
+import { RewardERC1155 } from '@/components/RewardDeposit/components/FormDepositRewards/components/RewardERC1155'
 import RewardDepositActions from '@/components/RewardDepositActions'
 import RewardDepositMessage from '@/components/RewardDepositMessage'
 import RewardDepositTokenList from '@/components/RewardDepositTokensList'
@@ -281,6 +282,108 @@ export const ERC721Deposited: Story = {
               ))}
             </RewardDepositTokenList>
           </div>
+        }
+      />
+    )
+  }
+}
+
+const erc1155Schema = z.object({
+  tokenOne: z.number().min(1).int(),
+  tokenTwo: z.number().min(1).int()
+})
+
+type ERC1155Form = z.infer<typeof erc1155Schema>
+
+type Token = {
+  name: string
+  amount: number
+}
+
+function createQuestMessage(tokenOne: Token, tokenTwo: Token): string {
+  // Identify the token with the lesser and greater amounts
+  const lesserToken = tokenOne.amount < tokenTwo.amount ? tokenOne : tokenTwo
+  const greaterToken = tokenOne.amount >= tokenTwo.amount ? tokenOne : tokenTwo
+
+  const lesserTokenClaim = `1 ${lesserToken.name}`
+  const greaterTokenClaim = `1 ${greaterToken.name}`
+
+  // Calculate the number of remaining players who can only claim the greater token
+  const remainingPlayers = greaterToken.amount - lesserToken.amount
+
+  // Build the message based on which token is available to fewer players
+  return `The first ${lesserToken.amount} players to complete this Quest will each be able to claim ${lesserTokenClaim} and ${greaterTokenClaim}. The next ${remainingPlayers} players will each be able to claim ${greaterTokenClaim}.`
+}
+
+export const ERC1155PendingDeposit: Story = {
+  args: {
+    amountPerPlayer: undefined,
+    rewardType: 'erc1155',
+    tokenName: 'GOLD, SILVER',
+    marketplaceUrl: 'https://opensea.io/collection/azuki'
+  },
+  render: (args) => {
+    const form = useForm<ERC1155Form>({
+      validate: zodResolver(erc1155Schema)
+    })
+
+    const tokenOneName = 'GOLD'
+    const tokenTwoName = 'SILVER'
+
+    const tokenOneReach = form.values.tokenOne ?? 0
+    const tokenTwoReach = form.values.tokenTwo ?? 0
+    const depositingAmount = tokenOneReach + tokenTwoReach
+    const playerReach = Math.max(tokenOneReach, tokenTwoReach)
+
+    const onDeposit = form.onSubmit(() => {
+      alert('Depositing tokens')
+    })
+
+    const depositAmount = `${tokenOneReach} ${tokenOneName}, ${tokenTwoReach} ${tokenTwoName}`
+
+    const depositMessage = createQuestMessage(
+      { name: tokenOneName, amount: tokenOneReach },
+      { name: tokenTwoName, amount: tokenTwoReach }
+    )
+
+    const shouldShowMessage = tokenOneReach > 0 && tokenTwoReach > 0
+
+    return (
+      <RewardDeposit
+        {...args}
+        playerReach={depositingAmount > 0 ? playerReach.toString() : '-'}
+        message={shouldShowMessage ? depositMessage : undefined}
+        extraFields={{
+          [`Amount Per Play: ${tokenOneName}`]: '1',
+          [`Amount Per Play: ${tokenTwoName}`]: '1'
+        }}
+        DepositComponent={
+          <RewardERC1155
+            totalPlayerReachTokenOneInputProps={{
+              allowNegative: false,
+              ...form.getInputProps('tokenOne')
+            }}
+            totalPlayerReachTokenTwoInputProps={{
+              allowNegative: false,
+              ...form.getInputProps('tokenTwo')
+            }}
+            i18n={{
+              label: {
+                totalPlayerReachTokenOne: `Total Player Reach: ${tokenOneName}`,
+                totalPlayerReachTokenTwo: `Total Player Reach: ${tokenTwoName}`
+              },
+              placeholder: {
+                totalPlayerReachTokenOne: '0',
+                totalPlayerReachTokenTwo: '0'
+              }
+            }}
+          />
+        }
+        ActionComponent={
+          <RewardDepositActions
+            onFormSubmit={onDeposit}
+            depositingAmount={depositAmount}
+          />
         }
       />
     )

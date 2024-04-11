@@ -2,85 +2,56 @@
 
 import React from 'react'
 
-import TextInput, { TextInputProps } from '@/components/TextInput'
+import NumberInput, { NumberInputProps } from '@/components/NumberInput'
 
 import styles from './index.module.scss'
 
 export interface RewardERC1155I18nProp {
-  tokenIdsTitle: string
   placeholder: {
-    tokenIdGold: string
-    tokenIdSilver: string
-    totalPlayerReachGold: string
-    totalPlayerReachSilver: string
+    totalPlayerReachTokenOne: string
+    totalPlayerReachTokenTwo: string
   }
   label: {
-    tokenIdGold: string
-    tokenIdSilver: string
-    totalPlayerReachGold: string
-    totalPlayerReachSilver: string
+    totalPlayerReachTokenOne: string
+    totalPlayerReachTokenTwo: string
   }
 }
 
 export interface RewardERC1155Props {
-  tokenIdGoldNumberInputProps: TextInputProps
-  tokenIdSilverNumberInputProps: TextInputProps
-  totalPlayerReachGoldNumberInputProps: TextInputProps
-  totalPlayerReachSilverNumberInputProps: TextInputProps
+  totalPlayerReachTokenOneInputProps?: NumberInputProps
+  totalPlayerReachTokenTwoInputProps?: NumberInputProps
   i18n?: RewardERC1155I18nProp
 }
 
 export const defaultI18n: RewardERC1155I18nProp = {
-  tokenIdsTitle: 'Token IDs',
   placeholder: {
-    tokenIdGold: 'Paste token ID',
-    tokenIdSilver: 'Paste token ID',
-    totalPlayerReachGold: '0',
-    totalPlayerReachSilver: '0'
+    totalPlayerReachTokenOne: '0',
+    totalPlayerReachTokenTwo: '0'
   },
   label: {
-    tokenIdGold: 'Token ID: GOLD',
-    tokenIdSilver: 'Token ID: SILVER',
-    totalPlayerReachGold: 'Total Player Reach: GOLD',
-    totalPlayerReachSilver: 'Total Player Reach: SILVER'
+    totalPlayerReachTokenOne: 'Total Player Reach',
+    totalPlayerReachTokenTwo: 'Total Player Reach'
   }
 }
 
 export function RewardERC1155({
-  tokenIdGoldNumberInputProps,
-  tokenIdSilverNumberInputProps,
-  totalPlayerReachGoldNumberInputProps,
-  totalPlayerReachSilverNumberInputProps,
+  totalPlayerReachTokenOneInputProps,
+  totalPlayerReachTokenTwoInputProps,
   i18n = defaultI18n
 }: RewardERC1155Props) {
   return (
     <div className={styles.base}>
-      <div className={styles.tokenIdContainer}>
-        <h6 className={styles.title}>{i18n.tokenIdsTitle}</h6>
-        <TextInput
-          {...tokenIdGoldNumberInputProps}
-          size="medium"
-          label={i18n.label.tokenIdGold}
-          placeholder={i18n.placeholder.tokenIdGold}
-        />
-        <TextInput
-          {...tokenIdSilverNumberInputProps}
-          size="medium"
-          label={i18n.label.tokenIdGold}
-          placeholder={i18n.placeholder.tokenIdSilver}
-        />
-      </div>
-      <TextInput
-        {...totalPlayerReachGoldNumberInputProps}
+      <NumberInput
+        {...totalPlayerReachTokenOneInputProps}
         size="medium"
-        label={i18n.label.totalPlayerReachGold}
-        placeholder={i18n.placeholder.totalPlayerReachGold}
+        label={i18n.label.totalPlayerReachTokenOne}
+        placeholder={i18n.placeholder.totalPlayerReachTokenOne}
       />
-      <TextInput
-        {...totalPlayerReachSilverNumberInputProps}
+      <NumberInput
+        {...totalPlayerReachTokenTwoInputProps}
         size="medium"
-        label={i18n.label.totalPlayerReachSilver}
-        placeholder={i18n.placeholder.totalPlayerReachSilver}
+        label={i18n.label.totalPlayerReachTokenTwo}
+        placeholder={i18n.placeholder.totalPlayerReachTokenTwo}
       />
     </div>
   )
