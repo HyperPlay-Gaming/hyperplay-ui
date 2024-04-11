@@ -39,7 +39,7 @@ export const defaultI18n: RewardDepositedTableI18nProp = {
   network: 'Network',
   tokenContractAddress: 'Token Contract Address',
   rewardType: 'Reward Type',
-  tokenName: 'Token Name',
+  tokenName: 'Token Name(s)',
   amountPerPlayer: 'Amount Per Player',
   totalClaimables: 'Total No of Claimables',
   marketplaceUrl: 'Marketplace URL',
