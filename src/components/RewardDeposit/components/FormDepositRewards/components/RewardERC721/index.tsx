@@ -1,15 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
-
-import { ArrowTop, DownArrow } from '@/assets/images'
+import { TrashCan } from '@/assets/images'
 import Button from '@/components/Button'
 import DepositMessage from '@/components/RewardDeposit/components/DepositMessage'
-import TextInput, { TextInputProps } from '@/components/TextInput'
+import RewardDepositTokenList from '@/components/RewardDepositTokensList'
 import { NumberInput, NumberInputProps } from '@/index'
 
 import { TokenIdItemProps } from '../../types'
-import { TokenIdRow } from './components/TokenIdRow'
 import styles from './index.module.scss'
 
 export interface RewardERC721I18nProp {
@@ -81,12 +78,6 @@ export function RewardERC721({
       <span className={styles.labelHint}>({i18n.pressEnterToAdd})</span>
     </span>
   )
-  const [showTokenIds, setShowTokenIds] = useState<boolean>(
-    defaultTokenIdsListVisibilityState
-  )
-  const onShowToken = () => {
-    setShowTokenIds((prev) => !prev)
-  }
 
   return (
     <div className={styles.base}>
@@ -144,37 +135,22 @@ export function RewardERC721({
       />
       {message && <DepositMessage message={message} />}
       {tokenIdsList.length > 0 && (
-        <div className={styles.tokensAddedContainer}>
-          <div className={styles.tokensAddedActionsContainer}>
-            <span>
-              {i18n.addedTokenCounterText} {tokenIdsList.length}
-            </span>
-            <div className={styles.tokensAddedActions}>
-              <span>{i18n.collapseAllIds}</span>
-              {showTokenIds ? (
-                <DownArrow
-                  onClick={onShowToken}
-                  className={styles.arrowDownIcon}
-                />
-              ) : (
-                <ArrowTop
-                  onClick={onShowToken}
-                  className={styles.arrowTopIcon}
-                />
-              )}
-            </div>
-          </div>
-          {showTokenIds && (
-            <div className={styles.tokensAddedList}>
-              {tokenIdsList.map((tokenProps, index) => (
-                <TokenIdRow
-                  key={`token-${tokenProps.tokenId}-${index}`}
-                  {...tokenProps}
-                />
-              ))}
-            </div>
-          )}
-        </div>
+        <RewardDepositTokenList
+          tokenCount={tokenIdsList.length}
+          visibleByDefault={defaultTokenIdsListVisibilityState}
+        >
+          {tokenIdsList.map(({ tokenId, onRemoveTap }, index) => (
+            <RewardDepositTokenList.Row key={`token-${tokenId}-${index}`}>
+              <div>{tokenId}</div>
+              <Button
+                type="tertiary"
+                onClick={onRemoveTap}
+                rightIcon={<TrashCan fill="var(--color-neutral-400)" />}
+                className={styles.removeButton}
+              />
+            </RewardDepositTokenList.Row>
+          ))}
+        </RewardDepositTokenList>
       )}
     </div>
   )
