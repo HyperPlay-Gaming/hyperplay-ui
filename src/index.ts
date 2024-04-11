@@ -182,3 +182,9 @@ export type {
   RewardERC1155DepositProps,
   RewardERC1155DepositI18nProp
 } from './components/RewardERC1155Deposit'
+
+export { default as RewardERC20Deposit } from './components/RewardERC20Deposit'
+export type {
+  RewardERC20DepositProps,
+  RewardERC20DepositI18nProp
+} from './components/RewardERC20Deposit'

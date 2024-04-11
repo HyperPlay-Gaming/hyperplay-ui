@@ -8,9 +8,9 @@ import { RewardERC721 } from '@/components/RewardDeposit/components/FormDepositR
 import RewardDepositActions from '@/components/RewardDepositActions'
 import RewardDepositMessage from '@/components/RewardDepositMessage'
 import RewardDepositTokenList from '@/components/RewardDepositTokensList'
+import RewardERC20Deposit from '@/components/RewardERC20Deposit'
 import RewardERC1155Deposit from '@/components/RewardERC1155Deposit'
 
-import { RewardERC20 } from './components/FormDepositRewards/components/RewardERC20'
 import { RewardDeposit } from './index'
 
 type Story = StoryObj<typeof RewardDeposit>
@@ -62,7 +62,7 @@ export const ERC20PendingDeposit: Story = {
         {...args}
         message={depositingAmount > 0 ? message : undefined}
         DepositComponent={
-          <RewardERC20
+          <RewardERC20Deposit
             totalPlayerReachNumberInputProps={form.getInputProps('playerReach')}
           />
         }

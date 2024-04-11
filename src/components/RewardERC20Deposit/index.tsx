@@ -4,7 +4,7 @@ import React from 'react'
 
 import { NumberInput, NumberInputProps } from '@/index'
 
-export interface RewardERC20I18nProp {
+export interface RewardERC20DepositI18nProp {
   placeholder: {
     totalPlayerReach: string
   }
@@ -13,12 +13,12 @@ export interface RewardERC20I18nProp {
   }
 }
 
-export interface RewardERC20Props {
+export interface RewardERC20DepositProps {
   totalPlayerReachNumberInputProps?: NumberInputProps
-  i18n?: RewardERC20I18nProp
+  i18n?: RewardERC20DepositI18nProp
 }
 
-export const defaultI18n: RewardERC20I18nProp = {
+export const defaultI18n: RewardERC20DepositI18nProp = {
   placeholder: {
     totalPlayerReach: '0'
   },
@@ -27,10 +27,10 @@ export const defaultI18n: RewardERC20I18nProp = {
   }
 }
 
-export function RewardERC20({
+export function RewardERC20Deposit({
   totalPlayerReachNumberInputProps,
   i18n = defaultI18n
-}: RewardERC20Props) {
+}: RewardERC20DepositProps) {
   return (
     <>
       <NumberInput
@@ -42,3 +42,5 @@ export function RewardERC20({
     </>
   )
 }
+
+export default RewardERC20Deposit
