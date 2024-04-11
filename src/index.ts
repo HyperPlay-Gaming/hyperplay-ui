@@ -171,3 +171,5 @@ export * from './components/QuestDetails/types'
 
 export { default as RewardImageInput } from './components/RewardImageInput'
 export type { RewardImageInputProps } from './components/RewardImageInput'
+
+export { default as RewardDepositMessage } from './components/RewardDepositMessage'

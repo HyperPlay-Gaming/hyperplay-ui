@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import styles from './DepositMessage.module.scss'
+import styles from './RewardDepositMessage.module.scss'
 
 interface Props {
   message: string
@@ -10,7 +10,7 @@ interface Props {
   }
 }
 
-export default function DepositMessage({ classNames, message }: Props) {
+export default function RewardDepositMessage({ classNames, message }: Props) {
   return (
     <div className={cn(styles.messageContainer, classNames?.root)}>
       <span className={cn(styles.message, classNames?.message)}>{message}</span>

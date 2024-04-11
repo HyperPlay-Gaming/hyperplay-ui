@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import { TrashCan } from '@/assets/images'
 import Button from '@/components/Button'
-import DepositMessage from '@/components/RewardDeposit/components/DepositMessage'
+import RewardDepositMessage from '@/components/RewardDepositMessage'
 import RewardDepositTokenList from '@/components/RewardDepositTokensList'
 import { NumberInput, NumberInputProps } from '@/index'
 
@@ -140,7 +140,7 @@ export function RewardERC721({
           }
         }}
       />
-      {message && <DepositMessage message={message} />}
+      {message && <RewardDepositMessage message={message} />}
       {tokenIdsList.length > 0 && (
         <RewardDepositTokenList
           tokenCount={tokenIdsList.length}
