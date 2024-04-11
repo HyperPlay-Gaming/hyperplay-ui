@@ -172,28 +172,28 @@ export * from './components/QuestDetails/types'
 export { default as RewardImageInput } from './components/RewardImageInput'
 export type { RewardImageInputProps } from './components/RewardImageInput'
 
-export { default as RewardDepositMessage } from './components/RewardDepositMessage'
+export { default as RewardDepositMessage } from './components/RewardDeposit/components/RewardDepositMessage'
 
-export { default as RewardDepositActions } from './components/RewardDepositActions'
-export type { RewardDepositActionsProps } from './components/RewardDepositActions'
+export { default as RewardDepositActions } from './components/RewardDeposit/components/RewardDepositActions'
+export type { RewardDepositActionsProps } from './components/RewardDeposit/components/RewardDepositActions'
 
-export { default as RewardERC1155Deposit } from './components/RewardERC1155Deposit'
+export { default as RewardERC1155Deposit } from './components/RewardDeposit/components/RewardERC1155Deposit'
 export type {
   RewardERC1155DepositProps,
   RewardERC1155DepositI18nProp
-} from './components/RewardERC1155Deposit'
+} from './components/RewardDeposit/components/RewardERC1155Deposit'
 
-export { default as RewardERC20Deposit } from './components/RewardERC20Deposit'
+export { default as RewardERC20Deposit } from './components/RewardDeposit/components/RewardERC20Deposit'
 export type {
   RewardERC20DepositProps,
   RewardERC20DepositI18nProp
-} from './components/RewardERC20Deposit'
+} from './components/RewardDeposit/components/RewardERC20Deposit'
 
-export { default as RewardERC721Deposit } from './components/RewardERC721Deposit'
+export { default as RewardERC721Deposit } from './components/RewardDeposit/components/RewardERC721Deposit'
 export type {
   RewardERC721DepositProps,
   RewardERC721DepositI18nProp
-} from './components/RewardERC721Deposit'
+} from './components/RewardDeposit/components/RewardERC721Deposit'
 
 export { default as RewardDeposit } from './components/RewardDeposit'
 export type {

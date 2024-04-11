@@ -4,13 +4,12 @@ import { useForm, zodResolver } from '@mantine/form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { z } from 'zod'
 
-import RewardDepositActions from '@/components/RewardDepositActions'
-import RewardDepositMessage from '@/components/RewardDepositMessage'
-import RewardDepositTokenList from '@/components/RewardDepositTokensList'
-import RewardERC20Deposit from '@/components/RewardERC20Deposit'
-import RewardERC721Deposit from '@/components/RewardERC721Deposit'
-import RewardERC1155Deposit from '@/components/RewardERC1155Deposit'
-
+import RewardDepositActions from './components/RewardDepositActions'
+import RewardDepositMessage from './components/RewardDepositMessage'
+import RewardDepositTokenList from './components/RewardDepositTokensList'
+import RewardERC20Deposit from './components/RewardERC20Deposit'
+import RewardERC721Deposit from './components/RewardERC721Deposit'
+import RewardERC1155Deposit from './components/RewardERC1155Deposit'
 import { RewardDeposit } from './index'
 
 type Story = StoryObj<typeof RewardDeposit>

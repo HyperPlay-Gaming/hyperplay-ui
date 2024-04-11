@@ -4,10 +4,10 @@ import cn from 'classnames'
 
 import { TrashCan } from '@/assets/images'
 import Button from '@/components/Button'
-import RewardDepositMessage from '@/components/RewardDepositMessage'
-import RewardDepositTokenList from '@/components/RewardDepositTokensList'
 import { NumberInput, NumberInputProps } from '@/index'
 
+import RewardDepositMessage from '../RewardDepositMessage'
+import RewardDepositTokenList from '../RewardDepositTokensList'
 import styles from './index.module.scss'
 
 export interface RewardERC721DepositI18nProp {
