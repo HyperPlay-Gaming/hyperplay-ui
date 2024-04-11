@@ -1,12 +1,13 @@
 'use client'
 
+import cn from 'classnames'
+
 import { TrashCan } from '@/assets/images'
 import Button from '@/components/Button'
 import DepositMessage from '@/components/RewardDeposit/components/DepositMessage'
 import RewardDepositTokenList from '@/components/RewardDepositTokensList'
 import { NumberInput, NumberInputProps } from '@/index'
 
-import { TokenIdItemProps } from '../../types'
 import styles from './index.module.scss'
 
 export interface RewardERC721I18nProp {
@@ -26,6 +27,12 @@ export interface RewardERC721I18nProp {
     tokenTo: string
     tokenId: string
   }
+}
+
+interface TokenIdItemProps {
+  tokenId: number
+  error?: string
+  onRemoveTap: () => void
 }
 
 export interface RewardERC721Props {
@@ -139,9 +146,11 @@ export function RewardERC721({
           tokenCount={tokenIdsList.length}
           visibleByDefault={defaultTokenIdsListVisibilityState}
         >
-          {tokenIdsList.map(({ tokenId, onRemoveTap }, index) => (
+          {tokenIdsList.map(({ tokenId, error, onRemoveTap }, index) => (
             <RewardDepositTokenList.Row key={`token-${tokenId}-${index}`}>
-              <div>{tokenId}</div>
+              <div className={cn(error && styles.error)}>
+                {error ? `${tokenId} (${error})` : tokenId}
+              </div>
               <Button
                 type="tertiary"
                 onClick={onRemoveTap}

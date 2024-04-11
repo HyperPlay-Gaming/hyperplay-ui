@@ -134,7 +134,12 @@ export const ERC721PendingDeposit: Story = {
     amountPerPlayer: undefined
   },
   render: (args) => {
-    const [tokenIds, setTokenIds] = useState<number[]>([])
+    const mockedOwnedTokenIds = new Map<number, boolean>(
+      [1, 2, 3, 4, 5].map((id) => [id, true])
+    )
+    const [tokenIds, setTokenIds] = useState<{ id: number; error?: string }[]>(
+      []
+    )
 
     const addTokenForm = useForm<TokenIdsForm>({
       validate: zodResolver(tokenIdSchema)
@@ -146,8 +151,19 @@ export const ERC721PendingDeposit: Story = {
 
     const onDeposit = () => {
       addTokenForm.validate()
-      if (tokenIds.length > 0) {
-        alert(`Depositing ${tokenIds.length} ERC721 tokens`)
+      if (tokenIds.length === 0) return
+
+      for (let i = 0; i < tokenIds.length; i++) {
+        const hasToken = mockedOwnedTokenIds.get(tokenIds[i].id) ?? false
+        if (!hasToken) {
+          tokenIds[i].error = 'Reward token not owned'
+        }
+      }
+
+      const valid = tokenIds.every((token) => !token.error)
+
+      if (valid) {
+        alert('Depositing tokens')
       }
     }
 
@@ -157,11 +173,32 @@ export const ERC721PendingDeposit: Story = {
       for (let i = from; i <= to; i++) {
         newTokenIds.push(i)
       }
-      setTokenIds(Array.from(new Set([...tokenIds, ...newTokenIds])))
+      const tokenIdsSet = new Set(tokenIds.map((token) => token.id))
+      const nonDuplicateTokenIds = newTokenIds.filter(
+        (id) => !tokenIdsSet.has(id)
+      )
+      setTokenIds([...tokenIds, ...nonDuplicateTokenIds.map((id) => ({ id }))])
     })
 
+    const onManualTokenAdd = () => {
+      manualTokenForm.validate()
+
+      if (!manualTokenForm.isValid()) {
+        return
+      }
+
+      const alreadyInList = tokenIds.find(
+        ({ id }) => id === manualTokenForm.values.tokenId
+      )
+
+      if (!alreadyInList) {
+        setTokenIds([...tokenIds, { id: manualTokenForm.values.tokenId }])
+      }
+    }
+
     const tokenIdsList = tokenIds.map((tokenId) => ({
-      tokenId,
+      tokenId: tokenId.id,
+      error: tokenId.error,
       onRemoveTap: () => {
         setTokenIds(tokenIds.filter((id) => id !== tokenId))
       }
@@ -181,13 +218,7 @@ export const ERC721PendingDeposit: Story = {
             defaultTokenIdsListVisibilityState={true}
             onAddTokenTap={onAddToken}
             tokenIdsList={tokenIdsList}
-            onManualTokenAdd={() => {
-              setTokenIds(
-                Array.from(
-                  new Set([...tokenIds, manualTokenForm.values.tokenId])
-                )
-              )
-            }}
+            onManualTokenAdd={onManualTokenAdd}
             manualTokenIdProps={{
               allowNegative: false,
               ...manualTokenForm.getInputProps('tokenId')
