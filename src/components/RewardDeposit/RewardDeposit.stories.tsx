@@ -4,11 +4,11 @@ import { useForm, zodResolver } from '@mantine/form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { z } from 'zod'
 
-import { RewardERC721 } from '@/components/RewardDeposit/components/FormDepositRewards/components/RewardERC721'
 import RewardDepositActions from '@/components/RewardDepositActions'
 import RewardDepositMessage from '@/components/RewardDepositMessage'
 import RewardDepositTokenList from '@/components/RewardDepositTokensList'
 import RewardERC20Deposit from '@/components/RewardERC20Deposit'
+import RewardERC721Deposit from '@/components/RewardERC721Deposit'
 import RewardERC1155Deposit from '@/components/RewardERC1155Deposit'
 
 import { RewardDeposit } from './index'
@@ -214,7 +214,7 @@ export const ERC721PendingDeposit: Story = {
         {...args}
         playerReach={totalPlayerReach ? totalPlayerReach.toString() : '-'}
         DepositComponent={
-          <RewardERC721
+          <RewardERC721Deposit
             message={totalPlayerReach > 0 ? message : undefined}
             defaultTokenIdsListVisibilityState={true}
             onAddTokenTap={onAddToken}

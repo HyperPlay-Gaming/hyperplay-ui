@@ -10,7 +10,7 @@ import { NumberInput, NumberInputProps } from '@/index'
 
 import styles from './index.module.scss'
 
-export interface RewardERC721I18nProp {
+export interface RewardERC721DepositI18nProp {
   tokenIdsTitle: string
   orAddManually: string
   callToActionAddToken: string
@@ -35,7 +35,7 @@ interface TokenIdItemProps {
   onRemoveTap: () => void
 }
 
-export interface RewardERC721Props {
+export interface RewardERC721DepositProps {
   tokenFromNumberInputProps?: NumberInputProps
   tokenToNumberInputProps?: NumberInputProps
   manualTokenIdProps?: NumberInputProps
@@ -45,10 +45,10 @@ export interface RewardERC721Props {
   defaultTokenIdsListVisibilityState?: boolean
   onAddTokenTap?: () => void
   onManualTokenAdd?: () => void
-  i18n?: RewardERC721I18nProp
+  i18n?: RewardERC721DepositI18nProp
 }
 
-export const defaultI18n: RewardERC721I18nProp = {
+export const defaultI18n: RewardERC721DepositI18nProp = {
   tokenIdsTitle: 'Token IDs',
   orAddManually: 'Or add manually',
   callToActionAddToken: 'Add Token IDs',
@@ -67,7 +67,7 @@ export const defaultI18n: RewardERC721I18nProp = {
   }
 }
 
-export function RewardERC721({
+export function RewardERC721Deposit({
   tokenFromNumberInputProps,
   tokenToNumberInputProps,
   manualTokenIdProps,
@@ -78,7 +78,7 @@ export function RewardERC721({
   defaultTokenIdsListVisibilityState = false,
   onManualTokenAdd,
   i18n = defaultI18n
-}: RewardERC721Props) {
+}: RewardERC721DepositProps) {
   const label = (
     <span>
       {i18n.label.tokenId}{' '}
@@ -164,3 +164,5 @@ export function RewardERC721({
     </div>
   )
 }
+
+export default RewardERC721Deposit

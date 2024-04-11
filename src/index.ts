@@ -188,3 +188,9 @@ export type {
   RewardERC20DepositProps,
   RewardERC20DepositI18nProp
 } from './components/RewardERC20Deposit'
+
+export { default as RewardERC721Deposit } from './components/RewardERC721Deposit'
+export type {
+  RewardERC721DepositProps,
+  RewardERC721DepositI18nProp
+} from './components/RewardERC721Deposit'
