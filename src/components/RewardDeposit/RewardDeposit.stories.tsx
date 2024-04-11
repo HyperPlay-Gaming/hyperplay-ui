@@ -4,8 +4,8 @@ import { useForm, zodResolver } from '@mantine/form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { z } from 'zod'
 
-import { FormDepositActions } from '@/components/RewardDeposit/components/FormDepositActions'
 import { RewardERC721 } from '@/components/RewardDeposit/components/FormDepositRewards/components/RewardERC721'
+import RewardDepositActions from '@/components/RewardDepositActions'
 import RewardDepositMessage from '@/components/RewardDepositMessage'
 import RewardDepositTokenList from '@/components/RewardDepositTokensList'
 
@@ -66,7 +66,7 @@ export const ERC20PendingDeposit: Story = {
           />
         }
         ActionComponent={
-          <FormDepositActions
+          <RewardDepositActions
             depositingAmount={`${formatAmount(depositingAmount)} ${
               args.tokenName
             }`}
@@ -234,7 +234,7 @@ export const ERC721PendingDeposit: Story = {
           />
         }
         ActionComponent={
-          <FormDepositActions
+          <RewardDepositActions
             onFormSubmit={onDeposit}
             depositingAmount={null}
           />
