@@ -6,7 +6,7 @@ import NumberInput, { NumberInputProps } from '@/components/NumberInput'
 
 import styles from './index.module.scss'
 
-export interface RewardERC1155I18nProp {
+export interface RewardERC1155DepositI18nProp {
   placeholder: {
     totalPlayerReachTokenOne: string
     totalPlayerReachTokenTwo: string
@@ -17,13 +17,13 @@ export interface RewardERC1155I18nProp {
   }
 }
 
-export interface RewardERC1155Props {
+export interface RewardERC1155DepositProps {
   totalPlayerReachTokenOneInputProps?: NumberInputProps
   totalPlayerReachTokenTwoInputProps?: NumberInputProps
-  i18n?: RewardERC1155I18nProp
+  i18n?: RewardERC1155DepositI18nProp
 }
 
-export const defaultI18n: RewardERC1155I18nProp = {
+export const defaultI18n: RewardERC1155DepositI18nProp = {
   placeholder: {
     totalPlayerReachTokenOne: '0',
     totalPlayerReachTokenTwo: '0'
@@ -34,11 +34,11 @@ export const defaultI18n: RewardERC1155I18nProp = {
   }
 }
 
-export function RewardERC1155({
+export function RewardERC1155Deposit({
   totalPlayerReachTokenOneInputProps,
   totalPlayerReachTokenTwoInputProps,
   i18n = defaultI18n
-}: RewardERC1155Props) {
+}: RewardERC1155DepositProps) {
   return (
     <div className={styles.base}>
       <NumberInput
@@ -56,3 +56,5 @@ export function RewardERC1155({
     </div>
   )
 }
+
+export default RewardERC1155Deposit

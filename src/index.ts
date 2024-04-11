@@ -176,3 +176,9 @@ export { default as RewardDepositMessage } from './components/RewardDepositMessa
 
 export { default as RewardDepositActions } from './components/RewardDepositActions'
 export type { RewardDepositActionsProps } from './components/RewardDepositActions'
+
+export { default as RewardERC1155Deposit } from './components/RewardERC1155Deposit'
+export type {
+  RewardERC1155DepositProps,
+  RewardERC1155DepositI18nProp
+} from './components/RewardERC1155Deposit'

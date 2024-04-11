@@ -5,10 +5,10 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { z } from 'zod'
 
 import { RewardERC721 } from '@/components/RewardDeposit/components/FormDepositRewards/components/RewardERC721'
-import { RewardERC1155 } from '@/components/RewardDeposit/components/FormDepositRewards/components/RewardERC1155'
 import RewardDepositActions from '@/components/RewardDepositActions'
 import RewardDepositMessage from '@/components/RewardDepositMessage'
 import RewardDepositTokenList from '@/components/RewardDepositTokensList'
+import RewardERC1155Deposit from '@/components/RewardERC1155Deposit'
 
 import { RewardERC20 } from './components/FormDepositRewards/components/RewardERC20'
 import { RewardDeposit } from './index'
@@ -360,7 +360,7 @@ export const ERC1155PendingDeposit: Story = {
           [`Amount Per Play: ${tokenTwoName}`]: '1'
         }}
         DepositComponent={
-          <RewardERC1155
+          <RewardERC1155Deposit
             totalPlayerReachTokenOneInputProps={{
               allowNegative: false,
               ...form.getInputProps('tokenOne')

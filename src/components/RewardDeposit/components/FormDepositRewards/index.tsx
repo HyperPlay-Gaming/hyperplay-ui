@@ -6,6 +6,11 @@ import { TokenType } from '@/common/types'
 import { Dropdown } from '@/components/Dropdowns'
 import { TextInputProps } from '@/components/TextInput'
 
+import {
+  RewardERC1155Deposit,
+  RewardERC1155I18nProp,
+  defaultI18n as defaultRewardERC1155I18n
+} from '../../../RewardERC1155'
 import styles from './FormDepositRewards.module.scss'
 import {
   RewardERC20,
@@ -17,11 +22,6 @@ import {
   RewardERC721I18nProp,
   defaultI18n as defaultRewardERC721I18n
 } from './components/RewardERC721'
-import {
-  RewardERC1155,
-  RewardERC1155I18nProp,
-  defaultI18n as defaultRewardERC1155I18n
-} from './components/RewardERC1155'
 import { TokenIdItemProps } from './types'
 
 const data = [
@@ -104,7 +104,7 @@ export function FormDepositRewards({
   } else if (selectedTokenType.id === 'erc20') {
     content = <RewardERC20 {...props} i18n={i18n} />
   } else if (selectedTokenType.id === 'erc1155') {
-    content = <RewardERC1155 {...props} i18n={i18n} />
+    content = <RewardERC1155Deposit {...props} i18n={i18n} />
   }
 
   return (
