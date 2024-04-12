@@ -157,7 +157,7 @@ export const ERC721PendingDeposit: Story = {
       for (let i = 0; i < tokenIds.length; i++) {
         const hasToken = mockedOwnedTokenIds.get(tokenIds[i].id) ?? false
         if (!hasToken) {
-          tokenIds[i].error = 'Reward token not owned'
+          tokenIds[i].error = 'Reward token not found in wallet'
         }
       }
 
