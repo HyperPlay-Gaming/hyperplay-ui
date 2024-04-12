@@ -152,6 +152,7 @@ export function RewardERC721Deposit({
                 {error ? `${tokenId} (${error})` : tokenId}
               </div>
               <Button
+                aria-label={`Remove token ID ${tokenId}`}
                 type="tertiary"
                 onClick={onRemoveTap}
                 rightIcon={<TrashCan fill="var(--color-neutral-400)" />}

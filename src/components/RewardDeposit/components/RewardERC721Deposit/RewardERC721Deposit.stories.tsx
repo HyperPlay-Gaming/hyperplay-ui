@@ -72,3 +72,53 @@ export const Default: Story = {
     )
   }
 }
+
+export const WithTokenIdsList: Story = {
+  args: {
+    tokenIdsList: [
+      {
+        tokenId: 1,
+        onRemoveTap: fn()
+      },
+      {
+        tokenId: 2,
+        onRemoveTap: fn()
+      },
+      {
+        tokenId: 3,
+        onRemoveTap: fn()
+      }
+    ]
+  },
+  play: async ({ step, args }) => {
+    const tokenFrom = args.tokenIdsList?.[0].tokenId ?? 1
+    const tokenTo = args.tokenIdsList?.[2].tokenId ?? 3
+
+    await step(
+      'Expect Token Ids to be collapsible',
+      async ({ canvasElement }) => {
+        const canvas = within(canvasElement)
+        const collapseButton = canvas.getByRole('button', {
+          name: /collapse all ids/i
+        })
+        await userEvent.click(collapseButton)
+      }
+    )
+
+    await step('Token IDs are visible', async ({ canvasElement }) => {
+      const canvas = within(canvasElement)
+      for (let i = tokenFrom; i <= tokenTo; i++) {
+        await expect(canvas.getByText(i.toString())).toBeVisible()
+      }
+    })
+
+    await step('Can delete token ID', async ({ canvasElement }) => {
+      const canvas = within(canvasElement)
+      const removeLastTokenButton = canvas.getByRole('button', {
+        name: `Remove token ID ${tokenTo}`
+      })
+      await userEvent.click(removeLastTokenButton)
+      await expect(args.tokenIdsList?.[2].onRemoveTap).toHaveBeenCalledOnce()
+    })
+  }
+}

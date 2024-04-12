@@ -47,14 +47,15 @@ function RewardDepositTokenList({
         <span>
           {i18n.addedTokenCounterText} {tokenCount}
         </span>
-        <div className={styles.tokensAddedActions}>
+
+        <button onClick={onShowToken} className={styles.tokensAddedActions}>
           <span>{i18n.collapseAllIds}</span>
           {showTokenIds ? (
-            <DownArrow onClick={onShowToken} className={styles.arrowDownIcon} />
+            <DownArrow className={styles.arrowDownIcon} />
           ) : (
-            <ArrowTop onClick={onShowToken} className={styles.arrowTopIcon} />
+            <ArrowTop className={styles.arrowTopIcon} />
           )}
-        </div>
+        </button>
       </div>
       {showTokenIds && <div className={styles.tokensAddedList}>{children}</div>}
     </div>
