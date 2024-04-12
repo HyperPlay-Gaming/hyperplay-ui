@@ -242,6 +242,35 @@ export const ERC721PendingDeposit: Story = {
         }
       />
     )
+  },
+  // these are implementations test, so probably they should be in the dev portal
+  play: async ({ step }) => {
+    await step('Can add token ids', async ({ canvasElement }) => {
+      const canvas = within(canvasElement)
+      const fromInput = canvas.getByRole('textbox', {
+        name: /from/i
+      })
+      const toInput = canvas.getByRole('textbox', {
+        name: 'To'
+      })
+      const addButton = canvas.getByRole('button', {
+        name: /add token ids/i
+      })
+
+      await userEvent.type(fromInput, '1')
+      await userEvent.type(toInput, '10')
+      await userEvent.click(addButton)
+    })
+
+    await step('Can add token ids manually', async ({ canvasElement }) => {
+      const canvas = within(canvasElement)
+      const manualInput = canvas.getByRole('textbox', {
+        name: /token id/i
+      })
+
+      await userEvent.type(manualInput, '11')
+      await userEvent.type(manualInput, '{enter}')
+    })
   }
 }
 
