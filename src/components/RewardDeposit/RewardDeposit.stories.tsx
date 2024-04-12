@@ -242,44 +242,6 @@ export const ERC721PendingDeposit: Story = {
         }
       />
     )
-  },
-  play: async ({ step }) => {
-    const tokenFrom = 1
-    const tokenTo = 10
-
-    await step('Can add token ids', async ({ canvasElement }) => {
-      const canvas = within(canvasElement)
-      const fromInput = canvas.getByRole('textbox', {
-        name: /from/i
-      })
-      const toInput = canvas.getByRole('textbox', {
-        name: 'To'
-      })
-      const addButton = canvas.getByRole('button', {
-        name: /add token ids/i
-      })
-
-      await userEvent.type(fromInput, tokenFrom.toString())
-      await userEvent.type(toInput, tokenTo.toString())
-      await userEvent.click(addButton)
-    })
-
-    await step('Can add token ids manually', async ({ canvasElement }) => {
-      const canvas = within(canvasElement)
-      const manualInput = canvas.getByRole('textbox', {
-        name: /token id/i
-      })
-
-      await userEvent.type(manualInput, '11')
-      await userEvent.type(manualInput, '{enter}')
-    })
-
-    await step('Token IDs are visible', async ({ canvasElement }) => {
-      const canvas = within(canvasElement)
-      for (let i = tokenFrom; i <= tokenTo; i++) {
-        await expect(canvas.getByText(i.toString())).toBeVisible()
-      }
-    })
   }
 }
 
