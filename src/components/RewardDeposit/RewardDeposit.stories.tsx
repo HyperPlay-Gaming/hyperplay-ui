@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { useForm, zodResolver } from '@mantine/form'
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, userEvent, within } from '@storybook/test'
 import { z } from 'zod'
 
 import RewardDepositActions from './components/RewardDepositActions'
@@ -79,6 +80,19 @@ export const ERC20PendingDeposit: Story = {
             : undefined
         }
       />
+    )
+  },
+  play: async ({ step }) => {
+    await step(
+      'Expect Total Player Reach Input to have value',
+      async ({ canvasElement }) => {
+        const canvas = within(canvasElement)
+        const totalPlayerReachInput = canvas.getByRole('textbox', {
+          name: /total player reach/i
+        })
+        await userEvent.type(totalPlayerReachInput, '100')
+        await expect(totalPlayerReachInput).toHaveValue('100')
+      }
     )
   }
 }
