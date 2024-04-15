@@ -178,10 +178,7 @@ export { default as RewardDepositActions } from './components/RewardDeposit/comp
 export type { RewardDepositActionsProps } from './components/RewardDeposit/components/RewardDepositActions'
 
 export { default as RewardERC1155Deposit } from './components/RewardDeposit/components/RewardERC1155Deposit'
-export type {
-  RewardERC1155DepositProps,
-  RewardERC1155DepositI18nProp
-} from './components/RewardDeposit/components/RewardERC1155Deposit'
+export type { RewardERC1155DepositProps } from './components/RewardDeposit/components/RewardERC1155Deposit'
 
 export { default as RewardERC20Deposit } from './components/RewardDeposit/components/RewardERC20Deposit'
 export type {
@@ -200,3 +197,5 @@ export type {
   RewardDepositProps,
   RewardDepositI18nProp
 } from './components/RewardDeposit'
+
+export { default as RewardDepositTokenList } from './components/RewardDeposit/components/RewardDepositTokensList'
