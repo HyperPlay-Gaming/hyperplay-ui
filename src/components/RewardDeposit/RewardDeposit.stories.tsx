@@ -219,6 +219,7 @@ export const ERC721PendingDeposit: Story = {
             onAddTokenTap={onAddToken}
             tokenIdsList={tokenIdsList}
             onManualTokenAdd={onManualTokenAdd}
+            onClearTokenIds={() => setTokenIds([])}
             manualTokenIdProps={{
               allowNegative: false,
               ...manualTokenForm.getInputProps('tokenId')
