@@ -9,7 +9,8 @@ const meta: Meta<typeof RewardERC721Deposit> = {
   title: 'Quests/RewardDeposit/RewardERC721Deposit',
   component: RewardERC721Deposit,
   args: {
-    onAddTokenTap: fn()
+    onAddTokenTap: fn(),
+    onClearTokenIds: fn()
   }
 }
 
@@ -119,6 +120,15 @@ export const WithTokenIdsList: Story = {
       })
       await userEvent.click(removeLastTokenButton)
       await expect(args.tokenIdsList?.[2].onRemoveTap).toHaveBeenCalledOnce()
+    })
+
+    await step('Can clear all token IDs', async ({ canvasElement }) => {
+      const canvas = within(canvasElement)
+      const clearButton = canvas.getByRole('button', {
+        name: /clear/i
+      })
+      await userEvent.click(clearButton)
+      await expect(args.onClearTokenIds).toHaveBeenCalledOnce()
     })
   }
 }

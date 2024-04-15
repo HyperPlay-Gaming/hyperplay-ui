@@ -38,6 +38,16 @@
   line-height: var(--space-md);
 }
 
+.labelContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.clearButton {
+  padding: 0 !important;
+}
+
 .addManuallyStatement {
   display: flex;
   align-items: center;
