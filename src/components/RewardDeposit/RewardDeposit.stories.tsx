@@ -390,7 +390,7 @@ export const ERC1155PendingDeposit: Story = {
   args: {
     amountPerPlayer: undefined,
     rewardType: 'erc1155',
-    tokenName: 'GOLD, SILVER',
+    tokenName: mockedErc1155RewardsTokens.map((token) => token.name).join(', '),
     marketplaceUrl: 'https://opensea.io/collection/azuki'
   },
   render: (args) => {
@@ -429,7 +429,12 @@ export const ERC1155PendingDeposit: Story = {
             )}
           />
         }
-        ActionComponent={<RewardDepositActions onFormSubmit={onDeposit} />}
+        ActionComponent={
+          <RewardDepositActions
+            onFormSubmit={onDeposit}
+            depositingAmount={null}
+          />
+        }
       />
     )
   }
