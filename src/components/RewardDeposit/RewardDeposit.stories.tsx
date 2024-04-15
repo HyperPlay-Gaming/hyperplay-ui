@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 import { useForm, zodResolver } from '@mantine/form'
 import type { Meta, StoryObj } from '@storybook/react'
-import { expect, userEvent, within } from '@storybook/test'
 import { z } from 'zod'
 
 import RewardDepositActions from './components/RewardDepositActions'
@@ -289,8 +288,12 @@ export const ERC721Deposited: Story = {
 }
 
 const erc1155Schema = z.object({
-  tokenOne: z.number().min(1).int(),
-  tokenTwo: z.number().min(1).int()
+  tokenIds: z.array(
+    z.object({
+      name: z.string().optional(),
+      playerReach: z.number().min(1)
+    })
+  )
 })
 
 type ERC1155Form = z.infer<typeof erc1155Schema>
@@ -300,20 +303,87 @@ type Token = {
   amount: number
 }
 
-function createErc1155QuestMessage(tokenOne: Token, tokenTwo: Token): string {
-  // Identify the token with the lesser and greater amounts
-  const lesserToken = tokenOne.amount < tokenTwo.amount ? tokenOne : tokenTwo
-  const greaterToken = tokenOne.amount >= tokenTwo.amount ? tokenOne : tokenTwo
+function createQuestMessage(tokens: Token[]): string {
+  // Sort tokens by amount in descending order
+  const sortedTokens = tokens.sort((a, b) => b.amount - a.amount)
 
-  const lesserTokenClaim = `1 ${lesserToken.name}`
-  const greaterTokenClaim = `1 ${greaterToken.name}`
+  // Build the message by looping through the sorted tokens
+  let message = `The first ${formatAmount(
+    sortedTokens[0].amount
+  )} players to complete this Quest will each be able to claim`
 
-  // Calculate the number of remaining players who can only claim the greater token
-  const remainingPlayers = greaterToken.amount - lesserToken.amount
+  // Add all tokens to the claim for the first group
+  sortedTokens.forEach((token, index) => {
+    if (index === sortedTokens.length - 1) {
+      message += ` and 1 ${token.name}`
+    } else {
+      message += ` 1 ${token.name},`
+    }
+  })
 
-  // Build the message based on which token is available to fewer players
-  return `The first ${lesserToken.amount} players to complete this Quest will each be able to claim ${lesserTokenClaim} and ${greaterTokenClaim}. The next ${remainingPlayers} players will each be able to claim ${greaterTokenClaim}.`
+  message += '.'
+
+  // Handle additional claims for remaining players
+  for (let i = 1; i < sortedTokens.length; i++) {
+    const remainingPlayers = sortedTokens[i].amount - sortedTokens[i - 1].amount
+    if (remainingPlayers > 0) {
+      message += ` The next ${remainingPlayers} players will each be able to claim 1 ${sortedTokens[i].name}.`
+    }
+  }
+
+  return message
 }
+
+const mockedErc1155RewardsTokens = [
+  {
+    id: 1,
+    amount_per_user: 1000,
+    name: 'Iron',
+    token_id: null
+  },
+  {
+    id: 2,
+    amount_per_user: 1000,
+    name: 'Bronze',
+    token_id: null
+  },
+  {
+    id: 3,
+    amount_per_user: 1000,
+    name: 'Silver',
+    token_id: null
+  },
+  {
+    id: 4,
+    amount_per_user: 10000,
+    name: 'Gold',
+    token_id: null
+  },
+  {
+    id: 5,
+    amount_per_user: 1000,
+    name: 'Platinum',
+    token_id: null
+  },
+  {
+    id: 6,
+    amount_per_user: 100,
+    name: 'Emerald',
+    token_id: null
+  },
+  {
+    id: 7,
+    amount_per_user: 10,
+    name: 'Diamond',
+    token_id: null
+  },
+  {
+    id: 8,
+    amount_per_user: 1,
+    name: 'Master',
+    token_id: null
+  }
+]
 
 export const ERC1155PendingDeposit: Story = {
   args: {
@@ -324,69 +394,41 @@ export const ERC1155PendingDeposit: Story = {
   },
   render: (args) => {
     const form = useForm<ERC1155Form>({
+      initialValues: {
+        tokenIds: mockedErc1155RewardsTokens.map((token) => ({
+          playerReach: token.amount_per_user,
+          name: token.name
+        }))
+      },
       validate: zodResolver(erc1155Schema)
     })
 
-    const tokenOneName = 'GOLD'
-    const tokenTwoName = 'SILVER'
-
-    const tokenOneReach = form.values.tokenOne ?? 0
-    const tokenTwoReach = form.values.tokenTwo ?? 0
-    const depositingAmount = tokenOneReach + tokenTwoReach
-    const playerReach = Math.max(tokenOneReach, tokenTwoReach)
-
     const onDeposit = form.onSubmit(() => {
-      alert(
-        `We need to deposit ${tokenOneReach} ${tokenOneName} and ${tokenTwoReach} ${tokenTwoName}`
-      )
+      alert('Depositing tokens')
     })
-
-    const depositAmount = `${tokenOneReach} ${tokenOneName}, ${tokenTwoReach} ${tokenTwoName}`
-
-    const depositMessage = createErc1155QuestMessage(
-      { name: tokenOneName, amount: tokenOneReach },
-      { name: tokenTwoName, amount: tokenTwoReach }
-    )
-
-    const shouldShowMessage = tokenOneReach > 0 && tokenTwoReach > 0
 
     return (
       <RewardDeposit
         {...args}
-        playerReach={depositingAmount > 0 ? playerReach.toString() : '-'}
-        message={shouldShowMessage ? depositMessage : undefined}
-        extraFields={{
-          [`Amount Per Play: ${tokenOneName}`]: '1',
-          [`Amount Per Play: ${tokenTwoName}`]: '1'
-        }}
+        extraFields={Object.fromEntries(
+          mockedErc1155RewardsTokens.map((token) => [
+            `Amount Per Player (${token.name})`,
+            '1'
+          ])
+        )}
         DepositComponent={
           <RewardERC1155Deposit
-            totalPlayerReachTokenOneInputProps={{
-              allowNegative: false,
-              ...form.getInputProps('tokenOne')
-            }}
-            totalPlayerReachTokenTwoInputProps={{
-              allowNegative: false,
-              ...form.getInputProps('tokenTwo')
-            }}
-            i18n={{
-              label: {
-                totalPlayerReachTokenOne: `Total Player Reach: ${tokenOneName}`,
-                totalPlayerReachTokenTwo: `Total Player Reach: ${tokenTwoName}`
-              },
-              placeholder: {
-                totalPlayerReachTokenOne: '0',
-                totalPlayerReachTokenTwo: '0'
-              }
-            }}
+            tokenInputsProps={mockedErc1155RewardsTokens.map(
+              (token, index) => ({
+                label: `Total Player Reach: ${token.name}`,
+                ...form.getInputProps(`tokenIds.${index}.playerReach`),
+                placeholder: '0',
+                allowNegative: false
+              })
+            )}
           />
         }
-        ActionComponent={
-          <RewardDepositActions
-            onFormSubmit={onDeposit}
-            depositingAmount={depositAmount}
-          />
-        }
+        ActionComponent={<RewardDepositActions onFormSubmit={onDeposit} />}
       />
     )
   }
@@ -406,10 +448,10 @@ export const ERC1155Deposited: Story = {
     const tokenOneReach = 20
     const tokenTwoReach = 80
 
-    const depositMessage = createErc1155QuestMessage(
+    const depositMessage = createQuestMessage([
       { name: tokenOneName, amount: tokenOneReach },
       { name: tokenTwoName, amount: tokenTwoReach }
-    )
+    ])
 
     return (
       <RewardDeposit

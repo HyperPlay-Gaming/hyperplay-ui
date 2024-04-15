@@ -6,53 +6,18 @@ import NumberInput, { NumberInputProps } from '@/components/NumberInput'
 
 import styles from './index.module.scss'
 
-export interface RewardERC1155DepositI18nProp {
-  placeholder: {
-    totalPlayerReachTokenOne: string
-    totalPlayerReachTokenTwo: string
-  }
-  label: {
-    totalPlayerReachTokenOne: string
-    totalPlayerReachTokenTwo: string
-  }
-}
-
 export interface RewardERC1155DepositProps {
-  totalPlayerReachTokenOneInputProps?: NumberInputProps
-  totalPlayerReachTokenTwoInputProps?: NumberInputProps
-  i18n?: RewardERC1155DepositI18nProp
-}
-
-export const defaultI18n: RewardERC1155DepositI18nProp = {
-  placeholder: {
-    totalPlayerReachTokenOne: '0',
-    totalPlayerReachTokenTwo: '0'
-  },
-  label: {
-    totalPlayerReachTokenOne: 'Total Player Reach',
-    totalPlayerReachTokenTwo: 'Total Player Reach'
-  }
+  tokenInputsProps?: NumberInputProps[]
 }
 
 export function RewardERC1155Deposit({
-  totalPlayerReachTokenOneInputProps,
-  totalPlayerReachTokenTwoInputProps,
-  i18n = defaultI18n
+  tokenInputsProps
 }: RewardERC1155DepositProps) {
   return (
     <div className={styles.base}>
-      <NumberInput
-        {...totalPlayerReachTokenOneInputProps}
-        size="medium"
-        label={i18n.label.totalPlayerReachTokenOne}
-        placeholder={i18n.placeholder.totalPlayerReachTokenOne}
-      />
-      <NumberInput
-        {...totalPlayerReachTokenTwoInputProps}
-        size="medium"
-        label={i18n.label.totalPlayerReachTokenTwo}
-        placeholder={i18n.placeholder.totalPlayerReachTokenTwo}
-      />
+      {tokenInputsProps?.map((props, index) => (
+        <NumberInput key={`input-${index}`} {...props} size="medium" />
+      ))}
     </div>
   )
 }
