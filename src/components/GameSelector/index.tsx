@@ -15,6 +15,7 @@ export function GameSelector({
   searchResultGames,
   onSearchInput,
   inputProps,
+  maxGames = Infinity,
   menuProps,
   i18n = {
     selectGame: 'Select Game',
@@ -76,7 +77,10 @@ export function GameSelector({
     </div>
   )
 
-  const gameItems = getGameItems(searchResultGames, true)
+  const gameItems = getGameItems(
+    searchResultGames,
+    selectedGames.length < maxGames
+  )
   const areSearchResultsEmpty = gameItems === null
   const isSearchResultsEmpty = areSearchResultsEmpty && !isEmptySearchString
   const searchResults = isSearchResultsEmpty ? emptySearchState : gameItems

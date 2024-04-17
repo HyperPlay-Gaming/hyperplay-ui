@@ -8,7 +8,7 @@ import { userEvent, within } from '@storybook/testing-library'
 import { GameSelector } from '.'
 import { wait } from '../../../tests/utils/wait'
 import LongListOfGameDetails from './storyData.json'
-import { GameSelectorProps } from './types'
+import { GameDetails, GameSelectorProps } from './types'
 
 const meta: Meta<typeof GameSelector> = {
   title: 'Quests/GameSelector',
@@ -199,6 +199,42 @@ export const ControlledMenu: Story = {
         {...args}
         searchResultGames={searchResultGames}
         menuProps={{ opened: menuOpened, onChange: setMenuOpened }}
+      />
+    )
+  }
+}
+
+export const WithMaxGames: Story = {
+  args: {
+    ...props,
+    maxGames: 1,
+    selectedGames: [],
+    i18n: {
+      selectGame: 'Select Game',
+      selectUpTo: '(select up to 1 game)',
+      searchForGames: 'Search for game(s)',
+      loading: 'Loading...',
+      emptySearchResults: 'Nothing found...'
+    }
+  },
+  render: function Render(args) {
+    const [selectedGames, setSelectedGames] = useState<GameDetails[]>([])
+    const searchResultGames = args.searchResultGames.map((val) => ({
+      ...val,
+      onClick: () => {
+        setSelectedGames([val])
+      }
+    }))
+    return (
+      <GameSelector
+        {...args}
+        selectedGames={selectedGames.map((val) => ({
+          ...val,
+          onClick: () => {
+            setSelectedGames([])
+          }
+        }))}
+        searchResultGames={searchResultGames}
       />
     )
   }
