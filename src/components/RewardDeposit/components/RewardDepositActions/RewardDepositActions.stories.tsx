@@ -1,18 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect, fn, userEvent, within } from '@storybook/test'
 
-import { FormDepositActions, FormDepositActionsProps, defaultI18n } from '.'
+import {
+  RewardDepositActions,
+  RewardDepositActionsProps,
+  defaultI18n
+} from './index'
 
-type Story = StoryObj<typeof FormDepositActions>
+type Story = StoryObj<typeof RewardDepositActions>
 
-const meta: Meta<typeof FormDepositActions> = {
-  title: 'Quests/RewardDeposit/FormDepositActions',
-  component: FormDepositActions
+const meta: Meta<typeof RewardDepositActions> = {
+  title: 'Quests/RewardDeposit/RewardDepositActions',
+  component: RewardDepositActions
 }
 
 export default meta
 
-const props: FormDepositActionsProps = {
+const props: RewardDepositActionsProps = {
   onFormSubmit: fn(),
   isDisabledButton: false,
   depositingAmount: '100 USDC',

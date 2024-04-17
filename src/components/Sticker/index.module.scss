@@ -1,5 +1,5 @@
 .sticker {
-  padding: var(--space-3xs) var(--space-sm);
+  padding: var(--space-3xs) var(--space-xs);
   display: inline-block;
 }
 
@@ -15,12 +15,12 @@
 }
 
 .warning {
-  color: var(--color-alert-200);
+  color: var(--color-alert-400);
   border-radius: var(--corner-round, 100px);
-  border: 2px solid var(--color-alert-200);
+  border: 2px solid var(--color-alert-400);
 
   &.filled {
-    background: var(--color-alert-200);
+    background: var(--color-alert-400);
     color: var(--color-neutral-900);
   }
 }

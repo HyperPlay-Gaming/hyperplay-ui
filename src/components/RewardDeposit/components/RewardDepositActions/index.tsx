@@ -2,31 +2,31 @@ import React from 'react'
 
 import Button from '@/components/Button'
 
-import styles from './FormDepositActions.module.scss'
+import styles from './RewardDepositActions.module.scss'
 
-export interface FormDepositActionsI18nProp {
+export interface RewardDepositActionsI18nProp {
   submitBtn?: string
   totalDeposit?: string
 }
 
-export interface FormDepositActionsProps {
+export interface RewardDepositActionsProps {
   onFormSubmit: () => void
   isDisabledButton?: boolean
   depositingAmount?: string | null
-  i18n?: FormDepositActionsI18nProp
+  i18n?: RewardDepositActionsI18nProp
 }
 
-export const defaultI18n: FormDepositActionsI18nProp = {
+export const defaultI18n: RewardDepositActionsI18nProp = {
   submitBtn: 'Deposit Reward',
   totalDeposit: 'Total Deposit:'
 }
 
-export function FormDepositActions({
+export function RewardDepositActions({
   onFormSubmit = () => null,
   isDisabledButton,
   depositingAmount,
   i18n = defaultI18n
-}: FormDepositActionsProps) {
+}: RewardDepositActionsProps) {
   return (
     <div className={styles.base}>
       <Button
@@ -45,3 +45,5 @@ export function FormDepositActions({
     </div>
   )
 }
+
+export default RewardDepositActions

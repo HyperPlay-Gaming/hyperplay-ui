@@ -4,6 +4,11 @@
   flex-direction: column;
 }
 
+.title {
+  font-family: var(--secondary-font-family);
+  font-weight: var(--bold);
+}
+
 .pendingDepositLabel,
 .successDepositLabel {
   font-family: var(--secondary-font-family);
@@ -18,9 +23,40 @@
   width: 14px;
   height: 14px;
 }
+
 .arrowUpIcon {
   fill: var(--color-neutral-100);
   stroke: var(--color-neutral-100);
   width: 20px;
   height: 20px;
+}
+
+.messageContainer {
+  display: flex;
+  align-items: center;
+  padding: var(--space-md);
+  border-radius: var(--space-sm);
+  border: 1px solid var(--color-neutral-400);
+  background: var(--color-neutral-800);
+}
+
+.message {
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-lg);
+  font-weight: var(--medium);
+}
+
+.warningContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--color-alert-400);
+  color: var(--color-neutral-900);
+  border-radius: var(--space-xs);
+  padding: var(--space-xs);
+}
+
+.warningMessage {
+  font-size: var(--text-sm);
+  font-weight: var(--semibold);
 }

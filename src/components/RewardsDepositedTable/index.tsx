@@ -22,14 +22,15 @@ export interface RewardDepositedTableI18nProp {
 }
 
 export interface RewardsDepositedTableProps {
-  playerReach: number
+  playerReach?: string
   network: string
   tokenContractAddress: string
   rewardType: TokenType
   tokenName: string
-  amountPerPlayer: number
-  totalClaimables: number
-  marketplaceUrl: string
+  amountPerPlayer?: number
+  totalClaimables?: number
+  marketplaceUrl?: string
+  extraFields?: Record<string, string>
   i18n?: RewardDepositedTableI18nProp
 }
 
@@ -38,7 +39,7 @@ export const defaultI18n: RewardDepositedTableI18nProp = {
   network: 'Network',
   tokenContractAddress: 'Token Contract Address',
   rewardType: 'Reward Type',
-  tokenName: 'Token Name',
+  tokenName: 'Token Name(s)',
   amountPerPlayer: 'Amount Per Player',
   totalClaimables: 'Total No of Claimables',
   marketplaceUrl: 'Marketplace URL',
@@ -58,56 +59,66 @@ export function RewardsDepositedTable({
   amountPerPlayer,
   totalClaimables,
   marketplaceUrl,
+  extraFields,
   i18n = defaultI18n
 }: RewardsDepositedTableProps) {
   return (
     <table className={styles.root}>
-      <tr>
-        <td>{i18n.playerReach}</td>
-        <td>{playerReach}</td>
-      </tr>
-      <tr>
-        <td>{i18n.network}</td>
-        <td>{network}</td>
-      </tr>
-      <tr>
-        <td>{i18n.tokenContractAddress}</td>
-        <td>
-          {getTruncatedAddress(tokenContractAddress)}
-          <ButtonCopy
-            text={tokenContractAddress}
-            className={styles.copyButton}
-          />
-        </td>
-      </tr>
-      <tr>
-        <td>{i18n.rewardType}</td>
-        <td>{i18n.tokenType[rewardType]}</td>
-      </tr>
-      <tr>
-        <td>{i18n.tokenName}</td>
-        <td>{tokenName}</td>
-      </tr>
-      <tr>
-        <td>{i18n.amountPerPlayer}</td>
-        <td>{amountPerPlayer}</td>
-      </tr>
-      {totalClaimables !== null && (
+      <tbody>
+        {playerReach && (
+          <tr>
+            <td>{i18n.playerReach}</td>
+            <td>{playerReach}</td>
+          </tr>
+        )}
         <tr>
-          <td>{i18n.totalClaimables}</td>
-          <td>{totalClaimables}</td>
+          <td>{i18n.network}</td>
+          <td>{network}</td>
         </tr>
-      )}
-      {marketplaceUrl !== null && (
         <tr>
-          <td>{i18n.marketplaceUrl}</td>
-          <td>
-            <a target="_blank" rel="noopener noreferrer" href={marketplaceUrl}>
-              {getTruncatedUrl(marketplaceUrl)}
-            </a>
+          <td>{i18n.tokenContractAddress}</td>
+          <td className={styles.copyCell}>
+            {getTruncatedAddress(tokenContractAddress)}
+            <ButtonCopy text={tokenContractAddress} />
           </td>
         </tr>
-      )}
+        <tr>
+          <td>{i18n.rewardType}</td>
+          <td>{i18n.tokenType[rewardType]}</td>
+        </tr>
+        {totalClaimables !== undefined && (
+          <tr>
+            <td>{i18n.totalClaimables}</td>
+            <td>{totalClaimables}</td>
+          </tr>
+        )}
+        <tr>
+          <td>{i18n.tokenName}</td>
+          <td>{tokenName}</td>
+        </tr>
+        {amountPerPlayer !== undefined && (
+          <tr>
+            <td>{i18n.amountPerPlayer}</td>
+            <td>{amountPerPlayer}</td>
+          </tr>
+        )}
+        {marketplaceUrl !== undefined && (
+          <tr>
+            <td>{i18n.marketplaceUrl}</td>
+            <td className={styles.copyCell}>
+              {getTruncatedUrl(marketplaceUrl)}
+              <ButtonCopy text={marketplaceUrl} />
+            </td>
+          </tr>
+        )}
+        {extraFields !== undefined &&
+          Object.entries(extraFields).map(([key, value]) => (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{value}</td>
+            </tr>
+          ))}
+      </tbody>
     </table>
   )
 }

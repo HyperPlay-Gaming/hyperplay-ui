@@ -171,3 +171,31 @@ export * from './components/QuestDetails/types'
 
 export { default as RewardImageInput } from './components/RewardImageInput'
 export type { RewardImageInputProps } from './components/RewardImageInput'
+
+export { default as RewardDepositMessage } from './components/RewardDeposit/components/RewardDepositMessage'
+
+export { default as RewardDepositActions } from './components/RewardDeposit/components/RewardDepositActions'
+export type { RewardDepositActionsProps } from './components/RewardDeposit/components/RewardDepositActions'
+
+export { default as RewardERC1155Deposit } from './components/RewardDeposit/components/RewardERC1155Deposit'
+export type { RewardERC1155DepositProps } from './components/RewardDeposit/components/RewardERC1155Deposit'
+
+export { default as RewardERC20Deposit } from './components/RewardDeposit/components/RewardERC20Deposit'
+export type {
+  RewardERC20DepositProps,
+  RewardERC20DepositI18nProp
+} from './components/RewardDeposit/components/RewardERC20Deposit'
+
+export { default as RewardERC721Deposit } from './components/RewardDeposit/components/RewardERC721Deposit'
+export type {
+  RewardERC721DepositProps,
+  RewardERC721DepositI18nProp
+} from './components/RewardDeposit/components/RewardERC721Deposit'
+
+export { default as RewardDeposit } from './components/RewardDeposit'
+export type {
+  RewardDepositProps,
+  RewardDepositI18nProp
+} from './components/RewardDeposit'
+
+export { default as RewardDepositTokenList } from './components/RewardDeposit/components/RewardDepositTokensList'
