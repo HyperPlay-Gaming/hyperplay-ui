@@ -207,11 +207,11 @@ export const ControlledMenu: Story = {
 export const WithMaxGames: Story = {
   args: {
     ...props,
-    maxGames: 1,
+    maxGames: 3,
     selectedGames: [],
     i18n: {
       selectGame: 'Select Game',
-      selectUpTo: '(select up to 1 game)',
+      selectUpTo: '(select up to 3 game)',
       searchForGames: 'Search for game(s)',
       loading: 'Loading...',
       emptySearchResults: 'Nothing found...'
@@ -219,23 +219,36 @@ export const WithMaxGames: Story = {
   },
   render: function Render(args) {
     const [selectedGames, setSelectedGames] = useState<GameDetails[]>([])
-    const searchResultGames = args.searchResultGames.map((val) => ({
+    const searchResultGames = longGameDetailsList.map((val) => ({
       ...val,
       onClick: () => {
-        setSelectedGames([val])
+        const isGameSelected = selectedGames.some(
+          (game) => game.gameId === val.gameId
+        )
+        if (!isGameSelected) {
+          setSelectedGames([...selectedGames, val])
+        } else {
+          setSelectedGames(
+            selectedGames.filter((game) => game.gameId !== val.gameId)
+          )
+        }
       }
     }))
     return (
-      <GameSelector
-        {...args}
-        selectedGames={selectedGames.map((val) => ({
-          ...val,
-          onClick: () => {
-            setSelectedGames([])
-          }
-        }))}
-        searchResultGames={searchResultGames}
-      />
+      <div style={{ minHeight: 400 }}>
+        <GameSelector
+          {...args}
+          selectedGames={selectedGames.map((val) => ({
+            ...val,
+            onClick: () => {
+              setSelectedGames(
+                selectedGames.filter((game) => game.gameId !== val.gameId)
+              )
+            }
+          }))}
+          searchResultGames={searchResultGames}
+        />
+      </div>
     )
   }
 }

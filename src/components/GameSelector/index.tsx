@@ -29,6 +29,10 @@ export function GameSelector({
   const [opened, setOpened] = useState(false)
   const isEmptySearchString = inputRef.current?.value === ''
 
+  const selectedGamesMap = new Map(
+    selectedGames.map((game) => [game.gameId, true])
+  )
+
   const loadingState = (
     <div className={styles.messageContainer}>{i18n.loading}</div>
   )
@@ -52,6 +56,11 @@ export function GameSelector({
           <ClickableGameItem
             key={key}
             game={val}
+            disabled={
+              selectedGames.length >= maxGames &&
+              !selectedGamesMap.has(val.gameId)
+            }
+            selected={selectedGamesMap.has(val.gameId)}
             className={classNames(itemClasses)}
             data-testid={key}
           />
@@ -77,10 +86,7 @@ export function GameSelector({
     </div>
   )
 
-  const gameItems = getGameItems(
-    searchResultGames,
-    selectedGames.length < maxGames
-  )
+  const gameItems = getGameItems(searchResultGames, true)
   const areSearchResultsEmpty = gameItems === null
   const isSearchResultsEmpty = areSearchResultsEmpty && !isEmptySearchString
   const searchResults = isSearchResultsEmpty ? emptySearchState : gameItems

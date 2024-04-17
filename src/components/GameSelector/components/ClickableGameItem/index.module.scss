@@ -7,11 +7,12 @@
   width: 100%;
   overflow: hidden;
 
-  svg {
-    fill: var(--color-neutral-500);
-  }
-
   &:hover {
     background-color: var(--color-neutral-600);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
   }
 }

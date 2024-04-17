@@ -113,7 +113,7 @@ export function QuestsTable({
   function getRewardString(quest: Quest) {
     return getStringFromArray(
       quest.rewards,
-      (reward: RewardSimple) => `${reward.amountPerPlayer}${reward.symbol}`
+      (reward: RewardSimple) => `${reward.amountPerPlayer} ${reward.symbol}`
     )
   }
 
