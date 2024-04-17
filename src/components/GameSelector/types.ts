@@ -12,6 +12,7 @@ export interface GameDetails {
 }
 
 export interface GameSelectorProps extends HTMLProps<HTMLDivElement> {
+  maxGames?: number
   isLoading?: boolean
   selectedGames: GameDetails[]
   searchResultGames: GameDetails[]
