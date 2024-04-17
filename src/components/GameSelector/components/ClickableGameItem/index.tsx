@@ -8,11 +8,13 @@ import styles from './index.module.scss'
 
 interface ClickableGameItemProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
+  selected?: boolean
   game: GameDetails
 }
 
 export default function ClickableGameItem({
   game,
+  selected,
   className,
   ...props
 }: ClickableGameItemProps) {
@@ -23,7 +25,7 @@ export default function ClickableGameItem({
       type="button"
       {...props}
     >
-      <GameDisplayDetails game={game} />
+      <GameDisplayDetails game={game} selected={selected} />
     </button>
   )
 }

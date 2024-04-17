@@ -9,3 +9,12 @@
     border-radius: var(--space-xs);
   }
 }
+
+.container {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
