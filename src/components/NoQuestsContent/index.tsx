@@ -39,7 +39,7 @@ export default forwardRef<HTMLDivElement, NoQuestsContentProps>(
       i18n = {
         title: 'Create your first Quest',
         description: 'Recognize your most valuable players with Quest Rewards.',
-        buttonText: 'Create New Quest'
+        buttonText: 'Create Quest'
       },
       buttonProps = {},
       linkProps,
