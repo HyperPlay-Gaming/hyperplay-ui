@@ -8,9 +8,9 @@ import Button from '../Button'
 import styles from './QuestsTable.module.scss'
 
 export interface RewardSimple {
-  amountPerPlayer: number
+  amountPerPlayer: number | string
   symbol: string
-  balance: number
+  balance: number | string
 }
 
 export type statusType = 'DRAFT' | 'ACTIVE'
@@ -48,7 +48,7 @@ export interface Quest {
   rewards: RewardSimple[]
   status: statusType
   onClick?: () => void
-  claims: number
+  claims: number | string
   id?: string | number
   /* eslint-disable-next-line */
   linkComponent?: any

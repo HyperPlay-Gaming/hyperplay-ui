@@ -75,3 +75,28 @@ const props: QuestsTableProps = {
 export const Default: Story = {
   args: { ...props }
 }
+
+export const EmptyQuests: Story = {
+  args: {
+    ...props,
+    quests: [
+      {
+        name: 'A quest',
+        rewards: [
+          {
+            amountPerPlayer: '-',
+            symbol: '',
+            balance: '-'
+          }
+        ],
+        type: 'Reputation',
+        status: 'DRAFT',
+        onClick: () => console.log('a quest clicked'),
+        claims: '-',
+        /* eslint-disable-next-line */
+        linkComponent: (props: any) => <a {...props} />,
+        linkProps: { href: 'https://hyperplay.xyz' }
+      }
+    ]
+  }
+}
