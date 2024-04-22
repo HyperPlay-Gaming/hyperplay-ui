@@ -163,6 +163,11 @@ const rewardsDetailsSchema = z.object({
 type FormSchema = z.infer<typeof rewardsDetailsSchema>
 type TokenType = FormSchema['reward_type']
 
+/**
+ * Example of the implementation of all the components together powered by a form.
+ *
+ * **For this story, only ETH and BSC have deployed reward contracts.**
+ */
 export const Controlled: Story = {
   render: () => {
     const form = useForm<FormSchema>({
