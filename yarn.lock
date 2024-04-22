@@ -2031,10 +2031,10 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@hyperplay/chains@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/@hyperplay/chains/-/chains-0.0.2.tgz"
-  integrity sha512-yex3/IOnmxtM1N0uU20cceVKUDAjAGFO0LKNxH45Nn+bbOaVgXJCsXqEk3NfVLGk08X71fSDzRCcX2UCSUwEmA==
+"@hyperplay/chains@^0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@hyperplay/chains/-/chains-0.2.9.tgz#4d3f4a4a5facd4b00d8f8a0a7abb9e9f8a8ae8b0"
+  integrity sha512-lBGN+dnNsSD2ys2/CAjfbqOdJUUYBX6IqHqc/pwEQDE6tLE1DI58mcuFY/KLPD0y9gA9hqEkbXnRmIaC7QTlAw==
   dependencies:
     axios "^1.4.0"
 

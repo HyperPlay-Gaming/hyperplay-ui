@@ -1,3 +1,4 @@
+import { chainMap, getChainMetadataSync } from '@hyperplay/chains'
 import { Code } from '@mantine/core'
 import { useForm, zodResolver } from '@mantine/form'
 import type { Meta, StoryObj } from '@storybook/react'
@@ -5,22 +6,49 @@ import { IconTrash } from '@tabler/icons-react'
 import { z } from 'zod'
 
 import Button from '@/components/Button'
+import NoDeployedRewardContract, {
+  defaultI18n as noDeployedRewardContractI18n
+} from '@/components/NoDeployedRewardContract'
+import RewardCoreInputs, {
+  RewardCoreInputsProps
+} from '@/components/RewardsSummary/components/FormRewards/components/RewardCoreInputs'
 
 import { RewardERC20_721, RewardERC1155 } from '../../index'
 import RewardFormCard from './index'
 
 const ethContractAddressRegex = /^0x[a-fA-F0-9]{40}$/g
 
+const defaultDepositContract = (
+  <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <span className="caption color-neutral-400">Reward Contract</span>
+    <a
+      target="_blank"
+      rel="noreferrer"
+      style={{ color: 'var(--color-primary-200)', width: 'fit-content' }}
+      href="https://etherscan.io/address/0xC38329b34E939d3C9165D7301e8349Ec3036CB1c"
+    >
+      0xC38329b34E939d3C9165D7301e8349Ec3036CB1c
+    </a>
+  </div>
+)
+
 const defaultNetworkInputProps = {
   data: [
     { value: '1', label: 'Ethereum' },
-    { value: '0x38', label: 'Binance Smart Chain' },
-    { value: '0x89', label: 'Polygon' },
-    { value: '0x4', label: 'Rinkeby' }
+    { value: '56', label: 'Binance Smart Chain' },
+    { value: '137', label: 'Polygon' },
+    { value: '4', label: 'Rinkeby' }
   ],
   label: 'Network',
   placeholder: 'Select a Network'
 }
+
+const blockhainsWithRewardContract = new Map(
+  Object.entries({
+    '1': true,
+    '56': true
+  })
+)
 
 const defaultTokenContractAddressInputProps = {
   label: 'Token Contract Address',
@@ -38,9 +66,7 @@ const meta: Meta<typeof RewardFormCard> = {
   component: RewardFormCard,
   args: {
     title: 'Reward',
-    networkInputProps: defaultNetworkInputProps,
-    tokenContractAddressInputProps: defaultTokenContractAddressInputProps,
-    tokenTypeInputProps: defaultTokenTypeInputProps
+    networkInputProps: defaultNetworkInputProps
   }
 }
 
@@ -64,21 +90,51 @@ export const WithIcon: Story = {
   }
 }
 
+export const WithoutDepositContract: Story = {
+  args: {
+    children: (
+      <NoDeployedRewardContract
+        onDeployClick={() => alert('Deploy contract clicked')}
+      />
+    )
+  }
+}
+
 export const Erc20: Story = {
   args: {
-    children: <RewardERC20_721 tokenType="ERC20" />
+    children: (
+      <RewardERC20_721
+        tokenTypeInputProps={defaultTokenTypeInputProps}
+        tokenContractAddressInputProps={defaultTokenContractAddressInputProps}
+        tokenType="ERC20"
+        DepositContract={defaultDepositContract}
+      />
+    )
   }
 }
 
 export const Erc721: Story = {
   args: {
-    children: <RewardERC20_721 tokenType="ERC721" />
+    children: (
+      <RewardERC20_721
+        tokenTypeInputProps={defaultTokenTypeInputProps}
+        tokenContractAddressInputProps={defaultTokenContractAddressInputProps}
+        tokenType="ERC721"
+        DepositContract={defaultDepositContract}
+      />
+    )
   }
 }
 
 export const Erc1155: Story = {
   args: {
-    children: <RewardERC1155 />
+    children: (
+      <RewardERC1155
+        tokenTypeInputProps={defaultTokenTypeInputProps}
+        tokenContractAddressInputProps={defaultTokenContractAddressInputProps}
+        DepositContract={defaultDepositContract}
+      />
+    )
   }
 }
 
@@ -116,11 +172,76 @@ export const Controlled: Story = {
     })
 
     const formTokenType = form.values.reward_type
+    const chainIdMetadata = getChainMetadataSync(form.values.chain_id)
+    const doesChainHaveRewardContract = blockhainsWithRewardContract.has(
+      form.values.chain_id
+    )
+
+    const handleFileChange = (file: File | null) => {
+      if (!file) return
+      const img = new Image()
+      img.src = URL.createObjectURL(file)
+      img.onload = () => {
+        form.setFieldValue('image', img.src)
+        if (img.width < 48 || img.height < 48) {
+          form.setFieldError('image', 'Image too small, must be at least 48x48')
+        } else if (img.width / img.height !== 1) {
+          form.setFieldError('image', 'Image must have a 1:1 aspect ratio')
+        } else {
+          form.setFieldError('image', '')
+        }
+      }
+    }
+
+    const coreRewardProps: RewardCoreInputsProps = {
+      DepositContract: doesChainHaveRewardContract ? (
+        defaultDepositContract
+      ) : (
+        <NoDeployedRewardContract
+          onDeployClick={() => alert('Deploy contract')}
+        />
+      ),
+      tokenContractAddressInputProps: {
+        ...defaultTokenContractAddressInputProps,
+        ...form.getInputProps('contract_address')
+      },
+      rewardImageProps: {
+        inputProps: {
+          accept: 'image/svg+xml,image/png,image/jpeg'
+        },
+        ...form.getInputProps('image'),
+        url: form.values.image,
+        onFileChange: handleFileChange
+      },
+      tokenTypeInputProps: {
+        ...defaultTokenTypeInputProps,
+        ...form.getInputProps('reward_type'),
+        value: formTokenType,
+        onChange: (value) => {
+          if (!value) return
+          form.setFieldValue('reward_type', value as TokenType)
+        }
+      }
+    }
+
     let children = null
+
+    if (form.values.chain_id && !doesChainHaveRewardContract) {
+      children = (
+        <NoDeployedRewardContract
+          i18n={{
+            ...noDeployedRewardContractI18n,
+            description: `You currently don’t have an existing Reward Contract for ${chainIdMetadata?.chain.name}. Please deploy one to be used for Reward disbursement.`
+          }}
+          onDeployClick={() => alert('Deploy contract')}
+        />
+      )
+    }
 
     if (formTokenType === 'ERC1155') {
       children = (
         <RewardERC1155
+          {...coreRewardProps}
           addTokenId={() => form.insertListItem('token_ids', {})}
           tokenIdsInputProps={form.values.token_ids?.map((_, index) => ({
             tokenNameInputProps: form.getInputProps(`token_ids.${index}.name`),
@@ -135,9 +256,10 @@ export const Controlled: Story = {
           marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
         />
       )
-    } else if (formTokenType) {
+    } else if (formTokenType === 'ERC721' || formTokenType === 'ERC20') {
       children = (
         <RewardERC20_721
+          {...coreRewardProps}
           tokenType={formTokenType}
           tokenNameInputProps={form.getInputProps('name')}
           decimalsInputProps={form.getInputProps('decimals')}
@@ -145,56 +267,17 @@ export const Controlled: Story = {
           marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
         />
       )
+    } else if (doesChainHaveRewardContract) {
+      children = <RewardCoreInputs {...coreRewardProps} />
     }
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         <RewardFormCard
           title="Reward"
-          tokenContractAddressInputProps={{
-            ...defaultTokenContractAddressInputProps,
-            ...form.getInputProps('contract_address')
-          }}
-          rewardImageProps={{
-            inputProps: {
-              accept: 'image/svg+xml,image/png,image/jpeg'
-            },
-            ...form.getInputProps('image'),
-            url: form.values.image,
-            onFileChange: (file) => {
-              if (!file) return
-              const img = new Image()
-              img.src = URL.createObjectURL(file)
-              img.onload = () => {
-                form.setFieldValue('image', img.src)
-                if (img.width < 48 || img.height < 48) {
-                  form.setFieldError(
-                    'image',
-                    'Image too small, must be at least 48x48'
-                  )
-                } else if (img.width / img.height !== 1) {
-                  form.setFieldError(
-                    'image',
-                    'Image must have a 1:1 aspect ratio'
-                  )
-                } else {
-                  form.setFieldError('image', '')
-                }
-              }
-            }
-          }}
           networkInputProps={{
             ...defaultNetworkInputProps,
             ...form.getInputProps('chain_id')
-          }}
-          tokenTypeInputProps={{
-            ...defaultTokenTypeInputProps,
-            ...form.getInputProps('reward_type'),
-            value: formTokenType,
-            onChange: (value) => {
-              if (!value) return
-              form.setFieldValue('reward_type', value as TokenType)
-            }
           }}
         >
           {children}
@@ -209,170 +292,6 @@ export const Controlled: Story = {
         </Button>
         Values:
         <Code block>{JSON.stringify(form.values, null, 2)}</Code>
-      </div>
-    )
-  }
-}
-
-const multipleRewardsSchema = z.object({
-  rewards: z.array(rewardsDetailsSchema)
-})
-
-type MultipleRewardsFormSchema = z.infer<typeof multipleRewardsSchema>
-
-export const DynamicForm: Story = {
-  render: () => {
-    const form = useForm<MultipleRewardsFormSchema>({
-      initialValues: {
-        rewards: [
-          // @ts-expect-error: token_ids need to be initialized as an empty array
-          {
-            token_ids: []
-          }
-        ]
-      },
-      validate: zodResolver(multipleRewardsSchema)
-    })
-
-    const rewardsForms = form.values.rewards.map((_, index) => {
-      const formValues = form.values.rewards[index]
-      const formTokenType = formValues.reward_type
-      let children = null
-
-      if (formTokenType === 'ERC1155') {
-        children = (
-          <RewardERC1155
-            addTokenId={() =>
-              form.insertListItem(`rewards.${index}.token_ids`, {})
-            }
-            tokenIdsInputProps={formValues.token_ids?.map((_, tokenIndex) => ({
-              tokenNameInputProps: form.getInputProps(
-                `rewards.${index}.token_ids.${tokenIndex}.name`
-              ),
-              amountPerUserInputProps: form.getInputProps(
-                `rewards.${index}.token_ids.${index}.amount_per_user`
-              ),
-              onRemoveClick: () => {
-                if (formValues.token_ids?.length === 1) return
-                form.removeListItem(`rewards.${index}.token_ids`, index)
-              }
-            }))}
-            marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
-          />
-        )
-      } else if (formTokenType) {
-        children = (
-          <RewardERC20_721
-            tokenType={formTokenType}
-            tokenNameInputProps={form.getInputProps(`rewards.${index}.name`)}
-            decimalsInputProps={form.getInputProps(`rewards.${index}.decimals`)}
-            amountPerUserInputProps={form.getInputProps(
-              `rewards.${index}.amount_per_user`
-            )}
-            marketplaceUrlInputProps={form.getInputProps(
-              `rewards.${index}.marketplace_url`
-            )}
-          />
-        )
-      }
-
-      return (
-        <div
-          key={index}
-          style={{ display: 'flex', flexDirection: 'column', gap: 10 }}
-        >
-          <RewardFormCard
-            title={`Reward ${index + 1}`}
-            icon={
-              index > 0 ? (
-                <DeleteButton
-                  onClick={() => form.removeListItem('rewards', index)}
-                />
-              ) : undefined
-            }
-            rewardImageProps={{
-              ...form.getInputProps(`rewards.${index}.image`),
-              inputProps: {
-                accept: 'image/svg+xml,image/png,image/jpeg'
-              },
-              url: formValues.image,
-              onFileChange: (file) => {
-                if (!file) return
-                const img = new Image()
-                img.src = URL.createObjectURL(file)
-                img.onload = () => {
-                  const fieldName = `rewards.${index}.image`
-                  form.setFieldValue(fieldName, img.src)
-                  if (img.width < 48 || img.height < 48) {
-                    form.setFieldError(
-                      fieldName,
-                      'Image too small, must be at least 48x48'
-                    )
-                  } else if (img.width / img.height !== 1) {
-                    form.setFieldError(
-                      fieldName,
-                      'Image must have a 1:1 aspect ratio'
-                    )
-                  } else {
-                    form.setFieldError(fieldName, '')
-                  }
-                }
-              }
-            }}
-            tokenContractAddressInputProps={{
-              ...defaultTokenContractAddressInputProps,
-              ...form.getInputProps(`rewards.${index}.contract_address`)
-            }}
-            networkInputProps={{
-              ...defaultNetworkInputProps,
-              ...form.getInputProps(`rewards.${index}.chain_id`)
-            }}
-            tokenTypeInputProps={{
-              ...defaultTokenTypeInputProps,
-              ...form.getInputProps(`rewards.${index}.reward_type`),
-              value: formTokenType,
-              onChange: (value) => {
-                if (!value) return
-                form.setFieldValue(
-                  `rewards.${index}.reward_type`,
-                  value as TokenType
-                )
-              }
-            }}
-          >
-            {children}
-          </RewardFormCard>
-        </div>
-      )
-    })
-
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <Button
-          onClick={() =>
-            form.insertListItem('rewards', {
-              token_ids: []
-            })
-          }
-          type="secondary"
-          size="small"
-          style={{ width: 'fit-content', marginLeft: 'auto' }}
-        >
-          Add reward
-        </Button>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
-          {rewardsForms}
-        </div>
-        Form Value:
-        <Code block>{JSON.stringify(form.values, null, 2)}</Code>
-        <Button
-          onClick={() => form.validate()}
-          type="secondary"
-          size="small"
-          style={{ width: 'fit-content', marginLeft: 'auto' }}
-        >
-          Submit
-        </Button>
       </div>
     )
   }

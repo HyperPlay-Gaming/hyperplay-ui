@@ -199,3 +199,8 @@ export type {
 } from './components/RewardDeposit'
 
 export { default as RewardDepositTokenList } from './components/RewardDeposit/components/RewardDepositTokensList'
+
+export {
+  default as NoDeployedRewardContract,
+  defaultI18n as NoDeployedRewardContractI18n
+} from './components/NoDeployedRewardContract'
