@@ -1,4 +1,4 @@
-import { chainMap, getChainMetadataSync } from '@hyperplay/chains'
+import { getChainMetadataSync } from '@hyperplay/chains'
 import { Code } from '@mantine/core'
 import { useForm, zodResolver } from '@mantine/form'
 import type { Meta, StoryObj } from '@storybook/react'
@@ -231,49 +231,60 @@ export const Controlled: Story = {
 
     let children = null
 
-    if (form.values.chain_id && !doesChainHaveRewardContract) {
-      children = (
-        <NoDeployedRewardContract
-          i18n={{
-            ...noDeployedRewardContractI18n,
-            description: `You currently don’t have an existing Reward Contract for ${chainIdMetadata?.chain.name}. Please deploy one to be used for Reward disbursement.`
-          }}
-          onDeployClick={() => alert('Deploy contract')}
-        />
-      )
-    }
+    if (form.values.chain_id) {
+      if (doesChainHaveRewardContract) {
+        switch (formTokenType) {
+          case 'ERC1155':
+            children = (
+              <RewardERC1155
+                {...coreRewardProps}
+                addTokenId={() => form.insertListItem('token_ids', {})}
+                tokenIdsInputProps={form.values.token_ids?.map((_, index) => ({
+                  tokenNameInputProps: form.getInputProps(
+                    `token_ids.${index}.name`
+                  ),
+                  amountPerUserInputProps: form.getInputProps(
+                    `token_ids.${index}.amount_per_user`
+                  ),
+                  onRemoveClick: () => {
+                    if (form.values.token_ids?.length === 1) return
+                    form.removeListItem('token_ids', index)
+                  }
+                }))}
+                marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
+              />
+            )
+            break
 
-    if (formTokenType === 'ERC1155') {
-      children = (
-        <RewardERC1155
-          {...coreRewardProps}
-          addTokenId={() => form.insertListItem('token_ids', {})}
-          tokenIdsInputProps={form.values.token_ids?.map((_, index) => ({
-            tokenNameInputProps: form.getInputProps(`token_ids.${index}.name`),
-            amountPerUserInputProps: form.getInputProps(
-              `token_ids.${index}.amount_per_user`
-            ),
-            onRemoveClick: () => {
-              if (form.values.token_ids?.length === 1) return
-              form.removeListItem('token_ids', index)
-            }
-          }))}
-          marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
-        />
-      )
-    } else if (formTokenType === 'ERC721' || formTokenType === 'ERC20') {
-      children = (
-        <RewardERC20_721
-          {...coreRewardProps}
-          tokenType={formTokenType}
-          tokenNameInputProps={form.getInputProps('name')}
-          decimalsInputProps={form.getInputProps('decimals')}
-          amountPerUserInputProps={form.getInputProps('amount_per_user')}
-          marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
-        />
-      )
-    } else if (doesChainHaveRewardContract) {
-      children = <RewardCoreInputs {...coreRewardProps} />
+          case 'ERC721':
+          case 'ERC20':
+            children = (
+              <RewardERC20_721
+                {...coreRewardProps}
+                tokenType={formTokenType}
+                tokenNameInputProps={form.getInputProps('name')}
+                decimalsInputProps={form.getInputProps('decimals')}
+                amountPerUserInputProps={form.getInputProps('amount_per_user')}
+                marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
+              />
+            )
+            break
+
+          default:
+            children = <RewardCoreInputs {...coreRewardProps} />
+            break
+        }
+      } else {
+        children = (
+          <NoDeployedRewardContract
+            i18n={{
+              ...noDeployedRewardContractI18n,
+              description: `You currently don’t have an existing Reward Contract for ${chainIdMetadata?.chain.name}. Please deploy one to be used for Reward disbursement.`
+            }}
+            onDeployClick={() => alert('Deploy contract')}
+          />
+        )
+      }
     }
 
     return (
