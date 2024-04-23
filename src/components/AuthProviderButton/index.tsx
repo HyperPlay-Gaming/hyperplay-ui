@@ -24,10 +24,12 @@ const AuthProviderButton = ({
 }: AuthProviderButtonProps) => {
   return (
     <button className={cn(styles.box, className)} {...props} aria-label={name}>
-      {connected && <GreenStatus className={styles.connectedIcon} />}
-      {icon}
-      <span className={cn('caption', styles.name)}>{name}</span>
-      {label}
+      <div className={styles.content}>
+        {connected && <GreenStatus className={styles.connectedIcon} />}
+        {icon}
+        <span className={cn('caption', styles.name)}>{name}</span>
+        {label}
+      </div>
     </button>
   )
 }

@@ -89,7 +89,10 @@ export const Default: Story = {
 export const WalletLinked: Story = {
   render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
-      <LinkExternalAccountsModal {...args} walletLinked={true} />
+      <LinkExternalAccountsModal
+        {...args}
+        walletAddress="0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+      />
     </div>
   ),
   play: async ({ canvasElement, args }) => {

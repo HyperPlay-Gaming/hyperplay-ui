@@ -1,5 +1,5 @@
-export function getTruncatedAddress(addr: string) {
+export function getTruncatedAddress(addr: string, length = 5) {
   if (!addr) return ''
-
-  return addr.slice(0, 5) + '...' + addr.slice(-5)
+  if (addr.length <= length * 2 + 2) return addr
+  return addr.slice(0, length) + '...' + addr.slice(-length)
 }
