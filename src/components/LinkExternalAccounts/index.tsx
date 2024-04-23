@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import { HyperPlayLogoColored, Wallet } from '@/assets/images'
 import Alert, { AlertProps } from '@/components/Alert'
-import { AuthProviderButton } from '@/index'
+import { AuthProviderButton, getTruncatedAddress } from '@/index'
 
 import Modal from '../Modal/Modal'
 import styles from './LinkExternalAccounts.module.scss'
@@ -28,7 +28,7 @@ interface AuthProps {
   providers: ProviderOption[]
   onAuthProviderClick: (provider: ProviderOption) => void
   onWalletClick: () => void
-  walletLinked?: boolean
+  walletAddress?: string
 }
 
 interface I18n {
@@ -55,9 +55,19 @@ export default function LinkExternalAccountsModal({
     subtitle:
       'These accounts will not be shared outside of HyperPlay without your permission.'
   },
-  walletLinked,
+  walletAddress,
   ...props
 }: LinkExternalAccountsProps) {
+  let walletLabel
+
+  if (walletAddress) {
+    walletLabel = (
+      <span className="caption color-neutral-400">
+        {getTruncatedAddress(walletAddress, 3)}
+      </span>
+    )
+  }
+
   return (
     <Modal.Root {...props} className={cn(className, styles.root)}>
       <Modal.CloseButton
@@ -75,7 +85,8 @@ export default function LinkExternalAccountsModal({
           name="Wallet"
           icon={<Wallet className={styles.icon} />}
           onClick={onWalletClick}
-          connected={walletLinked}
+          connected={Boolean(walletAddress)}
+          label={walletLabel}
         />
         {providers.map((provider) => (
           <AuthProviderButton

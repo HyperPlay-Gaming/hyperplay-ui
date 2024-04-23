@@ -19,6 +19,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-md);
+  grid-auto-rows: 1fr;
 
   @include variables.for-tablet-portrait-up {
     grid-template-columns: repeat(4, minmax(0, 1fr));
