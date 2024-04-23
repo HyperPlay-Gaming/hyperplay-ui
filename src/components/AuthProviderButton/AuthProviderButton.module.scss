@@ -34,12 +34,8 @@
 
 .name {
   font-weight: var(--bold);
-  color: var(--color-neutral-400);
+  color: var(--color-neutral-100);
   transition: 0.25s ease-in-out;
-
-  :hover > & {
-    color: var(--color-neutral-100);
-  }
 }
 
 .label {
