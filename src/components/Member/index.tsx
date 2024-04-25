@@ -8,9 +8,15 @@ export interface MemberProps {
   member: string
   label?: string
   truncate?: boolean
+  supportAddress?: string
 }
 
-export function Member({ member, label, truncate = false }: MemberProps) {
+export function Member({
+  member,
+  label,
+  supportAddress,
+  truncate = false
+}: MemberProps) {
   return (
     <div className={styles.container}>
       <Identicon value={member} />
@@ -18,6 +24,7 @@ export function Member({ member, label, truncate = false }: MemberProps) {
         <Address
           address={member}
           truncate={truncate}
+          supportAddress={supportAddress}
           classNames={{ button: classNames('title-sm', styles.addressButton) }}
         />
         <div className={styles.label}>{label}</div>
