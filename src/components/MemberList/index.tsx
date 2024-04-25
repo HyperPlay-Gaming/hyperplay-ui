@@ -9,6 +9,7 @@ export interface MemberListProps {
   members: MemberProps[]
   onRemove?: (member: string) => void
   editable?: boolean
+  supportAddress?: string
 }
 
 export function MemberList(props: MemberListProps) {
@@ -18,7 +19,7 @@ export function MemberList(props: MemberListProps) {
 
   const members = props.members.map((memberProps, index: number) => (
     <div key={index} className={styles.memberContainer}>
-      <Member {...memberProps} />
+      <Member supportAddress={props?.supportAddress} {...memberProps} />
       {props.editable && props.members.length > 1 && (
         <ActionIcon
           variant="transparent"

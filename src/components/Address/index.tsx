@@ -3,8 +3,6 @@ import React, { useContext } from 'react'
 import { useClipboard } from '@mantine/hooks'
 import classNames from 'classnames'
 
-import { HYPERPLAY_SUPPORT_ADDRESS } from '@/common/consts'
-
 export interface AddressContextType {
   resolveName: (address: string) => {
     data: string | undefined | null
@@ -25,6 +23,7 @@ export interface AddressProps {
   classNames?: {
     button?: string
   }
+  supportAddress?: string
 }
 
 export default function Address(props: AddressProps) {
@@ -35,7 +34,7 @@ export default function Address(props: AddressProps) {
   let label = name
 
   if (!label) {
-    if (props.address === HYPERPLAY_SUPPORT_ADDRESS) {
+    if (props.address === props?.supportAddress) {
       label = 'HyperPlay Support'
     } else if (props.truncate) {
       label = `${props.address.slice(0, 6)}..${props.address.slice(-4)}`
