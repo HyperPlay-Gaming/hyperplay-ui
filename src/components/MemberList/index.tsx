@@ -20,14 +20,16 @@ export function MemberList(props: MemberListProps) {
   const members = props.members.map((memberProps, index: number) => (
     <div key={index} className={styles.memberContainer}>
       <Member supportAddress={props?.supportAddress} {...memberProps} />
-      {props.editable && props.members.length > 1 && (
-        <ActionIcon
-          variant="transparent"
-          onClick={() => remove(memberProps.member)}
-        >
-          <IconTrash className={styles.trash} />
-        </ActionIcon>
-      )}
+      {props.editable &&
+        props.members.length > 1 &&
+        memberProps.member !== props?.supportAddress && (
+          <ActionIcon
+            variant="transparent"
+            onClick={() => remove(memberProps.member)}
+          >
+            <IconTrash className={styles.trash} />
+          </ActionIcon>
+        )}
     </div>
   ))
 
