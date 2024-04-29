@@ -1,224 +1,225 @@
 @import '../../styles/utilities/_variables';
 
 .root {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: stretch;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  flex-direction: column;
 
-    &.isOpenHeight {
-        background: var(--color-neutral-900);
-    }
+  &.isOpenHeight {
+    background: var(--color-neutral-900);
+  }
 
-    @include for-desktop-up {
-        flex-direction: row;
-        height: 72px;
-    }
+  @include for-desktop-up {
+    flex-direction: row;
+    height: 72px;
+  }
 }
 
 .innerWrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-self: stretch;
-    padding: var(--space-md);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  padding: var(--space-md);
 
-    @include for-desktop-up {
-        padding: 0 var(--space-xl);
-        margin: auto 80px;
-    }
+  @include for-desktop-up {
+    padding: 0 var(--space-xl);
+    margin: auto 80px;
+  }
 }
 
 .logo {
-    position: relative;
-    width: 133.3px;
-    height: var(--space-2lg);
-    fill: var(--color-neutral-200);
+  position: relative;
+  width: 133.3px;
+  height: var(--space-2lg);
+  fill: var(--color-neutral-200);
 }
 
 .mobileMenuIcon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--space-xs);
-    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xs);
+  position: relative;
 
-    &:after {
-        content: '';
-        position: absolute;
-        top: 40%;
-        left: 40%;
-        width: var(--space-2xs);
-        height: var(--space-2xs);
-        background: rgba(255, 255, 255, 0.7);
-        border-radius: 100%;
-        transform: scale(1);
-        transform-origin: center;
-        opacity: 0;
-        transition: opacity 0.1s, transform 0.1s;
-        pointer-events: none;
-    }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: var(--space-2xs);
+    height: var(--space-2xs);
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 100%;
+    transform: scale(1);
+    transform-origin: center;
+    opacity: 0;
+    transition: opacity 0.1s, transform 0.1s;
+    pointer-events: none;
+  }
 
-    &:active:after {
-        animation: ripple 0.6s linear;
-    }
+  &:active:after {
+    animation: ripple 0.6s linear;
+  }
 
-    @include for-desktop-up {
-        display: none;
-    }
+  @include for-desktop-up {
+    display: none;
+  }
 }
 
 .mobileMenuToggleIcon {
-    color: var(--color-neutral-200);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--space-xs);
-    width: var(--space-2lg);
-    height: var(--space-2lg);
-    padding: var(--space-3xs);
+  color: var(--color-neutral-200);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xs);
+  width: var(--space-2lg);
+  height: var(--space-2lg);
+  padding: var(--space-3xs);
 }
 
 .desktopLinks {
-    display: none;
+  display: none;
 
-    @include for-desktop-up {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: var(--space-xl);
-    }
-}
-
-.desktopLink {
-    color: var(--color-neutral-400);
-    font-family: Poppins;
-    font-size: var(--text-md);
-    font-style: normal;
-    font-weight: var(--medium);
-    line-height: calc(var(--text-md) * 24 / 16);
-
-    &:focus,
-    &:active {
-        color: var(--color-primary-200);
-    }
-}
-
-.desktopActionsList {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2lg);
-
-    @include for-desktop-up {
-        display: flex;
-    }
-}
-
-.socialMediaButtons {
-    display: none;
-    align-items: center;
-    gap: var(--space-2lg);
-
-    @include for-desktop-up {
-        display: flex;
-    }
-}
-
-.installButton {
-    display: none;
-
-    @include for-desktop-up {
-        display: inherit;
-    }
-}
-
-.mobileMenu {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    flex: 1 0 auto;
-    background: var(--color-neutral-900);
-    box-shadow: 0px var(--space-sm) var(--space-md) -var(--space-3xs) rgba(16, 24, 40, 0.08),
-        0px var(--space-3xs) var(--space-2xs) -2px rgba(16, 24, 40, 0.03);
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in, max-height 0.3s ease-in, visibility 0.3s ease-in;
-    
-    &.isMenuOpen {
-        max-height: 800px;
-        opacity: 1;
-        visibility: visible;
-    }
-
-    @include for-desktop-up {
-        display: none;
-    }
-}
-
-.mobileMenuLinks {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: var(--space-2lg) 0;
-    border-top: 1px solid var(--color-neutral-600);
-    border-bottom: 1px solid var(--color-neutral-600);
-}
-@keyframes ripple {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    100% {
-        transform: scale(10);
-        opacity: 0;
-    }
-}
-
-.mobileMenuLink {
-    display: flex;
-    padding: var(--space-sm) var(--space-2lg);
-    align-items: flex-start;
-    gap: var(--space-md);
-    align-self: stretch;
-    color: var(--color-neutral-100);
-    font-size: var(--text-md);
-    font-style: normal;
-    line-height: calc(var(--text-md) * 24 / 16);
-    font-weight: var(--medium);
-
-    &:focus,
-    &:active {
-        color: var(--color-primary-200);
-    }
-}
-
-.mobileMenuButtonsList {
+  @include for-desktop-up {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-    padding: var(--space-2lg) var(--space-md);
-    gap: var(--space-xs);
-    align-self: stretch;
+    gap: var(--space-xl);
+  }
+}
+
+.desktopLink {
+  color: var(--color-neutral-400);
+  font-family: Poppins;
+  font-size: var(--text-md);
+  font-style: normal;
+  font-weight: var(--medium);
+  line-height: calc(var(--text-md) * 24 / 16);
+
+  &:focus,
+  &:active {
+    color: var(--color-primary-200);
+  }
+}
+
+.desktopActionsList {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2lg);
+
+  @include for-desktop-up {
+    display: flex;
+  }
+}
+
+.socialMediaButtons {
+  display: none;
+  align-items: center;
+  gap: var(--space-2lg);
+
+  @include for-desktop-up {
+    display: flex;
+  }
+}
+
+.installButton {
+  display: none;
+
+  @include for-desktop-up {
+    display: inherit;
+  }
+}
+
+.mobileMenu {
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 auto;
+  background: var(--color-neutral-900);
+  box-shadow: 0px var(--space-sm) var(--space-md) -var(--space-3xs) rgba(16, 24, 40, 0.08),
+    0px var(--space-3xs) var(--space-2xs) -2px rgba(16, 24, 40, 0.03);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in, max-height 0.3s ease-in,
+    visibility 0.3s ease-in;
+
+  &.isMenuOpen {
+    max-height: 800px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @include for-desktop-up {
+    display: none;
+  }
+}
+
+.mobileMenuLinks {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2lg) 0;
+  border-top: 1px solid var(--color-neutral-600);
+  border-bottom: 1px solid var(--color-neutral-600);
+}
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
+
+.mobileMenuLink {
+  display: flex;
+  padding: var(--space-sm) var(--space-2lg);
+  align-items: flex-start;
+  gap: var(--space-md);
+  align-self: stretch;
+  color: var(--color-neutral-100);
+  font-size: var(--text-md);
+  font-style: normal;
+  line-height: calc(var(--text-md) * 24 / 16);
+  font-weight: var(--medium);
+
+  &:focus,
+  &:active {
+    color: var(--color-primary-200);
+  }
+}
+
+.mobileMenuButtonsList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: var(--space-2lg) var(--space-md);
+  gap: var(--space-xs);
+  align-self: stretch;
 }
 
 .menuButtonIcon {
-    fill: var(--color-neutral-100);
-    width: var(--space-lg);
-    height: var(--space-lg);
+  fill: var(--color-neutral-100);
+  width: var(--space-lg);
+  height: var(--space-lg);
 }
 
 .socialMediaLink,
 .mobileMenuButtonLink,
 .mobileMenuButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }

@@ -1,7 +1,12 @@
+import { useState } from 'react'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { default as NavigationBarV2, NavigationBarV2Props, defaultI18n } from '.'
-import { useState } from 'react'
+import {
+  default as NavigationBarV2,
+  NavigationBarV2Props,
+  defaultI18n
+} from '.'
 
 const meta: Meta<typeof NavigationBarV2> = {
   title: 'Website/NavigationBarV2',
@@ -26,7 +31,7 @@ const props: NavigationBarV2Props = {
   },
   onMenuTap: () => {
     console.log('Menu tap')
-  },
+  }
 }
 
 export const Default: Story = {
@@ -36,17 +41,17 @@ export const Default: Story = {
     viewport: {
       defaultViewport: 'desktop'
     }
-  },
+  }
 }
 
 export const Desktop: Story = {
-  args: { ...props},
+  args: { ...props },
   parameters: {
     layout: 'fullscreen',
     viewport: {
       defaultViewport: 'desktop'
     }
-  },
+  }
 }
 
 export const ClosedMobileMenu: Story = {
@@ -56,7 +61,7 @@ export const ClosedMobileMenu: Story = {
     viewport: {
       defaultViewport: 'mobile2'
     }
-  },
+  }
 }
 
 export const OpenMobileMenu: Story = {
@@ -66,7 +71,7 @@ export const OpenMobileMenu: Story = {
     viewport: {
       defaultViewport: 'mobile2'
     }
-  },
+  }
 }
 
 export const ClosedTabletMenu: Story = {
@@ -76,7 +81,7 @@ export const ClosedTabletMenu: Story = {
     viewport: {
       defaultViewport: 'tablet'
     }
-  },
+  }
 }
 
 export const OpenedTabletMenu: Story = {
@@ -86,7 +91,7 @@ export const OpenedTabletMenu: Story = {
     viewport: {
       defaultViewport: 'tablet'
     }
-  },
+  }
 }
 
 export const MobileOpenAndCloseMenu: Story = {
@@ -100,6 +105,12 @@ export const MobileOpenAndCloseMenu: Story = {
   render(args) {
     const [isOpen, setOpen] = useState<boolean>(false)
 
-    return (<NavigationBarV2 {...args} isMobileMenuOpen={isOpen} onMenuTap={() => setOpen((prev) => !prev)} />)
+    return (
+      <NavigationBarV2
+        {...args}
+        isMobileMenuOpen={isOpen}
+        onMenuTap={() => setOpen((prev) => !prev)}
+      />
+    )
   }
 }

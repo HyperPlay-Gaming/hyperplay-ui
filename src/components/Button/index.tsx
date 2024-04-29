@@ -20,7 +20,7 @@ export interface ButtonProps
     | 'menuItem'
     | 'alert'
     | 'secondaryGradient'
-  colorDirection?: 
+  colorDirection?:
     | 'to top'
     | 'to bottom'
     | 'to left'
@@ -61,10 +61,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       disabled={disabled}
       ref={ref}
       type={htmlType}
-      style={{
-        '--color-direction': colorDirection,
-        ...(props.style || {})
-      } as React.CSSProperties}
+      style={
+        {
+          '--color-direction': colorDirection,
+          ...(props.style || {})
+        } as React.CSSProperties
+      }
       className={classNames(
         styles.base,
         styles[type],
