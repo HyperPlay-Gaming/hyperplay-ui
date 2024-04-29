@@ -134,7 +134,7 @@ const MobileMenu = ({ isOpen, links, i18n }: MobileMenuProps) => (
     </div>
 );
 
-export const NavigationBarV2 = ({ className, isMobileMenuOpen, links, onMenuTap, i18n = defaultI18n }: NavigationBarV2Props) => {
+const NavigationBarV2 = ({ className, isMobileMenuOpen, links, onMenuTap, i18n = defaultI18n }: NavigationBarV2Props) => {
     return (
         <div className={cn(styles.root, { [styles.isOpenHeight]: isMobileMenuOpen }, className)}>
             <div className={styles.innerWrapper}>
@@ -159,3 +159,5 @@ export const NavigationBarV2 = ({ className, isMobileMenuOpen, links, onMenuTap,
         </div>
     );
 };
+
+export default NavigationBarV2;
