@@ -1,5 +1,7 @@
 @use '../../styles/utilities/gradientBorder' as *;
 
+$colorDirection: to top;
+
 .base {
   font-size: var(--text-md);
   border-radius: var(--space-xs-fixed);
@@ -108,10 +110,11 @@
 
 .secondaryGradient {
   --gradient-thickness-px: 1px;
+  --color-direction: to top;
   background-clip: padding-box;
 
   @include gradientBorderHidden(
-    linear-gradient(0deg, rgba(167, 51, 245, 1) 0%, rgba(83, 118, 236, 1) 100%),
+    linear-gradient(var(--color-direction), var(--color-primary-600) 0%, var(--color-secondary-500) 50%, var(--color-tertiary-500) 100%),
     1px
   );
 
@@ -137,7 +140,7 @@
   &:disabled,
   &[disabled] {
     --gradient-border: linear-gradient(
-      0deg,
+      var(--color-direction),
       rgba(42, 16, 81, 1) 0%,
       rgba(24, 31, 59, 1) 100%
     ) !important;

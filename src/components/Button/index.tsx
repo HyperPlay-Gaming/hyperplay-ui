@@ -20,6 +20,16 @@ export interface ButtonProps
     | 'menuItem'
     | 'alert'
     | 'secondaryGradient'
+  colorDirection?: 
+    | 'to top'
+    | 'to bottom'
+    | 'to left'
+    | 'to right'
+    | 'to center'
+    | 'from top'
+    | 'from bottom'
+    | 'from left'
+    | 'from right'
   size?: 'small' | 'medium' | 'large' | 'icon'
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type']
   leftIcon?: JSX.Element
@@ -33,6 +43,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     type = 'primary',
     size = 'medium',
+    colorDirection = 'to top',
     leftIcon,
     rightIcon,
     children,
@@ -50,6 +61,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       disabled={disabled}
       ref={ref}
       type={htmlType}
+      style={{
+        '--color-direction': colorDirection,
+        ...(props.style || {})
+      } as React.CSSProperties}
       className={classNames(
         styles.base,
         styles[type],
