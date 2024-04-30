@@ -10,48 +10,7 @@ import {
 import Button from '@/components/Button'
 
 import styles from './NavigationBarV2.module.scss'
-
-interface NavigationBarV2I18nProp {
-  store: string
-  quests: string
-  developers: string
-  docs: string
-  faq: string
-  installHyperPlayButton: string
-}
-
-interface NavigationBarV2LinksProp {
-  x: string
-  discord: string
-  store: string
-  quests: string
-  developers: string
-  docs: string
-  faq: string
-}
-
-interface NavigationLinksProps {
-  className?: string
-  meneItemClassName?: string
-  links: NavigationBarV2LinksProp
-  i18n: NavigationBarV2I18nProp
-}
-
-interface SocialMediaLinksProps {
-  links: NavigationBarV2LinksProp
-  className?: string
-  isButtons?: boolean
-}
-
-interface MobileMenuProps {
-  isOpen?: boolean
-  links: NavigationBarV2LinksProp
-  i18n: NavigationBarV2I18nProp
-}
-
-interface LogoComponentProps {
-  className?: string
-}
+import { NavigationBarV2I18nProp, NavigationBarV2Props, NavigationLinksProps, SocialMediaLinksProps, MobileMenuProps } from './types'
 
 export const defaultI18n: NavigationBarV2I18nProp = {
   store: 'Store',
@@ -62,39 +21,27 @@ export const defaultI18n: NavigationBarV2I18nProp = {
   installHyperPlayButton: 'Install HyperPlay'
 }
 
-export interface NavigationBarV2Props {
-  className?: string
-  isMobileMenuOpen?: boolean
-  links: NavigationBarV2LinksProp
-  onMenuTap: () => void
-  i18n?: NavigationBarV2I18nProp
-}
-
-const HyperPlayLogo = ({ className }: LogoComponentProps) => (
-  <HyperPlayFullTextLogo className={className} />
-)
-
 const NavigationLinks = ({
   className,
-  meneItemClassName,
+  menuItemClassName,
   links,
   i18n
 }: NavigationLinksProps) => (
   <div className={className}>
     <a href={links.store}>
-      <div className={meneItemClassName}>{i18n.store}</div>
+      <div className={menuItemClassName}>{i18n.store}</div>
     </a>
     <a href={links.quests}>
-      <div className={meneItemClassName}>{i18n.quests}</div>
+      <div className={menuItemClassName}>{i18n.quests}</div>
     </a>
     <a href={links.developers}>
-      <div className={meneItemClassName}>{i18n.developers}</div>
+      <div className={menuItemClassName}>{i18n.developers}</div>
     </a>
     <a href={links.docs}>
-      <div className={meneItemClassName}>{i18n.docs}</div>
+      <div className={menuItemClassName}>{i18n.docs}</div>
     </a>
     <a href={links.faq}>
-      <div className={meneItemClassName}>{i18n.faq}</div>
+      <div className={menuItemClassName}>{i18n.faq}</div>
     </a>
   </div>
 )
@@ -164,7 +111,7 @@ const MobileMenu = ({ isOpen, links, i18n }: MobileMenuProps) => (
       links={links}
       i18n={i18n}
       className={styles.mobileMenuLinks}
-      meneItemClassName={styles.mobileMenuLink}
+      menuItemClassName={styles.mobileMenuLink}
     />
     <SocialMediaIcons
       links={links}
@@ -190,13 +137,13 @@ const NavigationBarV2 = ({
       )}
     >
       <div className={styles.innerWrapper}>
-        <HyperPlayLogo className={styles.logo} />
+        <HyperPlayFullTextLogo className={className} />
 
         <NavigationLinks
           links={links}
           i18n={i18n}
           className={styles.desktopLinks}
-          meneItemClassName={styles.desktopLink}
+          menuItemClassName={styles.desktopLink}
         />
 
         <div className={styles.desktopActionsList}>

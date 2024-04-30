@@ -215,5 +215,5 @@ export * from './components/QuestsSummaryTable'
 export { default as DetailsCard } from './components/DetailsCard'
 export {
   default as NavigationBarV2,
-  type NavigationBarV2Props
 } from './components/NavigationBarV2'
+export type { NavigationBarV2I18nProp } from './components/NavigationBarV2/types'

@@ -81,6 +81,7 @@
   width: var(--space-2lg);
   height: var(--space-2lg);
   padding: var(--space-3xs);
+  cursor: pointer;
 }
 
 .desktopLinks {
@@ -101,6 +102,7 @@
   font-style: normal;
   font-weight: var(--medium);
   line-height: calc(var(--text-md) * 24 / 16);
+  cursor: pointer;
 
   &:focus,
   &:active {
@@ -183,6 +185,7 @@
   line-height: calc(var(--text-md) * 24 / 16);
   font-weight: var(--medium);
   font-family: var(--secondary-font-family);
+  cursor: pointer;
 
   &:focus,
   &:active {
