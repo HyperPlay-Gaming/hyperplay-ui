@@ -10,7 +10,13 @@ import {
 import Button from '@/components/Button'
 
 import styles from './NavigationBarV2.module.scss'
-import { NavigationBarV2I18nProp, NavigationBarV2Props, NavigationLinksProps, SocialMediaLinksProps, MobileMenuProps } from './types'
+import {
+  MobileMenuProps,
+  NavigationBarV2I18nProp,
+  NavigationBarV2Props,
+  NavigationLinksProps,
+  SocialMediaLinksProps
+} from './types'
 
 export const defaultI18n: NavigationBarV2I18nProp = {
   store: 'Store',
