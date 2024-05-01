@@ -5,6 +5,7 @@ import { IconTrash } from '@tabler/icons-react'
 import { z } from 'zod'
 
 import Button from '@/components/Button'
+import NoDeployedRewardContract from '@/components/NoDeployedRewardContract'
 
 import {
   RewardCommonInputsProps,
@@ -63,6 +64,14 @@ export const Default: Story = {}
 export const WithIcon: Story = {
   args: {
     icon: <DeleteButton onClick={() => alert('Delete reward clicked')} />
+  }
+}
+
+export const NoRewardContract: Story = {
+  args: {
+    children: (
+      <NoDeployedRewardContract message="You currently don’t have an existing Reward Contract for ETH Mainnet Network. Please deploy a new Reward Contract." />
+    )
   }
 }
 
@@ -135,6 +144,16 @@ export const Controlled: Story = {
     })
 
     const formTokenType = form.values.reward_type
+
+    // only for testing purposes
+    const networksContracts = new Map(
+      defaultNetworkInputProps.data.map(({ value }, index) => [
+        value,
+        index % 2 === 0 ? '0xC38329b34E939d3C9165D7301e8349Ec3036CB1c' : null
+      ])
+    )
+
+    const contractAddress = networksContracts.get(form.values.chain_id)
 
     const onFileChange = (file: File | null) => {
       if (!file) return
