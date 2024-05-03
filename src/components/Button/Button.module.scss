@@ -114,7 +114,8 @@ $colorDirection: to top;
   background-clip: padding-box;
 
   @include gradientBorderHidden(
-    linear-gradient(var(--color-direction),
+    linear-gradient(
+      var(--color-direction),
       var(--color-primary-600) 0%,
       var(--color-secondary-500) 50%,
       var(--color-tertiary-500) 100%

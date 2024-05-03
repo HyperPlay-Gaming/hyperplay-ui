@@ -68,8 +68,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       {...props}
     >
       <div
-      className={styles.content}
-      style={{ gap: `var(--space-${spacing}-fixed)` }}
+        className={styles.content}
+        style={{ gap: `var(--space-${spacing}-fixed)` }}
       >
         {leftIcon}
         {children}

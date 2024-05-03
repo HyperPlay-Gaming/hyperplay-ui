@@ -63,7 +63,7 @@ const IconStroke: { [key: string]: string } = {
   MinusCircle: '#FFFFFF',
   LightningBolt: '#FFFFFF',
   Clock: '#FFFFFF',
-  ArrowUpRight: '#FFFFFF',
+  ArrowUpRight: '#FFFFFF'
 }
 
 export default function Icons() {

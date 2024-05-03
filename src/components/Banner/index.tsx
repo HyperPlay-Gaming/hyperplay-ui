@@ -1,10 +1,10 @@
 import cn from 'classnames'
 
 import hpClientImg from '@/assets/banners/HyperPlayClient.png?url'
+import { ArrowUpRight } from '@/assets/images'
 import Button from '@/components/Button'
 
 import styles from './Banner.module.scss'
-import { ArrowUpRight } from '@/assets/images'
 
 interface BannerI18nProp {
   title: string
@@ -31,14 +31,20 @@ export interface BannerProps {
   onTapSubmitGame: () => void
 }
 
-export const Banner = ({ className, contentClassName, onTapInstall, onTapSubmitGame, i18n = defaultI18n }: BannerProps) => {
+export const Banner = ({
+  className,
+  contentClassName,
+  onTapInstall,
+  onTapSubmitGame,
+  i18n = defaultI18n
+}: BannerProps) => {
   return (
     <div className={cn(styles.root, className)}>
       <div className={cn(styles.content, contentClassName)}>
         <div className={styles.contextText}>
           <p className={styles.bannerSubtitle}>{i18n.subtitle}</p>
           <h1 className={styles.bannerTitle}>{i18n.title}</h1>
-          <p className={styles.bannerDescription}>{i18n.description}</p>  
+          <p className={styles.bannerDescription}>{i18n.description}</p>
         </div>
         <div className={styles.actionsList}>
           <Button
@@ -47,7 +53,7 @@ export const Banner = ({ className, contentClassName, onTapInstall, onTapSubmitG
             size="medium"
             spacing="xs"
             colorDirection="to right"
-            rightIcon={(<ArrowUpRight className={styles.submitGameButtonIcon} />)}
+            rightIcon={<ArrowUpRight className={styles.submitGameButtonIcon} />}
             onClick={onTapInstall}
           >
             {i18n.submitGame}
