@@ -27,6 +27,7 @@ const IconFill: { [key: string]: string } = {
   Ellipsis: 'white',
   Youtube: 'white',
   DiscordFilled: 'white',
+  XFilled: 'white',
   SteamLogo: 'white',
   TwitchLogo: 'white',
   KickLogo: 'white',
