@@ -1,33 +1,33 @@
 @use '../../styles/utilities/_variables';
 
 .outsideRoot {
-    max-width: 544px;
+  max-width: 544px;
 }
 
 .outsideDescription {
-    color: var(--color-neutral-400);
-    font-family: var(--secondary-font-family);
-    font-size: var(--text-sm);
-    font-style: normal;
-    font-weight: var(--regular);
-    line-height: calc(var(--text-sm) * 20 / 14);
+  color: var(--color-neutral-400);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-sm);
+  font-style: normal;
+  font-weight: var(--regular);
+  line-height: calc(var(--text-sm) * 20 / 14);
 
-    @include variables.for-desktop-up {
-        font-size: var(--text-md);
-        line-height: calc(var(--text-md) * 24 / 16);
-    }
+  @include variables.for-desktop-up {
+    font-size: var(--text-md);
+    line-height: calc(var(--text-md) * 24 / 16);
+  }
 }
 
 .outsideHpText {
-    color: var(--color-neutral-400);
-    font-family: var(--secondary-font-family);
-    font-size: var(--text-sm);
-    font-style: normal;
-    font-weight: var(--medium);
-    line-height: calc(var(--text-sm) * 20 / 14);
-    
-    @include variables.for-desktop-up {
-        font-size: var(--text-md);
-        line-height: calc(var(--text-md) * 24 / 16);
-    }
+  color: var(--color-neutral-400);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-sm);
+  font-style: normal;
+  font-weight: var(--medium);
+  line-height: calc(var(--text-sm) * 20 / 14);
+
+  @include variables.for-desktop-up {
+    font-size: var(--text-md);
+    line-height: calc(var(--text-md) * 24 / 16);
+  }
 }

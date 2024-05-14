@@ -11,14 +11,14 @@ interface DetailsCardI18nProp {
 
 export const defaultI18n: DetailsCardI18nProp = {
   title: 'Stay up to date',
-  buttonText: 'Follow us',
+  buttonText: 'Follow us'
 }
 
 export interface DetailsCardProps {
   className?: string
   contentClassName?: string
-  Icon?: React.ReactNode,
-  ContentComponent: React.ReactNode,
+  Icon?: React.ReactNode
+  ContentComponent: React.ReactNode
   onActionTap: () => void
   buttonProps?: ButtonProps
   i18n?: DetailsCardI18nProp
@@ -35,16 +35,25 @@ const DetailsCard = ({
 }: DetailsCardProps) => {
   return (
     <div className={cn(styles.root, className)}>
-        <div className={cn(styles.content, contentClassName)}>
-            {Icon ?? null}
-            <h3 className={cn(styles.cardTitle)}>{i18n.title}</h3>
-            <div className={cn(styles.cardDescription)}>{ContentComponent}</div>
-        </div>
-        <div className={cn(styles.actionsContainer)}>
-            <Button type="link" onClick={onActionTap} spacing="xs" size="small" className={cn(styles.actionButton)} {...buttonProps}>{i18n.buttonText}</Button>
-        </div>
+      <div className={cn(styles.content, contentClassName)}>
+        {Icon ?? null}
+        <h3 className={cn(styles.cardTitle)}>{i18n.title}</h3>
+        <div className={cn(styles.cardDescription)}>{ContentComponent}</div>
+      </div>
+      <div className={cn(styles.actionsContainer)}>
+        <Button
+          type="link"
+          onClick={onActionTap}
+          spacing="xs"
+          size="small"
+          className={cn(styles.actionButton)}
+          {...buttonProps}
+        >
+          {i18n.buttonText}
+        </Button>
+      </div>
     </div>
   )
 }
 
-export default DetailsCard;
+export default DetailsCard

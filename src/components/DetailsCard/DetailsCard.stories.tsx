@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { XFilled } from '@/assets/images'
+
 import DetailsCard, { DetailsCardProps, defaultI18n } from '.'
 import styles from './DetailsCardStory.module.scss'
-import { XFilled } from '@/assets/images'
 
 const props: DetailsCardProps = {
   className: styles.outsideRoot,
@@ -12,10 +13,12 @@ const props: DetailsCardProps = {
   },
   ContentComponent: (
     <div className={styles.outsideDescription}>
-      We’d love to stay connected with you. If the feeling’s mutual, follow <span className={styles.outsideHpText}>@hyperplay</span> on Twitter for the latest news and updates.
+      We’d love to stay connected with you. If the feeling’s mutual, follow{' '}
+      <span className={styles.outsideHpText}>@hyperplay</span> on Twitter for
+      the latest news and updates.
     </div>
   ),
-  Icon: (<XFilled fill="var(--color-neutral-100)" />)
+  Icon: <XFilled fill="var(--color-neutral-100)" />
 }
 
 const meta: Meta<typeof DetailsCard> = {
@@ -37,7 +40,6 @@ export const Desktop: Story = {
   }
 }
 
-
 export const Smartphone: Story = {
   parameters: {
     viewport: {
@@ -54,11 +56,10 @@ export const Tablet: Story = {
   }
 }
 
-
 export const DesktopWithoutIcon: Story = {
   args: {
     ...props,
-    Icon: null,
+    Icon: null
   },
   parameters: {
     layout: 'fullscreen',
@@ -68,11 +69,10 @@ export const DesktopWithoutIcon: Story = {
   }
 }
 
-
 export const SmartphoneWithoutIcon: Story = {
   args: {
     ...props,
-    Icon: null,
+    Icon: null
   },
   parameters: {
     viewport: {
@@ -84,7 +84,7 @@ export const SmartphoneWithoutIcon: Story = {
 export const TabletWithoutIcon: Story = {
   args: {
     ...props,
-    Icon: null,
+    Icon: null
   },
   parameters: {
     viewport: {
