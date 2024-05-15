@@ -15,7 +15,7 @@ export interface RewardERC20_721Props
   extends TokenRewardInput,
     RewardCommonInputsProps {
   decimalsInputProps?: NumberInputProps
-  tokenType: 'ERC20' | 'ERC721'
+  tokenType: 'ERC-20' | 'ERC-721'
   marketplaceUrlInputProps?: TextInputProps
   i18n?: FormRewardsI18n
 }
@@ -37,7 +37,7 @@ export function RewardERC20_721({
     />
   )
 
-  if (tokenType === 'ERC20') {
+  if (tokenType === 'ERC-20') {
     tokenInput = (
       <NumberInput
         label={i18n.label.decimals}
@@ -57,7 +57,7 @@ export function RewardERC20_721({
         />
         {tokenInput}
       </div>
-      {tokenType === 'ERC20' ? (
+      {tokenType === 'ERC-20' ? (
         <NumberInput
           label={i18n.label.amountPerUser}
           placeholder={i18n.placeholder.amountPerUser}

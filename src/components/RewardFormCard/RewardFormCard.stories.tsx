@@ -88,7 +88,7 @@ export const Erc20: Story = {
   args: {
     children: (
       <RewardERC20_721
-        tokenType="ERC20"
+        tokenType="ERC-20"
         rewardContractProps={{ rewardContract: defaultRewardContractProps }}
         tokenTypeInputProps={defaultTokenTypeInputProps}
         tokenContractAddressInputProps={defaultTokenContractAddressInputProps}
@@ -101,7 +101,7 @@ export const Erc721: Story = {
   args: {
     children: (
       <RewardERC20_721
-        tokenType="ERC721"
+        tokenType="ERC-721"
         rewardContractProps={{ rewardContract: defaultRewardContractProps }}
         tokenTypeInputProps={defaultTokenTypeInputProps}
         tokenContractAddressInputProps={defaultTokenContractAddressInputProps}
@@ -124,9 +124,9 @@ export const Erc1155: Story = {
 
 const rewardsDetailsSchema = z.object({
   reward_type: z.union([
-    z.literal('ERC721'),
-    z.literal('ERC1155'),
-    z.literal('ERC20')
+    z.literal('ERC-721'),
+    z.literal('ERC-1155'),
+    z.literal('ERC-20')
   ]),
   chain_id: z.string(),
   image: z.string().url(),
@@ -236,7 +236,7 @@ export const Controlled: Story = {
     }
 
     if (form.values.chain_id && contractAddress && formTokenType) {
-      if (formTokenType === 'ERC1155') {
+      if (formTokenType === 'ERC-1155') {
         children = (
           <RewardERC1155
             {...commonProps}
