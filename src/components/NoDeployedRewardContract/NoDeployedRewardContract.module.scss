@@ -28,3 +28,18 @@
 .text {
   margin: 0
 }
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
+}
+
+.tooltip {
+  background: var(--color-neutral-200);
+  color: var(--color-neutral-900);
+}
+
+.arrow {
+  background: var(--color-neutral-200);
+}

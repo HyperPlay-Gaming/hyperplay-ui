@@ -70,7 +70,10 @@ export const WithIcon: Story = {
 export const NoRewardContract: Story = {
   args: {
     children: (
-      <NoDeployedRewardContract message="You currently don’t have an existing Reward Contract for ETH Mainnet Network. Please deploy a new Reward Contract." />
+      <NoDeployedRewardContract
+        onDeployContract={() => alert('Deploy contract')}
+        message="You currently don’t have an existing Reward Contract for ETH Mainnet Network. Please deploy a new Reward Contract."
+      />
     )
   }
 }
