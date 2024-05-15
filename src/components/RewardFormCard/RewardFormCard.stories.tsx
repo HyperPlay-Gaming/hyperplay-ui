@@ -8,6 +8,7 @@ import Button from '@/components/Button'
 import NoDeployedRewardContract from '@/components/NoDeployedRewardContract'
 
 import {
+  RewardCommonInputs,
   RewardCommonInputsProps,
   RewardERC20_721,
   RewardERC1155
@@ -36,6 +37,11 @@ const defaultTokenTypeInputProps = {
   label: 'Reward Token Type',
   placeholder: 'Select a Reward Token Type',
   data: ['ERC20', 'ERC721', 'ERC1155']
+}
+
+const defaultRewardContractProps = {
+  address: '0xC38329b34E939d3C9165D7301e8349Ec3036CB1c',
+  url: 'https://etherscan.io/address/0xC38329b34E939d3C9165D7301e8349Ec3036CB1c'
 }
 
 const meta: Meta<typeof RewardFormCard> = {
@@ -83,6 +89,7 @@ export const Erc20: Story = {
     children: (
       <RewardERC20_721
         tokenType="ERC20"
+        rewardContractProps={{ rewardContract: defaultRewardContractProps }}
         tokenTypeInputProps={defaultTokenTypeInputProps}
         tokenContractAddressInputProps={defaultTokenContractAddressInputProps}
       />
@@ -95,6 +102,7 @@ export const Erc721: Story = {
     children: (
       <RewardERC20_721
         tokenType="ERC721"
+        rewardContractProps={{ rewardContract: defaultRewardContractProps }}
         tokenTypeInputProps={defaultTokenTypeInputProps}
         tokenContractAddressInputProps={defaultTokenContractAddressInputProps}
       />
@@ -106,6 +114,7 @@ export const Erc1155: Story = {
   args: {
     children: (
       <RewardERC1155
+        rewardContractProps={{ rewardContract: defaultRewardContractProps }}
         tokenTypeInputProps={defaultTokenTypeInputProps}
         tokenContractAddressInputProps={defaultTokenContractAddressInputProps}
       />
@@ -198,36 +207,67 @@ export const Controlled: Story = {
       }
     }
 
+    if (contractAddress) {
+      commonProps.rewardContractProps = {
+        rewardContract: {
+          address: contractAddress,
+          url: `https://etherscan.io/address/${contractAddress}`
+        }
+      }
+    }
+
     let children = null
 
-    if (formTokenType === 'ERC1155') {
+    if (form.values.chain_id && !contractAddress) {
       children = (
-        <RewardERC1155
-          {...commonProps}
-          addTokenId={() => form.insertListItem('token_ids', {})}
-          tokenIdsInputProps={form.values.token_ids?.map((_, index) => ({
-            tokenNameInputProps: form.getInputProps(`token_ids.${index}.name`),
-            amountPerUserInputProps: form.getInputProps(
-              `token_ids.${index}.amount_per_user`
-            ),
-            onRemoveClick: () => {
-              if (form.values.token_ids?.length === 1) return
-              form.removeListItem('token_ids', index)
-            }
-          }))}
-          marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
+        <NoDeployedRewardContract
+          onDeployContract={() => alert('Deploy contract')}
+          message={`You currently don’t have an existing Reward Contract for ${
+            defaultNetworkInputProps.data.find(
+              ({ value }) => value === form.values.chain_id
+            )?.label
+          } Network. Please deploy a new Reward Contract.`}
         />
       )
-    } else if (formTokenType) {
-      children = (
-        <RewardERC20_721
-          tokenType={formTokenType}
-          tokenNameInputProps={form.getInputProps('name')}
-          decimalsInputProps={form.getInputProps('decimals')}
-          amountPerUserInputProps={form.getInputProps('amount_per_user')}
-          marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
-        />
-      )
+    }
+
+    if (form.values.chain_id && contractAddress && !formTokenType) {
+      children = <RewardCommonInputs {...commonProps} />
+    }
+
+    if (form.values.chain_id && contractAddress && formTokenType) {
+      if (formTokenType === 'ERC1155') {
+        children = (
+          <RewardERC1155
+            {...commonProps}
+            addTokenId={() => form.insertListItem('token_ids', {})}
+            tokenIdsInputProps={form.values.token_ids?.map((_, index) => ({
+              tokenNameInputProps: form.getInputProps(
+                `token_ids.${index}.name`
+              ),
+              amountPerUserInputProps: form.getInputProps(
+                `token_ids.${index}.amount_per_user`
+              ),
+              onRemoveClick: () => {
+                if (form.values.token_ids?.length === 1) return
+                form.removeListItem('token_ids', index)
+              }
+            }))}
+            marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
+          />
+        )
+      } else {
+        children = (
+          <RewardERC20_721
+            {...commonProps}
+            tokenType={formTokenType}
+            tokenNameInputProps={form.getInputProps('name')}
+            decimalsInputProps={form.getInputProps('decimals')}
+            amountPerUserInputProps={form.getInputProps('amount_per_user')}
+            marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
+          />
+        )
+      }
     }
 
     return (
