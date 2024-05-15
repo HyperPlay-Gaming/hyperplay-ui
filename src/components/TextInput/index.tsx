@@ -55,7 +55,8 @@ const TextInput = React.forwardRef<
           root: cn(styles.root, classNames?.root),
           input: cn(styles.input, classNames?.input, styles[size]),
           wrapper: cn(styles.wrapper, classNames?.wrapper),
-          label: cn(styles.label, classNames?.label)
+          label: cn(styles.label, classNames?.label),
+          section: cn(styles.section, classNames?.section)
         }}
         ref={ref}
         onChange={(ev) => {
