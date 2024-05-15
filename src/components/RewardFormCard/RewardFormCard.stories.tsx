@@ -36,7 +36,7 @@ const defaultTokenContractAddressInputProps = {
 const defaultTokenTypeInputProps = {
   label: 'Reward Token Type',
   placeholder: 'Select a Reward Token Type',
-  data: ['ERC20', 'ERC721', 'ERC1155']
+  data: ['ERC-20', 'ERC-721', 'ERC-1155']
 }
 
 const defaultRewardContractProps = {
