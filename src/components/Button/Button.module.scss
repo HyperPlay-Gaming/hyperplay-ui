@@ -112,6 +112,7 @@ $colorDirection: to top;
   --gradient-thickness-px: 1px;
   --color-direction: to top;
   background-clip: padding-box;
+  outline: none;
 
   @include gradientBorderHidden(
     linear-gradient(
