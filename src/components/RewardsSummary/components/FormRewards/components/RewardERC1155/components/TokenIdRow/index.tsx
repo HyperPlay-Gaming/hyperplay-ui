@@ -17,6 +17,7 @@ export interface TokenIdRowProps extends TokenIdRowInputProps {
 
 export function TokenIdRow({
   tokenNameInputProps,
+  tokenIdInputProps,
   amountPerUserInputProps,
   onRemoveClick,
   i18n = DEFAULT_FORM_REWARDS_i18n
@@ -28,6 +29,11 @@ export function TokenIdRow({
           label={i18n.label.tokenName}
           placeholder={i18n.placeholder.tokenName}
           {...tokenNameInputProps}
+        />
+        <TextInput
+          label={i18n.label.tokenId}
+          placeholder={i18n.placeholder.tokenId}
+          {...tokenIdInputProps}
         />
         <NumberInput
           label={i18n.label.amountPerUser}

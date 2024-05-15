@@ -3,6 +3,7 @@ import { TextInputProps } from '@/components/TextInput'
 
 export interface TokenRewardInput {
   tokenNameInputProps?: TextInputProps
+  tokenIdInputProps?: TextInputProps
   amountPerUserInputProps?: NumberInputProps
 }
 

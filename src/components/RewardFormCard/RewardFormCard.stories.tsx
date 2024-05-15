@@ -19,7 +19,7 @@ const ethContractAddressRegex = /^0x[a-fA-F0-9]{40}$/g
 
 const defaultNetworkInputProps = {
   data: [
-    { value: '1', label: 'Ethereum' },
+    { value: '1', label: 'ETH Mainnet' },
     { value: '0x38', label: 'Binance Smart Chain' },
     { value: '0x89', label: 'Polygon' },
     { value: '0x4', label: 'Rinkeby' }
@@ -117,6 +117,9 @@ export const Erc1155: Story = {
         rewardContractProps={{ rewardContract: defaultRewardContractProps }}
         tokenTypeInputProps={defaultTokenTypeInputProps}
         tokenContractAddressInputProps={defaultTokenContractAddressInputProps}
+        tokenIdsInputProps={Array.from({ length: 1 }).map(() => ({
+          onRemoveClick: () => alert('removing id')
+        }))}
       />
     )
   }
@@ -139,6 +142,7 @@ const rewardsDetailsSchema = z.object({
   token_ids: z.array(
     z.object({
       amount_per_user: z.string(),
+      id: z.string(),
       name: z.string()
     })
   )
@@ -150,8 +154,12 @@ type TokenType = FormSchema['reward_type']
 export const Controlled: Story = {
   render: () => {
     const form = useForm<FormSchema>({
-      // @ts-expect-error: token_ids need to be initialized as an empty array
-      initialValues: { token_ids: [] },
+      initialValues: {
+        token_ids: [
+          // @ts-expect-error: amount_per_user, id, and name need to be initialized as undefined
+          { amount_per_user: undefined, id: undefined, name: undefined }
+        ]
+      },
       validate: zodResolver(rewardsDetailsSchema)
     })
 
@@ -242,6 +250,7 @@ export const Controlled: Story = {
             {...commonProps}
             addTokenId={() => form.insertListItem('token_ids', {})}
             tokenIdsInputProps={form.values.token_ids?.map((_, index) => ({
+              tokenIdInputProps: form.getInputProps(`token_ids.${index}.id`),
               tokenNameInputProps: form.getInputProps(
                 `token_ids.${index}.name`
               ),
