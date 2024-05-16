@@ -42,7 +42,8 @@ const IconFill: { [key: string]: string } = {
   QuestionMark: '#FFFFFF',
   Wallet: '#FFFFFF',
   ArrowTop: '#FFFFFF',
-  AlertBell: '#FFFFFF'
+  AlertBell: '#FFFFFF',
+  LightningBolt: '#FFFFFF'
 }
 
 const IconStroke: { [key: string]: string } = {
