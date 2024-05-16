@@ -52,7 +52,7 @@ export default function QuestDetails({
   let needMoreAchievementsText = null
   let linkSteamAccountText = null
   let sticker = null
-  let eligibilityReqsomponent = null
+  let eligibilityReqComponent = null
   if (eligibility.reputation !== undefined) {
     if (!eligibility.reputation?.eligible) {
       needMoreAchievementsText = (
@@ -70,7 +70,7 @@ export default function QuestDetails({
       </Sticker>
     )
 
-    eligibilityReqsomponent = (
+    eligibilityReqComponent = (
       <AssociatedGamesCollapse
         opened={opened}
         toggle={toggle}
@@ -86,8 +86,8 @@ export default function QuestDetails({
       </Sticker>
     )
 
-    eligibilityReqsomponent = (
-      <StreakProgress />
+    eligibilityReqComponent = (
+      <StreakProgress i18n={i18n.streakProgressI18n} {...eligibility.playStreak} />
     )
   }
 
@@ -99,7 +99,7 @@ export default function QuestDetails({
         {description}
       </div>
 
-      {eligibilityReqsomponent}
+      {eligibilityReqComponent}
 
       {needMoreAchievementsText}
       {linkSteamAccountText}

@@ -2,10 +2,12 @@ import React from 'react'
 
 import { PlayStreakEligibility } from '../../types'
 
+export interface StreakProgressI18n {
+  streakProgress: string
+}
+
 export interface StreakProgressProps extends PlayStreakEligibility {
-  i18n?: {
-    streakProgress: string
-  }
+  i18n?: StreakProgressI18n
 }
 
 export default function StreakProgress({

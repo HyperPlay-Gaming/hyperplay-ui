@@ -1,6 +1,7 @@
 import { HTMLProps } from 'react'
 
 import { QuestTypeTranslations } from '@/common/types'
+import { StreakProgressI18n } from './components/StreakProgress'
 
 export interface Game {
   title: string
@@ -42,6 +43,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     needMoreAchievements: string
     claim: string
     questType: QuestTypeTranslations
+    streakProgressI18n?: StreakProgressI18n
   }
   rewardsLoading?: boolean
   loading?: boolean
