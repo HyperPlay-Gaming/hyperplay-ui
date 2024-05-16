@@ -52,7 +52,8 @@ const IconStroke: { [key: string]: string } = {
   AlertTriangle: '#FFFFFF',
   PlusCircle: '#FFFFFF',
   MinusCircle: '#FFFFFF',
-  LightningBolt: '#FFFFFF'
+  LightningBolt: '#FFFFFF',
+  Clock: '#FFFFFF'
 }
 
 export default function Icons() {
