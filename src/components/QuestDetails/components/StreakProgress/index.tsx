@@ -1,6 +1,8 @@
 import React from 'react'
+import styles from './index.module.scss'
 
 import { PlayStreakEligibility } from '../../types'
+import { LightningBolt } from '@/assets/images'
 
 export interface StreakProgressI18n {
   streakProgress: string
@@ -18,10 +20,18 @@ export default function StreakProgress({
   return (
     <div>
       <div>
-        <div>{i18n.streakProgress}</div>
-        <div>{`${currentStreakInDays} / ${requiredStreakInDays}`}</div>
+        <div>
+          <div>{i18n.streakProgress}</div>
+          <div>{`${currentStreakInDays} / ${requiredStreakInDays}`}</div>
+        </div>
+        <div>lightning bolts</div>
       </div>
-      <div>lightning bolts</div>
+      <div>
+        <div>
+          <LightningBolt />
+        </div>
+        {`Play each day so your streak won't reset!`}
+      </div>
     </div>
   )
 }
