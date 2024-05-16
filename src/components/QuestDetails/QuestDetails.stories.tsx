@@ -167,3 +167,20 @@ export const LoadingEligibilityGame: Story = {
     )
   }
 }
+
+export const PlayStreak: Story = {
+  args: { ...props },
+  render: (args) => {
+    const [open, setOpen] = useState(false)
+    return (
+      <div>
+        <QuestDetails
+          {...args}
+          eligibility={{reputation: undefined, playStreak: {currentStreakInDays: 2, requiredStreakInDays: 7}}}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
+      </div>
+    )
+  }
+}

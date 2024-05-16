@@ -15,6 +15,11 @@ export interface ReputationQuestEligibility {
   steamAccountLinked: boolean
 }
 
+export interface PlayStreakEligibility {
+  currentStreakInDays: number
+  requiredStreakInDays: number
+}
+
 export interface QuestReward {
   title: string
   imageUrl: string
@@ -26,6 +31,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   // More quest eligibilty interfaces will be added here in future iterations
   eligibility: {
     reputation?: ReputationQuestEligibility
+    playStreak?: PlayStreakEligibility
   }
   rewards: QuestReward[]
   onClaimClick: () => void
