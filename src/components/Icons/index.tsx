@@ -50,7 +50,8 @@ const IconStroke: { [key: string]: string } = {
   GiftBox: '#FFFFFF',
   AlertTriangle: '#FFFFFF',
   PlusCircle: '#FFFFFF',
-  MinusCircle: '#FFFFFF'
+  MinusCircle: '#FFFFFF',
+  LightningBolt: '#FFFFFF'
 }
 
 export default function Icons() {
