@@ -191,3 +191,51 @@ export const PlayStreak: Story = {
     )
   }
 }
+
+export const PlayStreakFinished: Story = {
+  args: { ...props },
+  render: (args) => {
+    const [open, setOpen] = useState(false)
+    return (
+      <div>
+        <QuestDetails
+          {...args}
+          eligibility={{
+            reputation: undefined,
+            playStreak: {
+              currentStreakInDays: 7,
+              requiredStreakInDays: 7,
+              resetTimeInMsSinceEpoch: Date.now().valueOf() + 1000 * 3600
+            }
+          }}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
+      </div>
+    )
+  }
+}
+
+export const PlayStreakNotStarted: Story = {
+  args: { ...props },
+  render: (args) => {
+    const [open, setOpen] = useState(false)
+    return (
+      <div>
+        <QuestDetails
+          {...args}
+          eligibility={{
+            reputation: undefined,
+            playStreak: {
+              currentStreakInDays: 0,
+              requiredStreakInDays: 7,
+              resetTimeInMsSinceEpoch: Date.now().valueOf() + 1000 * 3600
+            }
+          }}
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
+      </div>
+    )
+  }
+}
