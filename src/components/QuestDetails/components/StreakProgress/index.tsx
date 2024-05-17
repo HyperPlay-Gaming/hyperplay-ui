@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import classNames from 'classnames'
 
@@ -21,6 +21,7 @@ export interface StreakProgressProps extends PlayStreakEligibility {
 export default function StreakProgress({
   currentStreakInDays,
   requiredStreakInDays,
+  resetTimeInMsSinceEpoch,
   i18n = {
     streakProgress: 'Streak Progress',
     nextRewardIn: 'Next reward in:',
@@ -28,7 +29,30 @@ export default function StreakProgress({
     playToStart: 'Play this game to start your streak!'
   }
 }: StreakProgressProps) {
-  const timeLeftString = '00:00:00'
+  const questStarted = !!currentStreakInDays
+  const questFinished = currentStreakInDays >= requiredStreakInDays
+
+  function getTimeLeftString() {
+    const timeLeftInMs = resetTimeInMsSinceEpoch - Date.now().valueOf()
+    const ss = Math.floor(timeLeftInMs / 1000) % 60
+    const mm = Math.floor(timeLeftInMs / 1000 / 60) % 60
+    const hh = Math.floor(timeLeftInMs / 1000 / 60 / 60)
+    const padWithZero = (xx: number) => String(xx).padStart(2, '0')
+    return `${padWithZero(hh)}:${padWithZero(mm)}:${padWithZero(ss)}`
+  }
+  const [timeLeftString, setTimeLeftString] = useState(getTimeLeftString())
+
+  function updateTimeLeft() {
+    if (!questFinished) {
+      setTimeLeftString(getTimeLeftString())
+    }
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => updateTimeLeft(), 1000)
+    return () => clearInterval(interval)
+  }, [])
+
   const lightningBoltIcons: boolean[] = []
   if (requiredStreakInDays <= 24) {
     for (let i = 0; i < requiredStreakInDays; ++i) {
@@ -41,9 +65,6 @@ export default function StreakProgress({
     filledClass[styles.filled] = filled
     return filledClass
   }
-
-  const questStarted = !!currentStreakInDays
-  const questFinished = currentStreakInDays >= requiredStreakInDays
 
   let lightningBoltCircleClass = ''
   if (questStarted) {
