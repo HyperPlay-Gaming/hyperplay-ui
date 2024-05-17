@@ -5,15 +5,21 @@ import { IconTrash } from '@tabler/icons-react'
 import { z } from 'zod'
 
 import Button from '@/components/Button'
+import NoDeployedRewardContract from '@/components/NoDeployedRewardContract'
 
-import { RewardERC20_721, RewardERC1155 } from '../../index'
+import {
+  RewardCommonInputs,
+  RewardCommonInputsProps,
+  RewardERC20_721,
+  RewardERC1155
+} from '../../index'
 import RewardFormCard from './index'
 
 const ethContractAddressRegex = /^0x[a-fA-F0-9]{40}$/g
 
 const defaultNetworkInputProps = {
   data: [
-    { value: '1', label: 'Ethereum' },
+    { value: '1', label: 'ETH Mainnet' },
     { value: '0x38', label: 'Binance Smart Chain' },
     { value: '0x89', label: 'Polygon' },
     { value: '0x4', label: 'Rinkeby' }
@@ -30,7 +36,12 @@ const defaultTokenContractAddressInputProps = {
 const defaultTokenTypeInputProps = {
   label: 'Reward Token Type',
   placeholder: 'Select a Reward Token Type',
-  data: ['ERC20', 'ERC721', 'ERC1155']
+  data: ['ERC-20', 'ERC-721', 'ERC-1155']
+}
+
+const defaultRewardContractProps = {
+  address: '0xC38329b34E939d3C9165D7301e8349Ec3036CB1c',
+  url: 'https://etherscan.io/address/0xC38329b34E939d3C9165D7301e8349Ec3036CB1c'
 }
 
 const meta: Meta<typeof RewardFormCard> = {
@@ -38,9 +49,7 @@ const meta: Meta<typeof RewardFormCard> = {
   component: RewardFormCard,
   args: {
     title: 'Reward',
-    networkInputProps: defaultNetworkInputProps,
-    tokenContractAddressInputProps: defaultTokenContractAddressInputProps,
-    tokenTypeInputProps: defaultTokenTypeInputProps
+    networkInputProps: defaultNetworkInputProps
   }
 }
 
@@ -64,29 +73,63 @@ export const WithIcon: Story = {
   }
 }
 
+export const NoRewardContract: Story = {
+  args: {
+    children: (
+      <NoDeployedRewardContract
+        onDeployContract={() => alert('Deploy contract')}
+        message="You currently don’t have an existing Reward Contract for ETH Mainnet Network. Please deploy a new Reward Contract."
+      />
+    )
+  }
+}
+
 export const Erc20: Story = {
   args: {
-    children: <RewardERC20_721 tokenType="ERC20" />
+    children: (
+      <RewardERC20_721
+        tokenType="ERC-20"
+        rewardContractProps={{ rewardContract: defaultRewardContractProps }}
+        tokenTypeInputProps={defaultTokenTypeInputProps}
+        tokenContractAddressInputProps={defaultTokenContractAddressInputProps}
+      />
+    )
   }
 }
 
 export const Erc721: Story = {
   args: {
-    children: <RewardERC20_721 tokenType="ERC721" />
+    children: (
+      <RewardERC20_721
+        tokenType="ERC-721"
+        rewardContractProps={{ rewardContract: defaultRewardContractProps }}
+        tokenTypeInputProps={defaultTokenTypeInputProps}
+        tokenContractAddressInputProps={defaultTokenContractAddressInputProps}
+      />
+    )
   }
 }
 
 export const Erc1155: Story = {
   args: {
-    children: <RewardERC1155 />
+    children: (
+      <RewardERC1155
+        rewardContractProps={{ rewardContract: defaultRewardContractProps }}
+        tokenTypeInputProps={defaultTokenTypeInputProps}
+        tokenContractAddressInputProps={defaultTokenContractAddressInputProps}
+        tokenIdsInputProps={Array.from({ length: 1 }).map(() => ({
+          onRemoveClick: () => alert('removing id')
+        }))}
+      />
+    )
   }
 }
 
 const rewardsDetailsSchema = z.object({
   reward_type: z.union([
-    z.literal('ERC721'),
-    z.literal('ERC1155'),
-    z.literal('ERC20')
+    z.literal('ERC-721'),
+    z.literal('ERC-1155'),
+    z.literal('ERC-20')
   ]),
   chain_id: z.string(),
   image: z.string().url(),
@@ -99,6 +142,7 @@ const rewardsDetailsSchema = z.object({
   token_ids: z.array(
     z.object({
       amount_per_user: z.string(),
+      id: z.string(),
       name: z.string()
     })
   )
@@ -110,91 +154,138 @@ type TokenType = FormSchema['reward_type']
 export const Controlled: Story = {
   render: () => {
     const form = useForm<FormSchema>({
-      // @ts-expect-error: token_ids need to be initialized as an empty array
-      initialValues: { token_ids: [] },
+      initialValues: {
+        token_ids: [
+          // @ts-expect-error: amount_per_user, id, and name need to be initialized as undefined
+          { amount_per_user: undefined, id: undefined, name: undefined }
+        ]
+      },
       validate: zodResolver(rewardsDetailsSchema)
     })
 
     const formTokenType = form.values.reward_type
+
+    // only for testing purposes
+    const networksContracts = new Map(
+      defaultNetworkInputProps.data.map(({ value }, index) => [
+        value,
+        index % 2 === 0 ? '0xC38329b34E939d3C9165D7301e8349Ec3036CB1c' : null
+      ])
+    )
+
+    const contractAddress = networksContracts.get(form.values.chain_id)
+
+    const onFileChange = (file: File | null) => {
+      if (!file) return
+      const img = new Image()
+      img.src = URL.createObjectURL(file)
+      img.onload = () => {
+        form.setFieldValue('image', img.src)
+        if (img.width < 48 || img.height < 48) {
+          form.setFieldError('image', 'Image too small, must be at least 48x48')
+        } else if (img.width / img.height !== 1) {
+          form.setFieldError('image', 'Image must have a 1:1 aspect ratio')
+        } else {
+          form.setFieldError('image', '')
+        }
+      }
+    }
+
+    const commonProps: RewardCommonInputsProps = {
+      tokenContractAddressInputProps: {
+        ...defaultTokenContractAddressInputProps,
+        ...form.getInputProps('contract_address')
+      },
+      rewardImageProps: {
+        inputProps: {
+          accept: 'image/svg+xml,image/png,image/jpeg'
+        },
+        ...form.getInputProps('image'),
+        url: form.values.image,
+        onFileChange: onFileChange
+      },
+      tokenTypeInputProps: {
+        ...defaultTokenTypeInputProps,
+        ...form.getInputProps('reward_type'),
+        value: formTokenType,
+        onChange: (value) => {
+          if (!value) return
+          form.setFieldValue('reward_type', value as TokenType)
+        }
+      }
+    }
+
+    if (contractAddress) {
+      commonProps.rewardContractProps = {
+        rewardContract: {
+          address: contractAddress,
+          url: `https://etherscan.io/address/${contractAddress}`
+        }
+      }
+    }
+
     let children = null
 
-    if (formTokenType === 'ERC1155') {
+    if (form.values.chain_id && !contractAddress) {
       children = (
-        <RewardERC1155
-          addTokenId={() => form.insertListItem('token_ids', {})}
-          tokenIdsInputProps={form.values.token_ids?.map((_, index) => ({
-            tokenNameInputProps: form.getInputProps(`token_ids.${index}.name`),
-            amountPerUserInputProps: form.getInputProps(
-              `token_ids.${index}.amount_per_user`
-            ),
-            onRemoveClick: () => {
-              if (form.values.token_ids?.length === 1) return
-              form.removeListItem('token_ids', index)
-            }
-          }))}
-          marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
+        <NoDeployedRewardContract
+          onDeployContract={() => alert('Deploy contract')}
+          message={`You currently don’t have an existing Reward Contract for ${
+            defaultNetworkInputProps.data.find(
+              ({ value }) => value === form.values.chain_id
+            )?.label
+          } Network. Please deploy a new Reward Contract.`}
         />
       )
-    } else if (formTokenType) {
-      children = (
-        <RewardERC20_721
-          tokenType={formTokenType}
-          tokenNameInputProps={form.getInputProps('name')}
-          decimalsInputProps={form.getInputProps('decimals')}
-          amountPerUserInputProps={form.getInputProps('amount_per_user')}
-          marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
-        />
-      )
+    }
+
+    if (form.values.chain_id && contractAddress && !formTokenType) {
+      children = <RewardCommonInputs {...commonProps} />
+    }
+
+    if (form.values.chain_id && contractAddress && formTokenType) {
+      if (formTokenType === 'ERC-1155') {
+        children = (
+          <RewardERC1155
+            {...commonProps}
+            addTokenId={() => form.insertListItem('token_ids', {})}
+            tokenIdsInputProps={form.values.token_ids?.map((_, index) => ({
+              tokenIdInputProps: form.getInputProps(`token_ids.${index}.id`),
+              tokenNameInputProps: form.getInputProps(
+                `token_ids.${index}.name`
+              ),
+              amountPerUserInputProps: form.getInputProps(
+                `token_ids.${index}.amount_per_user`
+              ),
+              onRemoveClick: () => {
+                if (form.values.token_ids?.length === 1) return
+                form.removeListItem('token_ids', index)
+              }
+            }))}
+            marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
+          />
+        )
+      } else {
+        children = (
+          <RewardERC20_721
+            {...commonProps}
+            tokenType={formTokenType}
+            tokenNameInputProps={form.getInputProps('name')}
+            decimalsInputProps={form.getInputProps('decimals')}
+            amountPerUserInputProps={form.getInputProps('amount_per_user')}
+            marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
+          />
+        )
+      }
     }
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         <RewardFormCard
           title="Reward"
-          tokenContractAddressInputProps={{
-            ...defaultTokenContractAddressInputProps,
-            ...form.getInputProps('contract_address')
-          }}
-          rewardImageProps={{
-            inputProps: {
-              accept: 'image/svg+xml,image/png,image/jpeg'
-            },
-            ...form.getInputProps('image'),
-            url: form.values.image,
-            onFileChange: (file) => {
-              if (!file) return
-              const img = new Image()
-              img.src = URL.createObjectURL(file)
-              img.onload = () => {
-                form.setFieldValue('image', img.src)
-                if (img.width < 48 || img.height < 48) {
-                  form.setFieldError(
-                    'image',
-                    'Image too small, must be at least 48x48'
-                  )
-                } else if (img.width / img.height !== 1) {
-                  form.setFieldError(
-                    'image',
-                    'Image must have a 1:1 aspect ratio'
-                  )
-                } else {
-                  form.setFieldError('image', '')
-                }
-              }
-            }
-          }}
           networkInputProps={{
             ...defaultNetworkInputProps,
             ...form.getInputProps('chain_id')
-          }}
-          tokenTypeInputProps={{
-            ...defaultTokenTypeInputProps,
-            ...form.getInputProps('reward_type'),
-            value: formTokenType,
-            onChange: (value) => {
-              if (!value) return
-              form.setFieldValue('reward_type', value as TokenType)
-            }
           }}
         >
           {children}
@@ -209,170 +300,6 @@ export const Controlled: Story = {
         </Button>
         Values:
         <Code block>{JSON.stringify(form.values, null, 2)}</Code>
-      </div>
-    )
-  }
-}
-
-const multipleRewardsSchema = z.object({
-  rewards: z.array(rewardsDetailsSchema)
-})
-
-type MultipleRewardsFormSchema = z.infer<typeof multipleRewardsSchema>
-
-export const DynamicForm: Story = {
-  render: () => {
-    const form = useForm<MultipleRewardsFormSchema>({
-      initialValues: {
-        rewards: [
-          // @ts-expect-error: token_ids need to be initialized as an empty array
-          {
-            token_ids: []
-          }
-        ]
-      },
-      validate: zodResolver(multipleRewardsSchema)
-    })
-
-    const rewardsForms = form.values.rewards.map((_, index) => {
-      const formValues = form.values.rewards[index]
-      const formTokenType = formValues.reward_type
-      let children = null
-
-      if (formTokenType === 'ERC1155') {
-        children = (
-          <RewardERC1155
-            addTokenId={() =>
-              form.insertListItem(`rewards.${index}.token_ids`, {})
-            }
-            tokenIdsInputProps={formValues.token_ids?.map((_, tokenIndex) => ({
-              tokenNameInputProps: form.getInputProps(
-                `rewards.${index}.token_ids.${tokenIndex}.name`
-              ),
-              amountPerUserInputProps: form.getInputProps(
-                `rewards.${index}.token_ids.${index}.amount_per_user`
-              ),
-              onRemoveClick: () => {
-                if (formValues.token_ids?.length === 1) return
-                form.removeListItem(`rewards.${index}.token_ids`, index)
-              }
-            }))}
-            marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
-          />
-        )
-      } else if (formTokenType) {
-        children = (
-          <RewardERC20_721
-            tokenType={formTokenType}
-            tokenNameInputProps={form.getInputProps(`rewards.${index}.name`)}
-            decimalsInputProps={form.getInputProps(`rewards.${index}.decimals`)}
-            amountPerUserInputProps={form.getInputProps(
-              `rewards.${index}.amount_per_user`
-            )}
-            marketplaceUrlInputProps={form.getInputProps(
-              `rewards.${index}.marketplace_url`
-            )}
-          />
-        )
-      }
-
-      return (
-        <div
-          key={index}
-          style={{ display: 'flex', flexDirection: 'column', gap: 10 }}
-        >
-          <RewardFormCard
-            title={`Reward ${index + 1}`}
-            icon={
-              index > 0 ? (
-                <DeleteButton
-                  onClick={() => form.removeListItem('rewards', index)}
-                />
-              ) : undefined
-            }
-            rewardImageProps={{
-              ...form.getInputProps(`rewards.${index}.image`),
-              inputProps: {
-                accept: 'image/svg+xml,image/png,image/jpeg'
-              },
-              url: formValues.image,
-              onFileChange: (file) => {
-                if (!file) return
-                const img = new Image()
-                img.src = URL.createObjectURL(file)
-                img.onload = () => {
-                  const fieldName = `rewards.${index}.image`
-                  form.setFieldValue(fieldName, img.src)
-                  if (img.width < 48 || img.height < 48) {
-                    form.setFieldError(
-                      fieldName,
-                      'Image too small, must be at least 48x48'
-                    )
-                  } else if (img.width / img.height !== 1) {
-                    form.setFieldError(
-                      fieldName,
-                      'Image must have a 1:1 aspect ratio'
-                    )
-                  } else {
-                    form.setFieldError(fieldName, '')
-                  }
-                }
-              }
-            }}
-            tokenContractAddressInputProps={{
-              ...defaultTokenContractAddressInputProps,
-              ...form.getInputProps(`rewards.${index}.contract_address`)
-            }}
-            networkInputProps={{
-              ...defaultNetworkInputProps,
-              ...form.getInputProps(`rewards.${index}.chain_id`)
-            }}
-            tokenTypeInputProps={{
-              ...defaultTokenTypeInputProps,
-              ...form.getInputProps(`rewards.${index}.reward_type`),
-              value: formTokenType,
-              onChange: (value) => {
-                if (!value) return
-                form.setFieldValue(
-                  `rewards.${index}.reward_type`,
-                  value as TokenType
-                )
-              }
-            }}
-          >
-            {children}
-          </RewardFormCard>
-        </div>
-      )
-    })
-
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <Button
-          onClick={() =>
-            form.insertListItem('rewards', {
-              token_ids: []
-            })
-          }
-          type="secondary"
-          size="small"
-          style={{ width: 'fit-content', marginLeft: 'auto' }}
-        >
-          Add reward
-        </Button>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
-          {rewardsForms}
-        </div>
-        Form Value:
-        <Code block>{JSON.stringify(form.values, null, 2)}</Code>
-        <Button
-          onClick={() => form.validate()}
-          type="secondary"
-          size="small"
-          style={{ width: 'fit-content', marginLeft: 'auto' }}
-        >
-          Submit
-        </Button>
       </div>
     )
   }

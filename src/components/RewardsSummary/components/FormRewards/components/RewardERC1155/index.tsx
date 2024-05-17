@@ -5,6 +5,9 @@ import React from 'react'
 import { IconPlus } from '@tabler/icons-react'
 
 import Button from '@/components/Button'
+import RewardCommonInputs, {
+  RewardCommonInputsProps
+} from '@/components/RewardsSummary/components/FormRewards/components/RewardCommonInputs'
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
 import { DEFAULT_FORM_REWARDS_i18n, FormRewardsI18n } from '../..'
@@ -12,7 +15,7 @@ import { TokenIdRowInputProps } from '../../types'
 import { TokenIdRow } from './components/TokenIdRow'
 import styles from './index.module.scss'
 
-export interface RewardERC1155Props {
+export interface RewardERC1155Props extends RewardCommonInputsProps {
   marketplaceUrlInputProps?: TextInputProps
   tokenIdsInputProps?: TokenIdRowInputProps[]
   addTokenId?: () => void
@@ -23,13 +26,14 @@ export function RewardERC1155({
   marketplaceUrlInputProps,
   tokenIdsInputProps = [],
   addTokenId,
-  i18n = DEFAULT_FORM_REWARDS_i18n
+  i18n = DEFAULT_FORM_REWARDS_i18n,
+  ...commonInputsProps
 }: RewardERC1155Props) {
   const tokenIdRows = tokenIdsInputProps.map((inputs_i, index) => (
     <TokenIdRow key={index} i18n={i18n} {...inputs_i} />
   ))
   return (
-    <>
+    <RewardCommonInputs {...commonInputsProps}>
       <div>
         <div className={styles.tokenIdContainer}>
           {tokenIdRows}
@@ -52,6 +56,6 @@ export function RewardERC1155({
           {...marketplaceUrlInputProps}
         />
       </div>
-    </>
+    </RewardCommonInputs>
   )
 }

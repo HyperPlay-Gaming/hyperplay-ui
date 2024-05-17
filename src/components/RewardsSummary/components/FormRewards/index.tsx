@@ -13,24 +13,26 @@ import { RewardERC1155 } from './components/RewardERC1155'
 import { TokenIdRowInputProps } from './types'
 
 export const DEFAULT_FORM_REWARDS_i18n: FormRewardsI18n = {
-  addTokenId: 'Add Token ID',
+  addTokenId: 'Add Token',
   placeholder: {
     rewardType: 'Reward Type',
     network: 'Network',
     contractAddress: 'Contract Address',
-    tokenName: 'Token',
-    marketplaceUrl: 'Marketplace URL',
+    tokenName: 'Ex: GOLD',
+    marketplaceUrl: 'https://',
     decimals: 'Decimals',
-    amountPerUser: 'Amount Per User'
+    amountPerUser: 'Amount Per User',
+    tokenId: 'Enter token ID'
   },
   label: {
     rewardType: 'Reward Type',
     network: 'Network',
     contractAddress: 'Contract Address',
-    tokenName: 'Token',
+    tokenName: 'Token Name',
     marketplaceUrl: 'Marketplace URL',
     decimals: 'Decimals',
-    amountPerUser: 'Amount Per User'
+    amountPerUser: 'Amount Per Player',
+    tokenId: 'Token ID'
   }
 }
 
@@ -44,6 +46,7 @@ export interface FormRewardsI18n {
     marketplaceUrl: string
     decimals: string
     amountPerUser: string
+    tokenId: string
   }
   label: {
     rewardType: string
@@ -53,6 +56,7 @@ export interface FormRewardsI18n {
     marketplaceUrl: string
     decimals: string
     amountPerUser: string
+    tokenId: string
   }
 }
 
@@ -86,10 +90,10 @@ export function FormRewards(props: FormRewardsProps) {
   let content = null
   if (selectedTokenType) {
     if (selectedTokenType.text === 'ERC721') {
-      content = <RewardERC20_721 tokenType="ERC721" {...props} />
-    } else if (selectedTokenType.text === 'ERC20') {
-      content = <RewardERC20_721 tokenType="ERC20" {...props} />
-    } else if (selectedTokenType.text === 'ERC1155') {
+      content = <RewardERC20_721 tokenType="ERC-721" {...props} />
+    } else if (selectedTokenType.text === 'ERC-20') {
+      content = <RewardERC20_721 tokenType="ERC-20" {...props} />
+    } else if (selectedTokenType.text === 'ERC-1155') {
       content = <RewardERC1155 {...props} />
     }
   }

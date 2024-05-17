@@ -203,3 +203,8 @@ export type {
 } from './components/RewardDeposit'
 
 export { default as RewardDepositTokenList } from './components/RewardDeposit/components/RewardDepositTokensList'
+
+export { default as RewardCommonInputs } from './components/RewardsSummary/components/FormRewards/components/RewardCommonInputs'
+export type { RewardCommonInputsProps } from './components/RewardsSummary/components/FormRewards/components/RewardCommonInputs'
+
+export { default as NoDeployedRewardContract } from './components/NoDeployedRewardContract'
