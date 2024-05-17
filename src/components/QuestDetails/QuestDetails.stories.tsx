@@ -277,7 +277,7 @@ export const PlayStreak25Days: Story = {
             playStreak: {
               currentStreakInDays: 10,
               requiredStreakInDays: 25,
-              resetTimeInMsSinceEpoch: Date.now().valueOf() + 1000 * 3600
+              resetTimeInMsSinceEpoch: Date.now().valueOf() + 2000
             }
           }}
           collapseIsOpen={open}
