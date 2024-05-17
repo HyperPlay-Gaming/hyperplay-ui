@@ -1,0 +1,80 @@
+$containerBorderColor: var(--color-neutral-600);
+$borderThickness: 2px;
+$rootPadding: var(--space-md-fixed);
+
+.rootContainer {
+  width: 100%;
+  background-color: var(--color-neutral-800);
+  border: $borderThickness solid $containerBorderColor;
+  border-radius: var(--space-sm-fixed);
+  padding: $rootPadding;
+
+  hr {
+    margin: var(--space-sm-fixed) calc(-1 * $rootPadding) var(--space-sm-fixed)
+      calc(-1 * $rootPadding);
+    padding: 0px $rootPadding 0px $rootPadding;
+    border: none;
+    border-top: $borderThickness solid $containerBorderColor;
+    height: $borderThickness;
+  }
+
+  em {
+    font-style: inherit;
+    color: var(--color-neutral-100);
+  }
+}
+
+.streakIcons {
+  stroke: var(--color-neutral-400);
+  &.filled {
+    fill: var(--color-success-300);
+    stroke: var(--color-success-300);
+  }
+}
+
+.clock {
+  stroke: var(--color-neutral-400);
+}
+
+.rewardCountdownContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-neutral-400);
+  margin-bottom: var(--space-md);
+}
+
+.daysLeftText {
+  color: var(--color-neutral-400);
+}
+
+.progressContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.circleLightning {
+  stroke: var(--color-alert-300);
+  border: 2px solid var(--color-alert-300);
+  border-radius: 1000px;
+  height: 32px;
+  width: 32px;
+  padding: 6px;
+}
+
+.progressIconsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-xs);
+}
+
+.bottomContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: var(--color-neutral-400);
+  gap: var(--space-xs);
+}

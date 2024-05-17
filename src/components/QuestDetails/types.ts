@@ -1,6 +1,7 @@
 import { HTMLProps } from 'react'
 
 import { QuestTypeTranslations } from '@/common/types'
+
 import { StreakProgressI18n } from './components/StreakProgress'
 
 export interface Game {
@@ -19,6 +20,7 @@ export interface ReputationQuestEligibility {
 export interface PlayStreakEligibility {
   currentStreakInDays: number
   requiredStreakInDays: number
+  resetTimeInMsSinceEpoch: number
 }
 
 export interface QuestReward {

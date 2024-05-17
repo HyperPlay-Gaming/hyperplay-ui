@@ -10,9 +10,9 @@ import Loading from '../Loading'
 import Sticker from '../Sticker'
 import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
 import Rewards from './components/Rewards'
+import StreakProgress from './components/StreakProgress'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
-import StreakProgress from './components/StreakProgress'
 
 function AlertText(props: HTMLProps<HTMLDivElement>) {
   return (
@@ -78,8 +78,7 @@ export default function QuestDetails({
         games={eligibility.reputation.games}
       />
     )
-  }
-  else if (eligibility.playStreak !== undefined){
+  } else if (eligibility.playStreak !== undefined) {
     sticker = (
       <Sticker styleType="secondary" variant="outlined">
         {i18n.questType.PLAYSTREAK}
@@ -87,7 +86,10 @@ export default function QuestDetails({
     )
 
     eligibilityReqComponent = (
-      <StreakProgress i18n={i18n.streakProgressI18n} {...eligibility.playStreak} />
+      <StreakProgress
+        i18n={i18n.streakProgressI18n}
+        {...eligibility.playStreak}
+      />
     )
   }
 

@@ -1,11 +1,17 @@
 import React from 'react'
-import styles from './index.module.scss'
+
+import classNames from 'classnames'
+
+import { Clock, LightningBolt } from '@/assets/images'
 
 import { PlayStreakEligibility } from '../../types'
-import { LightningBolt } from '@/assets/images'
+import styles from './index.module.scss'
 
 export interface StreakProgressI18n {
   streakProgress: string
+  nextRewardIn: string
+  days: string
+  playToStart: string
 }
 
 export interface StreakProgressProps extends PlayStreakEligibility {
@@ -15,22 +21,56 @@ export interface StreakProgressProps extends PlayStreakEligibility {
 export default function StreakProgress({
   currentStreakInDays,
   requiredStreakInDays,
-  i18n = { streakProgress: 'Streak Progress' }
+  i18n = {
+    streakProgress: 'Streak Progress',
+    nextRewardIn: 'Next reward in:',
+    days: 'days',
+    playToStart: 'Play this game to start your streak!'
+  }
 }: StreakProgressProps) {
+  const timeLeftString = '00:00:00'
+  const lightningBoltIcons = []
+  if (requiredStreakInDays <= 24) {
+    for (let i = 0; i < requiredStreakInDays; ++i) {
+      lightningBoltIcons.push(i < currentStreakInDays)
+    }
+  }
+
+  function getFilledClass(filled: boolean) {
+    const filledClass: Record<string, boolean> = {}
+    filledClass[styles.filled] = filled
+    return filledClass
+  }
+
   return (
-    <div>
-      <div>
+    <div className={styles.rootContainer}>
+      <div className={styles.rewardCountdownContainer}>
+        <Clock className={styles.clock} />
+        {`${i18n.nextRewardIn} `}
+        <em>{timeLeftString}</em>
+      </div>
+      <div className={styles.progressContainer}>
         <div>
           <div>{i18n.streakProgress}</div>
-          <div>{`${currentStreakInDays} / ${requiredStreakInDays}`}</div>
+          <div className={classNames('title', styles.daysLeftText)}>
+            <em>{`${currentStreakInDays}`}</em>
+            {` / ${requiredStreakInDays} ${i18n.days}`}
+          </div>
         </div>
-        <div>lightning bolts</div>
-      </div>
-      <div>
-        <div>
+        <div className={styles.progressIconsContainer}>
+          {lightningBoltIcons.map((filled, index) => (
+            <LightningBolt
+              className={classNames(styles.streakIcons, getFilledClass(filled))}
+              key={`lightningBolt:${index}`}
+              stroke=""
+            />
+          ))}{' '}
           <LightningBolt />
         </div>
-        {`Play each day so your streak won't reset!`}
+      </div>
+      <hr></hr>
+      <div className={styles.bottomContainer}>
+        <LightningBolt className={styles.circleLightning} /> {i18n.playToStart}
       </div>
     </div>
   )

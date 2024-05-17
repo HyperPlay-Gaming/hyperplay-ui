@@ -176,7 +176,14 @@ export const PlayStreak: Story = {
       <div>
         <QuestDetails
           {...args}
-          eligibility={{reputation: undefined, playStreak: {currentStreakInDays: 2, requiredStreakInDays: 7}}}
+          eligibility={{
+            reputation: undefined,
+            playStreak: {
+              currentStreakInDays: 2,
+              requiredStreakInDays: 7,
+              resetTimeInMsSinceEpoch: Date.now().valueOf() + 1000 * 3600
+            }
+          }}
           collapseIsOpen={open}
           toggleCollapse={() => setOpen(!open)}
         />
