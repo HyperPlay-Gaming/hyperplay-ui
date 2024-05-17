@@ -42,6 +42,18 @@ export default function StreakProgress({
     return filledClass
   }
 
+  const questStarted = !!currentStreakInDays
+  const questFinished = currentStreakInDays >= requiredStreakInDays
+
+  let lightningBoltCircleClass = ''
+  if (questStarted){
+    lightningBoltCircleClass = styles.inProgress
+  }
+  
+  if (questFinished){
+    lightningBoltCircleClass = styles.finished
+  }
+
   return (
     <div className={styles.rootContainer}>
       <div className={styles.rewardCountdownContainer}>
@@ -64,13 +76,13 @@ export default function StreakProgress({
               key={`lightningBolt:${index}`}
               stroke=""
             />
-          ))}{' '}
+          ))}
           <LightningBolt />
         </div>
       </div>
       <hr></hr>
       <div className={styles.bottomContainer}>
-        <LightningBolt className={styles.circleLightning} /> {i18n.playToStart}
+        <LightningBolt className={classNames(styles.circleLightning, lightningBoltCircleClass)} /> {i18n.playToStart}
       </div>
     </div>
   )
