@@ -90,7 +90,7 @@ export default function StreakProgress({
   let rewardCountdownContainer = null
   if (!questFinished) {
     rewardCountdownContainer = (
-      <div className={styles.rewardCountdownContainer}>
+      <div className={classNames('caption', styles.rewardCountdownContainer)}>
         <Clock className={styles.clock} />
         {i18n.nextRewardIn}
         <em>{timeLeftString}</em>
@@ -103,7 +103,7 @@ export default function StreakProgress({
       {rewardCountdownContainer}
       <div className={styles.progressContainer}>
         <div>
-          <div>{i18n.streakProgress}</div>
+          <div className="body">{i18n.streakProgress}</div>
           <div className={classNames('title', styles.daysLeftText)}>
             <em>{`${currentStreakInDays}`}</em>
             {` / ${requiredStreakInDays} ${i18n.days}`}
@@ -120,7 +120,7 @@ export default function StreakProgress({
         </div>
       </div>
       <hr></hr>
-      <div className={styles.bottomContainer}>
+      <div className={classNames('body-sm', styles.bottomContainer)}>
         <LightningBolt
           className={classNames(
             styles.circleLightning,
