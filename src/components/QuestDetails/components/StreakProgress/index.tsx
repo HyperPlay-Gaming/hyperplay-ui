@@ -29,7 +29,7 @@ export default function StreakProgress({
   }
 }: StreakProgressProps) {
   const timeLeftString = '00:00:00'
-  const lightningBoltIcons = []
+  const lightningBoltIcons: boolean[] = []
   if (requiredStreakInDays <= 24) {
     for (let i = 0; i < requiredStreakInDays; ++i) {
       lightningBoltIcons.push(i < currentStreakInDays)
@@ -79,9 +79,8 @@ export default function StreakProgress({
         <div className={styles.progressIconsContainer}>
           {lightningBoltIcons.map((filled, index) => (
             <LightningBolt
-              className={classNames(styles.streakIcons, getFilledClass(filled))}
+              className={classNames(styles.streakIcon, getFilledClass(filled))}
               key={`lightningBolt:${index}`}
-              stroke=""
             />
           ))}
           <LightningBolt />
@@ -94,7 +93,7 @@ export default function StreakProgress({
             styles.circleLightning,
             lightningBoltCircleClass
           )}
-        />{' '}
+        />
         {i18n.playToStart}
       </div>
     </div>
