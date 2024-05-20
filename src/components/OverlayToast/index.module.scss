@@ -1,0 +1,19 @@
+.root {
+  padding: var(--space-md-fixed);
+  background-color: var(--color-primary-500);
+  border-radius: var(--space-xs-fixed);
+  color: var(--color-neutral-100);
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.ctaText {
+  background-color: var(--color-neutral-100);
+  border-radius: var(--space-3xs);
+  color: var(--color-primary-500);
+  padding: var(--space-3xs) var(--space-xs);
+  display: flex;
+  align-items: center;
+}
