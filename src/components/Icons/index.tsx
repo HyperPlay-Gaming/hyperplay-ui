@@ -42,7 +42,8 @@ const IconFill: { [key: string]: string } = {
   QuestionMark: '#FFFFFF',
   Wallet: '#FFFFFF',
   ArrowTop: '#FFFFFF',
-  AlertBell: '#FFFFFF'
+  AlertBell: '#FFFFFF',
+  LightningBolt: '#FFFFFF'
 }
 
 const IconStroke: { [key: string]: string } = {
@@ -50,7 +51,9 @@ const IconStroke: { [key: string]: string } = {
   GiftBox: '#FFFFFF',
   AlertTriangle: '#FFFFFF',
   PlusCircle: '#FFFFFF',
-  MinusCircle: '#FFFFFF'
+  MinusCircle: '#FFFFFF',
+  LightningBolt: '#FFFFFF',
+  Clock: '#FFFFFF'
 }
 
 export default function Icons() {

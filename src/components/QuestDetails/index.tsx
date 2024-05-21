@@ -3,7 +3,6 @@ import React, { HTMLProps } from 'react'
 import cn from 'classnames'
 
 import { AlertTriangle } from '@/assets/images'
-import { getQuestTypeDisplayName } from '@/utils/getQuestTypeDisplayName'
 
 import Button from '../Button'
 import DarkContainer from '../DarkContainer'
@@ -11,6 +10,7 @@ import Loading from '../Loading'
 import Sticker from '../Sticker'
 import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
 import Rewards from './components/Rewards'
+import StreakProgress from './components/StreakProgress'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
 
@@ -37,7 +37,8 @@ export default function QuestDetails({
       'You need to have completed 15% of the achievements in one of these games.',
     claim: 'Claim all',
     questType: {
-      REPUTATION: 'Reputation'
+      REPUTATION: 'Reputation',
+      PLAYSTREAK: 'Play Streak'
     }
   },
   onClaimClick,
@@ -51,7 +52,7 @@ export default function QuestDetails({
   let needMoreAchievementsText = null
   let linkSteamAccountText = null
   let sticker = null
-  let gamesCollapsable = null
+  let eligibilityReqComponent = null
   if (eligibility.reputation !== undefined) {
     if (!eligibility.reputation?.eligible) {
       needMoreAchievementsText = (
@@ -65,16 +66,29 @@ export default function QuestDetails({
 
     sticker = (
       <Sticker styleType="secondary" variant="outlined">
-        {getQuestTypeDisplayName('REPUTATION', i18n.questType)}
+        {i18n.questType.REPUTATION}
       </Sticker>
     )
 
-    gamesCollapsable = (
+    eligibilityReqComponent = (
       <AssociatedGamesCollapse
         opened={opened}
         toggle={toggle}
         i18n={{ associatedGames: i18n.associatedGames }}
         games={eligibility.reputation.games}
+      />
+    )
+  } else if (eligibility.playStreak !== undefined) {
+    sticker = (
+      <Sticker styleType="secondary" variant="outlined">
+        {i18n.questType.PLAYSTREAK}
+      </Sticker>
+    )
+
+    eligibilityReqComponent = (
+      <StreakProgress
+        i18n={i18n.streakProgressI18n}
+        {...eligibility.playStreak}
       />
     )
   }
@@ -87,7 +101,7 @@ export default function QuestDetails({
         {description}
       </div>
 
-      {gamesCollapsable}
+      {eligibilityReqComponent}
 
       {needMoreAchievementsText}
       {linkSteamAccountText}

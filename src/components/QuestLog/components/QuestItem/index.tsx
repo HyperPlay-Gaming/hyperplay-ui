@@ -4,7 +4,6 @@ import classNames from 'classnames'
 
 import { CheckmarkCircleOutline, GiftBox } from '@/assets/images'
 import Sticker from '@/components/Sticker'
-import { getQuestTypeDisplayName } from '@/utils/getQuestTypeDisplayName'
 
 import { QuestLogInfo, QuestLogTranslations } from '../../types'
 import styles from './index.module.scss'
@@ -48,7 +47,7 @@ export default function QuestItem({
       <div className={classNames(styles.itemContainer, itemClasses)}>
         <div className={styles.headerContainer}>
           <Sticker styleType="secondary" variant="outlined" className="caption">
-            {getQuestTypeDisplayName(info.questType, i18n.type)}
+            {i18n.type[info.questType]}
           </Sticker>
           {icon}
         </div>
