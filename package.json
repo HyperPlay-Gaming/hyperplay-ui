@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.2.47",
+  "version": "1.2.48",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
@@ -117,7 +117,8 @@
     "./designSystem/_typography.scss": "./dist/styles/designSystem/_typography.scss",
     "./utilities/_variables.scss": "./dist/styles/utilities/_variables.scss",
     "./styles": "./dist/styles",
-    "./index.css": "./dist/index.css"
+    "./index.css": "./dist/index.css",
+    "./utilities/_loading.scss": "./dist/styles/utilities/_loading.scss"
   },
   "types": "dist/index.d.ts",
   "eslintConfig": {

@@ -1,0 +1,18 @@
+@keyframes shine {
+  0% {
+    background-position: right;
+  }
+}
+
+@mixin shinyLoader {
+  background: linear-gradient(
+      90deg,
+      var(--color-neutral-800) 33%,
+      var(--color-neutral-600) 50%,
+      var(--color-neutral-800) 66%
+    )
+    var(--color-neutral-800);
+  background-size: 300% 100%;
+  animation: shine 2s infinite;
+  z-index: 1;
+}
