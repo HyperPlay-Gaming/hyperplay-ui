@@ -211,6 +211,10 @@
   fill: var(--color-neutral-100);
   width: var(--space-lg);
   height: var(--space-lg);
+
+  &:hover {
+    opacity: 50%;
+  }
 }
 
 .socialMediaLink,
