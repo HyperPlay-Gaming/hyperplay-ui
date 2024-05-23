@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 // import img from 'next/img'
 import burgerMenuIcon from '@/assets/images/BurgerClosedIcon.svg?url'
@@ -13,17 +13,6 @@ import navBarStyles from './NavBar.module.scss'
 const NavBar = function () {
   const [showNavBarDropDown, setShowNavBarDropDown] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
-
-  useLayoutEffect(() => {
-    if (ref === null || ref.current === null) {
-      return
-    }
-    const { height } = ref.current.getBoundingClientRect()
-    document.documentElement.style.setProperty(
-      '--nav-bar-height',
-      `${height}px`
-    )
-  }, [])
 
   const getLinks = () => (
     <>
