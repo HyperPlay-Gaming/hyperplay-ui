@@ -27,6 +27,7 @@ $border: 6px solid;
   align-items: center;
   gap: var(--space-3xs);
   white-space: nowrap;
+  color: var(--color-neutral-400);
 }
 
 .emphasisText {
@@ -34,4 +35,8 @@ $border: 6px solid;
   padding: 0px var(--space-3xs);
   color: var(--color-neutral-800);
   border-radius: var(--space-3xs);
+}
+
+.root {
+  min-width: 400px;
 }

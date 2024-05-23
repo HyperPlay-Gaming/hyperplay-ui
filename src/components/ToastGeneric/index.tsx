@@ -12,6 +12,7 @@ export interface ToastGenericPropsAbstract {
   onClick: () => void
   showCloseButton?: boolean
   classNames?: {
+    root?: string
     image?: string
   }
 }
@@ -22,23 +23,20 @@ export interface ToastGenericProps extends ToastGenericPropsAbstract {
 
 export function ToastGeneric(props: ToastGenericProps) {
   return (
-    <div className={styles.txnPending}>
+    <div className={classNames(styles.txnPending, props.classNames?.root)}>
       <div
         className={classNames(styles.imageContainer, props.classNames?.image)}
       >
         {props.image}
       </div>
       <div className={styles.infoContainer}>
-        <div className={classNames('title', styles.txnTitle)}>
+        <div className={classNames('title-sm', styles.txnTitle)}>
           {props.title}
         </div>
         <div className="body color-neutral-100">{props.subtext}</div>
       </div>
       {props.showCloseButton ? (
-        <div
-          style={{ width: '24px', cursor: 'pointer' }}
-          onClick={props.onClick}
-        >
+        <div className={styles.closeButtonContainer} onClick={props.onClick}>
           <CloseButton />
         </div>
       ) : null}

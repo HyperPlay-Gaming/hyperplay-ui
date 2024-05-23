@@ -26,7 +26,7 @@ export function ToastQuest({
   onCloseClick,
   i18n = {
     overlayToggleKey: 'X',
-    overlayToggleModKey: 'Alt',
+    overlayToggleModKey: 'option',
     toSeeDetails: 'to see details.',
     toClaimReward: 'to claim your reward.',
     questAvailable: 'Quest available!',
@@ -49,30 +49,29 @@ export function ToastQuest({
       </div>
     </>
   )
+  let subtextText = ''
   if (status === 'available') {
     title = i18n.questAvailable
-    subtext = (
-      <div className={styles.subtextRow}>
-        {toggleTextComponent} {i18n.toSeeDetails}
-      </div>
-    )
+    subtextText = i18n.toSeeDetails
     imageClass = styles.questIconContainer
   } else if (status === 'completed') {
     title = i18n.questComplete
-    subtext = (
-      <div className={styles.subtextRow}>
-        {toggleTextComponent} {i18n.toClaimReward}
-      </div>
-    )
+    subtextText = i18n.toClaimReward
     imageClass = classNames(styles.questIconContainer, styles.completed)
   }
+  subtext = (
+    <div className={classNames('caption', styles.subtextRow)}>
+      {toggleTextComponent} {subtextText}
+    </div>
+  )
   return (
     <ToastGeneric
       title={title}
       subtext={subtext}
       onClick={onCloseClick}
       image={image}
-      classNames={{ image: imageClass }}
+      classNames={{ image: imageClass, root: styles.root }}
+      showCloseButton={true}
     />
   )
 }

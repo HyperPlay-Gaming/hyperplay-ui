@@ -2,7 +2,7 @@
   display: inline-flex;
   flex-direction: row;
   background-color: var(--color-neutral-700);
-  padding: var(--space-xl) calc(2 * var(--space-md));
+  padding: var(--space-2lg-fixed) var(--space-xl-fixed);
   border-radius: var(--space-xs);
   gap: var(--space-lg);
   max-width: 484px;
@@ -22,4 +22,10 @@
   width: 80px;
   max-width: 80px;
   max-height: 80px;
+}
+
+.closeButtonContainer {
+  width: 24px;
+  cursor: pointer;
+  margin-left: auto;
 }
