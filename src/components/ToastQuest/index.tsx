@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
 import classNames from 'classnames'
 
@@ -17,6 +17,7 @@ export interface ToastQuestProps {
     toClaimReward: string
     questAvailable: string
     questComplete: string
+    plus: string
   }
 }
 
@@ -29,20 +30,40 @@ export function ToastQuest({
     toSeeDetails: 'to see details.',
     toClaimReward: 'to claim your reward.',
     questAvailable: 'Quest available!',
-    questComplete: 'Quest complete!'
+    questComplete: 'Quest complete!',
+    plus: '+'
   }
 }: ToastQuestProps) {
   let title = ''
-  let subtext = ''
+  let subtext: string | ReactElement = ''
   const image = <QuestScrollIcon />
   let imageClass = ''
+  const toggleTextComponent = (
+    <>
+      <div className={classNames('menu', styles.emphasisText)}>
+        {i18n.overlayToggleModKey}
+      </div>
+      {i18n.plus}
+      <div className={classNames('menu', styles.emphasisText)}>
+        {i18n.overlayToggleKey}
+      </div>
+    </>
+  )
   if (status === 'available') {
     title = i18n.questAvailable
-    subtext = i18n.toSeeDetails
+    subtext = (
+      <div className={styles.subtextRow}>
+        {toggleTextComponent} {i18n.toSeeDetails}
+      </div>
+    )
     imageClass = styles.questIconContainer
   } else if (status === 'completed') {
     title = i18n.questComplete
-    subtext = i18n.toClaimReward
+    subtext = (
+      <div className={styles.subtextRow}>
+        {toggleTextComponent} {i18n.toClaimReward}
+      </div>
+    )
     imageClass = classNames(styles.questIconContainer, styles.completed)
   }
   return (

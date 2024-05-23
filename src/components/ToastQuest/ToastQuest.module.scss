@@ -2,7 +2,6 @@ $successColor: var(--color-success-500);
 $border: 6px solid;
 
 .questIconContainer {
-  width: 100%;
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
@@ -20,4 +19,19 @@ $border: 6px solid;
       fill: $successColor;
     }
   }
+}
+
+.subtextRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3xs);
+  white-space: nowrap;
+}
+
+.emphasisText {
+  background-color: var(--color-neutral-400);
+  padding: 0px var(--space-3xs);
+  color: var(--color-neutral-800);
+  border-radius: var(--space-3xs);
 }

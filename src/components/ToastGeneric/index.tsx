@@ -8,7 +8,7 @@ import styles from './ToastGeneric.module.scss'
 
 export interface ToastGenericPropsAbstract {
   title: string
-  subtext: string
+  subtext: string | ReactElement
   onClick: () => void
   showCloseButton?: boolean
   classNames?: {
