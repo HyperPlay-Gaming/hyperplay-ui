@@ -1,8 +1,11 @@
 import React from 'react'
 
+import classNames from 'classnames'
+
 import { QuestScrollIcon } from '@/assets/images'
 
 import { ToastGeneric } from '../ToastGeneric'
+import styles from './ToastQuest.module.scss'
 
 export interface ToastQuestProps {
   status: 'available' | 'completed'
@@ -31,15 +34,16 @@ export function ToastQuest({
 }: ToastQuestProps) {
   let title = ''
   let subtext = ''
-  let image = null
+  const image = <QuestScrollIcon />
+  let imageClass = ''
   if (status === 'available') {
     title = i18n.questAvailable
     subtext = i18n.toSeeDetails
-    image = <QuestScrollIcon fill="#FFFFFF" />
+    imageClass = styles.questIconContainer
   } else if (status === 'completed') {
     title = i18n.questComplete
     subtext = i18n.toClaimReward
-    image = <QuestScrollIcon fill="#FFFFFF" />
+    imageClass = classNames(styles.questIconContainer, styles.completed)
   }
   return (
     <ToastGeneric
@@ -47,6 +51,7 @@ export function ToastQuest({
       subtext={subtext}
       onClick={onCloseClick}
       image={image}
+      classNames={{ image: imageClass }}
     />
   )
 }

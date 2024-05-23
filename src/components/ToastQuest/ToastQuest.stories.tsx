@@ -19,3 +19,7 @@ const props: ToastQuestProps = {
 export const Default: Story = {
   args: { ...props }
 }
+
+export const Completed: Story = {
+  args: { ...props, status: 'completed' }
+}
