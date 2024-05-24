@@ -48,23 +48,32 @@
   justify-content: center;
   align-items: center;
   position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    box-shadow: inset 0 -5.375rem 3.25rem 0 rgba(0, 0, 0),
-      inset 0 -20.375rem 20.25rem 0 rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    @include variables.for-desktop-up {
-      box-shadow: inset 0 -7.375rem 10.25rem 0 rgb(0, 0, 0),
-        inset 0 -20.375rem 20.25rem 0 rgba(0, 0, 0, 0.5);
-    }
-  }
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.9) 20%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.3) 85%,
+    rgba(0, 0, 0, 0.04) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.9) 20%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.3) 85%,
+    rgba(0, 0, 0, 0.04) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: bottom;
+  mask-position: bottom;
 }
 
 .bannerTitle {
