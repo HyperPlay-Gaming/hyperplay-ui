@@ -93,6 +93,7 @@ export function RewardERC721Deposit({
         <Button
           size="small"
           type="link"
+          htmlType="button"
           className={styles.clearButton}
           onClick={onClearTokenIds}
         >
@@ -128,6 +129,7 @@ export function RewardERC721Deposit({
             />
             <div className={styles.addTokenIdButtonContainer}>
               <Button
+                htmlType="button"
                 type="secondaryGradient"
                 size="medium"
                 onClick={onAddTokenTap}
@@ -172,6 +174,7 @@ export function RewardERC721Deposit({
                 {error ? `${tokenId} (${error})` : tokenId}
               </div>
               <Button
+                htmlType="button"
                 aria-label={`Remove token ID ${tokenId}`}
                 type="tertiary"
                 onClick={onRemoveTap}
