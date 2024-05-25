@@ -22,7 +22,7 @@ const props: NavBarOverlayProps = {
       title: 'Quests',
       route: '/quests',
       icon: <QuestScroll fill="white" />,
-      alertIcon: <QuestScroll color="yellow" />
+      alertNumber: 10
     },
     {
       title: 'Achievements (soon)',

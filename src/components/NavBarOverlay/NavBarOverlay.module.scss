@@ -28,11 +28,17 @@
   padding: var(--space-md-fixed);
   cursor: pointer !important;
   gap: var(--space-sm-fixed);
+  color: var(--color-neutral-400) !important;
   svg {
     max-height: 19px;
+    fill: var(--color-neutral-400);
   }
   &.selected {
     background-color: var(--color-neutral-700);
+    color: var(--color-neutral-100) !important;
+    svg {
+      fill: var(--color-neutral-100);
+    }
   }
 }
 
@@ -41,4 +47,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.alertContainer {
+  background-color: var(--color-primary-500);
+  border-radius: var(--space-3xs-fixed);
+  padding: var(--space-3xs) var(--space-sm);
 }

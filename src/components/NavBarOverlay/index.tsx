@@ -11,7 +11,7 @@ interface NavItem {
   title: string
   route: string
   icon: ReactElement
-  alertIcon?: ReactElement
+  alertNumber?: number
 }
 
 export interface NavBarOverlayProps {
@@ -32,6 +32,14 @@ export function NavBarOverlay({
   const linkItems = items.map((val) => {
     const linkClasses: Record<string, boolean> = {}
     linkClasses[styles.selected] = currentRoute === val.route
+    let alert = null
+    if (val.alertNumber) {
+      alert = (
+        <div className={cn('caption', styles.alertContainer)}>
+          {val.alertNumber}
+        </div>
+      )
+    }
     return (
       <Link
         to={val.route}
@@ -46,7 +54,7 @@ export function NavBarOverlay({
             classNames?.alertIconContainer
           )}
         >
-          {val?.alertIcon}
+          {alert}
         </div>
       </Link>
     )
