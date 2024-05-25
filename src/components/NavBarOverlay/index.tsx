@@ -5,7 +5,7 @@ import cn from 'classnames'
 
 import { HyperPlayLogoIcon, HyperPlayTextLogo } from '@/assets/images'
 
-import styles from './NavBar.module.scss'
+import styles from './NavBarOverlay.module.scss'
 
 interface NavItem {
   title: string
