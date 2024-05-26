@@ -7,6 +7,12 @@ import FooterSectionStyle from './Footer.module.scss'
 
 export interface FooterProps {
   langSelectorProps: LanguageSelectorProps
+  links: {
+    privacyPolicy: string
+    termsOfService: string
+    badges: string
+    downloads: string
+  }
   Link?: React.ElementType
   i18n?: {
     company: string
@@ -26,6 +32,7 @@ export function Footer({
   langSelectorProps,
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   Link = (props: any) => <a {...props} />,
+  links,
   i18n = {
     company: 'COMPANY',
     brand: 'BRAND',
@@ -62,13 +69,13 @@ export function Footer({
           </a>
           <Link
             className={FooterSectionStyle.footer__link}
-            href="/privacy-policy"
+            href={links.privacyPolicy}
           >
             {i18n.privacyPolicy}
           </Link>
           <Link
             className={FooterSectionStyle.footer__link}
-            href="/terms-of-service"
+            href={links.termsOfService}
           >
             {i18n.termsOfService}
           </Link>
@@ -104,13 +111,16 @@ export function Footer({
           >
             METAMASK
           </a>
-          <Link className={FooterSectionStyle.footer__link} href="/badges">
+          <Link className={FooterSectionStyle.footer__link} href={links.badges}>
             {i18n.badges}
           </Link>
         </div>
         <div className={FooterSectionStyle.footer__column}>
           <h2 className={FooterSectionStyle.footer__title}>{i18n.getTheApp}</h2>
-          <Link className={FooterSectionStyle.footer__link} href="/downloads">
+          <Link
+            className={FooterSectionStyle.footer__link}
+            href={links.downloads}
+          >
             <GetHyperPlay />
           </Link>
           <LanguageSelector {...langSelectorProps} />
