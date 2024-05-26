@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { HTMLProps } from 'react'
 
 import { GetHyperPlay } from '@/assets/images'
 
 import { LanguageSelector, LanguageSelectorProps } from '../LanguageSelector'
 import FooterSectionStyle from './Footer.module.scss'
 
-export interface FooterProps {
+export interface FooterProps extends HTMLProps<HTMLDivElement> {
   langSelectorProps: LanguageSelectorProps
   links: {
     privacyPolicy: string
@@ -44,10 +44,11 @@ export function Footer({
     badges: 'BADGES',
     getTheApp: 'Get the App',
     getHyperPlayApp: 'Get HyperPlay Apps'
-  }
+  },
+  ...props
 }: FooterProps) {
   return (
-    <>
+    <div {...props}>
       <div className={FooterSectionStyle.footer}>
         <div className={FooterSectionStyle.footer__column}>
           <h2 className={FooterSectionStyle.footer__title}>{i18n.company}</h2>
@@ -130,6 +131,6 @@ export function Footer({
         <div>{`HYPERPLAY LABS INC`}</div>
         <div>{`254 CHAPMAN RD - STE 208 - 12083 NEWARK, DE 19702`}</div>
       </div>
-    </>
+    </div>
   )
 }
