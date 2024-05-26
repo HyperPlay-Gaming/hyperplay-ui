@@ -1,0 +1,51 @@
+@use 'sass:math';
+@import '../../styles/utilities/_variables';
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 750px;
+  margin: 0 auto;
+
+  a,
+  select {
+    cursor: pointer;
+    &:hover {
+      opacity: 60%;
+    }
+  }
+}
+
+.footer__column {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+}
+
+.footer__title {
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0;
+  line-height: 40px;
+  font-weight: 400;
+}
+
+.footer__link {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.hpContact {
+  font-weight: var(--bold);
+  margin-top: 3rem;
+  padding: 0 var(--space-xs);
+  text-align: center;
+}
+
+@media screen and (max-width: #{$mobileBreakpoint}) {
+  .footer {
+    margin: auto;
+    width: 90%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
