@@ -5,6 +5,8 @@ import { GetHyperPlay } from '@/assets/images'
 import { LanguageSelector, LanguageSelectorProps } from '../LanguageSelector'
 import FooterSectionStyle from './Footer.module.scss'
 
+type LinkProps = Partial<Omit<HTMLAnchorElement, 'className'>>
+
 export interface FooterProps extends HTMLProps<HTMLDivElement> {
   langSelectorProps: LanguageSelectorProps
   Link?: React.ElementType
@@ -21,10 +23,10 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
     getHyperPlayApp: string
   }
   linkProps: {
-    privacyPolicy: Omit<HTMLAnchorElement, 'className'>
-    termsOfService: Omit<HTMLAnchorElement, 'className'>
-    badges: Omit<HTMLAnchorElement, 'className'>
-    downloads: Omit<HTMLAnchorElement, 'className'>
+    privacyPolicy: LinkProps
+    termsOfService: LinkProps
+    badges: LinkProps
+    downloads: LinkProps
   }
   flags: {
     showLangSelector: boolean
