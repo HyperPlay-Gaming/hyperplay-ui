@@ -7,12 +7,6 @@ import FooterSectionStyle from './Footer.module.scss'
 
 export interface FooterProps extends HTMLProps<HTMLDivElement> {
   langSelectorProps: LanguageSelectorProps
-  links: {
-    privacyPolicy: string
-    termsOfService: string
-    badges: string
-    downloads: string
-  }
   Link?: React.ElementType
   i18n?: {
     company: string
@@ -26,13 +20,22 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
     getTheApp: string
     getHyperPlayApp: string
   }
+  linkProps: {
+    privacyPolicy: Omit<HTMLAnchorElement, 'className'>
+    termsOfService: Omit<HTMLAnchorElement, 'className'>
+    badges: Omit<HTMLAnchorElement, 'className'>
+    downloads: Omit<HTMLAnchorElement, 'className'>
+  }
+  flags: {
+    showLangSelector: boolean
+  }
 }
 
 export function Footer({
   langSelectorProps,
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   Link = (props: any) => <a {...props} />,
-  links,
+  linkProps,
   i18n = {
     company: 'COMPANY',
     brand: 'BRAND',
@@ -45,8 +48,14 @@ export function Footer({
     getTheApp: 'Get the App',
     getHyperPlayApp: 'Get HyperPlay Apps'
   },
+  flags,
   ...props
 }: FooterProps) {
+  let langSelector = null
+  if (flags.showLangSelector) {
+    langSelector = <LanguageSelector {...langSelectorProps} />
+  }
+
   return (
     <div {...props}>
       <div className={FooterSectionStyle.footer}>
@@ -70,13 +79,13 @@ export function Footer({
           </a>
           <Link
             className={FooterSectionStyle.footer__link}
-            href={links.privacyPolicy}
+            {...linkProps.privacyPolicy}
           >
             {i18n.privacyPolicy}
           </Link>
           <Link
             className={FooterSectionStyle.footer__link}
-            href={links.termsOfService}
+            {...linkProps.termsOfService}
           >
             {i18n.termsOfService}
           </Link>
@@ -86,12 +95,16 @@ export function Footer({
           <a
             className={FooterSectionStyle.footer__link}
             href="https://twitter.com/HyperPlayGaming"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             TWITTER
           </a>
           <a
             className={FooterSectionStyle.footer__link}
             href="https://discord.gg/hyperplay"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             DISCORD
           </a>
@@ -109,10 +122,15 @@ export function Footer({
           <a
             className={FooterSectionStyle.footer__link}
             href="https://metamask.io"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             METAMASK
           </a>
-          <Link className={FooterSectionStyle.footer__link} href={links.badges}>
+          <Link
+            className={FooterSectionStyle.footer__link}
+            {...linkProps.badges}
+          >
             {i18n.badges}
           </Link>
         </div>
@@ -120,11 +138,11 @@ export function Footer({
           <h2 className={FooterSectionStyle.footer__title}>{i18n.getTheApp}</h2>
           <Link
             className={FooterSectionStyle.footer__link}
-            href={links.downloads}
+            {...linkProps.downloads}
           >
             <GetHyperPlay />
           </Link>
-          <LanguageSelector {...langSelectorProps} />
+          {langSelector}
         </div>
       </div>
       <div className={FooterSectionStyle.hpContact}>
