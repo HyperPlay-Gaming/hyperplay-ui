@@ -1,7 +1,5 @@
 import React from 'react'
 
-import Link from 'next/link'
-
 import { GetHyperPlay } from '@/assets/images'
 
 import { LanguageSelector, LanguageSelectorProps } from '../LanguageSelector'
@@ -9,6 +7,7 @@ import FooterSectionStyle from './Footer.module.scss'
 
 export interface FooterProps {
   langSelectorProps: LanguageSelectorProps
+  Link?: React.ElementType
   i18n?: {
     company: string
     brand: string
@@ -25,6 +24,8 @@ export interface FooterProps {
 
 export function Footer({
   langSelectorProps,
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  Link = (props: any) => <a {...props} />,
   i18n = {
     company: 'COMPANY',
     brand: 'BRAND',
@@ -119,7 +120,6 @@ export function Footer({
         <div>{`HYPERPLAY LABS INC`}</div>
         <div>{`254 CHAPMAN RD - STE 208 - 12083 NEWARK, DE 19702`}</div>
       </div>
-      <h1 className={FooterSectionStyle.footerHeader}>HyperPlay</h1>
     </>
   )
 }

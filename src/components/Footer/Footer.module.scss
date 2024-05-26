@@ -34,22 +34,6 @@
   text-align: center;
 }
 
-$footerFontSize: math.div(100vw, 5.3);
-.footerHeader {
-  font-size: calc($footerFontSize);
-  line-height: calc(1.2 * $footerFontSize);
-  min-height: calc(1.4 * $footerFontSize);
-  height: auto;
-  text-align: center;
-  font-family: 'Rotonto';
-  font-weight: var(--medium);
-  color: rgba(100%, 100%, 100%, 10%);
-
-  @include for-mobile-only {
-    padding: var(--space-sm) 0;
-  }
-}
-
 @media screen and (max-width: #{$mobileBreakpoint}) {
   .footer {
     margin: auto;
