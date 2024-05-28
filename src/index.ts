@@ -205,5 +205,7 @@ export type {
 export { default as RewardDepositTokenList } from './components/RewardDeposit/components/RewardDepositTokensList'
 export * from './components/OverlayToast'
 export { default as useAllImagesLoaded } from './utils/useAllImagesLoaded'
+export * from './components/ToastQuest'
+export * from './components/ToastGeneric'
 export * from './components/Footer'
 export * from './components/LanguageSelector'
