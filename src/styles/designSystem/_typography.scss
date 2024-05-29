@@ -287,7 +287,7 @@ $titleSmFontSize: --text-md;
   font-family: var(--primary-font-family);
   font-weight: var(--semibold);
   font-size: var($titleSmFontSize);
-  line-height: calc(var($bodySmFontSize) * 24 / 16);
+  line-height: calc(var($titleSmFontSize) * 24 / 16);
 }
 
 $headerFontSize: --text-3xl;
