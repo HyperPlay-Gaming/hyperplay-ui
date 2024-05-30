@@ -18,8 +18,8 @@ xl	21.33334152
 */
 
 @mixin typeSystem {
-  --default-primary-font-family: 'Rajdhani', normal;
-  --default-secondary-font-family: 'Barlow', normal;
+  --default-primary-font-family: 'Poppins', normal;
+  --default-secondary-font-family: 'Poppins', normal;
   --default-tertiary-font-family: 'PP Fraktion Sans';
   --primary-font-family: var(--default-primary-font-family);
   --secondary-font-family: var(--default-secondary-font-family);
@@ -251,12 +251,12 @@ h5 {
   @include h5-mixin();
 }
 
-$h6FontSize: --text-4xl;
+$h6FontSize: --text-2xl;
 @mixin h6-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h6FontSize);
   font-weight: var(--medium);
-  line-height: calc(var($h6FontSize) * 40 / 32);
+  line-height: calc(var($h6FontSize) * 41 / 24);
 }
 h6 {
   @include h6-mixin();
@@ -266,28 +266,28 @@ $menuFontSize: --text-md;
 .menu {
   font-family: var(--primary-font-family);
   font-size: var($menuFontSize);
-  font-weight: var(--semibold);
+  font-weight: var(--regular);
   line-height: calc(var($menuFontSize) * 24 / 16);
   letter-spacing: 1%;
 }
 
-$titleFontSize: --text-2xl;
+$titleFontSize: --text-xl;
 @mixin title-mixin {
   font-family: var(--primary-font-family);
   font-size: var($titleFontSize);
   font-weight: var(--semibold);
-  line-height: calc(var($titleFontSize) * 32 / 24);
+  line-height: calc(var($titleFontSize) * 28 / 21);
 }
 .title {
   @include title-mixin();
 }
 
-$titleSmFontSize: --text-xl;
+$titleSmFontSize: --text-md;
 .title-sm {
   font-family: var(--primary-font-family);
-  font-weight: var(--medium);
+  font-weight: var(--semibold);
   font-size: var($titleSmFontSize);
-  line-height: calc(var($titleSmFontSize) * 28 / 21);
+  line-height: calc(var($titleSmFontSize) * 24 / 16);
 }
 
 $headerFontSize: --text-3xl;
@@ -302,7 +302,7 @@ $captionFontSize: --text-sm;
 .caption {
   font-family: var(--secondary-font-family);
   font-size: var($captionFontSize);
-  font-weight: var(--medium);
+  font-weight: var(--regular);
   line-height: calc(var($captionFontSize) * 20 / 14);
 }
 
@@ -315,12 +315,12 @@ $captionSmFontSize: --text-xs;
   letter-spacing: 0.25%;
 }
 
-$eyebrowFontSize: --text-xs;
+$eyebrowFontSize: --text-sm;
 .eyebrow {
   font-family: var(--secondary-font-family);
   font-size: var($eyebrowFontSize);
   font-weight: var(--semibold);
-  line-height: calc(var($eyebrowFontSize) * 16 / 12);
+  line-height: calc(var($captionFontSize) * 20 / 14);
 }
 
 $bodyFontSize: --text-lg;
@@ -328,7 +328,7 @@ $bodyFontSize: --text-lg;
   font-family: var(--secondary-font-family);
   font-size: var($bodyFontSize);
   font-weight: var(--regular);
-  line-height: calc(var($bodyFontSize) * 24 / 18);
+  line-height: calc(var($bodyFontSize) * 28 / 18);
   letter-spacing: 0.25%;
 }
 
@@ -347,8 +347,8 @@ $buttonFontSize: --text-xl;
 .button {
   font-family: var(--secondary-font-family);
   font-size: var($buttonFontSize);
-  font-weight: var(--semibold);
-  line-height: calc(var($buttonFontSize) * 24 / 21);
+  font-weight: var(--medium);
+  line-height: calc(var($buttonFontSize) * 28 / 21);
   letter-spacing: -1%;
 }
 
@@ -356,15 +356,15 @@ $buttonSmFontSize: --text-md;
 .button-sm {
   font-family: var(--secondary-font-family);
   font-size: var($buttonSmFontSize);
-  font-weight: var(--semibold);
-  line-height: calc(var($buttonSmFontSize) * 20 / 16);
+  font-weight: var(--medium);
+  line-height: calc(var($buttonSmFontSize) * 24 / 16);
   letter-spacing: -1%;
 }
 
 $menuItemFontSize: --text-sm;
 .menu-item {
   font-size: var($menuItemFontSize);
-  font-weight: var(--bold);
+  font-weight: var(--medium);
   line-height: calc(var($menuItemFontSize) * 1.154);
   text-transform: uppercase;
   font-family: var(--default-tertiary-font-family);
