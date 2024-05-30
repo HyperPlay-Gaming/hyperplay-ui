@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {
-  CloseButton,
   TxnAlert,
   TxnError,
   TxnPending,
@@ -9,16 +8,12 @@ import {
   TxnSuccess
 } from '@/assets/images'
 
-import styles from './index.module.css'
+import { ToastGeneric, ToastGenericPropsAbstract } from '../ToastGeneric'
 
 export type statusType = 'pending' | 'submitted' | 'error' | 'alert' | 'success'
 
-export interface TransactionToastProps {
-  title: string
-  subtext: string
+export interface TransactionToastProps extends ToastGenericPropsAbstract {
   status: statusType
-  onClick: () => void
-  showCloseButton?: boolean
 }
 
 export default function TransactionToast(props: TransactionToastProps) {
@@ -38,20 +33,12 @@ export default function TransactionToast(props: TransactionToastProps) {
   }
 
   return (
-    <div className={styles.txnPending}>
-      <div style={{ width: '80px' }}>{getTxnImage(props.status)}</div>
-      <div className={styles.infoContainer}>
-        <div className={`title ${styles.txnTitle}`}>{props.title}</div>
-        <div className="body color-neutral-100">{props.subtext}</div>
-      </div>
-      {props.showCloseButton ? (
-        <div
-          style={{ width: '24px', cursor: 'pointer' }}
-          onClick={props.onClick}
-        >
-          <CloseButton />
-        </div>
-      ) : null}
-    </div>
+    <ToastGeneric
+      image={getTxnImage(props.status)}
+      title={props.title}
+      subtext={props.subtext}
+      showCloseButton={props.showCloseButton}
+      onClick={props.onClick}
+    />
   )
 }
