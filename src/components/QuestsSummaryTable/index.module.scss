@@ -1,0 +1,97 @@
+@use '../../styles/utilities/_variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  background: var(--color-neutral-800);
+  border-radius: var(--space-md);
+  max-height: 100%;
+  height: 100%;
+}
+
+.topBar {
+  padding: var(--space-2lg) var(--space-2lg) 0px;
+}
+
+.scrollArea {
+  max-height: 100%;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filters {
+  display: flex;
+  gap: var(--space-xs);
+  flex-direction: column;
+
+  @include variables.for-tablet-portrait-up {
+    flex-direction: row;
+  }
+}
+
+.games {
+  padding: var(--space-2lg);
+  margin-bottom: var(--space-2lg);
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+.gamesTable {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-column-gap: var(--space-md);
+  grid-row-gap: var(--space-md);
+
+  @include variables.for-desktop-up {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include variables.for-big-desktop-up {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.ctas {
+  display: flex;
+  gap: var(--space-xs);
+  flex-direction: column;
+
+  @include variables.for-tablet-portrait-up {
+    flex-direction: row;
+  }
+}
+
+.rightIcon {
+  font-size: var(--text-md);
+  padding: 0 var(--space-xs);
+  border-radius: var(--space-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.mint {
+    background-color: var(--color-primary-700);
+  }
+  &.update {
+    background-color: var(--color-alert-400);
+    color: var(--color-neutral-800);
+  }
+}
+
+.tab {
+  padding: var(--space-sm-fixed) var(--space-md-fixed);
+}
+
+.messageModal {
+  max-width: 540px;
+  margin: 0px auto;
+}
+
+.secondTopRowContainer {
+  margin-top: var(--space-md);
+}

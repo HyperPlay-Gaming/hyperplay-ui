@@ -1,10 +1,9 @@
 import { DetailedHTMLProps, ImgHTMLAttributes } from 'react'
 
-import { Card, CardProps, Image, ImageProps, Popover } from '@mantine/core'
+import { CardProps, ImageProps, Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import cn from 'classnames'
 
-import FallbackImage from '@/assets/fallback_achievement.svg?url'
 import * as Images from '@/assets/images'
 
 import AchievementProgress, {
@@ -15,6 +14,7 @@ import ProgressKey, {
 } from '../AchievementProgress/components/ProgressKey'
 import getProgress from '../AchievementProgress/helpers/getProgress'
 import { ButtonProps } from '../Button'
+import { CardGeneric } from '../CardGeneric'
 import styles from './AchievementCard.module.scss'
 import StatusIcon, { StatusIconState } from './components/StatusIcon'
 
@@ -142,56 +142,28 @@ export default function AchievementCard({
   )
 
   return (
-    <Card
-      radius="md"
-      pos="relative"
-      display={'inline-block'}
-      padding={0}
-      bg="transparent"
-      className={cn(
-        styles.card,
-        rest.className,
-        'gradientShadow',
-        'gradientBorderOnHover'
-      )}
-      {...rest}
-      unstyled
+    <CardGeneric
+      className={cn(styles.card, rest.className)}
+      image={image}
+      imageProps={imageProps}
+      i18n={{ label: i18n.newAchievementLabel }}
+      statusIcon={statusIcon ?? undefined}
+      showLabel={isNewAchievement}
     >
-      <Card.Section
-        pos="relative"
-        className={cn(styles.image, styles.mantineOverRide)}
-      >
-        <Image
-          src={image}
-          fallbackSrc={FallbackImage}
-          {...imageProps}
-          className={styles.achievementImage}
-        />
-        {isNewAchievement && (
-          <div className={cn(styles.newAchievement, 'eyebrow')}>
-            {i18n.newAchievementLabel}
-          </div>
-        )}
-      </Card.Section>
+      <div className={cn(styles.title, 'body')}>{title}</div>
 
-      {statusIcon}
-
-      <div className={styles.cardBody}>
-        <div className={cn(styles.title, 'body')}>{title}</div>
-
-        <div className={styles.achievements}>
-          <div className={styles.column}>
-            <AchievementProgress
-              safeMintedCount={safeMintedCount}
-              safeTotalCount={safeTotalCount}
-              mintedProgress={mintedProgress}
-              mintableProgress={mintableProgress}
-              rightIcon={infoIcon}
-              {...achievementProgressProps}
-            />
-          </div>
+      <div className={styles.achievements}>
+        <div className={styles.column}>
+          <AchievementProgress
+            safeMintedCount={safeMintedCount}
+            safeTotalCount={safeTotalCount}
+            mintedProgress={mintedProgress}
+            mintableProgress={mintableProgress}
+            rightIcon={infoIcon}
+            {...achievementProgressProps}
+          />
         </div>
       </div>
-    </Card>
+    </CardGeneric>
   )
 }
