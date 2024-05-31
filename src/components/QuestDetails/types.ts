@@ -58,4 +58,5 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   collapseIsOpen: boolean
   toggleCollapse: () => void
   isMinting?: boolean
+  errorMessage?: string
 }
