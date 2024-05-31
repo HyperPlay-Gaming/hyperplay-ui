@@ -47,6 +47,7 @@ export default function QuestDetails({
   ctaDisabled,
   collapseIsOpen: opened,
   toggleCollapse: toggle,
+  isMinting,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
@@ -93,6 +94,13 @@ export default function QuestDetails({
     )
   }
 
+  let buttonContents = <>{i18n.claim}</>
+  if (isMinting) {
+    buttonContents = (
+      <Loading className={cn(styles.loader, classNames?.loading)} />
+    )
+  }
+
   let content = (
     <div className={cn(styles.container, classNames?.content)}>
       {sticker}
@@ -115,9 +123,9 @@ export default function QuestDetails({
         type="secondary"
         className={styles.claimButton}
         onClick={onClaimClick}
-        disabled={ctaDisabled}
+        disabled={ctaDisabled || isMinting}
       >
-        {i18n.claim}
+        {buttonContents}
       </Button>
     </div>
   )
