@@ -23,3 +23,21 @@ export const Default: Story = {
 export const Completed: Story = {
   args: { ...props, status: 'completed' }
 }
+
+export const Claimed: Story = {
+  args: {
+    ...props,
+    status: 'claimed',
+    i18n: {
+      overlayToggleKey: 'X',
+      overlayToggleModKey: 'option',
+      toSeeDetails: 'to see details.',
+      toClaimReward: 'to claim your reward.',
+      questAvailable: 'Quest available!',
+      questComplete: 'Quest complete!',
+      plus: '+',
+      rewardClaimed: 'Claim successful',
+      youHaveClaimed: 'You have claimed 100 rewards.'
+    }
+  }
+}

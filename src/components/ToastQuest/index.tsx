@@ -2,13 +2,13 @@ import React, { ReactElement } from 'react'
 
 import classNames from 'classnames'
 
-import { QuestScrollIcon } from '@/assets/images'
+import { Diamond, QuestScrollIcon } from '@/assets/images'
 
 import { ToastGeneric } from '../ToastGeneric'
 import styles from './ToastQuest.module.scss'
 
 export interface ToastQuestProps {
-  status: 'available' | 'completed'
+  status: 'available' | 'completed' | 'claimed'
   onCloseClick: () => void
   i18n?: {
     overlayToggleModKey: string
@@ -18,6 +18,8 @@ export interface ToastQuestProps {
     questAvailable: string
     questComplete: string
     plus: string
+    rewardClaimed: string
+    youHaveClaimed: string
   }
 }
 
@@ -31,12 +33,14 @@ export function ToastQuest({
     toClaimReward: 'to claim your reward.',
     questAvailable: 'Quest available!',
     questComplete: 'Quest complete!',
-    plus: '+'
+    plus: '+',
+    rewardClaimed: 'Claim successful',
+    youHaveClaimed: 'You have claimed {{numberClaimed}} rewards.'
   }
 }: ToastQuestProps) {
   let title = ''
   let subtext: string | ReactElement = ''
-  const image = <QuestScrollIcon />
+  let image = <QuestScrollIcon />
   let imageClass = ''
   const toggleTextComponent = (
     <>
@@ -49,21 +53,41 @@ export function ToastQuest({
       </div>
     </>
   )
-  let subtextText = ''
+
+  function SubtextWithToggle({ subtextText }: { subtextText: JSX.Element }) {
+    return (
+      <div className={classNames('caption', styles.subtextRow)}>
+        {subtextText}
+      </div>
+    )
+  }
+
   if (status === 'available') {
     title = i18n.questAvailable
-    subtextText = i18n.toSeeDetails
+    const subtextComponent = (
+      <>
+        {toggleTextComponent} {i18n.toSeeDetails}
+      </>
+    )
+    subtext = <SubtextWithToggle subtextText={subtextComponent} />
     imageClass = styles.questIconContainer
   } else if (status === 'completed') {
     title = i18n.questComplete
-    subtextText = i18n.toClaimReward
+    const subtextComponent = (
+      <>
+        {toggleTextComponent} {i18n.toClaimReward}
+      </>
+    )
+    subtext = <SubtextWithToggle subtextText={subtextComponent} />
     imageClass = classNames(styles.questIconContainer, styles.completed)
+  } else if (status === 'claimed') {
+    title = i18n.rewardClaimed
+    const subtextComponent = <>{i18n.youHaveClaimed}</>
+    subtext = <SubtextWithToggle subtextText={subtextComponent} />
+    imageClass = classNames(styles.questIconContainer, styles.completed)
+    image = <Diamond />
   }
-  subtext = (
-    <div className={classNames('caption', styles.subtextRow)}>
-      {toggleTextComponent} {subtextText}
-    </div>
-  )
+
   return (
     <ToastGeneric
       title={title}
