@@ -47,6 +47,8 @@ export default function QuestDetails({
   ctaDisabled,
   collapseIsOpen: opened,
   toggleCollapse: toggle,
+  isMinting,
+  errorMessage,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
@@ -93,6 +95,18 @@ export default function QuestDetails({
     )
   }
 
+  let buttonContents = <>{i18n.claim}</>
+  if (isMinting) {
+    buttonContents = (
+      <Loading className={cn(styles.loader, classNames?.loading)} />
+    )
+  }
+
+  let errorAlert = null
+  if (errorMessage) {
+    errorAlert = <AlertText>{errorMessage}</AlertText>
+  }
+
   let content = (
     <div className={cn(styles.container, classNames?.content)}>
       {sticker}
@@ -111,13 +125,14 @@ export default function QuestDetails({
         i18n={{ reward: i18n.reward }}
         loading={rewardsLoading}
       />
+      {errorAlert}
       <Button
         type="secondary"
         className={styles.claimButton}
         onClick={onClaimClick}
-        disabled={ctaDisabled}
+        disabled={ctaDisabled || isMinting}
       >
-        {i18n.claim}
+        {buttonContents}
       </Button>
     </div>
   )
