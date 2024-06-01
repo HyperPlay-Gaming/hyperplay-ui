@@ -1,0 +1,14 @@
+.title {
+  margin-bottom: var(--space-sm);
+  color: var(--color-neutral-400);
+}
+
+.description {
+  color: var(--color-neutral-100);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

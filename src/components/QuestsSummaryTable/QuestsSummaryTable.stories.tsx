@@ -37,14 +37,14 @@ const games: Data[] = [
     image: cupheadCard,
     title: 'Star Wars: Knights of the Old Republic',
     description:
-      'Star Wars: Knights of the Old Republic is a game about lightsabers.'
+      'Star Wars: Knights of the Old Republic is a game about lightsabers. Star Wars: Knights of the Old Republic is a game about lightsabers.'
   },
   {
     id: '3',
     image: reCard,
     title: 'Star Wars: Knights of the Old Republic',
     description:
-      'Star Wars: Knights of the Old Republic is a game about lightsabers.'
+      'Star Wars: Knights of the Old Republic is a game about lightsabers. Star Wars: Knights of the Old Republic is a game about lightsabers. Star Wars: Knights of the Old Republic is a game about lightsabers.'
   },
   {
     id: '4',

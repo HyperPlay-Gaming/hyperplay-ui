@@ -16,8 +16,8 @@ export function QuestCard({
 }: QuestCardProps) {
   return (
     <CardGeneric className={cn(styles.card, className)} {...rest}>
-      <div className={cn(styles.title, 'body')}>{title}</div>
-      <div>{description}</div>
+      <div className={cn(styles.title, 'menu-item')}>{title}</div>
+      <div className={cn(styles.description, 'body')}>{description}</div>
     </CardGeneric>
   )
 }
