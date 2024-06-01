@@ -364,8 +364,7 @@ $buttonSmFontSize: --text-md;
 $menuItemFontSize: --text-sm;
 .menu-item {
   font-size: var($menuItemFontSize);
-  font-weight: var(--medium);
-  line-height: calc(var($menuItemFontSize) * 1.154);
-  text-transform: uppercase;
-  font-family: var(--default-tertiary-font-family);
+  font-weight: var(--bold);
+  line-height: var(--text-md);
+  font-family: var(--default-secondary-font-family);
 }
