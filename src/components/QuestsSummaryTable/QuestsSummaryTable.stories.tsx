@@ -25,28 +25,35 @@ const selectedSort = achievementsSortOptions[0]
 
 type Data = QuestCardProps & { id: string }
 
-const games = [
+const games: Data[] = [
   {
     id: '1',
     image: cyberpunkCard,
-    title: 'Diablo II'
+    title: 'Diablo II',
+    description: 'Diablo II is an action RPG about hoarding gear.'
   },
   {
     id: '2',
     image: cupheadCard,
-    title: 'Star Wars: Knights of the Old Republic'
+    title: 'Star Wars: Knights of the Old Republic',
+    description:
+      'Star Wars: Knights of the Old Republic is a game about lightsabers.'
   },
   {
     id: '3',
     image: reCard,
-    title: 'Star Wars: Knights of the Old Republic'
+    title: 'Star Wars: Knights of the Old Republic',
+    description:
+      'Star Wars: Knights of the Old Republic is a game about lightsabers.'
   },
   {
     id: '4',
     image: '',
-    title: 'Star Wars: Knights of the Old Republic'
+    title: 'Star Wars: Knights of the Old Republic',
+    description:
+      'Star Wars: Knights of the Old Republic is a game about lightsabers.'
   }
-] as Data[]
+]
 
 const gameElements = games.map(({ id, ...rest }) => (
   <QuestCard key={id} {...rest} />
@@ -64,7 +71,12 @@ const props: QuestsSummaryTableProps = {
     activeFilter: 'all',
     setActiveFilter: (val: string) => console.log(val)
   },
-  tabs: [],
+  activeTab: 'ACTIVE',
+  tabs: [
+    { label: 'Active', value: 'ACTIVE' },
+    { label: 'Claim Ready', value: 'CLAIM_READY' },
+    { label: 'Completed', value: 'COMPLETED' }
+  ],
   messageModalProps: {
     title: 'msg modal title',
     message: 'msg modal msg'

@@ -40,6 +40,7 @@ export interface QuestsSummaryTableProps
   isPageLoading?: boolean
   tabs: GameSummaryTab[]
   messageModalProps: MessageModalProps
+  activeTab: string
 }
 
 /**
@@ -63,6 +64,7 @@ export function QuestsSummaryTable({
   isPageLoading,
   tabs,
   messageModalProps,
+  activeTab,
   ...rest
 }: QuestsSummaryTableProps) {
   const fetchMoreOnBottomReached: React.UIEventHandler<HTMLDivElement> = (
@@ -111,37 +113,36 @@ export function QuestsSummaryTable({
     <div className={cn(styles.container, classNameProp)} {...rest}>
       <div className={styles.topBar}>
         <Tabs
-          value={filterProps.activeFilter}
+          value={activeTab}
           onChange={(filter) =>
             filterProps.setActiveFilter(filter as QuestFilter)
           }
           mah={'100%'}
           className={styles.secondTopRowContainer}
-          classNames={getTabsClassNames({}, { list: 'outline' })}
+          classNames={getTabsClassNames({}, { tab: 'secondary' })}
         >
           <div className={styles.row}>
             <div className={styles.filters}>
               <Dropdown
                 targetWidth={300}
                 dropdownButtonDivProps={{
-                  className: `text--lg weight--regular`
+                  className: `text--lg weight--regular body-sm color-neutral-100`
                 }}
                 {...sortProps}
               />
-
-              <Tabs.List>
-                {tabs.map((tab) => (
-                  <Tabs.Tab
-                    value={tab.value}
-                    key={tab.value}
-                    className={styles.tab}
-                  >
-                    <div className="menu">{tab.label}</div>
-                  </Tabs.Tab>
-                ))}
-              </Tabs.List>
             </div>
           </div>
+          <Tabs.List>
+            {tabs.map((tab) => (
+              <Tabs.Tab
+                value={tab.value}
+                key={tab.value}
+                className={styles.tab}
+              >
+                <div className="menu-item">{tab.label}</div>
+              </Tabs.Tab>
+            ))}
+          </Tabs.List>
         </Tabs>
       </div>
       <div className={styles.games} onScroll={fetchMoreOnBottomReached}>

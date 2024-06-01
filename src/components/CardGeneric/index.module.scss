@@ -7,6 +7,10 @@
   /* z-index must be auto so that stacking context is shared and popovers appear over sibling cards */
   z-index: auto;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: transparent;
 
   .image {
     overflow: hidden;
@@ -18,6 +22,7 @@
     padding: var(--space-md);
     background-color: var(--color-neutral-700);
     border-radius: 0 0 var(--space-xs) var(--space-xs);
+    flex-grow: 1;
   }
 
   .label {

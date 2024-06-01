@@ -46,11 +46,6 @@ export function CardGeneric({
   Omit<React.ComponentPropsWithoutRef<'div'>, keyof CardGenericProps>) {
   return (
     <Card
-      radius="md"
-      pos="relative"
-      display={'inline-block'}
-      padding={0}
-      bg="transparent"
       className={cn(
         styles.card,
         className,
