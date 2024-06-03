@@ -47,10 +47,10 @@ export function CardGeneric({
   return (
     <Card
       className={cn(
-        styles.card,
-        className,
         'gradientShadow',
-        'gradientBorderOnHover'
+        'gradientBorderOnHover',
+        styles.card,
+        className
       )}
       {...rest}
       unstyled

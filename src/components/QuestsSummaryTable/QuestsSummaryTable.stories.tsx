@@ -30,7 +30,7 @@ const games: Data[] = [
     id: '1',
     image: cyberpunkCard,
     title: 'Diablo II',
-    description: 'Diablo II is an action RPG about hoarding gear.'
+    description: 'Diablo II is an action RPG.'
   },
   {
     id: '2',
