@@ -7,7 +7,7 @@
   /* z-index must be auto so that stacking context is shared and popovers appear over sibling cards */
   z-index: auto;
   width: 100%;
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   position: relative;
   background: transparent;
