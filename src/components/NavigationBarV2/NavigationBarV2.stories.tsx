@@ -4,9 +4,11 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import {
   default as NavigationBarV2,
-  NavigationBarV2Props,
   defaultI18n
 } from '.'
+import {
+  NavigationBarV2Props
+} from './types'
 
 const meta: Meta<typeof NavigationBarV2> = {
   title: 'Website/NavigationBarV2',
