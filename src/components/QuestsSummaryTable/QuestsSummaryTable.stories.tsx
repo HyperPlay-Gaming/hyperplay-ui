@@ -60,6 +60,7 @@ const gameElements = games.map(({ id, ...rest }) => (
 ))
 
 const props: QuestsSummaryTableProps = {
+  pageTitle: 'Quests',
   sortProps: {
     options: achievementsSortOptions,
     selected: selectedSort,
