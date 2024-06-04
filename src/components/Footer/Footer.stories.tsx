@@ -24,10 +24,41 @@ const props: FooterProps = {
     }
   },
   flags: {
-    showLangSelector: true
+    showLangSelector: true,
+    showGetTheApp: true
   }
 }
 
 export const Default: Story = {
   args: { ...props }
+}
+
+export const WithoutGetTheApp: Story = {
+  args: {
+    ...props,
+    flags: {
+      ...props.flags,
+      showGetTheApp: false
+    }
+  }
+}
+
+export const WithoutGetTheAppAndLanguageSecltor: Story = {
+  args: {
+    ...props,
+    flags: {
+      showLangSelector: false,
+      showGetTheApp: false
+    }
+  }
+}
+
+export const WithoutLanguageSelector: Story = {
+  args: {
+    ...props,
+    flags: {
+      showLangSelector: false,
+      showGetTheApp: true
+    }
+  }
 }

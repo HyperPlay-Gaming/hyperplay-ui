@@ -30,6 +30,7 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
   }
   flags: {
     showLangSelector: boolean
+    showGetTheApp?: boolean
   }
 }
 
@@ -50,12 +51,29 @@ export function Footer({
     getTheApp: 'Get the App',
     getHyperPlayApp: 'Get HyperPlay Apps'
   },
-  flags,
+  flags = {
+    showLangSelector: false,
+    showGetTheApp: true
+  },
   ...props
 }: FooterProps) {
   let langSelector = null
+  let getTheApp = null
   if (flags.showLangSelector) {
     langSelector = <LanguageSelector {...langSelectorProps} />
+  }
+  if (flags.showGetTheApp) {
+    getTheApp = (
+      <>
+        <h2 className={FooterSectionStyle.footer__title}>{i18n.getTheApp}</h2>
+        <Link
+          className={FooterSectionStyle.footer__link}
+          {...linkProps.downloads}
+        >
+          <GetHyperPlay />
+        </Link>
+      </>
+    )
   }
 
   return (
@@ -136,16 +154,12 @@ export function Footer({
             {i18n.badges}
           </Link>
         </div>
-        <div className={FooterSectionStyle.footer__column}>
-          <h2 className={FooterSectionStyle.footer__title}>{i18n.getTheApp}</h2>
-          <Link
-            className={FooterSectionStyle.footer__link}
-            {...linkProps.downloads}
-          >
-            <GetHyperPlay />
-          </Link>
-          {langSelector}
-        </div>
+        {getTheApp || langSelector ? (
+          <div className={FooterSectionStyle.footer__column}>
+            {getTheApp}
+            {langSelector}
+          </div>
+        ) : null}
       </div>
       <div className={FooterSectionStyle.hpContact}>
         <div>{`HYPERPLAY LABS INC`}</div>
