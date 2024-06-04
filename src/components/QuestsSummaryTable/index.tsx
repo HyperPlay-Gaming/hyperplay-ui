@@ -112,19 +112,8 @@ export function QuestsSummaryTable({
           }
           mah={'100%'}
           className={styles.secondTopRowContainer}
-          classNames={getTabsClassNames({}, { tab: 'secondary' })}
+          classNames={getTabsClassNames({}, { list: 'outline' })}
         >
-          <div className={styles.row}>
-            <div className={styles.filters}>
-              <Dropdown
-                targetWidth={300}
-                dropdownButtonDivProps={{
-                  className: `text--lg weight--regular body-sm color-neutral-100`
-                }}
-                {...sortProps}
-              />
-            </div>
-          </div>
           <Tabs.List>
             {tabs.map((tab) => (
               <Tabs.Tab
@@ -136,6 +125,17 @@ export function QuestsSummaryTable({
               </Tabs.Tab>
             ))}
           </Tabs.List>
+          <div className={styles.row}>
+            <div className={styles.filters}>
+              <Dropdown
+                targetWidth={300}
+                dropdownButtonDivProps={{
+                  className: `text--lg weight--regular body-sm color-neutral-100`
+                }}
+                {...sortProps}
+              />
+            </div>
+          </div>
         </Tabs>
       </div>
       <div className={styles.games} onScroll={fetchMoreOnBottomReached}>

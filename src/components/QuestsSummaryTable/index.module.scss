@@ -99,4 +99,7 @@
 
 .secondTopRowContainer {
   margin-top: var(--space-md);
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-2lg-fixed);
 }

@@ -52,6 +52,20 @@ const games: Data[] = [
     title: 'Star Wars: Knights of the Old Republic',
     description:
       'Star Wars: Knights of the Old Republic is a game about lightsabers.'
+  },
+  {
+    id: '5',
+    image: '',
+    title: 'Star Wars: Knights of the Old Republic',
+    description:
+      'Star Wars: Knights of the Old Republic is a game about lightsabers.'
+  },
+  {
+    id: '6',
+    image: '',
+    title: 'Star Wars: Knights of the Old Republic',
+    description:
+      'Star Wars: Knights of the Old Republic is a game about lightsabers.'
   }
 ]
 
@@ -86,4 +100,8 @@ const props: QuestsSummaryTableProps = {
 
 export const Default: Story = {
   args: { ...props }
+}
+
+export const Overflow: Story = {
+  args: { ...props, style: { height: '600px' } }
 }
