@@ -64,7 +64,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       style={
         {
           ...(props.style || {}),
-          '--color-direction': colorDirection,
+          '--color-direction': colorDirection
         } as React.CSSProperties
       }
       className={classNames(

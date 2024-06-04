@@ -3,7 +3,6 @@ import cn from 'classnames'
 import { MobileMenuProps } from '../../types'
 import { NavigationLinks } from '../NavigationLinks'
 import { SocialMediaIcons } from '../SocialMediaIcons'
-
 import styles from './MobileMenu.module.scss'
 
 export const MobileMenu = ({ isOpen, links, i18n }: MobileMenuProps) => (

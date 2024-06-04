@@ -1,6 +1,4 @@
-import {
-  NavigationLinksProps
-} from '../../types'
+import { NavigationLinksProps } from '../../types'
 
 export const NavigationLinks = ({
   className,

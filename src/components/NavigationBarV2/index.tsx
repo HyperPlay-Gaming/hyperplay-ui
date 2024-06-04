@@ -3,20 +3,15 @@ import cn from 'classnames'
 import {
   BurgerClosedIcon,
   BurgerOpenIcon,
-  HyperPlayFullTextLogo,
+  HyperPlayFullTextLogo
 } from '@/assets/images'
 import Button from '@/components/Button'
 
+import styles from './NavigationBarV2.module.scss'
+import { MobileMenu } from './components/MobileMenu'
 import { NavigationLinks } from './components/NavigationLinks'
 import { SocialMediaIcons } from './components/SocialMediaIcons'
-import { MobileMenu } from './components/MobileMenu'
-
-import styles from './NavigationBarV2.module.scss'
-
-import {
-  NavigationBarV2I18nProp,
-  NavigationBarV2Props,
-} from './types'
+import { NavigationBarV2I18nProp, NavigationBarV2Props } from './types'
 
 export const defaultI18n: NavigationBarV2I18nProp = {
   store: 'Store',

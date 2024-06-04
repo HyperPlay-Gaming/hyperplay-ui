@@ -1,13 +1,8 @@
-import {
-  DiscordFilled,
-  XLogoFilled
-} from '@/assets/images'
+import { DiscordFilled, XLogoFilled } from '@/assets/images'
 import Button from '@/components/Button'
 
+import { SocialMediaLinksProps } from '../../types'
 import styles from './SocialMediaIcons.module.scss'
-import {
-  SocialMediaLinksProps
-} from '../../types'
 
 export const SocialMediaIcons = ({
   links,
