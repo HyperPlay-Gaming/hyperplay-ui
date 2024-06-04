@@ -36,6 +36,8 @@ export default function QuestDetails({
     needMoreAchievements:
       'You need to have completed 15% of the achievements in one of these games.',
     claim: 'Claim all',
+    signIn: 'Sign in',
+    connectSteamAccount: 'Connect Steam account',
     questType: {
       REPUTATION: 'Reputation',
       PLAYSTREAK: 'Play Streak'
@@ -49,13 +51,17 @@ export default function QuestDetails({
   toggleCollapse: toggle,
   isMinting,
   errorMessage,
+  steamAccountIsLinked,
+  isSignedIn,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
   let linkSteamAccountText = null
   let sticker = null
   let eligibilityReqComponent = null
+  let questType: 'NONE' | 'REPUTATION' | 'PLAY_STREAK' = 'NONE'
   if (eligibility.reputation !== undefined) {
+    questType = 'REPUTATION'
     if (!eligibility.reputation?.eligible) {
       needMoreAchievementsText = (
         <AlertText>{i18n.needMoreAchievements}</AlertText>
@@ -81,6 +87,7 @@ export default function QuestDetails({
       />
     )
   } else if (eligibility.playStreak !== undefined) {
+    questType = 'PLAY_STREAK'
     sticker = (
       <Sticker styleType="secondary" variant="outlined">
         {i18n.questType.PLAYSTREAK}
@@ -95,7 +102,24 @@ export default function QuestDetails({
     )
   }
 
-  let buttonContents = <>{i18n.claim}</>
+  let buttonText = ''
+  if (questType === 'REPUTATION') {
+    if (!isSignedIn) {
+      buttonText = i18n.signIn
+    } else if (!steamAccountIsLinked) {
+      buttonText = i18n.connectSteamAccount
+    } else {
+      buttonText = i18n.claim
+    }
+  } else if (questType === 'PLAY_STREAK') {
+    if (!isSignedIn) {
+      buttonText = i18n.signIn
+    } else {
+      buttonText = i18n.claim
+    }
+  }
+
+  let buttonContents = <>{buttonText}</>
   if (isMinting) {
     buttonContents = (
       <Loading className={cn(styles.loader, classNames?.loading)} />
