@@ -62,5 +62,4 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   isMinting?: boolean
   errorMessage?: string
   isSignedIn: boolean
-  steamAccountIsLinked?: boolean
 }
