@@ -69,6 +69,9 @@ const props: QuestDetailsProps = {
     }
   ],
   onClaimClick: () => console.log('claim clicked!'),
+  onSignInClick: () => console.log('sign in clicked!'),
+  onConnectSteamAccountClick: () =>
+    console.log('connect steam account clicked!'),
   collapseIsOpen: false,
   toggleCollapse: () => console.log('toggle')
 }

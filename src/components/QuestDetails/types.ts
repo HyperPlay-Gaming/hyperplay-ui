@@ -38,6 +38,8 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   }
   rewards: QuestReward[]
   onClaimClick: () => void
+  onSignInClick: () => void
+  onConnectSteamAccountClick: () => void
   i18n?: {
     reward: string
     associatedGames: string
