@@ -11,7 +11,11 @@
 }
 
 .topBar {
-  padding: var(--space-2lg) var(--space-2lg) 0px;
+  padding: 0px var(--space-2lg-fixed) 0px;
+}
+
+.title {
+  padding: var(--space-2lg-fixed) var(--space-2lg-fixed) 0px;
 }
 
 .scrollArea {

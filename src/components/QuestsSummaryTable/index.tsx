@@ -36,6 +36,10 @@ export interface QuestsSummaryTableProps
   tabs: GameSummaryTab[]
   messageModalProps: MessageModalProps
   activeTab: string
+  pageTitle: string
+  classNames?: {
+    title?: string
+  }
 }
 
 export function QuestsSummaryTable({
@@ -51,6 +55,8 @@ export function QuestsSummaryTable({
   tabs,
   messageModalProps,
   activeTab,
+  pageTitle,
+  classNames,
   ...rest
 }: QuestsSummaryTableProps) {
   const fetchMoreOnBottomReached: React.UIEventHandler<HTMLDivElement> = (
@@ -97,6 +103,7 @@ export function QuestsSummaryTable({
 
   return (
     <div className={cn(styles.container, classNameProp)} {...rest}>
+      <h5 className={cn(styles.title, classNames?.title)}>{pageTitle}</h5>
       <div className={styles.topBar}>
         <Tabs
           value={activeTab}
