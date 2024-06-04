@@ -218,3 +218,4 @@ export type {
   NavigationBarV2I18nProp,
   NavigationBarV2Props
 } from './components/NavigationBarV2/types'
+export { default as Banner } from './components/Banner'
