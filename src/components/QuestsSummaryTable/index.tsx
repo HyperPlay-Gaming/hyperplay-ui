@@ -29,11 +29,6 @@ export interface QuestsSummaryTableProps
     activeFilter: QuestFilter
     setActiveFilter: (filter: QuestFilter) => void
   }
-  //   i18n?: {
-  //     active?: string
-  //     claimReady?: string
-  //     completed?: string
-  //   }
   isFetching?: boolean
   hasFetchedAll?: boolean
   fetchNextPage?: () => void
@@ -43,20 +38,11 @@ export interface QuestsSummaryTableProps
   activeTab: string
 }
 
-/**
- * The main achievement summary card page
- * TODO: Refactor into smaller components
- */
 export function QuestsSummaryTable({
   games,
   imagesToPreload,
   sortProps,
   filterProps,
-  //   i18n = {
-  //     active: 'Active',
-  //     claimReady: 'Claim Ready',
-  //     completed: 'Completed'
-  //   },
   isFetching,
   hasFetchedAll,
   fetchNextPage,
