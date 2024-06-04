@@ -28,6 +28,11 @@ export interface CardGenericProps extends CardProps {
     label?: string
   }
   statusIcon?: JSX.Element
+  genericClassNames?: {
+    root?: string
+    body?: string
+    image?: string
+  }
 }
 
 export function CardGeneric({
@@ -40,6 +45,7 @@ export function CardGeneric({
   statusIcon,
   children,
   className,
+  genericClassNames,
   ...rest
 }: CardGenericProps &
   ImageProps &
@@ -50,6 +56,7 @@ export function CardGeneric({
         'gradientShadow',
         'gradientBorderOnHover',
         styles.card,
+        genericClassNames?.root,
         className
       )}
       {...rest}
@@ -57,7 +64,11 @@ export function CardGeneric({
     >
       <Card.Section
         pos="relative"
-        className={cn(styles.image, styles.mantineOverRide)}
+        className={cn(
+          styles.image,
+          styles.mantineOverRide,
+          genericClassNames?.image
+        )}
       >
         <Image
           src={image}
@@ -72,7 +83,9 @@ export function CardGeneric({
 
       {statusIcon}
 
-      <div className={styles.cardBody}>{children}</div>
+      <div className={cn(styles.cardBody, genericClassNames?.body)}>
+        {children}
+      </div>
     </Card>
   )
 }

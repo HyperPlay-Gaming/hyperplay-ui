@@ -35,6 +35,7 @@ const games: Data[] = [
   {
     id: '2',
     image: cupheadCard,
+    selected: true,
     title: 'Star Wars: Knights of the Old Republic',
     description:
       'Star Wars: Knights of the Old Republic is a game about lightsabers. Star Wars: Knights of the Old Republic is a game about lightsabers.'

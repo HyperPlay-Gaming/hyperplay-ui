@@ -17,14 +17,6 @@
     border-radius: var(--space-xs) var(--space-xs) 0 0;
   }
 
-  .cardBody {
-    position: relative;
-    padding: var(--space-md);
-    background-color: var(--color-neutral-700);
-    border-radius: 0 0 var(--space-xs) var(--space-xs);
-    flex-grow: 1;
-  }
-
   .label {
     position: absolute;
     bottom: var(--space-md);
@@ -36,6 +28,14 @@
     text-transform: uppercase;
     white-space: nowrap;
   }
+}
+
+.cardBody {
+  position: relative;
+  padding: var(--space-md);
+  background-color: var(--color-neutral-700);
+  border-radius: 0 0 var(--space-xs) var(--space-xs);
+  flex-grow: 1;
 }
 
 .mantineOverRide {
