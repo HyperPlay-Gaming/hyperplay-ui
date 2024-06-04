@@ -1,0 +1,19 @@
+
+.menuButtonIcon {
+  fill: var(--color-neutral-100);
+  width: var(--space-lg);
+  height: var(--space-lg);
+  cursor: pointer;
+
+  &:hover {
+    opacity: 50%;
+  }
+}
+
+.socialMediaLink,
+.mobileMenuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
