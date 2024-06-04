@@ -1,5 +1,7 @@
 import React, { HTMLProps } from 'react'
 
+import cn from 'classnames'
+
 import { GetHyperPlay } from '@/assets/images'
 
 import { LanguageSelector, LanguageSelectorProps } from '../LanguageSelector'
@@ -75,10 +77,16 @@ export function Footer({
       </>
     )
   }
+  const is4Column = flags.showGetTheApp || flags.showLangSelector
 
   return (
     <div {...props}>
-      <div className={FooterSectionStyle.footer}>
+      <div
+        className={cn(
+          FooterSectionStyle.footer,
+          is4Column ? FooterSectionStyle.footer__max_columns_four : null
+        )}
+      >
         <div className={FooterSectionStyle.footer__column}>
           <h2 className={FooterSectionStyle.footer__title}>{i18n.company}</h2>
           <Link
@@ -154,7 +162,7 @@ export function Footer({
             {i18n.badges}
           </Link>
         </div>
-        {getTheApp || langSelector ? (
+        {flags.showGetTheApp || flags.showLangSelector ? (
           <div className={FooterSectionStyle.footer__column}>
             {getTheApp}
             {langSelector}

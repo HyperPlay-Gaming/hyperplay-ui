@@ -3,7 +3,7 @@
 
 .footer {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   max-width: 750px;
   margin: 0 auto;
 
@@ -14,6 +14,10 @@
       opacity: 60%;
     }
   }
+}
+
+.footer__max_columns_four {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .footer__column {
