@@ -216,4 +216,7 @@ export { default as DetailsCard } from './components/DetailsCard'
 export {
   default as NavigationBarV2,
 } from './components/NavigationBarV2'
-export type { NavigationBarV2I18nProp } from './components/NavigationBarV2/types'
+export type {
+  NavigationBarV2I18nProp,
+  NavigationBarV2Props
+} from './components/NavigationBarV2/types'
