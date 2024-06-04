@@ -44,6 +44,8 @@ export default function QuestDetails({
     }
   },
   onClaimClick,
+  onSignInClick,
+  onConnectSteamAccountClick,
   loading,
   classNames,
   ctaDisabled,
@@ -59,6 +61,9 @@ export default function QuestDetails({
   let sticker = null
   let eligibilityReqComponent = null
   let buttonText = ''
+  let ctaClick = onClaimClick
+
+  // If this is a reputation quest
   if (eligibility.reputation !== undefined) {
     if (!eligibility.reputation?.eligible) {
       needMoreAchievementsText = (
@@ -84,12 +89,16 @@ export default function QuestDetails({
     const steamAccountIsLinked = !!eligibility.reputation.steamAccountLinked
     if (!isSignedIn) {
       buttonText = i18n.signIn
+      ctaClick = onSignInClick
     } else if (!steamAccountIsLinked) {
       buttonText = i18n.connectSteamAccount
+      ctaClick = onConnectSteamAccountClick
       linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
     } else {
       buttonText = i18n.claim
+      ctaClick = onClaimClick
     }
+    // if this is a play streak quest
   } else if (eligibility.playStreak !== undefined) {
     sticker = (
       <Sticker styleType="secondary" variant="outlined">
@@ -106,8 +115,10 @@ export default function QuestDetails({
 
     if (!isSignedIn) {
       buttonText = i18n.signIn
+      ctaClick = onSignInClick
     } else {
       buttonText = i18n.claim
+      ctaClick = onClaimClick
     }
   }
 
@@ -145,7 +156,7 @@ export default function QuestDetails({
       <Button
         type="secondary"
         className={styles.claimButton}
-        onClick={onClaimClick}
+        onClick={ctaClick}
         disabled={ctaDisabled || isMinting}
       >
         {buttonContents}
