@@ -44,6 +44,8 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     linkSteamAccount: string
     needMoreAchievements: string
     claim: string
+    signIn: string
+    connectSteamAccount: string
     questType: QuestTypeTranslations
     streakProgressI18n?: StreakProgressI18n
   }
@@ -59,4 +61,6 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   toggleCollapse: () => void
   isMinting?: boolean
   errorMessage?: string
+  isSignedIn: boolean
+  steamAccountIsLinked?: boolean
 }
