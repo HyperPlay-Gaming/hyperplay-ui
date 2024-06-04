@@ -66,11 +66,6 @@ export default function QuestDetails({
       )
     }
 
-    const steamAccountIsLinked = !!eligibility.reputation.steamAccountLinked
-    if (!steamAccountIsLinked) {
-      linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
-    }
-
     sticker = (
       <Sticker styleType="secondary" variant="outlined">
         {i18n.questType.REPUTATION}
@@ -86,10 +81,12 @@ export default function QuestDetails({
       />
     )
 
+    const steamAccountIsLinked = !!eligibility.reputation.steamAccountLinked
     if (!isSignedIn) {
       buttonText = i18n.signIn
     } else if (!steamAccountIsLinked) {
       buttonText = i18n.connectSteamAccount
+      linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
     } else {
       buttonText = i18n.claim
     }
