@@ -36,12 +36,16 @@ export default function QuestDetails({
     needMoreAchievements:
       'You need to have completed 15% of the achievements in one of these games.',
     claim: 'Claim all',
+    signIn: 'Sign in',
+    connectSteamAccount: 'Connect Steam account',
     questType: {
       REPUTATION: 'Reputation',
       PLAYSTREAK: 'Play Streak'
     }
   },
   onClaimClick,
+  onSignInClick,
+  onConnectSteamAccountClick,
   loading,
   classNames,
   ctaDisabled,
@@ -49,21 +53,22 @@ export default function QuestDetails({
   toggleCollapse: toggle,
   isMinting,
   errorMessage,
+  isSignedIn,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
   let linkSteamAccountText = null
   let sticker = null
   let eligibilityReqComponent = null
+  let buttonText = ''
+  let ctaClick = onClaimClick
+
+  // If this is a reputation quest
   if (eligibility.reputation !== undefined) {
     if (!eligibility.reputation?.eligible) {
       needMoreAchievementsText = (
         <AlertText>{i18n.needMoreAchievements}</AlertText>
       )
-    }
-
-    if (!eligibility.reputation.steamAccountLinked) {
-      linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
     }
 
     sticker = (
@@ -80,6 +85,20 @@ export default function QuestDetails({
         games={eligibility.reputation.games}
       />
     )
+
+    const steamAccountIsLinked = !!eligibility.reputation.steamAccountLinked
+    if (!isSignedIn) {
+      buttonText = i18n.signIn
+      ctaClick = onSignInClick
+    } else if (!steamAccountIsLinked) {
+      buttonText = i18n.connectSteamAccount
+      ctaClick = onConnectSteamAccountClick
+      linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
+    } else {
+      buttonText = i18n.claim
+      ctaClick = onClaimClick
+    }
+    // if this is a play streak quest
   } else if (eligibility.playStreak !== undefined) {
     sticker = (
       <Sticker styleType="secondary" variant="outlined">
@@ -93,9 +112,17 @@ export default function QuestDetails({
         {...eligibility.playStreak}
       />
     )
+
+    if (!isSignedIn) {
+      buttonText = i18n.signIn
+      ctaClick = onSignInClick
+    } else {
+      buttonText = i18n.claim
+      ctaClick = onClaimClick
+    }
   }
 
-  let buttonContents = <>{i18n.claim}</>
+  let buttonContents = <>{buttonText}</>
   if (isMinting) {
     buttonContents = (
       <Loading className={cn(styles.loader, classNames?.loading)} />
@@ -129,7 +156,7 @@ export default function QuestDetails({
       <Button
         type="secondary"
         className={styles.claimButton}
-        onClick={onClaimClick}
+        onClick={ctaClick}
         disabled={ctaDisabled || isMinting}
       >
         {buttonContents}
