@@ -38,6 +38,8 @@ export default function QuestDetails({
     claim: 'Claim all',
     signIn: 'Sign in',
     connectSteamAccount: 'Connect Steam account',
+    secondCTAText: 'View Game',
+    play: 'Play',
     questType: {
       REPUTATION: 'Reputation',
       PLAYSTREAK: 'Play Streak'
@@ -46,6 +48,9 @@ export default function QuestDetails({
   onClaimClick,
   onSignInClick,
   onConnectSteamAccountClick,
+  onPlayClick,
+  onSecondCTAClick,
+  isQuestsPage,
   loading,
   classNames,
   ctaDisabled,
@@ -122,6 +127,14 @@ export default function QuestDetails({
     }
   }
 
+  if (isQuestsPage) {
+    buttonText = i18n.play ?? 'Play'
+    ctaClick =
+      onPlayClick === undefined
+        ? () => console.log('play click handler not set!')
+        : onPlayClick
+  }
+
   let buttonContents = <>{buttonText}</>
   if (isMinting) {
     buttonContents = (
@@ -132,6 +145,19 @@ export default function QuestDetails({
   let errorAlert = null
   if (errorMessage) {
     errorAlert = <AlertText>{errorMessage}</AlertText>
+  }
+
+  let secondCTA = null
+  if (isQuestsPage) {
+    secondCTA = (
+      <Button
+        type="tertiary"
+        className={styles.claimButton}
+        onClick={onSecondCTAClick}
+      >
+        {i18n.secondCTAText}
+      </Button>
+    )
   }
 
   let content = (
@@ -153,14 +179,17 @@ export default function QuestDetails({
         loading={rewardsLoading}
       />
       {errorAlert}
-      <Button
-        type="secondary"
-        className={styles.claimButton}
-        onClick={ctaClick}
-        disabled={ctaDisabled || isMinting}
-      >
-        {buttonContents}
-      </Button>
+      <div className={styles.ctaContainer}>
+        {secondCTA}
+        <Button
+          type="secondary"
+          className={styles.claimButton}
+          onClick={ctaClick}
+          disabled={ctaDisabled || isMinting}
+        >
+          {buttonContents}
+        </Button>
+      </div>
     </div>
   )
   if (loading) {

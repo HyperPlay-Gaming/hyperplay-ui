@@ -203,3 +203,12 @@ export const IsMinting: Story = {
 export const ErrorMessage: Story = {
   args: { ...props, errorMessage: 'User rejected transaction.' }
 }
+
+export const QuestsPageInClient: Story = {
+  args: {
+    ...props,
+    isQuestsPage: true,
+    onPlayClick: () => console.log('play clicked'),
+    onSecondCTAClick: () => console.log('2nd cta clicked')
+  }
+}

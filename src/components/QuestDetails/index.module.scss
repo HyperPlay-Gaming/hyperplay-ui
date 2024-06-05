@@ -43,3 +43,10 @@
 .loader {
   height: 100%;
 }
+
+.ctaContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm-fixed);
+  margin: 0 0 0 auto;
+}
