@@ -40,6 +40,9 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   onClaimClick: () => void
   onSignInClick: () => void
   onConnectSteamAccountClick: () => void
+  isQuestsPage?: boolean
+  onPlayClick?: () => void
+  onSecondCTAClick?: () => void
   i18n?: {
     reward: string
     associatedGames: string
@@ -50,6 +53,8 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     connectSteamAccount: string
     questType: QuestTypeTranslations
     streakProgressI18n?: StreakProgressI18n
+    secondCTAText?: string
+    play?: string
   }
   rewardsLoading?: boolean
   loading?: boolean
