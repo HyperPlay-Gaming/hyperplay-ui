@@ -33,6 +33,8 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
   flags: {
     showLangSelector: boolean
     showGetTheApp?: boolean
+    showBrandLink?: boolean
+    showMetaMaskLink?: boolean
   }
 }
 
@@ -55,7 +57,9 @@ export function Footer({
   },
   flags = {
     showLangSelector: false,
-    showGetTheApp: true
+    showGetTheApp: true,
+    showBrandLink: true,
+    showMetaMaskLink: true
   },
   ...props
 }: FooterProps) {
@@ -97,14 +101,16 @@ export function Footer({
           >
             FAQ
           </Link>
-          <a
-            className={FooterSectionStyle.footer__link}
-            href="https://github.com/HyperPlay-Gaming/branding-resources"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {i18n.brand}
-          </a>
+          {flags.showBrandLink ? (
+            <a
+              className={FooterSectionStyle.footer__link}
+              href="https://github.com/HyperPlay-Gaming/branding-resources"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {i18n.brand}
+            </a>
+          ) : null}
           <Link
             className={FooterSectionStyle.footer__link}
             {...linkProps.privacyPolicy}
@@ -147,14 +153,16 @@ export function Footer({
           >
             {i18n.documentation}
           </Link>
-          <a
-            className={FooterSectionStyle.footer__link}
-            href="https://metamask.io"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            METAMASK
-          </a>
+          {flags.showMetaMaskLink ? (
+            <a
+              className={FooterSectionStyle.footer__link}
+              href="https://metamask.io"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              METAMASK
+            </a>
+          ) : null}
           <Link
             className={FooterSectionStyle.footer__link}
             {...linkProps.badges}
