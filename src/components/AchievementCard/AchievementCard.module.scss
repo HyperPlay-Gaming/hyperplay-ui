@@ -1,29 +1,10 @@
 @import '../../styles/overrides';
 
 .card {
-  overflow: visible;
-  cursor: pointer;
-  max-width: 100%;
-  /* z-index must be auto so that stacking context is shared and popovers appear over sibling cards */
-  z-index: auto;
-  width: 100%;
-
-  .image {
-    overflow: hidden;
-    border-radius: var(--space-xs) var(--space-xs) 0 0;
-  }
-
   .addButton {
     position: absolute;
     top: var(--space-sm);
     right: var(--space-sm);
-  }
-
-  .cardBody {
-    position: relative;
-    padding: var(--space-md);
-    background-color: var(--color-neutral-700);
-    border-radius: 0 0 var(--space-xs) var(--space-xs);
   }
 
   .title {
@@ -32,18 +13,6 @@
     overflow: hidden;
     white-space: nowrap;
     color: var(--color-neutral-100);
-  }
-
-  .newAchievement {
-    position: absolute;
-    bottom: var(--space-md);
-    background-color: var(--color-primary-200);
-    padding: var(--space-3xs) var(--space-xs);
-    border-radius: var(--space-3xs);
-    left: 50%;
-    transform: translateX(-50%);
-    text-transform: uppercase;
-    white-space: nowrap;
   }
 
   .achievements {
@@ -80,10 +49,6 @@
   }
 }
 
-.mantineOverRide {
-  @include broken-image-fix();
-}
-
 .noRadius {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
@@ -93,9 +58,4 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-}
-
-.achievementImage {
-  min-width: 100%;
-  display: block;
 }

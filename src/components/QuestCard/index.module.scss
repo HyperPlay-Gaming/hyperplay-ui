@@ -1,0 +1,30 @@
+$border: 2px var(--color-neutral-600) solid;
+
+.title {
+  margin-bottom: var(--space-sm);
+  color: var(--color-neutral-400);
+}
+
+.description {
+  color: var(--color-neutral-100);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.selected {
+  background-color: var(--color-neutral-800);
+}
+
+.body {
+  border: $border;
+  border-top: 0px;
+}
+
+.image {
+  border: $border;
+  border-bottom: 0px;
+}

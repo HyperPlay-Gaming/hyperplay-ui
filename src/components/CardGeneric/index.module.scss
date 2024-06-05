@@ -1,0 +1,48 @@
+@import '../../styles/overrides';
+
+.card {
+  overflow: visible;
+  cursor: pointer;
+  max-width: 100%;
+  /* z-index must be auto so that stacking context is shared and popovers appear over sibling cards */
+  z-index: auto;
+  width: 100%;
+  display: flex !important;
+  flex-direction: column;
+  position: relative;
+  background: transparent;
+
+  .image {
+    overflow: hidden;
+    border-radius: var(--space-xs) var(--space-xs) 0 0;
+  }
+
+  .label {
+    position: absolute;
+    bottom: var(--space-md);
+    background-color: var(--color-primary-200);
+    padding: var(--space-3xs) var(--space-xs);
+    border-radius: var(--space-3xs);
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+}
+
+.cardBody {
+  position: relative;
+  padding: var(--space-md);
+  background-color: var(--color-neutral-700);
+  border-radius: 0 0 var(--space-xs) var(--space-xs);
+  flex-grow: 1;
+}
+
+.mantineOverRide {
+  @include broken-image-fix();
+}
+
+.achievementImage {
+  min-width: 100%;
+  display: block;
+}
