@@ -114,17 +114,19 @@ export function QuestsSummaryTable({
           className={styles.secondTopRowContainer}
           classNames={getTabsClassNames({}, { list: 'outline' })}
         >
-          <Tabs.List>
-            {tabs.map((tab) => (
-              <Tabs.Tab
-                value={tab.value}
-                key={tab.value}
-                className={styles.tab}
-              >
-                <div className="menu-item">{tab.label}</div>
-              </Tabs.Tab>
-            ))}
-          </Tabs.List>
+          {tabs.length > 0 ? (
+            <Tabs.List>
+              {tabs.map((tab) => (
+                <Tabs.Tab
+                  value={tab.value}
+                  key={tab.value}
+                  className={styles.tab}
+                >
+                  <div className="menu-item">{tab.label}</div>
+                </Tabs.Tab>
+              ))}
+            </Tabs.List>
+          ) : null}
           <div className={styles.row}>
             <div className={styles.filters}>
               <Dropdown

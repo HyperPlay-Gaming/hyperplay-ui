@@ -106,3 +106,7 @@ export const Default: Story = {
 export const Overflow: Story = {
   args: { ...props, style: { height: '600px' } }
 }
+
+export const NoTabs: Story = {
+  args: { ...props, tabs: [] }
+}
