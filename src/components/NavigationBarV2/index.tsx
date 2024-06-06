@@ -70,7 +70,11 @@ const NavigationBarV2 = ({
               type="secondaryGradient"
               size="medium"
               spacing="lg"
-              colorDirection="to right"
+              style={
+                {
+                  '--color-direction': 'to right'
+                } as React.CSSProperties
+              }
             >
               {i18n.installHyperPlayButton}
             </Button>

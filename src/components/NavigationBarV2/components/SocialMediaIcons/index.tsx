@@ -21,7 +21,11 @@ export const SocialMediaIcons = ({
           type="secondaryGradient"
           size="medium"
           className={styles.mobileMenuButton}
-          colorDirection="to right"
+          style={
+            {
+              '--color-direction': 'to right'
+            } as React.CSSProperties
+          }
         >
           <XLogoFilled className={styles.menuButtonIcon} />
         </Button>
@@ -36,7 +40,11 @@ export const SocialMediaIcons = ({
           type="secondaryGradient"
           size="medium"
           className={styles.mobileMenuButton}
-          colorDirection="to right"
+          style={
+            {
+              '--color-direction': 'to right'
+            } as React.CSSProperties
+          }
         >
           <DiscordFilled className={styles.menuButtonIcon} />
         </Button>
