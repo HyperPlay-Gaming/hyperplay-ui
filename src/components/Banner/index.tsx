@@ -52,7 +52,11 @@ export const Banner = ({
             type="secondaryGradient"
             size="medium"
             spacing="xs"
-            colorDirection="to right"
+            style={
+              {
+                '--color-direction': 'to right'
+              } as React.CSSProperties
+            }
             rightIcon={<ArrowUpRight className={styles.submitGameButtonIcon} />}
             onClick={onTapInstall}
           >
