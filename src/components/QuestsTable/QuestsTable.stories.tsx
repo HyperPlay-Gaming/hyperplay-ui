@@ -68,6 +68,20 @@ const props: QuestsTableProps = {
       status: 'ACTIVE',
       onClick: () => console.log('Another quest clicked'),
       claims: 300
+    },
+    {
+      name: 'Another quest',
+      rewards: [
+        {
+          amountPerPlayer: 200,
+          symbol: 'GOLD',
+          balance: 100000
+        }
+      ],
+      type: 'Reputation',
+      status: 'INACTIVE',
+      onClick: () => console.log('Another quest clicked'),
+      claims: 300
     }
   ]
 }
