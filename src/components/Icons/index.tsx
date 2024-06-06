@@ -45,7 +45,11 @@ const IconFill: { [key: string]: string } = {
   AlertBell: '#FFFFFF',
   LightningBolt: '#FFFFFF',
   QuestScrollIcon: '#FFFFFF',
-  Diamond: '#FFFFFF'
+  Diamond: '#FFFFFF',
+  LinuxIcon: '#FFFFFF',
+  WindowsIcon: '#FFFFFF',
+  MacOSIcon: '#FFFFFF',
+  SteamDeckIcon: '#FFFFFF'
 }
 
 const IconStroke: { [key: string]: string } = {
@@ -87,7 +91,7 @@ export default function Icons() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div>
       <>{getAllIcons()}</>
     </div>
   )
