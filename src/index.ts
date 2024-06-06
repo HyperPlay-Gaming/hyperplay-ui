@@ -1,7 +1,10 @@
-import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-loading-skeleton/dist/skeleton.css';
 
-import './fonts.css'
-import './index.scss'
+
+
+import './fonts.css';
+import './index.scss';
+
 
 export { default as TransactionToast } from './components/TransactionToasts'
 export type { TransactionToastProps } from './components/TransactionToasts'
