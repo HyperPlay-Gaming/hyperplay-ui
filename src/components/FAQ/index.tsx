@@ -10,7 +10,10 @@ const MAX_FAQS_DISPLAYED = 3
 
 export interface FAQProps {
   className?: string
+  titleClassName?: string
+  descriptionClassName?: string
   faqList: Array<FAQItemProps>
+  description?: React.ReactNode | string
   i18n?: {
     title?: string
     seeLessButtonText?: string
@@ -20,7 +23,10 @@ export interface FAQProps {
 
 export default function FAQ({
   className: classNameProp,
+  titleClassName,
+  descriptionClassName,
   faqList = [],
+  description = '',
   i18n = {
     title: 'FAQs',
     seeLessButtonText: 'See less',
@@ -41,7 +47,12 @@ export default function FAQ({
           }
         : {})}
     >
-      <h1 className={styles.title}>{i18n.title}</h1>
+      <h1 className={cn(styles.title, titleClassName)}>{i18n.title}</h1>
+      {description ? (
+        <div className={cn(styles.description, descriptionClassName)}>
+          {description}
+        </div>
+      ) : null}
       {displayData.map((props: FAQItemProps, index) => (
         <FAQItem key={index} {...props} />
       ))}

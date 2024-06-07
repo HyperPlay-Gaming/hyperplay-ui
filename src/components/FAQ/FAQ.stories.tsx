@@ -95,6 +95,33 @@ export const Default: Story = {
   }
 }
 
+export const WithDescription: Story = {
+  args: {
+    ...props,
+    description: (
+      <>
+        Here to answer any questions you have, if there are some missing reach
+        out to{' '}
+        <span
+          style={{
+            color: 'var(--color-primary)',
+            fontWeight: 'bold',
+            textDecoration: 'underline'
+          }}
+        >
+          support@hyperplay.xyz
+        </span>
+      </>
+    ),
+    faqList: props.faqList.slice(0, 1)
+  },
+  render: (args: FAQProps) => (
+    <div>
+      <FAQ {...args} />
+    </div>
+  )
+}
+
 export const OneItem: Story = {
   args: { ...props, faqList: props.faqList.slice(0, 1) },
   render: (args: FAQProps) => (
