@@ -1,0 +1,151 @@
+@use '../../styles/utilities/_variables';
+
+.root {
+  width: 100%;
+  height: auto;
+  gap: var(--space-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-xl);
+
+  @include variables.for-desktop-up {
+    width: 48rem;
+    gap: 48px;
+  }
+}
+
+.contextText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  align-self: stretch;
+
+  @include variables.for-desktop-up {
+    gap: 0;
+  }
+}
+
+.bannerImage {
+  width: 100%;
+  object-fit: contain;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.9) 20%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.3) 85%,
+    rgba(0, 0, 0, 0.04) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.9) 20%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.3) 85%,
+    rgba(0, 0, 0, 0.04) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: bottom;
+  mask-position: bottom;
+}
+
+.bannerTitle {
+  color: var(--color-neutral-100);
+  font-size: var(--text-5xl);
+  font-family: var(--primary-font-family);
+  font-weight: var(--bold);
+  line-height: calc(var(--text-5xl) * 40 / 37);
+  letter-spacing: -0.068rem;
+  text-align: center;
+  font-weight: var(--medium);
+  align-self: stretch;
+  font-style: normal;
+
+  @include variables.for-desktop-up {
+    font-size: var(--text-9xl);
+    line-height: calc(var(--text-9xl) * 76 / 67);
+    letter-spacing: -0.09rem;
+    margin-top: 12px;
+    margin-bottom: 24px;
+  }
+}
+
+.bannerSubtitle {
+  color: var(--color-success-400);
+  font-size: var(--text-sm);
+  font-style: normal;
+  font-weight: var(--medium);
+  line-height: calc(var(--text-sm) * 20 / 14);
+  margin: 0;
+  padding: 0;
+
+  @include variables.for-desktop-up {
+    font-size: var(--text-lg);
+    line-height: calc(var(--text-lg) * 24 / 18);
+  }
+}
+
+.bannerDescription {
+  color: var(--color-neutral-400);
+  text-align: center;
+  font-size: var(--text-sm);
+  font-style: normal;
+  font-weight: var(--medium);
+  line-height: calc(var(--text-sm) * 20 / 14);
+  letter-spacing: -0.018rem;
+  margin: 0;
+  padding: 0;
+
+  @include variables.for-desktop-up {
+    font-size: var(--text-xl);
+    font-weight: var(--regular);
+    line-height: calc(var(--text-xl) * 28 / 21);
+  }
+}
+
+.actionsList {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-direction: column-reverse;
+  gap: var(--space-sm);
+  width: 100%;
+
+  @include variables.for-desktop-up {
+    flex-direction: row;
+    width: auto;
+  }
+}
+
+.submitGameButtonIcon {
+  width: var(--space-2lg);
+  height: var(--space-2lg);
+  flex-shrink: 0;
+}
