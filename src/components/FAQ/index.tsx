@@ -1,17 +1,24 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import cn from 'classnames'
 
-import Button from '../Button'
-import styles from './FAQ.module.scss'
-import FAQItem, { FAQItemProps } from './components/FAQItem'
+
+import cn from 'classnames';
+
+
+
+import Button from '../Button';
+import styles from './FAQ.module.scss';
+import FAQItem, { FAQItemProps } from './components/FAQItem';
+
 
 const MAX_FAQS_DISPLAYED = 3
 
 export interface FAQProps {
-  className?: string
-  titleClassName?: string
-  descriptionClassName?: string
+  className: {
+    root?: string
+    title?: string
+    description?: string
+  },
   faqList: Array<FAQItemProps>
   description?: React.ReactNode | string
   i18n?: {
@@ -22,9 +29,7 @@ export interface FAQProps {
 }
 
 export default function FAQ({
-  className: classNameProp,
-  titleClassName,
-  descriptionClassName,
+  className,
   faqList = [],
   description = '',
   i18n = {
@@ -38,7 +43,7 @@ export default function FAQ({
 
   return (
     <div
-      className={cn(styles.container, classNameProp)}
+      className={cn(styles.container, className.root)}
       {...(showAll
         ? {
             style: {
@@ -47,9 +52,9 @@ export default function FAQ({
           }
         : {})}
     >
-      <h1 className={cn(styles.title, titleClassName)}>{i18n.title}</h1>
+      <h1 className={cn(styles.title, className.title)}>{i18n.title}</h1>
       {description ? (
-        <div className={cn(styles.description, descriptionClassName)}>
+        <div className={cn(styles.description, className.description)}>
           {description}
         </div>
       ) : null}
