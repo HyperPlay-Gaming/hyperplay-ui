@@ -72,103 +72,113 @@ export function Footer({
     getTheApp = (
       <>
         <h2 className={FooterSectionStyle.footer__title}>{i18n.getTheApp}</h2>
-        <Link
-          className={FooterSectionStyle.footer__link}
-          {...linkProps.downloads}
-        >
-          <GetHyperPlay />
-        </Link>
+        <div className={FooterSectionStyle.footer__links}>
+          <Link
+            className={FooterSectionStyle.footer__link}
+            {...linkProps.downloads}
+          >
+            <GetHyperPlay />
+          </Link>
+        </div>
       </>
     )
   }
-  const is4Column = flags.showGetTheApp || flags.showLangSelector
 
   return (
-    <div {...props}>
+    <div {...props} 
+        className={cn(
+          FooterSectionStyle.root
+        )}
+    >
       <div
         className={cn(
-          FooterSectionStyle.footer,
-          is4Column ? FooterSectionStyle.footer__max_columns_four : null
+          FooterSectionStyle.footer
         )}
       >
         <div className={FooterSectionStyle.footer__column}>
           <h2 className={FooterSectionStyle.footer__title}>{i18n.company}</h2>
-          <Link
-            className={FooterSectionStyle.footer__link}
-            href="https://docs.hyperplay.xyz/faq"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAQ
-          </Link>
-          {flags.showBrandLink ? (
-            <a
+          <div className={FooterSectionStyle.footer__links}>
+            <Link
               className={FooterSectionStyle.footer__link}
-              href="https://github.com/HyperPlay-Gaming/branding-resources"
+              href="https://docs.hyperplay.xyz/faq"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {i18n.brand}
-            </a>
-          ) : null}
-          <Link
-            className={FooterSectionStyle.footer__link}
-            {...linkProps.privacyPolicy}
-          >
-            {i18n.privacyPolicy}
-          </Link>
-          <Link
-            className={FooterSectionStyle.footer__link}
-            {...linkProps.termsOfService}
-          >
-            {i18n.termsOfService}
-          </Link>
+              FAQ
+            </Link>
+            {flags.showBrandLink ? (
+              <a
+                className={FooterSectionStyle.footer__link}
+                href="https://github.com/HyperPlay-Gaming/branding-resources"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {i18n.brand}
+              </a>
+            ) : null}
+            <Link
+              className={FooterSectionStyle.footer__link}
+              {...linkProps.privacyPolicy}
+            >
+              {i18n.privacyPolicy}
+            </Link>
+            <Link
+              className={FooterSectionStyle.footer__link}
+              {...linkProps.termsOfService}
+            >
+              {i18n.termsOfService}
+            </Link>
+          </div>
         </div>
         <div className={FooterSectionStyle.footer__column}>
           <h2 className={FooterSectionStyle.footer__title}>{i18n.social}</h2>
-          <a
-            className={FooterSectionStyle.footer__link}
-            href="https://twitter.com/HyperPlayGaming"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            TWITTER
-          </a>
-          <a
-            className={FooterSectionStyle.footer__link}
-            href="https://discord.gg/hyperplay"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            DISCORD
-          </a>
-        </div>
-        <div className={FooterSectionStyle.footer__column}>
-          <h2 className={FooterSectionStyle.footer__title}>{i18n.resources}</h2>
-          <Link
-            className={FooterSectionStyle.footer__link}
-            href="https://docs.hyperplay.xyz"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {i18n.documentation}
-          </Link>
-          {flags.showMetaMaskLink ? (
+          <div className={FooterSectionStyle.footer__links}>
             <a
               className={FooterSectionStyle.footer__link}
-              href="https://metamask.io"
+              href="https://twitter.com/HyperPlayGaming"
               target="_blank"
               rel="noopener noreferrer"
             >
-              METAMASK
+              TWITTER
             </a>
-          ) : null}
-          <Link
-            className={FooterSectionStyle.footer__link}
-            {...linkProps.badges}
-          >
-            {i18n.badges}
-          </Link>
+            <a
+              className={FooterSectionStyle.footer__link}
+              href="https://discord.gg/hyperplay"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              DISCORD
+            </a>
+          </div>
+        </div>
+        <div className={FooterSectionStyle.footer__column}>
+          <h2 className={FooterSectionStyle.footer__title}>{i18n.resources}</h2>
+          <div className={FooterSectionStyle.footer__links}>
+            <Link
+              className={FooterSectionStyle.footer__link}
+              href="https://docs.hyperplay.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {i18n.documentation}
+            </Link>
+            {flags.showMetaMaskLink ? (
+              <a
+                className={FooterSectionStyle.footer__link}
+                href="https://metamask.io"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                METAMASK
+              </a>
+            ) : null}
+            <Link
+              className={FooterSectionStyle.footer__link}
+              {...linkProps.badges}
+            >
+              {i18n.badges}
+            </Link>
+          </div>
         </div>
         {flags.showGetTheApp || flags.showLangSelector ? (
           <div className={FooterSectionStyle.footer__column}>
