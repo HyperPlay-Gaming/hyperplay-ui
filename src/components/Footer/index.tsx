@@ -85,16 +85,8 @@ export function Footer({
   }
 
   return (
-    <div {...props} 
-        className={cn(
-          FooterSectionStyle.root
-        )}
-    >
-      <div
-        className={cn(
-          FooterSectionStyle.footer
-        )}
-      >
+    <div {...props} className={cn(FooterSectionStyle.root)}>
+      <div className={cn(FooterSectionStyle.footer)}>
         <div className={FooterSectionStyle.footer__column}>
           <h2 className={FooterSectionStyle.footer__title}>{i18n.company}</h2>
           <div className={FooterSectionStyle.footer__links}>
