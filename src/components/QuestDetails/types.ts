@@ -69,4 +69,5 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   isMinting?: boolean
   errorMessage?: string
   isSignedIn: boolean
+  questType: 'PLAYSTREAK' | 'REPUTATIONAL-AIRDROP'
 }

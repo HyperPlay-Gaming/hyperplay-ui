@@ -73,7 +73,8 @@ const props: QuestDetailsProps = {
   onConnectSteamAccountClick: () =>
     console.log('connect steam account clicked!'),
   collapseIsOpen: false,
-  toggleCollapse: () => console.log('toggle')
+  toggleCollapse: () => console.log('toggle'),
+  questType: 'REPUTATIONAL-AIRDROP'
 }
 
 export const Default: Story = {
@@ -188,6 +189,7 @@ export const PlayStreak: Story = {
               resetTimeInMsSinceEpoch: Date.now().valueOf() + 1000 * 3600
             }
           }}
+          questType="PLAYSTREAK"
           collapseIsOpen={open}
           toggleCollapse={() => setOpen(!open)}
         />

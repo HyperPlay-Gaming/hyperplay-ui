@@ -59,6 +59,7 @@ export default function QuestDetails({
   isMinting,
   errorMessage,
   isSignedIn,
+  questType,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
@@ -69,7 +70,10 @@ export default function QuestDetails({
   let ctaClick = onClaimClick
 
   // If this is a reputation quest
-  if (eligibility.reputation !== undefined) {
+  if (
+    eligibility.reputation !== undefined &&
+    questType === 'REPUTATIONAL-AIRDROP'
+  ) {
     if (!eligibility.reputation?.eligible) {
       needMoreAchievementsText = (
         <AlertText>{i18n.needMoreAchievements}</AlertText>
@@ -104,7 +108,10 @@ export default function QuestDetails({
       ctaClick = onClaimClick
     }
     // if this is a play streak quest
-  } else if (eligibility.playStreak !== undefined) {
+  } else if (
+    eligibility.playStreak !== undefined &&
+    questType === 'PLAYSTREAK'
+  ) {
     sticker = (
       <Sticker styleType="secondary" variant="outlined">
         {i18n.questType.PLAYSTREAK}
