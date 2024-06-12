@@ -18,6 +18,20 @@
 
   font-family: var(--secondary-font-family);
   font-weight: var(--bold);
+  text-align: left;
+  width: 100%;
+}
+
+.description {
+  padding-top: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+  color: var(--color-neutral-400);
+  text-align: center;
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-xl);
+  font-style: normal;
+  font-weight: var(--regular);
+  line-height: calc(var(--text-xl) * 28 / 21);
 }
 
 .seeMoreButton {
