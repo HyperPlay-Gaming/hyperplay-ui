@@ -9,7 +9,7 @@ import FAQItem, { FAQItemProps } from './components/FAQItem'
 const MAX_FAQS_DISPLAYED = 3
 
 export interface FAQProps {
-  className: {
+  classNames?: {
     root?: string
     title?: string
     description?: string
@@ -24,7 +24,7 @@ export interface FAQProps {
 }
 
 export default function FAQ({
-  className,
+  classNames,
   faqList = [],
   description = '',
   i18n = {
@@ -38,7 +38,7 @@ export default function FAQ({
 
   return (
     <div
-      className={cn(styles.container, className.root)}
+      className={cn(styles.container, classNames?.root)}
       {...(showAll
         ? {
             style: {
@@ -47,9 +47,9 @@ export default function FAQ({
           }
         : {})}
     >
-      <h1 className={cn(styles.title, className.title)}>{i18n.title}</h1>
+      <h1 className={cn(styles.title, classNames?.title)}>{i18n.title}</h1>
       {description ? (
-        <div className={cn(styles.description, className.description)}>
+        <div className={cn(styles.description, classNames?.description)}>
           {description}
         </div>
       ) : null}

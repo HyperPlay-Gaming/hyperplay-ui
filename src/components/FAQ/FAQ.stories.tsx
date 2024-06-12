@@ -14,6 +14,8 @@ const meta: Meta<typeof FAQ> = {
 
 export default meta
 
+const DESCRIPTION_MOCK =
+  'Here to answer any questions you have, if there are some missing reach out to'
 const props: FAQProps = {
   faqList: [
     {
@@ -100,8 +102,7 @@ export const WithDescription: Story = {
     ...props,
     description: (
       <>
-        Here to answer any questions you have, if there are some missing reach
-        out to{' '}
+        {DESCRIPTION_MOCK}{' '}
         <span
           style={{
             color: 'var(--color-primary)',
@@ -119,7 +120,12 @@ export const WithDescription: Story = {
     <div>
       <FAQ {...args} />
     </div>
-  )
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    expect(canvas.getByText(DESCRIPTION_MOCK)).toBeVisible()
+  }
 }
 
 export const OneItem: Story = {
