@@ -1,15 +1,10 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
+import cn from 'classnames'
 
-
-import cn from 'classnames';
-
-
-
-import Button from '../Button';
-import styles from './FAQ.module.scss';
-import FAQItem, { FAQItemProps } from './components/FAQItem';
-
+import Button from '../Button'
+import styles from './FAQ.module.scss'
+import FAQItem, { FAQItemProps } from './components/FAQItem'
 
 const MAX_FAQS_DISPLAYED = 3
 
@@ -18,7 +13,7 @@ export interface FAQProps {
     root?: string
     title?: string
     description?: string
-  },
+  }
   faqList: Array<FAQItemProps>
   description?: React.ReactNode | string
   i18n?: {
