@@ -24,10 +24,92 @@ const props: FooterProps = {
     }
   },
   flags: {
-    showLangSelector: true
+    showLangSelector: true,
+    showGetTheApp: true,
+    showBrandLink: true,
+    showMetaMaskLink: true
   }
 }
 
 export const Default: Story = {
   args: { ...props }
+}
+
+export const WithoutGetTheApp: Story = {
+  args: {
+    ...props,
+    flags: {
+      ...props.flags,
+      showGetTheApp: false,
+      showBrandLink: true,
+      showMetaMaskLink: true
+    }
+  }
+}
+
+export const WithoutGetTheAppAndLanguageSecltor: Story = {
+  args: {
+    ...props,
+    flags: {
+      showLangSelector: false,
+      showGetTheApp: false,
+      showBrandLink: true,
+      showMetaMaskLink: true
+    }
+  }
+}
+
+export const WithoutLanguageSelector: Story = {
+  args: {
+    ...props,
+    flags: {
+      showLangSelector: false,
+      showGetTheApp: true,
+      showBrandLink: true,
+      showMetaMaskLink: true
+    }
+  }
+}
+
+export const WithoutMetaMaskLink: Story = {
+  args: {
+    ...props,
+    flags: {
+      showLangSelector: true,
+      showMetaMaskLink: false
+    }
+  }
+}
+
+export const WithoutBrandLink: Story = {
+  args: {
+    ...props,
+    flags: {
+      showLangSelector: true,
+      showBrandLink: false
+    }
+  }
+}
+
+export const WithoutOptionalFlags: Story = {
+  args: {
+    ...props,
+    flags: {
+      showLangSelector: false,
+      showGetTheApp: false,
+      showBrandLink: false,
+      showMetaMaskLink: false
+    }
+  }
+}
+
+export const WithoutOptionalLinks: Story = {
+  args: {
+    ...props,
+    flags: {
+      showLangSelector: true,
+      showBrandLink: false,
+      showMetaMaskLink: false
+    }
+  }
 }
