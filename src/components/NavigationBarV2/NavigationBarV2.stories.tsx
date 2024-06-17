@@ -15,7 +15,6 @@ export default meta
 type Story = StoryObj<typeof NavigationBarV2>
 
 const props: NavigationBarV2Props = {
-  className: '',
   i18n: defaultI18n,
   links: {
     x: '#',
