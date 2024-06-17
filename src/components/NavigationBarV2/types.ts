@@ -41,5 +41,6 @@ export interface NavigationBarV2Props {
   isMobileMenuOpen?: boolean
   links: NavigationBarV2LinksProp
   onMenuTap: () => void
+  onInstallButtonTap: () => void
   i18n?: NavigationBarV2I18nProp
 }

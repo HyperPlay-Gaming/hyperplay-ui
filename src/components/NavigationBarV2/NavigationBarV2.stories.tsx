@@ -26,6 +26,9 @@ const props: NavigationBarV2Props = {
     docs: '#',
     faq: '#'
   },
+  onInstallButtonTap: () => {
+    console.log('Install button tap')
+  },
   onMenuTap: () => {
     console.log('Menu tap')
   }

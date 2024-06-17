@@ -27,6 +27,7 @@ const NavigationBarV2 = ({
   isMobileMenuOpen,
   links,
   onMenuTap,
+  onInstallButtonTap,
   i18n = defaultI18n
 }: NavigationBarV2Props) => {
   return (
@@ -70,6 +71,7 @@ const NavigationBarV2 = ({
               type="secondaryGradient"
               size="medium"
               spacing="lg"
+              onClick={onInstallButtonTap}
               style={
                 {
                   '--color-direction': 'to right'
