@@ -23,7 +23,7 @@ export const defaultI18n: NavigationBarV2I18nProp = {
 }
 
 const NavigationBarV2 = ({
-  className,
+  classNames,
   isMobileMenuOpen,
   links,
   onMenuTap,
@@ -35,11 +35,11 @@ const NavigationBarV2 = ({
       className={cn(
         styles.root,
         { [styles.isOpenHeight]: isMobileMenuOpen },
-        className
+        classNames?.root
       )}
     >
-      <div className={styles.innerWrapper}>
-        <HyperPlayFullTextLogo className={className} />
+      <div className={cn(styles.innerWrapper, classNames?.wrapper)}>
+        <HyperPlayFullTextLogo />
 
         <NavigationLinks
           links={links}

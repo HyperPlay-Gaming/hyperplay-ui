@@ -37,7 +37,10 @@ export interface MobileMenuProps {
 }
 
 export interface NavigationBarV2Props {
-  className?: string
+  classNames?: {
+    root?: string
+    wrapper?: string
+  }
   isMobileMenuOpen?: boolean
   links: NavigationBarV2LinksProp
   onMenuTap: () => void
