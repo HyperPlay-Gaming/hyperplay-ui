@@ -23,10 +23,11 @@ export const defaultI18n: NavigationBarV2I18nProp = {
 }
 
 const NavigationBarV2 = ({
-  className,
+  classNames,
   isMobileMenuOpen,
   links,
   onMenuTap,
+  onInstallButtonTap,
   i18n = defaultI18n
 }: NavigationBarV2Props) => {
   return (
@@ -34,11 +35,11 @@ const NavigationBarV2 = ({
       className={cn(
         styles.root,
         { [styles.isOpenHeight]: isMobileMenuOpen },
-        className
+        classNames?.root
       )}
     >
-      <div className={styles.innerWrapper}>
-        <HyperPlayFullTextLogo className={className} />
+      <div className={cn(styles.innerWrapper, classNames?.wrapper)}>
+        <HyperPlayFullTextLogo />
 
         <NavigationLinks
           links={links}
@@ -70,6 +71,7 @@ const NavigationBarV2 = ({
               type="secondaryGradient"
               size="medium"
               spacing="lg"
+              onClick={onInstallButtonTap}
               style={
                 {
                   '--color-direction': 'to right'

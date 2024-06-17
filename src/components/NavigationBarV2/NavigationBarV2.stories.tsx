@@ -15,7 +15,6 @@ export default meta
 type Story = StoryObj<typeof NavigationBarV2>
 
 const props: NavigationBarV2Props = {
-  className: '',
   i18n: defaultI18n,
   links: {
     x: '#',
@@ -25,6 +24,9 @@ const props: NavigationBarV2Props = {
     developers: '#',
     docs: '#',
     faq: '#'
+  },
+  onInstallButtonTap: () => {
+    console.log('Install button tap')
   },
   onMenuTap: () => {
     console.log('Menu tap')
