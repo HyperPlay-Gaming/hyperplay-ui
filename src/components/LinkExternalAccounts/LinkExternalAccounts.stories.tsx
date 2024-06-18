@@ -58,6 +58,7 @@ const authProviders = [
 
 const meta: Meta<typeof LinkExternalAccountsModal> = {
   title: 'auth/LinkExternalAccountsModal',
+  component: LinkExternalAccountsModal,
   args: {
     providers: authProviders,
     onClose: fn(),
@@ -102,6 +103,17 @@ export const WalletLinked: Story = {
     await userEvent.click(walletButton)
     await expect(onWalletClick).toHaveBeenCalled()
   }
+}
+
+export const WithEmail: Story = {
+  args: {
+    email: 'hello@hyperplay.xyz'
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
+      <LinkExternalAccountsModal {...args} />
+    </div>
+  )
 }
 
 export const Error: Story = {
