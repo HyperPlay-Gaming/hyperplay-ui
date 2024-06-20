@@ -40,7 +40,7 @@ export function TokenIdRow(props: TokenIdRowProps) {
     const button = (
       <Button
         htmlType="button"
-        aria-label="remove token"
+        aria-label={`Remove token ID ${props.tokenId}`}
         type="tertiary"
         onClick={props.onRemoveTap}
         rightIcon={<TrashCan fill="var(--color-neutral-400)" />}
