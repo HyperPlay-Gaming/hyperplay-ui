@@ -9,7 +9,7 @@ import Button from '@/components/Button'
 
 import styles from './index.module.scss'
 
-export type TokenIdRowInputProps =
+export type TokenIdRowProps =
   | {
       status: 'DRAFT'
       tokenId: number
@@ -33,7 +33,7 @@ export type TokenIdRowInputProps =
       onTryAgainTap: () => void
     }
 
-export function TokenIdRow(props: TokenIdRowInputProps) {
+export function TokenIdRow(props: TokenIdRowProps) {
   let content = null
 
   if (props.status === 'DRAFT') {

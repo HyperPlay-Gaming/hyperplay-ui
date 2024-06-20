@@ -5,7 +5,7 @@ import { NumberInput, NumberInputProps } from '@/index'
 
 import RewardDepositMessage from '../RewardDepositMessage'
 import RewardDepositTokenList from '../RewardDepositTokensList'
-import { TokenIdRow, TokenIdRowInputProps } from './components/TokenIdRow'
+import { TokenIdRow, TokenIdRowProps } from './components/TokenIdRow'
 import styles from './index.module.scss'
 
 export interface RewardERC721DepositI18nProp {
@@ -32,7 +32,7 @@ export interface RewardERC721DepositProps {
   tokenFromNumberInputProps?: NumberInputProps
   tokenToNumberInputProps?: NumberInputProps
   manualTokenIdProps?: NumberInputProps
-  tokenIdsList?: TokenIdRowInputProps[]
+  tokenIdsList?: TokenIdRowProps[]
   message?: string
   isAddTokenButtonDisabled?: boolean
   defaultTokenIdsListVisibilityState?: boolean
