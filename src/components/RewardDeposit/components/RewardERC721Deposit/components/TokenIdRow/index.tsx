@@ -19,12 +19,12 @@ export type TokenIdRowProps =
   | {
       status: 'PENDING'
       tokenId: number
-      url: string
+      url?: string
     }
   | {
       status: 'CONFIRMED'
       tokenId: number
-      url: string
+      url?: string
     }
   | {
       status: 'ERROR'
@@ -68,14 +68,16 @@ export function TokenIdRow(props: TokenIdRowProps) {
     content = (
       <div className={styles.container}>
         <span className={cn(styles.pill, styles.pending)}>Depositing</span>
-        <a
-          href={props.url}
-          className={styles.link}
-          target="_blank"
-          rel="noreferrer"
-        >
-          View on Explorer
-        </a>
+        {props.url && (
+          <a
+            href={props.url}
+            className={styles.link}
+            target="_blank"
+            rel="noreferrer"
+          >
+            View on Explorer
+          </a>
+        )}
       </div>
     )
   }
@@ -84,14 +86,16 @@ export function TokenIdRow(props: TokenIdRowProps) {
     content = (
       <div className={styles.container}>
         <span className={cn(styles.pill, styles.success)}>Ready</span>
-        <a
-          href={props.url}
-          className={styles.link}
-          target="_blank"
-          rel="noreferrer"
-        >
-          View on Explorer
-        </a>
+        {props.url && (
+          <a
+            href={props.url}
+            className={styles.link}
+            target="_blank"
+            rel="noreferrer"
+          >
+            View on Explorer
+          </a>
+        )}
       </div>
     )
   }
