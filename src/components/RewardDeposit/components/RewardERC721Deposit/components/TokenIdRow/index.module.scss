@@ -4,13 +4,14 @@
 }
 
 .base {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
   gap: var(--space-md);
-  padding: var(--space-md) 0;
+  padding: var(--space-lg) 0;
   border-top: 1px solid var(--color-neutral-700);
 
   &:first-child {
@@ -20,5 +21,65 @@
 
   &:last-child {
     padding-bottom: 0;
+  }
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.singleButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3xs) var(--space-sm);
+  border-radius: var(--space-md);
+
+  &.success {
+    color: var(--color-primary-900);
+    background: var(--color-primary-200);
+  }
+
+  &.pending {
+    background: var(--color-alert-200);
+    color: var(--color-alert-800);
+  }
+
+  &.error {
+    background: var(--color-error-700);
+    color: white;
+  }
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3xs);
+}
+
+.errorText {
+  color: var(--color-error-400);
+}
+
+.tryAgainButton {
+  color: var(--color-error-400);
+}
+
+.link {
+  color: var(--color-primary-200) !important;
+
+  &:hover {
+    text-decoration: underline;
   }
 }

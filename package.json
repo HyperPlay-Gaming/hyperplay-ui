@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.5.12",
+  "version": "1.5.13",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
