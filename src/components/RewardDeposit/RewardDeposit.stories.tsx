@@ -9,6 +9,7 @@ import RewardDepositMessage from './components/RewardDepositMessage'
 import RewardDepositTokenList from './components/RewardDepositTokensList'
 import RewardERC20Deposit from './components/RewardERC20Deposit'
 import RewardERC721Deposit from './components/RewardERC721Deposit'
+import { TokenIdRowInputProps } from './components/RewardERC721Deposit/components/TokenIdRow'
 import RewardERC1155Deposit from './components/RewardERC1155Deposit'
 import { RewardDeposit } from './index'
 
@@ -196,9 +197,10 @@ export const ERC721PendingDeposit: Story = {
       }
     }
 
-    const tokenIdsList = tokenIds.map((tokenId) => ({
+    const tokenIdsList: TokenIdRowInputProps[] = tokenIds.map((tokenId) => ({
       tokenId: tokenId.id,
       error: tokenId.error,
+      status: 'DRAFT',
       onRemoveTap: () => {
         setTokenIds(tokenIds.filter((id) => id !== tokenId))
       }
