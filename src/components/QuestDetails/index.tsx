@@ -4,6 +4,7 @@ import cn from 'classnames'
 
 import { AlertTriangle } from '@/assets/images'
 
+import AlertCard from '../AlertCard/index'
 import Button from '../Button'
 import DarkContainer from '../DarkContainer'
 import Loading from '../Loading'
@@ -57,6 +58,7 @@ export default function QuestDetails({
   collapseIsOpen: opened,
   toggleCollapse: toggle,
   isMinting,
+  alertProps,
   errorMessage,
   isSignedIn,
   questType,
@@ -154,6 +156,8 @@ export default function QuestDetails({
   let errorAlert = null
   if (errorMessage) {
     errorAlert = <AlertText>{errorMessage}</AlertText>
+  } else if (alertProps) {
+    errorAlert = <AlertCard {...alertProps} />
   }
 
   let secondCTA = null

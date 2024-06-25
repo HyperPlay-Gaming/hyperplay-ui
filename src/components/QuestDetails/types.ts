@@ -2,6 +2,7 @@ import { HTMLProps } from 'react'
 
 import { QuestTypeTranslations } from '@/common/types'
 
+import { InfoAlertProps } from '../AlertCard'
 import { StreakProgressI18n } from './components/StreakProgress'
 
 export interface Game {
@@ -70,6 +71,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   collapseIsOpen: boolean
   toggleCollapse: () => void
   isMinting?: boolean
+  alertProps?: InfoAlertProps
   errorMessage?: string
   isSignedIn: boolean
   questType: 'PLAYSTREAK' | 'REPUTATIONAL-AIRDROP'
