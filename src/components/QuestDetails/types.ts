@@ -60,6 +60,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   loading?: boolean
   classNames?: {
     root?: string
+    rootContent?: string
     content?: string
     loading?: string
   }

@@ -168,7 +168,7 @@ export default function QuestDetails({
   }
 
   let content = (
-    <div className={cn(styles.rootContent)}>
+    <div className={cn(styles.rootContent, classNames?.rootContent)}>
       <div className={cn(styles.container, classNames?.content)}>
         {sticker}
         <div className={cn('title', styles.title)}>{title}</div>
