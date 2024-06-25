@@ -74,7 +74,9 @@ const props: QuestDetailsProps = {
     console.log('connect steam account clicked!'),
   collapseIsOpen: false,
   toggleCollapse: () => console.log('toggle'),
-  questType: 'REPUTATIONAL-AIRDROP'
+  questType: 'REPUTATIONAL-AIRDROP',
+  numClaimed: 199,
+  numTotal: 200
 }
 
 export const Default: Story = {

@@ -11,15 +11,19 @@ import styles from './index.module.scss'
 export interface RewardsProps {
   rewards: QuestReward[]
   loading?: boolean
+  numClaimed?: number
+  numTotal?: number
   i18n?: {
-    reward: string
+    rewards: string
   }
 }
 
 export default function Rewards({
   rewards,
   loading,
-  i18n = { reward: 'Reward' }
+  numClaimed,
+  numTotal,
+  i18n = { rewards: 'Claimable Rewards' }
 }: RewardsProps) {
   let rewardsContent = null
   if (rewards.length > 0) {
@@ -29,11 +33,26 @@ export default function Rewards({
   } else if (loading) {
     rewardsContent = <Loading />
   }
+
+  let numClaimedComponent = null
+  if (numClaimed !== undefined && numTotal !== undefined) {
+    numClaimedComponent = (
+      <div className={classNames('button', styles.claimedContainer)}>
+        <div className={styles.numClaimed}>{numClaimed}</div>
+        <div className={styles.numTotal}>/</div>
+        <div className={styles.numTotal}>{numTotal}</div>
+      </div>
+    )
+  }
   return (
     <div className={styles.rewardsContainer}>
-      <div className={classNames('menu', styles.rewardTitle)}>
-        {i18n.reward}
+      <div className={styles.titleBar}>
+        <div className={classNames('body-sm', styles.rewardTitle)}>
+          {i18n.rewards}
+        </div>
+        {numClaimedComponent}
       </div>
+      <div className={styles.separator}></div>
       <div className={styles.rewardItemsContainer}>{rewardsContent}</div>
     </div>
   )

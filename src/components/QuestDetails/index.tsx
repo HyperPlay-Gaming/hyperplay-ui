@@ -30,7 +30,7 @@ export default function QuestDetails({
   rewards,
   rewardsLoading,
   i18n = {
-    reward: 'Reward',
+    rewards: 'Claimable Rewards',
     associatedGames: 'Associated games',
     linkSteamAccount: 'Link your Steam account to check eligibility.',
     needMoreAchievements:
@@ -60,6 +60,8 @@ export default function QuestDetails({
   errorMessage,
   isSignedIn,
   questType,
+  numClaimed,
+  numTotal,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
@@ -183,8 +185,10 @@ export default function QuestDetails({
 
         <Rewards
           rewards={rewards}
-          i18n={{ reward: i18n.reward }}
+          i18n={{ rewards: i18n.rewards }}
           loading={rewardsLoading}
+          numClaimed={numClaimed}
+          numTotal={numTotal}
         />
         {errorAlert}
       </div>
