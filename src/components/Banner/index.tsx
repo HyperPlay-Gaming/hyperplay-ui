@@ -1,14 +1,9 @@
-import cn from 'classnames';
+import cn from 'classnames'
 
+import { ArrowUpRight } from '@/assets/images'
+import Button from '@/components/Button'
 
-
-import { ArrowUpRight } from '@/assets/images';
-import Button from '@/components/Button';
-
-
-
-import styles from './Banner.module.scss';
-
+import styles from './Banner.module.scss'
 
 interface BannerI18nProp {
   title: string
@@ -83,7 +78,13 @@ export const Banner = ({
           </Button>
         </div>
       </div>
-      <div className={cn(styles.banner, hasBannerGradient ? styles.gradient : null, classNames?.bannerContainer)}>
+      <div
+        className={cn(
+          styles.banner,
+          hasBannerGradient ? styles.gradient : null,
+          classNames?.bannerContainer
+        )}
+      >
         <img
           src={bannerImagePath}
           alt="HyperPlay Client"
