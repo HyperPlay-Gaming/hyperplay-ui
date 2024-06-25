@@ -22,6 +22,7 @@ export interface NavigationLinksProps {
   menuItemClassName?: string
   links: NavigationBarV2LinksProp
   i18n: NavigationBarV2I18nProp
+  flags?: NavigationBarV2FlagsProp
 }
 
 export interface SocialMediaLinksProps {
@@ -36,6 +37,10 @@ export interface MobileMenuProps {
   i18n: NavigationBarV2I18nProp
 }
 
+export interface NavigationBarV2FlagsProp {
+  hasQuestsTab?: boolean
+}
+
 export interface NavigationBarV2Props {
   classNames?: {
     root?: string
@@ -46,4 +51,5 @@ export interface NavigationBarV2Props {
   onMenuTap: () => void
   onInstallButtonTap: () => void
   i18n?: NavigationBarV2I18nProp
+  flags?: NavigationBarV2FlagsProp
 }

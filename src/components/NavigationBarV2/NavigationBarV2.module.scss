@@ -29,7 +29,7 @@
 
   @include variables.for-desktop-up {
     padding: 0 var(--space-xl);
-    margin: auto 80px;
+    margin: auto 0;
   }
 }
 

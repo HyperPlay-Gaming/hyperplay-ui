@@ -113,3 +113,10 @@ export const MobileOpenAndCloseMenu: Story = {
     )
   }
 }
+
+export const WithoutQuestsTab: Story = {
+  args: { ...props, isMobileMenuOpen: true, flags: { hasQuestsTab: false } },
+  parameters: {
+    layout: 'fullscreen'
+  }
+}
