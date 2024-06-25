@@ -1,6 +1,5 @@
 import cn from 'classnames'
 
-import hpClientImg from '@/assets/banners/HyperPlayClient.png?url'
 import { ArrowUpRight } from '@/assets/images'
 import Button from '@/components/Button'
 
@@ -24,23 +23,30 @@ export const defaultI18n: BannerI18nProp = {
 }
 
 export interface BannerProps {
-  className?: string
-  contentClassName?: string
+  classNames?: {
+    root?: string
+    content?: string
+    bannerContainer?: string
+    bannerImage?: string
+  }
+  bannerImagePath: string
+  hasBannerGradient?: boolean
   i18n?: BannerI18nProp
   onTapInstall: () => void
   onTapSubmitGame: () => void
 }
 
 export const Banner = ({
-  className,
-  contentClassName,
+  classNames,
+  bannerImagePath,
+  hasBannerGradient,
   onTapInstall,
   onTapSubmitGame,
   i18n = defaultI18n
 }: BannerProps) => {
   return (
-    <div className={cn(styles.root, className)}>
-      <div className={cn(styles.content, contentClassName)}>
+    <div className={cn(styles.root, classNames?.root)}>
+      <div className={cn(styles.content, classNames?.content)}>
         <div className={styles.contextText}>
           <p className={styles.bannerSubtitle}>{i18n.subtitle}</p>
           <h1 className={styles.bannerTitle}>{i18n.title}</h1>
@@ -58,7 +64,7 @@ export const Banner = ({
               } as React.CSSProperties
             }
             rightIcon={<ArrowUpRight className={styles.submitGameButtonIcon} />}
-            onClick={onTapInstall}
+            onClick={onTapSubmitGame}
           >
             {i18n.submitGame}
           </Button>
@@ -66,17 +72,23 @@ export const Banner = ({
             className={cn(styles.installButton, styles.bannerButton)}
             size="medium"
             type="secondary"
-            onClick={onTapSubmitGame}
+            onClick={onTapInstall}
           >
             {i18n.installHp}
           </Button>
         </div>
       </div>
-      <div className={styles.banner}>
+      <div
+        className={cn(
+          styles.banner,
+          hasBannerGradient ? styles.gradient : null,
+          classNames?.bannerContainer
+        )}
+      >
         <img
-          src={hpClientImg}
+          src={bannerImagePath}
           alt="HyperPlay Client"
-          className={styles.bannerImage}
+          className={cn(styles.bannerImage, classNames?.bannerImage)}
         />
       </div>
     </div>
