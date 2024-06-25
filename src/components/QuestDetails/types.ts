@@ -37,6 +37,8 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     playStreak?: PlayStreakEligibility
   }
   rewards: QuestReward[]
+  numClaimed?: number
+  numTotal?: number
   onClaimClick: () => void
   onSignInClick: () => void
   onConnectSteamAccountClick: () => void
@@ -44,7 +46,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   onPlayClick?: () => void
   onSecondCTAClick?: () => void
   i18n?: {
-    reward: string
+    rewards: string
     associatedGames: string
     linkSteamAccount: string
     needMoreAchievements: string
@@ -60,6 +62,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   loading?: boolean
   classNames?: {
     root?: string
+    rootContent?: string
     content?: string
     loading?: string
   }

@@ -3,25 +3,21 @@
 }
 
 .rewardsContainer {
-  padding: var(--space-2lg) var(--space-md);
+  padding: var(--space-md);
   @include thinGrayBorder;
   border-radius: var(--space-sm);
   position: relative;
   margin-top: var(--space-md);
   width: 100%;
+  background-color: var(--color-neutral-800);
 }
 
 $rewardTitleSideMargin: var(--space-2lg);
 .rewardTitle {
-  @include thinGrayBorder;
   border-radius: var(--space-xs);
-  text-align: center;
-  position: absolute;
-  top: 0px;
-  left: $rewardTitleSideMargin;
-  right: $rewardTitleSideMargin;
-  transform: translateY(-50%);
-  background-color: var(--color-neutral-900);
+  text-align: left;
+  display: flex;
+  align-items: center;
 }
 
 .rewardItemsContainer {
@@ -30,4 +26,31 @@ $rewardTitleSideMargin: var(--space-2lg);
   gap: var(--space-sm);
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.titleBar {
+  display: flex;
+  color: var(--color-neutral-400);
+  justify-content: space-between;
+}
+
+.separator {
+  height: 1px;
+  background-color: var(--color-neutral-600);
+  margin: var(--space-md-fixed) calc(-1 * var(--space-md-fixed));
+}
+
+.numClaimed {
+  color: var(--color-neutral-100);
+}
+
+.numTotal {
+  color: var(--color-neutral-400);
+}
+
+.claimedContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3xs);
 }

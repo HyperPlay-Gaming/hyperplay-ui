@@ -30,7 +30,7 @@ export default function QuestDetails({
   rewards,
   rewardsLoading,
   i18n = {
-    reward: 'Reward',
+    rewards: 'Claimable Rewards',
     associatedGames: 'Associated games',
     linkSteamAccount: 'Link your Steam account to check eligibility.',
     needMoreAchievements:
@@ -60,6 +60,8 @@ export default function QuestDetails({
   errorMessage,
   isSignedIn,
   questType,
+  numClaimed,
+  numTotal,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
@@ -168,24 +170,28 @@ export default function QuestDetails({
   }
 
   let content = (
-    <div className={cn(styles.container, classNames?.content)}>
-      {sticker}
-      <div className={cn('title', styles.title)}>{title}</div>
-      <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
-        {description}
+    <div className={cn(styles.rootContent, classNames?.rootContent)}>
+      <div className={cn(styles.container, classNames?.content)}>
+        {sticker}
+        <div className={cn('title', styles.title)}>{title}</div>
+        <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
+          {description}
+        </div>
+
+        {eligibilityReqComponent}
+
+        {needMoreAchievementsText}
+        {linkSteamAccountText}
+
+        <Rewards
+          rewards={rewards}
+          i18n={{ rewards: i18n.rewards }}
+          loading={rewardsLoading}
+          numClaimed={numClaimed}
+          numTotal={numTotal}
+        />
+        {errorAlert}
       </div>
-
-      {eligibilityReqComponent}
-
-      {needMoreAchievementsText}
-      {linkSteamAccountText}
-
-      <Rewards
-        rewards={rewards}
-        i18n={{ reward: i18n.reward }}
-        loading={rewardsLoading}
-      />
-      {errorAlert}
       <div className={styles.ctaContainer}>
         {secondCTA}
         <Button
