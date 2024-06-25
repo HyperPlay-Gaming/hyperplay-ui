@@ -28,7 +28,10 @@ const NavigationBarV2 = ({
   links,
   onMenuTap,
   onInstallButtonTap,
-  i18n = defaultI18n
+  i18n = defaultI18n,
+  flags = {
+    hasQuestsTab: true
+  }
 }: NavigationBarV2Props) => {
   return (
     <div
@@ -46,6 +49,7 @@ const NavigationBarV2 = ({
           i18n={i18n}
           className={styles.desktopLinks}
           menuItemClassName={styles.desktopLink}
+          flags={flags}
         />
 
         <div className={styles.desktopActionsList}>

@@ -3,12 +3,16 @@
 .root {
   width: 100%;
   height: auto;
-  gap: var(--space-2xl);
+  gap: var(--space-xl);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   margin: auto;
+
+  @include variables.for-desktop-up {
+    gap: var(--space-2xl);
+  }
 }
 
 .content {
