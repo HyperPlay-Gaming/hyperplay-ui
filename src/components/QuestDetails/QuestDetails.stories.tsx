@@ -216,3 +216,17 @@ export const QuestsPageInClient: Story = {
     onSecondCTAClick: () => console.log('2nd cta clicked')
   }
 }
+
+export const WithAlert: Story = {
+  args: {
+    ...props,
+    alertProps: {
+      showClose: false,
+      title: 'Claim Failed',
+      message:
+        "Please try once more. If it still doesn't work, create a Discord support ticket.",
+      actionText: 'Create Discord Ticket',
+      variant: 'danger'
+    }
+  }
+}
