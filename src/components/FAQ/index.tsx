@@ -13,6 +13,11 @@ export interface FAQProps {
     root?: string
     title?: string
     description?: string
+    item?: string
+    itemContainer?: string
+    itemTitle?: string
+    itemDescription?: string
+    seeMoreButton?: string
   }
   faqList: Array<FAQItemProps>
   description?: React.ReactNode | string
@@ -54,11 +59,20 @@ export default function FAQ({
         </div>
       ) : null}
       {displayData.map((props: FAQItemProps, index) => (
-        <FAQItem key={index} {...props} />
+        <FAQItem
+          key={index}
+          {...props}
+          classNames={{
+            root: classNames?.item,
+            container: classNames?.itemContainer,
+            title: classNames?.itemTitle,
+            description: classNames?.itemDescription
+          }}
+        />
       ))}
       {faqList.length > MAX_FAQS_DISPLAYED && (
         <Button
-          className={styles.seeMoreButton}
+          className={cn(styles.seeMoreButton, classNames?.seeMoreButton)}
           type="link"
           onClick={() => setShowAll((prevState) => !prevState)}
           htmlType="button"
