@@ -168,24 +168,26 @@ export default function QuestDetails({
   }
 
   let content = (
-    <div className={cn(styles.container, classNames?.content)}>
-      {sticker}
-      <div className={cn('title', styles.title)}>{title}</div>
-      <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
-        {description}
+    <div className={cn(styles.rootContent)}>
+      <div className={cn(styles.container, classNames?.content)}>
+        {sticker}
+        <div className={cn('title', styles.title)}>{title}</div>
+        <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
+          {description}
+        </div>
+
+        {eligibilityReqComponent}
+
+        {needMoreAchievementsText}
+        {linkSteamAccountText}
+
+        <Rewards
+          rewards={rewards}
+          i18n={{ reward: i18n.reward }}
+          loading={rewardsLoading}
+        />
+        {errorAlert}
       </div>
-
-      {eligibilityReqComponent}
-
-      {needMoreAchievementsText}
-      {linkSteamAccountText}
-
-      <Rewards
-        rewards={rewards}
-        i18n={{ reward: i18n.reward }}
-        loading={rewardsLoading}
-      />
-      {errorAlert}
       <div className={styles.ctaContainer}>
         {secondCTA}
         <Button

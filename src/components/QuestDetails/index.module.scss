@@ -10,6 +10,8 @@
   flex-direction: column;
   gap: var(--space-2lg);
   align-items: flex-start;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .claimButton {
@@ -49,4 +51,12 @@
   flex-direction: row;
   gap: var(--space-sm-fixed);
   margin: 0 0 0 auto;
+  padding-top: var(--space-sm-fixed);
+  width: 100%;
+}
+
+.rootContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
