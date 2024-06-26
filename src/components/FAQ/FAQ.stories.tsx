@@ -14,6 +14,8 @@ const meta: Meta<typeof FAQ> = {
 
 export default meta
 
+const DESCRIPTION_MOCK =
+  'Here to answer any questions you have, if there are some missing reach out to'
 const props: FAQProps = {
   faqList: [
     {
@@ -92,6 +94,37 @@ export const Default: Story = {
 
     const seeLessButton = canvas.getByRole('button', { name: /See less/i })
     await userEvent.click(seeLessButton)
+  }
+}
+
+export const WithDescription: Story = {
+  args: {
+    ...props,
+    description: (
+      <>
+        {DESCRIPTION_MOCK}{' '}
+        <span
+          style={{
+            color: 'var(--color-primary)',
+            fontWeight: 'bold',
+            textDecoration: 'underline'
+          }}
+        >
+          support@hyperplay.xyz
+        </span>
+      </>
+    ),
+    faqList: props.faqList.slice(0, 1)
+  },
+  render: (args: FAQProps) => (
+    <div>
+      <FAQ {...args} />
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    expect(canvas.getByText(DESCRIPTION_MOCK)).toBeVisible()
   }
 }
 

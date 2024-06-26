@@ -1,13 +1,11 @@
 'use client'
 
-import cn from 'classnames'
-
-import { TrashCan } from '@/assets/images'
 import Button from '@/components/Button'
 import { NumberInput, NumberInputProps } from '@/index'
 
 import RewardDepositMessage from '../RewardDepositMessage'
 import RewardDepositTokenList from '../RewardDepositTokensList'
+import { TokenIdRow, TokenIdRowProps } from './components/TokenIdRow'
 import styles from './index.module.scss'
 
 export interface RewardERC721DepositI18nProp {
@@ -30,17 +28,11 @@ export interface RewardERC721DepositI18nProp {
   clear: string
 }
 
-interface TokenIdItemProps {
-  tokenId: number
-  error?: string
-  onRemoveTap: () => void
-}
-
 export interface RewardERC721DepositProps {
   tokenFromNumberInputProps?: NumberInputProps
   tokenToNumberInputProps?: NumberInputProps
   manualTokenIdProps?: NumberInputProps
-  tokenIdsList?: TokenIdItemProps[]
+  tokenIdsList?: TokenIdRowProps[]
   message?: string
   isAddTokenButtonDisabled?: boolean
   defaultTokenIdsListVisibilityState?: boolean
@@ -93,6 +85,7 @@ export function RewardERC721Deposit({
         <Button
           size="small"
           type="link"
+          htmlType="button"
           className={styles.clearButton}
           onClick={onClearTokenIds}
         >
@@ -128,6 +121,7 @@ export function RewardERC721Deposit({
             />
             <div className={styles.addTokenIdButtonContainer}>
               <Button
+                htmlType="button"
                 type="secondaryGradient"
                 size="medium"
                 onClick={onAddTokenTap}
@@ -166,18 +160,11 @@ export function RewardERC721Deposit({
           tokenCount={tokenIdsList.length}
           visibleByDefault={defaultTokenIdsListVisibilityState}
         >
-          {tokenIdsList.map(({ tokenId, error, onRemoveTap }, index) => (
-            <RewardDepositTokenList.Row key={`token-${tokenId}-${index}`}>
-              <div className={cn(error && styles.error)}>
-                {error ? `${tokenId} (${error})` : tokenId}
-              </div>
-              <Button
-                aria-label={`Remove token ID ${tokenId}`}
-                type="tertiary"
-                onClick={onRemoveTap}
-                rightIcon={<TrashCan fill="var(--color-neutral-400)" />}
-                className={styles.removeButton}
-              />
+          {tokenIdsList.map((tokenIdProps, index) => (
+            <RewardDepositTokenList.Row
+              key={`token-${tokenIdProps.tokenId}-${index}`}
+            >
+              <TokenIdRow {...tokenIdProps} />
             </RewardDepositTokenList.Row>
           ))}
         </RewardDepositTokenList>

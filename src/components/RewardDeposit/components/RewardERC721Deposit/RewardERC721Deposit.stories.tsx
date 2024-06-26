@@ -78,14 +78,17 @@ export const WithTokenIdsList: Story = {
   args: {
     tokenIdsList: [
       {
+        status: 'DRAFT',
         tokenId: 1,
         onRemoveTap: fn()
       },
       {
+        status: 'DRAFT',
         tokenId: 2,
         onRemoveTap: fn()
       },
       {
+        status: 'DRAFT',
         tokenId: 3,
         onRemoveTap: fn()
       }
@@ -114,6 +117,7 @@ export const WithTokenIdsList: Story = {
     })
 
     await step('Can delete token ID', async ({ canvasElement }) => {
+      if (args.tokenIdsList?.[2].status !== 'DRAFT') return
       const canvas = within(canvasElement)
       const removeLastTokenButton = canvas.getByRole('button', {
         name: `Remove token ID ${tokenTo}`
@@ -130,5 +134,44 @@ export const WithTokenIdsList: Story = {
       await userEvent.click(clearButton)
       await expect(args.onClearTokenIds).toHaveBeenCalledOnce()
     })
+  }
+}
+
+export const WithTransactionStatus: Story = {
+  args: {
+    defaultTokenIdsListVisibilityState: true,
+    tokenIdsList: [
+      {
+        status: 'PENDING',
+        tokenId: 1,
+        url: 'https://example.com'
+      },
+      {
+        status: 'PENDING',
+        tokenId: 2,
+        url: 'https://example.com'
+      },
+      {
+        status: 'PENDING',
+        tokenId: 3,
+        url: 'https://example.com'
+      },
+      {
+        status: 'ERROR',
+        tokenId: 4,
+        error: 'RPC-Internal Error',
+        onTryAgainTap: fn()
+      },
+      {
+        status: 'CONFIRMED',
+        tokenId: 5,
+        url: 'https://example.com'
+      },
+      {
+        status: 'CONFIRMED',
+        tokenId: 6,
+        url: 'https://example.com'
+      }
+    ]
   }
 }

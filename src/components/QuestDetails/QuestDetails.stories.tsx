@@ -27,6 +27,7 @@ export default meta
 type Story = StoryObj<typeof QuestDetails>
 
 const props: QuestDetailsProps = {
+  isSignedIn: true,
   title: 'Eternal Ember: Shadows of the Celestial Nexus',
   description:
     'Shadows of the Celestial NexusEmbark on a cosmic odyssey as the chosen guardian of the Eternal Ember. Traverse astral realms, unravel celestial mysteries, and confront shadowy entities threatening the balance of the Celestial Nexus. Master arcane powers, forge alliances with otherworldly beings, and navigate intricate puzzles. \n \nWill you rise to the challenge and become the savior of the Celestial Nexus, or succumb to the shadows that threaten to engulf the eternal flame?',
@@ -68,8 +69,14 @@ const props: QuestDetailsProps = {
     }
   ],
   onClaimClick: () => console.log('claim clicked!'),
+  onSignInClick: () => console.log('sign in clicked!'),
+  onConnectSteamAccountClick: () =>
+    console.log('connect steam account clicked!'),
   collapseIsOpen: false,
-  toggleCollapse: () => console.log('toggle')
+  toggleCollapse: () => console.log('toggle'),
+  questType: 'REPUTATIONAL-AIRDROP',
+  numClaimed: 199,
+  numTotal: 200
 }
 
 export const Default: Story = {
@@ -165,5 +172,61 @@ export const LoadingEligibilityGame: Story = {
         />
       </div>
     )
+  }
+}
+
+export const PlayStreak: Story = {
+  args: { ...props },
+  render: (args) => {
+    const [open, setOpen] = useState(false)
+    return (
+      <div>
+        <QuestDetails
+          {...args}
+          eligibility={{
+            reputation: undefined,
+            playStreak: {
+              currentStreakInDays: 2,
+              requiredStreakInDays: 7,
+              resetTimeInMsSinceEpoch: Date.now().valueOf() + 1000 * 3600
+            }
+          }}
+          questType="PLAYSTREAK"
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
+      </div>
+    )
+  }
+}
+
+export const IsMinting: Story = {
+  args: { ...props, isMinting: true }
+}
+
+export const ErrorMessage: Story = {
+  args: { ...props, errorMessage: 'User rejected transaction.' }
+}
+
+export const QuestsPageInClient: Story = {
+  args: {
+    ...props,
+    isQuestsPage: true,
+    onPlayClick: () => console.log('play clicked'),
+    onSecondCTAClick: () => console.log('2nd cta clicked')
+  }
+}
+
+export const WithAlert: Story = {
+  args: {
+    ...props,
+    alertProps: {
+      showClose: false,
+      title: 'Claim Failed',
+      message:
+        "Please try once more. If it still doesn't work, create a Discord support ticket.",
+      actionText: 'Create Discord Ticket',
+      variant: 'danger'
+    }
   }
 }

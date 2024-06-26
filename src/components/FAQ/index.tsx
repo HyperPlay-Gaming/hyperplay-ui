@@ -9,8 +9,18 @@ import FAQItem, { FAQItemProps } from './components/FAQItem'
 const MAX_FAQS_DISPLAYED = 3
 
 export interface FAQProps {
-  className?: string
+  classNames?: {
+    root?: string
+    title?: string
+    description?: string
+    item?: string
+    itemContainer?: string
+    itemTitle?: string
+    itemDescription?: string
+    seeMoreButton?: string
+  }
   faqList: Array<FAQItemProps>
+  description?: React.ReactNode | string
   i18n?: {
     title?: string
     seeLessButtonText?: string
@@ -19,8 +29,9 @@ export interface FAQProps {
 }
 
 export default function FAQ({
-  className: classNameProp,
+  classNames,
   faqList = [],
+  description = '',
   i18n = {
     title: 'FAQs',
     seeLessButtonText: 'See less',
@@ -32,7 +43,7 @@ export default function FAQ({
 
   return (
     <div
-      className={cn(styles.container, classNameProp)}
+      className={cn(styles.container, classNames?.root)}
       {...(showAll
         ? {
             style: {
@@ -41,13 +52,27 @@ export default function FAQ({
           }
         : {})}
     >
-      <h1 className={styles.title}>{i18n.title}</h1>
+      <h1 className={cn(styles.title, classNames?.title)}>{i18n.title}</h1>
+      {description ? (
+        <div className={cn(styles.description, classNames?.description)}>
+          {description}
+        </div>
+      ) : null}
       {displayData.map((props: FAQItemProps, index) => (
-        <FAQItem key={index} {...props} />
+        <FAQItem
+          key={index}
+          {...props}
+          classNames={{
+            root: classNames?.item,
+            container: classNames?.itemContainer,
+            title: classNames?.itemTitle,
+            description: classNames?.itemDescription
+          }}
+        />
       ))}
       {faqList.length > MAX_FAQS_DISPLAYED && (
         <Button
-          className={styles.seeMoreButton}
+          className={cn(styles.seeMoreButton, classNames?.seeMoreButton)}
           type="link"
           onClick={() => setShowAll((prevState) => !prevState)}
           htmlType="button"

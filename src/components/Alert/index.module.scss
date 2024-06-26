@@ -1,7 +1,7 @@
 .base {
   padding: var(--space-xs) var(--space-md);
   border-radius: 8px;
-  color: var(--color-neutral-100);
+  color: var(--color-neutral-700);
   display: flex;
   align-items: center;
   background-color: var(--color-status-info);
@@ -15,7 +15,6 @@
 
 .warning {
   background-color: var(--color-status-alert);
-  color: var(--color-neutral-800);
 }
 
 .success {
@@ -23,6 +22,5 @@
 }
 
 .info {
-  color: var(--color-neutral-800);
   background-color: var(--color-status-info);
 }

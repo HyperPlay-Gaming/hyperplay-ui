@@ -23,6 +23,7 @@ export interface AddressProps {
   classNames?: {
     button?: string
   }
+  supportAddress?: string
 }
 
 export default function Address(props: AddressProps) {
@@ -33,7 +34,9 @@ export default function Address(props: AddressProps) {
   let label = name
 
   if (!label) {
-    if (props.truncate) {
+    if (props.address === props?.supportAddress) {
+      label = 'HyperPlay Support'
+    } else if (props.truncate) {
       label = `${props.address.slice(0, 6)}..${props.address.slice(-4)}`
     } else {
       label = props.address

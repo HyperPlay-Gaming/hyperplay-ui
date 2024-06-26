@@ -1,6 +1,6 @@
 .darkContainer {
-  padding: var(--space-2lg);
-  max-width: 576px;
+  padding: var(--space-2lg) var(--space-xs) var(--space-2lg) var(--space-2lg);
+  max-width: 700px;
   height: 100%;
   margin: var(--space-xl) var(--space-xs);
 }
@@ -10,6 +10,9 @@
   flex-direction: column;
   gap: var(--space-2lg);
   align-items: flex-start;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: var(--space-2lg);
 }
 
 .claimButton {
@@ -41,5 +44,21 @@
 }
 
 .loader {
+  height: 100%;
+}
+
+.ctaContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm-fixed);
+  margin: 0 0 0 auto;
+  padding-top: var(--space-sm-fixed);
+  width: 100%;
+  padding-right: var(--space-2lg);
+}
+
+.rootContent {
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }

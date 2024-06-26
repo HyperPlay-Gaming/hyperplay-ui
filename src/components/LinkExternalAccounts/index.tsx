@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import { HyperPlayLogoColored, Wallet } from '@/assets/images'
 import Alert, { AlertProps } from '@/components/Alert'
-import { AuthProviderButton } from '@/index'
+import { AuthProviderButton, getTruncatedAddress } from '@/index'
 
 import Modal from '../Modal/Modal'
 import styles from './LinkExternalAccounts.module.scss'
@@ -25,13 +25,15 @@ interface ProviderOption {
 
 interface AuthProps {
   alert?: AlertProps
+  email?: string
   providers: ProviderOption[]
   onAuthProviderClick: (provider: ProviderOption) => void
   onWalletClick: () => void
-  walletLinked?: boolean
+  walletAddress?: string
 }
 
 interface I18n {
+  hi: string
   title: string
   subtitle: string
 }
@@ -50,14 +52,26 @@ export default function LinkExternalAccountsModal({
   onAuthProviderClick,
   onWalletClick,
   onClose,
+  email,
   i18n = {
+    hi: 'Hi',
     title: 'Add accounts to your HyperPlay profile',
     subtitle:
       'These accounts will not be shared outside of HyperPlay without your permission.'
   },
-  walletLinked,
+  walletAddress,
   ...props
 }: LinkExternalAccountsProps) {
+  let walletLabel
+
+  if (walletAddress) {
+    walletLabel = (
+      <span className="caption color-neutral-400">
+        {getTruncatedAddress(walletAddress, 3)}
+      </span>
+    )
+  }
+
   return (
     <Modal.Root {...props} className={cn(className, styles.root)}>
       <Modal.CloseButton
@@ -66,6 +80,11 @@ export default function LinkExternalAccountsModal({
       />
       <HyperPlayLogoColored />
       <Modal.Header>
+        {email ? (
+          <Modal.Title>
+            {i18n.hi} {email}
+          </Modal.Title>
+        ) : null}
         <Modal.Title>{i18n.title}</Modal.Title>
         <Modal.Body>{i18n.subtitle}</Modal.Body>
       </Modal.Header>
@@ -75,7 +94,8 @@ export default function LinkExternalAccountsModal({
           name="Wallet"
           icon={<Wallet className={styles.icon} />}
           onClick={onWalletClick}
-          connected={walletLinked}
+          connected={Boolean(walletAddress)}
+          label={walletLabel}
         />
         {providers.map((provider) => (
           <AuthProviderButton

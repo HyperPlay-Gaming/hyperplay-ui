@@ -1,4 +1,4 @@
-export type QuestType = 'REPUTATION'
+export type QuestType = 'REPUTATION' | 'PLAYSTREAK'
 export type QuestTypeTranslations = Record<QuestType, string>
 
 export type Arch = 'amd64' | 'arm64'
