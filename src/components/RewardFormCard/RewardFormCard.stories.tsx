@@ -33,6 +33,22 @@ const defaultTokenTypeInputProps = {
   data: ['ERC20', 'ERC721', 'ERC1155']
 }
 
+const RewardContract = (
+  <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <span
+      className="caption"
+      style={{
+        color: 'var(--color-neutral-400)'
+      }}
+    >
+      Reward Contract
+    </span>
+    <a href="#" style={{ color: 'var(--color-primary-300)' }}>
+      0xC38329b34E939d3C9165D7301e8349Ec3036CB1c
+    </a>
+  </div>
+)
+
 const meta: Meta<typeof RewardFormCard> = {
   title: 'Quests/RewardFormCard',
   component: RewardFormCard,
@@ -40,7 +56,8 @@ const meta: Meta<typeof RewardFormCard> = {
     title: 'Reward',
     networkInputProps: defaultNetworkInputProps,
     tokenContractAddressInputProps: defaultTokenContractAddressInputProps,
-    tokenTypeInputProps: defaultTokenTypeInputProps
+    tokenTypeInputProps: defaultTokenTypeInputProps,
+    RewardContract
   }
 }
 
@@ -283,6 +300,7 @@ export const DynamicForm: Story = {
         >
           <RewardFormCard
             title={`Reward ${index + 1}`}
+            RewardContract={RewardContract}
             icon={
               index > 0 ? (
                 <DeleteButton
