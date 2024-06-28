@@ -7,8 +7,8 @@ import { MinusCircle, PlusCircle } from '@/assets/images'
 import styles from './index.module.scss'
 
 export interface FAQItemProps {
-  question: string
-  answer: string
+  question: string | React.ReactNode
+  answer: string | React.ReactNode
   classNames?: {
     root?: string
     container?: string
