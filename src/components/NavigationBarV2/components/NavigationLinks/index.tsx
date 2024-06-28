@@ -8,7 +8,7 @@ export const NavigationLinks = ({
   flags
 }: NavigationLinksProps) => (
   <div className={className}>
-    <a href={links.store} target="_blank" rel="noreferrer">
+    <a href={links.store} target="_blank" rel="noopener noreferrer">
       <div className={menuItemClassName}>{i18n.store}</div>
     </a>
     {flags?.hasQuestsTab ? (
@@ -19,10 +19,10 @@ export const NavigationLinks = ({
     <a href={links.developers}>
       <div className={menuItemClassName}>{i18n.developers}</div>
     </a>
-    <a href={links.docs} target="_blank" rel="noreferrer">
+    <a href={links.docs} target="_blank" rel="noopener noreferrer">
       <div className={menuItemClassName}>{i18n.docs}</div>
     </a>
-    <a href={links.faq} target="_blank" rel="noreferrer">
+    <a href={links.faq} target="_blank" rel="noopener noreferrer">
       <div className={menuItemClassName}>{i18n.faq}</div>
     </a>
   </div>
