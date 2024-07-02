@@ -109,13 +109,13 @@ const rewardsDetailsSchema = z.object({
   image: z.string().url(),
   contract_address: z.string().regex(ethContractAddressRegex),
   name: z.string().min(1),
-  amount_per_user: z.string(),
+  amount_per_user: z.coerce.bigint(),
   marketplace_url: z.string().url(),
   decimals: z.string(),
   // erc1155 props
   token_ids: z.array(
     z.object({
-      amount_per_user: z.string(),
+      amount_per_user: z.coerce.bigint(),
       name: z.string()
     })
   )

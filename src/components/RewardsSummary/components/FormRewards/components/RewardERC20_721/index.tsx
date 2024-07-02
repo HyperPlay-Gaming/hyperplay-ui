@@ -53,7 +53,7 @@ export function RewardERC20_721({
         {tokenInput}
       </div>
       {tokenType === 'ERC20' ? (
-        <NumberInput
+        <TextInput
           label={i18n.label.amountPerUser}
           placeholder={i18n.placeholder.amountPerUser}
           {...amountPerUserInputProps}
