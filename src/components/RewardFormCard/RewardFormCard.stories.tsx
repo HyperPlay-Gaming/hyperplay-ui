@@ -99,6 +99,21 @@ export const Erc1155: Story = {
   }
 }
 
+const zodBigIntValidate = z.string().transform((val, ctx) => {
+  try {
+    const parsed = BigInt(val)
+    return parsed.toString()
+  } catch (error) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Not a valid bigint'
+    })
+
+    // Return early with z.NEVER if the transformation fails
+    return z.NEVER
+  }
+})
+
 const rewardsDetailsSchema = z.object({
   reward_type: z.union([
     z.literal('ERC721'),
@@ -109,13 +124,13 @@ const rewardsDetailsSchema = z.object({
   image: z.string().url(),
   contract_address: z.string().regex(ethContractAddressRegex),
   name: z.string().min(1),
-  amount_per_user: z.coerce.bigint(),
+  amount_per_user: zodBigIntValidate,
   marketplace_url: z.string().url(),
   decimals: z.string(),
   // erc1155 props
   token_ids: z.array(
     z.object({
-      amount_per_user: z.coerce.bigint(),
+      amount_per_user: zodBigIntValidate,
       name: z.string()
     })
   )
@@ -129,7 +144,8 @@ export const Controlled: Story = {
     const form = useForm<FormSchema>({
       // @ts-expect-error: token_ids need to be initialized as an empty array
       initialValues: { token_ids: [] },
-      validate: zodResolver(rewardsDetailsSchema)
+      validate: zodResolver(rewardsDetailsSchema),
+      validateInputOnChange: true
     })
 
     const formTokenType = form.values.reward_type
