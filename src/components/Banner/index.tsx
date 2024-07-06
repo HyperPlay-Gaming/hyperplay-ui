@@ -1,14 +1,9 @@
-import cn from 'classnames';
+import cn from 'classnames'
 
+import { ArrowUpRight } from '@/assets/images'
+import Button from '@/components/Button'
 
-
-import { ArrowUpRight } from '@/assets/images';
-import Button from '@/components/Button';
-
-
-
-import styles from './Banner.module.scss';
-
+import styles from './Banner.module.scss'
 
 interface BannerI18nProp {
   title: string
