@@ -1,9 +1,14 @@
-import cn from 'classnames'
+import cn from 'classnames';
 
-import { ArrowUpRight } from '@/assets/images'
-import Button from '@/components/Button'
 
-import styles from './Banner.module.scss'
+
+import { ArrowUpRight } from '@/assets/images';
+import Button from '@/components/Button';
+
+
+
+import styles from './Banner.module.scss';
+
 
 interface BannerI18nProp {
   title: string
@@ -28,6 +33,7 @@ export interface BannerProps {
     content?: string
     bannerContainer?: string
     bannerImage?: string
+    actionsList?: string
   }
   bannerImagePath: string
   hasBannerGradient?: boolean
@@ -52,7 +58,7 @@ export const Banner = ({
           <h1 className={styles.bannerTitle}>{i18n.title}</h1>
           <p className={styles.bannerDescription}>{i18n.description}</p>
         </div>
-        <div className={styles.actionsList}>
+        <div className={cn(styles.actionsList, classNames?.actionsList)}>
           <Button
             className={cn(styles.submitGameButton, styles.bannerButton)}
             type="secondaryGradient"
