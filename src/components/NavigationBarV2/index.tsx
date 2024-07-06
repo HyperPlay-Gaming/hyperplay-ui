@@ -44,7 +44,7 @@ const NavigationBarV2 = ({
       <div className={cn(styles.innerWrapper, classNames?.wrapper)}>
         <a href="/">
           <HyperPlayFullTextLogo className={styles.hpLogo} />
-        </a>     
+        </a>
 
         <NavigationLinks
           links={links}
