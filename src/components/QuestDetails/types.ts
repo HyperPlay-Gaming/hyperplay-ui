@@ -46,6 +46,9 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   isQuestsPage?: boolean
   onPlayClick?: () => void
   onSecondCTAClick?: () => void
+  showSync?: boolean
+  onSyncClick?: () => void
+  isSyncing?: boolean
   i18n?: {
     rewards: string
     associatedGames: string
@@ -58,6 +61,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     streakProgressI18n?: StreakProgressI18n
     secondCTAText?: string
     play?: string
+    sync?: string
   }
   rewardsLoading?: boolean
   loading?: boolean

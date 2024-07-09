@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { AlertTriangle } from '@/assets/images'
 
 import AlertCard from '../AlertCard/index'
-import Button from '../Button'
+import Button, { ButtonProps } from '../Button'
 import DarkContainer from '../DarkContainer'
 import Loading from '../Loading'
 import Sticker from '../Sticker'
@@ -44,7 +44,8 @@ export default function QuestDetails({
     questType: {
       REPUTATION: 'Reputation',
       PLAYSTREAK: 'Play Streak'
-    }
+    },
+    sync: 'Sync'
   },
   onClaimClick,
   onSignInClick,
@@ -64,6 +65,9 @@ export default function QuestDetails({
   questType,
   numClaimed,
   numTotal,
+  showSync,
+  onSyncClick,
+  isSyncing,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
@@ -107,6 +111,9 @@ export default function QuestDetails({
       buttonText = i18n.connectSteamAccount
       ctaClick = onConnectSteamAccountClick
       linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
+    } else if (showSync && onSyncClick) {
+      buttonText = i18n.sync ?? 'Sync'
+      ctaClick = onSyncClick
     } else {
       buttonText = i18n.claim
       ctaClick = onClaimClick
@@ -147,7 +154,7 @@ export default function QuestDetails({
   }
 
   let buttonContents = <>{buttonText}</>
-  if (isMinting) {
+  if (isMinting || (showSync && isSyncing)) {
     buttonContents = (
       <Loading className={cn(styles.loader, classNames?.loading)} />
     )
@@ -171,6 +178,11 @@ export default function QuestDetails({
         {i18n.secondCTAText}
       </Button>
     )
+  }
+
+  let primaryCTAButtonType: ButtonProps['type'] = 'secondary'
+  if (showSync) {
+    primaryCTAButtonType = 'tertiary'
   }
 
   let content = (
@@ -199,7 +211,7 @@ export default function QuestDetails({
       <div className={styles.ctaContainer}>
         {secondCTA}
         <Button
-          type="secondary"
+          type={primaryCTAButtonType}
           className={styles.claimButton}
           onClick={ctaClick}
           disabled={ctaDisabled || isMinting}
