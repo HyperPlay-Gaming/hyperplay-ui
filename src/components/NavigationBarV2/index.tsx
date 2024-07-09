@@ -42,7 +42,9 @@ const NavigationBarV2 = ({
       )}
     >
       <div className={cn(styles.innerWrapper, classNames?.wrapper)}>
-        <HyperPlayFullTextLogo />
+        <a href="/">
+          <HyperPlayFullTextLogo className={styles.hpLogo} />
+        </a>
 
         <NavigationLinks
           links={links}
