@@ -230,3 +230,12 @@ export const WithAlert: Story = {
     }
   }
 }
+
+export const Sync: Story = {
+  args: {
+    ...props,
+    showSync: true,
+    onSyncClick: () => console.log('sync clicked'),
+    isSyncing: false
+  }
+}
