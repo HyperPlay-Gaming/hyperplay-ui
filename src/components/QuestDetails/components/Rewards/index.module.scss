@@ -20,14 +20,6 @@ $rewardTitleSideMargin: var(--space-2lg);
   align-items: center;
 }
 
-.rewardItemsContainer {
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-sm);
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
 .titleBar {
   display: flex;
   color: var(--color-neutral-400);

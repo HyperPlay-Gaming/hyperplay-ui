@@ -1,0 +1,44 @@
+.rewardsRowContainer {
+  margin-bottom: var(--space-xl-fixed);
+}
+
+.rewardItemsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-2lg);
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.tooltip {
+  max-width: 300px;
+}
+
+.sticker {
+  display: inline-flex;
+  flex-direction: row;
+  gap: var(--space-3xs);
+  color: var(--color-tertiary-300);
+  border: 2px solid var(--color-tertiary-300);
+  padding: 0px var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.letterI {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 0px var(--space-2xs-fixed);
+  aspect-ratio: 1/1;
+  background-color: var(--color-tertiary-700);
+  border: 1px solid var(--color-tertiary-300);
+  border-radius: 1000px;
+  line-height: var(--space-md);
+  font-size: var(--space-xs);
+  &:hover {
+    cursor: pointer;
+    opacity: 75%;
+    transition: 200ms;
+  }
+}

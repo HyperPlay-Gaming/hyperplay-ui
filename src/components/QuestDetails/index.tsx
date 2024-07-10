@@ -45,7 +45,8 @@ export default function QuestDetails({
       REPUTATION: 'Reputation',
       PLAYSTREAK: 'Play Streak'
     },
-    sync: 'Sync'
+    sync: 'Sync',
+    claimsLeft: 'Claims left'
   },
   onClaimClick,
   onSignInClick,
@@ -68,6 +69,7 @@ export default function QuestDetails({
   showSync,
   onSyncClick,
   isSyncing,
+  chainTooltips,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
@@ -205,6 +207,7 @@ export default function QuestDetails({
           loading={rewardsLoading}
           numClaimed={numClaimed}
           numTotal={numTotal}
+          chainTooltips={chainTooltips}
         />
         {errorAlert}
       </div>

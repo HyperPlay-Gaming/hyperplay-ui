@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import Loading from '@/components/Loading'
 
 import { QuestReward } from '../../types'
-import Reward from '../Reward'
+import { RewardsRow } from './RewardsRow'
 import styles from './index.module.scss'
 
 export interface RewardsProps {
@@ -13,6 +13,7 @@ export interface RewardsProps {
   loading?: boolean
   numClaimed?: number
   numTotal?: number
+  chainTooltips?: Record<string, string>
   i18n?: {
     rewards: string
   }
@@ -23,12 +24,28 @@ export default function Rewards({
   loading,
   numClaimed,
   numTotal,
+  chainTooltips,
   i18n = { rewards: 'Claimable Rewards' }
 }: RewardsProps) {
+  // create arrays by category for rewards
+  const rewardsByCategory: Record<string, QuestReward[]> = {}
+  for (const reward_i of rewards) {
+    if (Object.hasOwn(rewardsByCategory, reward_i.chainName)) {
+      rewardsByCategory[reward_i.chainName].push(reward_i)
+    } else {
+      rewardsByCategory[reward_i.chainName] = [reward_i]
+    }
+  }
+
   let rewardsContent = null
   if (rewards.length > 0) {
-    rewardsContent = rewards.map((reward_i) => (
-      <Reward reward={reward_i} key={reward_i.title} />
+    rewardsContent = Object.keys(rewardsByCategory).map((rewardCategory) => (
+      <RewardsRow
+        rewards={rewardsByCategory[rewardCategory]}
+        category={rewardCategory}
+        key={rewardCategory}
+        tooltip={chainTooltips?.[rewardCategory]}
+      />
     ))
   } else if (loading) {
     rewardsContent = <Loading />
@@ -53,7 +70,7 @@ export default function Rewards({
         {numClaimedComponent}
       </div>
       <div className={styles.separator}></div>
-      <div className={styles.rewardItemsContainer}>{rewardsContent}</div>
+      <div>{rewardsContent}</div>
     </div>
   )
 }
