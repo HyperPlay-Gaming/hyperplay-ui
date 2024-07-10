@@ -81,6 +81,12 @@ export const WithIcon: Story = {
   }
 }
 
+export const WithWarning: Story = {
+  args: {
+    warning: 'Warning message'
+  }
+}
+
 export const Erc20: Story = {
   args: {
     children: <RewardERC20_721 tokenType="ERC20" />

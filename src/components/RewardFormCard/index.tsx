@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 import cn from 'classnames'
 
@@ -6,6 +6,7 @@ import {
   ContainerInteractive,
   ContainerInteractiveProps
 } from '@/components/ContainerInteractive'
+import { QuestFormWarning } from '@/components/QuestFormWarning'
 import RewardImageInput, {
   RewardImageInputProps
 } from '@/components/RewardImageInput'
@@ -18,6 +19,7 @@ export interface RewardFormCardProps extends ContainerInteractiveProps {
   networkInputProps?: SelectProps
   tokenContractAddressInputProps?: TextInputProps
   tokenTypeInputProps?: SelectProps
+  warning?: string
   rewardImageProps?: RewardImageInputProps
   RewardContract?: ReactNode
 }
@@ -52,6 +54,7 @@ function RewardFormCard({ classNames, ...props }: RewardFormCardProps) {
           {props.children}
         </div>
       </div>
+      {props.warning && <QuestFormWarning message={props.warning} />}
     </ContainerInteractive>
   )
 }

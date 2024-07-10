@@ -1,0 +1,14 @@
+.warningContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--color-alert-400);
+  color: var(--color-neutral-900);
+  border-radius: var(--space-xs);
+  padding: var(--space-xs);
+}
+
+.warningMessage {
+  font-size: var(--text-sm);
+  font-weight: var(--semibold);
+}

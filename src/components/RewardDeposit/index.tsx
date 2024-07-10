@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 
 import { IconExclamationCircle } from '@tabler/icons-react'
 
+import { QuestFormWarning } from '@/components/QuestFormWarning'
 import {
   RewardDepositedTableI18nProp,
   RewardsDepositedTable,
@@ -84,12 +85,7 @@ export function RewardDeposit({
         </div>
       )}
       <RewardsDepositedTable {...props} />
-      {warning && (
-        <div className={styles.warningContainer}>
-          <IconExclamationCircle size={20} />
-          <span className={styles.warningMessage}>{warning}</span>
-        </div>
-      )}
+      {warning && <QuestFormWarning message={warning} />}
       {props.ActionComponent}
     </ContainerInteractive>
   )
