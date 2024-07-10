@@ -1,0 +1,141 @@
+@use '../../styles/utilities/_variables';
+
+.root {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  border-radius: var(--space-md);
+  background: var(--color-neutral-700);
+
+  @include variables.for-desktop-up {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 60px;
+  }
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  padding: var(--space-2lg);
+  flex-direction: column;
+  align-items: stretch;
+  gap: 40px;
+
+  @include variables.for-desktop-up {
+    align-items: flex-start;
+  }
+}
+    
+
+.contentText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  align-self: stretch;
+}
+
+.details {
+  display: flex;
+  max-width: 747px;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2lg);
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: calc(-1 * var(--space-lg));
+  right: calc(-1 * var(--space-lg));
+  fill: white;
+  cursor: pointer;
+}
+
+.slide {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.slideItem {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.active {
+}
+
+.inactive {
+}
+
+.bannerTitle {
+  color: var(--color-neutral-100);
+  font-family: var(--primary-font-family);
+  font-size: var(--text-5xl);
+  font-style: normal;
+  font-weight: var(--bold);
+  line-height: calc(var(--text-5xl) * 40 / 36);
+}
+
+.bannerDescription {
+  color: var(--color-neutral-100);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-lg);
+  font-style: normal;
+  font-weight: var(--regular);
+  line-height: calc(var(--text-lg) * 28 / 18);
+}
+
+.bannerButton {
+  // your styles
+}
+
+.bannerImage {
+  width: 100%;
+    height: 240px;
+    position: relative;
+    object-position: center center;
+    margin: auto;
+    object-fit: contain;
+    mix-blend-mode: lighten;
+}
+
+.bannerImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-width: 340px;
+  width: 100%;
+  height: 100%;
+}
+
+.paginitionContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+}
+
+.line {
+  fill: var(--color-neutral-100);
+  cursor: pointer;
+  width: var(--space-md);
+  width: var(--space-md);
+  height: 3px;
+  opacity: 0.6;
+}
+
+.activateIndicator {
+  width: var(--space-2lg);
+  height: 3px;
+  opacity: 1;
+}
