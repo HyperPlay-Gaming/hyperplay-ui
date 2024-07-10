@@ -45,38 +45,58 @@ const props: QuestDetailsProps = {
   rewards: [
     {
       title: 'Kosium Pioneer',
-      imageUrl: kosiumGhoul
+      imageUrl: kosiumGhoul,
+      chainName: 'Ethereum Mainnet',
+      numToClaim: '1.0123123123',
+      numOfClaimsLeft: 1231231231238812
     },
     {
       title: 'SAND',
-      imageUrl: SAND
+      imageUrl: SAND,
+      chainName: 'Ethereum Mainnet',
+      numToClaim: '1.01',
+      numOfClaimsLeft: 12312312312388
     },
     {
       title: 'Droid',
-      imageUrl: droid
+      imageUrl: droid,
+      chainName: 'Ethereum Mainnet',
+      numToClaim: '12311',
+      numOfClaimsLeft: 31231233
     },
     {
       title: 'Kosium Pioneer',
-      imageUrl: kosiumGhoul
+      imageUrl: kosiumGhoul,
+      chainName: 'Ethereum Mainnet',
+      numToClaim: '123',
+      numOfClaimsLeft: 333
     },
     {
       title: 'SAND',
-      imageUrl: SAND
+      imageUrl: SAND,
+      chainName: 'Points',
+      numToClaim: '200',
+      numOfClaimsLeft: 10000
     },
     {
       title: 'Droid',
-      imageUrl: droid
+      imageUrl: droid,
+      chainName: 'Points',
+      numToClaim: '100',
+      numOfClaimsLeft: 1000
     }
   ],
+  chainTooltips: {
+    Points:
+      'Points are off-chain fungible rewards that may or may not be redeemable for an on-chain reward in the future. This is up to the particular game developer who is providing this reward.'
+  },
   onClaimClick: () => console.log('claim clicked!'),
   onSignInClick: () => console.log('sign in clicked!'),
   onConnectSteamAccountClick: () =>
     console.log('connect steam account clicked!'),
   collapseIsOpen: false,
   toggleCollapse: () => console.log('toggle'),
-  questType: 'REPUTATIONAL-AIRDROP',
-  numClaimed: 199,
-  numTotal: 200
+  questType: 'REPUTATIONAL-AIRDROP'
 }
 
 export const Default: Story = {

@@ -27,6 +27,10 @@ export interface PlayStreakEligibility {
 export interface QuestReward {
   title: string
   imageUrl: string
+  numOfClaimsLeft?: number
+  // this will likely be a BigNumber so we will convert to float before passing as param
+  numToClaim?: string
+  chainName: string
 }
 
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
@@ -62,6 +66,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     secondCTAText?: string
     play?: string
     sync?: string
+    claimsLeft?: string
   }
   rewardsLoading?: boolean
   loading?: boolean
@@ -79,4 +84,5 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   errorMessage?: string
   isSignedIn: boolean
   questType: 'PLAYSTREAK' | 'REPUTATIONAL-AIRDROP'
+  chainTooltips?: Record<string, string>
 }

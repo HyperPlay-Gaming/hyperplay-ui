@@ -45,7 +45,8 @@ export default function QuestDetails({
       REPUTATION: 'Reputation',
       PLAYSTREAK: 'Play Streak'
     },
-    sync: 'Sync'
+    sync: 'Sync',
+    claimsLeft: 'Claims left'
   },
   onClaimClick,
   onSignInClick,
@@ -68,6 +69,7 @@ export default function QuestDetails({
   showSync,
   onSyncClick,
   isSyncing,
+  chainTooltips,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
@@ -201,10 +203,14 @@ export default function QuestDetails({
 
         <Rewards
           rewards={rewards}
-          i18n={{ rewards: i18n.rewards }}
+          i18n={{
+            rewards: i18n.rewards,
+            claimsLeft: i18n.claimsLeft ?? 'Claims left'
+          }}
           loading={rewardsLoading}
           numClaimed={numClaimed}
           numTotal={numTotal}
+          chainTooltips={chainTooltips}
         />
         {errorAlert}
       </div>

@@ -6,6 +6,7 @@ $imgSize: 160px;
   height: $imgSize;
   border-radius: var(--space-xs);
   position: relative;
+  margin-bottom: var(--space-md);
 
   > img {
     object-fit: cover;
@@ -17,7 +18,7 @@ $imgSize: 160px;
     height: 100%;
   }
 
-  > .title {
+  > .titleContainer {
     background: linear-gradient(
       180deg,
       rgba(12, 11, 15, 0.3) 0%,
@@ -29,5 +30,25 @@ $imgSize: 160px;
     right: 0px;
     text-align: center;
     padding: var(--space-sm) 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm);
   }
+}
+
+.title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}
+
+.numToClaim {
+  text-wrap: nowrap;
+}
+
+.claimsLeft {
+  color: var(--color-neutral-400);
+  text-align: center;
 }
