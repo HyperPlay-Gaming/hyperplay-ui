@@ -1,7 +1,5 @@
 import React, { ReactElement } from 'react'
 
-import { IconExclamationCircle } from '@tabler/icons-react'
-
 import { QuestFormWarning } from '@/components/QuestFormWarning'
 import {
   RewardDepositedTableI18nProp,

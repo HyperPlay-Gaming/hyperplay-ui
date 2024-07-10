@@ -2,7 +2,6 @@
 
 import React from 'react'
 
-import NumberInput, { NumberInputProps } from '@/components/NumberInput'
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
 import { DEFAULT_FORM_REWARDS_i18n, FormRewardsI18n } from '../..'
