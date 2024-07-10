@@ -132,7 +132,6 @@ const rewardsDetailsSchema = z.object({
   name: z.string().min(1),
   amount_per_user: zodBigIntValidate,
   marketplace_url: z.string().url(),
-  decimals: z.string(),
   // erc1155 props
   token_ids: z.array(
     z.object({
@@ -179,7 +178,6 @@ export const Controlled: Story = {
         <RewardERC20_721
           tokenType={formTokenType}
           tokenNameInputProps={form.getInputProps('name')}
-          decimalsInputProps={form.getInputProps('decimals')}
           amountPerUserInputProps={form.getInputProps('amount_per_user')}
           marketplaceUrlInputProps={form.getInputProps('marketplace_url')}
         />
@@ -304,7 +302,6 @@ export const DynamicForm: Story = {
           <RewardERC20_721
             tokenType={formTokenType}
             tokenNameInputProps={form.getInputProps(`rewards.${index}.name`)}
-            decimalsInputProps={form.getInputProps(`rewards.${index}.decimals`)}
             amountPerUserInputProps={form.getInputProps(
               `rewards.${index}.amount_per_user`
             )}
