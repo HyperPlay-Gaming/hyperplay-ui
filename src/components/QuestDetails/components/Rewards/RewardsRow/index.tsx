@@ -12,16 +12,28 @@ export interface RewardsRowProps {
   category: string
   rewards: QuestReward[]
   tooltip?: string
+  i18n: {
+    claimsLeft: string
+  }
 }
 
-export function RewardsRow({ category, rewards, tooltip }: RewardsRowProps) {
+export function RewardsRow({
+  category,
+  rewards,
+  tooltip,
+  i18n
+}: RewardsRowProps) {
   let rewardsContent = null
   if (rewards.length > 0) {
     rewardsContent = rewards.map((reward_i) => (
-      <Reward reward={reward_i} key={reward_i.title} />
+      <Reward
+        reward={reward_i}
+        key={reward_i.title}
+        i18n={{ claimsLeft: i18n.claimsLeft }}
+      />
     ))
   }
-  console.log('reward row tooltip ', tooltip, category)
+
   let tooltipComponent = null
   if (tooltip) {
     tooltipComponent = (

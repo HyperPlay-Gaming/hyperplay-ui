@@ -203,7 +203,10 @@ export default function QuestDetails({
 
         <Rewards
           rewards={rewards}
-          i18n={{ rewards: i18n.rewards }}
+          i18n={{
+            rewards: i18n.rewards,
+            claimsLeft: i18n.claimsLeft ?? 'Claims left'
+          }}
           loading={rewardsLoading}
           numClaimed={numClaimed}
           numTotal={numTotal}

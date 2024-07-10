@@ -16,6 +16,7 @@ export interface RewardsProps {
   chainTooltips?: Record<string, string>
   i18n?: {
     rewards: string
+    claimsLeft: string
   }
 }
 
@@ -25,7 +26,7 @@ export default function Rewards({
   numClaimed,
   numTotal,
   chainTooltips,
-  i18n = { rewards: 'Claimable Rewards' }
+  i18n = { rewards: 'Claimable Rewards', claimsLeft: 'Claims left' }
 }: RewardsProps) {
   // create arrays by category for rewards
   const rewardsByCategory: Record<string, QuestReward[]> = {}
@@ -45,6 +46,7 @@ export default function Rewards({
         category={rewardCategory}
         key={rewardCategory}
         tooltip={chainTooltips?.[rewardCategory]}
+        i18n={{ claimsLeft: i18n.claimsLeft }}
       />
     ))
   } else if (loading) {
