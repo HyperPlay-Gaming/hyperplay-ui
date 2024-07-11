@@ -74,9 +74,11 @@
   overflow: hidden;
 }
 
-.active {}
+.active {
+}
 
-.inactive {}
+.inactive {
+}
 
 .bannerTitle {
   color: var(--color-neutral-100);
@@ -96,7 +98,8 @@
   line-height: calc(var(--text-lg) * 28 / 18);
 }
 
-.bannerButton {}
+.bannerButton {
+}
 
 .bannerImage {
   width: 100%;

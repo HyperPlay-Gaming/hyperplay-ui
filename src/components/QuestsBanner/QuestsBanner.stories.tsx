@@ -1,14 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 
+import CreditsCreditsImage from '@/assets/banners/CreditsCredits.png?url'
+import TreasureChstImage from '@/assets/banners/TreasureChst.png?url'
 
-
-import CreditsCreditsImage from '@/assets/banners/CreditsCredits.png?url';
-import TreasureChstImage from '@/assets/banners/TreasureChst.png?url';
-
-
-
-import { QuestsBanner, QuestsBannerProps } from '.';
-
+import { QuestsBanner, QuestsBannerProps } from '.'
 
 const props: QuestsBannerProps = {
   classNames: {},
@@ -54,7 +49,7 @@ export const Default: Story = {
     }
   },
   render: (args) => (
-    <div style={{ display: 'flex', width: '100%', padding: '3rem 4rem'}}>
+    <div style={{ display: 'flex', width: '100%', padding: '3rem 4rem' }}>
       <QuestsBanner {...args} />
     </div>
   )

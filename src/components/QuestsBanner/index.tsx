@@ -1,20 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react'
 
-
-
-import { Carousel } from '@mantine/carousel';
-import cn from 'classnames';
-import { EmblaCarouselType } from 'embla-carousel-react';
+import { Carousel } from '@mantine/carousel'
+import cn from 'classnames'
 import Autoplay, { AutoplayType } from 'embla-carousel-autoplay'
+import { EmblaCarouselType } from 'embla-carousel-react'
 
+import { CloseModalIcon, Line } from '@/assets/images'
+import Button from '@/components/Button'
 
-import { CloseModalIcon, Line } from '@/assets/images';
-import Button from '@/components/Button';
-
-
-
-import styles from './QuestsBanner.module.scss';
-
+import styles from './QuestsBanner.module.scss'
 
 export interface QuestsBannerSlideItemProp {
   bannerImageUrl: string
@@ -61,7 +55,9 @@ export const QuestsBanner = ({
   onPageChangeTap
 }: QuestsBannerProps) => {
   const [currentPage, setCurrentPage] = useState(0)
-  const autoplay = useRef<AutoplayType>(Autoplay({ delay: autoplayDelayInMs, stopOnInteraction: false }))
+  const autoplay = useRef<AutoplayType>(
+    Autoplay({ delay: autoplayDelayInMs, stopOnInteraction: false })
+  )
   const [emblaApiRef, setEmblaApiRef] = useState<EmblaCarouselType>()
 
   const handlePageChange = (pageIndex: number) => {
@@ -80,20 +76,24 @@ export const QuestsBanner = ({
     }
   }, [emblaApiRef, canAutoRotate])
 
-
   return (
     <div className={cn(styles.root, classNames?.root)}>
-      <CloseModalIcon 
+      <CloseModalIcon
         className={cn(styles.closeButton, classNames?.closeButton)}
-        onClick={onCloseButtonTap} 
+        onClick={onCloseButtonTap}
       />
-      <div className={cn(styles.bannerImageContainer, classNames?.bannerImageContainer)}>
-          {list[currentPage] && list[currentPage].bannerImageUrl ? (
-            <img
-              src={list[currentPage].bannerImageUrl}
-              className={cn(styles.bannerImage, classNames?.bannerImage)}
-            />
-          ) : null}
+      <div
+        className={cn(
+          styles.bannerImageContainer,
+          classNames?.bannerImageContainer
+        )}
+      >
+        {list[currentPage] && list[currentPage].bannerImageUrl ? (
+          <img
+            src={list[currentPage].bannerImageUrl}
+            className={cn(styles.bannerImage, classNames?.bannerImage)}
+          />
+        ) : null}
       </div>
       <div className={cn(styles.content, classNames?.content)}>
         <Carousel
