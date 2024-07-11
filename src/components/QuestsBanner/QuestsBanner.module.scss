@@ -3,6 +3,7 @@
 .root {
   display: flex;
   width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   gap: 20px;
@@ -14,6 +15,9 @@
     align-items: flex-start;
     flex-direction: row;
     gap: 60px;
+    height: 270px;
+    max-height: 270px;
+    padding: 0 80px;
   }
 }
 
@@ -29,7 +33,6 @@
     align-items: flex-start;
   }
 }
-    
 
 .contentText {
   display: flex;
@@ -71,11 +74,9 @@
   overflow: hidden;
 }
 
-.active {
-}
+.active {}
 
-.inactive {
-}
+.inactive {}
 
 .bannerTitle {
   color: var(--color-neutral-100);
@@ -95,18 +96,24 @@
   line-height: calc(var(--text-lg) * 28 / 18);
 }
 
-.bannerButton {
-  // your styles
-}
+.bannerButton {}
 
 .bannerImage {
   width: 100%;
-    height: 240px;
-    position: relative;
-    object-position: center center;
-    margin: auto;
-    object-fit: contain;
-    mix-blend-mode: lighten;
+  height: 200px;
+  position: relative;
+  object-position: center center;
+  margin: auto;
+  object-fit: contain;
+  mix-blend-mode: lighten;
+  overflow: hidden;
+
+  @include variables.for-desktop-up {
+    max-height: 290px;
+    height: 380px;
+    top: -10px;
+    object-fit: fill;
+  }
 }
 
 .bannerImageContainer {
@@ -114,9 +121,15 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  max-width: 340px;
+  max-width: 360px;
+  max-height: 200px;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+
+  @include variables.for-desktop-up {
+    max-height: 360px;
+  }
 }
 
 .paginitionContainer {
