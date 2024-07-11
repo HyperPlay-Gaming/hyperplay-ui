@@ -1,13 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react';
 
-import { Carousel } from '@mantine/carousel'
-import cn from 'classnames'
-import { EmblaCarouselType } from 'embla-carousel-react'
 
-import { CloseModalIcon, Line } from '@/assets/images'
-import Button from '@/components/Button'
 
-import styles from './QuestsBanner.module.scss'
+import { Carousel } from '@mantine/carousel';
+import cn from 'classnames';
+import { EmblaCarouselType } from 'embla-carousel-react';
+import Autoplay, { AutoplayType } from 'embla-carousel-autoplay'
+
+
+import { CloseModalIcon, Line } from '@/assets/images';
+import Button from '@/components/Button';
+
+
+
+import styles from './QuestsBanner.module.scss';
+
 
 export interface QuestsBannerSlideItemProp {
   bannerImageUrl: string
@@ -38,6 +45,8 @@ export interface QuestsBannerProps {
   }
   list?: QuestsBannerSlideItemProp[]
   totalPages: number
+  canAutoRotate?: boolean
+  autoplayDelayInMs?: number
   onCloseButtonTap: () => void
   onPageChangeTap: (pageIndex: number) => void
 }
@@ -46,10 +55,13 @@ export const QuestsBanner = ({
   classNames,
   list = [],
   totalPages,
+  canAutoRotate = true,
+  autoplayDelayInMs = 6000,
   onCloseButtonTap,
   onPageChangeTap
 }: QuestsBannerProps) => {
   const [currentPage, setCurrentPage] = useState(0)
+  const autoplay = useRef<AutoplayType>(Autoplay({ delay: autoplayDelayInMs, stopOnInteraction: false }))
   const [emblaApiRef, setEmblaApiRef] = useState<EmblaCarouselType>()
 
   const handlePageChange = (pageIndex: number) => {
@@ -57,6 +69,17 @@ export const QuestsBanner = ({
     setCurrentPage(pageIndex)
     onPageChangeTap(pageIndex)
   }
+
+  useEffect(() => {
+    if (emblaApiRef) {
+      if (canAutoRotate) {
+        autoplay.current.play()
+      } else {
+        autoplay.current.stop()
+      }
+    }
+  }, [emblaApiRef, canAutoRotate])
+
 
   return (
     <div className={cn(styles.root, classNames?.root)}>
@@ -80,6 +103,18 @@ export const QuestsBanner = ({
           }}
           onSlideChange={(index) => {
             setCurrentPage(index)
+          }}
+          plugins={[autoplay.current]}
+          onMouseEnter={() => {
+            if (canAutoRotate) {
+              autoplay.current.stop()
+            }
+          }}
+          onMouseLeave={() => {
+            if (canAutoRotate) {
+              autoplay.current.stop()
+              autoplay.current.play()
+            }
           }}
           withControls={false}
           withIndicators={false}
