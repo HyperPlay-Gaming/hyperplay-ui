@@ -47,43 +47,45 @@ const props: QuestDetailsProps = {
       title: 'Kosium Pioneer',
       imageUrl: kosiumGhoul,
       chainName: 'Ethereum Mainnet',
-      numToClaim: '1.0123123123',
-      numOfClaimsLeft: 1231231231238812
+      numToClaim: '999999999999',
+      numOfClaimsLeft: '999999999'
     },
     {
       title: 'SAND',
       imageUrl: SAND,
       chainName: 'Ethereum Mainnet',
-      numToClaim: '1.01',
-      numOfClaimsLeft: 12312312312388
+      numToClaim:
+        '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
+      numOfClaimsLeft:
+        '115792089237316195423570985008687907853269984665640564039457584007913129639935'
     },
     {
       title: 'Droid',
       imageUrl: droid,
       chainName: 'Ethereum Mainnet',
-      numToClaim: '12311',
-      numOfClaimsLeft: 31231233
+      numToClaim: '9999999999999',
+      numOfClaimsLeft: '99999999999999'
     },
     {
       title: 'Kosium Pioneer',
       imageUrl: kosiumGhoul,
       chainName: 'Ethereum Mainnet',
       numToClaim: '123',
-      numOfClaimsLeft: 333
+      numOfClaimsLeft: '333'
     },
     {
       title: 'SAND',
       imageUrl: SAND,
       chainName: 'Points',
-      numToClaim: '200',
-      numOfClaimsLeft: 10000
+      numToClaim: '0.001',
+      numOfClaimsLeft: '10000'
     },
     {
       title: 'Droid',
       imageUrl: droid,
       chainName: 'Points',
-      numToClaim: '100',
-      numOfClaimsLeft: 1000
+      numToClaim: '0.000001',
+      numOfClaimsLeft: '1000'
     }
   ],
   chainTooltips: {
