@@ -34,7 +34,16 @@ const props: QuestsBannerProps = {
 const meta: Meta<typeof QuestsBanner> = {
   title: 'Store/QuestsBanner',
   component: QuestsBanner,
-  args: props
+  args: props,
+  render: (args) => (
+    <div
+      style={{
+        padding: '3rem 4rem'
+      }}
+    >
+      <QuestsBanner {...args} />
+    </div>
+  )
 }
 
 export default meta
@@ -49,7 +58,12 @@ export const Default: Story = {
     }
   },
   render: (args) => (
-    <div style={{ display: 'flex', width: '100%', padding: '3rem 4rem' }}>
+    <div
+      style={{
+        width: 'max-content',
+        padding: '3rem 4rem'
+      }}
+    >
       <QuestsBanner {...args} />
     </div>
   )
