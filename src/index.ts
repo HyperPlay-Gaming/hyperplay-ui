@@ -222,3 +222,5 @@ export { default as Banner } from './components/Banner'
 
 export { TokenIdRow as RewardERC721DepositTokenRow } from './components/RewardDeposit/components/RewardERC721Deposit/components/TokenIdRow'
 export type { TokenIdRowProps as RewardERC721DepositTokenRowProps } from './components/RewardDeposit/components/RewardERC721Deposit/components/TokenIdRow'
+
+export { QuestsBanner, type QuestsBannerProps } from './components/QuestsBanner'
