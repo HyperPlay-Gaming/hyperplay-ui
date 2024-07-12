@@ -36,12 +36,6 @@ export default function Reward({ reward, i18n }: RewardProps) {
       minValue: '0.0001',
       maxValue: '999999999999'
     })
-    console.log(
-      'reward.numToClaim.toString()',
-      reward.numToClaim.toString(),
-      ' formattedNumToClaim ',
-      formattedNumToClaim
-    )
     numToClaimComponent = (
       <div className={styles.numToClaim}>{`+${formattedNumToClaim}`}</div>
     )
