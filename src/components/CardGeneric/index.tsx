@@ -78,7 +78,11 @@ export function CardGeneric({
           className={styles.achievementImage}
         />
         {showLabel && (
-          <div className={cn(styles.label, 'eyebrow', genericClassNames?.label)}>{i18n.label}</div>
+          <div
+            className={cn(styles.label, 'eyebrow', genericClassNames?.label)}
+          >
+            {i18n.label}
+          </div>
         )}
       </Card.Section>
 

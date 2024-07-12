@@ -1,14 +1,9 @@
-import cn from 'classnames';
+import cn from 'classnames'
 
+import { TreasureChest } from '@/assets/images'
 
-
-import { TreasureChest } from '@/assets/images';
-
-
-
-import { CardGeneric, CardGenericProps } from '../CardGeneric';
-import styles from './index.module.scss';
-
+import { CardGeneric, CardGenericProps } from '../CardGeneric'
+import styles from './index.module.scss'
 
 export interface QuestCardProps extends CardGenericProps {
   title?: string
@@ -59,7 +54,7 @@ export function QuestCard({
         body: cn(styles.body, classes),
         image: cn(styles.image, classNames?.image),
         root: cn(styles.root, classNames?.root),
-        label: cn(styles.questType, classNames?.questType),
+        label: cn(styles.questType, classNames?.questType)
       }}
       i18n={{
         label: questType
@@ -68,23 +63,58 @@ export function QuestCard({
       {...rest}
     >
       <div className={cn(styles.content)}>
-        {title ? <div className={cn(styles.title, 'menu-item', classNames?.title)}>{title}</div> : null}
-        {description ? <div className={cn(styles.description, 'body', classNames?.description)}>{description}</div> : null}
-        {gameTitle ? <div className={cn(styles.subtitle, 'caption-sm', classNames?.subtitle)}>{gameTitle}</div> : null}
-        {questName ? <div className={cn(styles.questName, 'title', classNames?.questName)}>{questName}</div> : null}
-        {
-          currenyAmount || currencyName ? (
+        {title ? (
+          <div className={cn(styles.title, 'menu-item', classNames?.title)}>
+            {title}
+          </div>
+        ) : null}
+        {description ? (
+          <div
+            className={cn(styles.description, 'body', classNames?.description)}
+          >
+            {description}
+          </div>
+        ) : null}
+        {gameTitle ? (
+          <div
+            className={cn(styles.subtitle, 'caption-sm', classNames?.subtitle)}
+          >
+            {gameTitle}
+          </div>
+        ) : null}
+        {questName ? (
+          <div className={cn(styles.questName, 'title', classNames?.questName)}>
+            {questName}
+          </div>
+        ) : null}
+        {currenyAmount || currencyName ? (
           <div className={cn(styles.questsDetails, classNames?.questDetails)}>
-            <div className={cn(styles.avatarContainer, classNames?.avatarContainer)}>
-              <TreasureChest className={cn(styles.avatar, classNames?.avatar)} />
+            <div
+              className={cn(
+                styles.avatarContainer,
+                classNames?.avatarContainer
+              )}
+            >
+              <TreasureChest
+                className={cn(styles.avatar, classNames?.avatar)}
+              />
             </div>
-            <div className={cn(styles.questCurrency, classNames?.questCurrency)}>
-              {currenyAmount && <div className={cn(styles.amount, classNames?.currenyAmount)}>{currenyAmount}</div>}
-              <div className={cn(styles.currencyName, classNames?.currencyName)}>{currencyName}</div>
+            <div
+              className={cn(styles.questCurrency, classNames?.questCurrency)}
+            >
+              {currenyAmount && (
+                <div className={cn(styles.amount, classNames?.currenyAmount)}>
+                  {currenyAmount}
+                </div>
+              )}
+              <div
+                className={cn(styles.currencyName, classNames?.currencyName)}
+              >
+                {currencyName}
+              </div>
             </div>
           </div>
-          ) : null
-        }
+        ) : null}
       </div>
     </CardGeneric>
   )

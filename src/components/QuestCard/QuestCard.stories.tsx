@@ -1,15 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react'
 
+import questCardV2Image from '@/assets/banners/QuestCardV2Image.png?url'
+import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url'
 
-
-import questCardV2Image from '@/assets/banners/QuestCardV2Image.png?url';
-import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url';
-
-
-
-import { QuestCard, QuestCardProps } from '.';
-import stlyes from './QuestCardStory.module.scss';
-
+import { QuestCard, QuestCardProps } from '.'
+import stlyes from './QuestCardStory.module.scss'
 
 const meta: Meta<typeof QuestCard> = {
   title: 'Quests/QuestCard',
@@ -40,11 +35,10 @@ export const Detailed: Story = {
     currenyAmount: '+200',
     currencyName: 'G7 Credits',
     classNames: {
-      root: stlyes.root,
+      root: stlyes.root
     }
   }
 }
-
 
 export const WithoutCredits: Story = {
   args: {
@@ -54,7 +48,7 @@ export const WithoutCredits: Story = {
     questName: 'Quest Name',
     currencyName: 'G7 Credits',
     classNames: {
-      root: stlyes.root,
+      root: stlyes.root
     }
   }
 }
@@ -66,7 +60,7 @@ export const WithoutCurrencySection: Story = {
     gameTitle: 'Game Title',
     questName: 'Quest Name',
     classNames: {
-      root: stlyes.root,
+      root: stlyes.root
     }
   }
 }
