@@ -12,6 +12,7 @@ export interface CheckEmailProps extends HTMLProps<HTMLDivElement> {
   email: string
   onClose: () => void
   onResend: () => void
+  onReEnterEmail: () => void
   i18n?: {
     title: string
     subtitle: string
@@ -19,6 +20,7 @@ export interface CheckEmailProps extends HTMLProps<HTMLDivElement> {
     resend: string
     retryIn: string
     seconds: string
+    reEnterEmail: string
   }
 }
 
@@ -26,6 +28,7 @@ const CheckEmail = ({
   className,
   email,
   onResend,
+  onReEnterEmail,
   onClose,
   i18n = {
     title: 'Check your email',
@@ -33,7 +36,8 @@ const CheckEmail = ({
     didNotReceiveEmail: `Didn't receive an email?`,
     resend: 'Click to resend',
     retryIn: 'Retry in',
-    seconds: 'seconds'
+    seconds: 'seconds',
+    reEnterEmail: 'Re-enter email your email'
   },
   ...props
 }: CheckEmailProps) => {
@@ -69,6 +73,13 @@ const CheckEmail = ({
         <Modal.Body>
           {i18n.subtitle} <span className="text--semibold">{email}</span>
         </Modal.Body>
+        <Button
+          type="tertiary"
+          className={styles.reEnter}
+          onClick={onReEnterEmail}
+        >
+          {i18n?.reEnterEmail}
+        </Button>
       </Modal.Header>
       <div className={styles.linkContainer}>
         <span className={cn('button-sm', styles.subtitle)}>
