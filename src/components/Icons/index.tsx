@@ -52,7 +52,8 @@ const IconFill: { [key: string]: string } = {
   LinuxIcon: '#FFFFFF',
   WindowsIcon: '#FFFFFF',
   MacOSIcon: '#FFFFFF',
-  SteamDeckIcon: '#FFFFFF'
+  SteamDeckIcon: '#FFFFFF',
+  Line: '#FFFFFF'
 }
 
 const IconStroke: { [key: string]: string } = {
