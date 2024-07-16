@@ -21,14 +21,27 @@ const icons: Record<Variants, typeof IconAlertCircle> = {
 export interface AlertProps extends HTMLProps<HTMLDivElement> {
   variant?: Variants
   message: string
+  classNames?: {
+    root?: string
+    message?: string
+    icon?: string
+  }
 }
 
-const Alert = ({ variant = 'info', message, ...props }: AlertProps) => {
+const Alert = ({
+  variant = 'info',
+  message,
+  classNames,
+  ...props
+}: AlertProps) => {
   const Icon = icons[variant]
   return (
-    <div className={cs(styles.base, styles[variant])} {...props}>
-      {Icon && <Icon className={styles.icon} />}
-      <span>{message}</span>
+    <div
+      className={cs(styles.base, styles[variant], classNames?.root)}
+      {...props}
+    >
+      {Icon && <Icon className={cs(styles.icon, classNames?.icon)} />}
+      <span className={cs(classNames?.message)}>{message}</span>
     </div>
   )
 }
