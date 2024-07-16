@@ -32,12 +32,13 @@ const Alert = ({
   variant = 'info',
   message,
   classNames,
+  className,
   ...props
 }: AlertProps) => {
   const Icon = icons[variant]
   return (
     <div
-      className={cs(styles.base, styles[variant], classNames?.root)}
+      className={cs(styles.base, styles[variant], className, classNames?.root)}
       {...props}
     >
       {Icon && <Icon className={cs(styles.icon, classNames?.icon)} />}
