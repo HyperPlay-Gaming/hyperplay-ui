@@ -1799,6 +1799,13 @@
   dependencies:
     axios "^1.4.0"
 
+"@hyperplay/utils@^0.1.0":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@hyperplay/utils/-/utils-0.1.1.tgz#03aa4a823abedaff787062df37bdaaaf1a571275"
+  integrity sha512-dwvG/i4y5t3+T66N6R/hDVOYltjUjcGAoBc69BZQaKTJahE/eOFJF+loZq80mMUUmuHpxF+4OneaXJBcthDnvA==
+  dependencies:
+    bignumber.js "^9.1.2"
+
 "@ipld/dag-cbor@^6.0.3":
   version "6.0.15"
   resolved "https://registry.npmjs.org/@ipld/dag-cbor/-/dag-cbor-6.0.15.tgz"
@@ -4830,6 +4837,11 @@ big.js@^5.2.2:
   version "5.2.2"
   resolved "https://registry.npmjs.org/big.js/-/big.js-5.2.2.tgz"
   integrity sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==
+
+bignumber.js@^9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.1.2.tgz#b7c4242259c008903b13707983b5f4bbd31eda0c"
+  integrity sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==
 
 binary-extensions@^2.0.0:
   version "2.2.0"
