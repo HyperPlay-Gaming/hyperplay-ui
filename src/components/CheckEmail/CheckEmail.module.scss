@@ -22,6 +22,7 @@
 .linkContainer {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .buttonLink {
@@ -42,4 +43,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2lg);
+}
+
+.reEnter {
+  margin-top: 24px;
+  margin-bottom: 24px;
 }

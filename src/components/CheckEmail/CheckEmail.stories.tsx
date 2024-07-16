@@ -10,7 +10,8 @@ const meta: Meta<typeof CheckEmailModal> = {
   args: {
     email: 'hello@hyperplay.xyz',
     onClose: fn(),
-    onResend: fn()
+    onResend: fn(),
+    onReEnterEmail: fn()
   }
 }
 
@@ -26,12 +27,17 @@ export const Default: Story = {
   ),
   play: async ({ canvasElement, args }) => {
     const onResend = args.onResend
+    const onReEnterEmail = args.onReEnterEmail
     const canvas = within(canvasElement)
     await userEvent.click(
       canvas.getByRole('button', { name: /click to resend/i })
     )
     await expect(onResend).toHaveBeenCalled()
     await expect(canvas.getByText(/retry in/i)).toBeInTheDocument()
+    await userEvent.click(
+      canvas.getByRole('button', { name: /Re-enter email your email/i })
+    )
+    await expect(onReEnterEmail).toHaveBeenCalled()
   }
 }
 

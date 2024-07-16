@@ -27,7 +27,7 @@ export interface PlayStreakEligibility {
 export interface QuestReward {
   title: string
   imageUrl: string
-  numOfClaimsLeft?: number
+  numOfClaimsLeft?: string
   // this will likely be a BigNumber so we will convert to float before passing as param
   numToClaim?: string
   chainName: string

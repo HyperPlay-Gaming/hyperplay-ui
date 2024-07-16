@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { decimalUnits, parseNumIntoReadableString } from '@hyperplay/utils'
 import classNames from 'classnames'
 
 import { QuestReward } from '../../types'
@@ -12,27 +13,31 @@ export interface RewardProps {
   }
 }
 
-function convertToScientificNotation(num: string | number) {
-  return Number(num).toPrecision(3)
-}
-
 export default function Reward({ reward, i18n }: RewardProps) {
   let numClaimsLeftComponent = null
   if (reward.numOfClaimsLeft) {
+    const formattedNumOfClaimsLeft = parseNumIntoReadableString({
+      num: reward.numOfClaimsLeft,
+      units: decimalUnits,
+      minValue: '0.0001',
+      maxValue: '999999999'
+    })
     numClaimsLeftComponent = (
       <div
         className={classNames('menu-item', styles.claimsLeft)}
-      >{`${convertToScientificNotation(reward.numOfClaimsLeft)} ${
-        i18n.claimsLeft
-      }`}</div>
+      >{`${formattedNumOfClaimsLeft} ${i18n.claimsLeft}`}</div>
     )
   }
   let numToClaimComponent = null
   if (reward.numToClaim) {
+    const formattedNumToClaim = parseNumIntoReadableString({
+      num: reward.numToClaim,
+      units: decimalUnits,
+      minValue: '0.0001',
+      maxValue: '999999999999'
+    })
     numToClaimComponent = (
-      <div className={styles.numToClaim}>{`+ ${convertToScientificNotation(
-        reward.numToClaim
-      )}`}</div>
+      <div className={styles.numToClaim}>{`+${formattedNumToClaim}`}</div>
     )
   }
   return (

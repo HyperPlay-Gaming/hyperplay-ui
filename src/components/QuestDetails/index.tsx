@@ -113,9 +113,6 @@ export default function QuestDetails({
       buttonText = i18n.connectSteamAccount
       ctaClick = onConnectSteamAccountClick
       linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
-    } else if (showSync && onSyncClick) {
-      buttonText = i18n.sync ?? 'Sync'
-      ctaClick = onSyncClick
     } else {
       buttonText = i18n.claim
       ctaClick = onClaimClick
@@ -155,6 +152,13 @@ export default function QuestDetails({
         : onPlayClick
   }
 
+  let primaryCTAButtonType: ButtonProps['type'] = 'secondary'
+  if (showSync && onSyncClick) {
+    buttonText = i18n.sync ?? 'Sync'
+    ctaClick = onSyncClick
+    primaryCTAButtonType = 'tertiary'
+  }
+
   let buttonContents = <>{buttonText}</>
   if (isMinting || (showSync && isSyncing)) {
     buttonContents = (
@@ -180,11 +184,6 @@ export default function QuestDetails({
         {i18n.secondCTAText}
       </Button>
     )
-  }
-
-  let primaryCTAButtonType: ButtonProps['type'] = 'secondary'
-  if (showSync) {
-    primaryCTAButtonType = 'tertiary'
   }
 
   let content = (
