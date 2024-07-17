@@ -9,7 +9,7 @@ export default {
 
 export const Default = () => {
   return (
-    <div style={{ width: '600px' }}>
+    <div style={{ width: '500px' }}>
       <TokenTable
         contracts={[
           {
@@ -43,21 +43,24 @@ export const Default = () => {
 
 export const GetTokenEnabled = () => {
   return (
-    <div style={{ width: '600px' }}>
+    <div style={{ width: '500px' }}>
       <TokenTable
         getTokenEnabled={true}
         contracts={[
           {
             chain_id: '1',
-            address: '0x12345'
+            address: '0x12345',
+            type: 'fungible'
           },
           {
             chain_id: '137',
-            address: '0x1234'
+            address: '0x1234',
+            type: 'other'
           },
           {
             chain_id: '1',
-            address: '0x1234'
+            address: '0x1234',
+            type: 'nonFungible'
           }
         ]}
         onTokenClick={(addr) => console.log('token clicked', addr)}
