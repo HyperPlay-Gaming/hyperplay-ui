@@ -33,6 +33,22 @@ export interface QuestReward {
   chainName: string
 }
 
+export interface QuestDetailsTranslations {
+  rewards: string
+  associatedGames: string
+  linkSteamAccount: string
+  needMoreAchievements: string
+  claim: string
+  signIn: string
+  connectSteamAccount: string
+  questType: QuestTypeTranslations
+  streakProgressI18n?: StreakProgressI18n
+  secondCTAText?: string
+  play?: string
+  sync?: string
+  claimsLeft?: string
+}
+
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string
   description: string
@@ -53,21 +69,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   showSync?: boolean
   onSyncClick?: () => void
   isSyncing?: boolean
-  i18n?: {
-    rewards: string
-    associatedGames: string
-    linkSteamAccount: string
-    needMoreAchievements: string
-    claim: string
-    signIn: string
-    connectSteamAccount: string
-    questType: QuestTypeTranslations
-    streakProgressI18n?: StreakProgressI18n
-    secondCTAText?: string
-    play?: string
-    sync?: string
-    claimsLeft?: string
-  }
+  i18n?: QuestDetailsTranslations
   rewardsLoading?: boolean
   loading?: boolean
   classNames?: {
