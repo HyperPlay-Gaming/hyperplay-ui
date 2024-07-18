@@ -42,7 +42,7 @@ export default function QuestDetails({
     secondCTAText: 'View Game',
     play: 'Play',
     questType: {
-      REPUTATION: 'Reputation',
+      'REPUTATIONAL-AIRDROP': 'Reputation',
       PLAYSTREAK: 'Play Streak'
     },
     sync: 'Sync',
@@ -92,7 +92,7 @@ export default function QuestDetails({
 
     sticker = (
       <Sticker styleType="secondary" variant="outlined">
-        {i18n.questType.REPUTATION}
+        {i18n.questType['REPUTATIONAL-AIRDROP']}
       </Sticker>
     )
 
