@@ -21,7 +21,7 @@ export interface ReputationQuestEligibility {
 export interface PlayStreakEligibility {
   currentStreakInDays: number
   requiredStreakInDays: number
-  resetTimeInMsSinceEpoch: number
+  getResetTimeInMsSinceEpoch: () => number
   dailySessionPercentCompleted: number
 }
 
@@ -32,6 +32,22 @@ export interface QuestReward {
   // this will likely be a BigNumber so we will convert to float before passing as param
   numToClaim?: string
   chainName: string
+}
+
+export interface QuestDetailsTranslations {
+  rewards: string
+  associatedGames: string
+  linkSteamAccount: string
+  needMoreAchievements: string
+  claim: string
+  signIn: string
+  connectSteamAccount: string
+  questType: QuestTypeTranslations
+  streakProgressI18n?: StreakProgressI18n
+  secondCTAText?: string
+  play?: string
+  sync?: string
+  claimsLeft?: string
 }
 
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
@@ -54,21 +70,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   showSync?: boolean
   onSyncClick?: () => void
   isSyncing?: boolean
-  i18n?: {
-    rewards: string
-    associatedGames: string
-    linkSteamAccount: string
-    needMoreAchievements: string
-    claim: string
-    signIn: string
-    connectSteamAccount: string
-    questType: QuestTypeTranslations
-    streakProgressI18n?: StreakProgressI18n
-    secondCTAText?: string
-    play?: string
-    sync?: string
-    claimsLeft?: string
-  }
+  i18n?: QuestDetailsTranslations
   rewardsLoading?: boolean
   loading?: boolean
   classNames?: {

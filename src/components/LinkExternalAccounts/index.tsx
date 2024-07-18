@@ -29,6 +29,7 @@ interface AuthProps {
   providers: ProviderOption[]
   onAuthProviderClick: (provider: ProviderOption) => void
   onWalletClick: () => void
+  hideWallet?: boolean
   walletAddress?: string
 }
 
@@ -53,6 +54,7 @@ export default function LinkExternalAccountsModal({
   onWalletClick,
   onClose,
   email,
+  hideWallet = false,
   i18n = {
     hi: 'Hi',
     title: 'Add accounts to your HyperPlay profile',
@@ -90,13 +92,15 @@ export default function LinkExternalAccountsModal({
       </Modal.Header>
       {alert && <Alert {...alert}></Alert>}
       <div className={styles.providersContainer}>
-        <AuthProviderButton
-          name="Wallet"
-          icon={<Wallet className={styles.icon} />}
-          onClick={onWalletClick}
-          connected={Boolean(walletAddress)}
-          label={walletLabel}
-        />
+        {!hideWallet && (
+          <AuthProviderButton
+            name="Wallet"
+            icon={<Wallet className={styles.icon} />}
+            onClick={onWalletClick}
+            connected={Boolean(walletAddress)}
+            label={walletLabel}
+          />
+        )}
         {providers.map((provider) => (
           <AuthProviderButton
             key={provider.id}

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import StreakProgress, { StreakProgressProps } from '.'
+import { getNextMidnightTimestamp } from '../../../../../tests/utils/getNextMidnightUTCTimestamp.ts'
 
 const meta: Meta<typeof StreakProgress> = {
   title: 'Quests/QuestDetails/StreakProgress',
@@ -14,7 +15,7 @@ type Story = StoryObj<typeof StreakProgress>
 const props: StreakProgressProps = {
   currentStreakInDays: 7,
   requiredStreakInDays: 7,
-  resetTimeInMsSinceEpoch: Date.now().valueOf() + 1000 * 3600,
+  getResetTimeInMsSinceEpoch: getNextMidnightTimestamp,
   dailySessionPercentCompleted: 80
 }
 
@@ -31,7 +32,7 @@ export const PlayStreak: Story = {
           {...args}
           currentStreakInDays={2}
           requiredStreakInDays={7}
-          resetTimeInMsSinceEpoch={Date.now().valueOf() + 1000 * 3600}
+          getResetTimeInMsSinceEpoch={getNextMidnightTimestamp}
         />
       </div>
     )
@@ -47,7 +48,7 @@ export const PlayStreakFinished: Story = {
           {...args}
           currentStreakInDays={7}
           requiredStreakInDays={7}
-          resetTimeInMsSinceEpoch={Date.now().valueOf() + 1000 * 3600}
+          getResetTimeInMsSinceEpoch={getNextMidnightTimestamp}
         />
       </div>
     )
@@ -63,7 +64,7 @@ export const PlayStreakNotStarted: Story = {
           {...args}
           currentStreakInDays={0}
           requiredStreakInDays={7}
-          resetTimeInMsSinceEpoch={Date.now().valueOf() + 1000 * 3600}
+          getResetTimeInMsSinceEpoch={getNextMidnightTimestamp}
           dailySessionPercentCompleted={30}
         />
       </div>
@@ -80,7 +81,7 @@ export const PlayStreak23Days: Story = {
           {...args}
           currentStreakInDays={12}
           requiredStreakInDays={23}
-          resetTimeInMsSinceEpoch={Date.now().valueOf() + 1000 * 3600}
+          getResetTimeInMsSinceEpoch={getNextMidnightTimestamp}
           dailySessionPercentCompleted={1}
         />
       </div>
@@ -97,7 +98,7 @@ export const PlayStreak25DaysCompletesIn2Seconds: Story = {
           {...args}
           currentStreakInDays={10}
           requiredStreakInDays={25}
-          resetTimeInMsSinceEpoch={Date.now().valueOf() + 2000}
+          getResetTimeInMsSinceEpoch={() => Date.now().valueOf() + 2000}
           dailySessionPercentCompleted={84}
         />
       </div>
