@@ -15,6 +15,7 @@ import cupheadCard from '@/assets/steamCards/cupheadCard.jpg'
 import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg'
 
 import QuestDetails from '.'
+import { getNextMidnightTimestamp } from '../../../tests/utils/getNextMidnightUTCTimestamp.ts'
 import { QuestDetailsProps } from './types'
 
 const meta: Meta<typeof QuestDetails> = {
@@ -210,7 +211,7 @@ export const PlayStreak: Story = {
             playStreak: {
               currentStreakInDays: 2,
               requiredStreakInDays: 7,
-              resetTimeInMsSinceEpoch: Date.now().valueOf() + 1000 * 3600
+              getResetTimeInMsSinceEpoch: getNextMidnightTimestamp
             }
           }}
           questType="PLAYSTREAK"
