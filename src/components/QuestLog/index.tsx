@@ -18,7 +18,7 @@ export default function QuestLog({
     readyForClaim: 'Ready for Claim',
     active: 'Active',
     type: {
-      REPUTATION: 'Reputation',
+      'REPUTATIONAL-AIRDROP': 'Reputation',
       PLAYSTREAK: 'Play Streak'
     }
   },
@@ -54,11 +54,23 @@ export default function QuestLog({
   if (loading) {
     tab1Content = <Loading className={styles.loader} />
   } else {
+    let readyForClaim = null
+    let activeText = null
+    if (readyForClaimQuests.length > 0) {
+      activeText = <div className={styles.sectionTitle}>{i18n.active}</div>
+      readyForClaim = (
+        <>
+          <div className={styles.sectionTitle}>{i18n.readyForClaim}</div>
+          <div className={styles.questItemsContainer}>
+            {readyForClaimQuests}
+          </div>
+        </>
+      )
+    }
     tab1Content = (
       <div>
-        <div className={styles.sectionTitle}>{i18n.readyForClaim}</div>
-        <div className={styles.questItemsContainer}>{readyForClaimQuests}</div>
-        <div className={styles.sectionTitle}>{i18n.active}</div>
+        {readyForClaim}
+        {activeText}
         <div className={styles.questItemsContainer}>{activeQuests}</div>
       </div>
     )
@@ -70,7 +82,6 @@ export default function QuestLog({
   } else {
     tab2Content = (
       <div>
-        <div className={styles.sectionTitle}>{i18n.claimed}</div>
         <div className={styles.questItemsContainer}>{claimedQuests}</div>
       </div>
     )

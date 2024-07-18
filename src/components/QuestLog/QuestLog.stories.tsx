@@ -17,7 +17,7 @@ const props: QuestLogProps = {
     {
       title: 'Eternal Ember: Shadows of the Celestial Nexus',
       state: 'READY_FOR_CLAIM',
-      questType: 'REPUTATION',
+      questType: 'REPUTATIONAL-AIRDROP',
       onClick: () => {
         console.log('1st Quest Clicked!')
       },
@@ -27,26 +27,26 @@ const props: QuestLogProps = {
     {
       title: 'Eternal Ember: Shadows of the Celestial Nexus',
       state: 'READY_FOR_CLAIM',
-      questType: 'REPUTATION',
+      questType: 'REPUTATIONAL-AIRDROP',
       id: 1
     },
     {
       title: 'Eternal Ember: Shadows of the Celestial Nexus',
       state: 'ACTIVE',
-      questType: 'REPUTATION',
+      questType: 'REPUTATIONAL-AIRDROP',
       selected: true,
       id: 2
     },
     {
       title: 'Eternal Ember: Shadows of the Celestial Nexus',
       state: 'ACTIVE',
-      questType: 'REPUTATION',
+      questType: 'REPUTATIONAL-AIRDROP',
       id: 3
     },
     {
       title: 'Eternal Ember: Shadows of the Celestial Nexus',
       state: 'CLAIMED',
-      questType: 'REPUTATION',
+      questType: 'REPUTATIONAL-AIRDROP',
       selected: true,
       id: 4
     },
@@ -54,7 +54,7 @@ const props: QuestLogProps = {
       title:
         'A reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeally long title',
       state: 'CLAIMED',
-      questType: 'REPUTATION',
+      questType: 'REPUTATIONAL-AIRDROP',
       id: 5
     }
   ]
@@ -68,5 +68,19 @@ export const Loading: Story = {
   args: { ...props },
   render: (args) => {
     return <QuestLog {...args} loading={true} />
+  }
+}
+
+export const NoneReadyForClaim: Story = {
+  args: {
+    ...props,
+    quests: [
+      {
+        title: 'Eternal Ember: Shadows of the Celestial Nexus',
+        state: 'ACTIVE',
+        questType: 'PLAYSTREAK',
+        id: 3
+      }
+    ]
   }
 }
