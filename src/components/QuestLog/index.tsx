@@ -18,7 +18,8 @@ export default function QuestLog({
     readyForClaim: 'Ready for Claim',
     active: 'Active',
     type: {
-      REPUTATION: 'Reputation'
+      REPUTATION: 'Reputation',
+      PLAYSTREAK: 'Play Streak'
     }
   },
   className,

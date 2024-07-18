@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react'
-import { getNextMidnightTimestamp } from 'tests/utils/getNextMidnightUTCTimestamp.ts'
 
 import droid from '@/assets/Droid.png'
 import kosiumGhoul from '@/assets/Kosium_Ghoul.png'
@@ -16,6 +15,7 @@ import cupheadCard from '@/assets/steamCards/cupheadCard.jpg'
 import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg'
 
 import QuestDetails from '.'
+import { getNextMidnightTimestamp } from '../../../tests/utils/getNextMidnightUTCTimestamp.ts'
 import { QuestDetailsProps } from './types'
 
 const meta: Meta<typeof QuestDetails> = {
