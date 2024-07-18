@@ -129,3 +129,9 @@ export const Error: Story = {
     </div>
   )
 }
+
+export const WalletHidden: Story = {
+  args: {
+    hideWallet: true
+  }
+}
