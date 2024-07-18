@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react'
+import { getNextMidnightTimestamp } from 'tests/utils/getNextMidnightUTCTimestamp.ts'
 
 import droid from '@/assets/Droid.png'
 import kosiumGhoul from '@/assets/Kosium_Ghoul.png'
@@ -210,7 +211,7 @@ export const PlayStreak: Story = {
             playStreak: {
               currentStreakInDays: 2,
               requiredStreakInDays: 7,
-              resetTimeInMsSinceEpoch: Date.now().valueOf() + 1000 * 3600
+              getResetTimeInMsSinceEpoch: getNextMidnightTimestamp
             }
           }}
           questType="PLAYSTREAK"
