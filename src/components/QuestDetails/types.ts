@@ -22,6 +22,7 @@ export interface PlayStreakEligibility {
   currentStreakInDays: number
   requiredStreakInDays: number
   resetTimeInMsSinceEpoch: number
+  dailySessionPercentCompleted: number
 }
 
 export interface QuestReward {

@@ -59,21 +59,18 @@ $rootPadding: var(--space-md-fixed);
 
 .circleLightning {
   border-radius: 1000px;
-  height: 32px;
-  width: 32px;
+  width: 100%;
+  height: 100%;
   padding: 6px;
   stroke: var(--color-alert-200);
-  border: 2px solid var(--color-neutral-600);
 
   &.inProgress {
     stroke: var(--color-alert-300);
-    border: 2px solid var(--color-alert-300);
   }
 
   &.finished {
     fill: var(--color-success-300);
     stroke: var(--color-success-300);
-    border: 2px solid var(--color-success-300);
   }
 }
 
@@ -91,4 +88,22 @@ $rootPadding: var(--space-md-fixed);
   align-items: center;
   color: var(--color-neutral-400);
   gap: var(--space-xs);
+  position: relative;
+}
+
+.ringProgressRoot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .ringProgressSvg {
+    height: 40px;
+    width: 40px;
+  }
+
+  .ringProgressLabel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
