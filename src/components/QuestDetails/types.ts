@@ -21,7 +21,7 @@ export interface ReputationQuestEligibility {
 export interface PlayStreakEligibility {
   currentStreakInDays: number
   requiredStreakInDays: number
-  resetTimeInMsSinceEpoch: number
+  getResetTimeInMsSinceEpoch: () => number
 }
 
 export interface QuestReward {

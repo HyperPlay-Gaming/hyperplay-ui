@@ -9,7 +9,7 @@ import styles from './index.module.scss'
 
 export interface StreakProgressI18n {
   streakProgress: string
-  nextRewardIn: string
+  dayResets: string
   days: string
   playToStart: string
   playEachDay: string
@@ -24,22 +24,22 @@ export interface StreakProgressProps extends PlayStreakEligibility {
 export default function StreakProgress({
   currentStreakInDays,
   requiredStreakInDays,
-  resetTimeInMsSinceEpoch,
+  getResetTimeInMsSinceEpoch,
   i18n = {
     streakProgress: 'Streak Progress',
-    nextRewardIn: 'Next reward in:',
     days: 'days',
     playToStart: 'Play this game to start your streak!',
     playEachDay: `Play each day so your streak won't reset!`,
     streakCompleted: 'Streak completed! Claim your rewards now.',
-    now: 'Now'
+    now: 'Now',
+    dayResets: 'Day resets:'
   }
 }: StreakProgressProps) {
   const questStarted = !!currentStreakInDays
   const questFinished = currentStreakInDays >= requiredStreakInDays
 
   function getTimeLeftString() {
-    const timeLeftInMs = resetTimeInMsSinceEpoch - Date.now().valueOf()
+    const timeLeftInMs = getResetTimeInMsSinceEpoch() - Date.now().valueOf()
     if (timeLeftInMs <= 0) {
       return i18n.now
     }
@@ -92,7 +92,7 @@ export default function StreakProgress({
     rewardCountdownContainer = (
       <div className={classNames('caption', styles.rewardCountdownContainer)}>
         <Clock className={styles.clock} />
-        {i18n.nextRewardIn}
+        {i18n.dayResets}
         <em>{timeLeftString}</em>
       </div>
     )
