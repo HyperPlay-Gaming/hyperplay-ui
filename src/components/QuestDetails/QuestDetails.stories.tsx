@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { oneDayInMs } from '@hyperplay/utils'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import droid from '@/assets/Droid.png'
@@ -15,7 +16,6 @@ import cupheadCard from '@/assets/steamCards/cupheadCard.jpg'
 import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg'
 
 import QuestDetails from '.'
-import { getNextMidnightTimestamp } from '../../../tests/utils/getNextMidnightUTCTimestamp.ts'
 import { QuestDetailsProps } from './types'
 
 const meta: Meta<typeof QuestDetails> = {
@@ -211,8 +211,12 @@ export const PlayStreak: Story = {
             playStreak: {
               currentStreakInDays: 2,
               requiredStreakInDays: 7,
-              getResetTimeInMsSinceEpoch: getNextMidnightTimestamp,
-              getDailySessionPercentCompleted: () => 40
+              minimumSessionTimeInSeconds: 100,
+              accumulatedPlaytimeTodayInSeconds: 10,
+              lastPlaySessionCompletedDateTimeUTC: new Date(
+                Date.now() - oneDayInMs
+              ).toUTCString(),
+              dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now()
             }
           }}
           questType="PLAYSTREAK"

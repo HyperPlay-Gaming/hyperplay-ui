@@ -21,8 +21,10 @@ export interface ReputationQuestEligibility {
 export interface PlayStreakEligibility {
   currentStreakInDays: number
   requiredStreakInDays: number
-  getResetTimeInMsSinceEpoch: () => number
-  getDailySessionPercentCompleted: () => number
+  minimumSessionTimeInSeconds: number
+  accumulatedPlaytimeTodayInSeconds: number
+  lastPlaySessionCompletedDateTimeUTC: string
+  dateTimeCurrentSessionStartedInMsSinceEpoch?: number
 }
 
 export interface QuestReward {
