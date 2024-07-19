@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import {
+  getPlayStreakDays,
   getPlaytimePercentage,
   getMidnightUTCTimestamp as getResetTimeInMsSinceEpoch
 } from '@hyperplay/utils'
@@ -45,6 +46,11 @@ export default function StreakProgress({
     dayResets: 'Day resets:'
   }
 }: StreakProgressProps) {
+  ;({ requiredStreakInDays, currentStreakInDays } = getPlayStreakDays({
+    lastPlaySessionCompletedDateTimeUTC,
+    requiredStreakInDays,
+    currentStreakInDays
+  }))
   const questFinished = currentStreakInDays >= requiredStreakInDays
 
   function getTimeLeftString() {
