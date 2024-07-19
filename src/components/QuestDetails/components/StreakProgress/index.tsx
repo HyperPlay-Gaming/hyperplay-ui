@@ -103,8 +103,10 @@ export default function StreakProgress({
     ctaText = i18n.streakCompleted
   }
 
+  let progressCompletedColor = 'var(--color-alert-300)'
   if (dailySessionPercentCompleted >= 100) {
     lightningBoltCircleClass = styles.finished
+    progressCompletedColor = 'var(--color-success-300)'
   }
 
   let rewardCountdownContainer = null
@@ -161,7 +163,7 @@ export default function StreakProgress({
           sections={[
             {
               value: percentCompleted,
-              color: 'var(--color-alert-300)'
+              color: progressCompletedColor
             }
           ]}
         />

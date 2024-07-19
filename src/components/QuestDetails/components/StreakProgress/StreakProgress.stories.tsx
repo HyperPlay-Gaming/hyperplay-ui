@@ -105,3 +105,20 @@ export const PlayStreak25DaysCompletesIn2Seconds: Story = {
     )
   }
 }
+
+export const PlayStreakDaily100PctButNotCompleted: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div>
+        <StreakProgress
+          {...args}
+          currentStreakInDays={10}
+          requiredStreakInDays={25}
+          getResetTimeInMsSinceEpoch={() => Date.now().valueOf() + 2000}
+          getDailySessionPercentCompleted={() => 100}
+        />
+      </div>
+    )
+  }
+}
