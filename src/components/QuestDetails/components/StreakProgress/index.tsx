@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import { RingProgress } from '@mantine/core'
 import classNames from 'classnames'
 
 import { Clock, LightningBolt } from '@/assets/images'
@@ -12,6 +13,7 @@ export interface StreakProgressI18n {
   dayResets: string
   days: string
   playToStart: string
+  progressTowardsStreak: string
   playEachDay: string
   streakCompleted: string
   now: string
@@ -25,10 +27,12 @@ export default function StreakProgress({
   currentStreakInDays,
   requiredStreakInDays,
   getResetTimeInMsSinceEpoch,
+  dailySessionPercentCompleted,
   i18n = {
     streakProgress: 'Streak Progress',
     days: 'days',
     playToStart: 'Play this game to start your streak!',
+    progressTowardsStreak: `progress towards today's streak.`,
     playEachDay: `Play each day so your streak won't reset!`,
     streakCompleted: 'Streak completed! Claim your rewards now.',
     now: 'Now',
@@ -75,15 +79,20 @@ export default function StreakProgress({
     return filledClass
   }
 
+  let rootColor = 'var(--color-neutral-600)'
   let lightningBoltCircleClass = ''
+  let percentCompleted = 0
   let ctaText = i18n.playToStart
   if (questStarted) {
+    percentCompleted = dailySessionPercentCompleted
     lightningBoltCircleClass = styles.inProgress
-    ctaText = i18n.playEachDay
+    ctaText = `${percentCompleted}% ${i18n.progressTowardsStreak} ${i18n.playEachDay}`
   }
 
   if (questFinished) {
     lightningBoltCircleClass = styles.finished
+    rootColor = 'var(--color-success-300)'
+    percentCompleted = 0
     ctaText = i18n.streakCompleted
   }
 
@@ -121,11 +130,29 @@ export default function StreakProgress({
       </div>
       <hr></hr>
       <div className={classNames('body-sm', styles.bottomContainer)}>
-        <LightningBolt
-          className={classNames(
-            styles.circleLightning,
-            lightningBoltCircleClass
-          )}
+        <RingProgress
+          size={40}
+          thickness={2}
+          classNames={{
+            root: styles.ringProgressRoot,
+            svg: styles.ringProgressSvg,
+            label: styles.ringProgressLabel
+          }}
+          label={
+            <LightningBolt
+              className={classNames(
+                styles.circleLightning,
+                lightningBoltCircleClass
+              )}
+            />
+          }
+          rootColor={rootColor}
+          sections={[
+            {
+              value: percentCompleted,
+              color: 'var(--color-alert-300)'
+            }
+          ]}
         />
         {ctaText}
       </div>
