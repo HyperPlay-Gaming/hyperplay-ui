@@ -96,6 +96,10 @@ export default function StreakProgress({
     ctaText = i18n.streakCompleted
   }
 
+  if (dailySessionPercentCompleted >= 100) {
+    lightningBoltCircleClass = styles.finished
+  }
+
   let rewardCountdownContainer = null
   if (!questFinished) {
     rewardCountdownContainer = (
