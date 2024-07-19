@@ -27,7 +27,7 @@ export default function StreakProgress({
   currentStreakInDays,
   requiredStreakInDays,
   getResetTimeInMsSinceEpoch,
-  dailySessionPercentCompleted,
+  getDailySessionPercentCompleted,
   i18n = {
     streakProgress: 'Streak Progress',
     days: 'days',
@@ -55,14 +55,21 @@ export default function StreakProgress({
   }
   const [timeLeftString, setTimeLeftString] = useState(getTimeLeftString())
 
-  function updateTimeLeft() {
+  const [dailySessionPercentCompleted, setDailySessionPercentCompleted] =
+    useState(getDailySessionPercentCompleted())
+
+  function update() {
     if (!questFinished) {
       setTimeLeftString(getTimeLeftString())
+    }
+
+    if (dailySessionPercentCompleted < 100) {
+      setDailySessionPercentCompleted(getDailySessionPercentCompleted())
     }
   }
 
   useEffect(() => {
-    const interval = setInterval(() => updateTimeLeft(), 1000)
+    const interval = setInterval(() => update(), 1000)
     return () => clearInterval(interval)
   }, [])
 
@@ -94,6 +101,12 @@ export default function StreakProgress({
     rootColor = 'var(--color-success-300)'
     percentCompleted = 0
     ctaText = i18n.streakCompleted
+  }
+
+  let progressCompletedColor = 'var(--color-alert-300)'
+  if (dailySessionPercentCompleted >= 100) {
+    lightningBoltCircleClass = styles.finished
+    progressCompletedColor = 'var(--color-success-300)'
   }
 
   let rewardCountdownContainer = null
@@ -150,7 +163,7 @@ export default function StreakProgress({
           sections={[
             {
               value: percentCompleted,
-              color: 'var(--color-alert-300)'
+              color: progressCompletedColor
             }
           ]}
         />

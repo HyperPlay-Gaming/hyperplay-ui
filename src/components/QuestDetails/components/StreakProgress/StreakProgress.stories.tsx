@@ -16,7 +16,7 @@ const props: StreakProgressProps = {
   currentStreakInDays: 7,
   requiredStreakInDays: 7,
   getResetTimeInMsSinceEpoch: getNextMidnightTimestamp,
-  dailySessionPercentCompleted: 80
+  getDailySessionPercentCompleted: () => 80
 }
 
 export const Default: Story = {
@@ -65,7 +65,7 @@ export const PlayStreakNotStarted: Story = {
           currentStreakInDays={0}
           requiredStreakInDays={7}
           getResetTimeInMsSinceEpoch={getNextMidnightTimestamp}
-          dailySessionPercentCompleted={30}
+          getDailySessionPercentCompleted={() => 30}
         />
       </div>
     )
@@ -82,7 +82,7 @@ export const PlayStreak23Days: Story = {
           currentStreakInDays={12}
           requiredStreakInDays={23}
           getResetTimeInMsSinceEpoch={getNextMidnightTimestamp}
-          dailySessionPercentCompleted={1}
+          getDailySessionPercentCompleted={() => 1}
         />
       </div>
     )
@@ -99,7 +99,24 @@ export const PlayStreak25DaysCompletesIn2Seconds: Story = {
           currentStreakInDays={10}
           requiredStreakInDays={25}
           getResetTimeInMsSinceEpoch={() => Date.now().valueOf() + 2000}
-          dailySessionPercentCompleted={84}
+          getDailySessionPercentCompleted={() => 84}
+        />
+      </div>
+    )
+  }
+}
+
+export const PlayStreakDaily100PctButNotCompleted: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div>
+        <StreakProgress
+          {...args}
+          currentStreakInDays={10}
+          requiredStreakInDays={25}
+          getResetTimeInMsSinceEpoch={() => Date.now().valueOf() + 2000}
+          getDailySessionPercentCompleted={() => 100}
         />
       </div>
     )
