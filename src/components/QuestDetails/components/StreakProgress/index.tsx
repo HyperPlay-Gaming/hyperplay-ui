@@ -27,7 +27,7 @@ export default function StreakProgress({
   currentStreakInDays,
   requiredStreakInDays,
   getResetTimeInMsSinceEpoch,
-  dailySessionPercentCompleted,
+  getDailySessionPercentCompleted,
   i18n = {
     streakProgress: 'Streak Progress',
     days: 'days',
@@ -55,14 +55,21 @@ export default function StreakProgress({
   }
   const [timeLeftString, setTimeLeftString] = useState(getTimeLeftString())
 
-  function updateTimeLeft() {
+  const [dailySessionPercentCompleted, setDailySessionPercentCompleted] =
+    useState(getDailySessionPercentCompleted())
+
+  function update() {
     if (!questFinished) {
       setTimeLeftString(getTimeLeftString())
+    }
+
+    if (dailySessionPercentCompleted < 100) {
+      setDailySessionPercentCompleted(getDailySessionPercentCompleted())
     }
   }
 
   useEffect(() => {
-    const interval = setInterval(() => updateTimeLeft(), 1000)
+    const interval = setInterval(() => update(), 1000)
     return () => clearInterval(interval)
   }, [])
 

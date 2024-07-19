@@ -211,7 +211,8 @@ export const PlayStreak: Story = {
             playStreak: {
               currentStreakInDays: 2,
               requiredStreakInDays: 7,
-              getResetTimeInMsSinceEpoch: getNextMidnightTimestamp
+              getResetTimeInMsSinceEpoch: getNextMidnightTimestamp,
+              getDailySessionPercentCompleted: () => 40
             }
           }}
           questType="PLAYSTREAK"
