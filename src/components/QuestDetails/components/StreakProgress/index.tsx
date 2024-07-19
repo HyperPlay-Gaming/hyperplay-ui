@@ -132,7 +132,7 @@ export default function StreakProgress({
       <div className={classNames('body-sm', styles.bottomContainer)}>
         <RingProgress
           size={40}
-          thickness={4}
+          thickness={2}
           classNames={{
             root: styles.ringProgressRoot,
             svg: styles.ringProgressSvg,
