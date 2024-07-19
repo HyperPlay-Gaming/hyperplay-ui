@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
+import {
+  getPlayStreakDays,
+  getPlaytimePercentage,
+  getMidnightUTCTimestamp as getResetTimeInMsSinceEpoch
+} from '@hyperplay/utils'
 import { RingProgress } from '@mantine/core'
 import classNames from 'classnames'
 
@@ -26,8 +31,10 @@ export interface StreakProgressProps extends PlayStreakEligibility {
 export default function StreakProgress({
   currentStreakInDays,
   requiredStreakInDays,
-  getResetTimeInMsSinceEpoch,
-  getDailySessionPercentCompleted,
+  minimumSessionTimeInSeconds,
+  accumulatedPlaytimeTodayInSeconds,
+  lastPlaySessionCompletedDateTimeUTC,
+  dateTimeCurrentSessionStartedInMsSinceEpoch,
   i18n = {
     streakProgress: 'Streak Progress',
     days: 'days',
@@ -39,7 +46,11 @@ export default function StreakProgress({
     dayResets: 'Day resets:'
   }
 }: StreakProgressProps) {
-  const questStarted = !!currentStreakInDays
+  ;({ requiredStreakInDays, currentStreakInDays } = getPlayStreakDays({
+    lastPlaySessionCompletedDateTimeUTC,
+    requiredStreakInDays,
+    currentStreakInDays
+  }))
   const questFinished = currentStreakInDays >= requiredStreakInDays
 
   function getTimeLeftString() {
@@ -55,8 +66,18 @@ export default function StreakProgress({
   }
   const [timeLeftString, setTimeLeftString] = useState(getTimeLeftString())
 
+  const getDailySessionPercentCompleted = () =>
+    getPlaytimePercentage({
+      minimumSessionTimeInSeconds,
+      accumulatedPlaytimeTodayInSeconds,
+      lastPlaySessionCompletedDateTimeUTC,
+      dateTimeCurrentSessionStartedInMsSinceEpoch
+    })
+
   const [dailySessionPercentCompleted, setDailySessionPercentCompleted] =
     useState(getDailySessionPercentCompleted())
+
+  const questStarted = !!currentStreakInDays || dailySessionPercentCompleted > 0
 
   function update() {
     if (!questFinished) {
