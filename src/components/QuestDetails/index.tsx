@@ -54,6 +54,7 @@ export default function QuestDetails({
   onPlayClick,
   onSecondCTAClick,
   isQuestsPage,
+  showSecondCTA,
   loading,
   classNames,
   ctaDisabled,
@@ -174,7 +175,7 @@ export default function QuestDetails({
   }
 
   let secondCTA = null
-  if (isQuestsPage) {
+  if (showSecondCTA) {
     secondCTA = (
       <Button
         type="tertiary"

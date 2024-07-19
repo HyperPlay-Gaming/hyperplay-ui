@@ -241,7 +241,8 @@ export const QuestsPageInClient: Story = {
     ...props,
     isQuestsPage: true,
     onPlayClick: () => console.log('play clicked'),
-    onSecondCTAClick: () => console.log('2nd cta clicked')
+    onSecondCTAClick: () => console.log('2nd cta clicked'),
+    showSecondCTA: true
   }
 }
 

@@ -66,6 +66,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   onClaimClick: () => void
   onSignInClick: () => void
   onConnectSteamAccountClick: () => void
+  showSecondCTA?: boolean
   isQuestsPage?: boolean
   onPlayClick?: () => void
   onSecondCTAClick?: () => void
