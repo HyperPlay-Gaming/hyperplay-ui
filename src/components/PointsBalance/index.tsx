@@ -1,6 +1,7 @@
 import { HTMLProps } from 'react'
 
 import { decimalUnits, formatLargeNumber } from '@hyperplay/utils'
+import { HoverCard } from '@mantine/core'
 import cn from 'classnames'
 
 import FallbackPoints from '@/assets/FallbackPoints.png'
@@ -40,12 +41,25 @@ export function PointsBalance({
     imgUrl = imageUrl
   }
   return (
-    <div className={cn(styles.root, className, classNames?.root)} {...rest}>
-      <img className={styles.image} src={imgUrl} />
-      <div className={cn(styles.textContainer)}>
-        <div className={cn('title-sm')}>{`${balance} ${symbol}`}</div>
-        <div className={cn('menu-item', styles.name)}>{name}</div>
-      </div>
-    </div>
+    <HoverCard
+      withArrow
+      arrowPosition="center"
+      position="bottom"
+      width={344}
+      classNames={{ dropdown: styles.dropdown, arrow: styles.arrow }}
+    >
+      <HoverCard.Target>
+        <div className={cn(styles.root, className, classNames?.root)} {...rest}>
+          <img className={styles.image} src={imgUrl} />
+          <div className={cn(styles.textContainer)}>
+            <div className={cn('title-sm')}>{`${balance} ${symbol}`}</div>
+            <div className={cn('menu-item', styles.name)}>{name}</div>
+          </div>
+        </div>
+      </HoverCard.Target>
+      <HoverCard.Dropdown>
+        <div>{`Total ${name} claimed in this game.`}</div>
+      </HoverCard.Dropdown>
+    </HoverCard>
   )
 }

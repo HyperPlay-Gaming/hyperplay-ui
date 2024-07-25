@@ -29,3 +29,15 @@
 .name {
   color: var(--color-neutral-400);
 }
+
+.dropdown {
+  background-color: var(--color-neutral-600) !important;
+  border-radius: var(--space-xs) !important;
+  padding: var(--space-sm) !important;
+  border: none;
+}
+
+.arrow {
+  background-color: var(--color-neutral-600) !important;
+  border: none;
+}
