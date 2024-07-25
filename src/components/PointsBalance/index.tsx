@@ -4,7 +4,7 @@ import { decimalUnits, formatLargeNumber } from '@hyperplay/utils'
 import { HoverCard } from '@mantine/core'
 import cn from 'classnames'
 
-import FallbackPoints from '@/assets/FallbackPoints.png'
+import FallbackPoints from '@/assets/FallbackPoints.svg'
 import G7Credits from '@/assets/G7Credits.png'
 
 import styles from './index.module.scss'
