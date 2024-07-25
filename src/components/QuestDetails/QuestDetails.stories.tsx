@@ -236,6 +236,14 @@ export const ErrorMessage: Story = {
   args: { ...props, errorMessage: 'User rejected transaction.' }
 }
 
+export const MultilineErrorMessage: Story = {
+  args: {
+    ...props,
+    errorMessage:
+      'Insufficient wallet balance to claim your reward due to gas fees. Try a different wallet or replenish this one before retrying.'
+  }
+}
+
 export const QuestsPageInClient: Story = {
   args: {
     ...props,
