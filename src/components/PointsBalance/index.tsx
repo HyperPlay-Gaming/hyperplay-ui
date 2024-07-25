@@ -18,6 +18,9 @@ export interface PointsBalanceProps extends HTMLProps<HTMLDivElement> {
   classNames?: {
     root?: string
   }
+  i18n?: {
+    totalClaimed?: string
+  }
 }
 
 export function PointsBalance({
@@ -28,6 +31,7 @@ export function PointsBalance({
   symbol,
   balance,
   isGame7Credits,
+  i18n,
   ...rest
 }: PointsBalanceProps) {
   balance = formatLargeNumber(balance, decimalUnits, 2)
@@ -39,6 +43,11 @@ export function PointsBalance({
   }
   if (imageUrl) {
     imgUrl = imageUrl
+  }
+
+  let totalClaimedText = `Total ${name} claimed in this game.`
+  if (i18n?.totalClaimed) {
+    totalClaimedText = i18n.totalClaimed
   }
   return (
     <HoverCard
@@ -58,7 +67,7 @@ export function PointsBalance({
         </div>
       </HoverCard.Target>
       <HoverCard.Dropdown>
-        <div>{`Total ${name} claimed in this game.`}</div>
+        <div className="menu-item">{totalClaimedText}</div>
       </HoverCard.Dropdown>
     </HoverCard>
   )
