@@ -25,3 +25,12 @@ export const Default: Story = {
 export const IsGame7: Story = {
   args: { ...props, isGame7Credits: true }
 }
+
+export const LargeBalanceLongName: Story = {
+  args: {
+    ...props,
+    symbol: 'XPXPXP',
+    balance: '1000000000.01',
+    name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+  }
+}

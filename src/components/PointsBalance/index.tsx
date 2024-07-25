@@ -61,7 +61,9 @@ export function PointsBalance({
         <div className={cn(styles.root, className, classNames?.root)} {...rest}>
           <img className={styles.image} src={imgUrl} />
           <div className={cn(styles.textContainer)}>
-            <div className={cn('title-sm')}>{`${balance} ${symbol}`}</div>
+            <div
+              className={cn('title-sm', styles.title)}
+            >{`${balance} ${symbol}`}</div>
             <div className={cn('menu-item', styles.name)}>{name}</div>
           </div>
         </div>

@@ -11,9 +11,11 @@
 .textContainer {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
   justify-content: center;
   gap: var(--space-3xs);
+  width: 0;
+  flex: 1;
 
   > div {
     text-align: right;
@@ -26,8 +28,18 @@
   border-radius: 1000px;
 }
 
+.title {
+  white-space: nowrap;
+  text-wrap: nowrap;
+}
+
 .name {
   color: var(--color-neutral-400);
+  white-space: nowrap;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 95%;
 }
 
 .dropdown {
