@@ -28,13 +28,14 @@
 
 .alertTriangle {
   stroke: var(--color-alert-400);
+  min-width: 16px;
 }
 
 .alertTextContainer {
   display: flex;
   flex-direction: row;
   color: var(--color-alert-200);
-  gap: var(--space-sm);
+  gap: var(--space-2xs);
   align-items: center;
 }
 
