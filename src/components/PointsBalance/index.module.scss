@@ -1,0 +1,55 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-neutral-700);
+  border-radius: 1000px;
+  padding: var(--space-md) var(--space-2lg) var(--space-md) var(--space-md);
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--space-3xs);
+  width: 0;
+  flex: 1;
+
+  > div {
+    text-align: right;
+  }
+}
+
+.image {
+  max-height: 48px;
+  border: 2px solid var(--color-neutral-600);
+  border-radius: 1000px;
+}
+
+.title {
+  white-space: nowrap;
+  text-wrap: nowrap;
+}
+
+.name {
+  color: var(--color-neutral-400);
+  white-space: nowrap;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 95%;
+}
+
+.dropdown {
+  background-color: var(--color-neutral-600) !important;
+  border-radius: var(--space-xs) !important;
+  padding: var(--space-sm) !important;
+  border: none;
+}
+
+.arrow {
+  background-color: var(--color-neutral-600) !important;
+  border: none;
+}
