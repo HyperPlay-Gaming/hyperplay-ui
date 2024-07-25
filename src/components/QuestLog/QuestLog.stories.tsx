@@ -84,3 +84,23 @@ export const NoneReadyForClaim: Story = {
     ]
   }
 }
+
+export const Points: Story = {
+  args: {
+    ...props,
+    pointsProps: [
+      {
+        symbol: 'POINTS',
+        name: 'Experience Points',
+        balance: '100001010',
+        cardProps: { position: 'top' }
+      },
+      {
+        symbol: 'G7C',
+        name: 'Game7 Credits',
+        balance: '100',
+        isGame7Credits: true
+      }
+    ]
+  }
+}

@@ -1,5 +1,6 @@
+$containerPadding: var(--space-2lg-fixed);
 .darkContainer {
-  padding: var(--space-2lg);
+  padding: $containerPadding;
   max-width: 400px;
   height: 100%;
   margin: var(--space-xl) var(--space-xs);
@@ -37,4 +38,24 @@
 
 .loader {
   padding-top: var(--space-lg-fixed);
+}
+
+.pointsClaimedContainer {
+  border-top: 1px solid var(--color-neutral-600);
+  max-height: 300px;
+  overflow-y: auto;
+
+  margin: var(--space-md) calc(-1 * $containerPadding) 0px
+    calc(-1 * $containerPadding);
+  padding: var(--space-md) $containerPadding 0px $containerPadding;
+}
+
+.pointsClaimedTitle {
+  margin-bottom: var(--space-md);
+}
+
+.pointsBalanceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm-fixed);
 }

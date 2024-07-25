@@ -4,6 +4,7 @@ import classNames from 'classnames'
 
 import DarkContainer from '../DarkContainer'
 import Loading from '../Loading'
+import { PointsBalance } from '../PointsBalance'
 import { Tabs, getTabsClassNames } from '../Tabs'
 import QuestItem from './components/QuestItem'
 import styles from './index.module.scss'
@@ -20,9 +21,11 @@ export default function QuestLog({
     type: {
       'REPUTATIONAL-AIRDROP': 'Reputation',
       PLAYSTREAK: 'Play Streak'
-    }
+    },
+    pointsClaimed: 'Points Claimed'
   },
   className,
+  pointsProps,
   ...props
 }: QuestLogProps) {
   const activeQuests = quests
@@ -87,6 +90,21 @@ export default function QuestLog({
     )
   }
 
+  let points = null
+  if (pointsProps) {
+    const pointsBalances = pointsProps.map((val) => (
+      <PointsBalance {...val} key={val.symbol} />
+    ))
+    points = (
+      <div className={styles.pointsClaimedContainer}>
+        <div className={classNames('menu-item', styles.pointsClaimedTitle)}>
+          {i18n.pointsClaimed}
+        </div>
+        <div className={styles.pointsBalanceContainer}>{pointsBalances}</div>
+      </div>
+    )
+  }
+
   return (
     <DarkContainer
       className={classNames(styles.darkContainer, className)}
@@ -113,6 +131,7 @@ export default function QuestLog({
         <Tabs.Panel value={'tab1'}>{tab1Content}</Tabs.Panel>
         <Tabs.Panel value={'tab2'}>{tab2Content}</Tabs.Panel>
       </Tabs>
+      {points}
     </DarkContainer>
   )
 }
