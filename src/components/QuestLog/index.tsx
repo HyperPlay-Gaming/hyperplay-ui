@@ -113,7 +113,7 @@ export default function QuestLog({
       <Tabs
         defaultValue={'tab1'}
         classNames={getTabsClassNames(
-          { list: styles.tabsList },
+          { list: styles.tabsList, root: styles.tabsRoot },
           { tab: 'secondary' }
         )}
       >

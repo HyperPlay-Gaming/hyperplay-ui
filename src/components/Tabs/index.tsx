@@ -37,7 +37,8 @@ function getTabsClassNames(
   const defaultClassNames = {
     tab: classNames(styles.tab, tabClasses, classNamesOverrides?.tab),
     list: classNames(styles.list, listClasses, classNamesOverrides?.list),
-    panel: classNames(styles.panel, classNamesOverrides?.panel)
+    panel: classNames(styles.panel, classNamesOverrides?.panel),
+    root: classNamesOverrides?.root
   }
 
   return defaultClassNames
