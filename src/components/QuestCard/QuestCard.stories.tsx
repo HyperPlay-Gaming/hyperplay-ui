@@ -29,6 +29,7 @@ export const Default: Story = {
 export const Detailed: Story = {
   args: {
     image: questCardV2Image,
+    rewardImage: cupheadCard,
     questType: 'Quest Type',
     gameTitle: 'Game Title',
     questName: 'Quest Name',
@@ -43,6 +44,7 @@ export const Detailed: Story = {
 export const WithoutCredits: Story = {
   args: {
     image: questCardV2Image,
+    rewardImage: cupheadCard,
     questType: 'Quest Type',
     gameTitle: 'Game Title',
     questName: 'Quest Name',
@@ -56,6 +58,7 @@ export const WithoutCredits: Story = {
 export const WithoutCurrencySection: Story = {
   args: {
     image: questCardV2Image,
+    rewardImage: cupheadCard,
     questType: 'Quest Type',
     gameTitle: 'Game Title',
     questName: 'Quest Name',
@@ -68,8 +71,23 @@ export const WithoutCurrencySection: Story = {
 export const WithoutQuestType: Story = {
   args: {
     image: questCardV2Image,
+    rewardImage: cupheadCard,
     gameTitle: 'Game Title',
     questName: 'Quest Name',
+    currenyAmount: '+200',
+    currencyName: 'G7 Credits',
+    classNames: {
+      root: stlyes.root
+    }
+  }
+}
+
+export const WithoutGameTitleAndDescriptipn: Story = {
+  args: {
+    image: questCardV2Image,
+    rewardImage: cupheadCard,
+    gameTitle: 'Game Title',
+    description: 'Quest Name',
     currenyAmount: '+200',
     currencyName: 'G7 Credits',
     classNames: {

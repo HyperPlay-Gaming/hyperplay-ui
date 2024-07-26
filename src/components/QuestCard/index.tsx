@@ -1,7 +1,5 @@
 import cn from 'classnames'
 
-import { TreasureChest } from '@/assets/images'
-
 import { CardGeneric, CardGenericProps } from '../CardGeneric'
 import styles from './index.module.scss'
 
@@ -13,6 +11,7 @@ export interface QuestCardProps extends CardGenericProps {
   questName?: string
   currenyAmount?: string
   currencyName?: string
+  rewardImage?: string
   selected?: boolean
   classNames?: {
     root?: string
@@ -38,6 +37,7 @@ export function QuestCard({
   questName,
   questType,
   gameTitle,
+  rewardImage,
   currenyAmount,
   currencyName,
   className,
@@ -68,18 +68,18 @@ export function QuestCard({
             {title}
           </div>
         ) : null}
-        {description ? (
-          <div
-            className={cn(styles.description, 'body', classNames?.description)}
-          >
-            {description}
-          </div>
-        ) : null}
         {gameTitle ? (
           <div
             className={cn(styles.subtitle, 'caption-sm', classNames?.subtitle)}
           >
             {gameTitle}
+          </div>
+        ) : null}
+        {description ? (
+          <div
+            className={cn(styles.description, 'body', classNames?.description)}
+          >
+            {description}
           </div>
         ) : null}
         {questName ? (
@@ -95,7 +95,9 @@ export function QuestCard({
                 classNames?.avatarContainer
               )}
             >
-              <TreasureChest
+              <img
+                src={rewardImage}
+                alt={`${questName} Reward Image`}
                 className={cn(styles.avatar, classNames?.avatar)}
               />
             </div>
