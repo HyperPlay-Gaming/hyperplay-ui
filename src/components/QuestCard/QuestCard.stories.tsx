@@ -1,10 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
-import questCardV2Image from '@/assets/banners/QuestCardV2Image.png?url'
-import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url'
 
-import { QuestCard, QuestCardProps } from '.'
-import stlyes from './QuestCardStory.module.scss'
+
+import questCardV2Image from '@/assets/banners/QuestCardV2Image.png?url';
+import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url';
+
+
+
+import { QuestCard, QuestCardProps } from '.';
+import stlyes from './QuestCardStory.module.scss';
+
 
 const meta: Meta<typeof QuestCard> = {
   title: 'Quests/QuestCard',
@@ -29,6 +34,7 @@ export const Default: Story = {
 export const Detailed: Story = {
   args: {
     image: questCardV2Image,
+    rewardImage: cupheadCard,
     questType: 'Quest Type',
     gameTitle: 'Game Title',
     questName: 'Quest Name',
@@ -43,6 +49,7 @@ export const Detailed: Story = {
 export const WithoutCredits: Story = {
   args: {
     image: questCardV2Image,
+    rewardImage: cupheadCard,
     questType: 'Quest Type',
     gameTitle: 'Game Title',
     questName: 'Quest Name',
@@ -56,6 +63,7 @@ export const WithoutCredits: Story = {
 export const WithoutCurrencySection: Story = {
   args: {
     image: questCardV2Image,
+    rewardImage: cupheadCard,
     questType: 'Quest Type',
     gameTitle: 'Game Title',
     questName: 'Quest Name',
@@ -68,8 +76,23 @@ export const WithoutCurrencySection: Story = {
 export const WithoutQuestType: Story = {
   args: {
     image: questCardV2Image,
+    rewardImage: cupheadCard,
     gameTitle: 'Game Title',
     questName: 'Quest Name',
+    currenyAmount: '+200',
+    currencyName: 'G7 Credits',
+    classNames: {
+      root: stlyes.root
+    }
+  }
+}
+
+export const WithoutGameTitleAndDescriptipn: Story = {
+  args: {
+    image: questCardV2Image,
+    rewardImage: cupheadCard,
+    gameTitle: 'Game Title',
+    description: 'Quest Name',
     currenyAmount: '+200',
     currencyName: 'G7 Credits',
     classNames: {
