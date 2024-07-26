@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import QuestLog from '.'
+import { PointsBalanceProps } from '../PointsBalance'
 import { QuestLogProps } from './types'
 
 const meta: Meta<typeof QuestLog> = {
@@ -60,6 +61,21 @@ const props: QuestLogProps = {
   ]
 }
 
+const pointsBalancesProps: PointsBalanceProps[] = [
+  {
+    symbol: 'POINTS',
+    name: 'Experience Points',
+    balance: '100001010',
+    cardProps: { position: 'top' }
+  },
+  {
+    symbol: 'G7C',
+    name: 'Game7 Credits',
+    balance: '100',
+    isGame7Credits: true
+  }
+]
+
 export const Default: Story = {
   args: { ...props }
 }
@@ -82,5 +98,28 @@ export const NoneReadyForClaim: Story = {
         id: 3
       }
     ]
+  }
+}
+
+export const Points: Story = {
+  args: {
+    ...props,
+    pointsProps: pointsBalancesProps
+  }
+}
+
+export const PointsMaxHeight: Story = {
+  args: {
+    ...props,
+    pointsProps: pointsBalancesProps,
+    style: { maxHeight: 600 }
+  }
+}
+
+export const FourPoints: Story = {
+  args: {
+    ...props,
+    pointsProps: [...pointsBalancesProps, ...pointsBalancesProps],
+    style: { maxHeight: 950 }
   }
 }

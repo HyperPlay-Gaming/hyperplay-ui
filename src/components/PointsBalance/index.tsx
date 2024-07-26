@@ -1,27 +1,14 @@
-import { HTMLProps } from 'react'
-
 import { decimalUnits, formatLargeNumber } from '@hyperplay/utils'
 import { HoverCard } from '@mantine/core'
 import cn from 'classnames'
 
-import FallbackPoints from '@/assets/FallbackPoints.svg'
-import G7Credits from '@/assets/G7Credits.png'
+import FallbackPoints from '@/assets/FallbackPoints.svg?url'
+import G7Credits from '@/assets/G7Credits.png?url'
 
 import styles from './index.module.scss'
+import { PointsBalanceProps } from './types'
 
-export interface PointsBalanceProps extends HTMLProps<HTMLDivElement> {
-  symbol: string
-  name: string
-  balance: string
-  imageUrl?: string
-  isGame7Credits?: boolean
-  classNames?: {
-    root?: string
-  }
-  i18n?: {
-    totalClaimed?: string
-  }
-}
+export * from './types'
 
 export function PointsBalance({
   className,
@@ -32,6 +19,7 @@ export function PointsBalance({
   balance,
   isGame7Credits,
   i18n,
+  cardProps,
   ...rest
 }: PointsBalanceProps) {
   balance = formatLargeNumber(balance, decimalUnits, 2)
@@ -56,6 +44,7 @@ export function PointsBalance({
       position="bottom"
       width={344}
       classNames={{ dropdown: styles.dropdown, arrow: styles.arrow }}
+      {...cardProps}
     >
       <HoverCard.Target>
         <div className={cn(styles.root, className, classNames?.root)} {...rest}>
