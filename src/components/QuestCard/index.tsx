@@ -1,7 +1,5 @@
 import cn from 'classnames'
 
-import { TreasureChest } from '@/assets/images'
-
 import { CardGeneric, CardGenericProps } from '../CardGeneric'
 import styles from './index.module.scss'
 
