@@ -123,3 +123,11 @@ export const FourPoints: Story = {
     style: { maxHeight: 950 }
   }
 }
+
+export const NoPoints: Story = {
+  args: {
+    ...props,
+    pointsProps: [],
+    style: { maxHeight: 950 }
+  }
+}
