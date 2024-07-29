@@ -91,7 +91,7 @@ export default function QuestLog({
   }
 
   let points = null
-  if (pointsProps) {
+  if (pointsProps && pointsProps.length) {
     const pointsBalances = pointsProps.map((val) => (
       <PointsBalance {...val} key={val.symbol} />
     ))
