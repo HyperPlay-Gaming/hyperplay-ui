@@ -88,7 +88,6 @@ export default function LinkExternalAccountsModal({
           </Modal.Title>
         ) : null}
         <Modal.Title>{i18n.title}</Modal.Title>
-        <Modal.Body>{i18n.subtitle}</Modal.Body>
       </Modal.Header>
       {alert && <Alert {...alert}></Alert>}
       <div className={styles.providersContainer}>
