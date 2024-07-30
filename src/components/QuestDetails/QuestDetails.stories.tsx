@@ -87,6 +87,13 @@ const props: QuestDetailsProps = {
       chainName: 'Points',
       numToClaim: '0.000001',
       numOfClaimsLeft: '1000'
+    },
+    {
+      title: 'Standard Issue Starfighter',
+      imageUrl: droid,
+      chainName: 'Points',
+      numToClaim: '0.000001',
+      numOfClaimsLeft: '1000'
     }
   ],
   chainTooltips: {
