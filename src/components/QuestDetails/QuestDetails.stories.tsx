@@ -16,6 +16,8 @@ import cupheadCard from '@/assets/steamCards/cupheadCard.jpg'
 import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg'
 
 import QuestDetails from '.'
+import Button from '../Button'
+import styles from './QuestDetailsStory.module.scss'
 import { QuestDetailsProps } from './types'
 
 const meta: Meta<typeof QuestDetails> = {
@@ -282,5 +284,20 @@ export const Sync: Story = {
     showSync: true,
     onSyncClick: () => console.log('sync clicked'),
     isSyncing: false
+  }
+}
+
+export const CustomCTA: Story = {
+  args: {
+    ...props,
+    questType: 'PLAYSTREAK',
+    showSync: true,
+    onSyncClick: () => console.log('sync clicked'),
+    isSyncing: false,
+    ctaComponent: (
+      <Button type="secondary" className={styles.installBtn}>
+        Install/Play
+      </Button>
+    )
   }
 }

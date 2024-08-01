@@ -55,6 +55,7 @@ export default function QuestDetails({
   onSecondCTAClick,
   isQuestsPage,
   showSecondCTA,
+  ctaComponent,
   loading,
   classNames,
   ctaDisabled,
@@ -215,15 +216,19 @@ export default function QuestDetails({
         {errorAlert}
       </div>
       <div className={styles.ctaContainer}>
-        {secondCTA}
-        <Button
-          type={primaryCTAButtonType}
-          className={styles.claimButton}
-          onClick={ctaClick}
-          disabled={ctaDisabled || isMinting}
-        >
-          {buttonContents}
-        </Button>
+        {ctaComponent ?? (
+          <>
+            {secondCTA}
+            <Button
+              type={primaryCTAButtonType}
+              className={styles.claimButton}
+              onClick={ctaClick}
+              disabled={ctaDisabled || isMinting}
+            >
+              {buttonContents}
+            </Button>
+          </>
+        )}
       </div>
     </div>
   )
