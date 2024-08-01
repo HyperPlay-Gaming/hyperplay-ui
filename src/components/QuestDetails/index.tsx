@@ -208,11 +208,7 @@ export default function QuestDetails({
         <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
           <Markdown
             components={{
-              a: ({
-                href: markdownLinkHref,
-                children,
-                ...link
-              }: React.HTMLProps<HTMLAnchorElement>) => (
+              a: ({ href: markdownLinkHref, children, ...link }) => (
                 <a
                   target="_blank"
                   href={markdownLinkHref || ''}
