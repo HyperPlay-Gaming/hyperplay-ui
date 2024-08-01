@@ -320,19 +320,8 @@ export const CustomCtaReputationalAirdrop: Story = {
 export const ComponentDescription: Story = {
   args: {
     ...props,
-    description: (
-      <div>
-        I am a text
-        <Button
-          type="link"
-          size="small"
-          spacing="xs"
-          className={styles.linkBtn}
-        >
-          I am a link
-        </Button>
-      </div>
-    ),
+    description:
+      '**Good luck, adventurer!** For more details, visit [hyperplay.xyz](https://hyperplay.xyz)',
     eligibility: {
       reputation: undefined
     },
