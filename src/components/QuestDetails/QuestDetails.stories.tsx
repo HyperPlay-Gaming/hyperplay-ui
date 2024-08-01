@@ -1,24 +1,31 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import { oneDayInMs } from '@hyperplay/utils'
-import type { Meta, StoryObj } from '@storybook/react'
 
-import droid from '@/assets/Droid.png'
-import kosiumGhoul from '@/assets/Kosium_Ghoul.png'
-import SAND from '@/assets/SAND.png'
+
+import { oneDayInMs } from '@hyperplay/utils';
+import type { Meta, StoryObj } from '@storybook/react';
+
+
+
+import droid from '@/assets/Droid.png';
+import kosiumGhoul from '@/assets/Kosium_Ghoul.png';
+import SAND from '@/assets/SAND.png';
 
 /* eslint-disable-next-line */
 // @ts-ignore
-import cupheadCard from '@/assets/steamCards/cupheadCard.jpg'
+import cupheadCard from '@/assets/steamCards/cupheadCard.jpg';
 
 /* eslint-disable-next-line */
 // @ts-ignore
-import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg'
+import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg';
 
-import QuestDetails from '.'
-import Button from '../Button'
-import styles from './QuestDetailsStory.module.scss'
-import { QuestDetailsProps } from './types'
+
+
+import QuestDetails from '.';
+import Button from '../Button';
+import styles from './QuestDetailsStory.module.scss';
+import { QuestDetailsProps } from './types';
+
 
 const meta: Meta<typeof QuestDetails> = {
   title: 'Quests/QuestDetails',
@@ -305,6 +312,27 @@ export const CustomCtaPlatstreak: Story = {
 export const CustomCtaReputationalAirdrop: Story = {
   args: {
     ...props,
+    eligibility: {
+      reputation: undefined
+    },
+    questType: 'REPUTATIONAL-AIRDROP',
+    ctaComponent: (
+      <Button type="secondary" className={styles.installBtn}>
+        Play/Install
+      </Button>
+    )
+  }
+}
+
+export const ComponentDescription: Story = {
+  args: {
+    ...props,
+    description: (
+      <div>
+        I am a text
+        <Button type="link" size="small" spacing="xs" className={styles.linkBtn}>I am a link</Button>
+      </div>
+    ),
     eligibility: {
       reputation: undefined
     },
