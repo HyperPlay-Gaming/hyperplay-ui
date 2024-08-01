@@ -53,9 +53,7 @@ export const Timeout: Story = {
   play: async ({ canvasElement, args }) => {
     const onResend = args.onResend
     const canvas = within(canvasElement)
-    await userEvent.click(
-      canvas.getByRole('button', { name: /click to resend/i })
-    )
+    await userEvent.click(canvas.getByRole('button', { name: /resend email/i }))
     await expect(canvas.getByText(/retry in/i)).toBeInTheDocument()
     await userEvent.click(canvas.getByText(/retry in/i))
     await userEvent.click(canvas.getByText(/retry in/i))
