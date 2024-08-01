@@ -99,7 +99,7 @@ export const WithSuccessCode: Story = {
 export const WithErrorCode: Story = {
   args: {
     codeInputProps: {
-      error: 'Invalid code',
+      error: 'Verification failed. Please try again.',
       rightSection: <XCircle width={20} height={20} />
     }
   },
