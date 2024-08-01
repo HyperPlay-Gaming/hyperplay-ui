@@ -22,11 +22,11 @@ export interface CheckEmailProps extends HTMLProps<HTMLDivElement> {
     clickLoginTitleOr: string
     redirectNotWorking: string
     didNotReceiveEmail: string
-    submitButton: string
     resend: string
     retryIn: string
     seconds: string
     reEnterEmail: string
+    manualCodeTitle: string
   }
 }
 
@@ -47,7 +47,7 @@ const CheckEmail = ({
     retryIn: 'Retry in',
     seconds: 'seconds',
     reEnterEmail: 'change email',
-    submitButton: 'Submit'
+    manualCodeTitle: 'Login Code'
   },
   ...props
 }: CheckEmailProps) => {
@@ -95,7 +95,7 @@ const CheckEmail = ({
       <div className={styles.copyCodeContainer}>
         <span className="eyebrow">{i18n.redirectNotWorking}</span>
         <Collapse
-          title="Login Code"
+          title={i18n.manualCodeTitle}
           classNames={{
             root: styles.collapseRoot,
             content: styles.collapseContent
