@@ -287,16 +287,31 @@ export const Sync: Story = {
   }
 }
 
-export const CustomCTA: Story = {
+export const CustomCtaPlatstreak: Story = {
   args: {
     ...props,
+    eligibility: {
+      playStreak: undefined
+    },
     questType: 'PLAYSTREAK',
-    showSync: true,
-    onSyncClick: () => console.log('sync clicked'),
-    isSyncing: false,
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
-        Install/Play
+        Play/Install
+      </Button>
+    )
+  }
+}
+
+export const CustomCtaReputationalAirdrop: Story = {
+  args: {
+    ...props,
+    eligibility: {
+      reputation: undefined
+    },
+    questType: 'REPUTATIONAL-AIRDROP',
+    ctaComponent: (
+      <Button type="secondary" className={styles.installBtn}>
+        Play/Install
       </Button>
     )
   }
