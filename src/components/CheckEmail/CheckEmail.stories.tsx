@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Meta, StoryObj } from '@storybook/react'
 import { expect, fn, userEvent, within } from '@storybook/test'
+
+import { CheckmarkCircleOutline, XCircle } from '@/assets/images'
+import Loading from '@/components/Loading'
 
 import CheckEmailModal from './index'
 
@@ -58,4 +61,51 @@ export const Timeout: Story = {
     await userEvent.click(canvas.getByText(/retry in/i))
     await expect(onResend).toHaveBeenCalledOnce()
   }
+}
+
+export const WithLoadingCodeVerification: Story = {
+  args: {
+    codeInputProps: {
+      disabled: true,
+      rightSection: <Loading style={{ width: 20, height: 20 }} />
+    }
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <CheckEmailModal {...args} />
+    </div>
+  )
+}
+
+export const WithSuccessCode: Story = {
+  args: {
+    codeInputProps: {
+      rightSection: (
+        <CheckmarkCircleOutline
+          fill="var(--color-success-400)"
+          width={20}
+          height={20}
+        />
+      )
+    }
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <CheckEmailModal {...args} />
+    </div>
+  )
+}
+
+export const WithErrorCode: Story = {
+  args: {
+    codeInputProps: {
+      error: 'Invalid code',
+      rightSection: <XCircle width={20} height={20} />
+    }
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <CheckEmailModal {...args} />
+    </div>
+  )
 }
