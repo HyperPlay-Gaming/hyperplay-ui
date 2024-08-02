@@ -45,7 +45,7 @@ export default function SearchBar({
     return
   }, [input])
 
-  const clearSearch = () => {
+  const clearSearch: React.MouseEventHandler<HTMLButtonElement> = () => {
     if (input.current) {
       input.current.value = ''
       setSearchText('')
@@ -98,7 +98,7 @@ export default function SearchBar({
 
   return (
     <Popover
-      width={240}
+      width="target"
       classNames={{
         dropdown: classNames(styles.popoverDropdown, dropdownClassnames)
       }}
