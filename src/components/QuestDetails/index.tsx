@@ -1,4 +1,5 @@
 import React, { HTMLProps } from 'react'
+import Markdown from 'react-markdown'
 
 import cn from 'classnames'
 
@@ -55,6 +56,7 @@ export default function QuestDetails({
   onSecondCTAClick,
   isQuestsPage,
   showSecondCTA,
+  ctaComponent,
   loading,
   classNames,
   ctaDisabled,
@@ -81,60 +83,71 @@ export default function QuestDetails({
   let ctaClick = onClaimClick
 
   // If this is a reputation quest
-  if (
-    eligibility.reputation !== undefined &&
-    questType === 'REPUTATIONAL-AIRDROP'
-  ) {
-    if (!eligibility.reputation?.eligible) {
+  if (questType === 'REPUTATIONAL-AIRDROP') {
+    if (
+      eligibility.reputation !== undefined &&
+      !eligibility.reputation?.eligible
+    ) {
       needMoreAchievementsText = (
         <AlertText>{i18n.needMoreAchievements}</AlertText>
       )
     }
 
-    sticker = (
-      <Sticker styleType="secondary" variant="outlined">
-        {i18n.questType['REPUTATIONAL-AIRDROP']}
-      </Sticker>
-    )
+    if (questType === 'REPUTATIONAL-AIRDROP') {
+      sticker = (
+        <Sticker styleType="secondary" variant="outlined">
+          {i18n.questType['REPUTATIONAL-AIRDROP']}
+        </Sticker>
+      )
+    }
 
-    eligibilityReqComponent = (
-      <AssociatedGamesCollapse
-        opened={opened}
-        toggle={toggle}
-        i18n={{ associatedGames: i18n.associatedGames }}
-        games={eligibility.reputation.games}
-      />
-    )
+    if (
+      eligibility.reputation !== undefined &&
+      questType === 'REPUTATIONAL-AIRDROP'
+    ) {
+      eligibilityReqComponent = (
+        <AssociatedGamesCollapse
+          opened={opened}
+          toggle={toggle}
+          i18n={{ associatedGames: i18n.associatedGames }}
+          games={eligibility.reputation.games}
+        />
+      )
+    }
 
-    const steamAccountIsLinked = !!eligibility.reputation.steamAccountLinked
-    if (!isSignedIn) {
-      buttonText = i18n.signIn
-      ctaClick = onSignInClick
-    } else if (!steamAccountIsLinked) {
-      buttonText = i18n.connectSteamAccount
-      ctaClick = onConnectSteamAccountClick
-      linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
-    } else {
-      buttonText = i18n.claim
-      ctaClick = onClaimClick
+    if (
+      eligibility.reputation !== undefined &&
+      questType === 'REPUTATIONAL-AIRDROP'
+    ) {
+      const steamAccountIsLinked = !!eligibility.reputation.steamAccountLinked
+      if (!isSignedIn) {
+        buttonText = i18n.signIn
+        ctaClick = onSignInClick
+      } else if (!steamAccountIsLinked) {
+        buttonText = i18n.connectSteamAccount
+        ctaClick = onConnectSteamAccountClick
+        linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
+      } else {
+        buttonText = i18n.claim
+        ctaClick = onClaimClick
+      }
     }
     // if this is a play streak quest
-  } else if (
-    eligibility.playStreak !== undefined &&
-    questType === 'PLAYSTREAK'
-  ) {
+  } else if (questType === 'PLAYSTREAK') {
     sticker = (
       <Sticker styleType="secondary" variant="outlined">
         {i18n.questType.PLAYSTREAK}
       </Sticker>
     )
 
-    eligibilityReqComponent = (
-      <StreakProgress
-        i18n={i18n.streakProgressI18n}
-        {...eligibility.playStreak}
-      />
-    )
+    if (eligibility.playStreak !== undefined && questType === 'PLAYSTREAK') {
+      eligibilityReqComponent = (
+        <StreakProgress
+          i18n={i18n.streakProgressI18n}
+          {...eligibility.playStreak}
+        />
+      )
+    }
 
     if (!isSignedIn) {
       buttonText = i18n.signIn
@@ -193,7 +206,51 @@ export default function QuestDetails({
         {sticker}
         <div className={cn('title', styles.title)}>{title}</div>
         <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
-          {description}
+          <Markdown
+            components={{
+              a: ({ href: markdownLinkHref, children, ...link }) => (
+                <a
+                  target="_blank"
+                  href={markdownLinkHref || ''}
+                  rel="noopener noreferrer"
+                  {...link}
+                >
+                  <Button
+                    type="link"
+                    size="small"
+                    spacing="xs"
+                    className={styles.linkBtn}
+                  >
+                    {children}
+                  </Button>
+                </a>
+              )
+            }}
+            allowedElements={[
+              'p',
+              'strong',
+              'b',
+              'a',
+              'i',
+              'em',
+              'ul',
+              'ol',
+              'li',
+              'blockquote',
+              'h1',
+              'h2',
+              'h3',
+              'h4',
+              'h5',
+              'h6',
+              'pre',
+              'code',
+              'hr',
+              'br'
+            ]}
+          >
+            {description}
+          </Markdown>
         </div>
 
         {eligibilityReqComponent}
@@ -215,15 +272,19 @@ export default function QuestDetails({
         {errorAlert}
       </div>
       <div className={styles.ctaContainer}>
-        {secondCTA}
-        <Button
-          type={primaryCTAButtonType}
-          className={styles.claimButton}
-          onClick={ctaClick}
-          disabled={ctaDisabled || isMinting}
-        >
-          {buttonContents}
-        </Button>
+        {ctaComponent ?? (
+          <>
+            {secondCTA}
+            <Button
+              type={primaryCTAButtonType}
+              className={styles.claimButton}
+              onClick={ctaClick}
+              disabled={ctaDisabled || isMinting}
+            >
+              {buttonContents}
+            </Button>
+          </>
+        )}
       </div>
     </div>
   )
