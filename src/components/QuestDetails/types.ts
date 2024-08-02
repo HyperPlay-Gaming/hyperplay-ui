@@ -1,4 +1,5 @@
 import { HTMLProps } from 'react'
+import { Options as MarkdownOptions } from 'react-markdown'
 
 import { QuestTypeTranslations } from '@/common/types'
 
@@ -96,4 +97,5 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   isSignedIn: boolean
   questType: 'PLAYSTREAK' | 'REPUTATIONAL-AIRDROP'
   chainTooltips?: Record<string, string>
+  markdownOptions?: MarkdownOptions
 }

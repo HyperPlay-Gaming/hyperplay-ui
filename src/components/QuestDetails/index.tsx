@@ -1,4 +1,5 @@
 import React, { HTMLProps } from 'react'
+import Markdown, { Options as MarkdownProps } from 'react-markdown'
 
 import cn from 'classnames'
 
@@ -74,6 +75,7 @@ export default function QuestDetails({
   onSyncClick,
   isSyncing,
   chainTooltips,
+  markdownOptions,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
@@ -201,13 +203,64 @@ export default function QuestDetails({
     )
   }
 
+  const markdownComponentsProp: MarkdownProps['components'] = {
+    a: ({ href: markdownLinkHref, children, ...link }) => (
+      <a
+        target="_blank"
+        href={markdownLinkHref || ''}
+        rel="noopener noreferrer"
+        {...link}
+      >
+        <Button
+          type="link"
+          size="small"
+          spacing="xs"
+          className={styles.linkBtn}
+        >
+          {children}
+        </Button>
+      </a>
+    ),
+    ...(markdownOptions?.components || {})
+  }
+
+  const markdownAllowedElementsProp: MarkdownProps['allowedElements'] = [
+    'p',
+    'strong',
+    'b',
+    'a',
+    'i',
+    'em',
+    'ul',
+    'ol',
+    'li',
+    'blockquote',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'pre',
+    'code',
+    'hr',
+    'br',
+    ...(markdownOptions?.allowedElements || [])
+  ]
+
   let content = (
     <div className={cn(styles.rootContent, classNames?.rootContent)}>
       <div className={cn(styles.container, classNames?.content)}>
         {sticker}
         <div className={cn('title', styles.title)}>{title}</div>
         <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
-          {description}
+          <Markdown
+            {...markdownOptions}
+            components={markdownComponentsProp}
+            allowedElements={markdownAllowedElementsProp}
+          >
+            {description}
+          </Markdown>
         </div>
 
         {eligibilityReqComponent}
