@@ -16,6 +16,8 @@ import cupheadCard from '@/assets/steamCards/cupheadCard.jpg'
 import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg'
 
 import QuestDetails from '.'
+import Button from '../Button'
+import styles from './QuestDetailsStory.module.scss'
 import { QuestDetailsProps } from './types'
 
 const meta: Meta<typeof QuestDetails> = {
@@ -282,5 +284,52 @@ export const Sync: Story = {
     showSync: true,
     onSyncClick: () => console.log('sync clicked'),
     isSyncing: false
+  }
+}
+
+export const CustomCtaPlatstreak: Story = {
+  args: {
+    ...props,
+    eligibility: {
+      playStreak: undefined
+    },
+    questType: 'PLAYSTREAK',
+    ctaComponent: (
+      <Button type="secondary" className={styles.installBtn}>
+        Play/Install
+      </Button>
+    )
+  }
+}
+
+export const CustomCtaReputationalAirdrop: Story = {
+  args: {
+    ...props,
+    eligibility: {
+      reputation: undefined
+    },
+    questType: 'REPUTATIONAL-AIRDROP',
+    ctaComponent: (
+      <Button type="secondary" className={styles.installBtn}>
+        Play/Install
+      </Button>
+    )
+  }
+}
+
+export const ComponentDescription: Story = {
+  args: {
+    ...props,
+    description:
+      '**Good luck, adventurer!** For more details, visit [hyperplay.xyz](https://hyperplay.xyz)',
+    eligibility: {
+      reputation: undefined
+    },
+    questType: 'REPUTATIONAL-AIRDROP',
+    ctaComponent: (
+      <Button type="secondary" className={styles.installBtn}>
+        Play/Install
+      </Button>
+    )
   }
 }
