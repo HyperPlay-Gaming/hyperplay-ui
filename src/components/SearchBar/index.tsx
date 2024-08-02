@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react'
 
+import { Popover } from '@mantine/core'
 import classNames from 'classnames'
 
 import { CloseButton, MagnifyingGlass } from '@/assets/images'
@@ -73,31 +74,52 @@ export default function SearchBar({
     setSearchText(suggestion)
   }
 
+  let searchResults = <div>No results</div>
+  if (gameList.length > 0) {
+    searchResults = (
+      <>
+        {gameList.map((el) => (
+          <button
+            onClick={() => handleOnClickSuggestion(el)}
+            key={el}
+            className={styles.searchResult}
+          >
+            {el}
+          </button>
+        ))}
+      </>
+    )
+  }
+
   return (
-    <div className={classNames(styles.searchBar, containerClass)}>
-      <button className={styles.searchButton}>
-        <MagnifyingGlass fill="var(--color-neutral-100)" />
-      </button>
-      <input
-        ref={input}
-        type="text"
-        placeholder={placeholder}
-        {...inputProps}
-      />
-      {showClearButton && (
-        <button className={styles.clearButton} onClick={clearSearch}>
-          <CloseButton fill="var(--color-neutral-100)" onClick={clearSearch} />
-        </button>
-      )}
-      {gameList.length > 0 && (
-        <ul className={styles.autoComplete}>
-          {gameList.map((el) => (
-            <li onClick={() => handleOnClickSuggestion(el)} key={el}>
-              {el}{' '}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <Popover
+      width={240}
+      classNames={{ dropdown: styles.popoverDropdown }}
+      unstyled
+    >
+      <Popover.Target>
+        <div className={classNames(styles.searchBar, containerClass)}>
+          <button className={styles.searchButton}>
+            <MagnifyingGlass fill="var(--color-neutral-400)" />
+          </button>
+          <input
+            ref={input}
+            type="text"
+            placeholder={placeholder}
+            {...inputProps}
+            className={classNames('body-sm', inputProps?.className)}
+          />
+          {showClearButton && (
+            <button className={styles.clearButton} onClick={clearSearch}>
+              <CloseButton
+                fill="var(--color-neutral-400)"
+                onClick={clearSearch}
+              />
+            </button>
+          )}
+        </div>
+      </Popover.Target>
+      <Popover.Dropdown>{searchResults}</Popover.Dropdown>
+    </Popover>
   )
 }
