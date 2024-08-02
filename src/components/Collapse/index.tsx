@@ -78,7 +78,11 @@ const Collapse = ({
     >
       <button
         {...props}
-        className={cn(styles.toggleButton, classNames?.toggleButton)}
+        className={cn(
+          styles.toggleButton,
+          classNames?.toggleButton,
+          isOpen && styles.buttonOpen
+        )}
         onClick={handleToggle}
         onKeyDown={handleKeyDown}
         tabIndex={0}
