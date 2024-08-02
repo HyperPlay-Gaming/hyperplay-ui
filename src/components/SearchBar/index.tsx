@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { Popover } from '@mantine/core'
 import classNames from 'classnames'
@@ -54,14 +54,7 @@ export default function SearchBar({
   }
 
   const showClearButton = searchText.length > 0
-  const gameList = useMemo(() => {
-    if (suggestions && searchText.length > 0) {
-      return suggestions.filter((el) =>
-        el.toLowerCase().includes(searchText.toLowerCase())
-      )
-    }
-    return []
-  }, [suggestions, searchText])
+  const gameList = suggestions ?? []
 
   const handleOnClickSuggestion = (suggestion: string) => {
     if (onClickSuggestion) {
@@ -118,10 +111,7 @@ export default function SearchBar({
           />
           {showClearButton && (
             <button className={styles.clearButton} onClick={clearSearch}>
-              <CloseButton
-                fill="var(--color-neutral-400)"
-                onClick={clearSearch}
-              />
+              <CloseButton fill="var(--color-neutral-400)" />
             </button>
           )}
         </div>
