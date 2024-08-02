@@ -117,6 +117,7 @@ export function QuestsSummaryTable({
         searchText={searchText}
         setSearchText={setSearchText}
         i18n={{ placeholder: i18n.searchPlaceholder }}
+        containerClass={styles.searchBarRoot}
       />
     )
   }
