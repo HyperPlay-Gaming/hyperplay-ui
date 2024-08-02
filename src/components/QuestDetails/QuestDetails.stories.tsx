@@ -317,7 +317,7 @@ export const CustomCtaReputationalAirdrop: Story = {
   }
 }
 
-export const ComponentDescription: Story = {
+export const MarkdownDescription: Story = {
   args: {
     ...props,
     description:
@@ -331,5 +331,29 @@ export const ComponentDescription: Story = {
         Play/Install
       </Button>
     )
+  }
+}
+
+export const MarkdownDescriptionCustomStyle: Story = {
+  args: {
+    ...props,
+    description:
+      '**Good luck, adventurer!** For more details, visit [hyperplay.xyz](https://hyperplay.xyz)',
+    eligibility: {
+      reputation: undefined
+    },
+    questType: 'REPUTATIONAL-AIRDROP',
+    ctaComponent: (
+      <Button type="secondary" className={styles.installBtn}>
+        Play/Install
+      </Button>
+    ),
+    markdownOptions: {
+      components: {
+        strong: ({ children }) => (
+          <strong className={styles.strongText}>{children}</strong>
+        )
+      }
+    }
   }
 }
