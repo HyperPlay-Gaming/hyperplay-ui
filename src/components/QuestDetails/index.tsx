@@ -1,5 +1,4 @@
 import React, { HTMLProps } from 'react'
-import Markdown from 'react-markdown'
 
 import cn from 'classnames'
 
@@ -206,51 +205,7 @@ export default function QuestDetails({
         {sticker}
         <div className={cn('title', styles.title)}>{title}</div>
         <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
-          <Markdown
-            components={{
-              a: ({ href: markdownLinkHref, children, ...link }) => (
-                <a
-                  target="_blank"
-                  href={markdownLinkHref || ''}
-                  rel="noopener noreferrer"
-                  {...link}
-                >
-                  <Button
-                    type="link"
-                    size="small"
-                    spacing="xs"
-                    className={styles.linkBtn}
-                  >
-                    {children}
-                  </Button>
-                </a>
-              )
-            }}
-            allowedElements={[
-              'p',
-              'strong',
-              'b',
-              'a',
-              'i',
-              'em',
-              'ul',
-              'ol',
-              'li',
-              'blockquote',
-              'h1',
-              'h2',
-              'h3',
-              'h4',
-              'h5',
-              'h6',
-              'pre',
-              'code',
-              'hr',
-              'br'
-            ]}
-          >
-            {description}
-          </Markdown>
+          {description}
         </div>
 
         {eligibilityReqComponent}
