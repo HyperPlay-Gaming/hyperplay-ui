@@ -27,6 +27,7 @@ export interface CheckEmailProps extends HTMLProps<HTMLDivElement> {
     seconds: string
     reEnterEmail: string
     manualCodeTitle: string
+    inputPlaceHolder: string
   }
 }
 
@@ -47,7 +48,8 @@ const CheckEmail = ({
     retryIn: 'Retry in',
     seconds: 'seconds',
     reEnterEmail: 'change email',
-    manualCodeTitle: 'Login Code'
+    manualCodeTitle: 'Login Code',
+    inputPlaceHolder: 'Paste login code'
   },
   ...props
 }: CheckEmailProps) => {
@@ -101,7 +103,11 @@ const CheckEmail = ({
             content: styles.collapseContent
           }}
         >
-          <TextInput className={styles.input} {...codeInputProps} />
+          <TextInput
+            className={styles.input}
+            placeholder={i18n.inputPlaceHolder}
+            {...codeInputProps}
+          />
         </Collapse>
       </div>
       <div className={styles.linkContainer}>
