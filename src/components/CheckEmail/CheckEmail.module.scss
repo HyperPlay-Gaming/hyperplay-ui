@@ -1,12 +1,13 @@
 @import '../../styles/designSystem/spacing';
 @import '../../styles/designSystem/colors';
+@import '../../styles/designSystem/typography';
 
 .root {
   max-width: 600px;
 }
 
 .emailRoundedIcon {
-  background: var(--color-primary-500);
+  background: var(--color-gradient-01);
 }
 
 .icon {
@@ -27,7 +28,7 @@
 
 .buttonLink {
   width: fit-content;
-  color: var(--color-secondary-300);
+  color: var(--color-primary-200);
   padding: 0 !important;
 }
 
@@ -46,6 +47,33 @@
 }
 
 .reEnter {
-  margin-top: 24px;
-  margin-bottom: 24px;
+  @extend .body-sm;
+  padding: 0;
+}
+
+.copyCodeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  align-self: stretch;
+}
+
+.collapseRoot {
+  padding: var(--space-md) !important;
+}
+
+.collapseContent {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  align-self: stretch;
+}
+
+.input {
+  flex: 1;
+}
+
+.submitButton {
+  align-self: start;
 }
