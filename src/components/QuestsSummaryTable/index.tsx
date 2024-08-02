@@ -10,6 +10,7 @@ import MessageModal, {
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import Loading from '../Loading'
+import SearchBar from '../SearchBar'
 import { Tabs, getTabsClassNames } from '../Tabs'
 import styles from './index.module.scss'
 
@@ -40,6 +41,11 @@ export interface QuestsSummaryTableProps
   classNames?: {
     title?: string
   }
+  searchText?: string
+  setSearchText?: (text: string) => void
+  i18n?: {
+    searchPlaceholder: string
+  }
 }
 
 export function QuestsSummaryTable({
@@ -57,6 +63,9 @@ export function QuestsSummaryTable({
   activeTab,
   pageTitle,
   classNames,
+  searchText,
+  setSearchText,
+  i18n = { searchPlaceholder: 'Search Quest' },
   ...rest
 }: QuestsSummaryTableProps) {
   const fetchMoreOnBottomReached: React.UIEventHandler<HTMLDivElement> = (
@@ -101,6 +110,17 @@ export function QuestsSummaryTable({
     content = gamesComponent
   }
 
+  let searchBar = null
+  if (searchText !== undefined && setSearchText !== undefined) {
+    searchBar = (
+      <SearchBar
+        searchText={searchText}
+        setSearchText={setSearchText}
+        i18n={{ placeholder: i18n.searchPlaceholder }}
+      />
+    )
+  }
+
   return (
     <div className={cn(styles.container, classNameProp)} {...rest}>
       <h5 className={cn(styles.title, classNames?.title)}>{pageTitle}</h5>
@@ -138,6 +158,7 @@ export function QuestsSummaryTable({
               />
             </div>
           </div>
+          {searchBar}
         </Tabs>
       </div>
       <div className={styles.games} onScroll={fetchMoreOnBottomReached}>
