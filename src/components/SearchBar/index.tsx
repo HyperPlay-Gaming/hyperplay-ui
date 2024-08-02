@@ -74,7 +74,7 @@ export default function SearchBar({
     setSearchText(suggestion)
   }
 
-  let searchResults = <div>No results</div>
+  let searchResults = null
   if (gameList.length > 0) {
     searchResults = (
       <>
@@ -89,12 +89,19 @@ export default function SearchBar({
         ))}
       </>
     )
+  } else if (searchText) {
+    searchResults = <div>No results</div>
   }
+
+  const dropdownClassnames: Record<string, boolean> = {}
+  dropdownClassnames[styles.hideDropdown] = searchResults === null
 
   return (
     <Popover
       width={240}
-      classNames={{ dropdown: styles.popoverDropdown }}
+      classNames={{
+        dropdown: classNames(styles.popoverDropdown, dropdownClassnames)
+      }}
       unstyled
     >
       <Popover.Target>
