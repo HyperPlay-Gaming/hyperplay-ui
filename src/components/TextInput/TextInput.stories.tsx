@@ -36,7 +36,3 @@ export const MediumSize = () => (
 export const LargeSize = () => (
   <TextInput size="large" placeholder="Enter your email" />
 )
-
-export const Disabled = () => (
-  <TextInput disabled placeholder="Enter your email" />
-)

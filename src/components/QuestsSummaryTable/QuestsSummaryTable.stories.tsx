@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
 import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url'
@@ -94,8 +96,8 @@ const props: QuestsSummaryTableProps = {
     { label: 'Completed', value: 'COMPLETED' }
   ],
   messageModalProps: {
-    title: 'msg modal title',
-    message: 'msg modal msg'
+    title: 'No Quests Found.',
+    message: 'There were no quests found.'
   }
 }
 
@@ -109,4 +111,28 @@ export const Overflow: Story = {
 
 export const NoTabs: Story = {
   args: { ...props, tabs: [] }
+}
+
+export const SearchDemo: Story = {
+  args: { ...props, tabs: [] },
+  render: (args) => {
+    const [searchText, setSearchText] = useState('')
+    const gamesFiltered = games.filter((val) =>
+      val.title?.toLowerCase().startsWith(searchText.toLowerCase())
+    )
+    const gameElementsFiltered = gamesFiltered.map(({ id, ...rest }) => (
+      <QuestCard key={id} {...rest} />
+    ))
+    return (
+      <QuestsSummaryTable
+        {...args}
+        games={gameElementsFiltered}
+        setSearchText={setSearchText}
+        searchText={searchText}
+        searchSuggestions={gamesFiltered
+          .filter((val) => !!val.title)
+          .map((val) => val.title!)}
+      />
+    )
+  }
 }
