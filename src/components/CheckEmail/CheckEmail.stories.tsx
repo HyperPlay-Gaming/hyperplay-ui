@@ -32,14 +32,10 @@ export const Default: Story = {
     const onResend = args.onResend
     const onReEnterEmail = args.onReEnterEmail
     const canvas = within(canvasElement)
-    await userEvent.click(
-      canvas.getByRole('button', { name: /click to resend/i })
-    )
+    await userEvent.click(canvas.getByRole('button', { name: /resend email/i }))
     await expect(onResend).toHaveBeenCalled()
     await expect(canvas.getByText(/retry in/i)).toBeInTheDocument()
-    await userEvent.click(
-      canvas.getByRole('button', { name: /Re-enter email your email/i })
-    )
+    await userEvent.click(canvas.getByRole('button', { name: /change email/i }))
     await expect(onReEnterEmail).toHaveBeenCalled()
   }
 }
