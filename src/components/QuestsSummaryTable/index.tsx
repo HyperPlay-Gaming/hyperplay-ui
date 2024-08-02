@@ -43,6 +43,7 @@ export interface QuestsSummaryTableProps
   }
   searchText?: string
   setSearchText?: (text: string) => void
+  searchSuggestions?: string[]
   i18n?: {
     searchPlaceholder: string
   }
@@ -65,6 +66,7 @@ export function QuestsSummaryTable({
   classNames,
   searchText,
   setSearchText,
+  searchSuggestions,
   i18n = { searchPlaceholder: 'Search Quest' },
   ...rest
 }: QuestsSummaryTableProps) {
@@ -118,6 +120,7 @@ export function QuestsSummaryTable({
         setSearchText={setSearchText}
         i18n={{ placeholder: i18n.searchPlaceholder }}
         containerClass={styles.searchBarRoot}
+        suggestions={searchSuggestions}
       />
     )
   }

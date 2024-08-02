@@ -117,17 +117,21 @@ export const SearchDemo: Story = {
   args: { ...props, tabs: [] },
   render: (args) => {
     const [searchText, setSearchText] = useState('')
-    const gameElementsFiltered = games
-      .filter((val) =>
-        val.title?.toLowerCase().startsWith(searchText.toLowerCase())
-      )
-      .map(({ id, ...rest }) => <QuestCard key={id} {...rest} />)
+    const gamesFiltered = games.filter((val) =>
+      val.title?.toLowerCase().startsWith(searchText.toLowerCase())
+    )
+    const gameElementsFiltered = gamesFiltered.map(({ id, ...rest }) => (
+      <QuestCard key={id} {...rest} />
+    ))
     return (
       <QuestsSummaryTable
         {...args}
         games={gameElementsFiltered}
         setSearchText={setSearchText}
         searchText={searchText}
+        searchSuggestions={gamesFiltered
+          .filter((val) => !!val.title)
+          .map((val) => val.title!)}
       />
     )
   }
