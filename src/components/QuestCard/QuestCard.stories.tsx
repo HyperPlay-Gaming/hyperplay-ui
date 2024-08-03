@@ -1,16 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { expect } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/react'
+import { expect } from '@storybook/test'
 
+import questCardV2Image from '@/assets/banners/QuestCardV2Image.png?url'
+import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url'
 
-
-import questCardV2Image from '@/assets/banners/QuestCardV2Image.png?url';
-import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url';
-
-
-
-import { QuestCard, QuestCardProps } from '.';
-import stlyes from './QuestCardStory.module.scss';
-
+import { QuestCard, QuestCardProps } from '.'
+import stlyes from './QuestCardStory.module.scss'
 
 const meta: Meta<typeof QuestCard> = {
   title: 'Quests/QuestCard',
