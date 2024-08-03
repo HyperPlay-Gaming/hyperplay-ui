@@ -1,10 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
+import { expect } from '@storybook/test';
 
-import questCardV2Image from '@/assets/banners/QuestCardV2Image.png?url'
-import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url'
 
-import { QuestCard, QuestCardProps } from '.'
-import stlyes from './QuestCardStory.module.scss'
+
+import questCardV2Image from '@/assets/banners/QuestCardV2Image.png?url';
+import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url';
+
+
+
+import { QuestCard, QuestCardProps } from '.';
+import stlyes from './QuestCardStory.module.scss';
+
 
 const meta: Meta<typeof QuestCard> = {
   title: 'Quests/QuestCard',
@@ -93,5 +99,25 @@ export const WithoutGameTitleAndDescriptipn: Story = {
     classNames: {
       root: stlyes.root
     }
+  }
+}
+
+export const CardWithDivProps: Story = {
+  args: {
+    image: questCardV2Image,
+    rewardImage: cupheadCard,
+    gameTitle: 'Game Title',
+    description: 'Quest Name',
+    currenyAmount: '+200',
+    currencyName: 'G7 Credits',
+    classNames: {
+      root: stlyes.root
+    },
+    id: 'quest-id-554'
+  },
+  play: async ({ canvasElement, args }) => {
+    const firstDiv = canvasElement.querySelector('.gradientShadow')
+
+    expect(firstDiv).toHaveAttribute('id', args.id)
   }
 }

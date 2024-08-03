@@ -1,7 +1,10 @@
-import cn from 'classnames'
+import cn from 'classnames';
 
-import { CardGeneric, CardGenericProps } from '../CardGeneric'
-import styles from './index.module.scss'
+
+
+import { CardGeneric, CardGenericProps } from '../CardGeneric';
+import styles from './index.module.scss';
+
 
 export interface QuestCardProps extends CardGenericProps {
   title?: string
@@ -44,7 +47,8 @@ export function QuestCard({
   classNames,
   selected,
   ...rest
-}: QuestCardProps) {
+}: QuestCardProps &
+  Omit<React.ComponentPropsWithoutRef<'div'>, keyof CardGenericProps>) {
   const classes: Record<string, boolean> = {}
   classes[styles.selected] = !!selected
   return (
