@@ -65,6 +65,7 @@ $bannerCarouselWidth: 747px;
   min-width: 0;
   max-width: 100%;
   gap: 40px;
+  overflow: hidden;
 
   @include variables.for-desktop-up {
     align-items: flex-start;
