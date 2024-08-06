@@ -1,15 +1,20 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react';
 
-import CreditsCreditsImage from '@/assets/banners/CreditsCredits.png?url'
-import TreasureChstImage from '@/assets/banners/TreasureChst.png?url'
 
-import { QuestsBanner, QuestsBannerProps } from '.'
+
+import CreditsCreditsImage from '@/assets/banners/CreditsCredits.png?url';
+import TreasureChestImage from '@/assets/banners/TreasureChest.png?url'
+
+
+
+import { QuestsBanner, QuestsBannerProps } from '.';
+
 
 const props: QuestsBannerProps = {
   classNames: {},
   list: [
     {
-      bannerImageUrl: TreasureChstImage,
+      bannerImageUrl: TreasureChestImage,
       title: 'Introducing Quests',
       description:
         'You can now earn rewards for completing Quests on HyperPlay.',
@@ -26,7 +31,6 @@ const props: QuestsBannerProps = {
     }
   ],
   totalPages: 2,
-  onCloseButtonTap: () => console.log('Close button clicked!'),
   onPageChangeTap: (pageIndex: number) =>
     console.log(`Page changed to ${pageIndex}`)
 }
@@ -35,15 +39,6 @@ const meta: Meta<typeof QuestsBanner> = {
   title: 'Store/QuestsBanner',
   component: QuestsBanner,
   args: props,
-  render: (args) => (
-    <div
-      style={{
-        padding: '3rem 4rem'
-      }}
-    >
-      <QuestsBanner {...args} />
-    </div>
-  )
 }
 
 export default meta
@@ -57,16 +52,6 @@ export const Default: Story = {
       defaultViewport: 'desktop'
     }
   },
-  render: (args) => (
-    <div
-      style={{
-        width: 'max-content',
-        padding: '3rem 4rem'
-      }}
-    >
-      <QuestsBanner {...args} />
-    </div>
-  )
 }
 
 export const Smartphone: Story = {

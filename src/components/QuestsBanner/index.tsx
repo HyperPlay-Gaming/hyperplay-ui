@@ -5,7 +5,7 @@ import cn from 'classnames'
 import Autoplay, { AutoplayType } from 'embla-carousel-autoplay'
 import { EmblaCarouselType } from 'embla-carousel-react'
 
-import { CloseModalIcon, Line } from '@/assets/images'
+import { Line } from '@/assets/images'
 import Button from '@/components/Button'
 
 import styles from './QuestsBanner.module.scss'
@@ -26,7 +26,6 @@ export interface QuestsBannerProps {
   classNames?: {
     root?: string
     content?: string
-    closeButton?: string
     slideContainer?: string
     slide?: string
     slideItem?: string
@@ -46,7 +45,6 @@ export interface QuestsBannerProps {
   canAutoRotate?: boolean
   autoplayDelayInMs?: number
   carousel?: QuestsBannerCarouselWidth
-  onCloseButtonTap: () => void
   onPageChangeTap: (pageIndex: number) => void
 }
 
@@ -57,7 +55,6 @@ export const QuestsBanner = ({
   canAutoRotate = true,
   autoplayDelayInMs = 6000,
   carousel,
-  onCloseButtonTap,
   onPageChangeTap
 }: QuestsBannerProps) => {
   const [currentPage, setCurrentPage] = useState(0)
@@ -91,11 +88,6 @@ export const QuestsBanner = ({
         } as React.CSSProperties
       }
     >
-      <CloseModalIcon
-        className={cn(styles.closeButton, classNames?.closeButton)}
-        onClick={onCloseButtonTap}
-      />
-      <div className={cn(styles.contentLayout)}>
         <div
           className={cn(
             styles.bannerImageContainer,
@@ -204,7 +196,6 @@ export const QuestsBanner = ({
             ))}
           </div>
         </div>
-      </div>
     </div>
   )
 }
