@@ -16,14 +16,14 @@ $bannerCarouselWidth: 747px;
   background: var(--color-neutral-700);
   flex-shrink: 0;
   align-self: stretch;
-  padding: var(--space-2lg);
+  padding: var(--space-2lg-fixed);
 
   @include variables.for-desktop-up {
     flex-direction: row;
     gap: 40px;
     height: 250px;
     max-height: 250px;
-    padding: var(--space-xl) 120px;
+    padding: var(--space-xl-fixed) 120px;
   }
 }
 
