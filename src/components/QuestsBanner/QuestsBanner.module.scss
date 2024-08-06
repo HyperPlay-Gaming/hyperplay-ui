@@ -17,7 +17,6 @@ $bannerCarouselWidth: 747px;
   flex-shrink: 0;
   align-self: stretch;
   padding: var(--space-2lg);
-  
 
   @include variables.for-desktop-up {
     flex-direction: row;
