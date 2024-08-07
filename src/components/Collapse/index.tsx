@@ -26,6 +26,7 @@ export interface CollapseProps
   title: string
   subtitle?: string
   isOpen?: boolean
+  defaultOpen?: boolean
   onToggle?: (isNowOpen: boolean) => boolean | void
   children: React.ReactNode
   classNames?: CollapseClassNamesProp
@@ -34,13 +35,14 @@ export interface CollapseProps
 const Collapse = ({
   title,
   subtitle,
+  defaultOpen = false,
   isOpen: externalIsOpen,
   onToggle,
   classNames,
   children,
   ...props
 }: CollapseProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(defaultOpen)
 
   useEffect(() => {
     if (externalIsOpen !== undefined) {

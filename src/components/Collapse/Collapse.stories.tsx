@@ -27,6 +27,10 @@ export const Default: Story = {
   args: { ...props }
 }
 
+export const DefaultOpen: Story = {
+  args: { ...props, defaultOpen: true }
+}
+
 export const SubtitleCollapse: Story = {
   args: { ...props },
   render: (props) => (
