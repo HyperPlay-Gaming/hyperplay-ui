@@ -53,6 +53,10 @@
     border: none;
     outline: none;
   }
+
+  &:disabled {
+    background-color: inherit;
+  }
 }
 
 .label {
