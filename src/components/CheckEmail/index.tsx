@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import { HyperPlayLogoIcon } from '@/assets/images'
 import Button from '@/components/Button'
-import Collapse, { CollapseProps } from '@/components/Collapse'
+import Collapse from '@/components/Collapse'
 import Modal from '@/components/Modal/Modal'
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
