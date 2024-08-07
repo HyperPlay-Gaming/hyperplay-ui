@@ -108,6 +108,7 @@ export default function SearchBar({
             placeholder={placeholder}
             {...inputProps}
             className={classNames('body-sm', inputProps?.className)}
+            value={searchText}
           />
           {showClearButton && (
             <button className={styles.clearButton} onClick={clearSearch}>
