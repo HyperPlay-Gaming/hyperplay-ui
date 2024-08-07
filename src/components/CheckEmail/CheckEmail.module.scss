@@ -60,7 +60,8 @@
 }
 
 .collapseRoot {
-  padding: var(--space-md) !important;
+  padding-top: var(--space-xs);
+  padding-bottom: var(--space-xs);
 }
 
 .collapseContent {
@@ -68,6 +69,8 @@
   align-items: center;
   gap: var(--space-xs);
   align-self: stretch;
+  padding-right: var(--space-md);
+  padding-left: var(--space-md);
 }
 
 .input {
