@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import { HyperPlayLogoIcon } from '@/assets/images'
 import Button from '@/components/Button'
-import Collapse from '@/components/Collapse'
+import Collapse, { CollapseProps } from '@/components/Collapse'
 import Modal from '@/components/Modal/Modal'
 import TextInput, { TextInputProps } from '@/components/TextInput'
 
@@ -16,6 +16,7 @@ export interface CheckEmailProps extends HTMLProps<HTMLDivElement> {
   onResend: () => void
   onReEnterEmail: () => void
   codeInputProps?: TextInputProps
+  defaultManualOtpOpen?: boolean
   i18n?: {
     title: string
     subtitle: string
@@ -37,6 +38,7 @@ const CheckEmail = ({
   onResend,
   onReEnterEmail,
   codeInputProps,
+  defaultManualOtpOpen,
   onClose,
   i18n = {
     title: 'Check your email',
@@ -102,6 +104,7 @@ const CheckEmail = ({
             root: styles.collapseRoot,
             content: styles.collapseContent
           }}
+          defaultOpen={defaultManualOtpOpen}
         >
           <TextInput
             className={styles.input}
