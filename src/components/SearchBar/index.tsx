@@ -34,13 +34,6 @@ export default function SearchBar({
     if (input.current) {
       const element = input.current
       element.value = searchText
-    }
-  }, [searchText])
-
-  useEffect(() => {
-    if (input.current) {
-      const element = input.current
-      element.value = searchText
       const handler = () => {
         setSearchText(element.value)
       }
@@ -115,6 +108,7 @@ export default function SearchBar({
             placeholder={placeholder}
             {...inputProps}
             className={classNames('body-sm', inputProps?.className)}
+            value={searchText}
           />
           {showClearButton && (
             <button className={styles.clearButton} onClick={clearSearch}>
