@@ -9,18 +9,18 @@ const props: QuestsBannerProps = {
   classNames: {},
   list: [
     {
+      bannerImageUrl: CreditsCreditsImage,
+      title: 'Win Game7 Credits',
+      description:
+        'Dive into HyperPlay’s top games with 7-day streak challenges. Each activity encourages you to engage with a different game, showcasing the best of web3 gaming. Your playtime matters!',
+      buttonText: 'View G7 Quests',
+      onButtonTap: () => alert('View Quests clicked!')
+    },
+    {
       bannerImageUrl: TreasureChestImage,
       title: 'Introducing Quests',
       description:
         'You can now earn rewards for completing Quests on HyperPlay.',
-      buttonText: 'View Quests',
-      onButtonTap: () => alert('View Quests clicked!')
-    },
-    {
-      bannerImageUrl: CreditsCreditsImage,
-      title: 'Introducing Game7 Credits',
-      description:
-        'You can now earn G7 Credits for completing Quests on HyperPlay.',
       buttonText: 'View Quests',
       onButtonTap: () => alert('View Quests clicked!')
     }
