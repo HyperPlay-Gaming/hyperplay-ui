@@ -34,6 +34,13 @@ export default function SearchBar({
     if (input.current) {
       const element = input.current
       element.value = searchText
+    }
+  }, [searchText])
+
+  useEffect(() => {
+    if (input.current) {
+      const element = input.current
+      element.value = searchText
       const handler = () => {
         setSearchText(element.value)
       }
