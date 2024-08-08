@@ -51,7 +51,7 @@ $bannerCarouselWidth: 747px;
   flex: 1;
   min-width: 0;
   max-width: 100%;
-  gap: 24px;
+  gap: var(--space-2lg);
   overflow: hidden;
 
   @include variables.for-desktop-up {
@@ -76,7 +76,7 @@ $bannerCarouselWidth: 747px;
   justify-content: space-between;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: var(--space-2lg);
   position: relative;
 }
 
