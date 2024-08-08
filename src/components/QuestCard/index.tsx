@@ -3,8 +3,10 @@ import cn from 'classnames'
 import { CardGeneric, CardGenericProps } from '../CardGeneric'
 import styles from './index.module.scss'
 
-export interface QuestCardProps extends CardGenericProps {
+export interface QuestCardProps
+  extends Omit<React.ComponentPropsWithoutRef<'div'>, keyof CardGenericProps> {
   title?: string
+  image: string
   description?: string
   questType?: string
   gameTitle?: string
@@ -40,17 +42,14 @@ export function QuestCard({
   rewardImage,
   currenyAmount,
   currencyName,
-  className,
   classNames,
   selected,
   ...rest
-}: QuestCardProps &
-  Omit<React.ComponentPropsWithoutRef<'div'>, keyof CardGenericProps>) {
+}: QuestCardProps) {
   const classes: Record<string, boolean> = {}
   classes[styles.selected] = !!selected
   return (
     <CardGeneric
-      className={cn(styles.card, className)}
       genericClassNames={{
         body: cn(styles.body, classes),
         image: cn(styles.image, classNames?.image),
