@@ -143,9 +143,7 @@ export default function AchievementCard({
 
   return (
     <CardGeneric
-      classNames={{
-        root: rest.className
-      }}
+      className={cn(styles.card, rest.className)}
       image={image}
       imageProps={imageProps}
       i18n={{ label: i18n.newAchievementLabel }}

@@ -1,7 +1,10 @@
-import cn from 'classnames'
+import cn from 'classnames';
 
-import { CardGeneric, CardGenericProps } from '../CardGeneric'
-import styles from './index.module.scss'
+
+
+import { CardGeneric, CardGenericProps } from '../CardGeneric';
+import styles from './index.module.scss';
+
 
 export interface QuestCardProps
   extends Omit<React.ComponentPropsWithoutRef<'div'>, keyof CardGenericProps> {
@@ -15,6 +18,7 @@ export interface QuestCardProps
   currencyName?: string
   rewardImage?: string
   selected?: boolean
+  className?: string | undefined
   classNames?: {
     root?: string
     image?: string
@@ -43,6 +47,7 @@ export function QuestCard({
   currenyAmount,
   currencyName,
   classNames,
+  className,
   selected,
   ...rest
 }: QuestCardProps) {
@@ -50,6 +55,7 @@ export function QuestCard({
   classes[styles.selected] = !!selected
   return (
     <CardGeneric
+      className={cn(styles.card, className)}
       genericClassNames={{
         body: cn(styles.body, classes),
         image: cn(styles.image, classNames?.image),
