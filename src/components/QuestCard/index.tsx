@@ -1,10 +1,7 @@
-import cn from 'classnames';
+import cn from 'classnames'
 
-
-
-import { CardGeneric, CardGenericProps } from '../CardGeneric';
-import styles from './index.module.scss';
-
+import { CardGeneric, CardGenericProps } from '../CardGeneric'
+import styles from './index.module.scss'
 
 export interface QuestCardProps
   extends Omit<React.ComponentPropsWithoutRef<'div'>, keyof CardGenericProps> {
