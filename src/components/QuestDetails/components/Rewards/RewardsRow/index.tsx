@@ -14,6 +14,8 @@ export interface RewardsRowProps {
   tooltip?: string
   i18n: {
     claimsLeft: string
+    viewReward: string
+    claimed: string
   }
 }
 
@@ -26,11 +28,7 @@ export function RewardsRow({
   let rewardsContent = null
   if (rewards.length > 0) {
     rewardsContent = rewards.map((reward_i) => (
-      <Reward
-        reward={reward_i}
-        key={reward_i.title}
-        i18n={{ claimsLeft: i18n.claimsLeft }}
-      />
+      <Reward reward={reward_i} key={reward_i.title} i18n={i18n} />
     ))
   }
 

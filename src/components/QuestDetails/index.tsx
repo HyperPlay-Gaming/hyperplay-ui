@@ -46,7 +46,9 @@ export default function QuestDetails({
       PLAYSTREAK: 'Play Streak'
     },
     sync: 'Sync',
-    claimsLeft: 'Claims left'
+    claimsLeft: 'Claims left',
+    viewReward: 'View Reward',
+    claimed: 'Claimed'
   },
   onClaimClick,
   onSignInClick,
@@ -217,7 +219,9 @@ export default function QuestDetails({
           rewards={rewards}
           i18n={{
             rewards: i18n.rewards,
-            claimsLeft: i18n.claimsLeft ?? 'Claims left'
+            claimsLeft: i18n.claimsLeft ?? 'Claims left',
+            viewReward: i18n.viewReward ?? 'View Reward',
+            claimed: i18n.claimed ?? 'Claimed'
           }}
           loading={rewardsLoading}
           numClaimed={numClaimed}

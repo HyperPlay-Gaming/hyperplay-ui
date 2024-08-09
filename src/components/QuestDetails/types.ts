@@ -34,6 +34,8 @@ export interface QuestReward {
   // this will likely be a BigNumber so we will convert to float before passing as param
   numToClaim?: string
   chainName: string
+  isClaimed?: boolean
+  marketplaceUrl?: string
 }
 
 export interface QuestDetailsTranslations {
@@ -50,6 +52,8 @@ export interface QuestDetailsTranslations {
   play?: string
   sync?: string
   claimsLeft?: string
+  viewReward?: string
+  claimed?: string
 }
 
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {

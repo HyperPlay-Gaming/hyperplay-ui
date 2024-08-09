@@ -8,16 +8,20 @@ import { QuestReward } from '../../types'
 import { RewardsRow } from './RewardsRow'
 import styles from './index.module.scss'
 
+export const defaultI18n = {
+  rewards: 'Claimable Rewards',
+  claimsLeft: 'Claims left',
+  viewReward: 'View Reward',
+  claimed: 'Claimed'
+}
+
 export interface RewardsProps {
   rewards: QuestReward[]
   loading?: boolean
   numClaimed?: number
   numTotal?: number
   chainTooltips?: Record<string, string>
-  i18n?: {
-    rewards: string
-    claimsLeft: string
-  }
+  i18n?: typeof defaultI18n
 }
 
 export default function Rewards({
@@ -26,7 +30,7 @@ export default function Rewards({
   numClaimed,
   numTotal,
   chainTooltips,
-  i18n = { rewards: 'Claimable Rewards', claimsLeft: 'Claims left' }
+  i18n = defaultI18n
 }: RewardsProps) {
   // create arrays by category for rewards
   const rewardsByCategory: Record<string, QuestReward[]> = {}
@@ -46,7 +50,11 @@ export default function Rewards({
         category={rewardCategory}
         key={rewardCategory}
         tooltip={chainTooltips?.[rewardCategory]}
-        i18n={{ claimsLeft: i18n.claimsLeft }}
+        i18n={{
+          claimsLeft: i18n.claimsLeft,
+          viewReward: i18n.viewReward,
+          claimed: i18n.claimed
+        }}
       />
     ))
   } else if (loading) {
