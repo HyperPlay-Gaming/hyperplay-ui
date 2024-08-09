@@ -3,8 +3,10 @@ import cn from 'classnames'
 import { CardGeneric, CardGenericProps } from '../CardGeneric'
 import styles from './index.module.scss'
 
-export interface QuestCardProps extends CardGenericProps {
+export interface QuestCardProps
+  extends Omit<React.ComponentPropsWithoutRef<'div'>, keyof CardGenericProps> {
   title?: string
+  image: string
   description?: string
   questType?: string
   gameTitle?: string
@@ -13,6 +15,7 @@ export interface QuestCardProps extends CardGenericProps {
   currencyName?: string
   rewardImage?: string
   selected?: boolean
+  className?: string | undefined
   classNames?: {
     root?: string
     image?: string
@@ -40,8 +43,8 @@ export function QuestCard({
   rewardImage,
   currenyAmount,
   currencyName,
-  className,
   classNames,
+  className,
   selected,
   ...rest
 }: QuestCardProps) {
