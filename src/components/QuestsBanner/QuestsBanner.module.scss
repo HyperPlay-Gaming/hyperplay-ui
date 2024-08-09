@@ -132,8 +132,12 @@ $bannerCarouselWidth: 747px;
   border-radius: var(--space-md);
 
   @include variables.for-desktop-up {
+    object-position: center center;
+    object-fit: fill;
     height: 100%;
-    max-height: 100%;
+    max-height: unset;
+    flex: 1;
+    aspect-ratio: 100 / 105;
   }
 }
 
@@ -149,7 +153,8 @@ $bannerCarouselWidth: 747px;
   @include variables.for-desktop-up {
     align-self: center;
     width: 202px;
-    height: 202px;
+    height: 100%;
+    max-height: unset;
   }
 }
 
