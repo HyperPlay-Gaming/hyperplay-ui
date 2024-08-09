@@ -45,23 +45,20 @@ export default function Reward({ reward, i18n }: RewardProps) {
     )
   }
 
-  const onViewRewardClick = () => {
-    if (!reward.marketplaceUrl) {
-      return
-    }
-
-    window.open(reward.marketplaceUrl, '_blank')
-  }
-
   return (
     <div key={reward.title} className={styles.rewardContainer}>
       {reward.isClaimed ? (
         <div className={styles.isClaimed}>{i18n.claimed}</div>
       ) : null}
-      <div className={styles.viewRewardContainer} onClick={onViewRewardClick}>
+      <a
+        href={reward.marketplaceUrl}
+        className={styles.viewRewardContainer}
+        rel="nooepner noreferrer"
+        target="_blank"
+      >
         <LinkExternal className={styles.linkExternalIcon} />
         {i18n.viewReward}
-      </div>
+      </a>
       <img src={reward.imageUrl} />
       <div className={classNames(styles.titleContainer, 'menu')}>
         <div className={styles.title}>{reward.title}</div>
