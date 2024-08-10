@@ -1,32 +1,25 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
+import { oneDayInMs } from '@hyperplay/utils'
+import type { Meta, StoryObj } from '@storybook/react'
 
-
-import { oneDayInMs } from '@hyperplay/utils';
-import type { Meta, StoryObj } from '@storybook/react';
-
-
-
-import droid from '@/assets/Droid.png';
-import kosiumGhoul from '@/assets/Kosium_Ghoul.png';
-import SAND from '@/assets/SAND.png';
+import droid from '@/assets/Droid.png'
+import kosiumGhoul from '@/assets/Kosium_Ghoul.png'
+import SAND from '@/assets/SAND.png'
 
 /* eslint-disable-next-line */
 // @ts-ignore
-import cupheadCard from '@/assets/steamCards/cupheadCard.jpg';
+import cupheadCard from '@/assets/steamCards/cupheadCard.jpg'
 
 /* eslint-disable-next-line */
 // @ts-ignore
-import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg';
+import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg'
 
-
-
-import QuestDetails from '.';
-import Button from '../Button';
+import QuestDetails from '.'
+import Button from '../Button'
 import MarkdownDescription from '../MarkdownDescription'
-import styles from './QuestDetailsStory.module.scss';
-import { QuestDetailsProps } from './types';
-
+import styles from './QuestDetailsStory.module.scss'
+import { QuestDetailsProps } from './types'
 
 const meta: Meta<typeof QuestDetails> = {
   title: 'Quests/QuestDetails',
