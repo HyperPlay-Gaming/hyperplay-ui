@@ -219,3 +219,4 @@ export type { TokenIdRowProps as RewardERC721DepositTokenRowProps } from './comp
 
 export { QuestsBanner, type QuestsBannerProps } from './components/QuestsBanner'
 export * from './components/PointsBalance'
+export { MarkdownDescription, type MarkdownDescriptionProps } from './components/MarkdownDescription'
