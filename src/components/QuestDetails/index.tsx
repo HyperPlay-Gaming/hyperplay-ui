@@ -206,7 +206,9 @@ export default function QuestDetails({
       <div className={cn(styles.container, classNames?.content)}>
         {sticker}
         <div className={cn('title', styles.title)}>{title}</div>
-        {description}
+        <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
+          {description}
+        </div>
 
         {eligibilityReqComponent}
 

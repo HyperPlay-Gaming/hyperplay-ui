@@ -65,22 +65,14 @@ export const MarkdownDescription = ({
   ]
 
   return (
-    <div
-      className={cn(
-        'body-sm',
-        'color-neutral-400',
-        styles.description,
-        classNames?.root
-      )}
+    <Markdown
+      {...rest}
+      className={cn(styles.root, classNames?.root)}
+      components={markdownComponentsProp}
+      allowedElements={markdownAllowedElementsProp}
     >
-      <Markdown
-        {...rest}
-        components={markdownComponentsProp}
-        allowedElements={markdownAllowedElementsProp}
-      >
-        {children}
-      </Markdown>
-    </div>
+      {children}
+    </Markdown>
   )
 }
 
