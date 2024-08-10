@@ -361,8 +361,6 @@ export const isClaimed: Story = {
         marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
       }
     ],
-    description:
-      '**Good luck, adventurer!** For more details, visit [hyperplay.xyz](https://hyperplay.xyz)',
     eligibility: {
       reputation: undefined
     },
