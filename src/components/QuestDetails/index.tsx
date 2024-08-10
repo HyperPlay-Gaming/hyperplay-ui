@@ -1,20 +1,27 @@
-import React, { HTMLProps } from 'react'
-import Markdown, { Options as MarkdownProps } from 'react-markdown'
+import React, { HTMLProps } from 'react';
 
-import cn from 'classnames'
 
-import { AlertTriangle } from '@/assets/images'
 
-import AlertCard from '../AlertCard/index'
-import Button, { ButtonProps } from '../Button'
-import DarkContainer from '../DarkContainer'
-import Loading from '../Loading'
-import Sticker from '../Sticker'
-import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
-import Rewards from './components/Rewards'
-import StreakProgress from './components/StreakProgress'
-import styles from './index.module.scss'
-import { QuestDetailsProps } from './types'
+import cn from 'classnames';
+
+
+
+import { AlertTriangle } from '@/assets/images';
+import MarkdownDescription from '@/components/MarkdownDescription';
+
+
+
+import AlertCard from '../AlertCard/index';
+import Button, { ButtonProps } from '../Button';
+import DarkContainer from '../DarkContainer';
+import Loading from '../Loading';
+import Sticker from '../Sticker';
+import AssociatedGamesCollapse from './components/AssociatedGamesCollapse';
+import Rewards from './components/Rewards';
+import StreakProgress from './components/StreakProgress';
+import styles from './index.module.scss';
+import { QuestDetailsProps } from './types';
+
 
 function AlertText(props: HTMLProps<HTMLDivElement>) {
   return (
@@ -75,7 +82,6 @@ export default function QuestDetails({
   onSyncClick,
   isSyncing,
   chainTooltips,
-  markdownOptions,
   ...props
 }: QuestDetailsProps) {
   let needMoreAchievementsText = null
@@ -203,64 +209,15 @@ export default function QuestDetails({
     )
   }
 
-  const markdownComponentsProp: MarkdownProps['components'] = {
-    a: ({ href: markdownLinkHref, children, ...link }) => (
-      <a
-        target="_blank"
-        href={markdownLinkHref || ''}
-        rel="noopener noreferrer"
-        {...link}
-      >
-        <Button
-          type="link"
-          size="small"
-          spacing="xs"
-          className={styles.linkBtn}
-        >
-          {children}
-        </Button>
-      </a>
-    ),
-    ...(markdownOptions?.components || {})
-  }
-
-  const markdownAllowedElementsProp: MarkdownProps['allowedElements'] = [
-    'p',
-    'strong',
-    'b',
-    'a',
-    'i',
-    'em',
-    'ul',
-    'ol',
-    'li',
-    'blockquote',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'pre',
-    'code',
-    'hr',
-    'br',
-    ...(markdownOptions?.allowedElements || [])
-  ]
-
   let content = (
     <div className={cn(styles.rootContent, classNames?.rootContent)}>
       <div className={cn(styles.container, classNames?.content)}>
         {sticker}
         <div className={cn('title', styles.title)}>{title}</div>
         <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
-          <Markdown
-            {...markdownOptions}
-            components={markdownComponentsProp}
-            allowedElements={markdownAllowedElementsProp}
-          >
+          <MarkdownDescription>
             {description}
-          </Markdown>
+          </MarkdownDescription>
         </div>
 
         {eligibilityReqComponent}
