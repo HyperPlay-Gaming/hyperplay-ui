@@ -33,13 +33,16 @@ export interface QuestsSummaryTableProps
   isFetching?: boolean
   hasFetchedAll?: boolean
   fetchNextPage?: () => void
+  onScrollList?: (env: React.UIEvent<HTMLElement>) => void
   isPageLoading?: boolean
   tabs: GameSummaryTab[]
   messageModalProps: MessageModalProps
   activeTab: string
   pageTitle: string
+  listContainerId?: string
   classNames?: {
     title?: string
+    list?: string
   }
   searchText?: string
   setSearchText?: (text: string) => void
@@ -57,6 +60,7 @@ export function QuestsSummaryTable({
   isFetching,
   hasFetchedAll,
   fetchNextPage,
+  onScrollList,
   className: classNameProp,
   isPageLoading,
   tabs,
@@ -64,6 +68,7 @@ export function QuestsSummaryTable({
   activeTab,
   pageTitle,
   classNames,
+  listContainerId,
   searchText,
   setSearchText,
   searchSuggestions,
@@ -75,6 +80,8 @@ export function QuestsSummaryTable({
   ) => {
     const { scrollHeight, scrollTop, clientHeight } =
       ev.target as HTMLDivElement
+
+    onScrollList?.(ev)
 
     const distanceFromBottom = scrollHeight - scrollTop - clientHeight
     if (
@@ -165,7 +172,11 @@ export function QuestsSummaryTable({
           {searchBar}
         </Tabs>
       </div>
-      <div className={styles.games} onScroll={fetchMoreOnBottomReached}>
+      <div
+        className={cn(styles.games, classNames?.list)}
+        id={listContainerId}
+        onScroll={fetchMoreOnBottomReached}
+      >
         {content}
       </div>
     </div>
