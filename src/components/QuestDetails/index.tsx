@@ -1,27 +1,19 @@
-import React, { HTMLProps } from 'react';
+import React, { HTMLProps } from 'react'
 
+import cn from 'classnames'
 
+import { AlertTriangle } from '@/assets/images'
 
-import cn from 'classnames';
-
-
-
-import { AlertTriangle } from '@/assets/images';
-import MarkdownDescription from '@/components/MarkdownDescription';
-
-
-
-import AlertCard from '../AlertCard/index';
-import Button, { ButtonProps } from '../Button';
-import DarkContainer from '../DarkContainer';
-import Loading from '../Loading';
-import Sticker from '../Sticker';
-import AssociatedGamesCollapse from './components/AssociatedGamesCollapse';
-import Rewards from './components/Rewards';
-import StreakProgress from './components/StreakProgress';
-import styles from './index.module.scss';
-import { QuestDetailsProps } from './types';
-
+import AlertCard from '../AlertCard/index'
+import Button, { ButtonProps } from '../Button'
+import DarkContainer from '../DarkContainer'
+import Loading from '../Loading'
+import Sticker from '../Sticker'
+import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
+import Rewards from './components/Rewards'
+import StreakProgress from './components/StreakProgress'
+import styles from './index.module.scss'
+import { QuestDetailsProps } from './types'
 
 function AlertText(props: HTMLProps<HTMLDivElement>) {
   return (
@@ -214,11 +206,7 @@ export default function QuestDetails({
       <div className={cn(styles.container, classNames?.content)}>
         {sticker}
         <div className={cn('title', styles.title)}>{title}</div>
-        <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
-          <MarkdownDescription>
-            {description}
-          </MarkdownDescription>
-        </div>
+        {description}
 
         {eligibilityReqComponent}
 

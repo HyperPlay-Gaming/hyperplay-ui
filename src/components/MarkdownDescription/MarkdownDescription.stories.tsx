@@ -12,7 +12,8 @@ export default meta
 type Story = StoryObj<typeof MarkdownDescription>
 
 const props: MarkdownDescriptionProps = {
-  children: '**Good luck, adventurer!** For more details, visit [hyperplay.xyz](https://hyperplay.xyz)',
+  children:
+    '**Good luck, adventurer!** For more details, visit [hyperplay.xyz](https://hyperplay.xyz)'
 }
 
 export const Default: Story = {

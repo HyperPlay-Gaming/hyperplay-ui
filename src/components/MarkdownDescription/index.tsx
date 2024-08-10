@@ -1,18 +1,24 @@
-import Markdown, { Options as MarkdownProps } from 'react-markdown';
+import Markdown, { Options as MarkdownProps } from 'react-markdown'
+
 import cn from 'classnames'
 
+import Button from '@/components/Button'
 
-import Button from '@/components/Button';
-import styles from './MarkdownDescription.module.scss';
-
+import styles from './MarkdownDescription.module.scss'
 
 export interface MarkdownDescriptionProps extends MarkdownProps {
-    classNames?: {
-        root?: string
-    }
+  classNames?: {
+    root?: string
+  }
 }
 
-export const MarkdownDescription = ({ children, classNames, allowedElements = [], components = {},  ...rest }: MarkdownDescriptionProps) => {
+export const MarkdownDescription = ({
+  children,
+  classNames,
+  allowedElements = [],
+  components = {},
+  ...rest
+}: MarkdownDescriptionProps) => {
   const markdownComponentsProp: MarkdownProps['components'] = {
     a: ({ href: markdownLinkHref, children, ...link }) => (
       <a
@@ -59,7 +65,14 @@ export const MarkdownDescription = ({ children, classNames, allowedElements = []
   ]
 
   return (
-    <div className={cn('body-sm', 'color-neutral-400', styles.description, classNames?.root)}>
+    <div
+      className={cn(
+        'body-sm',
+        'color-neutral-400',
+        styles.description,
+        classNames?.root
+      )}
+    >
       <Markdown
         {...rest}
         components={markdownComponentsProp}
@@ -71,4 +84,4 @@ export const MarkdownDescription = ({ children, classNames, allowedElements = []
   )
 }
 
-export default MarkdownDescription;
+export default MarkdownDescription
