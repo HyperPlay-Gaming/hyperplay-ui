@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react'
 
-import { Popover } from '@mantine/core'
-import classNames from 'classnames'
+import { Popover, PopoverProps } from '@mantine/core'
+import cn from 'classnames'
 
 import { CloseButton, MagnifyingGlass } from '@/assets/images'
 
 import styles from './SearchBar.module.scss'
 
-type Props = {
+interface Props extends PopoverProps {
   searchText: string
   setSearchText: (text: string) => void
   onClickSuggestion?: (suggestion: string) => void
@@ -17,6 +17,10 @@ type Props = {
   }
   containerClass?: string
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
+  classNames?: {
+    dropdown?: string
+    arrow?: string
+  }
 }
 
 export default function SearchBar({
@@ -26,7 +30,9 @@ export default function SearchBar({
   suggestions,
   onClickSuggestion,
   containerClass,
-  inputProps
+  inputProps,
+  classNames,
+  ...props
 }: Props) {
   const input = useRef<HTMLInputElement>(null)
 
@@ -93,12 +99,18 @@ export default function SearchBar({
     <Popover
       width="target"
       classNames={{
-        dropdown: classNames(styles.popoverDropdown, dropdownClassnames)
+        dropdown: cn(
+          styles.popoverDropdown,
+          dropdownClassnames,
+          classNames?.dropdown
+        ),
+        arrow: classNames?.arrow
       }}
       unstyled
+      {...props}
     >
       <Popover.Target>
-        <div className={classNames(styles.searchBar, containerClass)}>
+        <div className={cn(styles.searchBar, containerClass)}>
           <button className={styles.searchButton}>
             <MagnifyingGlass fill="var(--color-neutral-400)" />
           </button>
@@ -107,7 +119,7 @@ export default function SearchBar({
             type="text"
             placeholder={placeholder}
             {...inputProps}
-            className={classNames('body-sm', inputProps?.className)}
+            className={cn('body-sm', inputProps?.className)}
             value={searchText}
           />
           {showClearButton && (
@@ -117,7 +129,9 @@ export default function SearchBar({
           )}
         </div>
       </Popover.Target>
-      <Popover.Dropdown>{searchResults}</Popover.Dropdown>
+      <Popover.Dropdown>
+        <div className={styles.popoverDropdownList}>{searchResults}</div>
+      </Popover.Dropdown>
     </Popover>
   )
 }
