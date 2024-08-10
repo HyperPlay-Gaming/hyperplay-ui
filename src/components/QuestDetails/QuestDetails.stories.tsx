@@ -366,7 +366,6 @@ export const isClaimed: Story = {
   }
 }
 
-
 export const RewardMarketplaceLink: Story = {
   args: {
     ...props,
