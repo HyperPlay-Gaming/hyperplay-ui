@@ -17,6 +17,7 @@ import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg'
 
 import QuestDetails from '.'
 import Button from '../Button'
+import MarkdownDescription from '../MarkdownDescription'
 import styles from './QuestDetailsStory.module.scss'
 import { QuestDetailsProps } from './types'
 
@@ -317,11 +318,15 @@ export const CustomCtaReputationalAirdrop: Story = {
   }
 }
 
-export const ComponentDescription: Story = {
+export const DescriptionCustomElement: Story = {
   args: {
     ...props,
-    description:
-      '**Good luck, adventurer!** For more details, visit [hyperplay.xyz](https://hyperplay.xyz)',
+    description: (
+      <MarkdownDescription>
+        **Good luck, adventurer!** For more details, visit
+        [hyperplay.xyz](https://hyperplay.xyz)
+      </MarkdownDescription>
+    ),
     eligibility: {
       reputation: undefined
     },
@@ -349,8 +354,6 @@ export const isClaimed: Story = {
         marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
       }
     ],
-    description:
-      '**Good luck, adventurer!** For more details, visit [hyperplay.xyz](https://hyperplay.xyz)',
     eligibility: {
       reputation: undefined
     },

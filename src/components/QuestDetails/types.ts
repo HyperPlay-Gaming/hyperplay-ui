@@ -1,4 +1,5 @@
 import { HTMLProps } from 'react'
+import { Options as MarkdownOptions } from 'react-markdown'
 
 import { QuestTypeTranslations } from '@/common/types'
 
@@ -58,7 +59,7 @@ export interface QuestDetailsTranslations {
 
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string
-  description: string
+  description: React.ReactNode | string
   // More quest eligibilty interfaces will be added here in future iterations
   eligibility: {
     reputation?: ReputationQuestEligibility
@@ -96,4 +97,5 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   isSignedIn: boolean
   questType: 'PLAYSTREAK' | 'REPUTATIONAL-AIRDROP'
   chainTooltips?: Record<string, string>
+  markdownOptions?: MarkdownOptions
 }
