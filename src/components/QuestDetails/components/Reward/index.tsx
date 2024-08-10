@@ -50,15 +50,19 @@ export default function Reward({ reward, i18n }: RewardProps) {
       {reward.isClaimed ? (
         <div className={styles.isClaimed}>{i18n.claimed}</div>
       ) : null}
-      <a
-        href={reward.marketplaceUrl}
-        className={styles.viewRewardContainer}
-        rel="nooepner noreferrer"
-        target="_blank"
-      >
-        <LinkExternal className={styles.linkExternalIcon} />
-        {i18n.viewReward}
-      </a>
+      {
+        reward.marketplaceUrl ? (
+          <a
+            href={reward.marketplaceUrl}
+            className={styles.viewRewardContainer}
+            rel="nooepner noreferrer"
+            target="_blank"
+          >
+            <LinkExternal className={styles.linkExternalIcon} />
+            {i18n.viewReward}
+          </a>
+        ) : null
+      }
       <img src={reward.imageUrl} />
       <div className={classNames(styles.titleContainer, 'menu')}>
         <div className={styles.title}>{reward.title}</div>
