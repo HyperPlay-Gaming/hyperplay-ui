@@ -365,3 +365,30 @@ export const isClaimed: Story = {
     )
   }
 }
+
+export const RewardMarketplaceLink: Story = {
+  args: {
+    ...props,
+    rewards: [
+      ...props.rewards,
+      {
+        title: 'Kosium Pioneer',
+        imageUrl: kosiumGhoul,
+        chainName: 'Ethereum Mainnet',
+        numToClaim: '999999999999',
+        numOfClaimsLeft: '999999999',
+        isClaimed: true,
+        marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+      }
+    ],
+    eligibility: {
+      reputation: undefined
+    },
+    questType: 'REPUTATIONAL-AIRDROP',
+    ctaComponent: (
+      <Button type="secondary" className={styles.installBtn}>
+        Play/Install
+      </Button>
+    )
+  }
+}
