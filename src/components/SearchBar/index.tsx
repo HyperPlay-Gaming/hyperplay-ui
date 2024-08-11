@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from 'react'
+import React, { CSSProperties, useEffect, useRef } from 'react'
 
 import { Popover, PopoverProps } from '@mantine/core'
 import cn from 'classnames'
 
 import { CloseButton, MagnifyingGlass } from '@/assets/images'
 
-import styles from './SearchBar.module.scss'
+import searchBarStyles from './SearchBar.module.scss'
 
 interface Props extends PopoverProps {
   searchText: string
@@ -15,11 +15,16 @@ interface Props extends PopoverProps {
   i18n: {
     placeholder: string
   }
-  containerClass?: string
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   classNames?: {
     dropdown?: string
     arrow?: string
+    container?: string
+  }
+  styles?: {
+    dropdown?: CSSProperties
+    arrow?: CSSProperties
+    container?: CSSProperties
   }
 }
 
@@ -29,9 +34,9 @@ export default function SearchBar({
   i18n: { placeholder },
   suggestions,
   onClickSuggestion,
-  containerClass,
   inputProps,
   classNames,
+  styles,
   ...props
 }: Props) {
   const input = useRef<HTMLInputElement>(null)
@@ -81,7 +86,7 @@ export default function SearchBar({
           <button
             onClick={() => handleOnClickSuggestion(el)}
             key={el}
-            className={styles.searchResult}
+            className={searchBarStyles.searchResult}
           >
             {el}
           </button>
@@ -93,14 +98,14 @@ export default function SearchBar({
   }
 
   const dropdownClassnames: Record<string, boolean> = {}
-  dropdownClassnames[styles.hideDropdown] = searchResults === null
+  dropdownClassnames[searchBarStyles.hideDropdown] = searchResults === null
 
   return (
     <Popover
       width="target"
       classNames={{
         dropdown: cn(
-          styles.popoverDropdown,
+          searchBarStyles.popoverDropdown,
           dropdownClassnames,
           classNames?.dropdown
         ),
@@ -110,8 +115,11 @@ export default function SearchBar({
       {...props}
     >
       <Popover.Target>
-        <div className={cn(styles.searchBar, containerClass)}>
-          <button className={styles.searchButton}>
+        <div
+          className={cn(searchBarStyles.searchBar, classNames?.container)}
+          style={styles?.container}
+        >
+          <button className={searchBarStyles.searchButton}>
             <MagnifyingGlass fill="var(--color-neutral-400)" />
           </button>
           <input
@@ -123,14 +131,19 @@ export default function SearchBar({
             value={searchText}
           />
           {showClearButton && (
-            <button className={styles.clearButton} onClick={clearSearch}>
+            <button
+              className={searchBarStyles.clearButton}
+              onClick={clearSearch}
+            >
               <CloseButton fill="var(--color-neutral-400)" />
             </button>
           )}
         </div>
       </Popover.Target>
       <Popover.Dropdown>
-        <div className={styles.popoverDropdownList}>{searchResults}</div>
+        <div className={searchBarStyles.popoverDropdownList}>
+          {searchResults}
+        </div>
       </Popover.Dropdown>
     </Popover>
   )

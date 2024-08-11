@@ -10,7 +10,6 @@ import MessageModal, {
 import { Dropdown } from '../Dropdowns'
 import { DropdownProps } from '../Dropdowns/Dropdown'
 import Loading from '../Loading'
-import SearchBar from '../SearchBar'
 import { Tabs, getTabsClassNames } from '../Tabs'
 import styles from './index.module.scss'
 
@@ -44,12 +43,7 @@ export interface QuestsSummaryTableProps
     title?: string
     list?: string
   }
-  searchText?: string
-  setSearchText?: (text: string) => void
-  searchSuggestions?: string[]
-  i18n?: {
-    searchPlaceholder: string
-  }
+  searchBar?: JSX.Element
 }
 
 export function QuestsSummaryTable({
@@ -68,11 +62,8 @@ export function QuestsSummaryTable({
   activeTab,
   pageTitle,
   classNames,
+  searchBar,
   listContainerId,
-  searchText,
-  setSearchText,
-  searchSuggestions,
-  i18n = { searchPlaceholder: 'Search Quest' },
   ...rest
 }: QuestsSummaryTableProps) {
   const fetchMoreOnBottomReached: React.UIEventHandler<HTMLDivElement> = (
@@ -117,19 +108,6 @@ export function QuestsSummaryTable({
     )
   } else {
     content = gamesComponent
-  }
-
-  let searchBar = null
-  if (searchText !== undefined && setSearchText !== undefined) {
-    searchBar = (
-      <SearchBar
-        searchText={searchText}
-        setSearchText={setSearchText}
-        i18n={{ placeholder: i18n.searchPlaceholder }}
-        containerClass={styles.searchBarRoot}
-        suggestions={searchSuggestions}
-      />
-    )
   }
 
   return (
