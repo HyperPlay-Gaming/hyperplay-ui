@@ -16,7 +16,6 @@ export interface CheckEmailProps extends HTMLProps<HTMLDivElement> {
   onResend: () => void
   onReEnterEmail: () => void
   codeInputProps?: TextInputProps
-  defaultManualOtpOpen?: boolean
   i18n?: {
     title: string
     subtitle: string
@@ -38,7 +37,6 @@ const CheckEmail = ({
   onResend,
   onReEnterEmail,
   codeInputProps,
-  defaultManualOtpOpen,
   onClose,
   i18n = {
     title: 'Check your email',
@@ -104,7 +102,6 @@ const CheckEmail = ({
             root: styles.collapseRoot,
             content: styles.collapseContent
           }}
-          defaultOpen={defaultManualOtpOpen}
         >
           <TextInput
             className={styles.input}
@@ -114,14 +111,12 @@ const CheckEmail = ({
         </Collapse>
       </div>
       <div className={styles.linkContainer}>
-        <span className={cn('button-sm', styles.subtitle)}>
+        <span className={cn('caption', styles.subtitle)}>
           {i18n.didNotReceiveEmail}
         </span>
         &nbsp;
         {isDisabled ? (
-          <span
-            className={cn('button-sm', styles.subtitle, styles.disabledText)}
-          >
+          <span className={cn('caption', styles.subtitle, styles.disabledText)}>
             {i18n.retryIn} {timeOut} {i18n.seconds}
           </span>
         ) : (

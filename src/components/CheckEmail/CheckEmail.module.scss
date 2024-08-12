@@ -27,6 +27,7 @@
 }
 
 .buttonLink {
+  @extend .caption;
   width: fit-content;
   color: var(--color-primary-200);
   padding: 0 !important;
