@@ -44,9 +44,13 @@ export const Default: React.FC = () => {
     'Game with really long name that for some reason might break the lines'
   ]
 
+  const filteredItems = gameList.filter(Boolean).filter((item) => {
+    return new RegExp(searchText, 'i').test(item)
+  })
+
   return (
     <SearchBar
-      suggestions={gameList}
+      suggestions={filteredItems}
       searchText={searchText}
       setSearchText={setSearchText}
       i18n={{ placeholder: 'Search for games' }}

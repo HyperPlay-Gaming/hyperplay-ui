@@ -17,6 +17,7 @@ import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg'
 
 import QuestDetails from '.'
 import Button from '../Button'
+import MarkdownDescription from '../MarkdownDescription'
 import styles from './QuestDetailsStory.module.scss'
 import { QuestDetailsProps } from './types'
 
@@ -317,11 +318,69 @@ export const CustomCtaReputationalAirdrop: Story = {
   }
 }
 
-export const ComponentDescription: Story = {
+export const DescriptionCustomElement: Story = {
   args: {
     ...props,
-    description:
-      '**Good luck, adventurer!** For more details, visit [hyperplay.xyz](https://hyperplay.xyz)',
+    description: (
+      <MarkdownDescription>
+        **Good luck, adventurer!** For more details, visit
+        [hyperplay.xyz](https://hyperplay.xyz)
+      </MarkdownDescription>
+    ),
+    eligibility: {
+      reputation: undefined
+    },
+    questType: 'REPUTATIONAL-AIRDROP',
+    ctaComponent: (
+      <Button type="secondary" className={styles.installBtn}>
+        Play/Install
+      </Button>
+    )
+  }
+}
+
+export const isClaimed: Story = {
+  args: {
+    ...props,
+    rewards: [
+      ...props.rewards,
+      {
+        title: 'Kosium Pioneer',
+        imageUrl: kosiumGhoul,
+        chainName: 'Ethereum Mainnet',
+        numToClaim: '999999999999',
+        numOfClaimsLeft: '999999999',
+        isClaimed: true,
+        marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+      }
+    ],
+    eligibility: {
+      reputation: undefined
+    },
+    questType: 'REPUTATIONAL-AIRDROP',
+    ctaComponent: (
+      <Button type="secondary" className={styles.installBtn}>
+        Play/Install
+      </Button>
+    )
+  }
+}
+
+export const RewardMarketplaceLink: Story = {
+  args: {
+    ...props,
+    rewards: [
+      ...props.rewards,
+      {
+        title: 'Kosium Pioneer',
+        imageUrl: kosiumGhoul,
+        chainName: 'Ethereum Mainnet',
+        numToClaim: '999999999999',
+        numOfClaimsLeft: '999999999',
+        isClaimed: true,
+        marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+      }
+    ],
     eligibility: {
       reputation: undefined
     },

@@ -1,4 +1,5 @@
 import { HTMLProps } from 'react'
+import { Options as MarkdownOptions } from 'react-markdown'
 
 import { QuestTypeTranslations } from '@/common/types'
 
@@ -34,6 +35,8 @@ export interface QuestReward {
   // this will likely be a BigNumber so we will convert to float before passing as param
   numToClaim?: string
   chainName: string
+  isClaimed?: boolean
+  marketplaceUrl?: string
 }
 
 export interface QuestDetailsTranslations {
@@ -50,11 +53,13 @@ export interface QuestDetailsTranslations {
   play?: string
   sync?: string
   claimsLeft?: string
+  viewReward?: string
+  claimed?: string
 }
 
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string
-  description: string
+  description: React.ReactNode | string
   // More quest eligibilty interfaces will be added here in future iterations
   eligibility: {
     reputation?: ReputationQuestEligibility
@@ -92,4 +97,5 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   isSignedIn: boolean
   questType: 'PLAYSTREAK' | 'REPUTATIONAL-AIRDROP'
   chainTooltips?: Record<string, string>
+  markdownOptions?: MarkdownOptions
 }

@@ -9,6 +9,7 @@ import reCard from '@/assets/steamCards/residentEvilCard.jpg?url'
 import { QuestsSummaryTable, QuestsSummaryTableProps } from '.'
 import { itemType } from '../Dropdowns/Dropdown'
 import { QuestCard, QuestCardProps } from '../QuestCard'
+import SearchBar from '../SearchBar'
 
 const meta: Meta<typeof QuestsSummaryTable> = {
   title: 'Quests/QuestsSummaryTable',
@@ -123,15 +124,22 @@ export const SearchDemo: Story = {
     const gameElementsFiltered = gamesFiltered.map(({ id, ...rest }) => (
       <QuestCard key={id} {...rest} />
     ))
+    const searchBar = (
+      <SearchBar
+        searchText={searchText}
+        setSearchText={setSearchText}
+        i18n={{ placeholder: 'Search Quest' }}
+        styles={{ container: { margin: '0px 0px 0px auto' } }}
+        suggestions={gamesFiltered
+          .filter((val) => !!val.title)
+          .map((val) => val.title!)}
+      />
+    )
     return (
       <QuestsSummaryTable
         {...args}
         games={gameElementsFiltered}
-        setSearchText={setSearchText}
-        searchText={searchText}
-        searchSuggestions={gamesFiltered
-          .filter((val) => !!val.title)
-          .map((val) => val.title!)}
+        searchBar={searchBar}
       />
     )
   }
