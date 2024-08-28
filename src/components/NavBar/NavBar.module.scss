@@ -95,19 +95,6 @@
   width: 24px;
   @include variables.imageWrapper;
   background-color: transparent;
-
-  @include variables.for-mobile-only {
-    display: inline-block;
-  }
-  @include variables.for-tablet-portrait-up {
-    display: inline-block;
-  }
-  @include variables.for-tablet-landscape-up {
-    display: none;
-  }
-  @include variables.for-desktop-up {
-    display: none;
-  }
 }
 
 .burgerMenu:hover {
@@ -148,4 +135,39 @@
   padding: var(--space-3xs) 0px;
   width: 100%;
   text-align: center;
+}
+
+.dropdownContainer {
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2lg);
+
+  @include variables.for-mobile-only {
+    display: flex;
+  }
+
+  @include variables.for-tablet-portrait-up {
+    display: flex;
+  }
+
+  @include variables.for-tablet-landscape-up {
+    display: none;
+  }
+  @include variables.for-desktop-up {
+    display: none;
+  }
+}
+
+.avatarDesktop {
+  display: none;
+
+  @include variables.for-mobile-only {
+    display: none;
+  }
+  @include variables.for-tablet-portrait-up {
+    display: none;
+  }
+  @include variables.for-tablet-landscape-up {
+    display: flex;
+  }
 }

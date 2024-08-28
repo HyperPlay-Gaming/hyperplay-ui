@@ -10,7 +10,11 @@ import twitterLogo from '@/assets/logos/twitter.svg?url'
 import Button from '../Button'
 import navBarStyles from './NavBar.module.scss'
 
-const NavBar = function () {
+interface Props {
+  UserAvatar?: React.ReactNode
+}
+
+const NavBar = function ({ UserAvatar }: Props) {
   const [showNavBarDropDown, setShowNavBarDropDown] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
 
@@ -76,17 +80,20 @@ const NavBar = function () {
               <div className={navBarStyles.hpLogoText}>HyperPlay</div>
             </div>
           </a>
-          <button
-            className={navBarStyles.burgerMenu}
-            onClick={() => setShowNavBarDropDown(!showNavBarDropDown)}
-          >
-            <img
-              src={burgerMenuIcon}
-              //fill={true}
-              style={{ objectFit: 'contain' }}
-              alt="Menu Button"
-            />
-          </button>
+          <div className={navBarStyles.dropdownContainer}>
+            <button
+              className={navBarStyles.burgerMenu}
+              onClick={() => setShowNavBarDropDown(!showNavBarDropDown)}
+            >
+              <img
+                src={burgerMenuIcon}
+                //fill={true}
+                style={{ objectFit: 'contain' }}
+                alt="Menu Button"
+              />
+            </button>
+            {UserAvatar}
+          </div>
           <div className={navBarStyles.menu}>
             {getLinks()}
             <a
@@ -132,6 +139,9 @@ const NavBar = function () {
               />
             </a>
           </div>
+          {UserAvatar ? (
+            <div className={navBarStyles.avatarDesktop}>{UserAvatar}</div>
+          ) : null}
         </div>
       </div>
       {showNavBarDropDown ? (
