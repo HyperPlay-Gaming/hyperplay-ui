@@ -47,17 +47,6 @@ const NavBar = function ({ UserAvatar }: Props) {
       >
         FAQ
       </a>
-      <a
-        className={`${navBarStyles.navItem} menu`}
-        href="https://forms.gle/A3mQ8A7CTWrDo8LD6"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-testid="submit-game"
-      >
-        <Button type="secondary">
-          <div className="button-sm">Submit a game</div>
-        </Button>
-      </a>
     </>
   )
 
@@ -81,6 +70,7 @@ const NavBar = function ({ UserAvatar }: Props) {
             </div>
           </a>
           <div className={navBarStyles.dropdownContainer}>
+            {UserAvatar}
             <button
               className={navBarStyles.burgerMenu}
               onClick={() => setShowNavBarDropDown(!showNavBarDropDown)}
@@ -92,10 +82,9 @@ const NavBar = function ({ UserAvatar }: Props) {
                 alt="Menu Button"
               />
             </button>
-            {UserAvatar}
           </div>
+          <div className={navBarStyles.links}>{getLinks()}</div>
           <div className={navBarStyles.menu}>
-            {getLinks()}
             <a
               className={navBarStyles.navbarLinkImg}
               href="https://discord.gg/hyperplay"
@@ -138,10 +127,21 @@ const NavBar = function ({ UserAvatar }: Props) {
                 style={{ objectFit: 'contain' }}
               />
             </a>
+            <a
+              className={`${navBarStyles.navItem} menu`}
+              href="https://forms.gle/A3mQ8A7CTWrDo8LD6"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="submit-game"
+            >
+              <Button type="secondary">
+                <div className="button-sm">Submit a game</div>
+              </Button>
+            </a>
+            {UserAvatar ? (
+              <div className={navBarStyles.avatarDesktop}>{UserAvatar}</div>
+            ) : null}
           </div>
-          {UserAvatar ? (
-            <div className={navBarStyles.avatarDesktop}>{UserAvatar}</div>
-          ) : null}
         </div>
       </div>
       {showNavBarDropDown ? (

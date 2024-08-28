@@ -171,3 +171,18 @@
     display: flex;
   }
 }
+
+.links {
+  display: none;
+
+  @include variables.for-mobile-only {
+    display: none;
+  }
+  @include variables.for-tablet-portrait-up {
+    display: none;
+  }
+
+  @include variables.for-tablet-landscape-up {
+    display: inline-block;
+  }
+}
