@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
 
-// import img from 'next/img'
 import burgerMenuIcon from '@/assets/images/BurgerClosedIcon.svg?url'
 import hpIconLight from '@/assets/images/MobileHpLogo.svg?url'
 import discordLogo from '@/assets/logos/discord.svg?url'
@@ -10,7 +9,11 @@ import twitterLogo from '@/assets/logos/twitter.svg?url'
 import Button from '../Button'
 import navBarStyles from './NavBar.module.scss'
 
-const NavBar = function () {
+interface Props {
+  UserAvatar?: React.ReactNode
+}
+
+const NavBar = function ({ UserAvatar }: Props) {
   const [showNavBarDropDown, setShowNavBarDropDown] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
 
@@ -43,17 +46,6 @@ const NavBar = function () {
       >
         FAQ
       </a>
-      <a
-        className={`${navBarStyles.navItem} menu`}
-        href="https://forms.gle/A3mQ8A7CTWrDo8LD6"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-testid="submit-game"
-      >
-        <Button type="secondary">
-          <div className="button-sm">Submit a game</div>
-        </Button>
-      </a>
     </>
   )
 
@@ -76,19 +68,17 @@ const NavBar = function () {
               <div className={navBarStyles.hpLogoText}>HyperPlay</div>
             </div>
           </a>
-          <button
-            className={navBarStyles.burgerMenu}
-            onClick={() => setShowNavBarDropDown(!showNavBarDropDown)}
-          >
-            <img
-              src={burgerMenuIcon}
-              //fill={true}
-              style={{ objectFit: 'contain' }}
-              alt="Menu Button"
-            />
-          </button>
+          <div className={navBarStyles.dropdownContainer}>
+            {UserAvatar}
+            <button
+              className={navBarStyles.burgerMenu}
+              onClick={() => setShowNavBarDropDown(!showNavBarDropDown)}
+            >
+              <img src={burgerMenuIcon} alt="Menu Button" />
+            </button>
+          </div>
+          <div className={navBarStyles.links}>{getLinks()}</div>
           <div className={navBarStyles.menu}>
-            {getLinks()}
             <a
               className={navBarStyles.navbarLinkImg}
               href="https://discord.gg/hyperplay"
@@ -96,12 +86,7 @@ const NavBar = function () {
               rel="noopener noreferrer"
               data-testid="discord-link"
             >
-              <img
-                src={discordLogo}
-                alt="Discord Link"
-                //fill={true}
-                style={{ objectFit: 'contain' }}
-              />
+              <img src={discordLogo} alt="Discord Link" />
             </a>
             <a
               className={navBarStyles.navbarLinkImg}
@@ -110,12 +95,7 @@ const NavBar = function () {
               rel="noopener noreferrer"
               data-testid="twitter-link"
             >
-              <img
-                src={twitterLogo}
-                alt="Twitter Link"
-                //fill={true}
-                style={{ objectFit: 'contain' }}
-              />
+              <img src={twitterLogo} alt="Twitter Link" />
             </a>
             <a
               className={navBarStyles.navbarLinkImg}
@@ -124,13 +104,22 @@ const NavBar = function () {
               rel="noopener noreferrer"
               data-testid="github-link"
             >
-              <img
-                src={githubLogo}
-                alt="Github Link"
-                //fill={true}
-                style={{ objectFit: 'contain' }}
-              />
+              <img src={githubLogo} alt="Github Link" />
             </a>
+            <a
+              className={`${navBarStyles.navItem} menu`}
+              href="https://forms.gle/A3mQ8A7CTWrDo8LD6"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="submit-game"
+            >
+              <Button type="secondary">
+                <div className="button-sm">Submit a game</div>
+              </Button>
+            </a>
+            {UserAvatar ? (
+              <div className={navBarStyles.avatarDesktop}>{UserAvatar}</div>
+            ) : null}
           </div>
         </div>
       </div>
