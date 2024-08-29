@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
 
-// import img from 'next/img'
 import burgerMenuIcon from '@/assets/images/BurgerClosedIcon.svg?url'
 import hpIconLight from '@/assets/images/MobileHpLogo.svg?url'
 import discordLogo from '@/assets/logos/discord.svg?url'
@@ -75,12 +74,7 @@ const NavBar = function ({ UserAvatar }: Props) {
               className={navBarStyles.burgerMenu}
               onClick={() => setShowNavBarDropDown(!showNavBarDropDown)}
             >
-              <img
-                src={burgerMenuIcon}
-                //fill={true}
-                style={{ objectFit: 'contain' }}
-                alt="Menu Button"
-              />
+              <img src={burgerMenuIcon} alt="Menu Button" />
             </button>
           </div>
           <div className={navBarStyles.links}>{getLinks()}</div>
@@ -92,12 +86,7 @@ const NavBar = function ({ UserAvatar }: Props) {
               rel="noopener noreferrer"
               data-testid="discord-link"
             >
-              <img
-                src={discordLogo}
-                alt="Discord Link"
-                //fill={true}
-                style={{ objectFit: 'contain' }}
-              />
+              <img src={discordLogo} alt="Discord Link" />
             </a>
             <a
               className={navBarStyles.navbarLinkImg}
@@ -106,12 +95,7 @@ const NavBar = function ({ UserAvatar }: Props) {
               rel="noopener noreferrer"
               data-testid="twitter-link"
             >
-              <img
-                src={twitterLogo}
-                alt="Twitter Link"
-                //fill={true}
-                style={{ objectFit: 'contain' }}
-              />
+              <img src={twitterLogo} alt="Twitter Link" />
             </a>
             <a
               className={navBarStyles.navbarLinkImg}
@@ -120,12 +104,7 @@ const NavBar = function ({ UserAvatar }: Props) {
               rel="noopener noreferrer"
               data-testid="github-link"
             >
-              <img
-                src={githubLogo}
-                alt="Github Link"
-                //fill={true}
-                style={{ objectFit: 'contain' }}
-              />
+              <img src={githubLogo} alt="Github Link" />
             </a>
             <a
               className={`${navBarStyles.navItem} menu`}
