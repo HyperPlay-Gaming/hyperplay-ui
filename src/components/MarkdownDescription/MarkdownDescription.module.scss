@@ -3,7 +3,7 @@
 .root {
   @extend .body-sm;
 
-  white-space: pre-wrap;
+  white-space: normal;
   text-wrap: wrap;
   line-height: var(--space-xl);
   color: var(--color-neutral-400);
