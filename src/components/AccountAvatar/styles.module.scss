@@ -11,12 +11,17 @@
   position: relative;
 }
 
-.onlineAvatar {
+.avatarConnected {
+  width: 35px;
+  height: 35px;
+}
+
+.onlineAvatarContainer {
   border: 2.5px solid var(--color-primary-500);
   border-radius: 50%;
 }
 
-.offlineAvatar {
+.offlineAvatarContainer {
   border: 2.5px solid var(--color-neutral-700);
 }
 
