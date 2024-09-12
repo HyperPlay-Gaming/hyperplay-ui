@@ -28,7 +28,7 @@ export default function AccountAvatar({
   if (offline) {
     return (
       <div className={cn(styles.container, className)} {...others}>
-        <div className={cn(styles.avatar, styles.offlineAvatar)}>
+        <div className={cn(styles.avatar, styles.offlineAvatarContainer)}>
           <QuestionMark fill="var(--color-neutral-700)" />
         </div>
         {walletIcon}
@@ -39,8 +39,12 @@ export default function AccountAvatar({
 
   return (
     <div className={cn(styles.container, className)} {...others}>
-      <div className={styles.onlineAvatar}>
-        <Avatar src={makeBlockie(userId)} size={10} className={styles.avatar} />
+      <div className={styles.onlineAvatarContainer}>
+        <Avatar
+          src={makeBlockie(userId)}
+          size={10}
+          className={cn(styles.avatar, styles.avatarConnected)}
+        />
       </div>
       {walletIcon}
       <span className={cn(styles.status, styles.online)} />
