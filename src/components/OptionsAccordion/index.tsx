@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 
-import { Accordion, AccordionProps } from '@mantine/core'
-import classNames from 'classnames'
+import { Accordion, AccordionProps, AccordionStylesNames } from '@mantine/core'
+import cn from 'classnames'
 
 import Button from '../Button'
 import Checkbox from '../Checkbox'
@@ -14,11 +14,13 @@ interface OptionsAccordionProps
   extends Omit<AccordionProps<boolean>, 'children'> {
   options: OptionsType
   setOptions: React.Dispatch<React.SetStateAction<OptionsType>>
+  classNames?: Partial<Record<AccordionStylesNames, string>>
 }
 
 export default function OptionsAccordion({
   options,
   setOptions,
+  classNames,
   ...props
 }: OptionsAccordionProps) {
   function selectOnly(optionTitle: string, onlyOption: string) {
@@ -50,8 +52,7 @@ export default function OptionsAccordion({
 
   function makeAccordionItem(option: string) {
     const panelOptions = options[option]
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-    const items: ReactElement<any>[] = []
+    const items: ReactElement[] = []
     Object.keys(panelOptions).forEach((val, index) =>
       items.push(
         <div
@@ -124,17 +125,14 @@ export default function OptionsAccordion({
     return (
       <Accordion.Item value={option} key={option}>
         <Accordion.Control>
-          <div className={classNames('title-sm', styles.sectionTitle)}>
-            {option}
-          </div>
+          <div className={cn('title-sm', styles.sectionTitle)}>{option}</div>
         </Accordion.Control>
         <Accordion.Panel>{items}</Accordion.Panel>
       </Accordion.Item>
     )
   }
 
-  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  const accordionItems: ReactElement<any>[] = []
+  const accordionItems: ReactElement[] = []
   Object.keys(options).forEach((val) => {
     accordionItems.push(makeAccordionItem(val))
   })
@@ -145,13 +143,15 @@ export default function OptionsAccordion({
       unstyled
       variant="contained"
       classNames={{
-        panel: styles.panel,
-        item: styles.item,
-        content: styles.content,
-        control: styles.control,
-        chevron: styles.chevron,
-        root: styles.root,
-        label: styles.label
+        panel: cn(styles.panel, classNames?.panel),
+        item: cn(styles.item, classNames?.item),
+        content: cn(styles.content, classNames?.content),
+        control: cn(styles.control, classNames?.control),
+        chevron: cn(styles.chevron, classNames?.chevron),
+        root: cn(styles.root, classNames?.root),
+        label: cn(styles.label, classNames?.label),
+        icon: cn(styles.icon, classNames?.icon),
+        itemTitle: cn(styles.itemTitle, classNames?.itemTitle)
       }}
       multiple
       {...props}
