@@ -40,11 +40,16 @@ const Others: OptionsType = {
   'Show non-available': false
 }
 
+const Scrollable: OptionsType = Object.fromEntries(
+  Array.from({ length: 25 }, (_, i) => [`Item${i + 1}`, false])
+)
+
 const defaultAllFilters: { [key: string]: OptionsType } = {
-  Genre: Genre,
-  Systems: Systems,
-  Version: Version,
-  Others: Others
+  Genre,
+  Systems,
+  Version,
+  Others,
+  Scrollable
 }
 
 type Props = {
