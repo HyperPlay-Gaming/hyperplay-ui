@@ -10,8 +10,6 @@ $textColor: var(--color-neutral-100);
   gap: var(--space-xs);
   padding: var(--space-xs-fixed) var(--space-lg-fixed) var(--space-md-fixed)
     var(--space-lg-fixed);
-  max-height: 70vh;
-  overflow-y: auto;
 }
 
 .item {
