@@ -60,7 +60,7 @@ export const Default: Story = {
     }
   },
   render: ({ options = defaultAllFilters }: Props) => {
-    const [currentOptions, setOptions] = useState(options)
-    return <OptionsAccordion options={currentOptions} setOptions={setOptions} />
+    const state = useState(options)
+    return <OptionsAccordion options={options} setOptions={state[1]} />
   }
 }
