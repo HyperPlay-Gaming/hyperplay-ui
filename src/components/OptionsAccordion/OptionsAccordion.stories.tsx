@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
 
+import { StoryObj } from '@storybook/react'
+
 import OptionsAccordion from '.'
 
 export default {
-  title: 'Options Accordion',
-  component: OptionsAccordion,
-  argTypes: {
-    options: {
-      control: 'object'
-    }
-  }
+  title: 'OptionsAccordion',
+  component: OptionsAccordion
 }
 
 type OptionsType = { [key: string]: boolean }
@@ -54,8 +51,16 @@ type Props = {
   options?: { [key: string]: OptionsType }
 }
 
-export const Default = ({ options = defaultAllFilters }: Props) => {
-  const [currentOptions, setOptions] = useState(options)
+type Story = StoryObj<typeof OptionsAccordion>
 
-  return <OptionsAccordion options={currentOptions} setOptions={setOptions} />
+export const Default: Story = {
+  argTypes: {
+    options: {
+      control: 'object'
+    }
+  },
+  render: ({ options = defaultAllFilters }: Props) => {
+    const [currentOptions, setOptions] = useState(options)
+    return <OptionsAccordion options={currentOptions} setOptions={setOptions} />
+  }
 }
