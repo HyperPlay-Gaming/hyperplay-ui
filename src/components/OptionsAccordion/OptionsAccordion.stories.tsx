@@ -4,7 +4,12 @@ import OptionsAccordion from '.'
 
 export default {
   title: 'Options Accordion',
-  component: OptionsAccordion
+  component: OptionsAccordion,
+  argTypes: {
+    options: {
+      control: 'object'
+    }
+  }
 }
 
 type OptionsType = { [key: string]: boolean }
@@ -38,14 +43,19 @@ const Others: OptionsType = {
   'Show non-available': false
 }
 
-const AllFilters: { [key: string]: OptionsType } = {
+const defaultAllFilters: { [key: string]: OptionsType } = {
   Genre: Genre,
   Systems: Systems,
   Version: Version,
   Others: Others
 }
 
-export const Default = () => {
-  const [options, setOptions] = useState(AllFilters)
-  return <OptionsAccordion options={options} setOptions={setOptions} />
+type Props = {
+  options?: { [key: string]: OptionsType }
+}
+
+export const Default = ({ options = defaultAllFilters }: Props) => {
+  const [currentOptions, setOptions] = useState(options)
+
+  return <OptionsAccordion options={currentOptions} setOptions={setOptions} />
 }
