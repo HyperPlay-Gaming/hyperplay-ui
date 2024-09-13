@@ -118,10 +118,7 @@ export default function OptionsAccordion({
             data-testid={`${option}-clear-filter`}
           >
             <div
-              className="button-sm"
-              style={{
-                color: 'var(--color-neutral-100)'
-              }}
+              className="button-sm color-neutral-100"
             >
               Clear filter
             </div>
