@@ -70,3 +70,22 @@ $containerRadius: var(--space-sm);
 .sectionTitle {
   padding: var(--space-sm) 0px;
 }
+
+.panelList {
+  max-height: 25rem;
+  overflow-y: auto;
+}
+
+.clearButton {
+  margin-top: var(--space-sm);
+  border: 1.5px solid var(--color-stroke-01);
+
+  div {
+    color: var(--color-neutral-100);
+  }
+}
+
+.checkboxBody {
+  padding-left: var(--space-sm);
+  margin: 'auto 0px';
+}
