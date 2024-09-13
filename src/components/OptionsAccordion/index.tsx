@@ -79,12 +79,7 @@ export default function OptionsAccordion({
             }}
             data-testid={`${val}-checkbox`}
           >
-            <div
-              className="body"
-              style={{ paddingLeft: 'var(--space-sm)', margin: 'auto 0px' }}
-            >
-              {val}
-            </div>
+            <div className={cn('body', styles.checkboxBody)}>{val}</div>
           </Checkbox>
           <Button
             type="link"
@@ -111,17 +106,10 @@ export default function OptionsAccordion({
             type="tertiary"
             size="small"
             onClick={() => clearOptions(option)}
-            style={{
-              marginTop: 'var(--space-sm)',
-              border: '1.5px solid var(--color-stroke-01)'
-            }}
+            className={styles.clearButton}
             data-testid={`${option}-clear-filter`}
           >
-            <div
-              className="button-sm color-neutral-100"
-            >
-              Clear filter
-            </div>
+            <div className="button-sm">Clear filter</div>
           </Button>
         </Accordion.Panel>
       </Accordion.Item>
