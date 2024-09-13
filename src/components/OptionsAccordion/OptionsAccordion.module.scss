@@ -70,3 +70,8 @@ $containerRadius: var(--space-sm);
 .sectionTitle {
   padding: var(--space-sm) 0px;
 }
+
+.panelList {
+  max-height: 50;
+  overflow-y: auto;
+}

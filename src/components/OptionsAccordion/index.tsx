@@ -99,35 +99,34 @@ export default function OptionsAccordion({
       )
     )
 
-    items.push(
-      <Button
-        key={`${option}-clear-filter`}
-        type="tertiary"
-        size="small"
-        onClick={() => clearOptions(option)}
-        style={{
-          marginTop: 'var(--space-sm)',
-          border: '1.5px solid var(--color-stroke-01)'
-        }}
-        data-testid={`${option}-clear-filter`}
-      >
-        <div
-          className="button-sm"
-          style={{
-            color: 'var(--color-neutral-100)'
-          }}
-        >
-          Clear filter
-        </div>
-      </Button>
-    )
-
     return (
       <Accordion.Item value={option} key={option}>
         <Accordion.Control>
           <div className={cn('title-sm', styles.sectionTitle)}>{option}</div>
         </Accordion.Control>
-        <Accordion.Panel>{items}</Accordion.Panel>
+        <Accordion.Panel>
+          <div className={styles.panelList}>{items}</div>
+          <Button
+            key={`${option}-clear-filter`}
+            type="tertiary"
+            size="small"
+            onClick={() => clearOptions(option)}
+            style={{
+              marginTop: 'var(--space-sm)',
+              border: '1.5px solid var(--color-stroke-01)'
+            }}
+            data-testid={`${option}-clear-filter`}
+          >
+            <div
+              className="button-sm"
+              style={{
+                color: 'var(--color-neutral-100)'
+              }}
+            >
+              Clear filter
+            </div>
+          </Button>
+        </Accordion.Panel>
       </Accordion.Item>
     )
   }
