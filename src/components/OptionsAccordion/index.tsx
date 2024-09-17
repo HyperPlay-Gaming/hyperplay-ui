@@ -14,7 +14,7 @@ interface OptionsAccordionProps
   extends Omit<AccordionProps<boolean>, 'children'> {
   options: OptionsType
   setOptions: React.Dispatch<React.SetStateAction<OptionsType>>
-  classNames?: Partial<Record<AccordionStylesNames, string>>
+  classNames?: Partial<Record<AccordionStylesNames | 'checkboxBody', string>>
 }
 
 export default function OptionsAccordion({
@@ -79,7 +79,14 @@ export default function OptionsAccordion({
             }}
             data-testid={`${val}-checkbox`}
           >
-            <div className={cn('body', styles.checkboxBody)}>{val}</div>
+            <div
+              className={cn(
+                styles.checkboxBody,
+                classNames?.checkboxBody ? classNames?.checkboxBody : 'body'
+              )}
+            >
+              {val}
+            </div>
           </Checkbox>
           <Button
             type="link"
