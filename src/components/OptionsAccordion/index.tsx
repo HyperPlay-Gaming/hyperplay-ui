@@ -14,7 +14,9 @@ interface OptionsAccordionProps
   extends Omit<AccordionProps<boolean>, 'children'> {
   options: OptionsType
   setOptions: React.Dispatch<React.SetStateAction<OptionsType>>
-  classNames?: Partial<Record<AccordionStylesNames | 'checkboxBody', string>>
+  classNames?: Partial<
+    Record<AccordionStylesNames | 'checkboxBody' | 'optionRow', string>
+  >
 }
 
 export default function OptionsAccordion({
@@ -63,7 +65,7 @@ export default function OptionsAccordion({
             justifyContent: 'space-between',
             alignItems: 'center'
           }}
-          className={styles.optionRow}
+          className={cn(styles.optionRow, classNames?.optionRow)}
         >
           <Checkbox
             type="secondary"

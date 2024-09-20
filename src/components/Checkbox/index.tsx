@@ -27,13 +27,13 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
 ) {
   return (
     <label className={CheckboxStyles.container}>
-      {children}
       <input type="checkbox" ref={ref} {...props} disabled={disabled} />
       <span
         className={`${CheckboxStyles.checkmark} ${CheckboxStyles[type]} ${CheckboxStyles[shape]}`}
       >
         <Checkmark fill="var(--checkbox-checkmark-color)" />
       </span>
+      {children}
     </label>
   )
 })
