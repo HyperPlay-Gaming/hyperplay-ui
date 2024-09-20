@@ -15,7 +15,10 @@ interface OptionsAccordionProps
   options: OptionsType
   setOptions: React.Dispatch<React.SetStateAction<OptionsType>>
   classNames?: Partial<
-    Record<AccordionStylesNames | 'checkboxBody' | 'optionRow', string>
+    Record<
+      AccordionStylesNames | 'checkboxBody' | 'optionRow' | 'panelList',
+      string
+    >
   >
 }
 
@@ -109,7 +112,9 @@ export default function OptionsAccordion({
           <div className={cn('title-sm', styles.sectionTitle)}>{option}</div>
         </Accordion.Control>
         <Accordion.Panel>
-          <div className={styles.panelList}>{items}</div>
+          <div className={cn(styles.panelList, classNames?.panelList)}>
+            {items}
+          </div>
           <Button
             key={`${option}-clear-filter`}
             type="tertiary"
