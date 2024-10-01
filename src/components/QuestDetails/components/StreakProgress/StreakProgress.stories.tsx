@@ -20,7 +20,8 @@ const props: StreakProgressProps = {
   lastPlaySessionCompletedDateTimeUTC: new Date(
     Date.now() - oneDayInMs
   ).toUTCString(),
-  dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now()
+  dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now(),
+  onSync: () => alert('Syncing...')
 }
 
 export const Default: Story = {
