@@ -9,6 +9,7 @@ import { RingProgress } from '@mantine/core'
 import classNames from 'classnames'
 
 import { Clock, LightningBolt } from '@/assets/images'
+import Button from '@/components/Button'
 
 import { PlayStreakEligibility } from '../../types'
 import styles from './index.module.scss'
@@ -22,10 +23,12 @@ export interface StreakProgressI18n {
   playEachDay: string
   streakCompleted: string
   now: string
+  sync: string
 }
 
 export interface StreakProgressProps extends PlayStreakEligibility {
   i18n?: StreakProgressI18n
+  onSync: () => void
 }
 
 export default function StreakProgress({
@@ -43,8 +46,10 @@ export default function StreakProgress({
     playEachDay: `Play each day so your streak won't reset!`,
     streakCompleted: 'Streak completed! Claim your rewards now.',
     now: 'Now',
-    dayResets: 'Day resets:'
-  }
+    dayResets: 'Day resets:',
+    sync: 'Sync Progress'
+  },
+  onSync
 }: StreakProgressProps) {
   ;({ requiredStreakInDays, currentStreakInDays } = getPlayStreakDays({
     lastPlaySessionCompletedDateTimeUTC,
@@ -94,19 +99,6 @@ export default function StreakProgress({
     return () => clearInterval(interval)
   }, [])
 
-  const lightningBoltIcons: boolean[] = []
-  if (requiredStreakInDays <= 24) {
-    for (let i = 0; i < requiredStreakInDays; ++i) {
-      lightningBoltIcons.push(i < currentStreakInDays)
-    }
-  }
-
-  function getFilledClass(filled: boolean) {
-    const filledClass: Record<string, boolean> = {}
-    filledClass[styles.filled] = filled
-    return filledClass
-  }
-
   let rootColor = 'var(--color-neutral-600)'
   let lightningBoltCircleClass = ''
   let percentCompleted = 0
@@ -152,14 +144,10 @@ export default function StreakProgress({
             {` / ${requiredStreakInDays} ${i18n.days}`}
           </div>
         </div>
-        <div className={styles.progressIconsContainer}>
-          {lightningBoltIcons.map((filled, index) => (
-            <LightningBolt
-              className={classNames(styles.streakIcon, getFilledClass(filled))}
-              key={`lightningBolt:${index}`}
-            />
-          ))}
-          <LightningBolt />
+        <div className={styles.syncContainer}>
+          <Button type="secondaryGradient" onClick={onSync}>
+            {i18n.sync}
+          </Button>
         </div>
       </div>
       <hr></hr>

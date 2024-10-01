@@ -26,6 +26,7 @@ export interface PlayStreakEligibility {
   accumulatedPlaytimeTodayInSeconds: number
   lastPlaySessionCompletedDateTimeUTC: string
   dateTimeCurrentSessionStartedInMsSinceEpoch?: number
+  onSync: () => void
 }
 
 export interface QuestReward {

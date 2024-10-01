@@ -219,6 +219,7 @@ export const PlayStreak: Story = {
           eligibility={{
             reputation: undefined,
             playStreak: {
+              onSync: () => alert('Syncing...'),
               currentStreakInDays: 2,
               requiredStreakInDays: 7,
               minimumSessionTimeInSeconds: 100,
