@@ -145,7 +145,7 @@ export default function StreakProgress({
           </div>
         </div>
         <div className={styles.syncContainer}>
-          <Button type="secondaryGradient" onClick={onSync}>
+          <Button type="secondaryGradient" onClick={onSync} size="small">
             {i18n.sync}
           </Button>
         </div>
