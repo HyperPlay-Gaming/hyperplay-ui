@@ -39,9 +39,9 @@ interface TokenTableProps
 }
 
 function getTokenTypeDisplayName(type: TokenType) {
-  if (type === 'fungible') return 'Fungible'
-  if (type === 'semiFungible') return 'Semi-fungible'
-  if (type === 'nonFungible') return 'Non-fungible'
+  if (type === 'fungible') return 'Token'
+  if (type === 'semiFungible') return 'Token'
+  if (type === 'nonFungible') return 'NFT'
   if (type === 'other') return 'Other'
 }
 
@@ -157,13 +157,13 @@ export default function TokenTable({
                 >
                   <Button
                     type="secondary"
-                    size="medium"
+                    size="small"
                     onClick={(event) => {
                       event?.stopPropagation()
                       onGetTokenClick(address)
                     }}
                   >
-                    <div className="button-sm">Get token</div>
+                    <div className="caption-sm">Get token</div>
                   </Button>
                 </span>
               </div>

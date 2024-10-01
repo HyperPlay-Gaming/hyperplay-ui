@@ -68,6 +68,9 @@ $circleDiameter: 12px;
     &.DRAFT {
       background-color: var(--color-neutral-300);
     }
+    &.INACTIVE {
+      background-color: var(--color-neutral-300);
+    }
     &.ACTIVE {
       background-color: var(--color-success-400);
     }

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 
+import { StoryObj } from '@storybook/react'
+
 import OptionsAccordion from '.'
 
 export default {
-  title: 'Options Accordion',
+  title: 'OptionsAccordion',
   component: OptionsAccordion
 }
 
@@ -38,14 +40,32 @@ const Others: OptionsType = {
   'Show non-available': false
 }
 
-const AllFilters: { [key: string]: OptionsType } = {
-  Genre: Genre,
-  Systems: Systems,
-  Version: Version,
-  Others: Others
+const Scrollable: OptionsType = Object.fromEntries(
+  Array.from({ length: 25 }, (_, i) => [`Item${i + 1}`, false])
+)
+
+const defaultAllFilters: { [key: string]: OptionsType } = {
+  Genre,
+  Systems,
+  Version,
+  Others,
+  Scrollable
 }
 
-export const Default = () => {
-  const [options, setOptions] = useState(AllFilters)
-  return <OptionsAccordion options={options} setOptions={setOptions} />
+type Props = {
+  options?: { [key: string]: OptionsType }
+}
+
+type Story = StoryObj<typeof OptionsAccordion>
+
+export const Default: Story = {
+  argTypes: {
+    options: {
+      control: 'object'
+    }
+  },
+  render: ({ options = defaultAllFilters }: Props) => {
+    const state = useState(options)
+    return <OptionsAccordion options={options} setOptions={state[1]} />
+  }
 }

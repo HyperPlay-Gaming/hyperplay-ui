@@ -1,0 +1,180 @@
+@use '../../styles/utilities/_variables';
+
+$bannerCarouselWidth: 747px;
+
+.root {
+  --banner-carousel-width: #{--banner-carousel-width};
+
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  border-radius: var(--space-md);
+  background: var(--color-neutral-700);
+  flex-shrink: 0;
+  align-self: stretch;
+  padding: var(--space-2lg-fixed);
+
+  @include variables.for-desktop-up {
+    flex-direction: row;
+    gap: 40px;
+    padding: var(--space-xl-fixed) 120px;
+  }
+}
+
+.carouselWrapper {
+  > div {
+    width: 100%;
+  }
+
+  width: 100%;
+  max-width: 100%;
+
+  @include variables.for-desktop-up {
+    > div {
+      width: var(--banner-carousel-width);
+    }
+
+    width: var(--banner-carousel-width);
+    max-width: var(--banner-carousel-width);
+  }
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+  gap: var(--space-2lg);
+  overflow: hidden;
+
+  @include variables.for-desktop-up {
+    align-items: flex-start;
+    max-width: var(--banner-carousel-width);
+    padding: 0;
+  }
+}
+
+.contentText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  align-self: stretch;
+}
+
+.details {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2lg);
+  position: relative;
+}
+
+.slide {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.slideItem {
+  overflow: hidden;
+}
+
+.active {
+}
+
+.inactive {
+}
+
+.bannerTitle {
+  color: var(--color-neutral-100);
+  font-family: var(--primary-font-family);
+  font-size: var(--text-5xl);
+  font-style: normal;
+  font-weight: var(--bold);
+  line-height: calc(var(--text-5xl) * 40 / 36);
+}
+
+.bannerDescription {
+  color: var(--color-neutral-100);
+  font-family: var(--secondary-font-family);
+  font-size: var(--text-lg);
+  font-style: normal;
+  font-weight: var(--regular);
+  line-height: calc(var(--text-lg) * 28 / 18);
+}
+
+.bannerButton {
+}
+
+.bannerImage {
+  width: 100%;
+  height: 202px;
+  max-height: 202px;
+  position: relative;
+  object-position: left center;
+  margin: auto;
+  object-fit: contain;
+  overflow: hidden;
+  border-radius: var(--space-md);
+
+  @include variables.for-desktop-up {
+    object-position: center center;
+    object-fit: fill;
+    height: 100%;
+    max-height: unset;
+    flex: 1;
+    aspect-ratio: 100 / 105;
+  }
+}
+
+.bannerImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-height: 202px;
+  overflow: hidden;
+  align-self: flex-start;
+
+  @include variables.for-desktop-up {
+    align-self: center;
+    width: 202px;
+    height: 100%;
+    max-height: unset;
+  }
+}
+
+.paginitionContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+}
+
+.line {
+  fill: var(--color-neutral-100);
+  cursor: pointer;
+  width: var(--space-md);
+  width: var(--space-md);
+  height: 3px;
+  opacity: 0.6;
+}
+
+.activateIndicator {
+  width: var(--space-2lg);
+  height: 3px;
+  opacity: 1;
+}

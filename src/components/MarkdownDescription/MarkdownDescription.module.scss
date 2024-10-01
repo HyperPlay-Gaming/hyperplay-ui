@@ -1,0 +1,14 @@
+@import '../../styles/designSystem/typography';
+
+.root {
+  @extend .body-sm;
+
+  white-space: normal;
+  text-wrap: wrap;
+  line-height: var(--space-xl);
+  color: var(--color-neutral-400);
+}
+
+.linkBtn {
+  padding: 0 !important;
+}

@@ -206,3 +206,21 @@ export { default as RewardDepositTokenList } from './components/RewardDeposit/co
 export * from './components/OverlayToast'
 export { default as useAllImagesLoaded } from './utils/useAllImagesLoaded'
 export * from './components/NavBarOverlay'
+export * from './components/ToastQuest'
+export * from './components/ToastGeneric'
+export * from './components/Footer'
+export * from './components/LanguageSelector'
+export * from './components/CardGeneric'
+export * from './components/QuestCard'
+export * from './components/QuestsSummaryTable'
+export { default as DetailsCard } from './components/DetailsCard'
+
+export { TokenIdRow as RewardERC721DepositTokenRow } from './components/RewardDeposit/components/RewardERC721Deposit/components/TokenIdRow'
+export type { TokenIdRowProps as RewardERC721DepositTokenRowProps } from './components/RewardDeposit/components/RewardERC721Deposit/components/TokenIdRow'
+
+export { QuestsBanner, type QuestsBannerProps } from './components/QuestsBanner'
+export * from './components/PointsBalance'
+export {
+  MarkdownDescription,
+  type MarkdownDescriptionProps
+} from './components/MarkdownDescription'

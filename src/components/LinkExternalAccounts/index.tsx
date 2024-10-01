@@ -25,13 +25,16 @@ interface ProviderOption {
 
 interface AuthProps {
   alert?: AlertProps
+  email?: string
   providers: ProviderOption[]
   onAuthProviderClick: (provider: ProviderOption) => void
   onWalletClick: () => void
+  hideWallet?: boolean
   walletAddress?: string
 }
 
 interface I18n {
+  hi: string
   title: string
   subtitle: string
 }
@@ -50,7 +53,10 @@ export default function LinkExternalAccountsModal({
   onAuthProviderClick,
   onWalletClick,
   onClose,
+  email,
+  hideWallet = false,
   i18n = {
+    hi: 'Hi',
     title: 'Add accounts to your HyperPlay profile',
     subtitle:
       'These accounts will not be shared outside of HyperPlay without your permission.'
@@ -76,18 +82,24 @@ export default function LinkExternalAccountsModal({
       />
       <HyperPlayLogoColored />
       <Modal.Header>
+        {email ? (
+          <Modal.Title>
+            {i18n.hi} {email}
+          </Modal.Title>
+        ) : null}
         <Modal.Title>{i18n.title}</Modal.Title>
-        <Modal.Body>{i18n.subtitle}</Modal.Body>
       </Modal.Header>
       {alert && <Alert {...alert}></Alert>}
       <div className={styles.providersContainer}>
-        <AuthProviderButton
-          name="Wallet"
-          icon={<Wallet className={styles.icon} />}
-          onClick={onWalletClick}
-          connected={Boolean(walletAddress)}
-          label={walletLabel}
-        />
+        {!hideWallet && (
+          <AuthProviderButton
+            name="Wallet"
+            icon={<Wallet className={styles.icon} />}
+            onClick={onWalletClick}
+            connected={Boolean(walletAddress)}
+            label={walletLabel}
+          />
+        )}
         {providers.map((provider) => (
           <AuthProviderButton
             key={provider.id}

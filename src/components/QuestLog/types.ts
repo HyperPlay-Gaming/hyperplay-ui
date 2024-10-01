@@ -2,6 +2,11 @@ import { HTMLProps } from 'react'
 
 import { QuestType, QuestTypeTranslations } from '@/common/types'
 
+import {
+  PointsBalanceProps,
+  PointsBalanceTranslations
+} from '../PointsBalance/types'
+
 export interface QuestLogInfo {
   questType: QuestType
   title: string
@@ -17,10 +22,13 @@ export interface QuestLogTranslations {
   readyForClaim: string
   active: string
   type: QuestTypeTranslations
+  pointsBalance?: PointsBalanceTranslations
+  pointsClaimed: string
 }
 
 export interface QuestLogProps extends HTMLProps<HTMLDivElement> {
   quests: QuestLogInfo[]
   i18n?: QuestLogTranslations
   loading?: boolean
+  pointsProps?: PointsBalanceProps[]
 }

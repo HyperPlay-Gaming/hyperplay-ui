@@ -3,7 +3,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 240px;
   height: 42px;
   border-radius: 100px;
   background: var(--color-neutral-900);
@@ -16,6 +15,9 @@
     border: none;
     color: var(--color-neutral-100);
     font-size: var(--text-md);
+    &::placeholder {
+      color: var(--color-neutral-400);
+    }
 
     &:focus-within {
       outline: none;
@@ -23,7 +25,7 @@
   }
 
   .searchButton {
-    padding: 0 var(--space-md) 0 var(--space-md);
+    padding: 0 var(--space-xs) 0 var(--space-md);
     height: fit-content;
     display: flex;
     justify-content: center;
@@ -34,7 +36,8 @@
     background: transparent;
     border: none;
     color: var(--text-secondary);
-    padding: var(--space-2xs) var(--space-xs) 0 0;
+    display: flex;
+    padding: 0px var(--space-sm-fixed) 0px 0px;
   }
 
   svg {
@@ -45,40 +48,6 @@
   &:focus-within ul.autoComplete {
     opacity: 1;
   }
-
-  .autoComplete {
-    background: var(--color-neutral-900);
-    position: absolute;
-    top: 32px;
-    left: 0;
-    color: var(--text-color-001);
-    z-index: 100;
-    max-height: 200px;
-    width: 420px;
-    overflow: auto;
-    display: block;
-    opacity: 0;
-    list-style: none;
-    text-align: left;
-    overflow-x: hidden;
-    border: solid 1px var(--color-stroke-01);
-    border-radius: 8px;
-    padding-left: 0;
-    font-size: var(--text-md);
-
-    li {
-      padding: var(--space-2xs) var(--space-sm);
-      width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      cursor: pointer;
-
-      &:hover {
-        background: var(--color-neutral-700);
-      }
-    }
-  }
 }
 
 @media screen and (max-width: 768px) {
@@ -86,8 +55,32 @@
     margin: 0;
     width: 100%;
   }
+}
 
-  .autoComplete {
-    width: 100%;
-  }
+.popoverDropdown {
+  background-color: var(--color-neutral-700);
+  border-radius: var(--space-md);
+  padding: var(--space-sm);
+  overflow-y: auto;
+  position: absolute;
+  max-height: 400px;
+  border: 'none';
+}
+
+.popoverDropdownList {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-neutral-100);
+  overflow-x: hidden;
+}
+
+.searchResult {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+  max-width: 100%;
+}
+
+.hideDropdown {
+  display: none;
 }

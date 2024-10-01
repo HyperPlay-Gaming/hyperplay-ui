@@ -20,6 +20,7 @@ export interface ButtonProps
     | 'menuItem'
     | 'alert'
     | 'secondaryGradient'
+  style?: React.CSSProperties
   size?: 'small' | 'medium' | 'large' | 'icon'
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type']
   leftIcon?: JSX.Element
@@ -41,6 +42,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     htmlType,
     className: propClassName,
     spacing = 'md',
+    style,
     ...props
   }: ButtonProps,
   ref
@@ -50,6 +52,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       disabled={disabled}
       ref={ref}
       type={htmlType}
+      style={style}
       className={classNames(
         styles.base,
         styles[type],

@@ -13,6 +13,7 @@ const IconFill: { [key: string]: string } = {
   Settings: '#FFFFFF',
   Page: '#FFFFFF',
   HyperPlayTextLogo: '#FFFFFF',
+  HyperPlayFullTextLogo: '#FFFFFF',
   MagnifyingGlass: '#FFFFFF',
   Twitter: '#FFFFFF',
   Heart: '#FFFFFF',
@@ -27,10 +28,12 @@ const IconFill: { [key: string]: string } = {
   Ellipsis: 'white',
   Youtube: 'white',
   DiscordFilled: 'white',
+  XFilled: 'white',
   SteamLogo: 'white',
   TwitchLogo: 'white',
   KickLogo: 'white',
   XLogo: 'white',
+  XLogoFilled: 'white',
   Email: 'white',
   GoogleLogo: 'white',
   TwitterFilled: 'white',
@@ -44,7 +47,14 @@ const IconFill: { [key: string]: string } = {
   ArrowTop: '#FFFFFF',
   AlertBell: '#FFFFFF',
   LightningBolt: '#FFFFFF',
-  QuestScroll: '#FFFFFF'
+  QuestScroll: '#FFFFFF',
+  QuestScrollIcon: '#FFFFFF',
+  Diamond: '#FFFFFF',
+  LinuxIcon: '#FFFFFF',
+  WindowsIcon: '#FFFFFF',
+  MacOSIcon: '#FFFFFF',
+  SteamDeckIcon: '#FFFFFF',
+  Line: '#FFFFFF'
 }
 
 const IconStroke: { [key: string]: string } = {
@@ -54,7 +64,9 @@ const IconStroke: { [key: string]: string } = {
   PlusCircle: '#FFFFFF',
   MinusCircle: '#FFFFFF',
   LightningBolt: '#FFFFFF',
-  Clock: '#FFFFFF'
+  Clock: '#FFFFFF',
+  ArrowUpRight: '#FFFFFF',
+  LinkExternal: '#FFFFFF'
 }
 
 export default function Icons() {
@@ -86,7 +98,7 @@ export default function Icons() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div>
       <>{getAllIcons()}</>
     </div>
   )

@@ -13,7 +13,7 @@ export interface RewardSimple {
   balance: number | string
 }
 
-export type statusType = 'DRAFT' | 'ACTIVE'
+export type statusType = 'DRAFT' | 'ACTIVE' | 'INACTIVE'
 
 export interface QuestsTableI18n {
   name?: string
@@ -32,13 +32,12 @@ function getStatusDisplayName(status: statusType, i18n: QuestsTableI18n) {
   switch (status) {
     case 'DRAFT':
       return i18n.draft
-      break
     case 'ACTIVE':
       return i18n.active
-      break
+    case 'INACTIVE':
+      return i18n.inactive
     default:
       return '???'
-      break
   }
 }
 

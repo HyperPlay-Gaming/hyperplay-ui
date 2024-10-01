@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 import cn from 'classnames'
 
 import {
@@ -17,6 +19,7 @@ export interface RewardFormCardProps extends ContainerInteractiveProps {
   tokenContractAddressInputProps?: TextInputProps
   tokenTypeInputProps?: SelectProps
   rewardImageProps?: RewardImageInputProps
+  RewardContract?: ReactNode
 }
 
 function RewardFormCard({ classNames, ...props }: RewardFormCardProps) {
@@ -30,6 +33,7 @@ function RewardFormCard({ classNames, ...props }: RewardFormCardProps) {
       {...props}
     >
       <Select {...props.networkInputProps} />
+      {props.RewardContract}
       <div className={styles.split}>
         <div>
           <RewardImageInput label="Reward Image" {...props.rewardImageProps} />

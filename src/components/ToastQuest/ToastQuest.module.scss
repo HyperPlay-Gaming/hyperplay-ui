@@ -1,0 +1,42 @@
+$successColor: var(--color-success-500);
+$border: 6px solid;
+
+.questIconContainer {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-neutral-800);
+  border-radius: 10000px;
+  border: $border var(--color-neutral-600);
+  svg {
+    fill: var(--color-alert-200);
+  }
+
+  &.completed {
+    border: $border $successColor;
+    svg {
+      fill: $successColor;
+    }
+  }
+}
+
+.subtextRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3xs);
+  white-space: nowrap;
+  color: var(--color-neutral-400);
+}
+
+.emphasisText {
+  background-color: var(--color-neutral-400);
+  padding: 0px var(--space-3xs);
+  color: var(--color-neutral-800);
+  border-radius: var(--space-3xs);
+}
+
+.root {
+  min-width: 400px;
+}

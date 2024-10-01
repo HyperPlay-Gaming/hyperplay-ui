@@ -1,29 +1,43 @@
 import { useState } from 'react'
 
+import cn from 'classnames'
+
 import { MinusCircle, PlusCircle } from '@/assets/images'
 
 import styles from './index.module.scss'
 
 export interface FAQItemProps {
-  question: string
-  answer: string
+  question: string | React.ReactNode
+  answer: string | React.ReactNode
+  classNames?: {
+    root?: string
+    container?: string
+    title?: string
+    description?: string
+  }
 }
 
-export default function FAQItem({ question, answer }: FAQItemProps) {
+export default function FAQItem({
+  question,
+  answer,
+  classNames
+}: FAQItemProps) {
   const [isOpen, setOpened] = useState(false)
 
   return (
-    <div className={styles.item}>
+    <div className={cn(styles.item, classNames?.root)}>
       <div
-        className={styles.questionContainer}
+        className={cn(styles.questionContainer, classNames?.container)}
         onClick={() => setOpened((prevState) => !prevState)}
       >
-        <p className={styles.question}>{question}</p>
+        <p className={cn(styles.question, classNames?.title)}>{question}</p>
         <span className={styles.toggleIcon}>
           {isOpen ? <MinusCircle /> : <PlusCircle />}
         </span>
       </div>
-      {isOpen && <p className={styles.answer}>{answer}</p>}
+      {isOpen && (
+        <p className={cn(styles.answer, classNames?.description)}>{answer}</p>
+      )}
     </div>
   )
 }

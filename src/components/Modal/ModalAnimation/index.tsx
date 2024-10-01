@@ -14,14 +14,19 @@ export default function ModalAnimation({
   children,
   isOpen,
   onClose,
+  className,
   ...props
 }: ModalAnimationProps) {
   return (
     <div
       {...props}
-      className={classNames(styles.container, {
-        [styles.open]: isOpen
-      })}
+      className={classNames(
+        styles.container,
+        {
+          [styles.open]: isOpen
+        },
+        className
+      )}
     >
       <div
         className={classNames(styles.overlay, {

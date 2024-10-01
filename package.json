@@ -1,7 +1,7 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.2.48",
-  "license": "UNLICENSED",
+  "version": "1.7.26",
+  "license": "LGPL-3.0-only",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -88,7 +88,8 @@
     "vite-plugin-linter": "^2.0.2",
     "vite-plugin-static-copy": "^0.13.0",
     "vite-plugin-svgr": "^2.4.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "react-markdown": "^9.0.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.11.0",
@@ -99,11 +100,13 @@
     "embla-carousel-autoplay": ">=7.0.0",
     "embla-carousel-react": ">=7.0.0",
     "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "react-markdown": "9.0.1"
   },
   "module": "dist/index.es.js",
   "files": [
-    "dist/*"
+    "dist/*",
+    "LICENSE"
   ],
   "exports": {
     ".": {
@@ -134,6 +137,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@hyperplay/chains": "^0.2.9",
+    "@hyperplay/utils": "^0.1.0",
     "@tabler/icons-react": "^2.46.0",
     "@valist/sdk": "^2.9.1",
     "ethereum-blockies-base64": "^1.0.2"

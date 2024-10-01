@@ -1,12 +1,13 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { CSSProperties, useEffect, useRef } from 'react'
 
-import classNames from 'classnames'
+import { Popover, PopoverProps } from '@mantine/core'
+import cn from 'classnames'
 
 import { CloseButton, MagnifyingGlass } from '@/assets/images'
 
-import styles from './SearchBar.module.scss'
+import searchBarStyles from './SearchBar.module.scss'
 
-type Props = {
+interface Props extends PopoverProps {
   searchText: string
   setSearchText: (text: string) => void
   onClickSuggestion?: (suggestion: string) => void
@@ -14,8 +15,17 @@ type Props = {
   i18n: {
     placeholder: string
   }
-  containerClass?: string
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
+  classNames?: {
+    dropdown?: string
+    arrow?: string
+    container?: string
+  }
+  styles?: {
+    dropdown?: CSSProperties
+    arrow?: CSSProperties
+    container?: CSSProperties
+  }
 }
 
 export default function SearchBar({
@@ -24,8 +34,10 @@ export default function SearchBar({
   i18n: { placeholder },
   suggestions,
   onClickSuggestion,
-  containerClass,
-  inputProps
+  inputProps,
+  classNames,
+  styles,
+  ...props
 }: Props) {
   const input = useRef<HTMLInputElement>(null)
 
@@ -44,7 +56,7 @@ export default function SearchBar({
     return
   }, [input])
 
-  const clearSearch = () => {
+  const clearSearch: React.MouseEventHandler<HTMLButtonElement> = () => {
     if (input.current) {
       input.current.value = ''
       setSearchText('')
@@ -53,14 +65,7 @@ export default function SearchBar({
   }
 
   const showClearButton = searchText.length > 0
-  const gameList = useMemo(() => {
-    if (suggestions && searchText.length > 0) {
-      return suggestions.filter((el) =>
-        el.toLowerCase().includes(searchText.toLowerCase())
-      )
-    }
-    return []
-  }, [suggestions, searchText])
+  const gameList = suggestions ?? []
 
   const handleOnClickSuggestion = (suggestion: string) => {
     if (onClickSuggestion) {
@@ -73,31 +78,73 @@ export default function SearchBar({
     setSearchText(suggestion)
   }
 
+  let searchResults = null
+  if (gameList.length > 0) {
+    searchResults = (
+      <>
+        {gameList.map((el) => (
+          <button
+            onClick={() => handleOnClickSuggestion(el)}
+            key={el}
+            className={searchBarStyles.searchResult}
+          >
+            {el}
+          </button>
+        ))}
+      </>
+    )
+  } else if (searchText) {
+    searchResults = <div>No results</div>
+  }
+
+  const dropdownClassnames: Record<string, boolean> = {}
+  dropdownClassnames[searchBarStyles.hideDropdown] = searchResults === null
+
   return (
-    <div className={classNames(styles.searchBar, containerClass)}>
-      <button className={styles.searchButton}>
-        <MagnifyingGlass fill="var(--color-neutral-100)" />
-      </button>
-      <input
-        ref={input}
-        type="text"
-        placeholder={placeholder}
-        {...inputProps}
-      />
-      {showClearButton && (
-        <button className={styles.clearButton} onClick={clearSearch}>
-          <CloseButton fill="var(--color-neutral-100)" onClick={clearSearch} />
-        </button>
-      )}
-      {gameList.length > 0 && (
-        <ul className={styles.autoComplete}>
-          {gameList.map((el) => (
-            <li onClick={() => handleOnClickSuggestion(el)} key={el}>
-              {el}{' '}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <Popover
+      width="target"
+      classNames={{
+        dropdown: cn(
+          searchBarStyles.popoverDropdown,
+          dropdownClassnames,
+          classNames?.dropdown
+        ),
+        arrow: classNames?.arrow
+      }}
+      unstyled
+      {...props}
+    >
+      <Popover.Target>
+        <div
+          className={cn(searchBarStyles.searchBar, classNames?.container)}
+          style={styles?.container}
+        >
+          <button className={searchBarStyles.searchButton}>
+            <MagnifyingGlass fill="var(--color-neutral-400)" />
+          </button>
+          <input
+            ref={input}
+            type="text"
+            placeholder={placeholder}
+            {...inputProps}
+            className={cn('body-sm', inputProps?.className)}
+            value={searchText}
+          />
+          {showClearButton && (
+            <button
+              className={searchBarStyles.clearButton}
+              onClick={clearSearch}
+            >
+              <CloseButton fill="var(--color-neutral-400)" />
+            </button>
+          )}
+        </div>
+      </Popover.Target>
+      <Popover.Dropdown>
+        <div className={searchBarStyles.popoverDropdownList}>
+          {searchResults}
+        </div>
+      </Popover.Dropdown>
+    </Popover>
   )
 }

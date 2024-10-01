@@ -58,6 +58,7 @@ const authProviders = [
 
 const meta: Meta<typeof LinkExternalAccountsModal> = {
   title: 'auth/LinkExternalAccountsModal',
+  component: LinkExternalAccountsModal,
   args: {
     providers: authProviders,
     onClose: fn(),
@@ -104,6 +105,17 @@ export const WalletLinked: Story = {
   }
 }
 
+export const WithEmail: Story = {
+  args: {
+    email: 'hello@hyperplay.xyz'
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
+      <LinkExternalAccountsModal {...args} />
+    </div>
+  )
+}
+
 export const Error: Story = {
   render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
@@ -116,4 +128,10 @@ export const Error: Story = {
       />
     </div>
   )
+}
+
+export const WalletHidden: Story = {
+  args: {
+    hideWallet: true
+  }
 }

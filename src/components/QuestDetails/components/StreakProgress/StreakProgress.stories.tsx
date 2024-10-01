@@ -1,3 +1,4 @@
+import { oneDayInMs } from '@hyperplay/utils'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import StreakProgress, { StreakProgressProps } from '.'
@@ -14,7 +15,13 @@ type Story = StoryObj<typeof StreakProgress>
 const props: StreakProgressProps = {
   currentStreakInDays: 7,
   requiredStreakInDays: 7,
-  resetTimeInMsSinceEpoch: Date.now().valueOf() + 1000 * 3600
+  minimumSessionTimeInSeconds: 100,
+  accumulatedPlaytimeTodayInSeconds: 80,
+  lastPlaySessionCompletedDateTimeUTC: new Date(
+    Date.now() - oneDayInMs
+  ).toUTCString(),
+  dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now(),
+  onSync: () => alert('Syncing...')
 }
 
 export const Default: Story = {
@@ -30,7 +37,6 @@ export const PlayStreak: Story = {
           {...args}
           currentStreakInDays={2}
           requiredStreakInDays={7}
-          resetTimeInMsSinceEpoch={Date.now().valueOf() + 1000 * 3600}
         />
       </div>
     )
@@ -46,7 +52,6 @@ export const PlayStreakFinished: Story = {
           {...args}
           currentStreakInDays={7}
           requiredStreakInDays={7}
-          resetTimeInMsSinceEpoch={Date.now().valueOf() + 1000 * 3600}
         />
       </div>
     )
@@ -62,7 +67,6 @@ export const PlayStreakNotStarted: Story = {
           {...args}
           currentStreakInDays={0}
           requiredStreakInDays={7}
-          resetTimeInMsSinceEpoch={Date.now().valueOf() + 1000 * 3600}
         />
       </div>
     )
@@ -78,7 +82,6 @@ export const PlayStreak23Days: Story = {
           {...args}
           currentStreakInDays={12}
           requiredStreakInDays={23}
-          resetTimeInMsSinceEpoch={Date.now().valueOf() + 1000 * 3600}
         />
       </div>
     )
@@ -94,7 +97,39 @@ export const PlayStreak25DaysCompletesIn2Seconds: Story = {
           {...args}
           currentStreakInDays={10}
           requiredStreakInDays={25}
-          resetTimeInMsSinceEpoch={Date.now().valueOf() + 2000}
+          accumulatedPlaytimeTodayInSeconds={98}
+        />
+      </div>
+    )
+  }
+}
+
+export const PlayStreakDaily100PctButNotCompleted: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div>
+        <StreakProgress
+          {...args}
+          currentStreakInDays={10}
+          requiredStreakInDays={25}
+          accumulatedPlaytimeTodayInSeconds={10000}
+          dateTimeCurrentSessionStartedInMsSinceEpoch={undefined}
+        />
+      </div>
+    )
+  }
+}
+
+export const NoStreakButSomePlayTime: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div>
+        <StreakProgress
+          {...args}
+          currentStreakInDays={0}
+          requiredStreakInDays={4}
         />
       </div>
     )

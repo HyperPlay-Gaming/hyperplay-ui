@@ -1,8 +1,12 @@
+$containerPadding: var(--space-2lg-fixed);
 .darkContainer {
-  padding: var(--space-2lg);
+  padding: $containerPadding;
   max-width: 400px;
   height: 100%;
   margin: var(--space-xl) var(--space-xs);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .questItemsContainer {
@@ -23,6 +27,7 @@
   justify-content: center;
   display: flex;
   flex-direction: row;
+  margin-bottom: var(--space-xl);
 }
 
 .counter {
@@ -36,4 +41,31 @@
 
 .loader {
   padding-top: var(--space-lg-fixed);
+}
+
+.pointsClaimedContainer {
+  border-top: 1px solid var(--color-neutral-600);
+  max-height: 240px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  flex-basis: auto;
+
+  margin: var(--space-md) calc(-1 * $containerPadding) 0px
+    calc(-1 * $containerPadding);
+  padding: var(--space-md) $containerPadding 0px $containerPadding;
+}
+
+.tabsRoot {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.pointsClaimedTitle {
+  margin-bottom: var(--space-md);
+}
+
+.pointsBalanceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm-fixed);
 }

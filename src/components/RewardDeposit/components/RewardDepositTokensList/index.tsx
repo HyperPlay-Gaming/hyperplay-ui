@@ -48,7 +48,11 @@ function RewardDepositTokenList({
           {i18n.addedTokenCounterText} {tokenCount}
         </span>
 
-        <button onClick={onShowToken} className={styles.tokensAddedActions}>
+        <button
+          type="button"
+          onClick={onShowToken}
+          className={styles.tokensAddedActions}
+        >
           <span>{i18n.collapseAllIds}</span>
           {showTokenIds ? (
             <DownArrow className={styles.arrowDownIcon} />
