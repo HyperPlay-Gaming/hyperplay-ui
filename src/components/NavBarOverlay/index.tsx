@@ -1,5 +1,4 @@
-import React, { ReactElement, useState } from 'react'
-import { Link, LinkProps } from 'react-router-dom'
+import React, { ReactElement } from 'react'
 
 import cn from 'classnames'
 
@@ -11,64 +10,23 @@ import {
 
 import styles from './NavBarOverlay.module.scss'
 
-interface NavItem {
-  title: string
-  route: string
-  icon: ReactElement
-  alertNumber?: number
-  linkProps?: Omit<LinkProps, 'to'>
-}
-
 export interface NavBarOverlayProps {
-  items: NavItem[]
-  currentRoute?: string
+  linkItems: ReactElement[]
   classNames?: {
     root?: string
-    link?: string
-    alertIconContainer?: string
   }
+  collapsed?: boolean
+  setCollapsed: (collapsed: boolean) => void
 }
 
 export function NavBarOverlay({
-  items,
-  currentRoute,
-  classNames
+  linkItems,
+  classNames,
+  collapsed,
+  setCollapsed
 }: NavBarOverlayProps) {
-  const [collapsed, setCollapsed] = useState(false)
   const collapseClass: Record<string, boolean> = {}
-  collapseClass[styles.collapsed] = collapsed
-  const linkItems = items.map((val) => {
-    const linkClasses: Record<string, boolean> = {}
-    linkClasses[styles.selected] = currentRoute === val.route
-    let alert = null
-    if (val.alertNumber) {
-      alert = (
-        <div className={cn('caption', styles.alertContainer, linkClasses)}>
-          {val.alertNumber}
-        </div>
-      )
-    }
-    return (
-      <Link
-        to={val.route}
-        key={val.route}
-        className={cn('menu-item', styles.link, classNames?.link, linkClasses)}
-        {...val.linkProps}
-      >
-        {val.icon}
-        <div className={cn(styles.linkTitle, collapseClass)}>{val.title}</div>
-        <div
-          className={cn(
-            styles.alertIconContainer,
-            classNames?.alertIconContainer,
-            collapseClass
-          )}
-        >
-          {alert}
-        </div>
-      </Link>
-    )
-  })
+  collapseClass[styles.collapsed] = !!collapsed
   return (
     <div className={cn(styles.root, classNames?.root)}>
       <div className={cn(styles.logoRow, collapseClass)}>
