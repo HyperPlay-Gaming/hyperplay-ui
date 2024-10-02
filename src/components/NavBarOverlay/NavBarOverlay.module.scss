@@ -1,0 +1,54 @@
+.root {
+  background-color: var(--color-neutral-800);
+  height: 100vh;
+  display: inline-block;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  svg {
+    color: var(--color-neutral-100);
+    fill: var(--color-neutral-100);
+    max-height: 24px;
+    // the H logo svg has some extra white space on the left and right which makes the padding look inconsistent on logoRow
+    margin: 0px -6px;
+
+    &:nth-child(2) {
+      padding-top: 2px;
+    }
+  }
+
+  &.collapsed {
+    display: none;
+  }
+}
+
+.logoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px var(--space-md-fixed);
+  min-height: calc(var(--space-md-fixed) * 6.5);
+
+  &.collapsed {
+    justify-content: center;
+  }
+}
+
+.collapseIcon {
+  display: flex;
+  align-items: center;
+  margin-left: var(--space-xl-fixed);
+
+  svg {
+    height: 10px;
+  }
+
+  &.collapsed {
+    transform: rotate(180deg);
+    margin-left: 0px;
+  }
+}

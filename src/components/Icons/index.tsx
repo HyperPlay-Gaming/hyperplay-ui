@@ -47,6 +47,7 @@ const IconFill: { [key: string]: string } = {
   ArrowTop: '#FFFFFF',
   AlertBell: '#FFFFFF',
   LightningBolt: '#FFFFFF',
+  QuestScroll: '#FFFFFF',
   QuestScrollIcon: '#FFFFFF',
   Diamond: '#FFFFFF',
   LinuxIcon: '#FFFFFF',
