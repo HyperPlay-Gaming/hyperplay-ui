@@ -1,9 +1,13 @@
-import React, { ReactElement } from 'react'
-import { Link } from 'react-router-dom'
+import React, { ReactElement, useState } from 'react'
+import { Link, LinkProps } from 'react-router-dom'
 
 import cn from 'classnames'
 
-import { HyperPlayLogoIcon, HyperPlayTextLogo } from '@/assets/images'
+import {
+  ChevronLeft,
+  HyperPlayLogoIcon,
+  HyperPlayTextLogo
+} from '@/assets/images'
 
 import styles from './NavBarOverlay.module.scss'
 
@@ -12,6 +16,7 @@ interface NavItem {
   route: string
   icon: ReactElement
   alertNumber?: number
+  linkProps?: Omit<LinkProps, 'to'>
 }
 
 export interface NavBarOverlayProps {
@@ -29,13 +34,16 @@ export function NavBarOverlay({
   currentRoute,
   classNames
 }: NavBarOverlayProps) {
+  const [collapsed, setCollapsed] = useState(false)
+  const collapseClass: Record<string, boolean> = {}
+  collapseClass[styles.collapsed] = collapsed
   const linkItems = items.map((val) => {
     const linkClasses: Record<string, boolean> = {}
     linkClasses[styles.selected] = currentRoute === val.route
     let alert = null
     if (val.alertNumber) {
       alert = (
-        <div className={cn('caption', styles.alertContainer)}>
+        <div className={cn('caption', styles.alertContainer, linkClasses)}>
           {val.alertNumber}
         </div>
       )
@@ -44,14 +52,16 @@ export function NavBarOverlay({
       <Link
         to={val.route}
         key={val.route}
-        className={cn('menu', styles.link, classNames?.link, linkClasses)}
+        className={cn('menu-item', styles.link, classNames?.link, linkClasses)}
+        {...val.linkProps}
       >
         {val.icon}
-        {val.title}
+        <div className={cn(styles.linkTitle, collapseClass)}>{val.title}</div>
         <div
           className={cn(
             styles.alertIconContainer,
-            classNames?.alertIconContainer
+            classNames?.alertIconContainer,
+            collapseClass
           )}
         >
           {alert}
@@ -61,9 +71,19 @@ export function NavBarOverlay({
   })
   return (
     <div className={cn(styles.root, classNames?.root)}>
-      <div className={styles.logoContainer}>
-        <HyperPlayLogoIcon />
-        <HyperPlayTextLogo />
+      <div className={cn(styles.logoRow, collapseClass)}>
+        <div className={cn(styles.logoContainer, collapseClass)}>
+          <HyperPlayLogoIcon />
+          <HyperPlayTextLogo />
+        </div>
+        <button
+          className={cn(styles.collapseIcon, collapseClass)}
+          type="button"
+          onClick={() => setCollapsed(!collapsed)}
+        >
+          <ChevronLeft />
+          <ChevronLeft />
+        </button>
       </div>
       {linkItems}
     </div>

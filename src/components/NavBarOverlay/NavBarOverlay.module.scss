@@ -1,6 +1,5 @@
 .root {
-  min-width: 240px;
-  background-color: var(--color-neutral-900);
+  background-color: var(--color-neutral-800);
   height: 100vh;
   display: inline-block;
 }
@@ -14,13 +13,47 @@
     color: var(--color-neutral-100);
     fill: var(--color-neutral-100);
     max-height: 24px;
+    // the H logo svg has some extra white space on the left and right which makes the padding look inconsistent on logoRow
+    margin: 0px -6px;
 
     &:nth-child(2) {
       padding-top: 2px;
-      margin-left: -6px;
     }
   }
+
+  &.collapsed {
+    display: none;
+  }
 }
+
+.logoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px var(--space-md-fixed);
+  min-height: calc(var(--space-md-fixed) * 6.5);
+
+  &.collapsed {
+    justify-content: center;
+  }
+}
+
+.collapseIcon {
+  display: flex;
+  align-items: center;
+  margin-left: var(--space-xl-fixed);
+
+  svg {
+    height: 10px;
+  }
+
+  &.collapsed {
+    transform: rotate(180deg);
+    margin-left: 0px;
+  }
+}
+
+$selected-color: var(--color-neutral-500);
 
 .link {
   display: flex;
@@ -28,10 +61,10 @@
   padding: var(--space-md-fixed);
   cursor: pointer !important;
   gap: var(--space-sm-fixed);
-  color: var(--color-neutral-400) !important;
+  color: $selected-color !important;
   svg {
     max-height: 19px;
-    fill: var(--color-neutral-400);
+    fill: $selected-color;
   }
   &.selected {
     background-color: var(--color-neutral-700);
@@ -39,6 +72,20 @@
     svg {
       fill: var(--color-neutral-100);
     }
+
+    padding-right: 25px;
+    border-right: 2px solid;
+    border-image: var(--color-gradient-01-border) 0 100%;
+  }
+
+  &:hover * {
+    opacity: 70%;
+  }
+}
+
+.linkTitle {
+  &.collapsed {
+    display: none;
   }
 }
 
@@ -47,10 +94,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  &.collapsed {
+    display: none;
+  }
 }
 
 .alertContainer {
   background-color: var(--color-primary-500);
   border-radius: var(--space-3xs-fixed);
   padding: var(--space-3xs) var(--space-sm);
+
+  &:not(.selected) {
+    display: none;
+  }
 }
