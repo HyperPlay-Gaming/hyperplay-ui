@@ -5,7 +5,7 @@ import cn from 'classnames'
 
 import styles from './NavItem.module.scss'
 
-interface NavItemProps {
+export interface NavItemProps {
   title: string
   route: string
   icon: ReactElement
