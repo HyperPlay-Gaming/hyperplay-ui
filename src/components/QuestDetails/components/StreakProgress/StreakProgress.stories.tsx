@@ -135,3 +135,14 @@ export const NoStreakButSomePlayTime: Story = {
     )
   }
 }
+
+export const WithExternalStreakButton: Story = {
+  args: { ...props },
+  render: (args) => {
+    return (
+      <div>
+        <StreakProgress {...args} showSyncProgressButton={true} />
+      </div>
+    )
+  }
+}
