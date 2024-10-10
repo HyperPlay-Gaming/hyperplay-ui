@@ -393,3 +393,25 @@ export const RewardMarketplaceLink: Story = {
     )
   }
 }
+
+export const WithExternalSyncButton: Story = {
+  args: {
+    ...props,
+    questType: 'PLAYSTREAK',
+    eligibility: {
+      reputation: undefined,
+      playStreak: {
+        onSync: () => alert('Syncing...'),
+        currentStreakInDays: 2,
+        requiredStreakInDays: 7,
+        minimumSessionTimeInSeconds: 100,
+        accumulatedPlaytimeTodayInSeconds: 10,
+        lastPlaySessionCompletedDateTimeUTC: new Date(
+          Date.now() - oneDayInMs
+        ).toUTCString(),
+        dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now(),
+        showSyncProgressButton: true
+      }
+    }
+  }
+}

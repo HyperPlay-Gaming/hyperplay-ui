@@ -28,7 +28,6 @@ export interface StreakProgressI18n {
 
 export interface StreakProgressProps extends PlayStreakEligibility {
   i18n?: StreakProgressI18n
-  onSync: () => void
 }
 
 export default function StreakProgress({
@@ -38,6 +37,7 @@ export default function StreakProgress({
   accumulatedPlaytimeTodayInSeconds,
   lastPlaySessionCompletedDateTimeUTC,
   dateTimeCurrentSessionStartedInMsSinceEpoch,
+  showSyncProgressButton,
   i18n = {
     streakProgress: 'Streak Progress',
     days: 'days',
@@ -144,11 +144,13 @@ export default function StreakProgress({
             {` / ${requiredStreakInDays} ${i18n.days}`}
           </div>
         </div>
-        <div className={styles.syncContainer}>
-          <Button type="secondaryGradient" onClick={onSync} size="small">
-            {i18n.sync}
-          </Button>
-        </div>
+        {showSyncProgressButton ? (
+          <div className={styles.syncContainer}>
+            <Button type="secondaryGradient" onClick={onSync} size="small">
+              {i18n.sync}
+            </Button>
+          </div>
+        ) : null}
       </div>
       <hr></hr>
       <div className={classNames('body-sm', styles.bottomContainer)}>
