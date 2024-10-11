@@ -27,6 +27,7 @@ export interface PlayStreakEligibility {
   lastPlaySessionCompletedDateTimeUTC: string
   dateTimeCurrentSessionStartedInMsSinceEpoch?: number
   onSync: () => void
+  showSyncProgressButton?: boolean
 }
 
 export interface QuestReward {
