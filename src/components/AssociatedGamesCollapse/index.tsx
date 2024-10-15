@@ -6,7 +6,7 @@ import classNames from 'classnames'
 import { DownArrow } from '@/assets/images'
 import Loading from '@/components/Loading'
 
-import { Game } from '../../types'
+import { Game } from '../QuestDetails/types'
 import styles from './index.module.scss'
 
 export interface AssociatedGamesCollapseProps {
