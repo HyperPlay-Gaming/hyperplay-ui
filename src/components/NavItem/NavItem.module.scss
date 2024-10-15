@@ -49,8 +49,9 @@ $selected-color: var(--color-neutral-500);
   background-color: var(--color-primary-500);
   border-radius: var(--space-3xs-fixed);
   padding: var(--space-3xs) var(--space-sm);
+  color: var(--color-neutral-100);
 
-  &:not(.selected) {
+  &.hide {
     display: none;
   }
 }

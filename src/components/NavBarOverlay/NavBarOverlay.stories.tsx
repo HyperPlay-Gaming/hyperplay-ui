@@ -54,6 +54,7 @@ export const Default: Story = {
         onClick={() => setSelectedRoute('/achievements')}
         collapsed={collapsed}
         currentRoute={selectedRoute}
+        comingSoon={true}
       />
     ]
     console.log('selected route ', selectedRoute)
