@@ -53,6 +53,7 @@ function _NavItem({
 
   const linkItemClasses: Record<string, boolean> = {}
   linkItemClasses[styles.hide] = alertText === ''
+  linkItemClasses[styles.secondary] = !!comingSoon
   return (
     <Element
       key={route}

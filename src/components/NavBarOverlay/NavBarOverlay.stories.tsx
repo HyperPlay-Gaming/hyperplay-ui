@@ -55,6 +55,9 @@ export const Default: Story = {
         collapsed={collapsed}
         currentRoute={selectedRoute}
         comingSoon={true}
+        style={{
+          cursor: 'not-allowed'
+        }}
       />
     ]
     console.log('selected route ', selectedRoute)

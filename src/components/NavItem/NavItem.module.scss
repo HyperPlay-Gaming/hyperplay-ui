@@ -4,7 +4,7 @@ $selected-color: var(--color-neutral-500);
   display: flex;
   align-items: center;
   padding: var(--space-md-fixed);
-  cursor: pointer !important;
+  cursor: pointer;
   gap: var(--space-sm-fixed);
   color: $selected-color !important;
   width: 100%;
@@ -53,5 +53,9 @@ $selected-color: var(--color-neutral-500);
 
   &.hide {
     display: none;
+  }
+
+  &.secondary {
+    background-color: var(--color-neutral-600);
   }
 }
