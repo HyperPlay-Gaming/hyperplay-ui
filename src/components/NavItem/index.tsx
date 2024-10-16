@@ -18,10 +18,7 @@ export interface NavItemProps {
   }
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   component?: any
-  comingSoon?: boolean
-  i18n?: {
-    comingSoon: string
-  }
+  secondaryTag?: string
 }
 
 function _NavItem({
@@ -33,17 +30,14 @@ function _NavItem({
   collapsed,
   classNames,
   component,
-  comingSoon,
-  i18n = {
-    comingSoon: 'Coming Soon'
-  },
+  secondaryTag,
   ...props
 }: NavItemProps) {
   let alertText = ''
   if (alertNumber) {
     alertText = alertNumber.toString()
-  } else if (comingSoon) {
-    alertText = i18n.comingSoon
+  } else if (secondaryTag) {
+    alertText = secondaryTag
   }
   const collapseClass: Record<string, boolean> = {}
   collapseClass[styles.collapsed] = !!collapsed
@@ -53,7 +47,7 @@ function _NavItem({
 
   const linkItemClasses: Record<string, boolean> = {}
   linkItemClasses[styles.hide] = alertText === ''
-  linkItemClasses[styles.secondary] = !!comingSoon
+  linkItemClasses[styles.secondary] = !!secondaryTag
   return (
     <Element
       key={route}
