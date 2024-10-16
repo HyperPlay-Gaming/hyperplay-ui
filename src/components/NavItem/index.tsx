@@ -18,6 +18,7 @@ export interface NavItemProps {
   }
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   component?: any
+  secondaryTag?: string
 }
 
 function _NavItem({
@@ -29,21 +30,24 @@ function _NavItem({
   collapsed,
   classNames,
   component,
+  secondaryTag,
   ...props
 }: NavItemProps) {
-  const linkClasses: Record<string, boolean> = {}
-  linkClasses[styles.selected] = currentRoute === route
-  let alert = null
+  let alertText = ''
   if (alertNumber) {
-    alert = (
-      <div className={cn('caption', styles.alertContainer, linkClasses)}>
-        {alertNumber}
-      </div>
-    )
+    alertText = alertNumber.toString()
+  } else if (secondaryTag) {
+    alertText = secondaryTag
   }
   const collapseClass: Record<string, boolean> = {}
   collapseClass[styles.collapsed] = !!collapsed
   const Element = component || 'button'
+  const linkClasses: Record<string, boolean> = {}
+  linkClasses[styles.selected] = currentRoute === route
+
+  const linkItemClasses: Record<string, boolean> = {}
+  linkItemClasses[styles.hide] = alertText === ''
+  linkItemClasses[styles.secondary] = !!secondaryTag
   return (
     <Element
       key={route}
@@ -59,7 +63,9 @@ function _NavItem({
           collapseClass
         )}
       >
-        {alert}
+        <div className={cn('caption', styles.alertContainer, linkItemClasses)}>
+          {alertText}
+        </div>
       </div>
     </Element>
   )
