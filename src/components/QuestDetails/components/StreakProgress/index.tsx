@@ -37,7 +37,7 @@ export default function StreakProgress({
   accumulatedPlaytimeTodayInSeconds,
   lastPlaySessionCompletedDateTimeUTC,
   dateTimeCurrentSessionStartedInMsSinceEpoch,
-  showSyncProgressButton,
+  rightSection,
   i18n = {
     streakProgress: 'Streak Progress',
     days: 'days',
@@ -48,8 +48,7 @@ export default function StreakProgress({
     now: 'Now',
     dayResets: 'Day resets:',
     sync: 'Sync Progress'
-  },
-  onSync
+  }
 }: StreakProgressProps) {
   ;({ requiredStreakInDays, currentStreakInDays } = getPlayStreakDays({
     lastPlaySessionCompletedDateTimeUTC,
@@ -144,12 +143,8 @@ export default function StreakProgress({
             {` / ${requiredStreakInDays} ${i18n.days}`}
           </div>
         </div>
-        {showSyncProgressButton ? (
-          <div className={styles.syncContainer}>
-            <Button type="secondaryGradient" onClick={onSync} size="small">
-              {i18n.sync}
-            </Button>
-          </div>
+        {rightSection ? (
+          <div className={styles.rightSection}>{rightSection}</div>
         ) : null}
       </div>
       <hr></hr>
