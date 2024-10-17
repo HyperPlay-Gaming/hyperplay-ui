@@ -11,7 +11,7 @@ import classNames from 'classnames'
 import { Clock, LightningBolt } from '@/assets/images'
 import Button from '@/components/Button'
 
-import { PlayStreakEligibility } from '../../types'
+import { PlayStreakEligibility } from '../QuestDetails/types'
 import styles from './index.module.scss'
 
 export interface StreakProgressI18n {
