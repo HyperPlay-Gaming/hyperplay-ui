@@ -33,14 +33,6 @@ $rootPadding: var(--space-md-fixed);
   }
 }
 
-.progressIconsContainer {
-  display: grid;
-  gap: var(--space-xs);
-  grid-template-columns: repeat(12, auto);
-  grid-template-rows: repeat(2, auto);
-  column-gap: 0px;
-}
-
 .clock {
   stroke: var(--color-neutral-400);
 }
