@@ -9,7 +9,6 @@ import { RingProgress } from '@mantine/core'
 import classNames from 'classnames'
 
 import { Clock, LightningBolt } from '@/assets/images'
-import Button from '@/components/Button'
 
 import { PlayStreakEligibility } from '../../types'
 import styles from './index.module.scss'
@@ -28,6 +27,34 @@ export interface StreakProgressI18n {
 
 export interface StreakProgressProps extends PlayStreakEligibility {
   i18n?: StreakProgressI18n
+}
+
+function PlayStreakBolts({
+  currentStreakInDays,
+  requiredStreakInDays
+}: {
+  currentStreakInDays: number
+  requiredStreakInDays: number
+}) {
+  const lightningBoltIcons: boolean[] = []
+
+  if (requiredStreakInDays <= 24) {
+    for (let i = 0; i < requiredStreakInDays; ++i) {
+      lightningBoltIcons.push(i < currentStreakInDays)
+    }
+  }
+
+  return (
+    <div className={styles.progressIconsContainer}>
+      {lightningBoltIcons.map((filled, index) => (
+        <LightningBolt
+          className={classNames(styles.streakIcon, filled && styles.filled)}
+          key={`lightningBolt:${index}`}
+        />
+      ))}
+      <LightningBolt />
+    </div>
+  )
 }
 
 export default function StreakProgress({
@@ -145,7 +172,12 @@ export default function StreakProgress({
         </div>
         {rightSection ? (
           <div className={styles.rightSection}>{rightSection}</div>
-        ) : null}
+        ) : (
+          <PlayStreakBolts
+            currentStreakInDays={currentStreakInDays}
+            requiredStreakInDays={requiredStreakInDays}
+          />
+        )}
       </div>
       <hr></hr>
       <div className={classNames('body-sm', styles.bottomContainer)}>
