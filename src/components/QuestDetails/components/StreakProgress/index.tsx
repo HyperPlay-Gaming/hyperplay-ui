@@ -9,6 +9,7 @@ import { RingProgress } from '@mantine/core'
 import classNames from 'classnames'
 
 import { Clock, LightningBolt } from '@/assets/images'
+import Button from '@/components/Button'
 
 import { PlayStreakEligibility } from '../../types'
 import styles from './index.module.scss'
@@ -29,34 +30,6 @@ export interface StreakProgressProps extends PlayStreakEligibility {
   i18n?: StreakProgressI18n
 }
 
-function PlayStreakBolts({
-  currentStreakInDays,
-  requiredStreakInDays
-}: {
-  currentStreakInDays: number
-  requiredStreakInDays: number
-}) {
-  const lightningBoltIcons: boolean[] = []
-
-  if (requiredStreakInDays <= 24) {
-    for (let i = 0; i < requiredStreakInDays; ++i) {
-      lightningBoltIcons.push(i < currentStreakInDays)
-    }
-  }
-
-  return (
-    <div className={styles.progressIconsContainer}>
-      {lightningBoltIcons.map((filled, index) => (
-        <LightningBolt
-          className={classNames(styles.streakIcon, filled && styles.filled)}
-          key={`lightningBolt:${index}`}
-        />
-      ))}
-      <LightningBolt />
-    </div>
-  )
-}
-
 export default function StreakProgress({
   currentStreakInDays,
   requiredStreakInDays,
@@ -64,7 +37,7 @@ export default function StreakProgress({
   accumulatedPlaytimeTodayInSeconds,
   lastPlaySessionCompletedDateTimeUTC,
   dateTimeCurrentSessionStartedInMsSinceEpoch,
-  rightSection,
+  showSyncProgressButton,
   i18n = {
     streakProgress: 'Streak Progress',
     days: 'days',
@@ -75,7 +48,8 @@ export default function StreakProgress({
     now: 'Now',
     dayResets: 'Day resets:',
     sync: 'Sync Progress'
-  }
+  },
+  onSync
 }: StreakProgressProps) {
   ;({ requiredStreakInDays, currentStreakInDays } = getPlayStreakDays({
     lastPlaySessionCompletedDateTimeUTC,
@@ -170,14 +144,13 @@ export default function StreakProgress({
             {` / ${requiredStreakInDays} ${i18n.days}`}
           </div>
         </div>
-        {rightSection ? (
-          <div className={styles.rightSection}>{rightSection}</div>
-        ) : (
-          <PlayStreakBolts
-            currentStreakInDays={currentStreakInDays}
-            requiredStreakInDays={requiredStreakInDays}
-          />
-        )}
+        {showSyncProgressButton ? (
+          <div className={styles.syncContainer}>
+            <Button type="secondaryGradient" onClick={onSync} size="small">
+              {i18n.sync}
+            </Button>
+          </div>
+        ) : null}
       </div>
       <hr></hr>
       <div className={classNames('body-sm', styles.bottomContainer)}>

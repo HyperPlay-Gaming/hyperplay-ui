@@ -26,7 +26,8 @@ export interface PlayStreakEligibility {
   accumulatedPlaytimeTodayInSeconds: number
   lastPlaySessionCompletedDateTimeUTC: string
   dateTimeCurrentSessionStartedInMsSinceEpoch?: number
-  rightSection?: React.ReactNode
+  onSync: () => void
+  showSyncProgressButton?: boolean
 }
 
 export interface QuestReward {
