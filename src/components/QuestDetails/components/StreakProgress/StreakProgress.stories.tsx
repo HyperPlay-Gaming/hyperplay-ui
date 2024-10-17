@@ -1,6 +1,8 @@
 import { oneDayInMs } from '@hyperplay/utils'
 import type { Meta, StoryObj } from '@storybook/react'
 
+import Button from '@/components/Button'
+
 import StreakProgress, { StreakProgressProps } from '.'
 
 const meta: Meta<typeof StreakProgress> = {
@@ -141,7 +143,18 @@ export const WithExternalStreakButton: Story = {
   render: (args) => {
     return (
       <div>
-        <StreakProgress {...args} showSyncProgressButton={true} />
+        <StreakProgress
+          {...args}
+          rightSection={
+            <Button
+              type="secondaryGradient"
+              onClick={() => alert('Syncing...')}
+              size="small"
+            >
+              Sync progress
+            </Button>
+          }
+        />
       </div>
     )
   }
