@@ -33,6 +33,8 @@ export interface QuestReward {
   title: string
   imageUrl: string
   numOfClaimsLeft?: string
+  claimPending?: boolean
+  onClaim: (reward: QuestReward) => void
   // this will likely be a BigNumber so we will convert to float before passing as param
   numToClaim?: string
   chainName: string
@@ -46,6 +48,7 @@ export interface QuestDetailsTranslations {
   linkSteamAccount: string
   needMoreAchievements: string
   claim: string
+  cta: string
   signIn: string
   connectSteamAccount: string
   questType: QuestTypeTranslations

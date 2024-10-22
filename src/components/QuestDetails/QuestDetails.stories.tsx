@@ -52,7 +52,8 @@ const props: QuestDetailsProps = {
       imageUrl: kosiumGhoul,
       chainName: 'Ethereum Mainnet',
       numToClaim: '999999999999',
-      numOfClaimsLeft: '999999999'
+      numOfClaimsLeft: '999999999',
+      onClaim: () => alert('claimed')
     },
     {
       title: 'SAND',
@@ -61,42 +62,48 @@ const props: QuestDetailsProps = {
       numToClaim:
         '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
       numOfClaimsLeft:
-        '115792089237316195423570985008687907853269984665640564039457584007913129639935'
+        '115792089237316195423570985008687907853269984665640564039457584007913129639935',
+      onClaim: () => alert('claimed')
     },
     {
       title: 'Droid',
       imageUrl: droid,
       chainName: 'Ethereum Mainnet',
       numToClaim: '9999999999999',
-      numOfClaimsLeft: '99999999999999'
+      numOfClaimsLeft: '99999999999999',
+      onClaim: () => alert('claimed')
     },
     {
       title: 'Kosium Pioneer',
       imageUrl: kosiumGhoul,
       chainName: 'Ethereum Mainnet',
       numToClaim: '123',
-      numOfClaimsLeft: '333'
+      numOfClaimsLeft: '333',
+      onClaim: () => alert('claimed')
     },
     {
       title: 'SAND',
       imageUrl: SAND,
       chainName: 'Points',
       numToClaim: '0.001',
-      numOfClaimsLeft: '10000'
+      numOfClaimsLeft: '10000',
+      onClaim: () => alert('claimed')
     },
     {
       title: 'Droid',
       imageUrl: droid,
       chainName: 'Points',
       numToClaim: '0.000001',
-      numOfClaimsLeft: '1000'
+      numOfClaimsLeft: '1000',
+      onClaim: () => alert('claimed')
     },
     {
       title: 'Standard Issue Starfighter',
       imageUrl: droid,
       chainName: 'Points',
       numToClaim: '0.000001',
-      numOfClaimsLeft: '1000'
+      numOfClaimsLeft: '1000',
+      onClaim: () => alert('claimed')
     }
   ],
   chainTooltips: {
@@ -219,7 +226,6 @@ export const PlayStreak: Story = {
           eligibility={{
             reputation: undefined,
             playStreak: {
-              onSync: () => alert('Syncing...'),
               currentStreakInDays: 2,
               requiredStreakInDays: 7,
               minimumSessionTimeInSeconds: 100,
@@ -352,7 +358,8 @@ export const isClaimed: Story = {
         numToClaim: '999999999999',
         numOfClaimsLeft: '999999999',
         isClaimed: true,
-        marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+        marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+        onClaim: () => alert('claimed')
       }
     ],
     eligibility: {
@@ -379,7 +386,8 @@ export const RewardMarketplaceLink: Story = {
         numToClaim: '999999999999',
         numOfClaimsLeft: '999999999',
         isClaimed: true,
-        marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+        marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+        onClaim: () => alert('claimed')
       }
     ],
     eligibility: {
@@ -401,7 +409,6 @@ export const WithExternalSyncButton: Story = {
     eligibility: {
       reputation: undefined,
       playStreak: {
-        onSync: () => alert('Syncing...'),
         currentStreakInDays: 2,
         requiredStreakInDays: 7,
         minimumSessionTimeInSeconds: 100,
