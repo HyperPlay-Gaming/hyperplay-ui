@@ -31,12 +31,13 @@ export default function QuestDetails({
   rewards,
   rewardsLoading,
   i18n = {
+    cta: 'Play/Install Game',
     rewards: 'Claimable Rewards',
     associatedGames: 'Associated games',
     linkSteamAccount: 'Link your Steam account to check eligibility.',
     needMoreAchievements:
       'You need to have completed 15% of the achievements in one of these games.',
-    claim: 'Claim all',
+    claim: 'Claim',
     signIn: 'Sign in',
     connectSteamAccount: 'Connect Steam account',
     secondCTAText: 'View Game',
@@ -129,7 +130,7 @@ export default function QuestDetails({
         ctaClick = onConnectSteamAccountClick
         linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
       } else {
-        buttonText = i18n.claim
+        buttonText = i18n.cta
         ctaClick = onClaimClick
       }
     }
@@ -221,7 +222,8 @@ export default function QuestDetails({
             rewards: i18n.rewards,
             claimsLeft: i18n.claimsLeft ?? 'Claims left',
             viewReward: i18n.viewReward ?? 'View Reward',
-            claimed: i18n.claimed ?? 'Claimed'
+            claimed: i18n.claimed ?? 'Claimed',
+            claim: i18n.claim ?? 'Claim'
           }}
           loading={rewardsLoading}
           numClaimed={numClaimed}

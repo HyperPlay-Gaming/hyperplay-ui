@@ -5,14 +5,20 @@ import classNames from 'classnames'
 import Loading from '@/components/Loading'
 
 import { QuestReward } from '../../types'
+import { RewardI18n } from '../Reward'
 import { RewardsRow } from './RewardsRow'
 import styles from './index.module.scss'
 
-export const defaultI18n = {
+interface RewardsI18n extends RewardI18n {
+  rewards: string
+}
+
+export const defaultI18n: RewardsI18n = {
   rewards: 'Claimable Rewards',
   claimsLeft: 'Claims left',
   viewReward: 'View Reward',
-  claimed: 'Claimed'
+  claimed: 'Claimed',
+  claim: 'Claim'
 }
 
 export interface RewardsProps {
@@ -21,7 +27,7 @@ export interface RewardsProps {
   numClaimed?: number
   numTotal?: number
   chainTooltips?: Record<string, string>
-  i18n?: typeof defaultI18n
+  i18n?: RewardsI18n
 }
 
 export default function Rewards({
@@ -53,7 +59,8 @@ export default function Rewards({
         i18n={{
           claimsLeft: i18n.claimsLeft,
           viewReward: i18n.viewReward,
-          claimed: i18n.claimed
+          claimed: i18n.claimed,
+          claim: i18n.claim
         }}
       />
     ))

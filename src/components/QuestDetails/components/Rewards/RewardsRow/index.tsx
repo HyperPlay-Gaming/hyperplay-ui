@@ -5,18 +5,14 @@ import { Tooltip } from '@mantine/core'
 import Sticker from '@/components/Sticker'
 
 import { QuestReward } from '../../../types'
-import Reward from '../../Reward'
+import Reward, { RewardI18n } from '../../Reward'
 import styles from './index.module.scss'
 
 export interface RewardsRowProps {
   category: string
   rewards: QuestReward[]
   tooltip?: string
-  i18n: {
-    claimsLeft: string
-    viewReward: string
-    claimed: string
-  }
+  i18n: RewardI18n
 }
 
 export function RewardsRow({
@@ -28,7 +24,12 @@ export function RewardsRow({
   let rewardsContent = null
   if (rewards.length > 0) {
     rewardsContent = rewards.map((reward_i) => (
-      <Reward reward={reward_i} key={reward_i.title} i18n={i18n} />
+      <Reward
+        reward={reward_i}
+        key={reward_i.title}
+        i18n={i18n}
+        onClaim={reward_i.onClaim}
+      />
     ))
   }
 

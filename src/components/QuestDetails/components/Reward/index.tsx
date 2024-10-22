@@ -4,69 +4,110 @@ import { decimalUnits, parseNumIntoReadableString } from '@hyperplay/utils'
 import classNames from 'classnames'
 
 import { LinkExternal } from '@/assets/images'
+import Button from '@/components/Button'
+import Loading from '@/components/Loading'
 
 import { QuestReward } from '../../types'
 import styles from './index.module.scss'
 
-export interface RewardProps {
-  reward: QuestReward
-  i18n: {
-    claimsLeft: string
-    viewReward: string
-    claimed: string
-  }
+export interface RewardI18n {
+  claimsLeft: string
+  viewReward: string
+  claimed: string
+  claim: string
 }
 
-export default function Reward({ reward, i18n }: RewardProps) {
+export interface RewardProps {
+  reward: QuestReward
+  onClaim: (reward: QuestReward) => void
+  claimPending?: boolean
+  i18n: RewardI18n
+}
+
+export default function Reward({
+  reward,
+  i18n,
+  claimPending = false,
+  onClaim
+}: RewardProps) {
   let numClaimsLeftComponent = null
+
   if (reward.numOfClaimsLeft) {
     const formattedNumOfClaimsLeft = parseNumIntoReadableString({
       num: reward.numOfClaimsLeft,
       units: decimalUnits,
-      minValue: '0.0001',
-      maxValue: '999999999'
+      minValue: '0',
+      maxValue: '9999'
     })
+
+    const emptyClaims = Number(reward.numOfClaimsLeft) === 0
+
     numClaimsLeftComponent = (
-      <div
-        className={classNames('menu-item', styles.claimsLeft)}
-      >{`${formattedNumOfClaimsLeft} ${i18n.claimsLeft}`}</div>
-    )
-  }
-  let numToClaimComponent = null
-  if (reward.numToClaim) {
-    const formattedNumToClaim = parseNumIntoReadableString({
-      num: reward.numToClaim,
-      units: decimalUnits,
-      minValue: '0.0001',
-      maxValue: '999999999999'
-    })
-    numToClaimComponent = (
-      <div className={styles.numToClaim}>{`+${formattedNumToClaim}`}</div>
+      <div className={styles.claimsContainer}>
+        <div
+          className={classNames(
+            styles.dot,
+            emptyClaims ? styles.redDot : styles.greenDot
+          )}
+        />
+        <div
+          className={classNames('menu-item', styles.claims)}
+        >{`${formattedNumOfClaimsLeft} ${i18n.claimsLeft}`}</div>
+      </div>
     )
   }
 
+  let formattedNumToClaim = null
+
+  if (reward.numToClaim) {
+    const parsedNumToClaim = parseNumIntoReadableString({
+      num: reward.numToClaim,
+      units: decimalUnits,
+      minValue: '0',
+      maxValue: '9999'
+    })
+    formattedNumToClaim = `+${parsedNumToClaim}`
+  }
+
   return (
-    <div key={reward.title} className={styles.rewardContainer}>
-      {reward.isClaimed ? (
-        <div className={styles.isClaimed}>{i18n.claimed}</div>
-      ) : null}
-      {reward.marketplaceUrl ? (
-        <a
-          href={reward.marketplaceUrl}
-          className={styles.viewRewardContainer}
-          rel="nooepner noreferrer"
-          target="_blank"
-        >
-          <LinkExternal className={styles.linkExternalIcon} />
-          {i18n.viewReward}
-        </a>
-      ) : null}
-      <img src={reward.imageUrl} />
-      <div className={classNames(styles.titleContainer, 'menu')}>
-        <div className={styles.title}>{reward.title}</div>
-        {numToClaimComponent}
+    <div className={styles.container}>
+      <div key={reward.title} className={styles.rewardImageContainer}>
+        {reward.isClaimed ? (
+          <div className={styles.isClaimed}>{i18n.claimed}</div>
+        ) : null}
+        {reward.marketplaceUrl ? (
+          <a
+            href={reward.marketplaceUrl}
+            className={styles.viewRewardContainer}
+            rel="nooepner noreferrer"
+            target="_blank"
+          >
+            <LinkExternal className={styles.linkExternalIcon} />
+            {i18n.viewReward}
+          </a>
+        ) : null}
+        <img src={reward.imageUrl} />
       </div>
-      {numClaimsLeftComponent}
+      <div className={styles.infoContainer}>
+        <div className={styles.textContainer}>
+          <div className={classNames('title-sm', styles.title)}>
+            {`${formattedNumToClaim} ${reward.title}`}
+          </div>
+          {numClaimsLeftComponent}
+        </div>
+        {!reward.isClaimed ? (
+          <Button
+            disabled={claimPending}
+            onClick={() => onClaim(reward)}
+            type="secondaryGradient"
+            size="small"
+            htmlType="button"
+            className={styles.claimButton}
+          >
+            {claimPending ? <Loading className={styles.spinner} /> : i18n.claim}
+          </Button>
+        ) : null}
+      </div>
     </div>
   )
 }
