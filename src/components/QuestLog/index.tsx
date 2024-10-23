@@ -12,6 +12,7 @@ import { QuestLogProps } from './types'
 
 export default function QuestLog({
   quests,
+  questElements,
   loading,
   i18n = {
     quests: 'Quests',
@@ -28,23 +29,29 @@ export default function QuestLog({
   pointsProps,
   ...props
 }: QuestLogProps) {
-  const activeQuests = quests
+  let activeQuests = quests
     .filter((val) => val.state === 'ACTIVE')
     .map((val) => (
       <QuestItem key={val.id} info={val} i18n={i18n} onClick={val.onClick} />
     ))
 
-  const claimedQuests = quests
+  let claimedQuests = quests
     .filter((val) => val.state === 'CLAIMED')
     .map((val) => (
       <QuestItem key={val.id} info={val} i18n={i18n} onClick={val.onClick} />
     ))
 
-  const readyForClaimQuests = quests
+  let readyForClaimQuests = quests
     .filter((val) => val.state === 'READY_FOR_CLAIM')
     .map((val) => (
       <QuestItem key={val.id} info={val} i18n={i18n} onClick={val.onClick} />
     ))
+
+  if (questElements !== undefined) {
+    activeQuests = questElements.active
+    claimedQuests = questElements.claimed
+    readyForClaimQuests = questElements.readyToClaim
+  }
 
   const numClaimable = readyForClaimQuests.length
   let claimableQuestsCounter = null

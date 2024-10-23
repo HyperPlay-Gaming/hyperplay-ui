@@ -28,6 +28,11 @@ export interface QuestLogTranslations {
 
 export interface QuestLogProps extends HTMLProps<HTMLDivElement> {
   quests: QuestLogInfo[]
+  questElements?: {
+    active: React.ReactElement[]
+    readyToClaim: React.ReactElement[]
+    claimed: React.ReactElement[]
+  }
   i18n?: QuestLogTranslations
   loading?: boolean
   pointsProps?: PointsBalanceProps[]
