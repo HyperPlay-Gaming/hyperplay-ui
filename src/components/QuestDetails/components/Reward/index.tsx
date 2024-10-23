@@ -46,25 +46,27 @@ export default function Reward({ reward, i18n }: RewardProps) {
   }
 
   return (
-    <div key={reward.title} className={styles.rewardContainer}>
-      {reward.isClaimed ? (
-        <div className={styles.isClaimed}>{i18n.claimed}</div>
-      ) : null}
-      {reward.marketplaceUrl ? (
-        <a
-          href={reward.marketplaceUrl}
-          className={styles.viewRewardContainer}
-          rel="nooepner noreferrer"
-          target="_blank"
-        >
-          <LinkExternal className={styles.linkExternalIcon} />
-          {i18n.viewReward}
-        </a>
-      ) : null}
-      <img src={reward.imageUrl} />
-      <div className={classNames(styles.titleContainer, 'menu')}>
-        <div className={styles.title}>{reward.title}</div>
-        {numToClaimComponent}
+    <div className={styles.container} key={reward.title}>
+      <div className={styles.rewardContainer}>
+        {reward.isClaimed ? (
+          <div className={styles.isClaimed}>{i18n.claimed}</div>
+        ) : null}
+        {reward.marketplaceUrl ? (
+          <a
+            href={reward.marketplaceUrl}
+            className={styles.viewRewardContainer}
+            rel="nooepner noreferrer"
+            target="_blank"
+          >
+            <LinkExternal className={styles.linkExternalIcon} />
+            {i18n.viewReward}
+          </a>
+        ) : null}
+        <img src={reward.imageUrl} />
+        <div className={classNames(styles.titleContainer, 'menu')}>
+          <div className={styles.title}>{reward.title}</div>
+          {numToClaimComponent}
+        </div>
       </div>
       {numClaimsLeftComponent}
     </div>
