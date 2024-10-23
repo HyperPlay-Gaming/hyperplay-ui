@@ -1,4 +1,11 @@
 $imgSize: 160px;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
 .rewardContainer {
   max-width: $imgSize;
   max-height: $imgSize;
@@ -6,7 +13,6 @@ $imgSize: 160px;
   height: $imgSize;
   border-radius: var(--space-xs);
   position: relative;
-  margin-bottom: var(--space-md);
   overflow: hidden;
 
   &:hover .viewRewardContainer {
