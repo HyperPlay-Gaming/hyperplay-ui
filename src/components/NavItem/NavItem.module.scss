@@ -1,24 +1,18 @@
-$selected-color: var(--color-neutral-500);
-
 .link {
   display: flex;
   align-items: center;
   padding: var(--space-md-fixed);
   cursor: pointer;
   gap: var(--space-sm-fixed);
-  color: $selected-color !important;
+  color: var(--color-neutral-100) !important;
   width: 100%;
   min-height: 60px;
   svg {
     max-height: 19px;
-    fill: $selected-color;
+    fill: var(--color-neutral-100);
   }
   &.selected {
     background-color: var(--color-neutral-700);
-    color: var(--color-neutral-100) !important;
-    svg {
-      fill: var(--color-neutral-100);
-    }
 
     border-right: 2px solid;
     border-image: var(--color-gradient-01-border) 0 100%;
