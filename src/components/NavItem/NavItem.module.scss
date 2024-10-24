@@ -53,3 +53,15 @@
     background-color: var(--color-neutral-600);
   }
 }
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.submenuCollapseIcon {
+  transform: rotate(180deg);
+  &.subMenuCollapsed {
+    transform: rotate(0deg);
+  }
+}

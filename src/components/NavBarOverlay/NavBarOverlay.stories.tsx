@@ -6,6 +6,7 @@ import { Home, QuestIcon, TrophyOutline } from '@/assets/images'
 
 import { NavBarOverlay, NavBarOverlayProps } from '.'
 import { NavItem } from '../NavItem'
+import { SubLink } from '../NavItem/SubLink'
 
 const meta: Meta<typeof NavBarOverlay> = {
   title: 'Overlay/NavBarOverlay',
@@ -45,6 +46,22 @@ export const Default: Story = {
         onClick={() => setSelectedRoute('/marketplace')}
         collapsed={collapsed}
         currentRoute={selectedRoute}
+        subLinks={[
+          <SubLink
+            key={'NTx'}
+            onClick={() => setSelectedRoute('/marketplace/NTx')}
+            selected={selectedRoute === '/marketplace/NTx'}
+          >
+            NTx
+          </SubLink>,
+          <SubLink
+            key={'XocietyFrontier'}
+            onClick={() => setSelectedRoute('/marketplace/XocietyFrontier')}
+            selected={selectedRoute === '/marketplace/XocietyFrontier'}
+          >
+            XocietyFrontier
+          </SubLink>
+        ]}
       />,
       <NavItem
         title={'Achievements'}
