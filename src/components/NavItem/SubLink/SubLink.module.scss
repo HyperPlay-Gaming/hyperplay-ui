@@ -1,0 +1,10 @@
+.root {
+  width: 100%;
+  text-align: left;
+  padding: var(--space-sm-fixed) calc(3 * var(--space-md-fixed));
+  color: var(--color-neutral-400);
+
+  &.selected {
+    color: var(--color-primary-200);
+  }
+}
