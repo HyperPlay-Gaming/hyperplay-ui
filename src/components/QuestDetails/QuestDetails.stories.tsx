@@ -26,6 +26,9 @@ const meta: Meta<typeof QuestDetails> = {
   component: QuestDetails
 }
 
+const longTitle =
+  'Super Long Name That Should Be Truncated Hope It Works Super Long Name That Should Be Truncated Hope It Works'
+
 export default meta
 
 type Story = StoryObj<typeof QuestDetails>
@@ -223,6 +226,40 @@ export const PlayStreak: Story = {
       <div>
         <QuestDetails
           {...args}
+          eligibility={{
+            reputation: undefined,
+            playStreak: {
+              currentStreakInDays: 2,
+              requiredStreakInDays: 7,
+              minimumSessionTimeInSeconds: 100,
+              accumulatedPlaytimeTodayInSeconds: 10,
+              lastPlaySessionCompletedDateTimeUTC: new Date(
+                Date.now() - oneDayInMs
+              ).toUTCString(),
+              dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now()
+            }
+          }}
+          questType="PLAYSTREAK"
+          collapseIsOpen={open}
+          toggleCollapse={() => setOpen(!open)}
+        />
+      </div>
+    )
+  }
+}
+
+export const LongRewardTitle: Story = {
+  args: { ...props },
+  render: (args) => {
+    const [open, setOpen] = useState(false)
+    return (
+      <div>
+        <QuestDetails
+          {...args}
+          rewards={args.rewards.map((reward) => ({
+            ...reward,
+            title: longTitle
+          }))}
           eligibility={{
             reputation: undefined,
             playStreak: {
