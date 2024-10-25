@@ -70,8 +70,8 @@ export default function Reward({
   }
 
   return (
-    <div className={styles.container}>
-      <div key={reward.title} className={styles.rewardImageContainer}>
+    <div className={styles.container} key={reward.title}>
+      <div className={styles.rewardImageContainer}>
         {reward.isClaimed ? (
           <div className={styles.isClaimed}>{i18n.claimed}</div>
         ) : null}

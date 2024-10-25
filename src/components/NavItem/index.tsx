@@ -51,7 +51,7 @@ function _NavItem({
   return (
     <Element
       key={route}
-      className={cn('menu-item', styles.link, classNames?.link, linkClasses)}
+      className={cn('menu-item', styles.link, linkClasses, classNames?.link)}
       {...props}
     >
       {icon}
@@ -59,8 +59,8 @@ function _NavItem({
       <div
         className={cn(
           styles.alertIconContainer,
-          classNames?.alertIconContainer,
-          collapseClass
+          collapseClass,
+          classNames?.alertIconContainer
         )}
       >
         <div className={cn('caption', styles.alertContainer, linkItemClasses)}>
