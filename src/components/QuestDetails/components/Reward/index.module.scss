@@ -1,4 +1,4 @@
-@use '../variables.module.scss' as vars;
+$imgSize: 120px;
 
 .container {
   display: flex;
@@ -7,8 +7,8 @@
 
 .rewardImageContainer {
   display: flex;
-  width: vars.$imgSize;
-  height: vars.$imgSize;
+  width: $imgSize;
+  height: $imgSize;
   border-radius: var(--space-xs);
   position: relative;
   overflow: hidden;
