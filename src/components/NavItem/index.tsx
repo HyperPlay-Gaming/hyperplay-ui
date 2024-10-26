@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement } from 'react'
 
 import { createPolymorphicComponent } from '@mantine/core'
 import cn from 'classnames'
@@ -9,10 +9,9 @@ import styles from './NavItem.module.scss'
 
 export interface NavItemProps {
   title: string
-  route: string
+  selected?: boolean
   icon: ReactElement
   alertNumber?: number
-  currentRoute?: string
   collapsed?: boolean
   classNames?: {
     link?: string
@@ -23,20 +22,24 @@ export interface NavItemProps {
   secondaryTag?: string
   subLinks?: ReactElement[]
   collapsedInit?: boolean
+  key: string
+  subLinksCollapsed?: boolean
+  setSubLinksCollapsed?: (val: boolean) => void
 }
 
 function _NavItem({
   title,
-  route,
+  selected,
   icon,
   alertNumber,
-  currentRoute,
   collapsed,
   classNames,
   component,
   secondaryTag,
   subLinks,
-  collapsedInit = false,
+  subLinksCollapsed = false,
+  setSubLinksCollapsed,
+  key,
   ...props
 }: NavItemProps) {
   let alertText = ''
@@ -49,13 +52,12 @@ function _NavItem({
   collapseClass[styles.collapsed] = !!collapsed
   const Element = component || 'button'
   const linkClasses: Record<string, boolean> = {}
-  linkClasses[styles.selected] = currentRoute === route
+  linkClasses[styles.selected] = !!selected
 
   const linkItemClasses: Record<string, boolean> = {}
   linkItemClasses[styles.hide] = alertText === ''
   linkItemClasses[styles.secondary] = !!secondaryTag
 
-  const [subLinksCollapsed, setSubLinksCollapsed] = useState(collapsedInit)
   let dropdownArrow = null
   if (subLinks && subLinks.length > 0) {
     const dropdownArrowClass: Record<string, boolean> = {}
@@ -64,7 +66,7 @@ function _NavItem({
       <button
         className={cn(styles.submenuCollapseIcon, dropdownArrowClass)}
         onClick={(ev) => {
-          setSubLinksCollapsed(!subLinksCollapsed)
+          setSubLinksCollapsed?.(!subLinksCollapsed)
           ev.preventDefault()
           ev.stopPropagation()
         }}
@@ -74,7 +76,7 @@ function _NavItem({
     )
   }
   return (
-    <div key={route} className={styles.root}>
+    <div key={key} className={styles.root}>
       <Element
         className={cn('menu-item', styles.link, linkClasses, classNames?.link)}
         {...props}
