@@ -3,6 +3,7 @@ import React from 'react'
 import { CloseButton, PauseIcon, PlayIcon, XCircle } from '@/assets/images'
 
 import DownloadToastStyles from './index.module.scss'
+import { size } from './utils'
 
 export type downloadStatus =
   | 'inProgress'
@@ -32,30 +33,15 @@ function getETAStringFromMs(etaInMs: number) {
   const minutes = Math.floor((totalSeconds % 3600) / 60)
   const hours = Math.floor((totalSeconds % 86400) / 3600)
   const days = Math.floor(totalSeconds / 86400)
-  let etaString = ''
-  if (days !== 0) etaString += `${days}d`
-  if (hours !== 0) etaString += (etaString === '' ? '' : ':') + `${hours}h`
-  if (minutes !== 0) etaString += (etaString === '' ? '' : ':') + `${minutes}m`
-  if (seconds !== 0) etaString += (etaString === '' ? '' : ':') + `${seconds}s`
-  if (etaString === '') return '0s'
-  return etaString
-}
 
-function getSizeStringFromBytes(bytes: number) {
-  const kb = bytes / 1024
-  const mb = kb / 1024
-  const gb = mb / 1024
-  const tb = gb / 1024
-  if (tb > 1) {
-    return `${Math.floor(tb)}TB`
-  } else if (gb > 1) {
-    return `${Math.floor(gb)}GB`
-  } else if (mb > 1) {
-    return `${Math.floor(mb)}MB`
-  } else if (kb > 1) {
-    return `${Math.floor(kb)}KB`
+  if (days > 0) {
+    return `${days}d`
+  } else if (hours > 0) {
+    return `${hours}h:${minutes}m`
+  } else if (minutes > 0) {
+    return `${minutes}m:${seconds}s`
   } else {
-    return `0MB`
+    return `${seconds}s`
   }
 }
 
@@ -92,8 +78,8 @@ export default function DownloadToast(props: DownloadToastType) {
     estCompleteTimeInMs < 86400000000
       ? getETAStringFromMs(estCompleteTimeInMs)
       : '1000d+'
-  const downloadedString = getSizeStringFromBytes(downloadedInBytes)
-  let downloadSizeString = getSizeStringFromBytes(downloadSize)
+  const downloadedString = size(downloadedInBytes)
+  let downloadSizeString = size(downloadSize)
 
   // No download is 0 bytes so if 0 bytes is sent, it is because we don't know how big it is
   // This will also handle the error case if downloadSize is negative from the if statement above
