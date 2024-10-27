@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.8.6",
+  "version": "1.8.7",
   "license": "LGPL-3.0-only",
   "scripts": {
     "dev": "vite",
@@ -139,6 +139,7 @@
     "@hyperplay/utils": "^0.1.0",
     "@tabler/icons-react": "^2.46.0",
     "@valist/sdk": "^2.9.1",
-    "ethereum-blockies-base64": "^1.0.2"
+    "ethereum-blockies-base64": "^1.0.2",
+    "filesize": "^10.1.6"
   }
 }
