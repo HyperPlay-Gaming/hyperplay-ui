@@ -169,8 +169,24 @@ const GameCard = ({
               onStopDownloadClick={onStopDownloadClick}
               onPauseClick={onPauseClick}
               onResumeClick={onResumeClick}
+              showPauseButton={false}
               isPaused={false}
               hasProgressControls={false}
+            />
+          </>
+        )
+      case 'PATCHING':
+        return (
+          <>
+            <DownloadBar
+              message={message}
+              progress={progress}
+              onStopDownloadClick={onStopDownloadClick}
+              onPauseClick={onPauseClick}
+              onResumeClick={onResumeClick}
+              showPauseButton={false}
+              isPaused={false}
+              hasProgressControls={true}
             />
           </>
         )
