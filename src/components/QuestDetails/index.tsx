@@ -31,7 +31,6 @@ export default function QuestDetails({
   rewards,
   rewardsLoading,
   i18n = {
-    cta: 'Play/Install Game',
     rewards: 'Claimable Rewards',
     associatedGames: 'Associated games',
     linkSteamAccount: 'Link your Steam account to check eligibility.',
@@ -51,7 +50,6 @@ export default function QuestDetails({
     viewReward: 'View Reward',
     claimed: 'Claimed'
   },
-  onClaimClick,
   onSignInClick,
   onConnectSteamAccountClick,
   onPlayClick,
@@ -82,7 +80,7 @@ export default function QuestDetails({
   let sticker = null
   let eligibilityReqComponent = null
   let buttonText = ''
-  let ctaClick = onClaimClick
+  let ctaClick = null
 
   // If this is a reputation quest
   if (questType === 'REPUTATIONAL-AIRDROP') {
@@ -129,9 +127,6 @@ export default function QuestDetails({
         buttonText = i18n.connectSteamAccount
         ctaClick = onConnectSteamAccountClick
         linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
-      } else {
-        buttonText = i18n.cta
-        ctaClick = onClaimClick
       }
     }
     // if this is a play streak quest
@@ -154,9 +149,6 @@ export default function QuestDetails({
     if (!isSignedIn) {
       buttonText = i18n.signIn
       ctaClick = onSignInClick
-    } else {
-      buttonText = i18n.claim
-      ctaClick = onClaimClick
     }
   }
 
@@ -236,14 +228,16 @@ export default function QuestDetails({
         {ctaComponent ?? (
           <>
             {secondCTA}
-            <Button
-              type={primaryCTAButtonType}
-              className={styles.claimButton}
-              onClick={ctaClick}
-              disabled={ctaDisabled || isMinting}
-            >
-              {buttonContents}
-            </Button>
+            {ctaClick !== null && (
+              <Button
+                type={primaryCTAButtonType}
+                className={styles.claimButton}
+                onClick={ctaClick}
+                disabled={ctaDisabled || isMinting}
+              >
+                {buttonContents}
+              </Button>
+            )}
           </>
         )}
       </div>

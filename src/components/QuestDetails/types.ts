@@ -32,6 +32,7 @@ export interface PlayStreakEligibility {
 export interface QuestReward {
   title: string
   imageUrl: string
+  canClaim: boolean
   numOfClaimsLeft?: string
   claimPending?: boolean
   onClaim: (reward: QuestReward) => void
@@ -48,7 +49,6 @@ export interface QuestDetailsTranslations {
   linkSteamAccount: string
   needMoreAchievements: string
   claim: string
-  cta: string
   signIn: string
   connectSteamAccount: string
   questType: QuestTypeTranslations
@@ -72,7 +72,6 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   rewards: QuestReward[]
   numClaimed?: number
   numTotal?: number
-  onClaimClick: () => void
   onSignInClick: () => void
   onConnectSteamAccountClick: () => void
   showSecondCTA?: boolean

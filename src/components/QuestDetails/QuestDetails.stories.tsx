@@ -56,7 +56,8 @@ const props: QuestDetailsProps = {
       chainName: 'Ethereum Mainnet',
       numToClaim: '999999999999',
       numOfClaimsLeft: '999999999',
-      onClaim: () => alert('claimed')
+      onClaim: () => alert('claimed'),
+      canClaim: true
     },
     {
       title: 'SAND',
@@ -66,7 +67,8 @@ const props: QuestDetailsProps = {
         '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
       numOfClaimsLeft:
         '115792089237316195423570985008687907853269984665640564039457584007913129639935',
-      onClaim: () => alert('claimed')
+      onClaim: () => alert('claimed'),
+      canClaim: true
     },
     {
       title: 'Droid',
@@ -74,7 +76,8 @@ const props: QuestDetailsProps = {
       chainName: 'Ethereum Mainnet',
       numToClaim: '9999999999999',
       numOfClaimsLeft: '99999999999999',
-      onClaim: () => alert('claimed')
+      onClaim: () => alert('claimed'),
+      canClaim: true
     },
     {
       title: 'Kosium Pioneer',
@@ -82,7 +85,8 @@ const props: QuestDetailsProps = {
       chainName: 'Ethereum Mainnet',
       numToClaim: '123',
       numOfClaimsLeft: '333',
-      onClaim: () => alert('claimed')
+      onClaim: () => alert('claimed'),
+      canClaim: true
     },
     {
       title: 'SAND',
@@ -90,7 +94,8 @@ const props: QuestDetailsProps = {
       chainName: 'Points',
       numToClaim: '0.001',
       numOfClaimsLeft: '10000',
-      onClaim: () => alert('claimed')
+      onClaim: () => alert('claimed'),
+      canClaim: true
     },
     {
       title: 'Droid',
@@ -98,7 +103,8 @@ const props: QuestDetailsProps = {
       chainName: 'Points',
       numToClaim: '0.000001',
       numOfClaimsLeft: '1000',
-      onClaim: () => alert('claimed')
+      onClaim: () => alert('claimed'),
+      canClaim: true
     },
     {
       title: 'Standard Issue Starfighter',
@@ -106,14 +112,14 @@ const props: QuestDetailsProps = {
       chainName: 'Points',
       numToClaim: '0.000001',
       numOfClaimsLeft: '1000',
-      onClaim: () => alert('claimed')
+      onClaim: () => alert('claimed'),
+      canClaim: true
     }
   ],
   chainTooltips: {
     Points:
       'Points are off-chain fungible rewards that may or may not be redeemable for an on-chain reward in the future. This is up to the particular game developer who is providing this reward.'
   },
-  onClaimClick: () => console.log('claim clicked!'),
   onSignInClick: () => console.log('sign in clicked!'),
   onConnectSteamAccountClick: () =>
     console.log('connect steam account clicked!'),
@@ -396,7 +402,8 @@ export const isClaimed: Story = {
         numOfClaimsLeft: '999999999',
         isClaimed: true,
         marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
-        onClaim: () => alert('claimed')
+        onClaim: () => alert('claimed'),
+        canClaim: true
       }
     ],
     eligibility: {
@@ -424,7 +431,8 @@ export const RewardMarketplaceLink: Story = {
         numOfClaimsLeft: '999999999',
         isClaimed: true,
         marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
-        onClaim: () => alert('claimed')
+        onClaim: () => alert('claimed'),
+        canClaim: true
       }
     ],
     eligibility: {
@@ -453,8 +461,7 @@ export const WithExternalSyncButton: Story = {
         lastPlaySessionCompletedDateTimeUTC: new Date(
           Date.now() - oneDayInMs
         ).toUTCString(),
-        dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now(),
-        showSyncProgressButton: true
+        dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now()
       }
     }
   }

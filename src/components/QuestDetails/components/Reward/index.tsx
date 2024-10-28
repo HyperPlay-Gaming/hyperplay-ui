@@ -97,7 +97,7 @@ export default function Reward({
         </div>
         {!reward.isClaimed ? (
           <Button
-            disabled={claimPending}
+            disabled={claimPending || !reward.canClaim}
             onClick={() => onClaim(reward)}
             type="secondaryGradient"
             size="small"
