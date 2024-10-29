@@ -22,8 +22,7 @@ const props: StreakProgressProps = {
   lastPlaySessionCompletedDateTimeUTC: new Date(
     Date.now() - oneDayInMs
   ).toUTCString(),
-  dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now(),
-  onSync: () => alert('Syncing...')
+  dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now()
 }
 
 export const Default: Story = {
@@ -135,6 +134,13 @@ export const NoStreakButSomePlayTime: Story = {
         />
       </div>
     )
+  }
+}
+
+export const Standby: Story = {
+  args: { ...props },
+  render: (args) => {
+    return <StreakProgress {...args} standby />
   }
 }
 
