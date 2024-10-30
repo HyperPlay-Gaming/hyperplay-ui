@@ -74,10 +74,14 @@
 
 .sublinksContainer {
   padding-left: calc(3 * var(--space-md-fixed));
+  // needed since a:-webkit-any-link inherits color
+  color: var(--color-neutral-400);
 }
 
 .dropdownSublinksContainer {
   padding-left: var(--space-md-fixed);
+  // needed since a:-webkit-any-link inherits color
+  color: var(--color-neutral-400);
 }
 
 .dropdownTitle {
