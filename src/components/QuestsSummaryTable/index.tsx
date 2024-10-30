@@ -42,6 +42,7 @@ export interface QuestsSummaryTableProps
   classNames?: {
     title?: string
     list?: string
+    gamesTable?: string
   }
   searchBar?: JSX.Element
 }
@@ -87,7 +88,9 @@ export function QuestsSummaryTable({
 
   const cardsLoaded = useAllImagesLoaded(imagesToPreload)
 
-  const gamesComponent = <div className={styles.gamesTable}>{games}</div>
+  const gamesComponent = (
+    <div className={cn(styles.gamesTable, classNames?.gamesTable)}>{games}</div>
+  )
   let content = null
   if (isPageLoading || !cardsLoaded) {
     content = <Loading />
