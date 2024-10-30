@@ -4,22 +4,32 @@
   padding: var(--space-md-fixed);
   cursor: pointer;
   gap: var(--space-sm-fixed);
-  color: var(--color-neutral-100) !important;
+  color: var(--color-neutral-400) !important;
   width: 100%;
   min-height: 60px;
+
   svg {
     max-height: 19px;
-    fill: var(--color-neutral-100);
+    fill: var(--color-neutral-400);
   }
   &.selected {
     background-color: var(--color-neutral-700);
 
     border-right: 2px solid;
     border-image: var(--color-gradient-01-border) 0 100%;
+    color: var(--color-neutral-100) !important;
+  }
+  &.selected svg {
+    fill: var(--color-neutral-100);
   }
 
+  &:hover,
   &:hover * {
-    opacity: 70%;
+    opacity: 100%;
+  }
+
+  &:hover {
+    background-color: var(--color-neutral-700);
   }
 }
 

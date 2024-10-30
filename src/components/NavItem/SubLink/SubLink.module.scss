@@ -7,4 +7,11 @@
   &.selected {
     color: var(--color-primary-200);
   }
+
+  &:not(.selected):hover {
+    color: var(--color-neutral-100);
+  }
+  &:hover {
+    opacity: 100%;
+  }
 }
