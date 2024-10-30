@@ -1,26 +1,29 @@
+$selectedColor: var(--color-neutral-100);
+$defaultTextColor: var(--color-neutral-400);
+
 .link {
   display: flex;
   align-items: center;
   padding: var(--space-md-fixed);
   cursor: pointer;
   gap: var(--space-sm-fixed);
-  color: var(--color-neutral-400) !important;
+  color: $defaultTextColor !important;
   width: 100%;
   min-height: 60px;
 
   svg {
     max-height: 19px;
-    fill: var(--color-neutral-400);
+    fill: $defaultTextColor;
   }
   &.selected {
     background-color: var(--color-neutral-700);
 
     border-right: 2px solid;
     border-image: var(--color-gradient-01-border) 0 100%;
-    color: var(--color-neutral-100) !important;
+    color: $selectedColor !important;
   }
   &.selected svg {
-    fill: var(--color-neutral-100);
+    fill: $selectedColor;
   }
 
   &:hover,
@@ -85,15 +88,19 @@
 .sublinksContainer {
   padding-left: calc(3 * var(--space-md-fixed));
   // needed since a:-webkit-any-link inherits color
-  color: var(--color-neutral-400);
+  color: $defaultTextColor;
 }
 
 .dropdownSublinksContainer {
   padding-left: var(--space-md-fixed);
   // needed since a:-webkit-any-link inherits color
-  color: var(--color-neutral-400);
+  color: $defaultTextColor;
 }
 
 .dropdownTitle {
   padding-bottom: var(--space-xs);
+}
+
+.menuArrow {
+  background-color: var(--color-neutral-700);
 }

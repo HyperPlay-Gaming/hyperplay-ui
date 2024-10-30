@@ -84,7 +84,8 @@ function _NavItem({
       trigger={showDropdownHoverMenu ? 'hover' : undefined}
       position="right"
       withArrow
-      classNames={{ dropdown: styles.menuDropdown }}
+      arrowPosition="center"
+      classNames={{ dropdown: styles.menuDropdown, arrow: styles.menuArrow }}
       unstyled
       disabled={!showDropdownHoverMenu}
     >
