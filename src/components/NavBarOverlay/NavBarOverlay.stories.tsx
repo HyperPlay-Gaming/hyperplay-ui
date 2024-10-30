@@ -118,11 +118,12 @@ export const Default: Story = {
         title={'Achievements'}
         icon={<TrophyOutline fill="white" />}
         key={'/achievements'}
-        onClick={() => setSelectedRoute('/achievements')}
+        onClick={() => console.log('coming soon')}
         collapsed={collapsed}
         secondaryTag={'Coming Soon'}
         style={{
-          cursor: 'not-allowed'
+          cursor: 'not-allowed',
+          opacity: '50%'
         }}
         selected={selectedRoute === '/achievements'}
       />

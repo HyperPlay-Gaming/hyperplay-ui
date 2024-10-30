@@ -1,7 +1,7 @@
 .root {
   width: 100%;
   text-align: left;
-  padding: var(--space-sm-fixed) calc(3 * var(--space-md-fixed));
+  padding: var(--space-sm-fixed) 0px;
   color: var(--color-neutral-400);
 
   &.selected {

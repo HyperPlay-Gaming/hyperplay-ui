@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 
-import { createPolymorphicComponent } from '@mantine/core'
+import { Menu, createPolymorphicComponent } from '@mantine/core'
 import cn from 'classnames'
 
 import { DownArrow } from '@/assets/images'
@@ -59,7 +59,8 @@ function _NavItem({
   linkItemClasses[styles.secondary] = !!secondaryTag
 
   let dropdownArrow = null
-  if (subLinks && subLinks.length > 0) {
+  const hasSublinks = subLinks && subLinks.length > 0
+  if (hasSublinks) {
     const dropdownArrowClass: Record<string, boolean> = {}
     dropdownArrowClass[styles.subMenuCollapsed] = subLinksCollapsed
     dropdownArrow = (
@@ -75,31 +76,60 @@ function _NavItem({
       </button>
     )
   }
+
+  const showDropdownHoverMenu = collapsed && hasSublinks
+
   return (
-    <div key={key} className={styles.root}>
-      <Element
-        className={cn('menu-item', styles.link, linkClasses, classNames?.link)}
-        {...props}
-      >
-        {icon}
-        <div className={cn(styles.linkTitle, collapseClass)}>{title}</div>
-        <div
-          className={cn(
-            styles.alertIconContainer,
-            collapseClass,
-            classNames?.alertIconContainer
-          )}
-        >
-          <div
-            className={cn('caption', styles.alertContainer, linkItemClasses)}
+    <Menu
+      trigger={showDropdownHoverMenu ? 'hover' : undefined}
+      position="right"
+      withArrow
+      classNames={{ dropdown: styles.menuDropdown }}
+      unstyled
+      disabled={!showDropdownHoverMenu}
+    >
+      <Menu.Target>
+        <div key={key} className={styles.root}>
+          <Element
+            className={cn(
+              'menu-item',
+              styles.link,
+              linkClasses,
+              classNames?.link
+            )}
+            {...props}
           >
-            {alertText}
-          </div>
+            {icon}
+            <div className={cn(styles.linkTitle, collapseClass)}>{title}</div>
+            <div
+              className={cn(
+                styles.alertIconContainer,
+                collapseClass,
+                classNames?.alertIconContainer
+              )}
+            >
+              <div
+                className={cn(
+                  'caption',
+                  styles.alertContainer,
+                  linkItemClasses
+                )}
+              >
+                {alertText}
+              </div>
+            </div>
+            {collapsed ? null : dropdownArrow}
+          </Element>
+          {subLinksCollapsed || collapsed ? null : (
+            <div className={styles.sublinksContainer}>{subLinks}</div>
+          )}
         </div>
-        {dropdownArrow}
-      </Element>
-      {subLinksCollapsed ? null : subLinks}
-    </div>
+      </Menu.Target>
+      <Menu.Dropdown>
+        <div className={cn('menu-item', styles.dropdownTitle)}>{title}</div>
+        <div className={styles.dropdownSublinksContainer}>{subLinks}</div>
+      </Menu.Dropdown>
+    </Menu>
   )
 }
 

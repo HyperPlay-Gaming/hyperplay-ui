@@ -65,3 +65,21 @@
     transform: rotate(0deg);
   }
 }
+
+.menuDropdown {
+  background-color: var(--color-neutral-800);
+  position: absolute;
+  padding: var(--space-sm-fixed) var(--space-md-fixed);
+}
+
+.sublinksContainer {
+  padding-left: calc(3 * var(--space-md-fixed));
+}
+
+.dropdownSublinksContainer {
+  padding-left: var(--space-md-fixed);
+}
+
+.dropdownTitle {
+  padding-bottom: var(--space-xs);
+}
