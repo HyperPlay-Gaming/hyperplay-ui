@@ -1,5 +1,9 @@
-import * as fileSize from 'filesize'
+import { bytesUnits, parseNumIntoReadableString } from '@hyperplay/utils'
 
-export const size = fileSize.partial({ base: 10, round: 1, spacer: '' }) as (
-  arg: unknown
-) => string
+export const size = (arg: number) =>
+  parseNumIntoReadableString({
+    num: String(arg),
+    units: bytesUnits,
+    minValue: '0',
+    maxValue: '0'
+  })

@@ -1799,10 +1799,10 @@
   dependencies:
     axios "^1.4.0"
 
-"@hyperplay/utils@^0.1.0":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@hyperplay/utils/-/utils-0.1.4.tgz#e36cfd82febaae1c54cec1e65649169ede518dae"
-  integrity sha512-brHHvhSl5fOLIX2hCp2ZP0dfdMHb8uGME3o3NjK0imVdYlspUVe1YXp5x9P5O2iJn+7C3oPlbLARsC/KTDWSJw==
+"@hyperplay/utils@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@hyperplay/utils/-/utils-0.2.7.tgz#e79c7511ced9800794dc7becc6a4b7c48476d2f3"
+  integrity sha512-FnypQrdu1C3YWP6OB6/jjKSRJhq8CTgarRFd1pLPc7omwr8SElq6WgaJ5A9b8ibCycBtf+lIvdc/r2k6pFRZrw==
   dependencies:
     bignumber.js "^9.1.2"
 
@@ -6697,11 +6697,6 @@ files-from-path@^0.2.6:
     graceful-fs "^4.2.9"
     ipfs-unixfs "^6.0.5"
     it-glob "^0.0.13"
-
-filesize@^10.1.6:
-  version "10.1.6"
-  resolved "https://registry.yarnpkg.com/filesize/-/filesize-10.1.6.tgz#31194da825ac58689c0bce3948f33ce83aabd361"
-  integrity sha512-sJslQKU2uM33qH5nqewAwVB2QgR6w1aMNsYUp3aN5rMRyXEwJGmZvaWzeJFNTOXWlHQyBFCWrdj3fV/fsTOX8w==
 
 fill-range@^7.0.1:
   version "7.0.1"
