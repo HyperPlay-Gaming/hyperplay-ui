@@ -147,5 +147,5 @@ export const SearchDemo: Story = {
 }
 
 export const WithCustomClassNames: Story = {
-  args: { ...props, classNames: { gamesTable: styles.noQuestSelectedLayout } }
+  args: { ...props, classNames: { gamesTable: styles.questSelectedLayout } }
 }
