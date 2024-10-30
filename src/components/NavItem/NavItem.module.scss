@@ -4,6 +4,7 @@ $defaultTextColor: var(--color-neutral-400);
 .link {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: var(--space-md-fixed);
   cursor: pointer;
   gap: var(--space-sm-fixed);
