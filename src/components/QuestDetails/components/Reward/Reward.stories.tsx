@@ -25,6 +25,7 @@ const defaultReward: QuestReward = {
   numToClaim: '1',
   isClaimed: false,
   marketplaceUrl: 'https://marketplace.example.com/reward',
+  canClaim: true,
   onClaim: () => alert('claimed')
 }
 

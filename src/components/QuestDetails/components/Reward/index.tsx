@@ -91,7 +91,9 @@ export default function Reward({
       <div className={styles.infoContainer}>
         <div className={styles.textContainer}>
           <div className={classNames('title-sm', styles.title)}>
-            {`${formattedNumToClaim} ${reward.title}`}
+            {formattedNumToClaim
+              ? `${formattedNumToClaim} ${reward.title}`
+              : reward.title}
           </div>
           {numClaimsLeftComponent}
         </div>
