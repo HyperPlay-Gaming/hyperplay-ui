@@ -33,7 +33,6 @@ export interface PlayStreakEligibility {
 export interface QuestReward {
   title: string
   imageUrl: string
-  canClaim: boolean
   numOfClaimsLeft?: string
   claimPending?: boolean
   onClaim: (reward: QuestReward) => void
