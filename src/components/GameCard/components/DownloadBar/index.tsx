@@ -8,6 +8,7 @@ type DownloadBarProps = {
   onStopDownloadClick: React.MouseEventHandler<HTMLButtonElement>
   onPauseClick: React.MouseEventHandler<HTMLButtonElement>
   onResumeClick: React.MouseEventHandler<HTMLButtonElement>
+  showPauseButton?: boolean
   message?: string
   progress?: InstallProgress
   isPaused?: boolean
@@ -21,7 +22,8 @@ const DownloadBar = ({
   onPauseClick,
   onResumeClick,
   isPaused,
-  hasProgressControls = true
+  hasProgressControls = true,
+  showPauseButton = true
 }: DownloadBarProps) => {
   const progressBarStyle = {
     '--download-progress-bar-percentage': `${
@@ -44,7 +46,7 @@ const DownloadBar = ({
         <button onClick={onStopDownloadClick}>
           <Images.XCircle></Images.XCircle>
         </button>
-        {hasProgressControls && (
+        {hasProgressControls && showPauseButton && (
           <button onClick={isPaused ? onResumeClick : onPauseClick}>
             {isPaused ? (
               <Images.Resume fill="var(--color-tertiary-400)"></Images.Resume>
