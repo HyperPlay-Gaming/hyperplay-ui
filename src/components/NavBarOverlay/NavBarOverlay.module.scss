@@ -22,7 +22,10 @@
   }
 
   &.collapsed {
-    display: none;
+    min-height: 0px;
+    svg:nth-child(2) {
+      display: none;
+    }
   }
 }
 
@@ -35,6 +38,12 @@
 
   &.collapsed {
     justify-content: center;
+    flex-direction: column;
+    padding-top: var(--space-xs-fixed);
+
+    > * {
+      flex: 1;
+    }
   }
 }
 
@@ -47,6 +56,8 @@
     height: 10px;
   }
 
+  // arrow spins in a huge radius circle without this
+  transition: 0s;
   &.collapsed {
     transform: rotate(180deg);
     margin-left: 0px;

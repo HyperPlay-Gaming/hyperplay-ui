@@ -206,6 +206,7 @@ export { default as RewardDepositTokenList } from './components/RewardDeposit/co
 export * from './components/OverlayToast'
 export { default as useAllImagesLoaded } from './utils/useAllImagesLoaded'
 export * from './components/NavItem'
+export * from './components/NavItem/SubLink'
 export * from './components/NavBarOverlay'
 export * from './components/ToastQuest'
 export * from './components/ToastGeneric'

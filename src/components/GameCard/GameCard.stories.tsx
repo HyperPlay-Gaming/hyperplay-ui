@@ -104,4 +104,46 @@ export const ExtractingGameCard: Story = {
   }
 }
 
+export const DownloadingDistributablesGameCard: Story = {
+  args: {
+    ...props,
+    state: 'DOWNLOADING_DISTRIBUTABLES'
+  }
+}
+
+export const PreparingGameCard: Story = {
+  args: {
+    ...props,
+    state: 'PREPARING'
+  }
+}
+
+export const QueuedGameCard: Story = {
+  args: {
+    ...props,
+    state: 'QUEUED'
+  }
+}
+
+export const PlayingGameCard: Story = {
+  args: {
+    ...props,
+    state: 'PLAYING'
+  }
+}
+
+export const Patching: Story = {
+  args: {
+    ...props,
+    state: 'PATCHING'
+  }
+}
+
+export const Extracting: Story = {
+  args: {
+    ...props,
+    state: 'EXTRACTING'
+  }
+}
+
 export default meta
