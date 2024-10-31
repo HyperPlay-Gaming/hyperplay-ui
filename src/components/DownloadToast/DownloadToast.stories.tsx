@@ -75,6 +75,23 @@ export const hundredPercent = () => (
   />
 )
 
+export const tooLong = () => (
+  <DownloadToast
+    imgUrl="src/assets/stories/TheWakeCover.png"
+    gameTitle="Gods Unchained"
+    downloadedInBytes={111515}
+    downloadSizeInBytes={321200000000000}
+    estimatedCompletionTimeInMs={86500000000}
+    onCancelClick={() => console.log('cancel clicked')}
+    onPauseClick={() => console.log('pause clicked')}
+    onStartClick={() => console.log('start clicked')}
+    onCloseClick={() => console.log('close clicked')}
+    onPlayClick={() => console.log('play clicked')}
+    status="inProgress"
+    statusText="Downloading"
+  />
+)
+
 export const paused = () => (
   <div
     style={{

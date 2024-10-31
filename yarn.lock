@@ -1799,10 +1799,10 @@
   dependencies:
     axios "^1.4.0"
 
-"@hyperplay/utils@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@hyperplay/utils/-/utils-0.2.7.tgz#e79c7511ced9800794dc7becc6a4b7c48476d2f3"
-  integrity sha512-FnypQrdu1C3YWP6OB6/jjKSRJhq8CTgarRFd1pLPc7omwr8SElq6WgaJ5A9b8ibCycBtf+lIvdc/r2k6pFRZrw==
+"@hyperplay/utils@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@hyperplay/utils/-/utils-0.3.1.tgz#ed1ef122983c1adb1bf8577aa341199991fc0d18"
+  integrity sha512-S6TJeKowS7/dgOa+7rgJ5LuTJtwIHvfWyemQUDW68u4utM+ryREQiDqWSkwZuYKtFsXbttGIWJFvyyrmOJSeiA==
   dependencies:
     bignumber.js "^9.1.2"
 

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { getETAStringFromMs } from '@hyperplay/utils'
+
 import { CloseButton, PauseIcon, PlayIcon, XCircle } from '@/assets/images'
 
 import DownloadToastStyles from './index.module.scss'
@@ -25,24 +27,6 @@ interface DownloadToastType {
   onPlayClick: () => void
   status: downloadStatus
   statusText?: string
-}
-
-function getETAStringFromMs(etaInMs: number) {
-  const totalSeconds = Math.round(etaInMs / 1000)
-  const seconds = totalSeconds % 60
-  const minutes = Math.floor((totalSeconds % 3600) / 60)
-  const hours = Math.floor((totalSeconds % 86400) / 3600)
-  const days = Math.floor(totalSeconds / 86400)
-
-  if (days > 0) {
-    return `${days}d`
-  } else if (hours > 0) {
-    return `${hours}h:${minutes}m`
-  } else if (minutes > 0) {
-    return `${minutes}m:${seconds}s`
-  } else {
-    return `${seconds}s`
-  }
 }
 
 export default function DownloadToast(props: DownloadToastType) {
@@ -74,10 +58,7 @@ export default function DownloadToast(props: DownloadToastType) {
   }
 
   // prevent string from being too long
-  let etaString =
-    estCompleteTimeInMs < 86400000000
-      ? getETAStringFromMs(estCompleteTimeInMs)
-      : '1000d+'
+  let etaString = getETAStringFromMs(estCompleteTimeInMs)
   const downloadedString = size(downloadedInBytes)
   let downloadSizeString = size(downloadSize)
 
