@@ -25,7 +25,6 @@ const defaultReward: QuestReward = {
   numToClaim: '1',
   isClaimed: false,
   marketplaceUrl: 'https://marketplace.example.com/reward',
-  canClaim: true,
   onClaim: () => alert('claimed')
 }
 
@@ -78,7 +77,6 @@ export const LargeNumbers: Story = {
 export const Loading: Story = {
   args: {
     reward: defaultReward,
-    i18n: defaultI18n,
-    claimPending: true
+    i18n: defaultI18n
   }
 }
