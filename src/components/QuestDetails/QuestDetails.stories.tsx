@@ -288,10 +288,6 @@ export const LongRewardTitle: Story = {
   }
 }
 
-export const IsMinting: Story = {
-  args: { ...props, isMinting: true }
-}
-
 export const ErrorMessage: Story = {
   args: { ...props, errorMessage: 'User rejected transaction.' }
 }

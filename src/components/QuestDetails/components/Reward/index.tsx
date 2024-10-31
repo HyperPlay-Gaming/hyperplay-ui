@@ -20,16 +20,10 @@ export interface RewardI18n {
 export interface RewardProps {
   reward: QuestReward
   onClaim: (reward: QuestReward) => void
-  claimPending?: boolean
   i18n: RewardI18n
 }
 
-export default function Reward({
-  reward,
-  i18n,
-  claimPending = false,
-  onClaim
-}: RewardProps) {
+export default function Reward({ reward, i18n, onClaim }: RewardProps) {
   let numClaimsLeftComponent = null
 
   if (reward.numOfClaimsLeft) {
@@ -99,14 +93,18 @@ export default function Reward({
         </div>
         {!reward.isClaimed ? (
           <Button
-            disabled={claimPending || !reward.canClaim}
+            disabled={reward.claimPending || !reward.canClaim}
             onClick={() => onClaim(reward)}
             type="secondaryGradient"
             size="small"
             htmlType="button"
             className={styles.claimButton}
           >
-            {claimPending ? <Loading className={styles.spinner} /> : i18n.claim}
+            {reward.claimPending ? (
+              <Loading className={styles.spinner} />
+            ) : (
+              i18n.claim
+            )}
           </Button>
         ) : null}
       </div>

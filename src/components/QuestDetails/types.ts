@@ -95,7 +95,6 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   ctaDisabled?: boolean
   collapseIsOpen: boolean
   toggleCollapse: () => void
-  isMinting?: boolean
   alertProps?: InfoAlertProps
   errorMessage?: string
   isSignedIn: boolean

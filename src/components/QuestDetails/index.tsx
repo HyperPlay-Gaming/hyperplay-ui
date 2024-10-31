@@ -62,7 +62,6 @@ export default function QuestDetails({
   ctaDisabled,
   collapseIsOpen: opened,
   toggleCollapse: toggle,
-  isMinting,
   alertProps,
   errorMessage,
   isSignedIn,
@@ -168,7 +167,7 @@ export default function QuestDetails({
   }
 
   let buttonContents = <>{buttonText}</>
-  if (isMinting || (showSync && isSyncing)) {
+  if (showSync && isSyncing) {
     buttonContents = (
       <Loading className={cn(styles.loader, classNames?.loading)} />
     )
@@ -233,7 +232,7 @@ export default function QuestDetails({
                 type={primaryCTAButtonType}
                 className={styles.claimButton}
                 onClick={ctaClick}
-                disabled={ctaDisabled || isMinting}
+                disabled={ctaDisabled}
               >
                 {buttonContents}
               </Button>
