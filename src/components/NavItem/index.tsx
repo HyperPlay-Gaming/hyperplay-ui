@@ -68,6 +68,11 @@ function _NavItem({
         className={cn(styles.submenuCollapseIcon, dropdownArrowClass)}
         onClick={(ev) => {
           setSubLinksCollapsed?.(!subLinksCollapsed)
+          /**
+           * @dev To support clicking the nav item to navigate when it has sublinks, we need
+           * to prevent the on click handler from bubbling here. Otherwise, clicking the arrow
+           * to expand/collapse the sublinks will also navigate, which could be confusing UX.
+           */
           ev.preventDefault()
           ev.stopPropagation()
         }}
