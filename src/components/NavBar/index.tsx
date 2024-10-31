@@ -104,17 +104,17 @@ const NavBar = function ({ UserAvatar }: Props) {
               rel="noopener noreferrer"
               data-testid="github-link"
             >
-              <img src={githubLogo} alt="Github Link" />
+              <img src={githubLogo} alt="GitHub Link" />
             </a>
             <a
               className={`${navBarStyles.navItem} menu`}
-              href="https://forms.gle/A3mQ8A7CTWrDo8LD6"
+              href="https://hyperplay.xyz/download"
               target="_blank"
               rel="noopener noreferrer"
-              data-testid="submit-game"
+              data-testid="install-hyperplay"
             >
-              <Button type="secondary">
-                <div className="button-sm">Submit a game</div>
+              <Button type="primary">
+                <div className="button-sm">Install HyperPlay</div>
               </Button>
             </a>
             {UserAvatar ? (
