@@ -11,6 +11,7 @@ import styles from './index.module.scss'
 export interface RewardsRowProps {
   category: string
   rewards: QuestReward[]
+  onClaim: (reward: QuestReward) => void
   tooltip?: string
   i18n: RewardI18n
 }
@@ -19,16 +20,17 @@ export function RewardsRow({
   category,
   rewards,
   tooltip,
-  i18n
+  i18n,
+  onClaim
 }: RewardsRowProps) {
   let rewardsContent = null
   if (rewards.length > 0) {
     rewardsContent = rewards.map((reward_i) => (
       <Reward
         reward={reward_i}
-        key={reward_i.title}
+        key={reward_i.name}
         i18n={i18n}
-        onClaim={reward_i.onClaim}
+        onClaim={onClaim}
       />
     ))
   }
