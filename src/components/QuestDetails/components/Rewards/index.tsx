@@ -28,7 +28,6 @@ export interface RewardsProps {
   numTotal?: number
   chainTooltips?: Record<string, string>
   i18n?: RewardsI18n
-  onClaim: (reward: QuestReward) => void
 }
 
 export default function Rewards({
@@ -37,7 +36,6 @@ export default function Rewards({
   numClaimed,
   numTotal,
   chainTooltips,
-  onClaim,
   i18n = defaultI18n
 }: RewardsProps) {
   // create arrays by category for rewards
@@ -64,7 +62,6 @@ export default function Rewards({
           claimed: i18n.claimed,
           claim: i18n.claim
         }}
-        onClaim={onClaim}
       />
     ))
   } else if (loading) {

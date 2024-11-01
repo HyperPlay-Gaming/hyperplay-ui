@@ -54,7 +54,6 @@ export default function QuestDetails({
   onConnectSteamAccountClick,
   onPlayClick,
   onSecondCTAClick,
-  onRewardClaim,
   isQuestsPage,
   showSecondCTA,
   ctaComponent,
@@ -221,7 +220,6 @@ export default function QuestDetails({
           numClaimed={numClaimed}
           numTotal={numTotal}
           chainTooltips={chainTooltips}
-          onClaim={onRewardClaim}
         />
         {errorAlert}
       </div>

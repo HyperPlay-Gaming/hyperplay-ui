@@ -1,8 +1,6 @@
 import { HTMLProps } from 'react'
 import { Options as MarkdownOptions } from 'react-markdown'
 
-import { Reward } from '@hyperplay/utils'
-
 import { QuestTypeTranslations } from '@/common/types'
 
 import { InfoAlertProps } from '../AlertCard'
@@ -32,12 +30,17 @@ export interface PlayStreakEligibility {
   rightSection?: React.ReactNode
 }
 
-export interface QuestReward extends Reward {
+export interface QuestReward {
+  title: string
+  imageUrl: string
+  numOfClaimsLeft?: string
   claimPending?: boolean
+  onClaim: (reward: QuestReward) => void
   // this will likely be a BigNumber so we will convert to float before passing as param
   numToClaim?: string
   chainName: string
   isClaimed?: boolean
+  marketplaceUrl?: string
 }
 
 export interface QuestDetailsTranslations {
@@ -71,7 +74,6 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   numTotal?: number
   onSignInClick: () => void
   onConnectSteamAccountClick: () => void
-  onRewardClaim: (reward: QuestReward) => void
   showSecondCTA?: boolean
   ctaComponent?: React.ReactNode
   isQuestsPage?: boolean

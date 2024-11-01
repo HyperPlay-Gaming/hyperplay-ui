@@ -36,7 +36,6 @@ type Story = StoryObj<typeof QuestDetails>
 const props: QuestDetailsProps = {
   isSignedIn: true,
   title: 'Eternal Ember: Shadows of the Celestial Nexus',
-  onRewardClaim: () => alert('reward claimed'),
   description:
     'Shadows of the Celestial NexusEmbark on a cosmic odyssey as the chosen guardian of the Eternal Ember. Traverse astral realms, unravel celestial mysteries, and confront shadowy entities threatening the balance of the Celestial Nexus. Master arcane powers, forge alliances with otherworldly beings, and navigate intricate puzzles. \n \nWill you rise to the challenge and become the savior of the Celestial Nexus, or succumb to the shadows that threaten to engulf the eternal flame?',
   eligibility: {
@@ -52,149 +51,62 @@ const props: QuestDetailsProps = {
   },
   rewards: [
     {
-      id: 1,
-      name: 'Kosium Pioneer',
-      image_url: kosiumGhoul,
+      title: 'Kosium Pioneer',
+      imageUrl: kosiumGhoul,
       chainName: 'Ethereum Mainnet',
-      chain_id: 1,
       numToClaim: '999999999999',
-      numClaimsLeft: '999999999',
-      amount_per_user: 1,
-      marketplace_url: 'https://marketplace.example.com/kosium',
-      isClaimed: false,
-      token_ids: [
-        {
-          token_id: 1,
-          numClaimsLeft: '999999999',
-          amount_per_user: '1'
-        }
-      ],
-      reward_type: 'ERC721',
-      contract_address: '0x123...',
-      decimals: 18
+      numOfClaimsLeft: '999999999',
+      onClaim: () => alert('claimed')
     },
     {
-      id: 2,
-      name: 'SAND',
-      image_url: SAND,
-      decimals: 18,
+      title: 'SAND',
+      imageUrl: SAND,
       chainName: 'Ethereum Mainnet',
-      chain_id: 1,
       numToClaim:
         '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
-      numClaimsLeft:
+      numOfClaimsLeft:
         '115792089237316195423570985008687907853269984665640564039457584007913129639935',
-      amount_per_user: 100,
-      marketplace_url: 'https://marketplace.example.com/sand',
-      isClaimed: false,
-      token_ids: [
-        {
-          token_id: 2,
-          numClaimsLeft:
-            '115792089237316195423570985008687907853269984665640564039457584007913129639935',
-          amount_per_user: '100'
-        }
-      ],
-      contract_address: '0x456...',
-      reward_type: 'ERC20'
+      onClaim: () => alert('claimed')
     },
     {
-      id: 3,
-      image_url: droid,
+      title: 'Droid',
+      imageUrl: droid,
       chainName: 'Ethereum Mainnet',
-      chain_id: 1,
       numToClaim: '9999999999999',
-      numClaimsLeft: '99999999999999',
-      amount_per_user: 1,
-      marketplace_url: 'https://marketplace.example.com/droid',
-      isClaimed: false,
-      token_ids: [],
-      contract_address: '0x789...',
-      reward_type: 'ERC721',
-      name: 'Droid',
-      decimals: 18
+      numOfClaimsLeft: '99999999999999',
+      onClaim: () => alert('claimed')
     },
     {
-      id: 4,
-      name: 'Kosium Pioneer',
-      image_url: kosiumGhoul,
+      title: 'Kosium Pioneer',
+      imageUrl: kosiumGhoul,
       chainName: 'Ethereum Mainnet',
-      chain_id: 1,
       numToClaim: '123',
-      numClaimsLeft: '333',
-      amount_per_user: 1,
-      marketplace_url: 'https://marketplace.example.com/kosium2',
-      isClaimed: false,
-      token_ids: [],
-      contract_address: '0xabc...',
-      reward_type: 'ERC721',
-      decimals: 18
+      numOfClaimsLeft: '333',
+      onClaim: () => alert('claimed')
     },
     {
-      id: 5,
-      name: 'SAND',
-      image_url: SAND,
+      title: 'SAND',
+      imageUrl: SAND,
       chainName: 'Points',
-      chain_id: 1,
       numToClaim: '0.001',
-      numClaimsLeft: '10000',
-      amount_per_user: 0.001,
-      marketplace_url: 'https://marketplace.example.com/points-sand',
-      isClaimed: false,
-      token_ids: [
-        {
-          token_id: 5,
-          numClaimsLeft: '10000',
-          amount_per_user: '0.001'
-        }
-      ],
-      reward_type: 'POINTS',
-      contract_address: '0xdef...',
-      decimals: 18
+      numOfClaimsLeft: '10000',
+      onClaim: () => alert('claimed')
     },
     {
-      id: 6,
-      name: 'Droid',
-      image_url: droid,
+      title: 'Droid',
+      imageUrl: droid,
       chainName: 'Points',
-      chain_id: 1,
       numToClaim: '0.000001',
-      numClaimsLeft: '1000',
-      amount_per_user: 0.000001,
-      marketplace_url: 'https://marketplace.example.com/points-droid',
-      isClaimed: false,
-      token_ids: [
-        {
-          token_id: 6,
-          numClaimsLeft: '1000',
-          amount_per_user: '0.000001'
-        }
-      ],
-      contract_address: '0xghi...',
-      reward_type: 'POINTS',
-      decimals: 18
+      numOfClaimsLeft: '1000',
+      onClaim: () => alert('claimed')
     },
     {
-      id: 7,
-      name: 'Standard Issue Starfighter',
-      image_url: droid,
+      title: 'Standard Issue Starfighter',
+      imageUrl: droid,
       chainName: 'Points',
-      chain_id: 1,
       numToClaim: '0.000001',
-      numClaimsLeft: '1000',
-      amount_per_user: 0.000001,
-      marketplace_url: 'https://marketplace.example.com/points-starfighter',
-      isClaimed: false,
-      token_ids: [
-        {
-          token_id: 7,
-          numClaimsLeft: '1000',
-          amount_per_user: '0.000001'
-        }
-      ],
-      contract_address: '0xjkl...',
-      reward_type: 'POINTS',
-      decimals: 18
+      numOfClaimsLeft: '1000',
+      onClaim: () => alert('claimed')
     }
   ],
   chainTooltips: {
@@ -472,20 +384,14 @@ export const isClaimed: Story = {
     rewards: [
       ...props.rewards,
       {
-        id: 8,
-        name: 'Kosium Pioneer',
-        image_url: kosiumGhoul,
+        title: 'Kosium Pioneer',
+        imageUrl: kosiumGhoul,
         chainName: 'Ethereum Mainnet',
-        chain_id: 1,
-        numToClaim: '999999999',
-        numClaimsLeft: '999999999',
-        amount_per_user: 1,
-        marketplace_url: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+        numToClaim: '999999999999',
+        numOfClaimsLeft: '999999999',
         isClaimed: true,
-        token_ids: [],
-        contract_address: '0xmno...',
-        reward_type: 'ERC721',
-        decimals: 18
+        marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+        onClaim: () => alert('claimed')
       }
     ],
     eligibility: {
@@ -506,20 +412,14 @@ export const RewardMarketplaceLink: Story = {
     rewards: [
       ...props.rewards,
       {
-        id: 8,
-        name: 'Kosium Pioneer',
-        image_url: kosiumGhoul,
+        title: 'Kosium Pioneer',
+        imageUrl: kosiumGhoul,
         chainName: 'Ethereum Mainnet',
         numToClaim: '999999999999',
-        numClaimsLeft: '999999999',
-        amount_per_user: 1,
-        marketplace_url: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+        numOfClaimsLeft: '999999999',
         isClaimed: true,
-        token_ids: [],
-        contract_address: '0xmno...',
-        reward_type: 'ERC721',
-        decimals: 18,
-        chain_id: 1
+        marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+        onClaim: () => alert('claimed')
       }
     ],
     eligibility: {

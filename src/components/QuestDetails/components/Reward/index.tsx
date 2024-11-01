@@ -26,15 +26,15 @@ export interface RewardProps {
 export default function Reward({ reward, i18n, onClaim }: RewardProps) {
   let numClaimsLeftComponent = null
 
-  if (reward.numClaimsLeft) {
+  if (reward.numOfClaimsLeft) {
     const formattedNumOfClaimsLeft = parseNumIntoReadableString({
-      num: reward.numClaimsLeft,
+      num: reward.numOfClaimsLeft,
       units: decimalUnits,
       minValue: '0',
       maxValue: '9999'
     })
 
-    const emptyClaims = Number(reward.numClaimsLeft) === 0
+    const emptyClaims = Number(reward.numOfClaimsLeft) === 0
 
     numClaimsLeftComponent = (
       <div className={styles.claimsContainer}>
@@ -64,14 +64,14 @@ export default function Reward({ reward, i18n, onClaim }: RewardProps) {
   }
 
   return (
-    <div className={styles.container} key={reward.name}>
+    <div className={styles.container} key={reward.title}>
       <div className={styles.rewardImageContainer}>
         {reward.isClaimed ? (
           <div className={styles.isClaimed}>{i18n.claimed}</div>
         ) : null}
-        {reward.marketplace_url ? (
+        {reward.marketplaceUrl ? (
           <a
-            href={reward.marketplace_url}
+            href={reward.marketplaceUrl}
             className={styles.viewRewardContainer}
             rel="nooepner noreferrer"
             target="_blank"
@@ -80,14 +80,14 @@ export default function Reward({ reward, i18n, onClaim }: RewardProps) {
             {i18n.viewReward}
           </a>
         ) : null}
-        <img src={reward.image_url} />
+        <img src={reward.imageUrl} />
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.textContainer}>
           <div className={classNames('title-sm', styles.title)}>
             {formattedNumToClaim
-              ? `${formattedNumToClaim} ${reward.name}`
-              : reward.name}
+              ? `${formattedNumToClaim} ${reward.title}`
+              : reward.title}
           </div>
           {numClaimsLeftComponent}
         </div>

@@ -8,27 +8,24 @@ import Reward from './index'
 const meta: Meta<typeof Reward> = {
   title: 'Quests/Reward',
   component: Reward,
-  tags: ['autodocs']
+  tags: ['autodocs'],
+  args: {
+    onClaim: () => alert('claimed')
+  }
 }
 
 export default meta
 type Story = StoryObj<typeof Reward>
 
 const defaultReward: QuestReward = {
-  id: 1,
   chainName: 'Ethereum',
-  chain_id: 1,
-  name: 'Awesome Reward',
-  image_url: RewardImage,
-  numClaimsLeft: '100',
+  title: 'Awesome Reward',
+  imageUrl: RewardImage,
+  numOfClaimsLeft: '100',
   numToClaim: '1',
   isClaimed: false,
-  marketplace_url: 'https://marketplace.example.com/reward',
-  amount_per_user: 1,
-  reward_type: 'ERC721',
-  contract_address: '0x1234567890abcdef',
-  decimals: 18,
-  token_ids: []
+  marketplaceUrl: 'https://marketplace.example.com/reward',
+  onClaim: () => alert('claimed')
 }
 
 const defaultI18n = {
@@ -54,14 +51,14 @@ export const Claimed: Story = {
 
 export const NoClaimsLeft: Story = {
   args: {
-    reward: { ...defaultReward, numClaimsLeft: '0' },
+    reward: { ...defaultReward, numOfClaimsLeft: '0' },
     i18n: defaultI18n
   }
 }
 
 export const NoMarketplaceUrl: Story = {
   args: {
-    reward: { ...defaultReward, marketplace_url: null },
+    reward: { ...defaultReward, marketplaceUrl: undefined },
     i18n: defaultI18n
   }
 }
@@ -70,7 +67,7 @@ export const LargeNumbers: Story = {
   args: {
     reward: {
       ...defaultReward,
-      numClaimsLeft: '1000000',
+      numOfClaimsLeft: '1000000',
       numToClaim: '1000'
     },
     i18n: defaultI18n
