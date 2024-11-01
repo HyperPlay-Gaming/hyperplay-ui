@@ -1,0 +1,17 @@
+.root {
+  width: 100%;
+  text-align: left;
+  padding: var(--space-sm-fixed) 0px;
+  color: var(--color-neutral-400);
+
+  &.selected {
+    color: var(--color-primary-200);
+  }
+
+  &:not(.selected):hover {
+    color: var(--color-neutral-100);
+  }
+  &:hover {
+    opacity: 100%;
+  }
+}

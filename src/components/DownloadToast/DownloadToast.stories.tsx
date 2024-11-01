@@ -11,9 +11,26 @@ export const Default = () => (
   <DownloadToast
     imgUrl="src/assets/stories/TheWakeCover.png"
     gameTitle="Gods Unchained"
-    downloadedInBytes={250609664}
-    downloadSizeInBytes={550609664}
-    estimatedCompletionTimeInMs={86300000000}
+    downloadedInBytes={2506096644}
+    downloadSizeInBytes={3506096064}
+    estimatedCompletionTimeInMs={8630000}
+    onCancelClick={() => console.log('cancel clicked')}
+    onPauseClick={() => console.log('pause clicked')}
+    onStartClick={() => console.log('start clicked')}
+    onCloseClick={() => console.log('close clicked')}
+    onPlayClick={() => console.log('play clicked')}
+    status="inProgress"
+    statusText="Downloading"
+  />
+)
+
+export const Huge = () => (
+  <DownloadToast
+    imgUrl="src/assets/stories/TheWakeCover.png"
+    gameTitle="Huge Game"
+    downloadedInBytes={23226000000}
+    downloadSizeInBytes={82511000000}
+    estimatedCompletionTimeInMs={36360000}
     onCancelClick={() => console.log('cancel clicked')}
     onPauseClick={() => console.log('pause clicked')}
     onStartClick={() => console.log('start clicked')}
@@ -58,6 +75,23 @@ export const hundredPercent = () => (
   />
 )
 
+export const tooLong = () => (
+  <DownloadToast
+    imgUrl="src/assets/stories/TheWakeCover.png"
+    gameTitle="Gods Unchained"
+    downloadedInBytes={111515}
+    downloadSizeInBytes={321200000000000}
+    estimatedCompletionTimeInMs={86500000000}
+    onCancelClick={() => console.log('cancel clicked')}
+    onPauseClick={() => console.log('pause clicked')}
+    onStartClick={() => console.log('start clicked')}
+    onCloseClick={() => console.log('close clicked')}
+    onPlayClick={() => console.log('play clicked')}
+    status="inProgress"
+    statusText="Downloading"
+  />
+)
+
 export const paused = () => (
   <div
     style={{
@@ -97,8 +131,8 @@ export const done = () => (
       imgUrl="src/assets/stories/TheWakeCover.png"
       gameTitle="Gods Unchained"
       downloadedInBytes={560609664}
-      downloadSizeInBytes={1}
-      estimatedCompletionTimeInMs={2710000}
+      downloadSizeInBytes={560609664}
+      estimatedCompletionTimeInMs={0}
       onCancelClick={() => console.log('cancel clicked')}
       onPauseClick={() => console.log('pause clicked')}
       onStartClick={() => console.log('start clicked')}

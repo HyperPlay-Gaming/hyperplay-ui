@@ -1,25 +1,39 @@
+$selectedColor: var(--color-neutral-100);
+$defaultTextColor: var(--color-neutral-400);
+
 .link {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: var(--space-md-fixed);
   cursor: pointer;
   gap: var(--space-sm-fixed);
-  color: var(--color-neutral-100) !important;
+  color: $defaultTextColor !important;
   width: 100%;
   min-height: 60px;
+
   svg {
     max-height: 19px;
-    fill: var(--color-neutral-100);
+    fill: $defaultTextColor;
   }
   &.selected {
     background-color: var(--color-neutral-700);
 
     border-right: 2px solid;
     border-image: var(--color-gradient-01-border) 0 100%;
+    color: $selectedColor !important;
+  }
+  &.selected svg {
+    fill: $selectedColor;
   }
 
+  &:hover,
   &:hover * {
-    opacity: 70%;
+    opacity: 100%;
+  }
+
+  &:hover {
+    background-color: var(--color-neutral-700);
   }
 }
 
@@ -52,4 +66,42 @@
   &.secondary {
     background-color: var(--color-neutral-600);
   }
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.submenuCollapseIcon {
+  transform: rotate(180deg);
+  &.subMenuCollapsed {
+    transform: rotate(0deg);
+  }
+}
+
+.menuDropdown {
+  background-color: var(--color-neutral-800);
+  position: absolute;
+  padding: var(--space-sm-fixed) var(--space-md-fixed);
+}
+
+.sublinksContainer {
+  padding-left: calc(3 * var(--space-md-fixed));
+  // needed since a:-webkit-any-link inherits color
+  color: $defaultTextColor;
+}
+
+.dropdownSublinksContainer {
+  padding-left: var(--space-md-fixed);
+  // needed since a:-webkit-any-link inherits color
+  color: $defaultTextColor;
+}
+
+.dropdownTitle {
+  padding-bottom: var(--space-xs);
+}
+
+.menuArrow {
+  background-color: var(--color-neutral-700);
 }
