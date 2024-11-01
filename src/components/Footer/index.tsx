@@ -23,12 +23,14 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
     badges: string
     getTheApp: string
     getHyperPlayApp: string
+    developerAgreement?: string
   }
   linkProps: {
     privacyPolicy: LinkProps
     termsOfService: LinkProps
     badges: LinkProps
     downloads: LinkProps
+    developerAgreement?: LinkProps
   }
   flags: {
     showLangSelector: boolean
@@ -53,7 +55,8 @@ export function Footer({
     documentation: 'DOCUMENTATION',
     badges: 'BADGES',
     getTheApp: 'Get the App',
-    getHyperPlayApp: 'Get HyperPlay Apps'
+    getHyperPlayApp: 'Get HyperPlay Apps',
+    developerAgreement: 'DEVELOPER AGREEMENT'
   },
   flags = {
     showLangSelector: false,
@@ -120,6 +123,14 @@ export function Footer({
             >
               {i18n.termsOfService}
             </Link>
+            {linkProps.developerAgreement ? (
+              <Link
+                className={FooterSectionStyle.footer__link}
+                {...linkProps.developerAgreement}
+              >
+                {i18n.developerAgreement}
+              </Link>
+            ) : null}
           </div>
         </div>
         <div className={FooterSectionStyle.footer__column}>
