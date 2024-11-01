@@ -108,7 +108,7 @@ const NavBar = function ({ UserAvatar }: Props) {
             </a>
             <a
               className={`${navBarStyles.navItem} menu`}
-              href="https://hyperplay.xyz/download"
+              href="https://www.hyperplay.xyz/downloads"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="install-hyperplay"
