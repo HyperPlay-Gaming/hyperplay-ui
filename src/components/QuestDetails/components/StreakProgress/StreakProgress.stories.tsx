@@ -144,6 +144,13 @@ export const Standby: Story = {
   }
 }
 
+export const StandbyButQuestFinished: Story = {
+  args: { ...props },
+  render: (args) => {
+    return <StreakProgress {...args} standby />
+  }
+}
+
 export const WithExternalStreakButton: Story = {
   args: { ...props },
   render: (args) => {

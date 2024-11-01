@@ -149,7 +149,7 @@ export default function StreakProgress({
     progressCompletedColor = 'var(--color-success-300)'
   }
 
-  if (standby) {
+  if (standby && !questFinished) {
     lightningBoltCircleClass = styles.inProgress
     progressCompletedColor = 'var(--color-alert-300)'
     ctaText = i18n.playToStart
