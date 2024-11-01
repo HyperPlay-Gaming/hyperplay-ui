@@ -140,7 +140,7 @@ export const NoStreakButSomePlayTime: Story = {
 export const Standby: Story = {
   args: { ...props },
   render: (args) => {
-    return <StreakProgress {...args} standby />
+    return <StreakProgress {...args} currentStreakInDays={0} standby />
   }
 }
 
