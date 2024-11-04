@@ -21,6 +21,8 @@ export interface PlatformInputProps {
   i18n?: {
     upload?: PlatformUploadI18n
   }
+  exeListAmd64?: string[]
+  exeListArm64?: string[]
 }
 
 export function NativePlatformInput({
@@ -30,7 +32,9 @@ export function NativePlatformInput({
   clearFile,
   updateFile,
   exeInputProps,
-  i18n
+  i18n,
+  exeListAmd64,
+  exeListArm64
 }: PlatformInputProps): JSX.Element {
   const platformDisplayName = platformLabels[platformName]
   const amdLabel = `${platformDisplayName} (Intel / amd64)`
@@ -45,6 +49,7 @@ export function NativePlatformInput({
         clearFile('amd64')
       }}
       exeInputProps={exeInputProps.amd64}
+      exeList={exeListAmd64}
     />
   )
 
@@ -65,6 +70,7 @@ export function NativePlatformInput({
         }}
         exeInputProps={exeInputProps.arm64}
         i18n={i18n?.upload}
+        exeList={exeListArm64}
       />
     )
   }
