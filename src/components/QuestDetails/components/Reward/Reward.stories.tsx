@@ -6,7 +6,7 @@ import { QuestReward } from '../../types'
 import Reward from './index'
 
 const meta: Meta<typeof Reward> = {
-  title: 'Quests/Reward',
+  title: 'Quests/QuestDetails/Reward',
   component: Reward,
   tags: ['autodocs'],
   args: {
