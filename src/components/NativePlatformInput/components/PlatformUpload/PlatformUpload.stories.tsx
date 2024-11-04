@@ -18,6 +18,7 @@ const props: PlatformUploadProps = {
     console.log(path?.name)
   },
   onRemoveUpload: () => console.log('remove upload'),
+  // @ts-expect-error not passing all input props
   exeInputProps: {
     value: 'Test.exe'
   }
@@ -29,4 +30,13 @@ export const Default: Story = {
 
 export const Mac: Story = {
   args: { ...props, platformName: 'macOS (Intel / amd64)', uploaded: true }
+}
+
+export const ExeList: Story = {
+  args: {
+    ...props,
+    platformName: 'Windows (Intel / amd64)',
+    uploaded: true,
+    exeList: ['test.exe']
+  }
 }
