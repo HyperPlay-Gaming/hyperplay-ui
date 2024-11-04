@@ -3,11 +3,11 @@
 import React from 'react'
 
 import { Flex } from '@mantine/core'
+import { GetInputPropsReturnType } from '@mantine/form/lib/types'
 
 import { Arch, Platforms, platformLabels } from '@/common/types'
 
 import { PlatformContainer } from '../PlatformContainer'
-import { TextInputProps } from '../TextInput'
 import styles from './NativePlatformInput.module.scss'
 import PlatformUpload, { PlatformUploadI18n } from './components/PlatformUpload'
 
@@ -17,7 +17,7 @@ export interface PlatformInputProps {
   fileNameArm64?: string
   clearFile: (arch: Arch) => void
   updateFile: (file: File, arch: Arch) => void
-  exeInputProps: Record<Arch, TextInputProps>
+  exeInputProps: Record<Arch, GetInputPropsReturnType>
   i18n?: {
     upload?: PlatformUploadI18n
   }
