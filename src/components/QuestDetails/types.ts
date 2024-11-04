@@ -20,7 +20,6 @@ export interface ReputationQuestEligibility {
 }
 
 export interface PlayStreakEligibility {
-  standby?: boolean
   currentStreakInDays: number
   requiredStreakInDays: number
   minimumSessionTimeInSeconds: number

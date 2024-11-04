@@ -137,20 +137,6 @@ export const NoStreakButSomePlayTime: Story = {
   }
 }
 
-export const Standby: Story = {
-  args: { ...props },
-  render: (args) => {
-    return <StreakProgress {...args} currentStreakInDays={0} standby />
-  }
-}
-
-export const StandbyButQuestFinished: Story = {
-  args: { ...props },
-  render: (args) => {
-    return <StreakProgress {...args} standby />
-  }
-}
-
 export const WithExternalStreakButton: Story = {
   args: { ...props },
   render: (args) => {

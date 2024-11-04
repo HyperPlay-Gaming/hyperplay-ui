@@ -58,7 +58,6 @@ function PlayStreakBolts({
 }
 
 export default function StreakProgress({
-  standby,
   currentStreakInDays,
   requiredStreakInDays,
   minimumSessionTimeInSeconds,
@@ -147,13 +146,6 @@ export default function StreakProgress({
   if (dailySessionPercentCompleted >= 100) {
     lightningBoltCircleClass = styles.finished
     progressCompletedColor = 'var(--color-success-300)'
-  }
-
-  if (standby && !questFinished) {
-    lightningBoltCircleClass = styles.inProgress
-    progressCompletedColor = 'var(--color-alert-300)'
-    ctaText = i18n.playToStart
-    rootColor = 'var(--color-alert-300)'
   }
 
   let rewardCountdownContainer = null
