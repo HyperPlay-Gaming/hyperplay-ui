@@ -1,37 +1,22 @@
-import React from 'react'
+import React, { HTMLProps } from 'react'
 
 import { Tooltip } from '@mantine/core'
 
 import Sticker from '@/components/Sticker'
 
-import { QuestReward } from '../../../types'
-import Reward from '../../Reward'
 import styles from './index.module.scss'
 
-export interface RewardsRowProps {
+export interface RewardsRowProps extends HTMLProps<HTMLDivElement> {
   category: string
-  rewards: QuestReward[]
   tooltip?: string
-  i18n: {
-    claimsLeft: string
-    viewReward: string
-    claimed: string
-  }
 }
 
 export function RewardsRow({
   category,
-  rewards,
   tooltip,
-  i18n
+  children,
+  ...props
 }: RewardsRowProps) {
-  let rewardsContent = null
-  if (rewards.length > 0) {
-    rewardsContent = rewards.map((reward_i) => (
-      <Reward reward={reward_i} key={reward_i.title} i18n={i18n} />
-    ))
-  }
-
   let tooltipComponent = null
   if (tooltip) {
     tooltipComponent = (
@@ -47,7 +32,7 @@ export function RewardsRow({
     )
   }
   return (
-    <div className={styles.rewardsRowContainer}>
+    <div className={styles.rewardsRowContainer} {...props}>
       <Sticker
         styleType="secondary"
         variant="outlined"
@@ -56,7 +41,7 @@ export function RewardsRow({
         {category}
         {tooltipComponent}
       </Sticker>
-      <div className={styles.rewardItemsContainer}>{rewardsContent}</div>
+      <div className={styles.rewardItemsContainer}>{children}</div>
     </div>
   )
 }

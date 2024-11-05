@@ -8,7 +8,6 @@ import Button, { ButtonProps } from '../Button'
 import DarkContainer from '../DarkContainer'
 import Loading from '../Loading'
 import Sticker from '../Sticker'
-import Rewards from './components/Rewards'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
 
@@ -16,8 +15,6 @@ export default function QuestDetails({
   title,
   description,
   eligibilityComponents,
-  rewards,
-  rewardsLoading,
   i18n = {
     rewards: 'Claimable Rewards',
     claim: 'Claim all',
@@ -50,13 +47,11 @@ export default function QuestDetails({
   errorMessage,
   isSignedIn,
   questType,
-  numClaimed,
-  numTotal,
   showSync,
   onSyncClick,
   isSyncing,
-  chainTooltips,
   steamAccountIsLinked,
+  rewardsComponent,
   ...props
 }: QuestDetailsProps) {
   let sticker = null
@@ -154,20 +149,7 @@ export default function QuestDetails({
         </div>
 
         {eligibilityComponents}
-
-        <Rewards
-          rewards={rewards}
-          i18n={{
-            rewards: i18n.rewards,
-            claimsLeft: i18n.claimsLeft ?? 'Claims left',
-            viewReward: i18n.viewReward ?? 'View Reward',
-            claimed: i18n.claimed ?? 'Claimed'
-          }}
-          loading={rewardsLoading}
-          numClaimed={numClaimed}
-          numTotal={numTotal}
-          chainTooltips={chainTooltips}
-        />
+        {rewardsComponent}
         {errorAlert}
       </div>
       <div className={styles.ctaContainer}>

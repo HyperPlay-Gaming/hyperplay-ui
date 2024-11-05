@@ -10,14 +10,21 @@ import styles from './index.module.scss'
 
 export interface RewardProps {
   reward: QuestReward
-  i18n: {
+  i18n?: {
     claimsLeft: string
     viewReward: string
     claimed: string
   }
 }
 
-export default function Reward({ reward, i18n }: RewardProps) {
+export default function Reward({
+  reward,
+  i18n = {
+    claimsLeft: 'Claims left',
+    viewReward: 'View Reward',
+    claimed: 'Claimed'
+  }
+}: RewardProps) {
   let numClaimsLeftComponent = null
   if (reward.numOfClaimsLeft) {
     const formattedNumOfClaimsLeft = parseNumIntoReadableString({
