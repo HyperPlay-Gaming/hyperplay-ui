@@ -23,8 +23,13 @@ export interface RewardProps extends HTMLProps<HTMLDivElement> {
   i18n: RewardI18n
 }
 
-export default function Reward({ reward, i18n,   className, onClaim,
-                                   ...props }: RewardProps) {
+export default function Reward({
+  reward,
+  i18n,
+  className,
+  onClaim,
+  ...props
+}: RewardProps) {
   let numClaimsLeftComponent = null
 
   if (reward.numOfClaimsLeft) {

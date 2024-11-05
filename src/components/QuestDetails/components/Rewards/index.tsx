@@ -11,7 +11,7 @@ export const defaultI18n = {
 export interface RewardsProps extends HTMLProps<HTMLDivElement> {
   numClaimed?: number
   numTotal?: number
-    i18n?: typeof defaultI18n
+  i18n?: typeof defaultI18n
 }
 
 export default function Rewards({
