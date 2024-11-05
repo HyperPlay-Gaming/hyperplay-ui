@@ -15,7 +15,7 @@ import { QuestDetailsProps } from './types'
 export default function QuestDetails({
   title,
   description,
-  eligibilityComponents,
+  eligibilityComponent,
   rewards,
   rewardsLoading,
   i18n = {
@@ -153,7 +153,7 @@ export default function QuestDetails({
           {description}
         </div>
 
-        {eligibilityComponents}
+        {eligibilityComponent}
 
         <Rewards
           rewards={rewards}

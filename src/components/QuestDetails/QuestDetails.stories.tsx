@@ -37,7 +37,7 @@ const props: QuestDetailsProps = {
   title: 'Eternal Ember: Shadows of the Celestial Nexus',
   description:
     'Shadows of the Celestial NexusEmbark on a cosmic odyssey as the chosen guardian of the Eternal Ember. Traverse astral realms, unravel celestial mysteries, and confront shadowy entities threatening the balance of the Celestial Nexus. Master arcane powers, forge alliances with otherworldly beings, and navigate intricate puzzles. \n \nWill you rise to the challenge and become the savior of the Celestial Nexus, or succumb to the shadows that threaten to engulf the eternal flame?',
-  eligibilityComponents: [
+  eligibilityComponent: [
     <AssociatedGamesCollapse
       opened={true}
       toggle={() => console.log('toggle')}
@@ -152,7 +152,7 @@ export const SmallMaxHeight: Story = {
       <div style={{ height: '500px', width: '100%' }}>
         <QuestDetails
           {...args}
-          eligibilityComponents={[
+          eligibilityComponent={[
             <AssociatedGamesCollapse
               opened={open}
               toggle={() => setOpen(!open)}
@@ -178,7 +178,7 @@ export const NoRewards: Story = {
         <QuestDetails
           {...args}
           rewards={[]}
-          eligibilityComponents={[
+          eligibilityComponent={[
             <AssociatedGamesCollapse
               opened={open}
               toggle={() => setOpen(!open)}
@@ -205,7 +205,7 @@ export const LoadingRewards: Story = {
           {...args}
           rewards={[]}
           rewardsLoading={true}
-          eligibilityComponents={[
+          eligibilityComponent={[
             <AssociatedGamesCollapse
               opened={open}
               toggle={() => setOpen(!open)}
@@ -231,7 +231,7 @@ export const LoadingDetails: Story = {
         <QuestDetails
           {...args}
           loading={true}
-          eligibilityComponents={[
+          eligibilityComponent={[
             <AssociatedGamesCollapse
               opened={open}
               toggle={() => setOpen(!open)}
@@ -257,7 +257,7 @@ export const LoadingEligibilityGame: Story = {
         <QuestDetails
           {...args}
           loading={true}
-          eligibilityComponents={[
+          eligibilityComponent={[
             <AssociatedGamesCollapse
               opened={open}
               toggle={() => setOpen(!open)}
@@ -281,7 +281,7 @@ export const PlayStreak: Story = {
       <div>
         <QuestDetails
           {...args}
-          eligibilityComponents={defaultPlayStreakEligbility}
+          eligibilityComponent={defaultPlayStreakEligbility}
           questType="PLAYSTREAK"
         />
       </div>
@@ -342,7 +342,7 @@ export const Sync: Story = {
 export const CustomCtaPlatstreak: Story = {
   args: {
     ...props,
-    eligibilityComponents: defaultPlayStreakEligbility,
+    eligibilityComponent: defaultPlayStreakEligbility,
     questType: 'PLAYSTREAK',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -355,7 +355,7 @@ export const CustomCtaPlatstreak: Story = {
 export const CustomCtaReputationalAirdrop: Story = {
   args: {
     ...props,
-    eligibilityComponents: dummyReputationAirdropEligbility,
+    eligibilityComponent: dummyReputationAirdropEligbility,
     questType: 'REPUTATIONAL-AIRDROP',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -374,7 +374,7 @@ export const DescriptionCustomElement: Story = {
         [hyperplay.xyz](https://hyperplay.xyz)
       </MarkdownDescription>
     ),
-    eligibilityComponents: dummyReputationAirdropEligbility,
+    eligibilityComponent: dummyReputationAirdropEligbility,
     questType: 'REPUTATIONAL-AIRDROP',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -399,7 +399,7 @@ export const isClaimed: Story = {
         marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
       }
     ],
-    eligibilityComponents: dummyReputationAirdropEligbility,
+    eligibilityComponent: dummyReputationAirdropEligbility,
     questType: 'REPUTATIONAL-AIRDROP',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -424,7 +424,7 @@ export const RewardMarketplaceLink: Story = {
         marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
       }
     ],
-    eligibilityComponents: dummyReputationAirdropEligbility,
+    eligibilityComponent: dummyReputationAirdropEligbility,
     questType: 'REPUTATIONAL-AIRDROP',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -438,7 +438,7 @@ export const WithExternalSyncButton: Story = {
   args: {
     ...props,
     questType: 'PLAYSTREAK',
-    eligibilityComponents: [
+    eligibilityComponent: [
       <StreakProgress
         currentStreakInDays={2}
         requiredStreakInDays={7}
