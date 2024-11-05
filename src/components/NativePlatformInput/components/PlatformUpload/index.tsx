@@ -1,11 +1,13 @@
 import React, { HTMLProps } from 'react'
 
 import { Collapse, FileButton as FButton, Flex, Text } from '@mantine/core'
+import { GetInputPropsReturnType } from '@mantine/form/lib/types'
 import { IconFile, IconTrash } from '@tabler/icons-react'
 import classNames from 'classnames'
 
 import Button from '@/components/Button'
-import TextInput, { TextInputProps } from '@/components/TextInput'
+import HpSelect from '@/components/Select'
+import TextInput from '@/components/TextInput'
 
 import styles from './PlatformUpload.module.scss'
 
@@ -19,9 +21,10 @@ export interface PlatformUploadProps extends HTMLProps<HTMLDivElement> {
   uploaded: boolean
   onExePathChanged: (path: File | null) => void
   onRemoveUpload: () => void
-  exeInputProps: TextInputProps
+  exeInputProps: GetInputPropsReturnType
   uploadZipName?: string
   i18n?: PlatformUploadI18n
+  exeList?: string[]
 }
 
 export default function PlatformUpload({
@@ -36,6 +39,7 @@ export default function PlatformUpload({
     exePathPlaceholder: 'Executable path (from build root directory)'
   },
   className,
+  exeList,
   ...props
 }: PlatformUploadProps) {
   function onTrashClick() {
@@ -74,11 +78,19 @@ export default function PlatformUpload({
         transitionDuration={500}
         style={{ width: '100%', display: 'block' }}
       >
-        <TextInput
-          leftSection={<IconFile size={48} strokeWidth={2} color={'grey'} />}
-          placeholder={i18n.exePathPlaceholder}
-          {...exeInputProps}
-        />
+        {exeList && exeList.length > 0 ? (
+          <HpSelect
+            data={exeList}
+            placeholder={i18n.exePathPlaceholder}
+            {...exeInputProps}
+          />
+        ) : (
+          <TextInput
+            leftSection={<IconFile size={48} strokeWidth={2} color={'grey'} />}
+            placeholder={i18n.exePathPlaceholder}
+            {...exeInputProps}
+          />
+        )}
       </Collapse>
     </div>
   )

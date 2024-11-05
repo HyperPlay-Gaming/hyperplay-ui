@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { HTMLProps } from 'react'
 
 import { decimalUnits, parseNumIntoReadableString } from '@hyperplay/utils'
 import classNames from 'classnames'
@@ -17,13 +17,14 @@ export interface RewardI18n {
   claim: string
 }
 
-export interface RewardProps {
+export interface RewardProps extends HTMLProps<HTMLDivElement> {
   reward: QuestReward
   onClaim: (reward: QuestReward) => void
   i18n: RewardI18n
 }
 
-export default function Reward({ reward, i18n, onClaim }: RewardProps) {
+export default function Reward({ reward, i18n,   className, onClaim,
+                                   ...props }: RewardProps) {
   let numClaimsLeftComponent = null
 
   if (reward.numOfClaimsLeft) {
@@ -64,7 +65,11 @@ export default function Reward({ reward, i18n, onClaim }: RewardProps) {
   }
 
   return (
-    <div className={styles.container} key={reward.title}>
+    <div
+      className={classNames(styles.container, className)}
+      key={reward.title}
+      {...props}
+    >
       <div className={styles.rewardImageContainer}>
         {reward.isClaimed ? (
           <div className={styles.isClaimed}>{i18n.claimed}</div>

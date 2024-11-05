@@ -1,44 +1,24 @@
-import React, { HTMLProps } from 'react'
+import React from 'react'
 
 import cn from 'classnames'
 
-import { AlertTriangle } from '@/assets/images'
-
+import Alert from '../Alert'
 import AlertCard from '../AlertCard/index'
 import Button, { ButtonProps } from '../Button'
 import DarkContainer from '../DarkContainer'
 import Loading from '../Loading'
 import Sticker from '../Sticker'
-import AssociatedGamesCollapse from './components/AssociatedGamesCollapse'
-import Rewards from './components/Rewards'
-import StreakProgress from './components/StreakProgress'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
-
-function AlertText(props: HTMLProps<HTMLDivElement>) {
-  return (
-    <div className={styles.alertTextContainer} {...props}>
-      <AlertTriangle className={styles.alertTriangle} />
-      <div>{props.children}</div>
-    </div>
-  )
-}
 
 export default function QuestDetails({
   title,
   description,
-  eligibility,
-  rewards,
-  rewardsLoading,
+  eligibilityComponent,
   i18n = {
     rewards: 'Claimable Rewards',
-    associatedGames: 'Associated games',
-    linkSteamAccount: 'Link your Steam account to check eligibility.',
-    needMoreAchievements:
-      'You need to have completed 15% of the achievements in one of these games.',
     claim: 'Claim',
     signIn: 'Sign in',
-    connectSteamAccount: 'Connect Steam account',
     secondCTAText: 'View Game',
     play: 'Play',
     questType: {
@@ -48,7 +28,8 @@ export default function QuestDetails({
     sync: 'Sync',
     claimsLeft: 'Claims left',
     viewReward: 'View Reward',
-    claimed: 'Claimed'
+    claimed: 'Claimed',
+    connectSteamAccount: 'Connect Steam account'
   },
   onSignInClick,
   onConnectSteamAccountClick,
@@ -60,38 +41,23 @@ export default function QuestDetails({
   loading,
   classNames,
   ctaDisabled,
-  collapseIsOpen: opened,
-  toggleCollapse: toggle,
   alertProps,
   errorMessage,
   isSignedIn,
   questType,
-  numClaimed,
-  numTotal,
   showSync,
   onSyncClick,
   isSyncing,
-  chainTooltips,
+  steamAccountIsLinked,
+  rewardsComponent,
   ...props
 }: QuestDetailsProps) {
-  let needMoreAchievementsText = null
-  let linkSteamAccountText = null
   let sticker = null
-  let eligibilityReqComponent = null
   let buttonText = ''
   let ctaClick = null
 
   // If this is a reputation quest
   if (questType === 'REPUTATIONAL-AIRDROP') {
-    if (
-      eligibility.reputation !== undefined &&
-      !eligibility.reputation?.eligible
-    ) {
-      needMoreAchievementsText = (
-        <AlertText>{i18n.needMoreAchievements}</AlertText>
-      )
-    }
-
     if (questType === 'REPUTATIONAL-AIRDROP') {
       sticker = (
         <Sticker styleType="secondary" variant="outlined">
@@ -100,32 +66,13 @@ export default function QuestDetails({
       )
     }
 
-    if (
-      eligibility.reputation !== undefined &&
-      questType === 'REPUTATIONAL-AIRDROP'
-    ) {
-      eligibilityReqComponent = (
-        <AssociatedGamesCollapse
-          opened={opened}
-          toggle={toggle}
-          i18n={{ associatedGames: i18n.associatedGames }}
-          games={eligibility.reputation.games}
-        />
-      )
-    }
-
-    if (
-      eligibility.reputation !== undefined &&
-      questType === 'REPUTATIONAL-AIRDROP'
-    ) {
-      const steamAccountIsLinked = !!eligibility.reputation.steamAccountLinked
+    if (questType === 'REPUTATIONAL-AIRDROP') {
       if (!isSignedIn) {
         buttonText = i18n.signIn
         ctaClick = onSignInClick
       } else if (!steamAccountIsLinked) {
         buttonText = i18n.connectSteamAccount
         ctaClick = onConnectSteamAccountClick
-        linkSteamAccountText = <AlertText>{i18n.linkSteamAccount}</AlertText>
       }
     }
     // if this is a play streak quest
@@ -135,15 +82,6 @@ export default function QuestDetails({
         {i18n.questType.PLAYSTREAK}
       </Sticker>
     )
-
-    if (eligibility.playStreak !== undefined && questType === 'PLAYSTREAK') {
-      eligibilityReqComponent = (
-        <StreakProgress
-          i18n={i18n.streakProgressI18n}
-          {...eligibility.playStreak}
-        />
-      )
-    }
 
     if (!isSignedIn) {
       buttonText = i18n.signIn
@@ -175,7 +113,7 @@ export default function QuestDetails({
 
   let errorAlert = null
   if (errorMessage) {
-    errorAlert = <AlertText>{errorMessage}</AlertText>
+    errorAlert = <Alert message={errorMessage} />
   } else if (alertProps) {
     errorAlert = <AlertCard {...alertProps} />
   }
@@ -202,25 +140,8 @@ export default function QuestDetails({
           {description}
         </div>
 
-        {eligibilityReqComponent}
-
-        {needMoreAchievementsText}
-        {linkSteamAccountText}
-
-        <Rewards
-          rewards={rewards}
-          i18n={{
-            rewards: i18n.rewards,
-            claimsLeft: i18n.claimsLeft ?? 'Claims left',
-            viewReward: i18n.viewReward ?? 'View Reward',
-            claimed: i18n.claimed ?? 'Claimed',
-            claim: i18n.claim ?? 'Claim'
-          }}
-          loading={rewardsLoading}
-          numClaimed={numClaimed}
-          numTotal={numTotal}
-          chainTooltips={chainTooltips}
-        />
+        {eligibilityComponent}
+        {rewardsComponent}
         {errorAlert}
       </div>
       <div className={styles.ctaContainer}>
