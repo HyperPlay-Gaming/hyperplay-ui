@@ -74,9 +74,9 @@ export const LargeNumbers: Story = {
   }
 }
 
-export const Loading: Story = {
+export const ClaimPending: Story = {
   args: {
-    reward: defaultReward,
+    reward: { ...defaultReward, claimPending: true },
     i18n: defaultI18n
   }
 }
