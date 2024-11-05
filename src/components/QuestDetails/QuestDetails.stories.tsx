@@ -128,7 +128,7 @@ const props: QuestDetailsProps = {
   title: 'Eternal Ember: Shadows of the Celestial Nexus',
   description:
     'Shadows of the Celestial NexusEmbark on a cosmic odyssey as the chosen guardian of the Eternal Ember. Traverse astral realms, unravel celestial mysteries, and confront shadowy entities threatening the balance of the Celestial Nexus. Master arcane powers, forge alliances with otherworldly beings, and navigate intricate puzzles. \n \nWill you rise to the challenge and become the savior of the Celestial Nexus, or succumb to the shadows that threaten to engulf the eternal flame?',
-  eligibilityComponents: [
+  eligibilityComponent: [
     <AssociatedGamesCollapse
       opened={true}
       toggle={() => console.log('toggle')}
@@ -138,6 +138,60 @@ const props: QuestDetailsProps = {
       ]}
       key={'reputationEligibility'}
     />
+  ],
+  steamAccountIsLinked: true,
+  rewards: [
+    {
+      title: 'Kosium Pioneer',
+      imageUrl: kosiumGhoul,
+      chainName: 'Ethereum Mainnet',
+      numToClaim: '999999999999',
+      numOfClaimsLeft: '999999999'
+    },
+    {
+      title: 'SAND',
+      imageUrl: SAND,
+      chainName: 'Ethereum Mainnet',
+      numToClaim:
+        '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
+      numOfClaimsLeft:
+        '115792089237316195423570985008687907853269984665640564039457584007913129639935'
+    },
+    {
+      title: 'Droid',
+      imageUrl: droid,
+      chainName: 'Ethereum Mainnet',
+      numToClaim: '9999999999999',
+      numOfClaimsLeft: '99999999999999'
+    },
+    {
+      title: 'Kosium Pioneer',
+      imageUrl: kosiumGhoul,
+      chainName: 'Ethereum Mainnet',
+      numToClaim: '123',
+      numOfClaimsLeft: '333'
+    },
+    {
+      title: 'SAND',
+      imageUrl: SAND,
+      chainName: 'Points',
+      numToClaim: '0.001',
+      numOfClaimsLeft: '10000'
+    },
+    {
+      title: 'Droid',
+      imageUrl: droid,
+      chainName: 'Points',
+      numToClaim: '0.000001',
+      numOfClaimsLeft: '1000'
+    },
+    {
+      title: 'Standard Issue Starfighter',
+      imageUrl: droid,
+      chainName: 'Points',
+      numToClaim: '0.000001',
+      numOfClaimsLeft: '1000'
+    }
   ],
   steamAccountIsLinked: true,
   onClaimClick: () => console.log('claim clicked!'),
@@ -186,7 +240,7 @@ export const SmallMaxHeight: Story = {
       <div style={{ height: '500px', width: '100%' }}>
         <QuestDetails
           {...args}
-          eligibilityComponents={[
+          eligibilityComponent={[
             <AssociatedGamesCollapse
               opened={open}
               toggle={() => setOpen(!open)}
@@ -211,8 +265,8 @@ export const NoRewards: Story = {
       <div style={{ height: '500px', width: '100%' }}>
         <QuestDetails
           {...args}
-          rewardsComponent={rewardsComponent}
-          eligibilityComponents={[
+          rewards={rewardsComponent}
+          eligibilityComponent={[
             <AssociatedGamesCollapse
               opened={open}
               toggle={() => setOpen(!open)}
@@ -237,8 +291,8 @@ export const LoadingRewards: Story = {
       <div style={{ height: '500px', width: '100%' }}>
         <QuestDetails
           {...args}
-          rewardsComponent={rewardsComponent}
-          eligibilityComponents={[
+          rewards={rewardsComponent}
+          eligibilityComponent={[
             <AssociatedGamesCollapse
               opened={open}
               toggle={() => setOpen(!open)}
@@ -264,7 +318,7 @@ export const LoadingDetails: Story = {
         <QuestDetails
           {...args}
           loading={true}
-          eligibilityComponents={[
+          eligibilityComponent={[
             <AssociatedGamesCollapse
               opened={open}
               toggle={() => setOpen(!open)}
@@ -290,7 +344,7 @@ export const LoadingEligibilityGame: Story = {
         <QuestDetails
           {...args}
           loading={true}
-          eligibilityComponents={[
+          eligibilityComponent={[
             <AssociatedGamesCollapse
               opened={open}
               toggle={() => setOpen(!open)}
@@ -314,7 +368,7 @@ export const PlayStreak: Story = {
       <div>
         <QuestDetails
           {...args}
-          eligibilityComponents={defaultPlayStreakEligbility}
+          eligibilityComponent={defaultPlayStreakEligbility}
           questType="PLAYSTREAK"
         />
       </div>
@@ -375,7 +429,7 @@ export const Sync: Story = {
 export const CustomCtaPlatstreak: Story = {
   args: {
     ...props,
-    eligibilityComponents: defaultPlayStreakEligbility,
+    eligibilityComponent: defaultPlayStreakEligbility,
     questType: 'PLAYSTREAK',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -388,7 +442,7 @@ export const CustomCtaPlatstreak: Story = {
 export const CustomCtaReputationalAirdrop: Story = {
   args: {
     ...props,
-    eligibilityComponents: dummyReputationAirdropEligbility,
+    eligibilityComponent: dummyReputationAirdropEligbility,
     questType: 'REPUTATIONAL-AIRDROP',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -407,7 +461,7 @@ export const DescriptionCustomElement: Story = {
         [hyperplay.xyz](https://hyperplay.xyz)
       </MarkdownDescription>
     ),
-    eligibilityComponents: dummyReputationAirdropEligbility,
+    eligibilityComponent: dummyReputationAirdropEligbility,
     questType: 'REPUTATIONAL-AIRDROP',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -435,7 +489,7 @@ export const WithExternalSyncButton: Story = {
   args: {
     ...props,
     questType: 'PLAYSTREAK',
-    eligibilityComponents: [
+    eligibilityComponent: [
       <StreakProgress
         currentStreakInDays={2}
         requiredStreakInDays={7}
