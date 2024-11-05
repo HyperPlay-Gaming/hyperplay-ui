@@ -22,6 +22,7 @@ export default function Rewards({
   numTotal,
   i18n = defaultI18n,
   children,
+  className,
   ...props
 }: RewardsProps) {
   let numClaimedComponent = null
@@ -35,7 +36,7 @@ export default function Rewards({
     )
   }
   return (
-    <div className={styles.rewardsContainer} {...props}>
+    <div className={classNames(styles.rewardsContainer, className)} {...props}>
       <div className={styles.titleBar}>
         <div className={classNames('body-sm', styles.rewardTitle)}>
           {i18n.rewards}

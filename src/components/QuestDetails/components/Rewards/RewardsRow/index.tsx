@@ -1,6 +1,7 @@
 import React, { HTMLProps } from 'react'
 
 import { Tooltip } from '@mantine/core'
+import classNames from 'classnames'
 
 import Sticker from '@/components/Sticker'
 
@@ -15,6 +16,7 @@ export function RewardsRow({
   category,
   tooltip,
   children,
+  className,
   ...props
 }: RewardsRowProps) {
   let tooltipComponent = null
@@ -32,7 +34,10 @@ export function RewardsRow({
     )
   }
   return (
-    <div className={styles.rewardsRowContainer} {...props}>
+    <div
+      className={classNames(styles.rewardsRowContainer, className)}
+      {...props}
+    >
       <Sticker
         styleType="secondary"
         variant="outlined"
