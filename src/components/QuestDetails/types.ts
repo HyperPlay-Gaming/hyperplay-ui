@@ -59,9 +59,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string
   description: React.ReactNode | string
   eligibilityComponent: ReactNode
-  rewards: QuestReward[]
-  numClaimed?: number
-  numTotal?: number
+  rewardsComponent: ReactNode
   onClaimClick: () => void
   onSignInClick: () => void
   onConnectSteamAccountClick: () => void
@@ -74,7 +72,6 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   onSyncClick?: () => void
   isSyncing?: boolean
   i18n?: QuestDetailsTranslations
-  rewardsLoading?: boolean
   loading?: boolean
   classNames?: {
     root?: string
@@ -88,7 +85,6 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   errorMessage?: string
   isSignedIn: boolean
   questType: 'PLAYSTREAK' | 'REPUTATIONAL-AIRDROP'
-  chainTooltips?: Record<string, string>
   markdownOptions?: MarkdownOptions
   steamAccountIsLinked?: boolean
 }

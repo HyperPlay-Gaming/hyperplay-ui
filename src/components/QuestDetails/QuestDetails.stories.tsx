@@ -21,7 +21,10 @@ import Button from '../Button'
 import MarkdownDescription from '../MarkdownDescription'
 import StreakProgress from '../StreakProgress'
 import styles from './QuestDetailsStory.module.scss'
-import { QuestDetailsProps } from './types'
+import Reward from './components/Reward'
+import Rewards from './components/Rewards'
+import { RewardsRow } from './components/Rewards/RewardsRow'
+import { QuestDetailsProps, QuestReward } from './types'
 
 const meta: Meta<typeof QuestDetails> = {
   title: 'Quests/QuestDetails',
@@ -31,6 +34,94 @@ const meta: Meta<typeof QuestDetails> = {
 export default meta
 
 type Story = StoryObj<typeof QuestDetails>
+
+const rewardsData = [
+  {
+    title: 'Kosium Pioneer',
+    imageUrl: kosiumGhoul,
+    chainName: 'Ethereum Mainnet',
+    numToClaim: '999999999999',
+    numOfClaimsLeft: '999999999',
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+  },
+  {
+    title: 'SAND',
+    imageUrl: SAND,
+    chainName: 'Ethereum Mainnet',
+    numToClaim:
+      '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
+    numOfClaimsLeft:
+      '115792089237316195423570985008687907853269984665640564039457584007913129639935',
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+  },
+  {
+    title: 'Droid',
+    imageUrl: droid,
+    chainName: 'Ethereum Mainnet',
+    numToClaim: '9999999999999',
+    numOfClaimsLeft: '99999999999999',
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+  },
+  {
+    title: 'Kosium Pioneer',
+    imageUrl: kosiumGhoul,
+    chainName: 'Ethereum Mainnet',
+    numToClaim: '123',
+    numOfClaimsLeft: '333',
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+  },
+  {
+    title: 'SAND',
+    imageUrl: SAND,
+    chainName: 'Points',
+    numToClaim: '0.001',
+    numOfClaimsLeft: '10000',
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+  },
+  {
+    title: 'Droid',
+    imageUrl: droid,
+    chainName: 'Points',
+    numToClaim: '0.000001',
+    numOfClaimsLeft: '1000',
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+  },
+  {
+    title: 'Standard Issue Starfighter',
+    imageUrl: droid,
+    chainName: 'Points',
+    numToClaim: '0.000001',
+    numOfClaimsLeft: '1000',
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+  }
+]
+
+// create arrays by category for rewards
+const rewardsByCategory: Record<string, QuestReward[]> = {}
+for (const reward_i of rewardsData) {
+  if (Object.hasOwn(rewardsByCategory, reward_i.chainName)) {
+    rewardsByCategory[reward_i.chainName].push(reward_i)
+  } else {
+    rewardsByCategory[reward_i.chainName] = [reward_i]
+  }
+}
+
+const rewardsContent = Object.keys(rewardsByCategory).map((rewardCategory) => {
+  let rewardsContent = null
+  if (rewardsData.length > 0) {
+    rewardsContent = rewardsData.map((reward_i) => (
+      <Reward reward={reward_i} key={reward_i.title} />
+    ))
+  }
+
+  return (
+    <RewardsRow category={rewardCategory} key={rewardCategory}>
+      {rewardsContent}
+    </RewardsRow>
+  )
+})
+
+const rewardsComponent = <Rewards>{rewardsContent}</Rewards>
 
 const props: QuestDetailsProps = {
   isSignedIn: true,
@@ -49,68 +140,12 @@ const props: QuestDetailsProps = {
     />
   ],
   steamAccountIsLinked: true,
-  rewards: [
-    {
-      title: 'Kosium Pioneer',
-      imageUrl: kosiumGhoul,
-      chainName: 'Ethereum Mainnet',
-      numToClaim: '999999999999',
-      numOfClaimsLeft: '999999999'
-    },
-    {
-      title: 'SAND',
-      imageUrl: SAND,
-      chainName: 'Ethereum Mainnet',
-      numToClaim:
-        '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
-      numOfClaimsLeft:
-        '115792089237316195423570985008687907853269984665640564039457584007913129639935'
-    },
-    {
-      title: 'Droid',
-      imageUrl: droid,
-      chainName: 'Ethereum Mainnet',
-      numToClaim: '9999999999999',
-      numOfClaimsLeft: '99999999999999'
-    },
-    {
-      title: 'Kosium Pioneer',
-      imageUrl: kosiumGhoul,
-      chainName: 'Ethereum Mainnet',
-      numToClaim: '123',
-      numOfClaimsLeft: '333'
-    },
-    {
-      title: 'SAND',
-      imageUrl: SAND,
-      chainName: 'Points',
-      numToClaim: '0.001',
-      numOfClaimsLeft: '10000'
-    },
-    {
-      title: 'Droid',
-      imageUrl: droid,
-      chainName: 'Points',
-      numToClaim: '0.000001',
-      numOfClaimsLeft: '1000'
-    },
-    {
-      title: 'Standard Issue Starfighter',
-      imageUrl: droid,
-      chainName: 'Points',
-      numToClaim: '0.000001',
-      numOfClaimsLeft: '1000'
-    }
-  ],
-  chainTooltips: {
-    Points:
-      'Points are off-chain fungible rewards that may or may not be redeemable for an on-chain reward in the future. This is up to the particular game developer who is providing this reward.'
-  },
   onClaimClick: () => console.log('claim clicked!'),
   onSignInClick: () => console.log('sign in clicked!'),
   onConnectSteamAccountClick: () =>
     console.log('connect steam account clicked!'),
-  questType: 'REPUTATIONAL-AIRDROP'
+  questType: 'REPUTATIONAL-AIRDROP',
+  rewardsComponent
 }
 
 const dummyReputationAirdropEligbility = [
@@ -136,7 +171,6 @@ const defaultPlayStreakEligbility = [
     ).toUTCString()}
     dateTimeCurrentSessionStartedInMsSinceEpoch={Date.now()}
     key={'playstreakEligibility'}
-    onSync={() => console.log('sync')}
   />
 ]
 
@@ -177,7 +211,7 @@ export const NoRewards: Story = {
       <div style={{ height: '500px', width: '100%' }}>
         <QuestDetails
           {...args}
-          rewards={[]}
+          rewardsComponent={rewardsComponent}
           eligibilityComponent={[
             <AssociatedGamesCollapse
               opened={open}
@@ -203,8 +237,7 @@ export const LoadingRewards: Story = {
       <div style={{ height: '500px', width: '100%' }}>
         <QuestDetails
           {...args}
-          rewards={[]}
-          rewardsLoading={true}
+          rewardsComponent={rewardsComponent}
           eligibilityComponent={[
             <AssociatedGamesCollapse
               opened={open}
@@ -387,43 +420,7 @@ export const DescriptionCustomElement: Story = {
 export const isClaimed: Story = {
   args: {
     ...props,
-    rewards: [
-      ...props.rewards,
-      {
-        title: 'Kosium Pioneer',
-        imageUrl: kosiumGhoul,
-        chainName: 'Ethereum Mainnet',
-        numToClaim: '999999999999',
-        numOfClaimsLeft: '999999999',
-        isClaimed: true,
-        marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
-      }
-    ],
-    eligibilityComponent: dummyReputationAirdropEligbility,
-    questType: 'REPUTATIONAL-AIRDROP',
-    ctaComponent: (
-      <Button type="secondary" className={styles.installBtn}>
-        Play/Install
-      </Button>
-    )
-  }
-}
-
-export const RewardMarketplaceLink: Story = {
-  args: {
-    ...props,
-    rewards: [
-      ...props.rewards,
-      {
-        title: 'Kosium Pioneer',
-        imageUrl: kosiumGhoul,
-        chainName: 'Ethereum Mainnet',
-        numToClaim: '999999999999',
-        numOfClaimsLeft: '999999999',
-        isClaimed: true,
-        marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
-      }
-    ],
+    rewardsComponent,
     eligibilityComponent: dummyReputationAirdropEligbility,
     questType: 'REPUTATIONAL-AIRDROP',
     ctaComponent: (
@@ -449,8 +446,6 @@ export const WithExternalSyncButton: Story = {
         ).toUTCString()}
         dateTimeCurrentSessionStartedInMsSinceEpoch={Date.now()}
         key={'playstreakEligibility'}
-        onSync={() => console.log('sync')}
-        showSyncProgressButton={true}
       />
     ]
   }

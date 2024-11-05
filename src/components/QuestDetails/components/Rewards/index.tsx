@@ -1,11 +1,7 @@
-import React from 'react'
+import React, { HTMLProps } from 'react'
 
 import classNames from 'classnames'
 
-import Loading from '@/components/Loading'
-
-import { QuestReward } from '../../types'
-import { RewardsRow } from './RewardsRow'
 import styles from './index.module.scss'
 
 export const defaultI18n = {
@@ -15,52 +11,20 @@ export const defaultI18n = {
   claimed: 'Claimed'
 }
 
-export interface RewardsProps {
-  rewards: QuestReward[]
-  loading?: boolean
+export interface RewardsProps extends HTMLProps<HTMLDivElement> {
   numClaimed?: number
   numTotal?: number
-  chainTooltips?: Record<string, string>
   i18n?: typeof defaultI18n
 }
 
 export default function Rewards({
-  rewards,
-  loading,
   numClaimed,
   numTotal,
-  chainTooltips,
-  i18n = defaultI18n
+  i18n = defaultI18n,
+  children,
+  className,
+  ...props
 }: RewardsProps) {
-  // create arrays by category for rewards
-  const rewardsByCategory: Record<string, QuestReward[]> = {}
-  for (const reward_i of rewards) {
-    if (Object.hasOwn(rewardsByCategory, reward_i.chainName)) {
-      rewardsByCategory[reward_i.chainName].push(reward_i)
-    } else {
-      rewardsByCategory[reward_i.chainName] = [reward_i]
-    }
-  }
-
-  let rewardsContent = null
-  if (rewards.length > 0) {
-    rewardsContent = Object.keys(rewardsByCategory).map((rewardCategory) => (
-      <RewardsRow
-        rewards={rewardsByCategory[rewardCategory]}
-        category={rewardCategory}
-        key={rewardCategory}
-        tooltip={chainTooltips?.[rewardCategory]}
-        i18n={{
-          claimsLeft: i18n.claimsLeft,
-          viewReward: i18n.viewReward,
-          claimed: i18n.claimed
-        }}
-      />
-    ))
-  } else if (loading) {
-    rewardsContent = <Loading />
-  }
-
   let numClaimedComponent = null
   if (numClaimed !== undefined && numTotal !== undefined) {
     numClaimedComponent = (
@@ -72,7 +36,7 @@ export default function Rewards({
     )
   }
   return (
-    <div className={styles.rewardsContainer}>
+    <div className={classNames(styles.rewardsContainer, className)} {...props}>
       <div className={styles.titleBar}>
         <div className={classNames('body-sm', styles.rewardTitle)}>
           {i18n.rewards}
@@ -80,7 +44,7 @@ export default function Rewards({
         {numClaimedComponent}
       </div>
       <div className={styles.separator}></div>
-      <div>{rewardsContent}</div>
+      <div>{children}</div>
     </div>
   )
 }
