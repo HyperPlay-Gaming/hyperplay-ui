@@ -1,4 +1,4 @@
-import { HTMLProps } from 'react'
+import { HTMLProps, ReactNode } from 'react'
 import { Options as MarkdownOptions } from 'react-markdown'
 
 import { QuestTypeTranslations } from '@/common/types'
@@ -58,7 +58,7 @@ export interface QuestDetailsTranslations {
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string
   description: React.ReactNode | string
-  eligibilityComponents: React.ReactElement[]
+  eligibilityComponents: ReactNode
   rewards: QuestReward[]
   numClaimed?: number
   numTotal?: number
