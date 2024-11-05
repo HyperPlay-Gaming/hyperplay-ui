@@ -31,9 +31,6 @@ const meta: Meta<typeof QuestDetails> = {
   component: QuestDetails
 }
 
-const longTitle =
-  'Super Long Name That Should Be Truncated Hope It Works Super Long Name That Should Be Truncated Hope It Works'
-
 export default meta
 
 type Story = StoryObj<typeof QuestDetails>
@@ -45,7 +42,8 @@ const rewardsData = [
     chainName: 'Ethereum Mainnet',
     numToClaim: '999999999999',
     numOfClaimsLeft: '999999999',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+    onClaim: () => console.log('claim clicked')
   },
   {
     title: 'SAND',
@@ -55,7 +53,8 @@ const rewardsData = [
       '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
     numOfClaimsLeft:
       '115792089237316195423570985008687907853269984665640564039457584007913129639935',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+    onClaim: () => console.log('claim clicked')
   },
   {
     title: 'Droid',
@@ -63,7 +62,8 @@ const rewardsData = [
     chainName: 'Ethereum Mainnet',
     numToClaim: '9999999999999',
     numOfClaimsLeft: '99999999999999',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+    onClaim: () => console.log('claim clicked')
   },
   {
     title: 'Kosium Pioneer',
@@ -71,7 +71,8 @@ const rewardsData = [
     chainName: 'Ethereum Mainnet',
     numToClaim: '123',
     numOfClaimsLeft: '333',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+    onClaim: () => console.log('claim clicked')
   },
   {
     title: 'SAND',
@@ -79,7 +80,8 @@ const rewardsData = [
     chainName: 'Points',
     numToClaim: '0.001',
     numOfClaimsLeft: '10000',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+    onClaim: () => console.log('claim clicked')
   },
   {
     title: 'Droid',
@@ -87,7 +89,8 @@ const rewardsData = [
     chainName: 'Points',
     numToClaim: '0.000001',
     numOfClaimsLeft: '1000',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+    onClaim: () => console.log('claim clicked')
   },
   {
     title: 'Standard Issue Starfighter',
@@ -95,7 +98,8 @@ const rewardsData = [
     chainName: 'Points',
     numToClaim: '0.000001',
     numOfClaimsLeft: '1000',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
+    onClaim: () => console.log('claim clicked')
   }
 ]
 
@@ -113,7 +117,11 @@ const rewardsContent = Object.keys(rewardsByCategory).map((rewardCategory) => {
   let rewardsContent = null
   if (rewardsData.length > 0) {
     rewardsContent = rewardsData.map((reward_i) => (
-      <Reward reward={reward_i} key={reward_i.title} />
+      <Reward
+        reward={reward_i}
+        key={reward_i.title}
+        onClaim={() => console.log('claim clicked')}
+      />
     ))
   }
 

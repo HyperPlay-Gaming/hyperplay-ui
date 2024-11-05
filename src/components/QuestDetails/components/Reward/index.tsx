@@ -19,13 +19,23 @@ export interface RewardI18n {
 
 export interface RewardProps extends HTMLProps<HTMLDivElement> {
   reward: QuestReward
-  onClaim: (reward: QuestReward) => void
-  i18n: RewardI18n
+  onClaim: () => void
+  i18n?: {
+    claimsLeft: string
+    viewReward: string
+    claimed: string
+    claim: string
+  }
 }
 
 export default function Reward({
   reward,
-  i18n,
+  i18n = {
+    claimsLeft: 'Claims left',
+    viewReward: 'View Reward',
+    claimed: 'Claimed',
+    claim: 'Claim'
+  },
   className,
   onClaim,
   ...props
@@ -104,7 +114,7 @@ export default function Reward({
         {!reward.isClaimed ? (
           <Button
             disabled={reward.claimPending}
-            onClick={() => onClaim(reward)}
+            onClick={onClaim}
             type="secondaryGradient"
             size="small"
             htmlType="button"

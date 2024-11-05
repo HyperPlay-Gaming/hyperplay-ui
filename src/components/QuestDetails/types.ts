@@ -34,7 +34,6 @@ export interface QuestReward {
   imageUrl: string
   numOfClaimsLeft?: string
   claimPending?: boolean
-  onClaim: (reward: QuestReward) => void
   // this will likely be a BigNumber so we will convert to float before passing as param
   numToClaim?: string
   chainName: string
