@@ -8,8 +8,7 @@ on:
 jobs:
   test:
     timeout-minutes: 60
-    # PW is breaking on 24. https://github.com/hashicorp/dev-portal/pull/2585 https://github.com/microsoft/playwright/issues/33051
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3

@@ -16,8 +16,10 @@ import cupheadCard from '@/assets/steamCards/cupheadCard.jpg'
 import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg'
 
 import QuestDetails from '.'
+import AssociatedGamesCollapse from '../AssociatedGamesCollapse'
 import Button from '../Button'
 import MarkdownDescription from '../MarkdownDescription'
+import StreakProgress from '../StreakProgress'
 import styles from './QuestDetailsStory.module.scss'
 import { QuestDetailsProps } from './types'
 
@@ -35,17 +37,18 @@ const props: QuestDetailsProps = {
   title: 'Eternal Ember: Shadows of the Celestial Nexus',
   description:
     'Shadows of the Celestial NexusEmbark on a cosmic odyssey as the chosen guardian of the Eternal Ember. Traverse astral realms, unravel celestial mysteries, and confront shadowy entities threatening the balance of the Celestial Nexus. Master arcane powers, forge alliances with otherworldly beings, and navigate intricate puzzles. \n \nWill you rise to the challenge and become the savior of the Celestial Nexus, or succumb to the shadows that threaten to engulf the eternal flame?',
-  eligibility: {
-    reputation: {
-      games: [
+  eligibilityComponent: [
+    <AssociatedGamesCollapse
+      opened={true}
+      toggle={() => console.log('toggle')}
+      games={[
         { title: 'Call of Duty', imageUrl: cupheadCard },
         { title: 'Skyrim', imageUrl: cyberpunkCard }
-      ],
-      completionPercent: 50,
-      eligible: true,
-      steamAccountLinked: true
-    }
-  },
+      ]}
+      key={'reputationEligibility'}
+    />
+  ],
+  steamAccountIsLinked: true,
   rewards: [
     {
       title: 'Kosium Pioneer',
@@ -107,10 +110,35 @@ const props: QuestDetailsProps = {
   onSignInClick: () => console.log('sign in clicked!'),
   onConnectSteamAccountClick: () =>
     console.log('connect steam account clicked!'),
-  collapseIsOpen: false,
-  toggleCollapse: () => console.log('toggle'),
   questType: 'REPUTATIONAL-AIRDROP'
 }
+
+const dummyReputationAirdropEligbility = [
+  <AssociatedGamesCollapse
+    opened={true}
+    toggle={() => console.log('toggle')}
+    games={[
+      { title: 'Call of Duty', imageUrl: cupheadCard },
+      { title: 'Skyrim', imageUrl: cyberpunkCard }
+    ]}
+    key={'reputationEligibility'}
+  />
+]
+
+const defaultPlayStreakEligbility = [
+  <StreakProgress
+    currentStreakInDays={2}
+    requiredStreakInDays={7}
+    minimumSessionTimeInSeconds={100}
+    accumulatedPlaytimeTodayInSeconds={10}
+    lastPlaySessionCompletedDateTimeUTC={new Date(
+      Date.now() - oneDayInMs
+    ).toUTCString()}
+    dateTimeCurrentSessionStartedInMsSinceEpoch={Date.now()}
+    key={'playstreakEligibility'}
+    onSync={() => console.log('sync')}
+  />
+]
 
 export const Default: Story = {
   args: { ...props }
@@ -124,8 +152,17 @@ export const SmallMaxHeight: Story = {
       <div style={{ height: '500px', width: '100%' }}>
         <QuestDetails
           {...args}
-          collapseIsOpen={open}
-          toggleCollapse={() => setOpen(!open)}
+          eligibilityComponent={[
+            <AssociatedGamesCollapse
+              opened={open}
+              toggle={() => setOpen(!open)}
+              games={[
+                { title: 'Call of Duty', imageUrl: cupheadCard },
+                { title: 'Skyrim', imageUrl: cyberpunkCard }
+              ]}
+              key={'reputationEligibility'}
+            />
+          ]}
         />
       </div>
     )
@@ -141,8 +178,17 @@ export const NoRewards: Story = {
         <QuestDetails
           {...args}
           rewards={[]}
-          collapseIsOpen={open}
-          toggleCollapse={() => setOpen(!open)}
+          eligibilityComponent={[
+            <AssociatedGamesCollapse
+              opened={open}
+              toggle={() => setOpen(!open)}
+              games={[
+                { title: 'Call of Duty', imageUrl: cupheadCard },
+                { title: 'Skyrim', imageUrl: cyberpunkCard }
+              ]}
+              key={'reputationEligibility'}
+            />
+          ]}
         />
       </div>
     )
@@ -159,8 +205,17 @@ export const LoadingRewards: Story = {
           {...args}
           rewards={[]}
           rewardsLoading={true}
-          collapseIsOpen={open}
-          toggleCollapse={() => setOpen(!open)}
+          eligibilityComponent={[
+            <AssociatedGamesCollapse
+              opened={open}
+              toggle={() => setOpen(!open)}
+              games={[
+                { title: 'Call of Duty', imageUrl: cupheadCard },
+                { title: 'Skyrim', imageUrl: cyberpunkCard }
+              ]}
+              key={'reputationEligibility'}
+            />
+          ]}
         />
       </div>
     )
@@ -176,8 +231,17 @@ export const LoadingDetails: Story = {
         <QuestDetails
           {...args}
           loading={true}
-          collapseIsOpen={open}
-          toggleCollapse={() => setOpen(!open)}
+          eligibilityComponent={[
+            <AssociatedGamesCollapse
+              opened={open}
+              toggle={() => setOpen(!open)}
+              games={[
+                { title: 'Call of Duty', imageUrl: cupheadCard },
+                { title: 'Skyrim', imageUrl: cyberpunkCard }
+              ]}
+              key={'reputationEligibility'}
+            />
+          ]}
         />
       </div>
     )
@@ -188,20 +252,22 @@ export const LoadingEligibilityGame: Story = {
   args: { ...props },
   render: (args) => {
     const [open, setOpen] = useState(false)
-    // need to parse or else we change the value for the other stories
-    args = JSON.parse(JSON.stringify(args))
-    if (
-      args.eligibility.reputation &&
-      args.eligibility.reputation.games.length > 0
-    ) {
-      args.eligibility.reputation.games[0].loading = true
-    }
     return (
       <div style={{ height: '500px', width: '100%' }}>
         <QuestDetails
           {...args}
-          collapseIsOpen={open}
-          toggleCollapse={() => setOpen(!open)}
+          loading={true}
+          eligibilityComponent={[
+            <AssociatedGamesCollapse
+              opened={open}
+              toggle={() => setOpen(!open)}
+              games={[
+                { title: 'Call of Duty', imageUrl: cupheadCard },
+                { title: 'Skyrim', imageUrl: cyberpunkCard }
+              ]}
+              key={'reputationEligibility'}
+            />
+          ]}
         />
       </div>
     )
@@ -211,28 +277,12 @@ export const LoadingEligibilityGame: Story = {
 export const PlayStreak: Story = {
   args: { ...props },
   render: (args) => {
-    const [open, setOpen] = useState(false)
     return (
       <div>
         <QuestDetails
           {...args}
-          eligibility={{
-            reputation: undefined,
-            playStreak: {
-              onSync: () => alert('Syncing...'),
-              currentStreakInDays: 2,
-              requiredStreakInDays: 7,
-              minimumSessionTimeInSeconds: 100,
-              accumulatedPlaytimeTodayInSeconds: 10,
-              lastPlaySessionCompletedDateTimeUTC: new Date(
-                Date.now() - oneDayInMs
-              ).toUTCString(),
-              dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now()
-            }
-          }}
+          eligibilityComponent={defaultPlayStreakEligbility}
           questType="PLAYSTREAK"
-          collapseIsOpen={open}
-          toggleCollapse={() => setOpen(!open)}
         />
       </div>
     )
@@ -292,9 +342,7 @@ export const Sync: Story = {
 export const CustomCtaPlatstreak: Story = {
   args: {
     ...props,
-    eligibility: {
-      playStreak: undefined
-    },
+    eligibilityComponent: defaultPlayStreakEligbility,
     questType: 'PLAYSTREAK',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -307,9 +355,7 @@ export const CustomCtaPlatstreak: Story = {
 export const CustomCtaReputationalAirdrop: Story = {
   args: {
     ...props,
-    eligibility: {
-      reputation: undefined
-    },
+    eligibilityComponent: dummyReputationAirdropEligbility,
     questType: 'REPUTATIONAL-AIRDROP',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -328,9 +374,7 @@ export const DescriptionCustomElement: Story = {
         [hyperplay.xyz](https://hyperplay.xyz)
       </MarkdownDescription>
     ),
-    eligibility: {
-      reputation: undefined
-    },
+    eligibilityComponent: dummyReputationAirdropEligbility,
     questType: 'REPUTATIONAL-AIRDROP',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -355,9 +399,7 @@ export const isClaimed: Story = {
         marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
       }
     ],
-    eligibility: {
-      reputation: undefined
-    },
+    eligibilityComponent: dummyReputationAirdropEligbility,
     questType: 'REPUTATIONAL-AIRDROP',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -382,9 +424,7 @@ export const RewardMarketplaceLink: Story = {
         marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
       }
     ],
-    eligibility: {
-      reputation: undefined
-    },
+    eligibilityComponent: dummyReputationAirdropEligbility,
     questType: 'REPUTATIONAL-AIRDROP',
     ctaComponent: (
       <Button type="secondary" className={styles.installBtn}>
@@ -398,20 +438,20 @@ export const WithExternalSyncButton: Story = {
   args: {
     ...props,
     questType: 'PLAYSTREAK',
-    eligibility: {
-      reputation: undefined,
-      playStreak: {
-        onSync: () => alert('Syncing...'),
-        currentStreakInDays: 2,
-        requiredStreakInDays: 7,
-        minimumSessionTimeInSeconds: 100,
-        accumulatedPlaytimeTodayInSeconds: 10,
-        lastPlaySessionCompletedDateTimeUTC: new Date(
+    eligibilityComponent: [
+      <StreakProgress
+        currentStreakInDays={2}
+        requiredStreakInDays={7}
+        minimumSessionTimeInSeconds={100}
+        accumulatedPlaytimeTodayInSeconds={10}
+        lastPlaySessionCompletedDateTimeUTC={new Date(
           Date.now() - oneDayInMs
-        ).toUTCString(),
-        dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now(),
-        showSyncProgressButton: true
-      }
-    }
+        ).toUTCString()}
+        dateTimeCurrentSessionStartedInMsSinceEpoch={Date.now()}
+        key={'playstreakEligibility'}
+        onSync={() => console.log('sync')}
+        showSyncProgressButton={true}
+      />
+    ]
   }
 }
