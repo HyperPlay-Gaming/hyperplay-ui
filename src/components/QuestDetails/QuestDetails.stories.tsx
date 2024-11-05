@@ -120,7 +120,7 @@ const rewardsContent = Object.keys(rewardsByCategory).map((rewardCategory) => {
       <Reward
         reward={reward_i}
         key={reward_i.title}
-        onClaim={() => console.log('claim clicked')}
+        onClaim={() => alert('claim clicked')}
       />
     ))
   }
