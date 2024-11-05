@@ -35,15 +35,14 @@ export default meta
 
 type Story = StoryObj<typeof QuestDetails>
 
-const rewardsData = [
+const rewardsData: QuestReward[] = [
   {
     title: 'Kosium Pioneer',
     imageUrl: kosiumGhoul,
     chainName: 'Ethereum Mainnet',
     numToClaim: '999999999999',
     numOfClaimsLeft: '999999999',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
-    onClaim: () => console.log('claim clicked')
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
   },
   {
     title: 'SAND',
@@ -53,8 +52,7 @@ const rewardsData = [
       '115792089237316195423570985008687907853269984665640564039457.584007913129639935',
     numOfClaimsLeft:
       '115792089237316195423570985008687907853269984665640564039457584007913129639935',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
-    onClaim: () => console.log('claim clicked')
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
   },
   {
     title: 'Droid',
@@ -62,8 +60,7 @@ const rewardsData = [
     chainName: 'Ethereum Mainnet',
     numToClaim: '9999999999999',
     numOfClaimsLeft: '99999999999999',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
-    onClaim: () => console.log('claim clicked')
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
   },
   {
     title: 'Kosium Pioneer',
@@ -71,8 +68,7 @@ const rewardsData = [
     chainName: 'Ethereum Mainnet',
     numToClaim: '123',
     numOfClaimsLeft: '333',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
-    onClaim: () => console.log('claim clicked')
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
   },
   {
     title: 'SAND',
@@ -80,8 +76,7 @@ const rewardsData = [
     chainName: 'Points',
     numToClaim: '0.001',
     numOfClaimsLeft: '10000',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
-    onClaim: () => console.log('claim clicked')
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
   },
   {
     title: 'Droid',
@@ -89,8 +84,7 @@ const rewardsData = [
     chainName: 'Points',
     numToClaim: '0.000001',
     numOfClaimsLeft: '1000',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
-    onClaim: () => console.log('claim clicked')
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
   },
   {
     title: 'Standard Issue Starfighter',
@@ -98,8 +92,7 @@ const rewardsData = [
     chainName: 'Points',
     numToClaim: '0.000001',
     numOfClaimsLeft: '1000',
-    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer',
-    onClaim: () => console.log('claim clicked')
+    marketplaceUrl: 'https://hyperplay.xyz/marketplace/kosium-pioneer'
   }
 ]
 
