@@ -28,7 +28,7 @@ export interface RewardProps extends HTMLProps<HTMLDivElement> {
   }
 }
 
-export default function Reward({
+export function Reward({
   reward,
   i18n = {
     claimsLeft: 'Claims left',

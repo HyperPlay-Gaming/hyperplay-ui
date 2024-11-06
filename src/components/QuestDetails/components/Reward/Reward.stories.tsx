@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import RewardImage from '@/assets/RewardImage.png'
 
 import { QuestReward } from '../../types'
-import Reward from './index'
+import { Reward } from './index'
 
 const meta: Meta<typeof Reward> = {
   title: 'Quests/QuestDetails/Reward',
