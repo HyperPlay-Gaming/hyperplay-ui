@@ -33,6 +33,7 @@ export interface QuestReward {
   title: string
   imageUrl: string
   numOfClaimsLeft?: string
+  claimPending?: boolean
   // this will likely be a BigNumber so we will convert to float before passing as param
   numToClaim?: string
   chainName: string
@@ -60,7 +61,6 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   description: React.ReactNode | string
   eligibilityComponent: ReactNode
   rewardsComponent: ReactNode
-  onClaimClick: () => void
   onSignInClick: () => void
   onConnectSteamAccountClick: () => void
   showSecondCTA?: boolean
@@ -80,7 +80,6 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     loading?: string
   }
   ctaDisabled?: boolean
-  isMinting?: boolean
   alertProps?: InfoAlertProps
   errorMessage?: string
   isSignedIn: boolean

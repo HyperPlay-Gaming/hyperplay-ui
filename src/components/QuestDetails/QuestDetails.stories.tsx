@@ -35,7 +35,7 @@ export default meta
 
 type Story = StoryObj<typeof QuestDetails>
 
-const rewardsData = [
+const rewardsData: QuestReward[] = [
   {
     title: 'Kosium Pioneer',
     imageUrl: kosiumGhoul,
@@ -110,7 +110,11 @@ const rewardsContent = Object.keys(rewardsByCategory).map((rewardCategory) => {
   let rewardsContent = null
   if (rewardsData.length > 0) {
     rewardsContent = rewardsData.map((reward_i) => (
-      <Reward reward={reward_i} key={reward_i.title} />
+      <Reward
+        reward={reward_i}
+        key={reward_i.title}
+        onClaim={() => alert('claim clicked')}
+      />
     ))
   }
 
@@ -140,7 +144,6 @@ const props: QuestDetailsProps = {
     />
   ],
   steamAccountIsLinked: true,
-  onClaimClick: () => console.log('claim clicked!'),
   onSignInClick: () => console.log('sign in clicked!'),
   onConnectSteamAccountClick: () =>
     console.log('connect steam account clicked!'),
@@ -320,10 +323,6 @@ export const PlayStreak: Story = {
       </div>
     )
   }
-}
-
-export const IsMinting: Story = {
-  args: { ...props, isMinting: true }
 }
 
 export const ErrorMessage: Story = {

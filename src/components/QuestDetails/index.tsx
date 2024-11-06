@@ -17,7 +17,7 @@ export default function QuestDetails({
   eligibilityComponent,
   i18n = {
     rewards: 'Claimable Rewards',
-    claim: 'Claim all',
+    claim: 'Claim',
     signIn: 'Sign in',
     secondCTAText: 'View Game',
     play: 'Play',
@@ -31,7 +31,6 @@ export default function QuestDetails({
     claimed: 'Claimed',
     connectSteamAccount: 'Connect Steam account'
   },
-  onClaimClick,
   onSignInClick,
   onConnectSteamAccountClick,
   onPlayClick,
@@ -42,7 +41,6 @@ export default function QuestDetails({
   loading,
   classNames,
   ctaDisabled,
-  isMinting,
   alertProps,
   errorMessage,
   isSignedIn,
@@ -56,7 +54,7 @@ export default function QuestDetails({
 }: QuestDetailsProps) {
   let sticker = null
   let buttonText = ''
-  let ctaClick = onClaimClick
+  let ctaClick = null
 
   // If this is a reputation quest
   if (questType === 'REPUTATIONAL-AIRDROP') {
@@ -75,9 +73,6 @@ export default function QuestDetails({
       } else if (!steamAccountIsLinked) {
         buttonText = i18n.connectSteamAccount
         ctaClick = onConnectSteamAccountClick
-      } else {
-        buttonText = i18n.claim
-        ctaClick = onClaimClick
       }
     }
     // if this is a play streak quest
@@ -91,9 +86,6 @@ export default function QuestDetails({
     if (!isSignedIn) {
       buttonText = i18n.signIn
       ctaClick = onSignInClick
-    } else {
-      buttonText = i18n.claim
-      ctaClick = onClaimClick
     }
   }
 
@@ -113,7 +105,7 @@ export default function QuestDetails({
   }
 
   let buttonContents = <>{buttonText}</>
-  if (isMinting || (showSync && isSyncing)) {
+  if (showSync && isSyncing) {
     buttonContents = (
       <Loading className={cn(styles.loader, classNames?.loading)} />
     )
@@ -156,14 +148,16 @@ export default function QuestDetails({
         {ctaComponent ?? (
           <>
             {secondCTA}
-            <Button
-              type={primaryCTAButtonType}
-              className={styles.claimButton}
-              onClick={ctaClick}
-              disabled={ctaDisabled || isMinting}
-            >
-              {buttonContents}
-            </Button>
+            {ctaClick !== null && (
+              <Button
+                type={primaryCTAButtonType}
+                className={styles.claimButton}
+                onClick={ctaClick}
+                disabled={ctaDisabled}
+              >
+                {buttonContents}
+              </Button>
+            )}
           </>
         )}
       </div>

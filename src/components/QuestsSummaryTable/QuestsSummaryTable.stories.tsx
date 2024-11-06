@@ -10,6 +10,7 @@ import { QuestsSummaryTable, QuestsSummaryTableProps } from '.'
 import { itemType } from '../Dropdowns/Dropdown'
 import { QuestCard, QuestCardProps } from '../QuestCard'
 import SearchBar from '../SearchBar'
+import styles from './QuestsSummaryTable.stories.module.scss'
 
 const meta: Meta<typeof QuestsSummaryTable> = {
   title: 'Quests/QuestsSummaryTable',
@@ -143,4 +144,8 @@ export const SearchDemo: Story = {
       />
     )
   }
+}
+
+export const WithCustomClassNames: Story = {
+  args: { ...props, classNames: { gamesTable: styles.questSelectedLayout } }
 }

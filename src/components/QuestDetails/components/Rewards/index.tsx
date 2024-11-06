@@ -5,10 +5,7 @@ import classNames from 'classnames'
 import styles from './index.module.scss'
 
 export const defaultI18n = {
-  rewards: 'Claimable Rewards',
-  claimsLeft: 'Claims left',
-  viewReward: 'View Reward',
-  claimed: 'Claimed'
+  rewards: 'Claimable Rewards'
 }
 
 export interface RewardsProps extends HTMLProps<HTMLDivElement> {

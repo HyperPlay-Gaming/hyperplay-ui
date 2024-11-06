@@ -4,16 +4,27 @@ import { decimalUnits, parseNumIntoReadableString } from '@hyperplay/utils'
 import classNames from 'classnames'
 
 import { LinkExternal } from '@/assets/images'
+import Button from '@/components/Button'
+import Loading from '@/components/Loading'
 
 import { QuestReward } from '../../types'
 import styles from './index.module.scss'
 
+export interface RewardI18n {
+  claimsLeft: string
+  viewReward: string
+  claimed: string
+  claim: string
+}
+
 export interface RewardProps extends HTMLProps<HTMLDivElement> {
   reward: QuestReward
+  onClaim: () => void
   i18n?: {
     claimsLeft: string
     viewReward: string
     claimed: string
+    claim: string
   }
 }
 
@@ -22,36 +33,50 @@ export default function Reward({
   i18n = {
     claimsLeft: 'Claims left',
     viewReward: 'View Reward',
-    claimed: 'Claimed'
+    claimed: 'Claimed',
+    claim: 'Claim'
   },
   className,
+  onClaim,
   ...props
 }: RewardProps) {
   let numClaimsLeftComponent = null
+
   if (reward.numOfClaimsLeft) {
     const formattedNumOfClaimsLeft = parseNumIntoReadableString({
       num: reward.numOfClaimsLeft,
       units: decimalUnits,
-      minValue: '0.0001',
-      maxValue: '999999999'
+      minValue: '0',
+      maxValue: '9999'
     })
+
+    const emptyClaims = Number(reward.numOfClaimsLeft) === 0
+
     numClaimsLeftComponent = (
-      <div
-        className={classNames('menu-item', styles.claimsLeft)}
-      >{`${formattedNumOfClaimsLeft} ${i18n.claimsLeft}`}</div>
+      <div className={styles.claimsContainer}>
+        <div
+          className={classNames(
+            styles.dot,
+            emptyClaims ? styles.redDot : styles.greenDot
+          )}
+        />
+        <div
+          className={classNames('menu-item', styles.claims)}
+        >{`${formattedNumOfClaimsLeft} ${i18n.claimsLeft}`}</div>
+      </div>
     )
   }
-  let numToClaimComponent = null
+
+  let formattedNumToClaim = null
+
   if (reward.numToClaim) {
-    const formattedNumToClaim = parseNumIntoReadableString({
+    const parsedNumToClaim = parseNumIntoReadableString({
       num: reward.numToClaim,
       units: decimalUnits,
-      minValue: '0.0001',
-      maxValue: '999999999999'
+      minValue: '0',
+      maxValue: '9999'
     })
-    numToClaimComponent = (
-      <div className={styles.numToClaim}>{`+${formattedNumToClaim}`}</div>
-    )
+    formattedNumToClaim = `+${parsedNumToClaim}`
   }
 
   return (
@@ -60,7 +85,7 @@ export default function Reward({
       key={reward.title}
       {...props}
     >
-      <div className={styles.rewardContainer}>
+      <div className={styles.rewardImageContainer}>
         {reward.isClaimed ? (
           <div className={styles.isClaimed}>{i18n.claimed}</div>
         ) : null}
@@ -76,12 +101,33 @@ export default function Reward({
           </a>
         ) : null}
         <img src={reward.imageUrl} />
-        <div className={classNames(styles.titleContainer, 'menu')}>
-          <div className={styles.title}>{reward.title}</div>
-          {numToClaimComponent}
-        </div>
       </div>
-      {numClaimsLeftComponent}
+      <div className={styles.infoContainer}>
+        <div className={styles.textContainer}>
+          <div className={classNames('title-sm', styles.title)}>
+            {formattedNumToClaim
+              ? `${formattedNumToClaim} ${reward.title}`
+              : reward.title}
+          </div>
+          {numClaimsLeftComponent}
+        </div>
+        {!reward.isClaimed ? (
+          <Button
+            disabled={reward.claimPending}
+            onClick={onClaim}
+            type="secondaryGradient"
+            size="small"
+            htmlType="button"
+            className={styles.claimButton}
+          >
+            {reward.claimPending ? (
+              <Loading className={styles.spinner} />
+            ) : (
+              i18n.claim
+            )}
+          </Button>
+        ) : null}
+      </div>
     </div>
   )
 }
