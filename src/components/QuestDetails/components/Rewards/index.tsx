@@ -14,7 +14,7 @@ export interface RewardsProps extends HTMLProps<HTMLDivElement> {
   i18n?: typeof defaultI18n
 }
 
-export default function Rewards({
+export function Rewards({
   numClaimed,
   numTotal,
   i18n = defaultI18n,
