@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import Button from '@/components/Button'
 
-import StreakProgress, { StreakProgressProps } from '.'
+import { StreakProgress, type StreakProgressProps } from '.'
 
 const meta: Meta<typeof StreakProgress> = {
   title: 'Quests/QuestDetails/StreakProgress',
