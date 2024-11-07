@@ -57,7 +57,7 @@ function PlayStreakBolts({
   )
 }
 
-export default function StreakProgress({
+export function StreakProgress({
   currentStreakInDays,
   requiredStreakInDays,
   minimumSessionTimeInSeconds,
