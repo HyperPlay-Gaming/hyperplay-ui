@@ -4,7 +4,7 @@ import classNames from 'classnames'
 
 import styles from './index.module.scss'
 
-export default function DarkContainer({
+export function DarkContainer({
   children,
   className,
   ...props
@@ -15,3 +15,5 @@ export default function DarkContainer({
     </div>
   )
 }
+
+export default DarkContainer

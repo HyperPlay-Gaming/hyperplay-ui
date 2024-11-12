@@ -1,14 +1,12 @@
-$imgSize: 160px;
+$imgSize: 120px;
 
 .container {
   display: flex;
-  flex-direction: column;
   gap: var(--space-md);
 }
 
-.rewardContainer {
-  max-width: $imgSize;
-  max-height: $imgSize;
+.rewardImageContainer {
+  display: flex;
   width: $imgSize;
   height: $imgSize;
   border-radius: var(--space-xs);
@@ -28,42 +26,63 @@ $imgSize: 160px;
     width: 100%;
     height: 100%;
   }
+}
 
-  > .titleContainer {
-    background: linear-gradient(
-      180deg,
-      rgba(12, 11, 15, 0.3) 0%,
-      var(--color-neutral-900) 100%
-    );
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    text-align: center;
-    padding: var(--space-sm) 0px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--space-sm);
-    flex-direction: column;
-  }
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  flex: 1;
+}
+
+.claimsContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.greenDot {
+  background: var(--color-success-400);
+}
+
+.redDot {
+  background: var(--color-error-400);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.claimButton {
+  width: fit-content;
+  min-width: 80px;
+  min-height: 32px;
 }
 
 .title {
+  color: var(--color-neutral-100);
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
-  text-wrap: nowrap;
-  max-width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-.numToClaim {
-  text-wrap: nowrap;
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
 }
 
-.claimsLeft {
+.claims {
   color: var(--color-neutral-400);
-  text-align: center;
 }
 
 .linkExternalIcon {
@@ -108,8 +127,8 @@ $imgSize: 160px;
   align-items: center;
   position: absolute;
   text-transform: uppercase;
-  left: -43px;
-  top: 34px;
+  left: -50px;
+  top: 20px;
   z-index: 1;
   color: var(--color-neutral-800);
   text-align: center;
@@ -118,4 +137,9 @@ $imgSize: 160px;
   font-style: normal;
   font-weight: var(--semibold);
   line-height: calc(var(--text-xs) * 16 / 12);
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
 }

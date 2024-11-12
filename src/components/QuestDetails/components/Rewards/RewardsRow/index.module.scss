@@ -3,11 +3,9 @@
 }
 
 .rewardItemsContainer {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: var(--space-2lg);
-  flex-wrap: wrap;
-  justify-content: start;
 }
 
 .tooltip {

@@ -1,5 +1,5 @@
 .darkContainer {
-  padding: var(--space-2lg) var(--space-xs) var(--space-2lg) var(--space-2lg);
+  padding: var(--space-2lg);
   max-width: 700px;
   height: 100%;
   margin: var(--space-xl) var(--space-xs);
@@ -12,7 +12,6 @@
   align-items: flex-start;
   flex-grow: 1;
   overflow-y: auto;
-  padding-right: var(--space-2lg);
 }
 
 .claimButton {
@@ -52,9 +51,7 @@
   flex-direction: row;
   gap: var(--space-sm-fixed);
   margin: 0 0 0 auto;
-  padding-top: var(--space-sm-fixed);
   width: 100%;
-  padding-right: var(--space-2lg);
   justify-content: flex-end;
 }
 
@@ -62,4 +59,5 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  gap: var(--space-2xl);
 }

@@ -1,10 +1,19 @@
-.warning .message {
-  color: #b0c1d5;
+.warning {
+  .message {
+    color: var(--color-neutral-400);
+  }
+  .title {
+    color: var(--color-status-alert);
+  }
 }
 
 .alert {
   .icon svg path {
     fill: var(--color-status-alert);
+  }
+
+  .title {
+    color: var(--color-status-alert);
   }
 }
 

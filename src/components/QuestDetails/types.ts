@@ -1,10 +1,10 @@
-import { HTMLProps } from 'react'
+import { HTMLProps, ReactNode } from 'react'
 import { Options as MarkdownOptions } from 'react-markdown'
 
 import { QuestTypeTranslations } from '@/common/types'
 
 import { InfoAlertProps } from '../AlertCard'
-import { StreakProgressI18n } from './components/StreakProgress'
+import { StreakProgressI18n } from '../StreakProgress'
 
 export interface Game {
   title: string
@@ -33,6 +33,7 @@ export interface QuestReward {
   title: string
   imageUrl: string
   numOfClaimsLeft?: string
+  claimPending?: boolean
   // this will likely be a BigNumber so we will convert to float before passing as param
   numToClaim?: string
   chainName: string
@@ -42,12 +43,8 @@ export interface QuestReward {
 
 export interface QuestDetailsTranslations {
   rewards: string
-  associatedGames: string
-  linkSteamAccount: string
-  needMoreAchievements: string
   claim: string
   signIn: string
-  connectSteamAccount: string
   questType: QuestTypeTranslations
   streakProgressI18n?: StreakProgressI18n
   secondCTAText?: string
@@ -56,20 +53,14 @@ export interface QuestDetailsTranslations {
   claimsLeft?: string
   viewReward?: string
   claimed?: string
+  connectSteamAccount: string
 }
 
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string
   description: React.ReactNode | string
-  // More quest eligibilty interfaces will be added here in future iterations
-  eligibility: {
-    reputation?: ReputationQuestEligibility
-    playStreak?: PlayStreakEligibility
-  }
-  rewards: QuestReward[]
-  numClaimed?: number
-  numTotal?: number
-  onClaimClick: () => void
+  eligibilityComponent: ReactNode
+  rewardsComponent: ReactNode
   onSignInClick: () => void
   onConnectSteamAccountClick: () => void
   showSecondCTA?: boolean
@@ -81,7 +72,6 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   onSyncClick?: () => void
   isSyncing?: boolean
   i18n?: QuestDetailsTranslations
-  rewardsLoading?: boolean
   loading?: boolean
   classNames?: {
     root?: string
@@ -90,13 +80,10 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
     loading?: string
   }
   ctaDisabled?: boolean
-  collapseIsOpen: boolean
-  toggleCollapse: () => void
-  isMinting?: boolean
   alertProps?: InfoAlertProps
   errorMessage?: string
   isSignedIn: boolean
   questType: 'PLAYSTREAK' | 'REPUTATIONAL-AIRDROP'
-  chainTooltips?: Record<string, string>
   markdownOptions?: MarkdownOptions
+  steamAccountIsLinked?: boolean
 }

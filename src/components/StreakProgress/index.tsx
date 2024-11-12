@@ -10,7 +10,7 @@ import classNames from 'classnames'
 
 import { Clock, LightningBolt } from '@/assets/images'
 
-import { PlayStreakEligibility } from '../../types'
+import { PlayStreakEligibility } from '../QuestDetails/types'
 import styles from './index.module.scss'
 
 export interface StreakProgressI18n {
@@ -57,7 +57,7 @@ function PlayStreakBolts({
   )
 }
 
-export default function StreakProgress({
+export function StreakProgress({
   currentStreakInDays,
   requiredStreakInDays,
   minimumSessionTimeInSeconds,
