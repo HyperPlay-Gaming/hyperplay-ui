@@ -221,14 +221,21 @@ $settingsMenuWidth: 75%;
 }
 
 .storeActionButton {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--color-primary-500);
   border-radius: var(--space-xs-fixed);
   width: 32px;
   height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
-  fill: var(--color-neutral-100);
+  //fill: var(--color-primary-500);
+
+  &.inLibrary {
+    background-color: var(--color-success-400);
+    svg {
+      fill: var(--color-neutral-900);
+    }
+  }
 }
 
 .popover {

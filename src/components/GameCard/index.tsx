@@ -4,6 +4,7 @@ import { faRepeat } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import classNames from 'classnames'
 
 import FallbackImage from '@/assets/fallback_card.jpg?url'
 import { CheckmarkCircleOutline, PlusCircleOutline } from '@/assets/images'
@@ -295,7 +296,7 @@ const GameCard = ({
                       console.log('remove button disabled')
                     }
               }
-              className={styles.storeActionButton}
+              className={classNames(styles.storeActionButton, styles.inLibrary)}
               onMouseEnter={open}
               onMouseLeave={close}
               style={!enableRemoveButton ? { opacity: '100%' } : {}}
