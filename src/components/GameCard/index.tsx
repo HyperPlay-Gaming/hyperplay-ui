@@ -271,7 +271,10 @@ const GameCard = ({
               <PlusCircleOutline />
             </button>
           </Popover.Target>
-          <Popover.Dropdown className={styles.popover}>
+          <Popover.Dropdown
+            className={styles.popover}
+            style={{ backgroundColor: 'var(--color-neutral-700)' }}
+          >
             <div className="caption-sm">
               {notAddedText ? notAddedText : `Add to library`}
             </div>
