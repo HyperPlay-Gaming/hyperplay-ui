@@ -281,7 +281,12 @@ const GameCard = ({
 
     if (onRemoveFromLibraryClick !== undefined)
       return (
-        <Popover position={pos} shadow="md" opened={true} offset={offset}>
+        <Popover
+          position={pos}
+          shadow="md"
+          opened={showPopover}
+          offset={offset}
+        >
           <Popover.Target>
             <button
               onClick={
@@ -299,7 +304,10 @@ const GameCard = ({
               <CheckmarkCircleOutline />
             </button>
           </Popover.Target>
-          <Popover.Dropdown className={styles.popover}>
+          <Popover.Dropdown
+            className={styles.popover}
+            style={{ backgroundColor: 'var(--color-neutral-700)' }}
+          >
             <div className="caption-sm">
               {addedText ? addedText : `Remove from library`}
             </div>
