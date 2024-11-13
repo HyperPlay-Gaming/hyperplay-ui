@@ -228,10 +228,12 @@ $settingsMenuWidth: 75%;
   display: flex;
   justify-content: center;
   align-items: center;
-  //fill: var(--color-primary-500);
 
   &.inLibrary {
     background-color: var(--color-success-400);
+    &:hover {
+      background-color: var(--color-success-600);
+    }
     svg {
       fill: var(--color-neutral-900);
     }
