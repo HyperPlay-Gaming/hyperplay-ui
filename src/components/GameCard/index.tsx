@@ -273,10 +273,7 @@ const GameCard = ({
               <PlusCircleOutline />
             </button>
           </Popover.Target>
-          <Popover.Dropdown
-            className={styles.popover}
-            style={{ backgroundColor: 'var(--color-neutral-700)' }}
-          >
+          <Popover.Dropdown>
             <div className="caption-sm">
               {notAddedText ? notAddedText : `Add to library`}
             </div>
@@ -311,10 +308,7 @@ const GameCard = ({
               <CheckmarkCircleOutline />
             </button>
           </Popover.Target>
-          <Popover.Dropdown
-            className={styles.popover}
-            style={{ backgroundColor: 'var(--color-neutral-700)' }}
-          >
+          <Popover.Dropdown>
             <div className="caption-sm">
               {addedText ? addedText : `Remove from library`}
             </div>
