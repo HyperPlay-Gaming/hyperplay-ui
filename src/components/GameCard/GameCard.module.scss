@@ -228,7 +228,7 @@ $settingsMenuWidth: 75%;
   display: flex;
   justify-content: center;
   align-items: center;
-  fill: var(--color-primary-500);
+  //fill: var(--color-primary-500);
 
   &.inLibrary {
     background-color: var(--color-success-400);
@@ -243,4 +243,5 @@ $settingsMenuWidth: 75%;
   border: none;
   border-radius: var(--space-sm);
   padding: var(--space-xs) var(--space-sm);
+  position: absolute;
 }

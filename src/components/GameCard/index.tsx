@@ -260,6 +260,8 @@ const GameCard = ({
           shadow="md"
           opened={showPopover}
           offset={offset}
+          classNames={{ dropdown: styles.popover }}
+          unstyled
         >
           <Popover.Target>
             <button
@@ -289,6 +291,8 @@ const GameCard = ({
           shadow="md"
           opened={showPopover}
           offset={offset}
+          classNames={{ dropdown: styles.popover }}
+          unstyled
         >
           <Popover.Target>
             <button
