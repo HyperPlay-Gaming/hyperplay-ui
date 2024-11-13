@@ -281,12 +281,7 @@ const GameCard = ({
 
     if (onRemoveFromLibraryClick !== undefined)
       return (
-        <Popover
-          position={pos}
-          shadow="md"
-          opened={showPopover}
-          offset={offset}
-        >
+        <Popover position={pos} shadow="md" opened={true} offset={offset}>
           <Popover.Target>
             <button
               onClick={
