@@ -146,4 +146,23 @@ export const Extracting: Story = {
   }
 }
 
+export const notAddedToLibrary: Story = {
+  args: {
+    ...props,
+    app: 'storeInClient',
+    state: 'INSTALLED',
+    notAddedText: 'Add to library'
+  }
+}
+export const AddedToLibrary: Story = {
+  args: {
+    ...props,
+    app: 'storeInClient',
+    gameIsAddedToLibrary: true,
+    state: 'INSTALLED',
+    addedText: 'Remove from library',
+    onAddToLibraryClick: () => console.log('add to library clicked')
+  }
+}
+
 export default meta

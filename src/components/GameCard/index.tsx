@@ -4,6 +4,7 @@ import { faRepeat } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import classNames from 'classnames'
 
 import FallbackImage from '@/assets/fallback_card.jpg?url'
 import { CheckmarkCircleOutline, PlusCircleOutline } from '@/assets/images'
@@ -259,6 +260,8 @@ const GameCard = ({
           shadow="md"
           opened={showPopover}
           offset={offset}
+          classNames={{ dropdown: styles.popover }}
+          unstyled
         >
           <Popover.Target>
             <button
@@ -270,7 +273,7 @@ const GameCard = ({
               <PlusCircleOutline />
             </button>
           </Popover.Target>
-          <Popover.Dropdown className={styles.popover}>
+          <Popover.Dropdown>
             <div className="caption-sm">
               {notAddedText ? notAddedText : `Add to library`}
             </div>
@@ -285,6 +288,8 @@ const GameCard = ({
           shadow="md"
           opened={showPopover}
           offset={offset}
+          classNames={{ dropdown: styles.popover }}
+          unstyled
         >
           <Popover.Target>
             <button
@@ -295,7 +300,7 @@ const GameCard = ({
                       console.log('remove button disabled')
                     }
               }
-              className={styles.storeActionButton}
+              className={classNames(styles.storeActionButton, styles.inLibrary)}
               onMouseEnter={open}
               onMouseLeave={close}
               style={!enableRemoveButton ? { opacity: '100%' } : {}}
@@ -303,7 +308,7 @@ const GameCard = ({
               <CheckmarkCircleOutline />
             </button>
           </Popover.Target>
-          <Popover.Dropdown className={styles.popover}>
+          <Popover.Dropdown>
             <div className="caption-sm">
               {addedText ? addedText : `Remove from library`}
             </div>
