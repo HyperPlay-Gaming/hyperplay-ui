@@ -39,6 +39,7 @@ export function Reward({
   },
   className,
   onClaim,
+  hideClaim,
   ...props
 }: RewardProps) {
   let numClaimsLeftComponent = null
