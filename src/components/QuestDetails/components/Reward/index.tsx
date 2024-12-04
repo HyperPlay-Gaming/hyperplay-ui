@@ -20,6 +20,7 @@ export interface RewardI18n {
 export interface RewardProps extends HTMLProps<HTMLDivElement> {
   reward: QuestReward
   onClaim: () => void
+  hideClaim?: boolean
   i18n?: {
     claimsLeft: string
     viewReward: string
@@ -38,6 +39,7 @@ export function Reward({
   },
   className,
   onClaim,
+  hideClaim,
   ...props
 }: RewardProps) {
   let numClaimsLeftComponent = null
@@ -111,7 +113,7 @@ export function Reward({
           </div>
           {numClaimsLeftComponent}
         </div>
-        {!reward.isClaimed ? (
+        {!reward.isClaimed && !hideClaim ? (
           <Button
             disabled={reward.claimPending}
             onClick={onClaim}
