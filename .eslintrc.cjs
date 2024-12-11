@@ -10,9 +10,9 @@ module.exports = {
     {
       files: ['*.ts', '*.tsx'],
       rules: {
-        'react/prop-types': 'off',
-      },
-    },
+        'react/prop-types': 'off'
+      }
+    }
   ],
   extends: [
     'eslint:recommended',

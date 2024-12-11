@@ -102,7 +102,7 @@ export const Erc1155: Story = {
 const zodBigIntValidate = z.string().transform((val, ctx) => {
   try {
     const parsed = BigInt(val)
-    return parsed.toString()
+    return parsed.toString() // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
