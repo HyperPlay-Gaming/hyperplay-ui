@@ -6,9 +6,14 @@ module.exports = {
     es2021: true,
     node: true
   },
-  rules: {
-    'react/prop-types': 'off'
-  },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+  ],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
