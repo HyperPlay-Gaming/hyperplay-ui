@@ -2161,7 +2161,7 @@
   resolved "https://registry.yarnpkg.com/@mantine/carousel/-/carousel-7.15.0.tgz#db13b338ccb1e157fb1feba25ba8a2d386637d8e"
   integrity sha512-GeAGeBvL9HulOd34ZKQZvjSqd7VHr5lxzRIzDcz1m7Fp/OfR8DKkuleSFLeeT08QbLmeG/5x9gEFBN0TYdFuPg==
 
-"@mantine/core@^7.15.10":
+"@mantine/core@^7.15.0":
   version "7.15.0"
   resolved "https://registry.yarnpkg.com/@mantine/core/-/core-7.15.0.tgz#009cd454170a089a6e679390d0c11d0e6036ca21"
   integrity sha512-tZlRydfaEaaCNIi3tl1u+VtJxNyBoml2iCJAy6ZqcNNcjy/krJmta5lVtjUeApZfE33rkvr+3WVqGk0YjW6oSQ==
