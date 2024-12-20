@@ -228,15 +228,33 @@ $settingsMenuWidth: 75%;
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 70%;
 
-  &.inLibrary {
-    background-color: var(--color-success-400);
-    &:hover {
-      background-color: var(--color-success-600);
-    }
-    svg {
-      fill: var(--color-neutral-900);
-    }
+  &:hover {
+    background-color: var(--color-primary-600);
+    opacity: 100%;
+  }
+  svg {
+    fill: var(--color-neutral-100);
+  }
+}
+
+.inLibrary {
+  background-color: var(--color-success-300);
+  border-radius: var(--space-xs-fixed);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 70%;
+
+  &:hover {
+    background-color: var(--color-success-500);
+    opacity: 100%;
+  }
+  svg {
+    fill: var(--color-neutral-900);
   }
 }
 
@@ -246,4 +264,15 @@ $settingsMenuWidth: 75%;
   border-radius: var(--space-sm);
   padding: var(--space-xs) var(--space-sm);
   position: absolute;
+}
+
+.epicStoreLogo {
+  display: flex;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+  background-color: var(--color-neutral-800);
+  padding: var(--space-2xs);
+  border-radius: var(--space-3xs);
 }
