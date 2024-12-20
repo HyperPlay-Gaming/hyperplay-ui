@@ -14,12 +14,15 @@ import styles from './GameCard.module.scss'
 import ActionBar from './components/ActionBar'
 import DownloadBar from './components/DownloadBar'
 import imageStyles from './components/Image/Image.module.css'
+import StoreLogo from './components/StoreLogo'
 import {
   GameCardState,
   InstallProgress,
   Runner,
   SettingsButtons
 } from './types'
+
+// Adjust the import path as necessary
 
 export interface GameCardProps
   extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
@@ -52,6 +55,45 @@ export interface GameCardProps
   notAddedText?: string
   addedText?: string
   enableRemoveButton?: boolean
+  i18n: GameCardi18n
+}
+
+export interface GameCardi18n {
+  addedToLibrary?: string
+  notAddedToLibrary?: string
+  logoTextTooltip: {
+    hyperplay: {
+      installed: string
+      notInstalled: string
+    }
+    epic: {
+      installed: string
+      notInstalled: string
+    }
+    gog: {
+      installed: string
+      notInstalled: string
+    }
+  }
+}
+
+export const i18nDefault = {
+  addedToLibrary: 'Remove from library',
+  notAddedToLibrary: 'Add to library',
+  logoTextTooltip: {
+    hyperplay: {
+      installed: 'Installed from HyperPlay Store',
+      notInstalled: 'Will install from HyperPlay Store'
+    },
+    gog: {
+      installed: 'Installed from GOG Store',
+      notInstalled: 'Will install from GOG Store'
+    },
+    epic: {
+      installed: 'Installed from Epic Store',
+      notInstalled: 'Will install from Epic Store'
+    }
+  }
 }
 
 const GameCard = ({
@@ -84,6 +126,7 @@ const GameCard = ({
   notAddedText,
   addedText,
   enableRemoveButton,
+  i18n = i18nDefault,
   ...props
 }: GameCardProps) => {
   const [showPopover, { open, close }] = useDisclosure(false)
@@ -235,21 +278,6 @@ const GameCard = ({
     return items
   }
 
-  function getStoreLogo() {
-    switch (store) {
-      case 'hyperplay':
-        return <Images.HyperPlayStoreLogo />
-      case 'gog':
-        return <Images.GogStoreLogo />
-      case 'legendary':
-        return <Images.EpicStoreLogo />
-      case 'nile':
-        return <Images.AmazonLogo />
-      default:
-        return null
-    }
-  }
-
   function getStoreButton() {
     const pos = 'top'
     const offset = { mainAxis: 0 }
@@ -300,10 +328,9 @@ const GameCard = ({
                       console.log('remove button disabled')
                     }
               }
-              className={classNames(styles.storeActionButton, styles.inLibrary)}
+              className={classNames(styles.inLibrary)}
               onMouseEnter={open}
               onMouseLeave={close}
-              style={!enableRemoveButton ? { opacity: '100%' } : {}}
             >
               <CheckmarkCircleOutline />
             </button>
@@ -360,11 +387,11 @@ const GameCard = ({
           </div>
 
           <div className={styles.storeLogoContainer}>
-            {app === 'storeInClient'
-              ? getStoreButton()
-              : app === 'client' && store
-              ? getStoreLogo()
-              : null}
+            {app === 'storeInClient' ? (
+              getStoreButton()
+            ) : app === 'client' && store ? (
+              <StoreLogo store={store} state={state} i18n={i18n} />
+            ) : null}
           </div>
         </div>
       </div>
