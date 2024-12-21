@@ -22,11 +22,13 @@ export interface Carouselv2Props {
   controllerLayout?: 'attached' | 'detached'
   canAutoRotate?: boolean
   onThumbnailHandler?: (index: number) => void
+  onSlideChange?: (index: number) => void
 }
 
 const Carouselv2 = ({
   canAutoRotate = true,
   onThumbnailHandler,
+  onSlideChange,
   ...props
 }: Carouselv2Props) => {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -71,13 +73,11 @@ const Carouselv2 = ({
         }}
         plugins={[autoplay.current]}
         onMouseEnter={() => {
-          console.log('canAutoRotate onMouseEnter', canAutoRotate)
           if (canAutoRotate) {
             autoplay.current.stop()
           }
         }}
         onMouseLeave={() => {
-          console.log('canAutoRotate onMouseLeave', canAutoRotate)
           if (canAutoRotate) {
             // Internally it is checking if timer is set, and since it can be, it will make .reset() never work
             autoplay.current.stop()
@@ -85,8 +85,8 @@ const Carouselv2 = ({
           }
         }}
         onSlideChange={(index) => {
-          console.log('onSlideChange', index)
           setActiveIndex(index)
+          onSlideChange?.(index)
         }}
         loop={true}
         withControls={false}
