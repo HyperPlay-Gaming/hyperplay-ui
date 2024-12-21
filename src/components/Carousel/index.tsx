@@ -8,7 +8,7 @@ import Controller from './components/Controller'
 import styles from './index.module.scss'
 
 export interface SlideData {
-  title: string
+  title?: string
   slideElement: JSX.Element
   thumbnail?: JSX.Element
   disableGradient?: boolean
@@ -56,7 +56,7 @@ const Carouselv2 = ({
       >
         {item.slideElement}
         <div className={styles.title}>
-          <div className={styles.titleText}>{item.title}</div>
+          {item.title && <div className={styles.titleText}>{item.title}</div>}
           {item.button ?? null}
         </div>
       </Carousel.Slide>
