@@ -12,6 +12,7 @@ type LinkProps = Partial<Omit<HTMLAnchorElement, 'className'>>
 export interface FooterProps extends HTMLProps<HTMLDivElement> {
   langSelectorProps: LanguageSelectorProps
   Link?: React.ElementType
+  address?: string
   i18n?: {
     company: string
     brand: string
@@ -42,6 +43,7 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
 
 export function Footer({
   langSelectorProps,
+  address,
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   Link = (props: any) => <a {...props} />,
   linkProps,
@@ -192,7 +194,10 @@ export function Footer({
       </div>
       <div className={FooterSectionStyle.hpContact}>
         <div>{`HYPERPLAY LABS INC`}</div>
-        <div>{`254 CHAPMAN RD - STE 208 - 12083 NEWARK, DE 19702`}</div>
+        <div>
+          {address ??
+            `600 W 6 th Street - Fourth Floor #1079, Fort Worth, TX 76102`}
+        </div>
       </div>
     </div>
   )
