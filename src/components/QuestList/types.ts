@@ -2,7 +2,7 @@ import Sticker from '@/components/Sticker'
 import { QuestType, Quest } from '@/common/types'
 
 export type QuestListProps = {
-  i18n: {
+  i18n?: {
     selected: boolean
     title: string
     duration: string
@@ -11,9 +11,9 @@ export type QuestListProps = {
     questType: QuestType
     reward: string
     viewAllButton: string
-    badgeOne: typeof Sticker
-    badgeTwo: typeof Sticker
-    quests: Quest[]
-    state: 'READY_FOR_CLAIM' | 'ACTIVE'
   }
+  badgeOne: typeof Sticker
+  badgeTwo: typeof Sticker
+  quests: Quest[]
+  state: 'READY_FOR_CLAIM' | 'ACTIVE'
 }
