@@ -11,7 +11,7 @@ jobs:
   release:
     uses: HyperPlay-Gaming/workflows/.github/workflows/npm_publish.yml@main
     with:
-      node_version: '16'
+      node_version: '22'
       pkg_manager: 'yarn'
       pkg_manager_add_dev_dep: 'yarn add -D'
       install: 'yarn install --immutable --frozen-lockfile'

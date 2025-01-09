@@ -5,8 +5,14 @@ import classNames from 'classnames'
 import styles from './index.module.scss'
 
 export interface StickerProps extends HTMLProps<HTMLDivElement> {
-  styleType: 'secondary' | 'warning' | 'success'
-  variant: 'filled' | 'default' | 'outlined'
+  styleType:
+    | 'neutral'
+    | 'secondary'
+    | 'tertiary'
+    | 'success'
+    | 'warning'
+    | 'error'
+  variant: 'filled' | 'default' | 'outlined' | 'filledStrong'
 }
 
 export default function Sticker({
@@ -16,11 +22,15 @@ export default function Sticker({
   ...props
 }: StickerProps) {
   const divClasses: Record<string, boolean> = {}
+  divClasses[styles.neutral] = styleType === 'neutral'
   divClasses[styles.secondary] = styleType === 'secondary'
-  divClasses[styles.warning] = styleType === 'warning'
+  divClasses[styles.tertiary] = styleType === 'tertiary'
   divClasses[styles.success] = styleType === 'success'
+  divClasses[styles.warning] = styleType === 'warning'
+  divClasses[styles.error] = styleType === 'error'
   divClasses[styles.outlined] = variant === 'outlined'
   divClasses[styles.filled] = variant === 'filled'
+  divClasses[styles.filledStrong] = variant === 'filledStrong'
   return (
     <div
       {...props}
