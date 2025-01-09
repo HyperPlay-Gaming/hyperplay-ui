@@ -22,8 +22,6 @@ import {
   SettingsButtons
 } from './types'
 
-// Adjust the import path as necessary
-
 export interface GameCardProps
   extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
   image?: JSX.Element
