@@ -5,13 +5,12 @@
   margin: var(--space-xl) var(--space-xs);
 }
 
-.container {
+.badges {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2lg);
-  align-items: flex-start;
-  flex-grow: 1;
-  overflow-y: auto;
+  flex-direction: row;
+  align-items: start;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
 }
 
 .claimButton {
