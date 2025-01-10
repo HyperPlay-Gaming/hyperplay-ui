@@ -130,6 +130,7 @@ const rewardsComponent = <Rewards>{rewardsContent}</Rewards>
 const props: QuestDetailsProps = {
   isSignedIn: true,
   title: 'Eternal Ember: Shadows of the Celestial Nexus',
+  gameTitle: 'Game title',
   description:
     'Shadows of the Celestial NexusEmbark on a cosmic odyssey as the chosen guardian of the Eternal Ember. Traverse astral realms, unravel celestial mysteries, and confront shadowy entities threatening the balance of the Celestial Nexus. Master arcane powers, forge alliances with otherworldly beings, and navigate intricate puzzles. \n \nWill you rise to the challenge and become the savior of the Celestial Nexus, or succumb to the shadows that threaten to engulf the eternal flame?',
   eligibilityComponent: [
