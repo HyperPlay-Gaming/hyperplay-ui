@@ -58,6 +58,7 @@ export interface QuestDetailsTranslations {
 
 export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   title: string
+  gameTitle: string
   description: React.ReactNode | string
   eligibilityComponent: ReactNode
   rewardsComponent: ReactNode
