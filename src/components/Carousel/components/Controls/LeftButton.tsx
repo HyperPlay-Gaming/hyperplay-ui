@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { ChevronLeft } from '@/assets/images'
 
 import BaseButton, { BaseButtonProps } from './BaseButton'

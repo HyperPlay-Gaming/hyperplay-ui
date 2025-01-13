@@ -10,4 +10,7 @@
     drop-shadow(2px 0px 40px rgba(61, 11, 111, 0.4))
     drop-shadow(2px 0px 32px rgba(61, 11, 111, 0.7))
     drop-shadow(2px 0px 8px rgba(61, 11, 111, 0.5));
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
