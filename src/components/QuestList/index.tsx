@@ -1,12 +1,14 @@
 import classNames from 'classnames'
-import { QuestListProps } from './types'
+
 import { Refresh } from '@/assets/images'
 import { ReactComponent as Lightning } from '@/assets/images/LightningOutlined.svg'
 import { ReactComponent as QuestIconTwo } from '@/assets/images/QuestIcon2.svg'
 import { ReactComponent as QuestIcon } from '@/assets/images/QuestIcon.svg'
 import Button from '@/components/Button'
 import Sticker from '@/components/Sticker'
+
 import styles from './index.module.scss'
+import { QuestListProps } from './types'
 
 export default function QuestList({ i18n }: QuestListProps) {
   const readyForClaimQuests = [
@@ -50,7 +52,7 @@ export default function QuestList({ i18n }: QuestListProps) {
         {/* Ready for Claim */}
         <div className={styles.readyForClaim}>
           <p className={styles.readyForClaimTitle}>
-            <QuestIcon className={styles.questIcon} />
+            <QuestIconTwo className={styles.questIconTwo} />
             Ready for Claim
           </p>
           <Sticker styleType="secondary" variant="filledStrong">
@@ -90,7 +92,8 @@ export default function QuestList({ i18n }: QuestListProps) {
         {/* Active Quests */}
         <div className={styles.activeQuests}>
           <p className={styles.activeQuestsTitle}>
-            <QuestIconTwo className={styles.QuestIcoTwo} /> Active
+            <QuestIcon className={styles.questIcon} />
+            Active
           </p>
           <Sticker styleType="secondary" variant="filledStrong">
             Label
