@@ -4,6 +4,7 @@ import MoonBlastersCover from '@/assets/MoonBlastersCover.png?url'
 import RocketMonstersCover from '@/assets/RocketMonstersCover.png?url'
 
 import GameCard, { GameCardProps } from '.'
+import { i18nDefault } from './index'
 
 const props: GameCardProps = {
   store: 'hyperplay',
@@ -33,7 +34,8 @@ const props: GameCardProps = {
   showSettings: false,
   onSettingsClick: () => console.log('settings button clicked'),
   onUpdateClick: () => console.log('update button clicked'),
-  onResumeClick: () => console.log('resume button clicked')
+  onResumeClick: () => console.log('resume button clicked'),
+  i18n: i18nDefault
 }
 
 const meta: Meta<typeof GameCard> = {

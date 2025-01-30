@@ -50,6 +50,7 @@ export default function QuestDetails({
   isSyncing,
   steamAccountIsLinked,
   rewardsComponent,
+  gameTitle,
   ...props
 }: QuestDetailsProps) {
   let sticker = null
@@ -75,6 +76,7 @@ export default function QuestDetails({
         ctaClick = onConnectSteamAccountClick
       }
     }
+
     // if this is a play streak quest
   } else if (questType === 'PLAYSTREAK') {
     sticker = (
@@ -96,6 +98,13 @@ export default function QuestDetails({
         ? () => console.log('play click handler not set!')
         : onPlayClick
   }
+
+  // Game Title Badge
+  const gameNameSticker = (
+    <Sticker styleType="neutral" variant="outlined">
+      {gameTitle}
+    </Sticker>
+  )
 
   let primaryCTAButtonType: ButtonProps['type'] = 'secondary'
   if (showSync && onSyncClick) {
@@ -133,17 +142,18 @@ export default function QuestDetails({
 
   let content = (
     <div className={cn(styles.rootContent, classNames?.rootContent)}>
-      <div className={cn(styles.container, classNames?.content)}>
-        {sticker}
-        <div className={cn('title', styles.title)}>{title}</div>
-        <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
-          {description}
-        </div>
-
-        {eligibilityComponent}
-        {rewardsComponent}
-        {errorAlert}
+      <div className={styles.badges}>
+        <p className={cn(classNames?.content)}>{gameNameSticker}</p>
+        <p className={cn(classNames?.content)}>{sticker}</p>
       </div>
+      <div className={cn('title', styles.title)}>{title}</div>
+      <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
+        {description}
+      </div>
+
+      {eligibilityComponent}
+      {rewardsComponent}
+      {errorAlert}
       <div className={styles.ctaContainer}>
         {ctaComponent ?? (
           <>
@@ -163,6 +173,7 @@ export default function QuestDetails({
       </div>
     </div>
   )
+
   if (loading) {
     content = <Loading className={cn(styles.loader, classNames?.loading)} />
   }
