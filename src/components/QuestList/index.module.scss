@@ -48,8 +48,8 @@
 }
 
 .questIcon {
-  width: 24px;
-  height: 24px;
+  width: var(--size-md);
+  height: var(--size-md);
   fill: var(--color-neutral-400);
 }
 
@@ -109,32 +109,35 @@
 
 .days {
   justify-content: center;
-  margin-top: 20px;
+  margin-top: var(--space-md);
 }
 
-.resetTime {
-  margin-top: 20px;
+.clockIcon {
+  align-self: center;
+  height: 20px;
+  width: 20px;
 }
 
 .resetTime {
   display: flex;
-  gap: var(--space-xs);
+  justify-content: center;
+  align-self: center;
   color: var(--color-neutral-400);
 }
 
 .time {
   color: var(--color-neutral-100);
+  margin-left: var(--space-2xs);
 }
 
 .lightningIcon {
-  width: 24px;
-  height: 24px;
-  color: var(--color-neutral-400);
+  width: var(--size-md);
+  height: var(--size-md);
 }
 
 .questType {
   display: flex;
-  margin-top: 20px;
+  margin-top: var(--space-md);
   align-items: center;
   gap: 0.5rem;
   flex: 1 0 0;
@@ -142,7 +145,7 @@
 }
 
 .rewardType {
-  margin-top: 20px;
+  margin-top: var(--space-md);
   color: var(--color-alert-200);
 }
 
@@ -155,9 +158,9 @@
 }
 
 .questIconTwo {
-  width: 24px;
-  height: 24px;
-  fill: var(--color-neutral-400);
+  width: var(--size-md);
+  height: var(--size-md);
+  fill: var(--color-alert-400);
 }
 
 .activeQuestsTitle {
