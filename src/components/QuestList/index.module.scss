@@ -82,6 +82,11 @@
   gap: var(--space-lg);
 }
 
+.day {
+  color: var(--color-neutral-400);
+  margin: var(--space-3xs);
+}
+
 .badges {
   display: flex;
   justify-content: flex-end;
