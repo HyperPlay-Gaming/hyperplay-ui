@@ -81,7 +81,9 @@ export default function QuestList({ i18n }: QuestListProps) {
         {readyForClaimQuests.map((quest) => (
           <div key={quest.id} className={styles.card}>
             <div className={styles.firstRow}>
-              <p className={classNames('title', styles.days)}>0 / 7 days</p>
+              <p className={classNames('title', styles.days)}>
+                0<span className={styles.day}>/ 7 days</span>
+              </p>
               <div className={styles.badges}>
                 <p className={styles.badgesSpace}>
                   <Sticker styleType="tertiary" variant="outlined">
@@ -124,7 +126,9 @@ export default function QuestList({ i18n }: QuestListProps) {
         {activeQuests.map((quest) => (
           <div key={quest.id} className={styles.card}>
             <div className={styles.firstRow}>
-              <p className={classNames('title', styles.days)}>0 / 7 days</p>
+              <p className={classNames('title', styles.days)}>
+                0<span className={styles.day}>/ 7 days</span>
+              </p>
               <div className={styles.badges}>
                 <p className={styles.badgesSpace}>
                   <Sticker styleType="tertiary" variant="outlined">
