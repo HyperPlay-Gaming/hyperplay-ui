@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Sticker from '@/components/Sticker'
 
 import QuestList from './index'
-import { QuestListProps } from './types'
+import type { QuestListProps } from './index'
 
 const meta: Meta<typeof QuestList> = {
   title: 'Quests/QuestList',
