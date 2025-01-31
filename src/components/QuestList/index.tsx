@@ -1,14 +1,33 @@
+import { Quest } from '@hyperplay/utils'
 import classNames from 'classnames'
 
 import { Refresh } from '@/assets/images'
+import { ReactComponent as ClockNew } from '@/assets/images/ClockNew.svg'
 import { ReactComponent as Lightning } from '@/assets/images/LightningOutlined.svg'
 import { ReactComponent as QuestIconTwo } from '@/assets/images/QuestIcon2.svg'
 import { ReactComponent as QuestIcon } from '@/assets/images/QuestIcon.svg'
+import { QuestType } from '@/common/types'
 import Button from '@/components/Button'
 import Sticker from '@/components/Sticker'
 
 import styles from './index.module.scss'
-import { QuestListProps } from './types'
+
+export type QuestListProps = {
+  selected: boolean
+  i18n?: {
+    title: string
+    duration: string
+    resetTime: string
+    time: string
+    reward: string
+    viewAllButton: string
+  }
+  state: string
+  questType: QuestType
+  quests: Quest[]
+  badgeOne: typeof Sticker
+  badgeTwo: typeof Sticker
+}
 
 export default function QuestList({ i18n }: QuestListProps) {
   const readyForClaimQuests = [
@@ -73,9 +92,12 @@ export default function QuestList({ i18n }: QuestListProps) {
                     2x
                   </Sticker>
                 </p>
+
                 <p className={styles.resetTime}>
-                  Day resets:{' '}
-                  <span className={styles.time}>23:43:03 (UTC)</span>
+                  <ClockNew className={styles.clockIcon} />
+                  <span className={styles.time}>
+                    Day resets: 23:43:03 (UTC)
+                  </span>
                 </p>
               </div>
             </div>
@@ -114,8 +136,11 @@ export default function QuestList({ i18n }: QuestListProps) {
                   </Sticker>
                 </p>
                 <p className={styles.resetTime}>
-                  Day resets:{' '}
-                  <span className={styles.time}>23:43:03 (UTC)</span>
+                  <ClockNew className={styles.clockIcon} />
+                  <span className={styles.time}>
+                    {' '}
+                    Day resets:23:43:03 (UTC)
+                  </span>
                 </p>
               </div>
             </div>
