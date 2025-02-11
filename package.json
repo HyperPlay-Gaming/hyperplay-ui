@@ -54,7 +54,7 @@
     "babel-loader": "^8.3.0",
     "classnames": "^2.3.2",
     "embla-carousel-autoplay": "^8.0.0-rc11",
-    "embla-carousel-react": "^8.0.0-rc11",
+    "embla-carousel-react": "^7.1.0",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",
