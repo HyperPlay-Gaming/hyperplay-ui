@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { Carousel } from '@mantine/carousel'
 import Autoplay, { AutoplayType } from 'embla-carousel-autoplay'
-import { EmblaCarouselType } from 'embla-carousel-react'
+import { UseEmblaCarouselType } from 'embla-carousel-react'
 
 import Controller from './components/Controller'
 import styles from './index.module.scss'
@@ -33,7 +33,7 @@ const Carouselv2 = ({
   const autoplay = useRef<AutoplayType>(
     Autoplay({ delay: props.autoplayDelayInMs, stopOnInteraction: false })
   )
-  const [emblaApiRef, setEmblaApiRef] = useState<EmblaCarouselType>()
+  const [emblaApiRef, setEmblaApiRef] = useState<UseEmblaCarouselType>()
   const controllerLayout = props.controllerLayout ?? 'attached'
 
   useEffect(() => {
@@ -106,7 +106,8 @@ const Carouselv2 = ({
             thumbnail ? thumbnail : slideElement
           )}
           onChange={(index) => {
-            emblaApiRef?.scrollTo(index)
+            const emblaApi = emblaApiRef?.[1]
+            emblaApi?.scrollTo(index)
             console.log('Controller onChange scrollTo', index)
 
             onThumbnailHandler?.(index)
