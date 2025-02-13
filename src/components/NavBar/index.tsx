@@ -2,9 +2,9 @@ import React, { useRef, useState } from 'react'
 
 import burgerMenuIcon from '@/assets/images/BurgerClosedIcon.svg?url'
 import hpIconLight from '@/assets/images/MobileHpLogo.svg?url'
+import xLogoFilled from '@/assets/images/XLogoFilled.svg?url'
 import discordLogo from '@/assets/logos/discord.svg?url'
 import githubLogo from '@/assets/logos/github.svg?url'
-import twitterLogo from '@/assets/logos/twitter.svg?url'
 
 import Button from '../Button'
 import navBarStyles from './NavBar.module.scss'
@@ -27,6 +27,24 @@ const NavBar = function ({ UserAvatar }: Props) {
         data-testid="store"
       >
         Store
+      </a>
+      <a
+        className={`${navBarStyles.navItem} menu`}
+        href="https://store.hyperplay.xyz/quests"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-testid="quests"
+      >
+        Quests
+      </a>
+      <a
+        className={`${navBarStyles.navItem} menu`}
+        href="https://hyperplay.xyz/developers"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-testid="developers"
+      >
+        Developers
       </a>
       <a
         className={`${navBarStyles.navItem} menu`}
@@ -79,33 +97,35 @@ const NavBar = function ({ UserAvatar }: Props) {
           </div>
           <div className={navBarStyles.links}>{getLinks()}</div>
           <div className={navBarStyles.menu}>
-            <a
-              className={navBarStyles.navbarLinkImg}
-              href="https://discord.gg/hyperplay"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="discord-link"
-            >
-              <img src={discordLogo} alt="Discord Link" />
-            </a>
-            <a
-              className={navBarStyles.navbarLinkImg}
-              href="https://twitter.com/HyperPlayGaming"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="twitter-link"
-            >
-              <img src={twitterLogo} alt="Twitter Link" />
-            </a>
-            <a
-              className={navBarStyles.navbarLinkImg}
-              href="https://github.com/HyperPlay-Gaming"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="github-link"
-            >
-              <img src={githubLogo} alt="GitHub Link" />
-            </a>
+            <div className={navBarStyles.menuSocial}>
+              <a
+                className={navBarStyles.navbarLinkImg}
+                href="https://discord.gg/hyperplay"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="discord-link"
+              >
+                <img src={discordLogo} alt="Discord Link" />
+              </a>
+              <a
+                className={navBarStyles.navbarLinkImg}
+                href="https://x.com/HyperPlayGaming"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="x-link"
+              >
+                <img src={xLogoFilled} alt="X Link" />
+              </a>
+              <a
+                className={navBarStyles.navbarLinkImg}
+                href="https://github.com/HyperPlay-Gaming"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="github-link"
+              >
+                <img src={githubLogo} alt="GitHub Link" />
+              </a>
+            </div>
             <a
               className={`${navBarStyles.navItem} menu`}
               href="https://www.hyperplay.xyz/downloads"
