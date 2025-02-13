@@ -8,7 +8,7 @@
 .badges {
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: center;
   gap: var(--space-xs);
 }
 
@@ -58,4 +58,14 @@
   flex-direction: column;
   height: 100%;
   gap: var(--space-xl);
+}
+
+.backButton {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 8px;
+  border-radius: 100%;
+  border: 1px solid var(--color-neutral-100);
 }
