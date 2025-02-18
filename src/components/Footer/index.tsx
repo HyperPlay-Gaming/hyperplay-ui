@@ -140,11 +140,11 @@ export function Footer({
           <div className={FooterSectionStyle.footer__links}>
             <a
               className={FooterSectionStyle.footer__link}
-              href="https://twitter.com/HyperPlayGaming"
+              href="https://x.com/HyperPlayGaming"
               target="_blank"
               rel="noopener noreferrer"
             >
-              TWITTER
+              X
             </a>
             <a
               className={FooterSectionStyle.footer__link}
