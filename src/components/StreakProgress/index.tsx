@@ -27,6 +27,7 @@ export interface StreakProgressI18n {
 
 export interface StreakProgressProps extends PlayStreakEligibility {
   i18n?: StreakProgressI18n
+  streakIsProgressing?: boolean
 }
 
 function PlayStreakBolts({
@@ -65,6 +66,7 @@ export function StreakProgress({
   lastPlaySessionCompletedDateTimeUTC,
   dateTimeCurrentSessionStartedInMsSinceEpoch,
   rightSection,
+  streakIsProgressing,
   i18n = {
     streakProgress: 'Streak Progress',
     days: 'days',
@@ -115,7 +117,7 @@ export function StreakProgress({
       setTimeLeftString(getTimeLeftString())
     }
 
-    if (dailySessionPercentCompleted < 100) {
+    if (streakIsProgressing && dailySessionPercentCompleted < 100) {
       setDailySessionPercentCompleted(getDailySessionPercentCompleted())
     }
   }
