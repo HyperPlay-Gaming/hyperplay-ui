@@ -8,10 +8,16 @@ import styles from './GameAbout.module.scss'
 
 export interface GameAboutProps {
   description: string
-  classnames?: { container?: string; title?: string; description?: string }
+  gameName?: string
+  classnames?: {
+    container?: string
+    title?: string
+    description?: string
+    gameTitle?: string
+  }
 }
 
-const GameAbout = ({ description, classnames }: GameAboutProps) => {
+const GameAbout = ({ description, gameName, classnames }: GameAboutProps) => {
   const aboutText = useRef<HTMLParagraphElement | null>(null)
   const [isClamped, setIsClamped] = useState(false)
   const [expanded, setExpanded] = useState(false)
@@ -26,6 +32,13 @@ const GameAbout = ({ description, classnames }: GameAboutProps) => {
 
   return (
     <div className={classnames?.container}>
+      {gameName && (
+        <div className={styles.gameTitle}>
+          <h2 className={classNames('h4', styles.title, classnames?.gameTitle)}>
+            {gameName}
+          </h2>
+        </div>
+      )}
       <div className={classNames('caption', classnames?.title)}>About</div>
       <p
         ref={aboutText}
