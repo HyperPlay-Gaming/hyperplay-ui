@@ -31,7 +31,7 @@ const GameAbout = ({ description, gameName, classnames }: GameAboutProps) => {
   }, [])
 
   return (
-    <div className={classnames?.container}>
+    <header className={classnames?.container}>
       {gameName && (
         <div
           className={classNames(
@@ -71,7 +71,7 @@ const GameAbout = ({ description, gameName, classnames }: GameAboutProps) => {
           )}
         </button>
       )}
-    </div>
+    </header>
   )
 }
 
