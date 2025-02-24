@@ -99,12 +99,16 @@ export function StreakProgress({
   }
   const [timeLeftString, setTimeLeftString] = useState(getTimeLeftString())
 
+  let sessionStartTime: number | undefined = undefined
+  if (streakIsProgressing) {
+    sessionStartTime = dateTimeCurrentSessionStartedInMsSinceEpoch
+  }
   const getDailySessionPercentCompleted = () =>
     getPlaytimePercentage({
       minimumSessionTimeInSeconds,
       accumulatedPlaytimeTodayInSeconds,
       lastPlaySessionCompletedDateTimeUTC,
-      dateTimeCurrentSessionStartedInMsSinceEpoch
+      dateTimeCurrentSessionStartedInMsSinceEpoch: sessionStartTime
     })
 
   const [dailySessionPercentCompleted, setDailySessionPercentCompleted] =
