@@ -8,11 +8,15 @@ export default {
 }
 
 export const Default = () => (
-  <GameAbout description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed" />
+  <GameAbout
+    gameName="Game Name"
+    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed"
+  />
 )
 
 export const LongText = () => (
   <GameAbout
+    gameName="Game Name"
     description={
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut porttitor nisl, pulvinar mattis arcu. Nulla id augue at neque euismod rutrum ut id lorem. Maecenas blandit varius sem, at blandit ex commodo vitae. Mauris at nunc suscipit, rhoncus quam sit amet, vehicula tellus. Morbi in tempus lectus. Nulla tincidunt ante neque, dapibus ultrices elit aliquet a. Etiam cursus dolor ante, quis iaculis mi vehicula id. Etiam porta risus in leo fermentum, vitae tempus arcu convallis.\n' +
       '\n' +
