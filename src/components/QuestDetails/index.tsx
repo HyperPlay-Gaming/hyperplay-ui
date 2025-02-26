@@ -100,11 +100,11 @@ export default function QuestDetails({
   }
 
   // Game Title Badge
-  const gameNameSticker = (
+  const gameNameSticker = gameTitle ? (
     <Sticker styleType="neutral" variant="outlined">
       {gameTitle}
     </Sticker>
-  )
+  ) : null
 
   let primaryCTAButtonType: ButtonProps['type'] = 'secondary'
   if (showSync && onSyncClick) {
