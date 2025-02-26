@@ -7,8 +7,6 @@ import useAllImagesLoaded from '@/utils/useAllImagesLoaded'
 import MessageModal, {
   MessageModalProps
 } from '../AchievementSummaryTable/components/MessageModal'
-import { Dropdown } from '../Dropdowns'
-import { DropdownProps } from '../Dropdowns/Dropdown'
 import Loading from '../Loading'
 import { Tabs, getTabsClassNames } from '../Tabs'
 import styles from './index.module.scss'
