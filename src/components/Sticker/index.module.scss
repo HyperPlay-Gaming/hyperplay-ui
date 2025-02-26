@@ -46,12 +46,12 @@
 }
 
 .tertiary {
-  color: var(--color-tertiary-400);
+  color: var(--color-tertiary-200);
   border-radius: var(--corner-round, 100px);
-  border: 2px solid var(--color-tertiary-400);
+  border: 2px solid var(--color-tertiary-200);
 
   &.filled {
-    background-color: var(--color-tertiary-400);
+    background-color: var(--color-tertiary-200);
     color: var(--color-tertiary-800);
     border-radius: var(--corner-round, 4px);
     font-weight: var(--bold);
