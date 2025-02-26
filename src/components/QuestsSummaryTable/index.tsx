@@ -24,7 +24,6 @@ export interface QuestsSummaryTableProps
   extends React.HTMLAttributes<HTMLDivElement> {
   games: ReactElement[]
   imagesToPreload: string[]
-  sortProps: DropdownProps
   filterProps: {
     activeFilter: QuestFilter
     setActiveFilter: (filter: QuestFilter) => void
@@ -50,7 +49,6 @@ export interface QuestsSummaryTableProps
 export function QuestsSummaryTable({
   games,
   imagesToPreload,
-  sortProps,
   filterProps,
   isFetching,
   hasFetchedAll,
@@ -139,17 +137,6 @@ export function QuestsSummaryTable({
               ))}
             </Tabs.List>
           ) : null}
-          <div className={styles.row}>
-            <div className={styles.filters}>
-              <Dropdown
-                targetWidth={300}
-                dropdownButtonDivProps={{
-                  className: `text--lg weight--regular body-sm color-neutral-100`
-                }}
-                {...sortProps}
-              />
-            </div>
-          </div>
           {searchBar}
         </Tabs>
       </div>
