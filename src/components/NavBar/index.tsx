@@ -39,7 +39,7 @@ const NavBar = function ({ UserAvatar }: Props) {
       </a>
       <a
         className={`${navBarStyles.navItem} menu`}
-        href="https://hyperplay.xyz/developers"
+        href="https://www.hyperplay.xyz/developers"
         target="_blank"
         rel="noopener noreferrer"
         data-testid="developers"

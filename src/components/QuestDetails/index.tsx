@@ -2,9 +2,11 @@ import React from 'react'
 
 import cn from 'classnames'
 
+import { ArrowLeft } from '../../assets/images'
 import Alert from '../Alert'
 import AlertCard from '../AlertCard/index'
 import Button, { ButtonProps } from '../Button'
+import CircularButton from '../CircularButton'
 import DarkContainer from '../DarkContainer'
 import Loading from '../Loading'
 import Sticker from '../Sticker'
@@ -143,6 +145,16 @@ export default function QuestDetails({
   let content = (
     <div className={cn(styles.rootContent, classNames?.rootContent)}>
       <div className={styles.badges}>
+        <CircularButton
+          onClick={() => {
+            // gets correct base url for local, prod, etc.
+            const baseUrl = window.location.href.split('/quests')[0]
+            window.location.href = `${baseUrl}/quests`
+          }}
+          className={styles.backButton}
+        >
+          <ArrowLeft />
+        </CircularButton>
         <p className={cn(classNames?.content)}>{gameNameSticker}</p>
         <p className={cn(classNames?.content)}>{sticker}</p>
       </div>
