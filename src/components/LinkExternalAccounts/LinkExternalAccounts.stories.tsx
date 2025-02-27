@@ -44,8 +44,8 @@ const authProviders = [
     icon: <TwitchLogo fill="white" />
   },
   {
-    id: 'twitter',
-    name: 'Twitter/X',
+    id: 'x',
+    name: 'X',
     icon: <XLogo fill="white" />
   },
   {
