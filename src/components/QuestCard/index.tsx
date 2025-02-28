@@ -92,32 +92,31 @@ export function QuestCard({
         ) : null}
         {currenyAmount || currencyName ? (
           <div className={cn(styles.questsDetails, classNames?.questDetails)}>
-            <div
-              className={cn(
-                styles.avatarContainer,
-                classNames?.avatarContainer
-              )}
-            >
-              <img
-                src={rewardImage}
-                alt={`${questName} Reward Image`}
-                className={cn(styles.avatar, classNames?.avatar)}
-              />
-            </div>
-            <div
-              className={cn(styles.questCurrency, classNames?.questCurrency)}
-            >
-              {currenyAmount && (
-                <div className={cn(styles.amount, classNames?.currenyAmount)}>
-                  {currenyAmount}
-                </div>
-              )}
+            <div className={cn(styles.avatarWithName)}>
+              <div
+                className={cn(
+                  styles.avatarContainer,
+                  classNames?.avatarContainer
+                )}
+              >
+                <img
+                  src={rewardImage}
+                  alt={`${questName} Reward Image`}
+                  className={cn(styles.avatar, classNames?.avatar)}
+                />
+              </div>
               <div
                 className={cn(styles.currencyName, classNames?.currencyName)}
               >
                 {currencyName}
               </div>
             </div>
+
+            {currenyAmount && (
+              <div className={cn(styles.amount, classNames?.currenyAmount)}>
+                {currenyAmount}
+              </div>
+            )}
           </div>
         ) : null}
       </div>
