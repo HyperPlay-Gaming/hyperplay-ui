@@ -72,7 +72,7 @@ export const WithYouTubeVideos = () => {
       {
         slideElement: (
           <ReactPlayer
-            url="https://www.youtube.com/watch?v=bGzW-ps-_vc"
+            url="https://youtu.be/N-xHcvug3WI"
             width={'100%'}
             height={'100%'}
             onPlay={onPlay}
