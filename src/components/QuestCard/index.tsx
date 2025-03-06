@@ -11,7 +11,7 @@ export interface QuestCardProps
   questType?: string
   gameTitle?: string
   questName?: string
-  currenyAmount?: string
+  currencyAmount?: string
   currencyName?: string
   rewardImage?: string
   selected?: boolean
@@ -25,7 +25,7 @@ export interface QuestCardProps
     description?: string
     subtitle?: string
     questName?: string
-    currenyAmount?: string
+    currencyAmount?: string
     currencyName?: string
     questCurrency?: string
     avatarContainer?: string
@@ -41,7 +41,7 @@ export function QuestCard({
   questType,
   gameTitle,
   rewardImage,
-  currenyAmount,
+  currencyAmount,
   currencyName,
   classNames,
   className,
@@ -66,58 +66,69 @@ export function QuestCard({
       {...rest}
     >
       <div className={cn(styles.content)}>
-        {title ? (
-          <div className={cn(styles.title, 'menu-item', classNames?.title)}>
-            {title}
-          </div>
-        ) : null}
-        {gameTitle ? (
-          <div
-            className={cn(styles.subtitle, 'caption-sm', classNames?.subtitle)}
-          >
-            {gameTitle}
-          </div>
-        ) : null}
-        {description ? (
-          <div
-            className={cn(styles.description, 'body', classNames?.description)}
-          >
-            {description}
-          </div>
-        ) : null}
-        {questName ? (
-          <div className={cn(styles.questName, 'title', classNames?.questName)}>
-            {questName}
-          </div>
-        ) : null}
-        {currenyAmount || currencyName ? (
-          <div className={cn(styles.questsDetails, classNames?.questDetails)}>
+        <div className={cn(styles.header)}>
+          {title ? (
+            <div className={cn(styles.title, 'menu-item', classNames?.title)}>
+              {title}
+            </div>
+          ) : null}
+          {gameTitle ? (
             <div
               className={cn(
-                styles.avatarContainer,
-                classNames?.avatarContainer
+                styles.subtitle,
+                'caption-sm',
+                classNames?.subtitle
               )}
             >
-              <img
-                src={rewardImage}
-                alt={`${questName} Reward Image`}
-                className={cn(styles.avatar, classNames?.avatar)}
-              />
+              {gameTitle}
             </div>
+          ) : null}
+          {description ? (
             <div
-              className={cn(styles.questCurrency, classNames?.questCurrency)}
-            >
-              {currenyAmount && (
-                <div className={cn(styles.amount, classNames?.currenyAmount)}>
-                  {currenyAmount}
-                </div>
+              className={cn(
+                styles.description,
+                'body',
+                classNames?.description
               )}
+            >
+              {description}
+            </div>
+          ) : null}
+          {questName ? (
+            <div
+              className={cn(styles.questName, 'title', classNames?.questName)}
+            >
+              {questName}
+            </div>
+          ) : null}
+        </div>
+        {currencyAmount || currencyName ? (
+          <div className={cn(styles.questsDetails, classNames?.questDetails)}>
+            <div className={cn(styles.avatarWithName)}>
+              <div
+                className={cn(
+                  styles.avatarContainer,
+                  classNames?.avatarContainer
+                )}
+              >
+                <img
+                  src={rewardImage}
+                  alt={`${questName} Reward Image`}
+                  className={cn(styles.avatar, classNames?.avatar)}
+                />
+              </div>
               <div
                 className={cn(styles.currencyName, classNames?.currencyName)}
               >
                 {currencyName}
               </div>
             </div>
+
+            {currencyAmount && (
+              <div className={cn(styles.amount, classNames?.currencyAmount)}>
+                {currencyAmount}
+              </div>
+            )}
           </div>
         ) : null}
       </div>
