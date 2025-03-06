@@ -25,7 +25,7 @@ export interface QuestCardProps
     description?: string
     subtitle?: string
     questName?: string
-    currenyAmount?: string
+    currencyAmount?: string
     currencyName?: string
     questCurrency?: string
     avatarContainer?: string
@@ -125,7 +125,7 @@ export function QuestCard({
             </div>
 
             {currencyAmount && (
-              <div className={cn(styles.amount, classNames?.currenyAmount)}>
+              <div className={cn(styles.amount, classNames?.currencyAmount)}>
                 {currencyAmount}
               </div>
             )}
