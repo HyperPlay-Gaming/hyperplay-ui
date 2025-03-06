@@ -10,7 +10,6 @@ import styles from './index.module.scss'
 export interface SlideData {
   slideElement: JSX.Element
   thumbnail?: JSX.Element
-  disableGradient?: boolean
   button?: JSX.Element
   key?: string
 }
@@ -47,10 +46,7 @@ const Carouselv2 = ({
 
   function getSlides() {
     return props.items.map((item) => (
-      <Carousel.Slide
-        key={item.key}
-        id={item.disableGradient ? 'disableGradient' : 'enableGradient'}
-      >
+      <Carousel.Slide key={item.key}>
         {item.slideElement}
         {item.button && <div className={styles.title}>{item.button}</div>}
       </Carousel.Slide>
