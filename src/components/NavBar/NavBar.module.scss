@@ -24,7 +24,7 @@
     padding: var(--text-2xl) var(--space-xl-fixed);
   }
   @include variables.for-tablet-landscape-up {
-    padding: var(--text-2xl) var(--space-2xl-fixed);
+    padding: var(--text-2xl) var(--text-2xl);
   }
   @include variables.for-desktop-up {
     padding: var(--text-2xl) var(--text-4xl);
@@ -71,6 +71,30 @@
   }
   @include variables.for-desktop-up {
     display: flex;
+  }
+
+  .menuSocial {
+    @include variables.for-tablet-landscape-up {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      gap: var(--space-2xs-fixed);
+
+      a:nth-child(3) {
+        grid-column: 1 / 3;
+        justify-self: center;
+      }
+    }
+    @include variables.for-desktop-up {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      a:nth-child(3) {
+        grid-column: unset;
+        justify-self: unset;
+      }
+    }
   }
 }
 
@@ -192,5 +216,17 @@
 
   @include variables.for-tablet-landscape-up {
     display: inline-block;
+
+    a {
+      font-size: var(--text-sm);
+    }
+  }
+
+  @include variables.for-desktop-up {
+    display: inline-block;
+
+    a {
+      font-size: var(--text-lg);
+    }
   }
 }

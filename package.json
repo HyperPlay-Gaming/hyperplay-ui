@@ -24,12 +24,11 @@
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.23.9",
     "@babel/preset-typescript": "^7.23.3",
-    "@emotion/react": "^11.11.0",
-    "@mantine/carousel": "^7.15.0",
-    "@mantine/core": "^7.15.0",
-    "@mantine/dropzone": "^7.15.0",
-    "@mantine/form": "^7.15.0",
-    "@mantine/hooks": "^7.15.0",
+    "@mantine/carousel": "^7.16.3",
+    "@mantine/core": "^7.16.3",
+    "@mantine/dropzone": "^7.16.3",
+    "@mantine/form": "^7.16.3",
+    "@mantine/hooks": "^7.16.3",
     "@storybook/addon-actions": "^7.6.12",
     "@storybook/addon-essentials": "^7.6.12",
     "@storybook/addon-interactions": "^7.6.12",
@@ -54,8 +53,8 @@
     "@vitejs/plugin-react-swc": "^3.1.0",
     "babel-loader": "^8.3.0",
     "classnames": "^2.3.2",
-    "embla-carousel-autoplay": "^8.0.0-rc11",
-    "embla-carousel-react": "^8.0.0-rc11",
+    "embla-carousel-autoplay": "^8.5.2",
+    "embla-carousel-react": "^8.5.2",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",
@@ -91,13 +90,12 @@
     "zod": "^3.22.4"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.11.0",
-    "@mantine/carousel": "^7.15.0",
-    "@mantine/core": "^7.15.0",
-    "@mantine/dropzone": "^7.15.0",
-    "@mantine/hooks": "^7.15.0",
-    "embla-carousel-autoplay": ">=7.0.0",
-    "embla-carousel-react": ">=7.0.0",
+    "@mantine/carousel": "^7.16.3",
+    "@mantine/core": "^7.16.3",
+    "@mantine/dropzone": "^7.16.3",
+    "@mantine/hooks": "^7.16.3",
+    "embla-carousel-autoplay": ">=8.5.2",
+    "embla-carousel-react": ">=8.5.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-markdown": "9.0.1"
@@ -141,5 +139,6 @@
     "@tabler/icons-react": "^2.46.0",
     "@valist/sdk": "^2.9.1",
     "ethereum-blockies-base64": "^1.0.2"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
