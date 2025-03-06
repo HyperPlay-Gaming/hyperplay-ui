@@ -5,7 +5,7 @@ import questCardV2Image from '@/assets/banners/QuestCardV2Image.png?url'
 import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url'
 
 import { QuestCard, QuestCardProps } from '.'
-import stlyes from './QuestCardStory.module.scss'
+import styles from './QuestCardStory.module.scss'
 
 const meta: Meta<typeof QuestCard> = {
   title: 'Quests/QuestCard',
@@ -34,10 +34,10 @@ export const Detailed: Story = {
     questType: 'Quest Type',
     gameTitle: 'Game Title',
     questName: 'Quest Name',
-    currenyAmount: '+200',
-    currencyName: 'G7 Credits',
+    currencyAmount: '+200',
+    currencyName: 'Symbol of Luminant',
     classNames: {
-      root: stlyes.root
+      root: styles.root
     }
   }
 }
@@ -49,9 +49,9 @@ export const WithoutCredits: Story = {
     questType: 'Quest Type',
     gameTitle: 'Game Title',
     questName: 'Quest Name',
-    currencyName: 'G7 Credits',
+    currencyName: 'Symbol of Luminant',
     classNames: {
-      root: stlyes.root
+      root: styles.root
     }
   }
 }
@@ -64,7 +64,7 @@ export const WithoutCurrencySection: Story = {
     gameTitle: 'Game Title',
     questName: 'Quest Name',
     classNames: {
-      root: stlyes.root
+      root: styles.root
     }
   }
 }
@@ -75,10 +75,11 @@ export const WithoutQuestType: Story = {
     rewardImage: cupheadCard,
     gameTitle: 'Game Title',
     questName: 'Quest Name',
-    currenyAmount: '+200',
-    currencyName: 'G7 Credits',
+    currencyAmount: '+200',
+    currencyName: 'Symbol of Luminant',
     classNames: {
-      root: stlyes.root
+      root: styles.root,
+      image: styles.oddSizedImage
     }
   }
 }
@@ -89,10 +90,24 @@ export const WithoutGameTitleAndDescriptipn: Story = {
     rewardImage: cupheadCard,
     gameTitle: 'Game Title',
     description: 'Quest Name',
-    currenyAmount: '+200',
-    currencyName: 'G7 Credits',
+    currencyAmount: '+200',
+    currencyName: 'Symbol of Luminant',
     classNames: {
-      root: stlyes.root
+      root: styles.root
+    }
+  }
+}
+
+export const OddSize: Story = {
+  args: {
+    image: questCardV2Image,
+    rewardImage: cupheadCard,
+    gameTitle: 'Game Title',
+    description: 'Quest Name',
+    currencyAmount: '+200',
+    currencyName: 'Symbol of Luminant',
+    classNames: {
+      root: styles.root
     }
   }
 }
@@ -103,10 +118,10 @@ export const CardWithDivProps: Story = {
     rewardImage: cupheadCard,
     gameTitle: 'Game Title',
     description: 'Quest Name',
-    currenyAmount: '+200',
-    currencyName: 'G7 Credits',
+    currencyAmount: '+200',
+    currencyName: 'Symbol of Luminant',
     classNames: {
-      root: stlyes.root
+      root: styles.root
     },
     id: 'quest-id-554'
   },
