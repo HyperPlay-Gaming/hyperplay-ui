@@ -1,6 +1,6 @@
 import React, { ElementType, useRef, useState } from 'react'
 
-import classNames from 'classnames'
+import cn from 'classnames'
 
 import { BurgerClosedIcon, BurgerOpenIcon } from '@/assets/images'
 import hpIconLight from '@/assets/images/MobileHpLogo.svg?url'
@@ -14,6 +14,11 @@ interface Props<LinkType extends ElementType = 'a'> {
   socialLinks: React.ReactElement[]
   Link?: LinkType
   mobileDropdownCTA?: React.ReactElement
+  classNames?: {
+    root?: string
+    bannerContainer?: string
+    navbarDropdown?: string
+  }
 }
 
 const NavBar = function ({
@@ -21,7 +26,8 @@ const NavBar = function ({
   links,
   socialLinks,
   Link = 'a',
-  mobileDropdownCTA
+  mobileDropdownCTA,
+  classNames
 }: Props) {
   const [showNavBarDropDown, setShowNavBarDropDown] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
@@ -32,8 +38,14 @@ const NavBar = function ({
   }
 
   return (
-    <>
-      <div className={navBarStyles.bannerContainer} ref={ref}>
+    <div className={classNames?.root}>
+      <div
+        className={cn(
+          navBarStyles.bannerContainer,
+          classNames?.bannerContainer
+        )}
+        ref={ref}
+      >
         <div className={navBarStyles.navbar}>
           <Link href="/">
             <div className={`${navBarStyles.navLogo}`}>
@@ -83,14 +95,18 @@ const NavBar = function ({
         </div>
       </div>
       <div
-        className={classNames(navBarStyles.navbarDropdown, {
-          [navBarStyles.isMenuOpen]: showNavBarDropDown
-        })}
+        className={cn(
+          navBarStyles.navbarDropdown,
+          {
+            [navBarStyles.isMenuOpen]: showNavBarDropDown
+          },
+          classNames?.navbarDropdown
+        )}
       >
         {links}
         {mobileDropdownCTA}
       </div>
-    </>
+    </div>
   )
 }
 
