@@ -12,7 +12,7 @@ export interface NavBarLinkProps<LinkType extends ElementType = 'a'> {
   isDropdownLink?: boolean
 }
 
-export default function NavBarLink({
+export function NavBarLink({
   isMenuLink,
   isDropdownLink,
   Link = 'a',

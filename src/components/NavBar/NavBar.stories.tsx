@@ -8,7 +8,7 @@ import githubLogo from '@/assets/logos/github.svg?url'
 import { AccountAvatar, Button } from '@/index'
 
 import NavBar from '.'
-import NavBarLink from './NavBarLink'
+import { NavBarLink } from './NavBarLink'
 
 // add storybook meta data
 const meta: Meta<typeof NavBar> = {
