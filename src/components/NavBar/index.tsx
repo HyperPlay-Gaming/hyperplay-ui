@@ -1,6 +1,8 @@
 import React, { ElementType, useRef, useState } from 'react'
 
-import burgerMenuIcon from '@/assets/images/BurgerClosedIcon.svg?url'
+import classNames from 'classnames'
+
+import { BurgerClosedIcon, BurgerOpenIcon } from '@/assets/images'
 import hpIconLight from '@/assets/images/MobileHpLogo.svg?url'
 
 import Button from '../Button'
@@ -11,16 +13,23 @@ interface Props<LinkType extends ElementType = 'a'> {
   links: React.ReactElement[]
   socialLinks: React.ReactElement[]
   Link?: LinkType
+  mobileDropdownCTA?: React.ReactElement
 }
 
 const NavBar = function ({
   UserAvatar,
   links,
   socialLinks,
-  Link = 'a'
+  Link = 'a',
+  mobileDropdownCTA
 }: Props) {
   const [showNavBarDropDown, setShowNavBarDropDown] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
+
+  let userAvatar = null
+  if (UserAvatar) {
+    userAvatar = <div className={navBarStyles.avatarDesktop}>{UserAvatar}</div>
+  }
 
   return (
     <>
@@ -46,7 +55,13 @@ const NavBar = function ({
               className={navBarStyles.burgerMenu}
               onClick={() => setShowNavBarDropDown(!showNavBarDropDown)}
             >
-              <img src={burgerMenuIcon} alt="Menu Button" />
+              {showNavBarDropDown ? (
+                <BurgerOpenIcon className={navBarStyles.mobileMenuToggleIcon} />
+              ) : (
+                <BurgerClosedIcon
+                  className={navBarStyles.mobileMenuToggleIcon}
+                />
+              )}
             </button>
           </div>
           <div className={navBarStyles.links}>{links}</div>
@@ -59,19 +74,22 @@ const NavBar = function ({
               rel="noopener noreferrer"
               data-testid="install-hyperplay"
             >
-              <Button type="primary">
+              <Button type="secondaryGradient" size="medium" spacing="lg">
                 <div className="button-sm">Install HyperPlay</div>
               </Button>
             </Link>
-            {UserAvatar ? (
-              <div className={navBarStyles.avatarDesktop}>{UserAvatar}</div>
-            ) : null}
+            {userAvatar}
           </div>
         </div>
       </div>
-      {showNavBarDropDown ? (
-        <div className={navBarStyles.navbarDropdown}>{links}</div>
-      ) : null}
+      <div
+        className={classNames(navBarStyles.navbarDropdown, {
+          [navBarStyles.isMenuOpen]: showNavBarDropDown
+        })}
+      >
+        {links}
+        {mobileDropdownCTA}
+      </div>
     </>
   )
 }

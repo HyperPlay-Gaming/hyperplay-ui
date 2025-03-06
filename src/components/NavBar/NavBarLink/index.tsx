@@ -9,16 +9,23 @@ export interface NavBarLinkProps<LinkType extends ElementType = 'a'> {
   Link?: LinkType
   linkProps: ComponentPropsWithoutRef<LinkType> & { 'data-testid'?: string }
   children?: React.ReactNode
+  isDropdownLink?: boolean
 }
 
 export default function NavBarLink({
   isMenuLink,
+  isDropdownLink,
   Link = 'a',
   linkProps,
   children
 }: NavBarLinkProps) {
   const { className, ...props } = linkProps
-  let linkClassNames = classNames(styles.navItem, 'menu', className)
+  let linkClassNames = classNames(
+    styles.navItem,
+    { [styles.dropdownLink]: isDropdownLink },
+    'menu',
+    className
+  )
   if (isMenuLink) {
     linkClassNames = classNames(styles.navbarLinkImg, className)
   }

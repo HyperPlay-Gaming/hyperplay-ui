@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import xLogoFilled from '@/assets/images/XLogoFilled.svg?url'
 import discordLogo from '@/assets/logos/discord.svg?url'
 import githubLogo from '@/assets/logos/github.svg?url'
-import { AccountAvatar } from '@/index'
+import { AccountAvatar, Button } from '@/index'
 
 import NavBar from '.'
 import NavBarLink from './NavBarLink'
@@ -28,6 +28,7 @@ const links = [
       rel: 'noopener noreferrer',
       'data-testid': 'store'
     }}
+    isDropdownLink
     key="store"
   >
     Store
@@ -39,6 +40,7 @@ const links = [
       rel: 'noopener noreferrer',
       'data-testid': 'quests'
     }}
+    isDropdownLink
     key="quests"
   >
     Quests
@@ -50,6 +52,7 @@ const links = [
       rel: 'noopener noreferrer',
       'data-testid': 'developers'
     }}
+    isDropdownLink
     key="developers"
   >
     Developers
@@ -61,6 +64,7 @@ const links = [
       rel: 'noopener noreferrer',
       'data-testid': 'docs'
     }}
+    isDropdownLink
     key="docs"
   >
     Docs
@@ -72,6 +76,7 @@ const links = [
       rel: 'noopener noreferrer',
       'data-testid': 'FAQ'
     }}
+    isDropdownLink
     key="FAQ"
   >
     FAQ
@@ -119,5 +124,14 @@ export const Default = () => <NavBar links={links} socialLinks={socialLinks} />
 export const WithUserAvatar: Story = {
   args: {
     UserAvatar: <AccountAvatar userId="johndoe@mail.com" />
+  }
+}
+
+export const WithMobileDropdownCTA: Story = {
+  args: {
+    UserAvatar: <AccountAvatar userId="johndoe@mail.com" />,
+    mobileDropdownCTA: <Button type="secondary">CTA TEST</Button>,
+    links,
+    socialLinks
   }
 }
