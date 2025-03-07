@@ -10,10 +10,10 @@ import navBarStyles from './NavBar.module.scss'
 
 interface Props<LinkType extends ElementType = 'a'> {
   UserAvatar?: React.ReactNode
-  links: React.ReactElement[]
-  socialLinks: React.ReactElement[]
+  links: React.ReactNode
+  socialLinks: React.ReactNode
   Link?: LinkType
-  mobileDropdownCTA?: React.ReactElement
+  mobileDropdownCTA?: React.ReactNode
   classNames?: {
     root?: string
     bannerContainer?: string
