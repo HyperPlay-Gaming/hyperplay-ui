@@ -21,6 +21,9 @@ interface Props {
     navbarDropdown?: string
     navbar?: string
   }
+  i18n?: {
+    installHyperPlay: string
+  }
 }
 
 const NavBar = function ({
@@ -29,7 +32,10 @@ const NavBar = function ({
   socialLinks,
   Link,
   mobileDropdownCTA,
-  classNames
+  classNames,
+  i18n = {
+    installHyperPlay: 'Install HyperPlay'
+  }
 }: Props) {
   const LinkElement = Link || 'a'
   const [showNavBarDropDown, setShowNavBarDropDown] = useState(false)
@@ -90,7 +96,7 @@ const NavBar = function ({
               data-testid="install-hyperplay"
             >
               <Button type="secondaryGradient" size="medium" spacing="lg">
-                <div className="button-sm">Install HyperPlay</div>
+                <div className="button-sm">{i18n.installHyperPlay}</div>
               </Button>
             </Link>
             {userAvatar}
