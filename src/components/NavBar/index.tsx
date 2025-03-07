@@ -1,4 +1,4 @@
-import React, { ElementType, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import cn from 'classnames'
 
@@ -8,11 +8,12 @@ import hpIconLight from '@/assets/images/MobileHpLogo.svg?url'
 import Button from '../Button'
 import navBarStyles from './NavBar.module.scss'
 
-interface Props<LinkType extends ElementType = 'a'> {
+interface Props {
   UserAvatar?: React.ReactNode
   links: React.ReactNode
   socialLinks: React.ReactNode
-  Link?: LinkType
+  /* eslint-disable-next-line */
+  Link?: any
   mobileDropdownCTA?: React.ReactNode
   classNames?: {
     root?: string
@@ -26,10 +27,11 @@ const NavBar = function ({
   UserAvatar,
   links,
   socialLinks,
-  Link = 'a',
+  Link,
   mobileDropdownCTA,
   classNames
 }: Props) {
+  const LinkElement = Link || 'a'
   const [showNavBarDropDown, setShowNavBarDropDown] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
 
@@ -48,7 +50,7 @@ const NavBar = function ({
         ref={ref}
       >
         <div className={cn(navBarStyles.navbar, classNames?.navbar)}>
-          <Link href="/">
+          <LinkElement href="/">
             <div className={`${navBarStyles.navLogo}`}>
               <div className={navBarStyles.navbarLogoImg}>
                 <img
@@ -61,7 +63,7 @@ const NavBar = function ({
               </div>
               <div className={navBarStyles.hpLogoText}>HyperPlay</div>
             </div>
-          </Link>
+          </LinkElement>
           <div className={navBarStyles.dropdownContainer}>
             {UserAvatar}
             <button

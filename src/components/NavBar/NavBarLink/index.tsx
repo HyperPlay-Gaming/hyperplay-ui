@@ -1,13 +1,15 @@
-import React, { ComponentPropsWithoutRef, ElementType } from 'react'
+import React from 'react'
 
 import classNames from 'classnames'
 
 import styles from './index.module.scss'
 
-export interface NavBarLinkProps<LinkType extends ElementType = 'a'> {
+export interface NavBarLinkProps {
   isMenuLink?: boolean
-  Link?: LinkType
-  linkProps: ComponentPropsWithoutRef<LinkType> & { 'data-testid'?: string }
+  /* eslint-disable-next-line */
+  Link?: any
+  /* eslint-disable-next-line */
+  linkProps: any
   children?: React.ReactNode
   isDropdownLink?: boolean
 }
@@ -15,10 +17,11 @@ export interface NavBarLinkProps<LinkType extends ElementType = 'a'> {
 export function NavBarLink({
   isMenuLink,
   isDropdownLink,
-  Link = 'a',
+  Link,
   linkProps,
   children
 }: NavBarLinkProps) {
+  const LinkElement = Link || 'a'
   const { className, ...props } = linkProps
   let linkClassNames = classNames(
     styles.navItem,
@@ -30,8 +33,8 @@ export function NavBarLink({
     linkClassNames = classNames(styles.navbarLinkImg, className)
   }
   return (
-    <Link className={linkClassNames} {...props}>
+    <LinkElement className={linkClassNames} {...props}>
       {children}
-    </Link>
+    </LinkElement>
   )
 }
