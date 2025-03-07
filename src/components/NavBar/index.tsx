@@ -18,6 +18,7 @@ interface Props<LinkType extends ElementType = 'a'> {
     root?: string
     bannerContainer?: string
     navbarDropdown?: string
+    navbar?: string
   }
 }
 
@@ -46,7 +47,7 @@ const NavBar = function ({
         )}
         ref={ref}
       >
-        <div className={navBarStyles.navbar}>
+        <div className={cn(navBarStyles.navbar, classNames?.navbar)}>
           <Link href="/">
             <div className={`${navBarStyles.navLogo}`}>
               <div className={navBarStyles.navbarLogoImg}>
