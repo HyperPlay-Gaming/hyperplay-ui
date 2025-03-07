@@ -30,14 +30,13 @@ const NavBar = function ({
   UserAvatar,
   links,
   socialLinks,
-  Link,
+  Link = 'a',
   mobileDropdownCTA,
   classNames,
   i18n = {
     installHyperPlay: 'Install HyperPlay'
   }
 }: Props) {
-  const LinkElement = Link || 'a'
   const [showNavBarDropDown, setShowNavBarDropDown] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
 
@@ -56,7 +55,7 @@ const NavBar = function ({
         ref={ref}
       >
         <div className={cn(navBarStyles.navbar, classNames?.navbar)}>
-          <LinkElement href="/">
+          <Link href="/">
             <div className={`${navBarStyles.navLogo}`}>
               <div className={navBarStyles.navbarLogoImg}>
                 <img
@@ -69,7 +68,7 @@ const NavBar = function ({
               </div>
               <div className={navBarStyles.hpLogoText}>HyperPlay</div>
             </div>
-          </LinkElement>
+          </Link>
           <div className={navBarStyles.dropdownContainer}>
             {UserAvatar}
             <button
