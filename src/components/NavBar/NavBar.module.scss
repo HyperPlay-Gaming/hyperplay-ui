@@ -110,14 +110,15 @@
   visibility: hidden;
   transition: opacity 0.3s ease-in, max-height 0.3s ease-in,
     visibility 0.3s ease-in;
-  padding: var(--space-2lg) 0;
-
-  border-top: 1px solid var(--color-neutral-600);
+  padding: 0px;
+  border: none;
 
   &.isMenuOpen {
     max-height: 800px;
     opacity: 1;
     visibility: visible;
+    padding: var(--space-2lg) 0;
+    border-top: 1px solid var(--color-neutral-600);
   }
 
   @include variables.for-mobile-only {
