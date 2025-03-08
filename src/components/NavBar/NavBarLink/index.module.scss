@@ -1,11 +1,13 @@
 @use '../../../styles/utilities/_variables';
 
 .navItem {
-  padding: 100px;
-  padding: var(--space-sm) var(--space-sm);
-  width: 100%;
+  padding: var(--space-sm);
+  width: auto;
   text-align: center;
   color: var(--color-neutral-400) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   &.dropdownLink {
     text-align: left;
