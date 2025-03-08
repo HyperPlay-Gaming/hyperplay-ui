@@ -1,82 +1,65 @@
 import React, { useRef, useState } from 'react'
 
-import burgerMenuIcon from '@/assets/images/BurgerClosedIcon.svg?url'
+import cn from 'classnames'
+
+import { BurgerClosedIcon, BurgerOpenIcon } from '@/assets/images'
 import hpIconLight from '@/assets/images/MobileHpLogo.svg?url'
-import xLogoFilled from '@/assets/images/XLogoFilled.svg?url'
-import discordLogo from '@/assets/logos/discord.svg?url'
-import githubLogo from '@/assets/logos/github.svg?url'
 
 import Button from '../Button'
 import navBarStyles from './NavBar.module.scss'
 
 interface Props {
   UserAvatar?: React.ReactNode
+  links: React.ReactNode
+  socialLinks: React.ReactNode
+  /* eslint-disable-next-line */
+  Link?: any
+  mobileDropdownCTA?: React.ReactNode
+  classNames?: {
+    root?: string
+    bannerContainer?: string
+    navbarDropdown?: string
+    navbar?: string
+  }
+  i18n?: {
+    installHyperPlay: string
+  }
 }
 
-const NavBar = function ({ UserAvatar }: Props) {
+const NavBar = function ({
+  UserAvatar,
+  links,
+  socialLinks,
+  Link = 'a',
+  mobileDropdownCTA,
+  classNames,
+  i18n = {
+    installHyperPlay: 'Install HyperPlay'
+  }
+}: Props) {
   const [showNavBarDropDown, setShowNavBarDropDown] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
 
-  const getLinks = () => (
-    <>
-      <a
-        className={`${navBarStyles.navItem} menu`}
-        href="https://store.hyperplay.xyz/"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-testid="store"
-      >
-        Store
-      </a>
-      <a
-        className={`${navBarStyles.navItem} menu`}
-        href="https://store.hyperplay.xyz/quests"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-testid="quests"
-      >
-        Quests
-      </a>
-      <a
-        className={`${navBarStyles.navItem} menu`}
-        href="https://hyperplay.xyz/developers"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-testid="developers"
-      >
-        Developers
-      </a>
-      <a
-        className={`${navBarStyles.navItem} menu`}
-        href="https://docs.hyperplay.xyz/"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-testid="docs"
-      >
-        Docs
-      </a>
-      <a
-        className={`${navBarStyles.navItem} menu`}
-        href="https://docs.hyperplay.xyz/faq"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-testid="FAQ"
-      >
-        FAQ
-      </a>
-    </>
-  )
+  let userAvatar = null
+  if (UserAvatar) {
+    userAvatar = <div className={navBarStyles.avatarDesktop}>{UserAvatar}</div>
+  }
 
   return (
-    <>
-      <div className={navBarStyles.bannerContainer} ref={ref}>
-        <div className={navBarStyles.navbar}>
-          <a href="/">
+    <div className={classNames?.root}>
+      <div
+        className={cn(
+          navBarStyles.bannerContainer,
+          classNames?.bannerContainer
+        )}
+        ref={ref}
+      >
+        <div className={cn(navBarStyles.navbar, classNames?.navbar)}>
+          <Link href="/">
             <div className={`${navBarStyles.navLogo}`}>
               <div className={navBarStyles.navbarLogoImg}>
                 <img
                   src={hpIconLight}
-                  //fill={true}
                   style={{ objectFit: 'contain' }}
                   alt="HyperPlay Logo"
                   height="24px"
@@ -85,68 +68,53 @@ const NavBar = function ({ UserAvatar }: Props) {
               </div>
               <div className={navBarStyles.hpLogoText}>HyperPlay</div>
             </div>
-          </a>
+          </Link>
           <div className={navBarStyles.dropdownContainer}>
             {UserAvatar}
             <button
               className={navBarStyles.burgerMenu}
               onClick={() => setShowNavBarDropDown(!showNavBarDropDown)}
             >
-              <img src={burgerMenuIcon} alt="Menu Button" />
+              {showNavBarDropDown ? (
+                <BurgerOpenIcon className={navBarStyles.mobileMenuToggleIcon} />
+              ) : (
+                <BurgerClosedIcon
+                  className={navBarStyles.mobileMenuToggleIcon}
+                />
+              )}
             </button>
           </div>
-          <div className={navBarStyles.links}>{getLinks()}</div>
+          <div className={navBarStyles.links}>{links}</div>
           <div className={navBarStyles.menu}>
-            <div className={navBarStyles.menuSocial}>
-              <a
-                className={navBarStyles.navbarLinkImg}
-                href="https://discord.gg/hyperplay"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="discord-link"
-              >
-                <img src={discordLogo} alt="Discord Link" />
-              </a>
-              <a
-                className={navBarStyles.navbarLinkImg}
-                href="https://x.com/HyperPlayGaming"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="x-link"
-              >
-                <img src={xLogoFilled} alt="X Link" />
-              </a>
-              <a
-                className={navBarStyles.navbarLinkImg}
-                href="https://github.com/HyperPlay-Gaming"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="github-link"
-              >
-                <img src={githubLogo} alt="GitHub Link" />
-              </a>
-            </div>
-            <a
+            <div className={navBarStyles.menuSocial}>{socialLinks}</div>
+            <Link
               className={`${navBarStyles.navItem} menu`}
               href="https://www.hyperplay.xyz/downloads"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="install-hyperplay"
             >
-              <Button type="primary">
-                <div className="button-sm">Install HyperPlay</div>
+              <Button type="secondaryGradient" size="medium" spacing="lg">
+                <div className="button-sm">{i18n.installHyperPlay}</div>
               </Button>
-            </a>
-            {UserAvatar ? (
-              <div className={navBarStyles.avatarDesktop}>{UserAvatar}</div>
-            ) : null}
+            </Link>
+            {userAvatar}
           </div>
         </div>
       </div>
-      {showNavBarDropDown ? (
-        <div className={navBarStyles.navbarDropdown}>{getLinks()}</div>
-      ) : null}
-    </>
+      <div
+        className={cn(
+          navBarStyles.navbarDropdown,
+          {
+            [navBarStyles.isMenuOpen]: showNavBarDropDown
+          },
+          classNames?.navbarDropdown
+        )}
+      >
+        {links}
+        {mobileDropdownCTA}
+      </div>
+    </div>
   )
 }
 

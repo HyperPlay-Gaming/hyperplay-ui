@@ -6,7 +6,7 @@
   position: sticky;
   top: 0px;
   left: 0;
-  background-color: black;
+  background-color: var(--color-neutral-900);
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -31,20 +31,6 @@
   }
 }
 
-.navbarLinkImg {
-  height: 20px;
-  width: 20px;
-  margin: 0px 10px;
-  @include variables.imageWrapper;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    object-fit: contain;
-  }
-}
-
 .navbarLogoImg {
   height: 24px;
   width: 24px;
@@ -52,13 +38,10 @@
   @include variables.imageWrapper;
 }
 
-.navItem {
-  padding: 0px 20px;
-}
-
 .menu {
   align-items: center;
   display: flex;
+  gap: var(--space-2lg);
 
   @include variables.for-mobile-only {
     display: none;
@@ -74,27 +57,9 @@
   }
 
   .menuSocial {
-    @include variables.for-tablet-landscape-up {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      align-items: center;
-      gap: var(--space-2xs-fixed);
-
-      a:nth-child(3) {
-        grid-column: 1 / 3;
-        justify-self: center;
-      }
-    }
-    @include variables.for-desktop-up {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
-      a:nth-child(3) {
-        grid-column: unset;
-        justify-self: unset;
-      }
-    }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 }
 
@@ -124,8 +89,9 @@
   @include variables.imageWrapper;
   background-color: transparent;
 
-  img {
+  svg {
     object-fit: contain;
+    padding: 4px;
   }
 }
 
@@ -136,13 +102,24 @@
 .navbarDropdown {
   display: flex;
   flex-direction: column;
-  position: fixed;
-  right: 0%;
-  left: 0%;
-  top: 9%;
   z-index: 100;
-  background-color: black;
+  background: var(--color-neutral-900);
   align-items: center;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in, max-height 0.3s ease-in,
+    visibility 0.3s ease-in, padding 0.3s ease-in;
+  padding: 0px;
+  border: none;
+
+  &.isMenuOpen {
+    max-height: 800px;
+    opacity: 1;
+    visibility: visible;
+    padding: var(--space-2lg) 0;
+    border-top: 1px solid var(--color-neutral-600);
+  }
 
   @include variables.for-mobile-only {
     display: flex;
@@ -156,17 +133,6 @@
   @include variables.for-desktop-up {
     display: none;
   }
-}
-
-.navbarDropdown a:hover {
-  background-color: #0e0e0e;
-  color: var(--grayscale-01-300);
-}
-
-.navbarDropdown a {
-  padding: var(--space-3xs) 0px;
-  width: 100%;
-  text-align: center;
 }
 
 .dropdownContainer {
