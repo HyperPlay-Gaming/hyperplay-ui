@@ -57,9 +57,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 16px;
-  height: 16px;
+  width: var(--space-md);
+  height: var(--space-md);
   overflow: hidden;
   border: 1.8px solid var(--color-success-200);
   background: var(--color-neutral-700);
+
+  & > svg {
+    width: var(--space-md);
+    height: var(--space-md);
+  }
 }
