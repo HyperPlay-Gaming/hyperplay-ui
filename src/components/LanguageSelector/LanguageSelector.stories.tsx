@@ -20,3 +20,10 @@ const props: LanguageSelectorProps = {
 export const Default: Story = {
   args: { ...props }
 }
+
+export const CustomLocales: Story = {
+  args: {
+    ...props,
+    locales: ['en', 'es', 'ko', 'ja', 'zh_Hans']
+  }
+}
