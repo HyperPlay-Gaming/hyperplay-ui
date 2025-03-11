@@ -1,11 +1,18 @@
 import React from 'react'
 
 import LanguageSelectorStyle from './LanguageSelector.module.scss'
-import { FLAG_POSITION, languageFlags, languageLabels } from './constants'
+import {
+  FLAG_POSITION,
+  SupportedLocale,
+  locales as defaultLocales,
+  languageFlags,
+  languageLabels
+} from './constants'
 
 export * from './constants'
 
 export interface LanguageSelectorProps {
+  locales?: readonly SupportedLocale[]
   flagPosition?: FLAG_POSITION
   showWeblateLink?: boolean
   i18n: {
@@ -15,6 +22,7 @@ export interface LanguageSelectorProps {
 }
 
 export function LanguageSelector({
+  locales = defaultLocales,
   flagPosition = FLAG_POSITION.PREPEND,
   i18n
 }: LanguageSelectorProps) {
@@ -24,7 +32,7 @@ export function LanguageSelector({
     i18n.changeLanguage(newLanguage)
   }
 
-  const renderOption = (lang: string) => {
+  const renderOption = (lang: SupportedLocale) => {
     const flag = languageFlags[lang]
     const label = languageLabels[lang]
 
@@ -54,7 +62,7 @@ export function LanguageSelector({
           value={currentLanguage}
           onChange={(e) => handleChangeLanguage(e.target.value)}
         >
-          {Object.keys(languageLabels).map(renderOption)}
+          {locales.map(renderOption)}
         </select>
       </div>
     </>

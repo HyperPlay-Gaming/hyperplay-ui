@@ -18,12 +18,11 @@ export default {
 const items: SlideData[] = [
   {
     slideElement: <img src={pgCover} />,
-    title: 'Phantom Galaxies',
     button: <Button>View Game</Button>
   },
-  { slideElement: <img src={dtCover} />, title: 'Dark Throne' },
-  { slideElement: <img src={wakeCover} />, title: 'The Wake' },
-  { slideElement: <img src={onisCover} />, title: 'Onis Quest' }
+  { slideElement: <img src={dtCover} /> },
+  { slideElement: <img src={wakeCover} /> },
+  { slideElement: <img src={onisCover} /> }
 ]
 
 export const Default = () => (
@@ -73,7 +72,7 @@ export const WithYouTubeVideos = () => {
       {
         slideElement: (
           <ReactPlayer
-            url="https://www.youtube.com/watch?v=bGzW-ps-_vc"
+            url="https://youtu.be/N-xHcvug3WI"
             width={'100%'}
             height={'100%'}
             onPlay={onPlay}

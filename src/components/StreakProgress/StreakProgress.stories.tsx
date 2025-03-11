@@ -22,11 +22,21 @@ const props: StreakProgressProps = {
   lastPlaySessionCompletedDateTimeUTC: new Date(
     Date.now() - oneDayInMs
   ).toUTCString(),
-  dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now()
+  dateTimeCurrentSessionStartedInMsSinceEpoch: Date.now(),
+  streakIsProgressing: true
 }
 
 export const Default: Story = {
   args: { ...props }
+}
+
+export const PlaystreakWhenUserNotPlaying: Story = {
+  args: {
+    ...props,
+    currentStreakInDays: 2,
+    requiredStreakInDays: 7,
+    streakIsProgressing: false
+  }
 }
 
 export const PlayStreak: Story = {
