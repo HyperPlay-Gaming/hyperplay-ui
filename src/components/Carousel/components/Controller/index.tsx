@@ -36,7 +36,7 @@ const Controller = ({ images, onChange, activeIndex }: ControllerProps) => {
       <LeftButton onClick={previousImage} />
       {images.slice(startIndex, endIndex).map((Image, index) => (
         <Item
-          key={startIndex + index}
+          key={`hyperplay_carousel_controller_${startIndex + index}`}
           imageElement={Image}
           isActive={startIndex + index === activeIndex}
           onClick={() => handleClick(startIndex + index)}
