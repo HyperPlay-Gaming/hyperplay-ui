@@ -1,4 +1,4 @@
-name: Check Package.json Version Bump
+name: Check Package.json Version Bump (Informational)
 
 on:
   pull_request:
@@ -11,6 +11,8 @@ on:
 jobs:
   check-version-bump:
     runs-on: ubuntu-latest
+    # Set continue-on-error to true to make this check non-blocking
+    continue-on-error: true
     steps:
       - name: Checkout PR Code
         uses: actions/checkout@v3
@@ -24,6 +26,8 @@ jobs:
           cache: 'yarn'
 
       - name: Check for version bump
+        id: version-check
+        continue-on-error: true
         run: |
           # If we're on a PR, diff against the PR base
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
@@ -53,13 +57,27 @@ jobs:
             # Compare versions using semver
             if node -e "process.exit(require('semver').gt('$CURRENT_VERSION', '$BASE_VERSION') ? 0 : 1)"; then
               echo "✅ Version bump detected: $BASE_VERSION -> $CURRENT_VERSION"
-              exit 0
+              echo "::notice::✅ Version bump detected: $BASE_VERSION -> $CURRENT_VERSION"
             else
               echo "❌ No version bump detected! Please update the version in package.json"
+              echo "::warning::❌ No version bump detected in package.json! This PR may not trigger a new NPM release."
               exit 1
             fi
           else
             echo "⚠️ package.json not modified in this PR/commit."
-            echo "❌ Please update the version in package.json"
+            echo "::warning::⚠️ package.json not modified. This PR may not trigger a new NPM release."
             exit 1
           fi
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request' && steps.version-check.outcome == 'failure'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚠️ **Reminder:** The version in package.json has not been updated in this PR. If you intend for this PR to trigger a new NPM release, please update the version number.'
+            })
