@@ -4,12 +4,11 @@ on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - main
 
 jobs:
   check-version:
     uses: HyperPlay-Gaming/workflows/.github/workflows/check_version_bump.yml@main
+    with:
+      file_path: './package.json' # optional, this is the default
     secrets:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
