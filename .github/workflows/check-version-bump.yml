@@ -1,0 +1,83 @@
+name: Check Package.json Version Bump (Informational)
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  check-version-bump:
+    runs-on: ubuntu-latest
+    # Set continue-on-error to true to make this check non-blocking
+    continue-on-error: true
+    steps:
+      - name: Checkout PR Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+          cache: 'yarn'
+
+      - name: Check for version bump
+        id: version-check
+        continue-on-error: true
+        run: |
+          # If we're on a PR, diff against the PR base
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            BASE_REF="${{ github.event.pull_request.base.sha }}"
+            HEAD_REF="${{ github.sha }}"
+            echo "Comparing PR changes from $BASE_REF to $HEAD_REF"
+          else
+            # If we're on a push to main, diff against the previous commit
+            BASE_REF="${{ github.event.before }}"
+            HEAD_REF="${{ github.sha }}"
+            echo "Comparing push changes from $BASE_REF to $HEAD_REF"
+          fi
+
+          # Extract the current package.json version
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "Current version: $CURRENT_VERSION"
+
+          # Check if package.json was modified
+          if git diff --name-only $BASE_REF $HEAD_REF | grep -q "package.json"; then
+            # Get the package.json from the base ref
+            git show $BASE_REF:package.json > package.json.base
+            
+            # Extract the base version
+            BASE_VERSION=$(node -p "require('./package.json.base').version")
+            echo "Base version: $BASE_VERSION"
+            
+            # Compare versions using semver
+            if node -e "process.exit(require('semver').gt('$CURRENT_VERSION', '$BASE_VERSION') ? 0 : 1)"; then
+              echo "✅ Version bump detected: $BASE_VERSION -> $CURRENT_VERSION"
+              echo "::notice::✅ Version bump detected: $BASE_VERSION -> $CURRENT_VERSION"
+            else
+              echo "❌ No version bump detected! Please update the version in package.json"
+              echo "::warning::❌ No version bump detected in package.json! This PR may not trigger a new NPM release."
+              exit 1
+            fi
+          else
+            echo "⚠️ package.json not modified in this PR/commit."
+            echo "::warning::⚠️ package.json not modified. This PR may not trigger a new NPM release."
+            exit 1
+          fi
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request' && steps.version-check.outcome == 'failure'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚠️ **Reminder:** The version in package.json has not been updated in this PR. If you intend for this PR to trigger a new NPM release, please update the version number.'
+            })

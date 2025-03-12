@@ -23,8 +23,8 @@ const props: PlatformInputProps = {
   updateFile: (file: File, arch: Arch) =>
     console.log('update file ', file.name, ' arch ', arch),
   exeInputProps: {
-    amd64: {},
-    arm64: {}
+    amd64: { onChange: () => {} },
+    arm64: { onChange: () => {} }
   }
 }
 
@@ -39,6 +39,22 @@ export const Mac: Story = {
     return (
       <NativePlatformInput
         {...args}
+        updateFile={(file) => setFile(file.name)}
+        clearFile={() => setFile('')}
+        fileNameAmd64={file}
+      ></NativePlatformInput>
+    )
+  }
+}
+
+export const WithI18n: Story = {
+  args: { ...props, platformName: 'darwin', fileNameArm64: undefined },
+  render: (args) => {
+    const [file, setFile] = useState<string>('')
+    return (
+      <NativePlatformInput
+        {...args}
+        i18n={{ upload: { chooseFile: 'Elige archivo' } }}
         updateFile={(file) => setFile(file.name)}
         clearFile={() => setFile('')}
         fileNameAmd64={file}
