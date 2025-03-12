@@ -85,16 +85,18 @@
   --color-error-900: #6c0429;
 
   /* Neutrals */
-  --color-neutral-100: #ffffff;
-  --color-neutral-200: #fcfcf9;
-  --color-neutral-300: #e0e2e2;
-  --color-neutral-400: #b0c1d5;
-  --color-neutral-500: #5a5e6a;
-  --color-neutral-600: #282b34;
-  --color-neutral-700: #1a1d25;
+  --color-neutral-50: #ffffff;
+  --color-neutral-100: #f8f8f9;
+  --color-neutral-200: #e1e4ea;
+  --color-neutral-300: #acb8d1;
+  --color-neutral-400: #7c849d;
+  --color-neutral-500: #565b6c;
+  --color-neutral-600: #222530;
+  --color-neutral-700: #171a25;
   --color-neutral-800: #13141a;
   --color-neutral-800-60: #13141a9a;
   --color-neutral-900: #0c0b0f;
+  --color-neutral-1000: #000000;
 
   /* Status */
   --color-status-success: var(--color-success-400);
@@ -153,6 +155,7 @@
 
   /* For components that share styles */
   --app-background: var(--color-neutral-900);
+  --background-raised: var(--color-neutral-700);
 
   /* Gradients */
   --color-gradient-01-border: linear-gradient(
