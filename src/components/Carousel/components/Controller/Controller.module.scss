@@ -1,3 +1,26 @@
+@import '../../../../styles/utilities/variables';
+@import '../../../../styles/designSystem/typography';
+
+.controllerAttached {
+  display: none;
+  right: var(--space-xl-fixed);
+  bottom: var(--space-xl-fixed);
+  position: absolute;
+
+  @include for-tablet-landscape-up {
+    display: block;
+  }
+}
+
+.controllerDetached {
+  display: none;
+  margin-top: var(--space-xl);
+
+  @include for-tablet-landscape-up {
+    display: block;
+  }
+}
+
 .root {
   position: relative;
   display: flex;
