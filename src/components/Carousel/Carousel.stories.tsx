@@ -42,6 +42,7 @@ const imagesAndVideosForThumbnail = [
     style={{ pointerEvents: 'none' }}
     playIcon={<></>}
     light={true}
+    key="video_hero_0"
   />,
   ...imagesForThumbnail
 ]
