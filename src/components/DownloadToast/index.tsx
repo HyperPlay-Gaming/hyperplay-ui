@@ -57,6 +57,12 @@ export default function DownloadToast(props: DownloadToastType) {
     downloadSize = 0
   }
 
+  if (downloadedInBytes > downloadSize) {
+    console.error('Downloaded size is greater than download size!')
+    downloadedInBytes = downloadSize
+    percentCompleted = 100
+  }
+
   // prevent string from being too long
   let etaString = getETAStringFromMs(estCompleteTimeInMs)
   const downloadedString = size(downloadedInBytes)

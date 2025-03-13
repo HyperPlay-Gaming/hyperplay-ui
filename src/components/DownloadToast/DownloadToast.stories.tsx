@@ -169,3 +169,29 @@ export const extraction = () => (
     />
   </div>
 )
+
+export const downloadedBiggerThanSize = () => (
+  <div
+    style={{
+      position: 'absolute',
+      right: '5%',
+      bottom: '5%',
+      width: '400px'
+    }}
+  >
+    <DownloadToast
+      imgUrl="src/assets/stories/TheWakeCover.png"
+      gameTitle="Gods Unchained"
+      downloadedInBytes={3506009664}
+      downloadSizeInBytes={2506009664}
+      estimatedCompletionTimeInMs={8600000}
+      onCancelClick={() => console.log('cancel clicked')}
+      onPauseClick={() => console.log('pause clicked')}
+      onStartClick={() => console.log('start clicked')}
+      onCloseClick={() => console.log('close clicked')}
+      onPlayClick={() => console.log('play clicked')}
+      status="inProgress"
+      statusText="Downloading"
+    />
+  </div>
+)
