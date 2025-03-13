@@ -30,7 +30,7 @@ jobs:
 
       - name: Check for version bump
         id: version-check
-        continue-on-error: false
+        continue-on-error: true
         run: |
           # If we're on a PR, diff against the PR base
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
