@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState
 } from 'react'
+import { useInterval } from 'react-use'
 
 import {
   CarouselStylesNames,
@@ -12,15 +13,25 @@ import {
 } from '@mantine/carousel'
 import cn from 'classnames'
 import { EmblaCarouselType } from 'embla-carousel'
-import Autoplay, { AutoplayType } from 'embla-carousel-autoplay'
+import Autoplay, {
+  AutoplayOptionsType,
+  AutoplayType
+} from 'embla-carousel-autoplay'
 
 import Controller from './components/Controller'
+import { SlideVideo } from './components/SlideVideo'
 import styles from './index.module.scss'
+
+export type { SlideVideoInterface } from './components/SlideVideo'
+export type { ControllerProps } from './components/Controller'
 
 interface CarouselContextType {
   activeIndex: number
   setActiveIndex: (index: number) => void
   emblaApi: EmblaCarouselType | undefined
+  isRotating: () => void
+  play: () => void
+  stop: () => void
 }
 
 const CarouselContext = createContext<CarouselContextType | undefined>(
@@ -37,39 +48,32 @@ export const useCarousel = () => {
 
 export interface CarouselProps
   extends React.ComponentProps<typeof MantineCarousel> {
-  autoplayDelayInMs: number
-  canAutoRotate?: boolean
   // need to narrow type here for TS
   classNames?: Partial<Record<CarouselStylesNames | 'hpCarouselRoot', string>>
   className?: string
   childrenNotInCarousel?: React.ReactNode
+  autoplayOptions?: AutoplayOptionsType
 }
 
 const Carousel = ({
-  autoplayDelayInMs,
   classNames,
-  canAutoRotate,
   children,
   className,
   childrenNotInCarousel,
+  autoplayOptions,
   ...props
 }: CarouselProps) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
   const [emblaApi, setEmblaApi] = useState<EmblaCarouselType>()
 
   const autoplay = useRef<AutoplayType>(
-    Autoplay({ delay: autoplayDelayInMs, stopOnInteraction: false })
+    Autoplay({ stopOnInteraction: false, ...autoplayOptions })
   )
 
-  useEffect(() => {
-    if (emblaApi) {
-      if (canAutoRotate) {
-        autoplay.current.play()
-      } else {
-        autoplay.current.stop()
-      }
-    }
-  }, [emblaApi, canAutoRotate])
+  useInterval(
+    () => console.log('carousel is playing: ', activeSlideIndex),
+    1000
+  )
 
   const value = {
     activeIndex: activeSlideIndex,
@@ -77,7 +81,13 @@ const Carousel = ({
       setActiveSlideIndex(index)
       emblaApi?.scrollTo(index)
     },
-    emblaApi
+    emblaApi,
+    isRotating: () => autoplay.current.isPlaying(),
+    play: () => autoplay.current.play(),
+    stop: () => {
+      console.log('stop the carousel')
+      autoplay.current.stop()
+    }
   }
 
   return (
@@ -92,6 +102,8 @@ const Carousel = ({
           loop={true}
           withControls={false}
           withIndicators={true}
+          plugins={[autoplay.current]}
+          onSlideChange={(index) => setActiveSlideIndex(index)}
           {...props}
         >
           {children}
@@ -104,5 +116,6 @@ const Carousel = ({
 
 Carousel.Slide = MantineCarousel.Slide
 Carousel.Controller = Controller
+Carousel.SlideVideo = SlideVideo
 
 export default Carousel

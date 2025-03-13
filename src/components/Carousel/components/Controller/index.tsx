@@ -21,18 +21,21 @@ const Controller = ({
   className,
   ...props
 }: ControllerProps) => {
-  const { activeIndex, setActiveIndex } = useCarousel()
+  const { activeIndex, setActiveIndex, stop } = useCarousel()
   const nextImage = () => {
+    stop()
     const newIndex = (activeIndex + 1) % images.length
     setActiveIndex(newIndex)
   }
 
   const previousImage = () => {
+    stop()
     const newIndex = (activeIndex - 1 + images.length) % images.length
     setActiveIndex(newIndex)
   }
 
   const handleClick = (index: number) => {
+    stop()
     setActiveIndex(index)
   }
 
