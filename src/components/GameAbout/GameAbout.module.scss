@@ -1,32 +1,125 @@
+.container {
+  display: flex;
+  width: 75rem;
+  padding: var(--space-2xl) 7.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2lg);
+}
+
 .iconOpen {
   transform: rotate(180deg);
 }
 
 .clampedText {
   display: -webkit-box;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
   overflow: hidden;
 }
 
+.title {
+  color: var(--color-neutral-200);
+  margin: var(--space-md) 0;
+}
+
 .description {
-  white-space: pre-line;
+  color: var(--color-neutral-400);
+  margin: 0;
 }
 
 .readMore {
-  display: flex;
-  gap: var(--space-xs);
-  align-items: center;
+  color: var(--text-primary);
+  background: none;
+  border: none;
   padding: 0;
+  margin-top: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
   svg {
-    fill: white;
     width: 16px;
     height: 16px;
+    transition: transform 0.2s ease;
+  }
+
+  .iconOpen {
+    transform: rotate(180deg);
   }
 }
 
 .gameTitle {
-  padding-bottom: var(--space-md);
-  color: var(--color-neutral-200);
+  margin-bottom: 24px;
+}
+
+.stickers {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.stickerContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    color: var(--text-primary);
+    font-size: 14px;
+  }
+}
+
+.sticker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--surface-secondary);
+  border-radius: 8px;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    color: var(--text-primary);
+    font-size: 14px;
+  }
+}
+
+.showMore {
+  display: flex;
+  height: 2rem;
+  margin: var(--space-sm) 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--color-primary-400);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: var(--surface-secondary);
+  }
+}
+
+.iconOpen {
+  color: var(--color-primary-400);
+  background-color: transparent;
+}
+
+.iconBadge {
+  width: var(--space-lg);
+  height: var(--space-lg);
 }
