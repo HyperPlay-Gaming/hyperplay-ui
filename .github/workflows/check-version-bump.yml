@@ -25,9 +25,12 @@ jobs:
           node-version: '22'
           cache: 'yarn'
 
+      - name: Install semver package
+        run: npm install --no-save semver
+
       - name: Check for version bump
         id: version-check
-        continue-on-error: true
+        continue-on-error: false
         run: |
           # If we're on a PR, diff against the PR base
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
