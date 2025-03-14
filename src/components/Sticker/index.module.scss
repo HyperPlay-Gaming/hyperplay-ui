@@ -14,14 +14,14 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    opacity: 0.5;
+    opacity: 0.3;
     z-index: -1;
   }
 
   // Style variants - Default (outlined) - Icon and Dot variants
   &.neutral {
     color: var(--color-neutral-400);
-    border-color: var(--color-neutral-400);
+    border-color: var(--color-neutral-600);
     &::before {
       background-color: var(--color-neutral-600);
     }
@@ -30,121 +30,143 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: var(--space-lg);
-      height: var(--space-lg);
+      width: var(--space-md);
+      height: var(--space-md);
       stroke: currentColor;
-      path {
-        stroke: currentColor;
-      }
     }
 
-    .dot svg circle {
+    .dot svg {
       display: flex;
       justify-content: center;
       align-items: center;
-      fill: var(--color-neutral-400);
+      width: var(--space-md);
+      height: var(--space-md);
+
+      circle {
+        fill: var(--color-neutral-400);
+      }
     }
   }
 
   &.secondary {
-    color: var(--color-primary-200);
-    border-color: var(--color-primary-200);
+    color: var(--color-primary-300);
+    border-color: var(--color-primary-600);
     &::before {
-      background-color: var(--color-primary-700);
+      background-color: var(--color-primary-600);
     }
 
     .icon svg {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: var(--space-lg);
-      height: var(--space-lg);
+      width: var(--space-md);
+      height: var(--space-md);
       stroke: currentColor;
-      path {
-        stroke: currentColor;
-      }
     }
 
-    .dot svg circle {
-      fill: var(--color-primary-200);
+    .dot svg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--space-md);
+      height: var(--space-md);
+
+      circle {
+        fill: var(--color-primary-300);
+      }
     }
   }
 
   &.tertiary {
-    color: var(--color-tertiary-400);
-    border-color: var(--color-tertiary-400);
+    color: var(--color-tertiary-500);
+    border-color: var(--color-tertiary-700);
     &::before {
-      background-color: var(--color-tertiary-800);
+      background-color: var(--color-tertiary-700);
     }
 
     .icon svg {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: var(--space-lg);
-      height: var(--space-lg);
+      width: var(--space-md);
+      height: var(--space-md);
       stroke: currentColor;
-      path {
-        stroke: currentColor;
-      }
     }
 
-    .dot svg circle {
-      fill: var(--color-tertiary-400);
+    .dot svg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--space-md);
+      height: var(--space-md);
+
+      circle {
+        fill: var(--color-tertiary-500);
+      }
     }
   }
 
   &.success {
-    color: var(--color-success-300);
-    border-color: var(--color-success-300);
+    color: var(--color-success-600);
+    border-color: var(--color-success-800);
     &::before {
-      background-color: var(--color-success-900);
+      background-color: var(--color-success-800);
     }
 
     .icon svg {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: var(--space-lg);
-      height: var(--space-lg);
+      width: var(--space-md);
+      height: var(--space-md);
       stroke: currentColor;
-      path {
-        stroke: currentColor;
-      }
     }
 
-    .dot svg circle {
-      fill: var(--color-success-300);
+    .dot svg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--space-md);
+      height: var(--space-md);
+
+      circle {
+        fill: var(--color-success-600);
+      }
     }
   }
 
   &.warning {
     color: var(--color-alert-300);
-    border-color: var(--color-alert-300);
+    border-color: var(--color-alert-400);
     &::before {
-      background-color: var(--color-alert-900);
+      background-color: var(--color-alert-500);
     }
 
     .icon svg {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: var(--space-lg);
-      height: var(--space-lg);
+      width: var(--space-md);
+      height: var(--space-md);
       stroke: currentColor;
-      path {
-        stroke: currentColor;
-      }
     }
 
-    .dot svg circle {
-      fill: var(--color-alert-400);
+    .dot svg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--space-md);
+      height: var(--space-md);
+
+      circle {
+        fill: var(--color-alert-300);
+      }
     }
   }
 
   &.error {
-    color: var(--color-error-300);
-    border-color: var(--color-error-300);
+    color: var(--color-error-400);
+    border-color: var(--color-error-900);
     &::before {
       background-color: var(--color-error-900);
     }
@@ -153,16 +175,21 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: var(--space-lg);
-      height: var(--space-lg);
+      width: var(--space-md);
+      height: var(--space-md);
       stroke: currentColor;
-      path {
-        stroke: currentColor;
-      }
     }
 
-    .dot svg circle {
-      fill: var(--color-error-400);
+    .dot svg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--space-md);
+      height: var(--space-md);
+
+      circle {
+        fill: var(--color-error-300);
+      }
     }
   }
 
