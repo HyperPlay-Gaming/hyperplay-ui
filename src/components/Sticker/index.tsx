@@ -2,8 +2,6 @@ import React, { HTMLProps } from 'react'
 
 import classNames from 'classnames'
 
-import { AlertTriangle, CheckmarkCircle, Info, XCircle } from '@/assets/images'
-
 import styles from './index.module.scss'
 
 type StyleType =
@@ -13,7 +11,6 @@ type StyleType =
   | 'success'
   | 'warning'
   | 'error'
-  | 'info'
 type Variant = 'outlined' | 'filled' | 'filledStrong'
 type Size = 'default' | 'small'
 type WithIcon = React.ReactNode
@@ -31,22 +28,6 @@ export interface StickerProps extends Omit<HTMLProps<HTMLDivElement>, 'size'> {
   children?: React.ReactNode
 }
 
-const getDefaultIcon = (styleType: StyleType) => {
-  switch (styleType) {
-    case 'success':
-      return <CheckmarkCircle />
-    case 'warning':
-      return <AlertTriangle />
-    case 'error':
-      return <XCircle />
-    case 'tertiary':
-    case 'info':
-      return <Info />
-    default:
-      return null
-  }
-}
-
 export default function Sticker({
   styleType = 'secondary',
   variant = 'outlined',
@@ -54,10 +35,12 @@ export default function Sticker({
   className,
   withIcon,
   withDot,
+  iconClassName,
+  dotClassName,
   children,
   ...props
 }: StickerProps) {
-  const divClasses: Record<string, boolean> = {
+  const divClasses: Record<string, string | boolean | undefined> = {
     [styles.neutral]: styleType === 'neutral',
     [styles.secondary]: styleType === 'secondary',
     [styles.tertiary]: styleType === 'tertiary',
@@ -68,17 +51,17 @@ export default function Sticker({
     [styles.filled]: variant === 'filled',
     [styles.filledStrong]: variant === 'filledStrong',
     [styles.sizeDefault]: size === 'default',
-    [styles.sizeSmall]: size === 'small'
+    [styles.sizeSmall]: size === 'small',
+    [styles.icon]: iconClassName,
+    [styles.dot]: dotClassName
   }
-
-  const iconToRender = withIcon || getDefaultIcon(styleType)
 
   return (
     <div
       {...props}
       className={classNames(styles.sticker, className, divClasses)}
     >
-      {iconToRender && <span className={styles.icon}>{iconToRender}</span>}
+      {withIcon && <span className={styles.icon}>{withIcon}</span>}
       {withDot && <span className={classNames(styles.dot)}>{withDot}</span>}
       {children}
     </div>
