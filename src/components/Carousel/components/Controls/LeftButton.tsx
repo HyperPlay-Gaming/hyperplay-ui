@@ -7,7 +7,7 @@ import styles from './LeftButton.module.css'
 
 const LeftButton = ({ onClick }: BaseButtonProps) => (
   <div className={styles.button}>
-    <BaseButton onClick={onClick}>
+    <BaseButton onClick={onClick} data-testid="carousel-left-button">
       <ChevronLeft />
     </BaseButton>
   </div>

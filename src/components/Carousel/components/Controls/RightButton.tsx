@@ -7,7 +7,7 @@ import styles from './RightButton.module.css'
 
 const RightButton = ({ onClick }: BaseButtonProps) => (
   <div className={styles.button}>
-    <BaseButton onClick={onClick}>
+    <BaseButton onClick={onClick} data-testid="carousel-right-button">
       <ChevronRight />
     </BaseButton>
   </div>

@@ -22,7 +22,7 @@ export default meta
 
 type Story = StoryObj<typeof Carousel>
 
-const images = [pgCover, dtCover, wakeCover, onisCover]
+const images = [pgCover, dtCover, wakeCover, onisCover, dtCover]
 
 interface CarouselPropsParams {
   controllerLayout?: ControllerProps['controllerLayout']
@@ -210,5 +210,76 @@ export const TestVideoAutoscrollStory: Story = {
     )
     const timeAfter = Date.now()
     expect(timeAfter - time).toBeLessThan(7000)
+  }
+}
+
+function expectItemsVisibility(
+  /* eslint-disable-next-line */
+  canvas: any,
+  isVisible: boolean[]
+) {
+  for (let i = 0; i < isVisible.length; ++i) {
+    if (isVisible) {
+      expect(canvas.getByTestId(`carousel-controller-item-${i}`)).toBeDefined()
+    } else {
+      expect(
+        canvas.getByTestId(`carousel-controller-item-${i}`)
+      ).toBeUndefined()
+    }
+  }
+}
+
+/**
+ * @dev arrows can change items in the controller view but doesn't change what the user has selected.
+ * this also tests autoscroll for images after using right arrow.
+ * when it changes to an offscreen controller item, all the items scroll into view.
+ * slices in intervals of 5 and has empty controller item positions. arrows do not shift positions.
+ */
+export const TestImageAutoscrollAfterClickStory: Story = {
+  args: {
+    autoplayOptions: { delay: 1000 },
+    children: imgSlides,
+    childrenNotInCarousel: (
+      <Carousel.Controller
+        controllerLayout={'detached'}
+        images={imagesForThumbnail}
+      />
+    )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const imgSlide0 = canvas.getByTestId('img-slide-0')
+    await waitFor(async () =>
+      expect(imgSlide0.offsetWidth).toBeGreaterThan(500)
+    )
+    await expectSlideToBeVisible(imgSlide0)
+    const imgSlide1 = canvas.getByTestId('img-slide-1')
+    expectSlideToNotBeVisible(imgSlide1)
+    const imgSlide2 = canvas.getByTestId('img-slide-2')
+    expectSlideToNotBeVisible(imgSlide2)
+
+    // expect first 4 controller items visible
+    expectItemsVisibility(canvas, [true, true, true, true, false])
+
+    const rightButton = canvas.getByTestId('carousel-right-button')
+    rightButton.click()
+
+    // expect controller items to change
+    expectItemsVisibility(canvas, [false, false, false, false, true])
+
+    await wait(1250)
+    await expectSlideToNotBeVisible(imgSlide0)
+    await expectSlideToBeVisible(imgSlide1)
+    await expectSlideToNotBeVisible(imgSlide2)
+
+    await wait(1250)
+    await expectSlideToNotBeVisible(imgSlide0)
+    await expectSlideToNotBeVisible(imgSlide1)
+    await expectSlideToBeVisible(imgSlide2)
+
+    await wait(1250)
+    await expectSlideToBeVisible(imgSlide0)
+    await expectSlideToNotBeVisible(imgSlide1)
+    await expectSlideToNotBeVisible(imgSlide2)
   }
 }

@@ -54,15 +54,19 @@ const Controller = ({
     >
       <div className={cn(styles.root)}>
         <LeftButton onClick={previousImage} />
-        {images.slice(startIndex, endIndex).map((Image, index) => (
-          <Item
-            key={`hyperplay_carousel_controller_${startIndex + index}`}
-            imageElement={Image}
-            isActive={startIndex + index === activeIndex}
-            onClick={() => handleClick(startIndex + index)}
-            showGradientBorder={showGradientBorder}
-          />
-        ))}
+        {images.slice(startIndex, endIndex).map((Image, index) => {
+          const itemIndex = startIndex + index
+          return (
+            <Item
+              key={`hyperplay_carousel_controller_${itemIndex}`}
+              imageElement={Image}
+              isActive={itemIndex === activeIndex}
+              onClick={() => handleClick(itemIndex)}
+              showGradientBorder={showGradientBorder}
+              data-testid={`carousel-controller-item-${itemIndex}`}
+            />
+          )
+        })}
         <RightButton onClick={nextImage} />
       </div>
     </div>

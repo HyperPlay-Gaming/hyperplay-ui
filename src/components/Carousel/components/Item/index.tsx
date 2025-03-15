@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import styles from './Item.module.scss'
 
-interface ItemProps {
+interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   isActive: boolean
   imageElement: JSX.Element
   onClick: () => void
@@ -17,7 +17,8 @@ const Item = ({
   imageElement,
   onClick,
   showGradientBorder = true,
-  showLoadBar
+  showLoadBar,
+  ...props
 }: ItemProps) => {
   let border = null
   if (showGradientBorder) {
@@ -31,6 +32,7 @@ const Item = ({
     <div
       className={cn(styles.itemContainer, { [styles.active]: isActive })}
       onClick={onClick}
+      {...props}
     >
       {border}
       <div className={styles.imageContainer}>{imageElement}</div>
