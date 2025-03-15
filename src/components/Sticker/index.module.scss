@@ -33,6 +33,16 @@
       width: var(--space-md);
       height: var(--space-md);
       stroke: currentColor;
+      * {
+        stroke: currentColor;
+      }
+      &[data-icon='info'] {
+        fill: currentColor;
+        * {
+          fill: currentColor;
+          stroke: none;
+        }
+      }
     }
 
     .dot svg {
@@ -62,6 +72,16 @@
       width: var(--space-md);
       height: var(--space-md);
       stroke: currentColor;
+      * {
+        stroke: currentColor;
+      }
+      &[data-icon='info'] {
+        fill: currentColor;
+        * {
+          fill: currentColor;
+          stroke: none;
+        }
+      }
     }
 
     .dot svg {
@@ -91,6 +111,16 @@
       width: var(--space-md);
       height: var(--space-md);
       stroke: currentColor;
+      * {
+        stroke: currentColor;
+      }
+      &[data-icon='info'] {
+        fill: currentColor;
+        * {
+          fill: currentColor;
+          stroke: none;
+        }
+      }
     }
 
     .dot svg {
@@ -120,6 +150,16 @@
       width: var(--space-md);
       height: var(--space-md);
       stroke: currentColor;
+      * {
+        stroke: currentColor;
+      }
+      &[data-icon='info'] {
+        fill: currentColor;
+        * {
+          fill: currentColor;
+          stroke: none;
+        }
+      }
     }
 
     .dot svg {
@@ -149,6 +189,16 @@
       width: var(--space-md);
       height: var(--space-md);
       stroke: currentColor;
+      * {
+        stroke: currentColor;
+      }
+      &[data-icon='info'] {
+        fill: currentColor;
+        * {
+          fill: currentColor;
+          stroke: none;
+        }
+      }
     }
 
     .dot svg {
@@ -178,6 +228,16 @@
       width: var(--space-md);
       height: var(--space-md);
       stroke: currentColor;
+      * {
+        stroke: currentColor;
+      }
+      &[data-icon='info'] {
+        fill: currentColor;
+        * {
+          fill: currentColor;
+          stroke: none;
+        }
+      }
     }
 
     .dot svg {
