@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { AlertTriangle, Info } from '@/assets/images'
+
 import GameAbout from '.'
 
 const meta = {
@@ -11,7 +13,7 @@ const meta = {
 } as Meta<typeof GameAbout>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof GameAbout>
 
 const longDescription = `Shoot, Earn, Pioneer: Now We Live in XOCIETY.
 
@@ -25,33 +27,33 @@ Players can participate in various activities including combat missions, resourc
 
 export const Default: Story = {
   args: {
+    titleSmall: 'About this Game',
     description: longDescription
   }
 }
 
 export const WithGameName: Story = {
   args: {
-    description: longDescription,
-    gameName: 'XOCIETY'
+    gameName: 'XOCIETY',
+    description: longDescription
   }
 }
 
 export const WithStickersAndButton: Story = {
   args: {
+    titleLarge: 'About this Game',
     description: longDescription,
-    gameName: 'XOCIETY',
-    stickers: [
+    sticker: [
       {
-        icon: '/icons/access-gated.svg',
-        label: 'Access Gated'
+        label: 'Access Gated',
+        withIcon: <AlertTriangle data-icon="alert-triangle" />
       },
       {
-        icon: '/icons/on-chain.svg',
-        label: 'On-chain assets available'
+        label: 'On-chain assets available',
+        withIcon: <Info data-icon="info" />
       }
     ],
     buttonLink: {
-      label: 'Show More',
       onClick: () => console.log('Button clicked')
     }
   }
