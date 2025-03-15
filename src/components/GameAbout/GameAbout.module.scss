@@ -1,32 +1,119 @@
+.container {
+  display: flex;
+  width: 75rem;
+  padding: var(--space-2xl) 7.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-lg);
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: var(--space-lg) var(--space-lg);
+  }
+}
+
 .iconOpen {
   transform: rotate(180deg);
 }
 
 .clampedText {
   display: -webkit-box;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
   overflow: hidden;
 }
 
-.description {
-  white-space: pre-line;
+.title {
+  color: var(--color-neutral-200);
+  margin: var(--space-md) 0;
+  font-size: 24px;
+  font-weight: 600;
 }
 
-.readMore {
-  display: flex;
-  gap: var(--space-xs);
-  align-items: center;
-  padding: 0;
+.titleLarge {
+  color: var(--color-neutral-200);
+  margin: var(--space-xs) 0;
+  font-weight: 600;
+}
 
-  svg {
-    fill: white;
-    width: 16px;
-    height: 16px;
+.titleSmall {
+  color: var(--color-neutral-200);
+  margin: var(--space-xs) 0;
+  font-weight: 600;
+}
+
+.description {
+  color: var(--color-neutral-400);
+  margin: 0;
+}
+
+.showMore {
+  display: flex;
+  margin: var(--space-xs) 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--color-primary-400);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    color: var(--color-primary-300);
   }
 }
 
 .gameTitle {
-  padding-bottom: var(--space-md);
-  color: var(--color-neutral-200);
+  margin-bottom: 24px;
+}
+
+.stickers {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.stickerContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    color: var(--text-primary);
+    font-size: 14px;
+  }
+}
+
+.sticker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--surface-secondary);
+  border-radius: 8px;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    color: var(--text-primary);
+    font-size: 14px;
+  }
+}
+
+.iconBadge {
+  width: var(--space-lg);
+  height: var(--space-lg);
 }

@@ -3,21 +3,42 @@ import React, { useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 
 import * as Images from '@/assets/images'
+import Button from '@/components/Button'
 
+import Sticker from '../Sticker'
 import styles from './GameAbout.module.scss'
 
 export interface GameAboutProps {
+  titleSmall?: string
+  titleLarge?: string
   description: string
   gameName?: string
+  sticker?: {
+    label: string
+    withIcon?: React.ReactNode
+  }[]
+  buttonLink?: {
+    onClick?: () => void
+  }
   classnames?: {
     container?: string
-    title?: string
-    description?: string
+    titleSmall?: string
+    titleLarge?: string
     gameTitle?: string
+    description?: string
+    buttonLink?: string
   }
 }
 
-const GameAbout = ({ description, gameName, classnames }: GameAboutProps) => {
+const GameAbout = ({
+  titleSmall,
+  titleLarge,
+  description,
+  gameName,
+  sticker,
+  classnames,
+  buttonLink
+}: GameAboutProps) => {
   const aboutText = useRef<HTMLParagraphElement | null>(null)
   const [isClamped, setIsClamped] = useState(false)
   const [expanded, setExpanded] = useState(false)
@@ -25,13 +46,30 @@ const GameAbout = ({ description, gameName, classnames }: GameAboutProps) => {
   useEffect(() => {
     if (aboutText && aboutText.current) {
       const { clientHeight, scrollHeight } = aboutText.current
-      console.log({ clientHeight, scrollHeight })
       setIsClamped(scrollHeight > clientHeight)
     }
   }, [])
 
+  const handleShowMore = () => {
+    setExpanded(!expanded)
+    if (buttonLink?.onClick) {
+      buttonLink.onClick()
+    }
+  }
+
   return (
-    <div className={classnames?.container}>
+    <div className={classNames(styles.container, classnames?.container)}>
+      {titleSmall && (
+        <div className={classNames('text-sm', classnames?.titleSmall)}>
+          {titleSmall}
+        </div>
+      )}
+      {titleLarge && (
+        <div className={classNames('title', classnames?.titleLarge)}>
+          {titleLarge}
+        </div>
+      )}
+
       {gameName && (
         <div
           className={classNames(
@@ -43,7 +81,21 @@ const GameAbout = ({ description, gameName, classnames }: GameAboutProps) => {
           {gameName}
         </div>
       )}
-      <div className={classNames('caption', classnames?.title)}>About</div>
+      {sticker && sticker.length > 0 && (
+        <div className={classNames(styles.stickers)}>
+          {sticker.map((item, index) => (
+            <Sticker
+              key={index}
+              styleType={item.label === 'Access Gated' ? 'warning' : 'tertiary'}
+              variant="outlined"
+              withIcon={item.withIcon}
+            >
+              {item.label}
+            </Sticker>
+          ))}
+        </div>
+      )}
+
       <p
         ref={aboutText}
         className={classNames(
@@ -56,20 +108,21 @@ const GameAbout = ({ description, gameName, classnames }: GameAboutProps) => {
         {description}
       </p>
       {isClamped && (
-        <button
-          className={classNames('body-sm', styles.readMore)}
-          onClick={() => setExpanded(!expanded)}
+        <Button
+          className={classNames('button-sm', styles.showMore)}
+          onClick={handleShowMore}
+          type="link"
         >
           {expanded ? (
             <>
-              Read less <Images.DownArrow className={styles.iconOpen} />
+              Show less <Images.DownArrow className={styles.iconOpen} />
             </>
           ) : (
             <>
-              Read more <Images.DownArrow />
+              Show more <Images.DownArrow />
             </>
           )}
-        </button>
+        </Button>
       )}
     </div>
   )
