@@ -4,7 +4,15 @@
   padding: var(--space-2xl) 7.5rem;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-2lg);
+  gap: var(--space-lg);
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: var(--space-lg) var(--space-lg);
+  }
 }
 
 .iconOpen {
@@ -21,6 +29,20 @@
 .title {
   color: var(--color-neutral-200);
   margin: var(--space-md) 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.titleLarge {
+  color: var(--color-neutral-200);
+  margin: var(--space-xs) 0;
+  font-weight: 600;
+}
+
+.titleSmall {
+  color: var(--color-neutral-200);
+  margin: var(--space-xs) 0;
+  font-weight: 600;
 }
 
 .description {
@@ -28,25 +50,20 @@
   margin: 0;
 }
 
-.readMore {
-  color: var(--text-primary);
-  background: none;
-  border: none;
-  padding: 0;
-  margin-top: 8px;
-  cursor: pointer;
+.showMore {
   display: flex;
+  margin: var(--space-xs) 0;
+  padding: 0;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
+  background: transparent;
+  border: none;
+  color: var(--color-primary-400);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 
-  svg {
-    width: 16px;
-    height: 16px;
-    transition: transform 0.2s ease;
-  }
-
-  .iconOpen {
-    transform: rotate(180deg);
+  &:hover {
+    color: var(--color-primary-300);
   }
 }
 
@@ -94,29 +111,6 @@
     color: var(--text-primary);
     font-size: 14px;
   }
-}
-
-.showMore {
-  display: flex;
-  height: 2rem;
-  margin: var(--space-sm) 0;
-  padding: 0;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  border: none;
-  color: var(--color-primary-400);
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-
-  &:hover {
-    background: var(--surface-secondary);
-  }
-}
-
-.iconOpen {
-  color: var(--color-primary-400);
-  background-color: transparent;
 }
 
 .iconBadge {
