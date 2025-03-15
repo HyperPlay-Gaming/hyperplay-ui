@@ -6,7 +6,9 @@ import { Carousel } from '@mantine/carousel'
 import { useCarousel } from '../..'
 
 export interface SlideVideoInterface {
-  slideProps?: React.ComponentProps<typeof Carousel.Slide>
+  slideProps?: React.ComponentProps<typeof Carousel.Slide> & {
+    'data-testid': string
+  }
   reactPlayerProps?: React.ComponentProps<typeof ReactPlayer>
   indexInSlides?: number
 }
