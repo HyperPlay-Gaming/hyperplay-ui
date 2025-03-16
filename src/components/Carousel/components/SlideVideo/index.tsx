@@ -28,6 +28,13 @@ export function SlideVideo({
   const [isPlaying, setIsPlaying] = useState(false)
   const [videoDurationInMs, setVideoDurationInMs] = useState(5000)
 
+  // this prevents the item's loader bar from using the default autoplay delay before onProgress fires on ReactPlayer
+  useEffect(() => {
+    if (indexInSlides !== undefined) {
+      setTimeUntilSlideFinishedOverride(indexInSlides, Number.MAX_SAFE_INTEGER)
+    }
+  }, [])
+
   const onPlay = useCallback(() => {
     setIsPlaying(true)
     stop()
