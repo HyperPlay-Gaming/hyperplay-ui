@@ -50,7 +50,7 @@ const imagesAndVideosForThumbnail = [
 ]
 
 const props: (props: CarouselPropsParams) => CarouselProps = ({
-  controllerLayout = 'attached'
+  controllerLayout = 'detached'
 }: CarouselPropsParams) => ({
   children: (
     <>
@@ -79,8 +79,8 @@ export const Default: Story = {
   args: { ...props({}) }
 }
 
-export const ControllerDetached: Story = {
-  args: { ...props({ controllerLayout: 'detached' }) }
+export const ControllerAttached: Story = {
+  args: { ...props({ controllerLayout: 'attached' }) }
 }
 
 export const NoVideo: Story = {

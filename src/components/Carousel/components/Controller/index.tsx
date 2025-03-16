@@ -3,8 +3,7 @@ import React from 'react'
 import cn from 'classnames'
 
 import { useCarousel } from '../..'
-import LeftButton from '../Controls/LeftButton'
-import RightButton from '../Controls/RightButton'
+import BaseButton, { CarouselButtonType } from '../Controls/BaseButton'
 import Item from '../Item'
 import styles from './Controller.module.scss'
 
@@ -14,15 +13,27 @@ export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
   controllerLayout?: 'attached' | 'detached'
   numItemsToShow?: number
   showItemLoadBar?: boolean
+  carouselButtonType?: CarouselButtonType
+  classNames?: {
+    rootContainer?: string
+    root?: string
+    leftButton?: string
+    leftButtonContainer?: string
+    rightButton?: string
+    rightButtonContainer?: string
+    item?: string
+  }
 }
 
 const Controller = ({
   images,
   showGradientBorder,
-  controllerLayout = 'attached',
+  controllerLayout = 'detached',
   className,
   numItemsToShow = 5,
   showItemLoadBar,
+  classNames,
+  carouselButtonType,
   ...props
 }: ControllerProps) => {
   const { activeIndex, setActiveIndex, stop } = useCarousel()
@@ -52,12 +63,18 @@ const Controller = ({
         controllerLayout === 'attached'
           ? styles.controllerAttached
           : styles.controllerDetached,
-        className
+        className,
+        classNames?.rootContainer
       )}
       {...props}
     >
-      <div className={cn(styles.root)}>
-        <LeftButton onClick={previousImage} />
+      <div className={cn(styles.root, classNames?.root)}>
+        <BaseButton
+          onClick={previousImage}
+          className={classNames?.leftButton}
+          isLeftButton={true}
+          carouselButtonType={carouselButtonType}
+        />
         {images.slice(startIndex, endIndex).map((Image, index) => {
           const itemIndex = startIndex + index
           return (
@@ -70,10 +87,16 @@ const Controller = ({
               data-testid={`carousel-controller-item-${itemIndex}`}
               showLoadBar={showItemLoadBar}
               itemIndex={itemIndex}
+              className={classNames?.item}
             />
           )
         })}
-        <RightButton onClick={nextImage} />
+        <BaseButton
+          onClick={nextImage}
+          className={classNames?.rightButton}
+          isLeftButton={false}
+          carouselButtonType={carouselButtonType}
+        />
       </div>
     </div>
   )

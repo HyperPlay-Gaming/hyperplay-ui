@@ -21,6 +21,7 @@ const Item = ({
   showGradientBorder = true,
   showLoadBar,
   itemIndex,
+  className,
   ...props
 }: ItemProps) => {
   const {
@@ -46,6 +47,12 @@ const Item = ({
     let initialProgressPct = 0
     let animationDurationMs = 5000
     let thisItemSlideTotalTimeMs = totalSlideTime
+    console.log(
+      'slideTimeOverrideIndexToTimeMsMap ',
+      slideTimeOverrideIndexToTimeMsMap,
+      ' item index ',
+      itemIndex
+    )
     if (Object.hasOwn(slideTimeOverrideIndexToTimeMsMap, itemIndex)) {
       thisItemSlideTotalTimeMs = slideTimeOverrideIndexToTimeMsMap[itemIndex]
     }
@@ -59,6 +66,15 @@ const Item = ({
           100
       )
       animationDurationMs = timeUntilSlideFinishedMs
+
+      console.log(
+        'initialProgressPct ',
+        initialProgressPct,
+        ' animationDurationMs ',
+        animationDurationMs,
+        ' timeUntilSlideFinishedMs ',
+        timeUntilSlideFinishedMs
+      )
     }
     loadBar = (
       <div
@@ -73,10 +89,14 @@ const Item = ({
   }
   return (
     <div
-      className={cn(styles.itemContainer, {
-        [styles.active]: isActive,
-        [styles.noGradientBorder]: !showGradientBorder
-      })}
+      className={cn(
+        styles.itemContainer,
+        {
+          [styles.active]: isActive,
+          [styles.noGradientBorder]: !showGradientBorder
+        },
+        className
+      )}
       onClick={onClick}
       {...props}
     >

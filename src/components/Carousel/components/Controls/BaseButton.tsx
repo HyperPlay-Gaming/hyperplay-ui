@@ -1,19 +1,66 @@
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 
-import styles from './BaseButton.module.css'
+import cn from 'classnames'
 
-export interface BaseButtonProps {
-  onClick: () => void
+import { ChevronLeft } from '@/assets/images'
+
+import styles from './BaseButton.module.scss'
+
+export type CarouselButtonType = 'attached' | 'detached'
+
+export interface BaseButtonProps
+  extends React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
+  carouselButtonType?: CarouselButtonType
+  classNames?: {
+    root?: string
+    button?: string
+  }
+  isLeftButton: boolean
 }
 
 const BaseButton = ({
-  children,
-  onClick
-}: PropsWithChildren<BaseButtonProps>) => {
+  onClick,
+  carouselButtonType = 'detached',
+  classNames,
+  className,
+  isLeftButton,
+  ...props
+}: BaseButtonProps) => {
+  let chevronWidth = '9px'
+  let chevronHeight = '15px'
+  if (carouselButtonType === 'attached') {
+    chevronWidth = '6px'
+    chevronHeight = '10px'
+  }
   return (
-    <button className={styles.button} onClick={onClick}>
-      {children}
-    </button>
+    <div
+      className={cn(
+        {
+          [styles.leftButton]: isLeftButton,
+          [styles[`root-${carouselButtonType}`]]: true
+        },
+        classNames?.root
+      )}
+    >
+      <button
+        onClick={onClick}
+        data-testid={`carousel-${isLeftButton ? 'left' : 'right'}-button`}
+        className={cn(
+          {
+            [styles.leftButton]: isLeftButton,
+            [styles[`button-${carouselButtonType}`]]: true
+          },
+          classNames?.button,
+          className
+        )}
+        {...props}
+      >
+        <ChevronLeft width={chevronWidth} height={chevronHeight} />
+      </button>
+    </div>
   )
 }
 
