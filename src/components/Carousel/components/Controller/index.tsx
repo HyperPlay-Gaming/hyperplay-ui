@@ -3,9 +3,9 @@ import React from 'react'
 import cn from 'classnames'
 
 import { useCarousel } from '../..'
-import BaseButton, { CarouselButtonType } from '../Controls/BaseButton'
-import Item from '../Item'
 import styles from './Controller.module.scss'
+import BaseButton, { CarouselButtonType } from './components/BaseButton'
+import Item from './components/Item'
 
 export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
   images: React.ReactElement[]

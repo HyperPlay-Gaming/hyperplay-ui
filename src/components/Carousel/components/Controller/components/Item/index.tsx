@@ -2,7 +2,7 @@ import React from 'react'
 
 import cn from 'classnames'
 
-import { useCarousel } from '../..'
+import { useCarousel } from '../../../..'
 import styles from './Item.module.scss'
 
 interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -47,12 +47,6 @@ const Item = ({
     let initialProgressPct = 0
     let animationDurationMs = 5000
     let thisItemSlideTotalTimeMs = totalSlideTime
-    console.log(
-      'slideTimeOverrideIndexToTimeMsMap ',
-      slideTimeOverrideIndexToTimeMsMap,
-      ' item index ',
-      itemIndex
-    )
     if (Object.hasOwn(slideTimeOverrideIndexToTimeMsMap, itemIndex)) {
       thisItemSlideTotalTimeMs = slideTimeOverrideIndexToTimeMsMap[itemIndex]
     }
@@ -66,15 +60,6 @@ const Item = ({
           100
       )
       animationDurationMs = timeUntilSlideFinishedMs
-
-      console.log(
-        'initialProgressPct ',
-        initialProgressPct,
-        ' animationDurationMs ',
-        animationDurationMs,
-        ' timeUntilSlideFinishedMs ',
-        timeUntilSlideFinishedMs
-      )
     }
     loadBar = (
       <div
