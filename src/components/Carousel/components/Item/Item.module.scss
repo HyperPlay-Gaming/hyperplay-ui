@@ -102,13 +102,20 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
 }
 
 /////////
-.itemContainer.noGradientBorder:hover::after {
-  background-color: var(--color-neutral-200);
-  opacity: 20%;
-  z-index: 1;
-  position: absolute;
-  inset: 0px;
-  content: '';
+.itemContainer.noGradientBorder {
+  &:hover::after {
+    background-color: var(--color-neutral-200);
+    opacity: 20%;
+    z-index: 1;
+    position: absolute;
+    inset: 0px;
+    content: '';
+  }
+
+  transition: transform 0.3s ease-in-out;
+  &.active {
+    transform: scale(1.125, 1.125);
+  }
 }
 
 .loader {
