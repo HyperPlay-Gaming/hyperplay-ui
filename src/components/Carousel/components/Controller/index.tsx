@@ -12,6 +12,7 @@ export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
   images: React.ReactElement[]
   showGradientBorder?: boolean
   controllerLayout?: 'attached' | 'detached'
+  numItemsToShow?: number
 }
 
 const Controller = ({
@@ -19,6 +20,7 @@ const Controller = ({
   showGradientBorder,
   controllerLayout = 'attached',
   className,
+  numItemsToShow = 5,
   ...props
 }: ControllerProps) => {
   const { activeIndex, setActiveIndex, stop } = useCarousel()
@@ -39,8 +41,8 @@ const Controller = ({
     setActiveIndex(index)
   }
 
-  const startIndex = Math.max(activeIndex - 3, 0)
-  const endIndex = Math.min(startIndex + 4, images.length)
+  const startIndex = Math.max(activeIndex - numItemsToShow + 1, 0)
+  const endIndex = Math.min(startIndex + numItemsToShow, images.length)
 
   return (
     <div

@@ -233,7 +233,8 @@ function expectItemsVisibility(
  * @dev arrows can change items in the controller view but doesn't change what the user has selected.
  * this also tests autoscroll for images after using right arrow.
  * when it changes to an offscreen controller item, all the items scroll into view.
- * slices in intervals of 5 and has empty controller item positions. arrows do not shift positions.
+ * slices in intervals of numItemsToShow and has empty controller item positions. arrows do not shift positions.
+ * if there are more items than can be shown in the controller items list, then wrap it.
  */
 export const TestImageAutoscrollAfterClickStory: Story = {
   args: {
@@ -243,6 +244,7 @@ export const TestImageAutoscrollAfterClickStory: Story = {
       <Carousel.Controller
         controllerLayout={'detached'}
         images={imagesForThumbnail}
+        numItemsToShow={4}
       />
     )
   },
@@ -259,27 +261,65 @@ export const TestImageAutoscrollAfterClickStory: Story = {
     expectSlideToNotBeVisible(imgSlide2)
 
     // expect first 4 controller items visible
-    expectItemsVisibility(canvas, [true, true, true, true, false])
+    const allButLastItemShown = [true, true, true, true, false]
+    expectItemsVisibility(canvas, allButLastItemShown)
 
     const rightButton = canvas.getByTestId('carousel-right-button')
     rightButton.click()
 
     // expect controller items to change
-    expectItemsVisibility(canvas, [false, false, false, false, true])
+    const lastItemShown = [false, false, false, false, true]
+    expectItemsVisibility(canvas, lastItemShown)
 
     await wait(1250)
     await expectSlideToNotBeVisible(imgSlide0)
     await expectSlideToBeVisible(imgSlide1)
     await expectSlideToNotBeVisible(imgSlide2)
+    expectItemsVisibility(canvas, lastItemShown)
 
     await wait(1250)
     await expectSlideToNotBeVisible(imgSlide0)
     await expectSlideToNotBeVisible(imgSlide1)
     await expectSlideToBeVisible(imgSlide2)
+    expectItemsVisibility(canvas, lastItemShown)
 
     await wait(1250)
     await expectSlideToBeVisible(imgSlide0)
     await expectSlideToNotBeVisible(imgSlide1)
     await expectSlideToNotBeVisible(imgSlide2)
+    expectItemsVisibility(canvas, lastItemShown)
+
+    rightButton.click()
+    expectItemsVisibility(canvas, allButLastItemShown)
+  }
+}
+
+/**
+ * @dev disable arrows if num items in controller is <= numItemsToShow
+ */
+export const TestControllerArrowDisabledStory: Story = {
+  args: {
+    autoplayOptions: { delay: 1000 },
+    children: imgSlides,
+    childrenNotInCarousel: (
+      <Carousel.Controller
+        controllerLayout={'detached'}
+        images={imagesForThumbnail}
+        numItemsToShow={10}
+      />
+    )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const imgSlide0 = canvas.getByTestId('img-slide-0')
+    await waitFor(async () =>
+      expect(imgSlide0.offsetWidth).toBeGreaterThan(500)
+    )
+
+    const rightButton = canvas.getByTestId('carousel-right-button')
+    await expect(rightButton).toBeDisabled()
+
+    const leftButton = canvas.getByTestId('carousel-left-button')
+    await expect(leftButton).toBeDisabled()
   }
 }
