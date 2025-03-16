@@ -2,6 +2,7 @@ import React from 'react'
 
 import cn from 'classnames'
 
+import { useCarousel } from '../..'
 import styles from './Item.module.scss'
 
 interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -10,6 +11,7 @@ interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   onClick: () => void
   showGradientBorder?: boolean
   showLoadBar?: boolean
+  itemIndex: number
 }
 
 const Item = ({
@@ -18,19 +20,63 @@ const Item = ({
   onClick,
   showGradientBorder = true,
   showLoadBar,
+  itemIndex,
   ...props
 }: ItemProps) => {
+  const {
+    getTimeUntilSlideFinished,
+    totalSlideTime,
+    slideTimeOverrideIndexToTimeMsMap,
+    timeUntilSlideFinishedOverrideIndexToTimeMsMap
+  } = useCarousel()
+
   let border = null
   if (showGradientBorder) {
     border = <div className={styles.border} />
   }
   let loadBar = null
-  if (showLoadBar) {
-    loadBar = <div />
+  if (showLoadBar && isActive) {
+    let timeUntilSlideFinishedMs = getTimeUntilSlideFinished?.()
+    if (
+      Object.hasOwn(timeUntilSlideFinishedOverrideIndexToTimeMsMap, itemIndex)
+    ) {
+      timeUntilSlideFinishedMs =
+        timeUntilSlideFinishedOverrideIndexToTimeMsMap[itemIndex]
+    }
+    let initialProgressPct = 0
+    let animationDurationMs = 5000
+    let thisItemSlideTotalTimeMs = totalSlideTime
+    if (Object.hasOwn(slideTimeOverrideIndexToTimeMsMap, itemIndex)) {
+      thisItemSlideTotalTimeMs = slideTimeOverrideIndexToTimeMsMap[itemIndex]
+    }
+    if (
+      typeof timeUntilSlideFinishedMs === 'number' &&
+      thisItemSlideTotalTimeMs
+    ) {
+      initialProgressPct = Math.round(
+        ((thisItemSlideTotalTimeMs - timeUntilSlideFinishedMs) /
+          thisItemSlideTotalTimeMs) *
+          100
+      )
+      animationDurationMs = timeUntilSlideFinishedMs
+    }
+    loadBar = (
+      <div
+        className={styles.loader}
+        style={{
+          // @ts-expect-error ts does not like css vars
+          '--carousel-item-initial-progress': `${initialProgressPct}%`,
+          '--carousel-item-animation-duration': `${animationDurationMs}ms`
+        }}
+      />
+    )
   }
   return (
     <div
-      className={cn(styles.itemContainer, { [styles.active]: isActive })}
+      className={cn(styles.itemContainer, {
+        [styles.active]: isActive,
+        [styles.noGradientBorder]: !showGradientBorder
+      })}
       onClick={onClick}
       {...props}
     >

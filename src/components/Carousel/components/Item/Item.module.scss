@@ -1,5 +1,7 @@
 @use 'sass:math';
 
+////// @TODO this animation logic should removed after A/B testing is finished
+
 @function difference($a, $b) {
   @return calc(abs($a - $b) / (($a + $b) / 2));
 }
@@ -33,6 +35,21 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   align-items: center;
   border-radius: 8px;
   cursor: pointer;
+  position: relative;
+
+  &.noGradientBorder {
+    border-radius: 14px;
+    border: 2px solid var(--color-neutral-600);
+    overflow: hidden;
+    .loader {
+      display: block;
+    }
+  }
+  &.noGradientBorder .imageContainer {
+    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .root:first-child,
@@ -64,23 +81,54 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
 .imageContainer img {
   width: 100%;
   height: 100%;
-  // object-fit: cover;
   transition: transform 0.3s ease-in-out;
 }
 
-.itemContainer:hover .border,
-.active .border {
+.itemContainer:not(.noGradientBorder):hover .border,
+.active:not(.noGradientBorder) .border {
   transform: scaleX($scale-mid-to-max-width) scaleY($scale-mid-to-max-height);
 }
 
-.itemContainer:hover .imageContainer,
-.active .imageContainer {
+.itemContainer:not(.noGradientBorder):hover .imageContainer,
+.active:not(.noGradientBorder) .imageContainer {
   transform: scaleX($scale-mid-to-min-width) scaleY($scale-mid-to-min-height);
 
   border-radius: 4.7px;
 }
 
-.itemContainer:hover img,
-.active img {
+.itemContainer:not(.noGradientBorder):hover img,
+.active:not(.noGradientBorder) img {
   transform: scaleX($scale-mid-to-max-width) scaleY($scale-mid-to-max-height);
+}
+
+/////////
+.itemContainer.noGradientBorder:hover::after {
+  background-color: var(--color-neutral-200);
+  opacity: 20%;
+  z-index: 1;
+  position: absolute;
+  inset: 0px;
+  content: '';
+}
+
+.loader {
+  height: 4px;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: var(--carousel-item-initial-progress);
+  background-color: var(--color-primary-300);
+  animation: progress var(--carousel-item-animation-duration) linear forwards;
+  z-index: 1;
+  display: none;
+}
+
+@keyframes progress {
+  from {
+    width: var(--carousel-item-initial-progress);
+  }
+  to {
+    width: 100%;
+  }
 }

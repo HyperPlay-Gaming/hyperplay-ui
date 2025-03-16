@@ -18,8 +18,15 @@ export function SlideVideo({
   reactPlayerProps,
   indexInSlides
 }: SlideVideoInterface) {
-  const { play, stop, activeIndex } = useCarousel()
+  const {
+    play,
+    stop,
+    activeIndex,
+    setSlideTimeOverride,
+    setTimeUntilSlideFinishedOverride
+  } = useCarousel()
   const [isPlaying, setIsPlaying] = useState(false)
+  const [videoDurationInMs, setVideoDurationInMs] = useState(5000)
 
   const onPlay = useCallback(() => {
     setIsPlaying(true)
@@ -44,9 +51,26 @@ export function SlideVideo({
     }
   }, [activeIndex, indexInSlides])
 
+  useEffect(() => {
+    if (indexInSlides !== undefined) {
+      setSlideTimeOverride(indexInSlides, videoDurationInMs)
+    }
+  }, [videoDurationInMs])
+
   return (
     <Carousel.Slide {...slideProps}>
       <ReactPlayer
+        onDuration={(duration: number) =>
+          setVideoDurationInMs(Math.round(duration * 1000))
+        }
+        onProgress={(state) => {
+          if (indexInSlides !== undefined) {
+            setTimeUntilSlideFinishedOverride(
+              indexInSlides,
+              Math.round(videoDurationInMs - state.playedSeconds * 1000)
+            )
+          }
+        }}
         width={'100%'}
         height={'100%'}
         onPlay={onPlay}

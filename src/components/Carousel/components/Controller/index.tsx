@@ -13,6 +13,7 @@ export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
   showGradientBorder?: boolean
   controllerLayout?: 'attached' | 'detached'
   numItemsToShow?: number
+  showItemLoadBar?: boolean
 }
 
 const Controller = ({
@@ -21,6 +22,7 @@ const Controller = ({
   controllerLayout = 'attached',
   className,
   numItemsToShow = 5,
+  showItemLoadBar,
   ...props
 }: ControllerProps) => {
   const { activeIndex, setActiveIndex, stop } = useCarousel()
@@ -66,6 +68,8 @@ const Controller = ({
               onClick={() => handleClick(itemIndex)}
               showGradientBorder={showGradientBorder}
               data-testid={`carousel-controller-item-${itemIndex}`}
+              showLoadBar={showItemLoadBar}
+              itemIndex={itemIndex}
             />
           )
         })}

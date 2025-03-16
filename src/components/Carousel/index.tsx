@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useRef, useState } from 'react'
-import { useInterval } from 'react-use'
 
 import {
   CarouselStylesNames,
@@ -26,6 +25,15 @@ interface CarouselContextType {
   isRotating: () => void
   play: () => void
   stop: () => void
+  totalSlideTime?: number
+  getTimeUntilSlideFinished?: () => number | null
+  slideTimeOverrideIndexToTimeMsMap: Record<number, number>
+  setSlideTimeOverride: (slideIndex: number, timeInMs: number) => void
+  timeUntilSlideFinishedOverrideIndexToTimeMsMap: Record<number, number>
+  setTimeUntilSlideFinishedOverride: (
+    slideIndex: number,
+    timeInMs: number
+  ) => void
 }
 
 const CarouselContext = createContext<CarouselContextType | undefined>(
@@ -59,15 +67,42 @@ const Carousel = ({
 }: CarouselProps) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
   const [emblaApi, setEmblaApi] = useState<EmblaCarouselType>()
+  const [
+    timeUntilSlideFinishedOverrideIndexToTimeMsMap,
+    setTimeUntilSlideFinishedOverrideIndexToTimeMsMap
+  ] = useState<Record<number, number>>({})
+  const [
+    slideTimeOverrideIndexToTimeMsMap,
+    setSlideTimeOverrideIndexToTimeMsMap
+  ] = useState<Record<number, number>>({})
+
+  const setSlideTimeOverride = (slideIndex: number, timeInMs: number) => {
+    setSlideTimeOverrideIndexToTimeMsMap((prevState) => ({
+      ...prevState,
+      [slideIndex]: timeInMs
+    }))
+  }
+
+  const setTimeUntilSlideFinishedOverride = (
+    slideIndex: number,
+    timeInMs: number
+  ) => {
+    setTimeUntilSlideFinishedOverrideIndexToTimeMsMap((prevState) => ({
+      ...prevState,
+      [slideIndex]: timeInMs
+    }))
+  }
 
   const autoplay = useRef<AutoplayType>(
     Autoplay({ stopOnInteraction: false, ...autoplayOptions })
   )
 
-  useInterval(
-    () => console.log('carousel is playing: ', activeSlideIndex),
-    1000
-  )
+  // if delay val is an object, it won't be useable in children anyways so let's return undefined in that case
+  const delayValOrObj = autoplay.current.options.delay?.valueOf()
+  let delayNum: number | undefined = undefined
+  if (typeof delayValOrObj === 'number') {
+    delayNum = delayValOrObj
+  }
 
   const value = {
     activeIndex: activeSlideIndex,
@@ -79,9 +114,14 @@ const Carousel = ({
     isRotating: () => autoplay.current.isPlaying(),
     play: () => autoplay.current.play(),
     stop: () => {
-      console.log('stop the carousel')
       autoplay.current.stop()
-    }
+    },
+    totalSlideTime: delayNum,
+    getTimeUntilSlideFinished: autoplay.current.timeUntilNext,
+    slideTimeOverrideIndexToTimeMsMap,
+    setSlideTimeOverride,
+    timeUntilSlideFinishedOverrideIndexToTimeMsMap,
+    setTimeUntilSlideFinishedOverride
   }
 
   return (

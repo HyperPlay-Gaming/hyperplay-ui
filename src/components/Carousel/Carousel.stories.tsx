@@ -64,11 +64,13 @@ const props: (props: CarouselPropsParams) => CarouselProps = ({
       {imgSlides}
     </>
   ),
-  delay: 6000,
+  autoplayOptions: { delay: 6000 },
   childrenNotInCarousel: (
     <Carousel.Controller
       controllerLayout={controllerLayout}
       images={imagesAndVideosForThumbnail}
+      showGradientBorder={false}
+      showItemLoadBar={true}
     />
   )
 })
