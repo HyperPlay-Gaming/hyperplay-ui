@@ -15,20 +15,50 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof GameAbout>
 
+const shortDescription = `Shoot, Earn, Pioneer: Now We Live in XOCIETY.
+
+Backed by prominent investors such as HASHED, Spartan, KRAFTON, and Sui. XOCIETY stands as Sui's flagship gaming project.
+
+Set in a deep Sci-Fi world. XOCIETY aims to redefine gaming experiences offering players economic control and transforming them into key decision-makers. With the revolutionary XOCIETY Corporate Share system, players take control of the core parts of XOCIETY, from...`
+
 const longDescription = `Shoot, Earn, Pioneer: Now We Live in XOCIETY.
 
-Backed by prominent investors such as HASHED, Spartan, KRAFTON, and Sui. XOCIETY stands as Suis flagship gaming project.
+Backed by prominent investors such as HASHED, Spartan, KRAFTON, and Sui. XOCIETY stands as Sui's flagship gaming project.
 
-Set in a deep Sci-Fi world. XOCIETY aims to redefine gaming experiences offering players economic control and transforming them into key decision-makers. With the revolutionary XOCIETY Corporate Share system, players take control of the core parts of XOCIETY, from...
+Set in a deep Sci-Fi world. XOCIETY aims to redefine gaming experiences offering players economic control and transforming them into key decision-makers. With the revolutionary XOCIETY Corporate Share system, players take control of the core parts of XOCIETY, from tournament modes to wearables, they are in control and rewarded.
 
-The game features an innovative economic system where players can earn real value through gameplay. Each decision impacts the game's ecosystem, from resource management to territory control.
+Developed by XOCIETY's 36 veteran developers (avg 10+ experience in gaming) from global AAA studios such as NCSOFT, from tournament modes to wearables, they are in control and rewarded.
 
-Players can participate in various activities including combat missions, resource gathering, and strategic planning. The game's unique blend of action and strategy creates an engaging experience for all player types.`
+Featuring PvP and PvE elements combined with RPG mechanics. With an emphasis on player experience, XOCIETY aimes to redefine gaming experience offering TPS players economic control, and transforming them into key economic agents. Unlike traditional FPS games, where a single user's activity has little impact on the broader game environment, decisions in XOCIETY create dynamic ripple effects throughout the gameplay and environment.`
 
 export const Default: Story = {
   args: {
-    titleSmall: 'About this Game',
-    description: longDescription
+    titleSmall: 'About',
+    description: longDescription,
+    buttonLink: {
+      onClick: () => console.log('Button clicked')
+    }
+  }
+}
+
+export const ShortDescription: Story = {
+  args: {
+    titleSmall: 'About',
+    description: shortDescription,
+    buttonLink: {
+      onClick: () => console.log('Button clicked')
+    }
+  }
+}
+
+export const LongDescription: Story = {
+  args: {
+    titleSmall: 'About',
+    description: longDescription,
+    buttonLink: {
+      expanded: true,
+      onClick: () => console.log('Button clicked')
+    }
   }
 }
 
