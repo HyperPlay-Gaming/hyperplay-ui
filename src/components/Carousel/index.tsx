@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useRef, useState } from 'react'
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useRef,
+  useState
+} from 'react'
 
 import {
   CarouselStylesNames,
@@ -21,7 +27,7 @@ export type { ControllerProps } from './components/Controller'
 interface CarouselContextType {
   activeIndex: number
   setActiveIndex: (index: number) => void
-  emblaApi: EmblaCarouselType | undefined
+  emblaApi: EmblaCarouselType | null
   isRotating: () => void
   play: () => void
   stop: () => void
@@ -34,6 +40,7 @@ interface CarouselContextType {
     slideIndex: number,
     timeInMs: number
   ) => void
+  scrollNextSlide: (jump?: boolean) => void
 }
 
 const CarouselContext = createContext<CarouselContextType | undefined>(
@@ -66,7 +73,7 @@ const Carousel = ({
   ...props
 }: CarouselProps) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
-  const [emblaApi, setEmblaApi] = useState<EmblaCarouselType>()
+  const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | null>(null)
   const [
     timeUntilSlideFinishedOverrideIndexToTimeMsMap,
     setTimeUntilSlideFinishedOverrideIndexToTimeMsMap
@@ -104,12 +111,20 @@ const Carousel = ({
     delayNum = delayValOrObj
   }
 
+  const scrollNextSlideCallback = useCallback(
+    (jump?: boolean) => {
+      emblaApi?.scrollNext(jump)
+    },
+    [emblaApi]
+  )
+
   const value = {
     activeIndex: activeSlideIndex,
     setActiveIndex: (index: number) => {
       setActiveSlideIndex(index)
       emblaApi?.scrollTo(index)
     },
+    scrollNextSlide: scrollNextSlideCallback,
     emblaApi,
     isRotating: () => autoplay.current.isPlaying(),
     play: () => autoplay.current.play(),
@@ -128,7 +143,7 @@ const Carousel = ({
     <CarouselContext.Provider value={value}>
       <div className={cn(styles.root, classNames?.hpCarouselRoot, className)}>
         <MantineCarousel
-          getEmblaApi={(embla) => setEmblaApi(embla)}
+          getEmblaApi={setEmblaApi}
           classNames={{
             slide: cn(styles.slide, classNames?.slide),
             indicators: styles.indicators

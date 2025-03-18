@@ -11,17 +11,20 @@ export interface SlideVideoInterface {
   }
   reactPlayerProps?: React.ComponentProps<typeof ReactPlayer>
   indexInSlides?: number
+  onEnd?: () => void
 }
 
 export function SlideVideo({
   slideProps,
   reactPlayerProps,
-  indexInSlides
+  indexInSlides,
+  onEnd
 }: SlideVideoInterface) {
   const {
     play,
     stop,
     activeIndex,
+    scrollNextSlide,
     setSlideTimeOverride,
     setTimeUntilSlideFinishedOverride
   } = useCarousel()
@@ -38,7 +41,7 @@ export function SlideVideo({
   const onPlay = useCallback(() => {
     setIsPlaying(true)
     stop()
-  }, [])
+  }, [stop])
 
   const onStop = useCallback(() => {
     setIsPlaying(false)
@@ -47,7 +50,9 @@ export function SlideVideo({
   const onEnded = useCallback(() => {
     setIsPlaying(false)
     play()
-  }, [])
+    scrollNextSlide()
+    onEnd?.()
+  }, [play, scrollNextSlide, onEnd])
 
   /**
    * @dev start playing when this slide is active and disable carousel rotation

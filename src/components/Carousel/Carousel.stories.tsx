@@ -159,11 +159,15 @@ export const TestImageAutoscrollStory: Story = {
   }
 }
 
-type propsWithVidProps = CarouselPropsParams & { delay?: number }
+type propsWithVidProps = CarouselPropsParams & {
+  delay?: number
+  onVideoEnd?: () => void
+}
 
 const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
   controllerLayout = 'attached',
-  delay = 1000
+  delay = 1000,
+  onVideoEnd
 }: propsWithVidProps) => ({
   children: (
     <>
@@ -173,6 +177,7 @@ const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
           url: 'https://youtu.be/_asNhzXq72w?si=AX1hf2pAKwtNiYs3'
         }}
         slideProps={{ 'data-testid': 'video-slide-0' }}
+        onEnd={onVideoEnd}
       />
       {imgSlides}
     </>
@@ -186,32 +191,41 @@ const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
   )
 })
 
+let videoEndedRes: (val?: unknown) => void | undefined
+const videoEnded = new Promise((res) => {
+  videoEndedRes = res
+})
+
+const videoEndHandler = () => {
+  videoEndedRes()
+}
 /**
  * @dev tests that autoscroll stops for videos until the video is done
- * should immediately scroll to next controller item when the video finishes
+ * should quickly scroll to next controller item when the video finishes
  * @TODO check controller item state like loader bar
  */
 export const TestVideoAutoscrollStory: Story = {
-  args: propsWithShortVideo({}),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
+  args: propsWithShortVideo({ onVideoEnd: videoEndHandler }),
+  play: async ({ mount, args }) => {
+    const canvas = await mount(<Carousel {...args} />)
     const videoSlide0 = canvas.getByTestId('video-slide-0')
     await waitFor(async () =>
       expect(videoSlide0.offsetWidth).toBeGreaterThan(500)
     )
-    const time = Date.now()
     await expectSlideToBeVisible(videoSlide0)
     const imgSlide1 = canvas.getByTestId('img-slide-0')
     await expectSlideToNotBeVisible(imgSlide1)
     const imgSlide2 = canvas.getByTestId('img-slide-1')
     await expectSlideToNotBeVisible(imgSlide2)
 
+    await videoEnded
+    const time = Date.now()
     await waitFor(
       async () => (await expectSlideToBeVisible(imgSlide1)).toBeTruthy(),
       { timeout: 20000 }
     )
     const timeAfter = Date.now()
-    expect(timeAfter - time).toBeLessThan(7000)
+    expect(timeAfter - time).toBeLessThan(1000)
   }
 }
 
