@@ -9,6 +9,7 @@ import dtCover from '@/assets/DarkThroneLandscape.png?url'
 import onisCover from '@/assets/OnisQuestLandscape.png?url'
 import pgCover from '@/assets/PhantomGalaxiesLandscape.png?url'
 import wakeCover from '@/assets/TheWakeLandscape.png?url'
+import questCard from '@/assets/banners/QuestCardV2Image.png?url'
 
 import Carousel, { CarouselProps } from '.'
 import { ControllerProps } from './components/Controller'
@@ -22,7 +23,7 @@ export default meta
 
 type Story = StoryObj<typeof Carousel>
 
-const images = [pgCover, dtCover, wakeCover, onisCover, dtCover]
+const images = [pgCover, dtCover, wakeCover, onisCover, questCard]
 
 interface CarouselPropsParams {
   controllerLayout?: ControllerProps['controllerLayout']
@@ -341,7 +342,7 @@ export const TestControllerArrowDisabledStory: Story = {
       <Carousel.Controller
         controllerLayout={'detached'}
         images={imagesForThumbnail}
-        numItemsToShow={10}
+        numItemsToShow={5}
       />
     )
   },

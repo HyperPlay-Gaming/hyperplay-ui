@@ -38,7 +38,7 @@ const Controller = ({
 }: ControllerProps) => {
   const { activeIndex, setActiveIndex } = useCarousel()
   const [itemsPageIndex, setItemsPageIndex] = useState(0)
-  const maxPageIndex = Math.floor(images.length / numItemsToShow)
+  const maxPageIndex = Math.floor((images.length - 1) / numItemsToShow)
   const nextItemsPage = useCallback(() => {
     let newPageIndex = itemsPageIndex + 1
     if (newPageIndex > maxPageIndex) {
@@ -65,6 +65,7 @@ const Controller = ({
 
   const startIndex = Math.max(itemsPageIndex * numItemsToShow, 0)
   const endIndex = (itemsPageIndex + 1) * numItemsToShow
+  const disablePageButtons = maxPageIndex === 0
 
   const itemsToShow: React.ReactNode[] = []
   for (let itemIndex = startIndex; itemIndex < endIndex; ++itemIndex) {
@@ -114,6 +115,7 @@ const Controller = ({
           className={classNames?.leftButton}
           isLeftButton={true}
           carouselButtonType={carouselButtonType}
+          disabled={disablePageButtons}
         />
         {itemsToShow}
         <BaseButton
@@ -121,6 +123,7 @@ const Controller = ({
           className={classNames?.rightButton}
           isLeftButton={false}
           carouselButtonType={carouselButtonType}
+          disabled={disablePageButtons}
         />
       </div>
     </div>

@@ -38,6 +38,7 @@ const BaseButton = ({
   return (
     <div
       className={cn(
+        styles.root,
         {
           [styles.leftButton]: isLeftButton,
           [styles[`root-${carouselButtonType}`]]: true
