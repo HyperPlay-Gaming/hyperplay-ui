@@ -1,10 +1,9 @@
 .container {
   display: flex;
-  width: 75rem;
-  padding: var(--space-2xl) 7.5rem;
+  max-width: 75rem;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-lg);
+  gap: var(--space-2lg);
 
   @media (max-width: 768px) {
     display: flex;
@@ -24,96 +23,47 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 4.4em;
+  line-height: 1.5em;
 }
 
-.title {
-  color: var(--color-neutral-200);
-  margin: var(--space-md) 0;
-  font-size: 24px;
-  font-weight: 600;
+.expandedText {
+  display: block;
+  max-height: none;
+  line-height: 1.5em;
 }
 
-.titleLarge {
-  color: var(--color-neutral-200);
-  margin: var(--space-xs) 0;
-  font-weight: 600;
-}
-
-.titleSmall {
-  color: var(--color-neutral-200);
-  margin: var(--space-xs) 0;
-  font-weight: 600;
+.gameTitle {
+  font-family: var(--title-lg);
 }
 
 .description {
   color: var(--color-neutral-400);
   margin: 0;
+  max-width: 100%;
 }
 
 .showMore {
   display: flex;
   margin: var(--space-xs) 0;
   padding: 0;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background: transparent;
   border: none;
   color: var(--color-primary-400);
   cursor: pointer;
   transition: background-color 0.2s ease;
+  width: 100%;
 
   &:hover {
     color: var(--color-primary-300);
   }
 }
 
-.gameTitle {
-  margin-bottom: 24px;
-}
-
 .stickers {
   display: flex;
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: var(--space-xs-fixed);
   flex-wrap: wrap;
-}
-
-.stickerContent {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  img {
-    width: 20px;
-    height: 20px;
-  }
-
-  span {
-    color: var(--text-primary);
-    font-size: 14px;
-  }
-}
-
-.sticker {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: var(--surface-secondary);
-  border-radius: 8px;
-
-  img {
-    width: 20px;
-    height: 20px;
-  }
-
-  span {
-    color: var(--text-primary);
-    font-size: 14px;
-  }
-}
-
-.iconBadge {
-  width: var(--space-lg);
-  height: var(--space-lg);
 }
