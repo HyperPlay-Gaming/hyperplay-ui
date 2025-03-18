@@ -50,6 +50,11 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
     width: 100%;
     height: 100%;
   }
+
+  &.empty {
+    background: none;
+    cursor: inherit;
+  }
 }
 
 .root:first-child,

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 
 import cn from 'classnames'
 
@@ -36,26 +36,66 @@ const Controller = ({
   carouselButtonType,
   ...props
 }: ControllerProps) => {
-  const { activeIndex, setActiveIndex, stop } = useCarousel()
-  const nextImage = () => {
-    stop()
-    const newIndex = (activeIndex + 1) % images.length
-    setActiveIndex(newIndex)
-  }
+  const { activeIndex, setActiveIndex } = useCarousel()
+  const [itemsPageIndex, setItemsPageIndex] = useState(0)
+  const maxPageIndex = Math.floor(images.length / numItemsToShow)
+  const nextItemsPage = useCallback(() => {
+    let newPageIndex = itemsPageIndex + 1
+    if (newPageIndex > maxPageIndex) {
+      newPageIndex = 0
+    }
+    setItemsPageIndex(newPageIndex)
+  }, [maxPageIndex, setItemsPageIndex, itemsPageIndex])
 
-  const previousImage = () => {
-    stop()
-    const newIndex = (activeIndex - 1 + images.length) % images.length
-    setActiveIndex(newIndex)
-  }
+  const previousItemsPage = useCallback(() => {
+    let newPageIndex = itemsPageIndex - 1
+    if (newPageIndex < 0) {
+      newPageIndex = maxPageIndex
+    }
+    setItemsPageIndex(newPageIndex)
+  }, [maxPageIndex, setItemsPageIndex, itemsPageIndex])
 
-  const handleClick = (index: number) => {
-    stop()
-    setActiveIndex(index)
-  }
+  const handleClick = useCallback(
+    (index: number) => {
+      stop()
+      setActiveIndex(index)
+    },
+    [stop, setActiveIndex]
+  )
 
-  const startIndex = Math.max(activeIndex - numItemsToShow + 1, 0)
-  const endIndex = Math.min(startIndex + numItemsToShow, images.length)
+  const startIndex = Math.max(itemsPageIndex * numItemsToShow, 0)
+  const endIndex = (itemsPageIndex + 1) * numItemsToShow
+
+  const itemsToShow: React.ReactNode[] = []
+  for (let itemIndex = startIndex; itemIndex < endIndex; ++itemIndex) {
+    if (itemIndex < images.length) {
+      const Image = images[itemIndex]
+      itemsToShow.push(
+        <Item
+          key={`hyperplay_carousel_controller_${itemIndex}`}
+          imageElement={Image}
+          isActive={itemIndex === activeIndex}
+          onClick={() => handleClick(itemIndex)}
+          showGradientBorder={showGradientBorder}
+          data-testid={`carousel-controller-item-${itemIndex}`}
+          showLoadBar={showItemLoadBar}
+          itemIndex={itemIndex}
+          className={classNames?.item}
+        />
+      )
+    } else {
+      itemsToShow.push(
+        <Item
+          key={`hyperplay_carousel_controller_empty_${itemIndex}`}
+          imageElement={null}
+          isActive={false}
+          onClick={() => console.warn('empty item clicked')}
+          itemIndex={itemIndex}
+          isEmptyItem={true}
+        />
+      )
+    }
+  }
 
   return (
     <div
@@ -70,29 +110,14 @@ const Controller = ({
     >
       <div className={cn(styles.root, classNames?.root)}>
         <BaseButton
-          onClick={previousImage}
+          onClick={previousItemsPage}
           className={classNames?.leftButton}
           isLeftButton={true}
           carouselButtonType={carouselButtonType}
         />
-        {images.slice(startIndex, endIndex).map((Image, index) => {
-          const itemIndex = startIndex + index
-          return (
-            <Item
-              key={`hyperplay_carousel_controller_${itemIndex}`}
-              imageElement={Image}
-              isActive={itemIndex === activeIndex}
-              onClick={() => handleClick(itemIndex)}
-              showGradientBorder={showGradientBorder}
-              data-testid={`carousel-controller-item-${itemIndex}`}
-              showLoadBar={showItemLoadBar}
-              itemIndex={itemIndex}
-              className={classNames?.item}
-            />
-          )
-        })}
+        {itemsToShow}
         <BaseButton
-          onClick={nextImage}
+          onClick={nextItemsPage}
           className={classNames?.rightButton}
           isLeftButton={false}
           carouselButtonType={carouselButtonType}

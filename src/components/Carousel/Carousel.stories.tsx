@@ -229,18 +229,21 @@ export const TestVideoAutoscrollStory: Story = {
   }
 }
 
-function expectItemsVisibility(
+async function expectItemsVisibility(
   /* eslint-disable-next-line */
-  canvas: any,
+  canvas: ReturnType<typeof within>,
   isVisible: boolean[]
 ) {
   for (let i = 0; i < isVisible.length; ++i) {
-    if (isVisible) {
-      expect(canvas.getByTestId(`carousel-controller-item-${i}`)).toBeDefined()
-    } else {
-      expect(
+    if (isVisible[i]) {
+      await expect(
         canvas.getByTestId(`carousel-controller-item-${i}`)
-      ).toBeUndefined()
+      ).toBeDefined()
+    } else {
+      const allItemsWithId = await canvas.queryByTestId(
+        `carousel-controller-item-${i}`
+      )
+      await expect(allItemsWithId).toBe(null)
     }
   }
 }
@@ -264,49 +267,66 @@ export const TestImageAutoscrollAfterClickStory: Story = {
       />
     )
   },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement)
     const imgSlide0 = canvas.getByTestId('img-slide-0')
     await waitFor(async () =>
       expect(imgSlide0.offsetWidth).toBeGreaterThan(500)
     )
-    await expectSlideToBeVisible(imgSlide0)
     const imgSlide1 = canvas.getByTestId('img-slide-1')
-    expectSlideToNotBeVisible(imgSlide1)
     const imgSlide2 = canvas.getByTestId('img-slide-2')
-    expectSlideToNotBeVisible(imgSlide2)
-
-    // expect first 4 controller items visible
     const allButLastItemShown = [true, true, true, true, false]
-    expectItemsVisibility(canvas, allButLastItemShown)
+    await step('first 4 controller items are shown initially', async () => {
+      await expectSlideToBeVisible(imgSlide0)
+      await expectSlideToNotBeVisible(imgSlide1)
+      await expectSlideToNotBeVisible(imgSlide2)
+
+      // expect first 4 controller items visible
+      await expectItemsVisibility(canvas, allButLastItemShown)
+    })
 
     const rightButton = canvas.getByTestId('carousel-right-button')
-    rightButton.click()
-
-    // expect controller items to change
     const lastItemShown = [false, false, false, false, true]
-    expectItemsVisibility(canvas, lastItemShown)
 
-    await wait(1250)
-    await expectSlideToNotBeVisible(imgSlide0)
-    await expectSlideToBeVisible(imgSlide1)
-    await expectSlideToNotBeVisible(imgSlide2)
-    expectItemsVisibility(canvas, lastItemShown)
+    await step(
+      'click the right button. only the 5th item is shown',
+      async () => {
+        rightButton.click()
+        await wait(500)
 
-    await wait(1250)
-    await expectSlideToNotBeVisible(imgSlide0)
-    await expectSlideToNotBeVisible(imgSlide1)
-    await expectSlideToBeVisible(imgSlide2)
-    expectItemsVisibility(canvas, lastItemShown)
+        // expect controller items to change
+        await expectItemsVisibility(canvas, lastItemShown)
+      }
+    )
 
-    await wait(1250)
-    await expectSlideToBeVisible(imgSlide0)
-    await expectSlideToNotBeVisible(imgSlide1)
-    await expectSlideToNotBeVisible(imgSlide2)
-    expectItemsVisibility(canvas, lastItemShown)
+    await step('autoscroll still works', async () => {
+      await wait(1250)
+      await expectSlideToNotBeVisible(imgSlide0)
+      await expectSlideToBeVisible(imgSlide1)
+      await expectSlideToNotBeVisible(imgSlide2)
+      await expectItemsVisibility(canvas, lastItemShown)
 
-    rightButton.click()
-    expectItemsVisibility(canvas, allButLastItemShown)
+      await wait(1250)
+      await expectSlideToNotBeVisible(imgSlide0)
+      await expectSlideToNotBeVisible(imgSlide1)
+      await expectSlideToBeVisible(imgSlide2)
+      await expectItemsVisibility(canvas, lastItemShown)
+
+      await wait(1250)
+      await expectSlideToBeVisible(imgSlide0)
+      await expectSlideToNotBeVisible(imgSlide1)
+      await expectSlideToNotBeVisible(imgSlide2)
+      await expectItemsVisibility(canvas, lastItemShown)
+    })
+
+    await step(
+      'click the right button. first 4 items are shown again',
+      async () => {
+        rightButton.click()
+        await wait(500)
+        expectItemsVisibility(canvas, allButLastItemShown)
+      }
+    )
   }
 }
 

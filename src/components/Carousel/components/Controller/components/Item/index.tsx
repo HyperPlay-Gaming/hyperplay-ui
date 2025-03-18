@@ -7,11 +7,13 @@ import styles from './Item.module.scss'
 
 interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   isActive: boolean
-  imageElement: JSX.Element
+  imageElement: React.ReactNode | null
   onClick: () => void
   showGradientBorder?: boolean
   showLoadBar?: boolean
   itemIndex: number
+  // these are just used to take up a slot in the controller and do not have UI/aren't clickable
+  isEmptyItem?: boolean
 }
 
 const Item = ({
@@ -22,6 +24,7 @@ const Item = ({
   showLoadBar,
   itemIndex,
   className,
+  isEmptyItem,
   ...props
 }: ItemProps) => {
   const {
@@ -72,22 +75,31 @@ const Item = ({
       />
     )
   }
+  let content: React.ReactNode | null = (
+    <>
+      {border}
+      <div className={styles.imageContainer}>{imageElement}</div>
+      {loadBar}
+    </>
+  )
+  if (isEmptyItem) {
+    content = null
+  }
   return (
     <div
       className={cn(
         styles.itemContainer,
         {
           [styles.active]: isActive,
-          [styles.noGradientBorder]: !showGradientBorder
+          [styles.noGradientBorder]: !showGradientBorder,
+          [styles.empty]: isEmptyItem
         },
         className
       )}
       onClick={onClick}
       {...props}
     >
-      {border}
-      <div className={styles.imageContainer}>{imageElement}</div>
-      {loadBar}
+      {content}
     </div>
   )
 }
