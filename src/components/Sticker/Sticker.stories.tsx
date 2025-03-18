@@ -17,29 +17,36 @@ type Story = StoryObj<typeof Sticker>
 export const Default: Story = {
   args: {
     styleType: 'secondary',
+    dimension: 'default',
     variant: 'outlined',
-    children: 'Sticker',
-    size: 'default'
+    children: 'Sticker'
   }
 }
 
 export const DefaultWithIcon: Story = {
   args: {
     styleType: 'secondary',
+    styleCategory: {
+      variant: 'withIcon',
+      icon: <AlertTriangle data-icon="alert-triangle" />
+    },
+    dimension: 'default',
     variant: 'outlined',
-    children: 'Sticker',
-    size: 'default',
-    withIcon: <AlertTriangle />
+    children: 'Sticker'
   }
 }
 
 export const DefaultWithDot: Story = {
   args: {
     styleType: 'secondary',
+    styleCategory: {
+      variant: 'withDot',
+      dotColor: 'success',
+      dotIcon: <DotIcon />
+    },
+    dimension: 'default',
     variant: 'outlined',
-    children: 'Sticker',
-    size: 'default',
-    withDot: <DotIcon />
+    children: 'Sticker'
   }
 }
 
@@ -47,28 +54,35 @@ export const DefaultWithDot: Story = {
 export const Small: Story = {
   args: {
     styleType: 'secondary',
+    dimension: 'small',
     variant: 'outlined',
-    children: 'Sticker',
-    size: 'small'
+    children: 'Sticker'
   }
 }
 
 export const SmallWithIcon: Story = {
   args: {
     styleType: 'secondary',
+    styleCategory: {
+      variant: 'withIcon',
+      icon: <AlertTriangle data-icon="alert-triangle" />
+    },
+    dimension: 'small',
     variant: 'outlined',
-    children: 'Sticker',
-    size: 'small',
-    withIcon: <AlertTriangle />
+    children: 'Sticker'
   }
 }
 
 export const SmallWithDot: Story = {
   args: {
     styleType: 'secondary',
+    styleCategory: {
+      variant: 'withDot',
+      dotColor: 'success',
+      dotIcon: <DotIcon />
+    },
+    dimension: 'small',
     variant: 'outlined',
-    children: 'Sticker',
-    size: 'small',
-    withDot: <DotIcon />
+    children: 'Sticker'
   }
 }
