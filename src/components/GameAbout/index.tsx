@@ -18,6 +18,7 @@ export interface GameAboutProps {
     withIcon?: React.ReactNode
   }[]
   buttonLink?: {
+    expanded?: boolean
     onClick?: () => void
   }
   classnames?: {
@@ -41,14 +42,15 @@ const GameAbout = ({
 }: GameAboutProps) => {
   const aboutText = useRef<HTMLParagraphElement | null>(null)
   const [isClamped, setIsClamped] = useState(false)
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(buttonLink?.expanded || false)
 
   useEffect(() => {
     if (aboutText && aboutText.current) {
-      const { clientHeight, scrollHeight } = aboutText.current
-      setIsClamped(scrollHeight > clientHeight)
+      const element = aboutText.current
+      const hasOverflow = element.scrollHeight > element.clientHeight
+      setIsClamped(hasOverflow || expanded)
     }
-  }, [])
+  }, [description, expanded])
 
   const handleShowMore = () => {
     setExpanded(!expanded)
@@ -60,7 +62,7 @@ const GameAbout = ({
   return (
     <div className={classNames(styles.container, classnames?.container)}>
       {titleSmall && (
-        <div className={classNames('text-sm', classnames?.titleSmall)}>
+        <div className={classNames('title-sm', classnames?.titleSmall)}>
           {titleSmall}
         </div>
       )}
@@ -71,13 +73,7 @@ const GameAbout = ({
       )}
 
       {gameName && (
-        <div
-          className={classNames(
-            'header',
-            styles.gameTitle,
-            classnames?.gameTitle
-          )}
-        >
+        <div className={classNames('title', classnames?.gameTitle)}>
           {gameName}
         </div>
       )}
@@ -87,8 +83,12 @@ const GameAbout = ({
             <Sticker
               key={index}
               styleType={item.label === 'Access Gated' ? 'warning' : 'tertiary'}
+              styleCategory={
+                item.withIcon
+                  ? { variant: 'withIcon', icon: item.withIcon }
+                  : undefined
+              }
               variant="outlined"
-              withIcon={item.withIcon}
             >
               {item.label}
             </Sticker>
@@ -101,7 +101,7 @@ const GameAbout = ({
         className={classNames(
           'body-sm',
           styles.description,
-          !expanded && styles.clampedText,
+          expanded ? styles.expandedText : styles.clampedText,
           classnames?.description
         )}
       >
