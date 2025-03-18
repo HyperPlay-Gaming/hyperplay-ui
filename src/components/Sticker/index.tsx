@@ -11,49 +11,54 @@ type StyleType =
   | 'success'
   | 'warning'
   | 'error'
-type Variant = 'outlined' | 'filled' | 'filledStrong'
-type Size = 'default' | 'small'
-type WithIcon = React.ReactNode
-type WithDot = React.ReactNode
 
-export interface StickerProps extends Omit<HTMLProps<HTMLDivElement>, 'size'> {
+type DotColor = 'success' | 'error' | 'warning' | 'neutral' | 'tertiary'
+
+type StyleCategory =
+  | { variant: 'withIcon'; icon: React.ReactNode }
+  | {
+      variant: 'withDot'
+      dotColor: DotColor
+      dotIcon?: React.ReactNode
+    }
+
+type Dimension = 'default' | 'small'
+
+type Variant = 'outlined' | 'filled' | 'filledStrong'
+
+export interface StickerProps extends HTMLProps<HTMLDivElement> {
   styleType?: StyleType
+  styleCategory?: StyleCategory
+  dimension?: Dimension
   variant?: Variant
-  size?: Size
-  withIcon?: WithIcon
-  withDot?: WithDot
-  iconClassName?: string
-  dotClassName?: string
-  className?: string
-  children?: React.ReactNode
 }
 
 export default function Sticker({
   styleType = 'secondary',
+  styleCategory = { variant: 'withIcon' } as StyleCategory,
+  dimension = 'default',
   variant = 'outlined',
-  size = 'default',
   className,
-  withIcon,
-  withDot,
-  iconClassName,
-  dotClassName,
   children,
   ...props
 }: StickerProps) {
-  const divClasses: Record<string, string | boolean | undefined> = {
+  const divClasses: Record<
+    string,
+    string | boolean | undefined | React.ReactNode
+  > = {
     [styles.neutral]: styleType === 'neutral',
     [styles.secondary]: styleType === 'secondary',
     [styles.tertiary]: styleType === 'tertiary',
     [styles.success]: styleType === 'success',
     [styles.warning]: styleType === 'warning',
     [styles.error]: styleType === 'error',
+    [styles.sizeDefault]: dimension === 'default',
+    [styles.sizeSmall]: dimension === 'small',
+    [styles.icon]: styleCategory.variant === 'withIcon',
+    [styles.dot]: styleCategory.variant === 'withDot',
     [styles.outlined]: variant === 'outlined',
     [styles.filled]: variant === 'filled',
-    [styles.filledStrong]: variant === 'filledStrong',
-    [styles.sizeDefault]: size === 'default',
-    [styles.sizeSmall]: size === 'small',
-    [styles.icon]: iconClassName,
-    [styles.dot]: dotClassName
+    [styles.filledStrong]: variant === 'filledStrong'
   }
 
   return (
@@ -61,8 +66,17 @@ export default function Sticker({
       {...props}
       className={classNames(styles.sticker, className, divClasses)}
     >
-      {withIcon && <span className={styles.icon}>{withIcon}</span>}
-      {withDot && <span className={classNames(styles.dot)}>{withDot}</span>}
+      {styleCategory.variant === 'withIcon' && (
+        <span className={styles.icon}>{styleCategory.icon}</span>
+      )}
+      {styleCategory.variant === 'withDot' && (
+        <span
+          className={classNames(styles.dot)}
+          data-status={styleCategory.dotColor}
+        >
+          {styleCategory.dotIcon}
+        </span>
+      )}
       {children}
     </div>
   )
