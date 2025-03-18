@@ -1,9 +1,8 @@
 import { useState } from 'react'
 
-import { expect } from '@storybook/jest'
 import { useArgs } from '@storybook/preview-api'
 import type { Meta, StoryObj } from '@storybook/react'
-import { userEvent, within } from '@storybook/testing-library'
+import { expect, userEvent, within } from '@storybook/test'
 
 import { GameSelector } from '.'
 import { wait } from '../../../tests/utils/wait'
