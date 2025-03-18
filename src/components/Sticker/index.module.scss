@@ -8,6 +8,7 @@
   border: 1px solid transparent;
   position: relative;
   z-index: 1;
+  font-size: var(--text-md);
 
   &::before {
     content: '';
@@ -18,43 +19,12 @@
     z-index: -1;
   }
 
-  // Style variants - Default (outlined) - Icon and Dot variants
+  // Style variants
   &.neutral {
     color: var(--color-neutral-400);
     border-color: var(--color-neutral-600);
     &::before {
       background-color: var(--color-neutral-600);
-    }
-
-    .icon svg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--space-md);
-      height: var(--space-md);
-      stroke: currentColor;
-      * {
-        stroke: currentColor;
-      }
-      &[data-icon='info'] {
-        fill: currentColor;
-        * {
-          fill: currentColor;
-          stroke: none;
-        }
-      }
-    }
-
-    .dot svg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--space-md);
-      height: var(--space-md);
-
-      circle {
-        fill: var(--color-neutral-400);
-      }
     }
   }
 
@@ -64,37 +34,6 @@
     &::before {
       background-color: var(--color-primary-600);
     }
-
-    .icon svg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--space-md);
-      height: var(--space-md);
-      stroke: currentColor;
-      * {
-        stroke: currentColor;
-      }
-      &[data-icon='info'] {
-        fill: currentColor;
-        * {
-          fill: currentColor;
-          stroke: none;
-        }
-      }
-    }
-
-    .dot svg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--space-md);
-      height: var(--space-md);
-
-      circle {
-        fill: var(--color-primary-300);
-      }
-    }
   }
 
   &.tertiary {
@@ -102,37 +41,6 @@
     border-color: var(--color-tertiary-700);
     &::before {
       background-color: var(--color-tertiary-700);
-    }
-
-    .icon svg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--space-md);
-      height: var(--space-md);
-      stroke: currentColor;
-      * {
-        stroke: currentColor;
-      }
-      &[data-icon='info'] {
-        fill: currentColor;
-        * {
-          fill: currentColor;
-          stroke: none;
-        }
-      }
-    }
-
-    .dot svg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--space-md);
-      height: var(--space-md);
-
-      circle {
-        fill: var(--color-tertiary-500);
-      }
     }
   }
 
@@ -142,37 +50,6 @@
     &::before {
       background-color: var(--color-success-800);
     }
-
-    .icon svg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--space-md);
-      height: var(--space-md);
-      stroke: currentColor;
-      * {
-        stroke: currentColor;
-      }
-      &[data-icon='info'] {
-        fill: currentColor;
-        * {
-          fill: currentColor;
-          stroke: none;
-        }
-      }
-    }
-
-    .dot svg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--space-md);
-      height: var(--space-md);
-
-      circle {
-        fill: var(--color-success-600);
-      }
-    }
   }
 
   &.warning {
@@ -180,37 +57,6 @@
     border-color: var(--color-alert-400);
     &::before {
       background-color: var(--color-alert-500);
-    }
-
-    .icon svg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--space-md);
-      height: var(--space-md);
-      stroke: currentColor;
-      * {
-        stroke: currentColor;
-      }
-      &[data-icon='info'] {
-        fill: currentColor;
-        * {
-          fill: currentColor;
-          stroke: none;
-        }
-      }
-    }
-
-    .dot svg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--space-md);
-      height: var(--space-md);
-
-      circle {
-        fill: var(--color-alert-300);
-      }
     }
   }
 
@@ -220,17 +66,25 @@
     &::before {
       background-color: var(--color-error-900);
     }
+  }
 
-    .icon svg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  // Icon styles
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
       width: var(--space-md);
       height: var(--space-md);
       stroke: currentColor;
+      fill: none;
+
       * {
         stroke: currentColor;
+        fill: none;
       }
+
       &[data-icon='info'] {
         fill: currentColor;
         * {
@@ -239,21 +93,43 @@
         }
       }
     }
+  }
 
-    .dot svg {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  // Dot styles
+  .dot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
       width: var(--space-md);
       height: var(--space-md);
+      stroke: none;
+      fill: none;
+    }
 
-      circle {
-        fill: var(--color-error-300);
-      }
+    &[data-status='success'] circle {
+      fill: var(--color-success-400);
+    }
+
+    &[data-status='error'] circle {
+      fill: var(--color-error-300);
+    }
+
+    &[data-status='warning'] circle {
+      fill: var(--color-alert-300);
+    }
+
+    &[data-status='neutral'] circle {
+      fill: var(--color-neutral-400);
+    }
+
+    &[data-status='tertiary'] circle {
+      fill: var(--color-tertiary-400);
     }
   }
 
-  // Filled variant
+  // Variants
   &.filled {
     border: none;
     border-radius: var(--corner-round, 4px);
@@ -289,7 +165,7 @@
       color: var(--color-error-900);
     }
   }
-  // FilledStrong variant
+
   &.filledStrong {
     border: none;
     border-radius: var(--corner-round, 4px);
@@ -326,13 +202,26 @@
     }
   }
 
-  // Size variants
+  // Dimensions
   &.sizeSmall {
-    padding: var(--space-3xs) var(--space-xs);
+    padding: var(--space-2xs) var(--space-xs);
     font-size: var(--text-xs);
+
+    .icon svg,
+    .dot svg {
+      width: var(--space-lg);
+      height: var(--space-lg);
+    }
   }
 
   &.sizeDefault {
+    padding: var(--space-3xs) var(--space-xs);
     font-size: var(--text-md);
+
+    .icon svg,
+    .dot svg {
+      width: var(--space-md);
+      height: var(--space-md);
+    }
   }
 }
