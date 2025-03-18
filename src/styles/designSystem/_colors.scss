@@ -7,6 +7,7 @@
   * do not have to check this global scss file when picking every color.
   */
   /* Primary */
+
   --color-primary-100: #d8c9fe;
   --color-primary-200: #c2a6fe;
   --color-primary-300: #ab82fe;
@@ -93,9 +94,9 @@
   --color-neutral-600: #222530;
   --color-neutral-700: #171a25;
   --color-neutral-800: #13141a;
-  --color-neutral-800-60: #13141a;
   --color-neutral-900: #0c0b0f;
-  --color-neutral-: #000000;
+  --color-neutral-1000: #000000;
+
 
   /* Status */
   --color-status-success: var(--color-success-400);
@@ -241,6 +242,7 @@
 
   /* For components that share styles */
   --app-background: var(--color-neutral-900);
+  --background-raised: var(--color-neutral-700);
 
   /* Gradients */
   --color-gradient-01-border: linear-gradient(
