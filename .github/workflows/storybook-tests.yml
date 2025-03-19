@@ -26,3 +26,5 @@ jobs:
           npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
             "yarn storybook" \
             "npx wait-on tcp:6006 && yarn test-storybook"
+        env:
+          NODE_OPTIONS: '--max-old-space-size=4096'
