@@ -164,6 +164,19 @@ type propsWithVidProps = CarouselPropsParams & {
   onVideoEnd?: () => void
 }
 
+const imagesAndVideosForShortVideoThumbnail = [
+  <ReactPlayer
+    height="100%"
+    width="100%"
+    url="/src/assets/tentacle-small.webm"
+    style={{ pointerEvents: 'none' }}
+    playIcon={<></>}
+    light={true}
+    key="video_hero_0"
+  />,
+  ...imagesForThumbnail
+]
+
 const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
   controllerLayout = 'attached',
   delay = 1000,
@@ -174,9 +187,8 @@ const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
       <Carousel.SlideVideo
         indexInSlides={0}
         reactPlayerProps={{
-          url: priceIsRightVideo
+          url: '/src/assets/tentacle-small.webm'
         }}
-        slideProps={{ 'data-testid': 'video-slide-0' }}
         onEnd={onVideoEnd}
       />
       {imgSlides}
@@ -186,7 +198,7 @@ const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
   childrenNotInCarousel: (
     <Carousel.Controller
       controllerLayout={controllerLayout}
-      images={imagesAndVideosForThumbnail}
+      images={imagesAndVideosForShortVideoThumbnail}
     />
   )
 })

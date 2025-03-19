@@ -70,7 +70,10 @@ export function SlideVideo({
   }, [videoDurationInMs])
 
   return (
-    <Carousel.Slide {...slideProps}>
+    <Carousel.Slide
+      data-testid={`video-slide-${indexInSlides}`}
+      {...slideProps}
+    >
       <ReactPlayer
         onDuration={(duration: number) =>
           setVideoDurationInMs(Math.round(duration * 1000))
@@ -92,6 +95,9 @@ export function SlideVideo({
         onClickPreview={() => console.log('preview clicked')}
         controls={true}
         muted={true}
+        onError={(...args) =>
+          console.error(`Error while loading video: ${JSON.stringify(args)}`)
+        }
         {...reactPlayerProps}
       />
     </Carousel.Slide>
