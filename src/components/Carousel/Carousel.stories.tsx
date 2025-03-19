@@ -232,7 +232,8 @@ export const TestVideoAutoscrollStory: Story = {
     await expectSlideToNotBeVisible(imgSlide1)
 
     await wait(3000)
-    window?.takeScreenshot?.()
+    await window?.takeScreenshot?.()
+    await wait(1000)
     // await Promise.race([
     //   videoEnded,
     //   new Promise((res) =>
