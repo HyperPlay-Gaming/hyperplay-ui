@@ -233,7 +233,12 @@ export const TestVideoAutoscrollStory: Story = {
 
     await wait(3000)
     window?.takeScreenshot?.()
-    await videoEnded
+    await Promise.race([
+      videoEnded,
+      new Promise((res) =>
+        setTimeout(() => res('Timeout after 10 seconds'), 8500)
+      )
+    ])
     const time = Date.now()
     await waitFor(async () => expectSlideToBeVisible(imgSlide0), {
       timeout: 20000
