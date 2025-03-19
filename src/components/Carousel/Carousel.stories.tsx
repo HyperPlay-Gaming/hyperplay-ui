@@ -167,7 +167,7 @@ const imagesAndVideosForShortVideoThumbnail = [
   <ReactPlayer
     height="100%"
     width="100%"
-    url="/src/assets/tentacle-small.webm"
+    url="http://localhost:6006/src/assets/tentacle-small.webm"
     style={{ pointerEvents: 'none' }}
     playIcon={<></>}
     light={true}
@@ -186,7 +186,7 @@ const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
       <Carousel.SlideVideo
         indexInSlides={0}
         reactPlayerProps={{
-          url: '/src/assets/tentacle-small.webm'
+          url: 'http://localhost:6006/src/assets/tentacle-small.webm'
         }}
         onEnd={onVideoEnd}
       />
