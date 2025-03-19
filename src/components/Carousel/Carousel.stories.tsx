@@ -231,13 +231,15 @@ export const TestVideoAutoscrollStory: Story = {
     const imgSlide1 = canvas.getByTestId('img-slide-1')
     await expectSlideToNotBeVisible(imgSlide1)
 
-    // await videoEnded
-    // const time = Date.now()
-    // await waitFor(async () => expectSlideToBeVisible(imgSlide0), {
-    //   timeout: 20000
-    // })
-    // const timeAfter = Date.now()
-    // expect(timeAfter - time).toBeLessThan(1000)
+    await wait(3000)
+    window?.takeScreenshot?.()
+    await videoEnded
+    const time = Date.now()
+    await waitFor(async () => expectSlideToBeVisible(imgSlide0), {
+      timeout: 20000
+    })
+    const timeAfter = Date.now()
+    expect(timeAfter - time).toBeLessThan(1000)
   }
 }
 
