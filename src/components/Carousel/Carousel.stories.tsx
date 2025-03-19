@@ -97,19 +97,17 @@ export const NoVideo: Story = {
   }
 }
 
+/**
+ * @dev it is okay if slide overflows on bottom since we match width and keep the aspect ratio
+ */
 function slideIsVisible(slide: HTMLElement) {
   const box = slide.getBoundingClientRect()
-  return (
-    box.top >= 0 &&
-    box.bottom <= window.innerHeight &&
-    box.left >= 0 &&
-    box.right <= window.innerWidth
-  )
+  return box.top >= 0 && box.left >= 0 && box.right <= window.innerWidth
 }
 
 async function expectSlideToBeVisible(slide: HTMLElement) {
   await expect(slide).toBeVisible()
-  return expect(slideIsVisible(slide))
+  return expect(slideIsVisible(slide)).toBeTruthy()
 }
 
 async function expectSlideToNotBeVisible(slide: HTMLElement) {
@@ -122,7 +120,7 @@ async function expectSlideToNotBeVisible(slide: HTMLElement) {
  */
 export const TestImageAutoscrollStory: Story = {
   args: {
-    autoplayOptions: { delay: 1000 },
+    autoplayOptions: { delay: 2000 },
     children: imgSlides.slice(0, 3),
     childrenNotInCarousel: (
       <Carousel.Controller
@@ -139,21 +137,21 @@ export const TestImageAutoscrollStory: Story = {
     )
     await expectSlideToBeVisible(imgSlide0)
     const imgSlide1 = canvas.getByTestId('img-slide-1')
-    expectSlideToNotBeVisible(imgSlide1)
+    await expectSlideToNotBeVisible(imgSlide1)
     const imgSlide2 = canvas.getByTestId('img-slide-2')
-    expectSlideToNotBeVisible(imgSlide2)
+    await expectSlideToNotBeVisible(imgSlide2)
 
-    await wait(1250)
+    await wait(2800)
     await expectSlideToNotBeVisible(imgSlide0)
     await expectSlideToBeVisible(imgSlide1)
     await expectSlideToNotBeVisible(imgSlide2)
 
-    await wait(1250)
+    await wait(2000)
     await expectSlideToNotBeVisible(imgSlide0)
     await expectSlideToNotBeVisible(imgSlide1)
     await expectSlideToBeVisible(imgSlide2)
 
-    await wait(1250)
+    await wait(2000)
     await expectSlideToBeVisible(imgSlide0)
     await expectSlideToNotBeVisible(imgSlide1)
     await expectSlideToNotBeVisible(imgSlide2)
@@ -206,7 +204,7 @@ const videoEndHandler = () => {
  * @TODO check controller item state like loader bar
  */
 export const TestVideoAutoscrollStory: Story = {
-  args: propsWithShortVideo({ onVideoEnd: videoEndHandler }),
+  args: propsWithShortVideo({ onVideoEnd: videoEndHandler, delay: 10000 }),
   play: async ({ mount, args }) => {
     const canvas = await mount(<Carousel {...args} />)
     const videoSlide0 = canvas.getByTestId('video-slide-0')
@@ -214,17 +212,16 @@ export const TestVideoAutoscrollStory: Story = {
       expect(videoSlide0.offsetWidth).toBeGreaterThan(500)
     )
     await expectSlideToBeVisible(videoSlide0)
-    const imgSlide1 = canvas.getByTestId('img-slide-0')
+    const imgSlide0 = canvas.getByTestId('img-slide-0')
+    await expectSlideToNotBeVisible(imgSlide0)
+    const imgSlide1 = canvas.getByTestId('img-slide-1')
     await expectSlideToNotBeVisible(imgSlide1)
-    const imgSlide2 = canvas.getByTestId('img-slide-1')
-    await expectSlideToNotBeVisible(imgSlide2)
 
     await videoEnded
     const time = Date.now()
-    await waitFor(
-      async () => (await expectSlideToBeVisible(imgSlide1)).toBeTruthy(),
-      { timeout: 20000 }
-    )
+    await waitFor(async () => expectSlideToBeVisible(imgSlide0), {
+      timeout: 20000
+    })
     const timeAfter = Date.now()
     expect(timeAfter - time).toBeLessThan(1000)
   }
@@ -233,18 +230,30 @@ export const TestVideoAutoscrollStory: Story = {
 async function expectItemsVisibility(
   /* eslint-disable-next-line */
   canvas: ReturnType<typeof within>,
-  isVisible: boolean[]
+  isVisible: boolean[],
+  testIdPrefix = 'carousel-controller-item-'
 ) {
   for (let i = 0; i < isVisible.length; ++i) {
     if (isVisible[i]) {
-      await expect(
-        canvas.getByTestId(`carousel-controller-item-${i}`)
-      ).toBeDefined()
+      await expect(canvas.getByTestId(`${testIdPrefix}${i}`)).toBeDefined()
     } else {
-      const allItemsWithId = await canvas.queryByTestId(
-        `carousel-controller-item-${i}`
-      )
+      const allItemsWithId = await canvas.queryByTestId(`${testIdPrefix}${i}`)
       await expect(allItemsWithId).toBe(null)
+    }
+  }
+}
+
+async function expectSlidesVisibility(
+  /* eslint-disable-next-line */
+  canvas: ReturnType<typeof within>,
+  isVisible: boolean[],
+  testIdPrefix = 'img-slide-'
+) {
+  for (let i = 0; i < isVisible.length; ++i) {
+    if (isVisible[i]) {
+      await expectSlideToBeVisible(canvas.getByTestId(`${testIdPrefix}${i}`))
+    } else {
+      await expectSlideToNotBeVisible(canvas.getByTestId(`${testIdPrefix}${i}`))
     }
   }
 }
@@ -258,7 +267,7 @@ async function expectItemsVisibility(
  */
 export const TestImageAutoscrollAfterClickStory: Story = {
   args: {
-    autoplayOptions: { delay: 1000 },
+    autoplayOptions: { delay: 2000 },
     children: imgSlides,
     childrenNotInCarousel: (
       <Carousel.Controller
@@ -301,22 +310,22 @@ export const TestImageAutoscrollAfterClickStory: Story = {
     )
 
     await step('autoscroll still works', async () => {
-      await wait(1250)
-      await expectSlideToNotBeVisible(imgSlide0)
-      await expectSlideToBeVisible(imgSlide1)
-      await expectSlideToNotBeVisible(imgSlide2)
+      await wait(2200)
+      const vis = [false, true, false, false, false]
+      await expectSlidesVisibility(canvas, vis)
       await expectItemsVisibility(canvas, lastItemShown)
+      for (let i = 2; i < 5; ++i) {
+        await wait(2000)
+        const vis_i = [false, false, false, false, false]
+        vis_i[i] = true
+        await expectSlidesVisibility(canvas, vis_i)
+        await expectItemsVisibility(canvas, lastItemShown)
+      }
 
-      await wait(1250)
-      await expectSlideToNotBeVisible(imgSlide0)
-      await expectSlideToNotBeVisible(imgSlide1)
-      await expectSlideToBeVisible(imgSlide2)
-      await expectItemsVisibility(canvas, lastItemShown)
-
-      await wait(1250)
-      await expectSlideToBeVisible(imgSlide0)
-      await expectSlideToNotBeVisible(imgSlide1)
-      await expectSlideToNotBeVisible(imgSlide2)
+      await wait(2000)
+      const firstItemVis = Array(5).fill(false)
+      firstItemVis[0] = true
+      await expectSlidesVisibility(canvas, firstItemVis)
       await expectItemsVisibility(canvas, lastItemShown)
     })
 
