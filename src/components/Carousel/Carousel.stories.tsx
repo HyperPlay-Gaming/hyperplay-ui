@@ -10,7 +10,6 @@ import onisCover from '@/assets/OnisQuestLandscape.png?url'
 import pgCover from '@/assets/PhantomGalaxiesLandscape.png?url'
 import wakeCover from '@/assets/TheWakeLandscape.png?url'
 import questCard from '@/assets/banners/QuestCardV2Image.png?url'
-import priceIsRightVideo from '@/assets/price_is_right_sound.mp4?url'
 
 import Carousel, { CarouselProps } from '.'
 import { ControllerProps } from './components/Controller'
