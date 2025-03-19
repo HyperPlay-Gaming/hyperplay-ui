@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import cn from 'classnames'
 
@@ -62,6 +62,12 @@ const Controller = ({
     },
     [stop, setActiveIndex]
   )
+
+  // every time active index changes, scroll that controller item page into view
+  useEffect(() => {
+    const itemPageWithActiveIndex = Math.floor(activeIndex / numItemsToShow)
+    setItemsPageIndex(itemPageWithActiveIndex)
+  }, [activeIndex])
 
   const startIndex = Math.max(itemsPageIndex * numItemsToShow, 0)
   const endIndex = (itemsPageIndex + 1) * numItemsToShow
