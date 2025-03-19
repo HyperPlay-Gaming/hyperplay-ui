@@ -9,26 +9,10 @@ $switchHeightWithBorder: $switchHeight + 2 * $borderThickness;
 
 /* The switch - the box around the slider */
 .switch {
+  position: relative;
   display: flex;
-  align-items: center;
   height: $switchHeightWithBorder;
   cursor: pointer;
-  gap: var(--space-xs);
-
-  .switchContainer {
-    width: 60px;
-    position: relative;
-
-    & > span {
-      width: 60px;
-      height: 28px;
-    }
-
-    & > span::before {
-      width: var(--space-lg);
-      height: var(--space-lg);
-    }
-  }
 
   /* Hide default HTML checkbox */
   input {
@@ -121,4 +105,9 @@ input.inputCheckbox:checked + .slider:before {
   -webkit-transform: translateX($lengthToTranslate);
   -ms-transform: translateX($lengthToTranslate);
   transform: translateX($lengthToTranslate);
+}
+
+.switchContainer {
+  width: 60px;
+  position: relative;
 }
