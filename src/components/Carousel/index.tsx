@@ -104,6 +104,14 @@ const Carousel = ({
     Autoplay({ stopOnInteraction: false, ...autoplayOptions })
   )
 
+  const setActiveSlideIndexAndResetAutoplay = useCallback(
+    (idx: number) => {
+      autoplay.current?.reset()
+      setActiveSlideIndex(idx)
+    },
+    [setActiveSlideIndex]
+  )
+
   // if delay val is an object, it won't be useable in children anyways so let's return undefined in that case
   const delayValOrObj = autoplay.current.options.delay?.valueOf()
   let delayNum: number | undefined = undefined
@@ -121,7 +129,7 @@ const Carousel = ({
   const value = {
     activeIndex: activeSlideIndex,
     setActiveIndex: (index: number) => {
-      setActiveSlideIndex(index)
+      setActiveSlideIndexAndResetAutoplay(index)
       emblaApi?.scrollTo(index)
     },
     scrollNextSlide: scrollNextSlideCallback,
@@ -152,7 +160,7 @@ const Carousel = ({
           withControls={false}
           withIndicators={true}
           plugins={[autoplay.current]}
-          onSlideChange={(index) => setActiveSlideIndex(index)}
+          onSlideChange={(index) => setActiveSlideIndexAndResetAutoplay(index)}
           {...props}
         >
           {children}
