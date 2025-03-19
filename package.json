@@ -15,7 +15,7 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
     "prettier-fix": "prettier --write .",
     "prettier": "prettier --check .",
-    "test-storybook": "test-storybook .*Carousel.stories.tsx --includeTags=\"test-only\" --verbose"
+    "test-storybook": "test-storybook"
   },
   "resolutions": {
     "jackspeak": "2.1.1"

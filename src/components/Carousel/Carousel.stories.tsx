@@ -108,14 +108,6 @@ function slideIsVisible(slide: HTMLElement) {
 
 async function expectSlideToBeVisible(slide: HTMLElement) {
   await expect(slide).toBeVisible()
-  console.log(
-    'slide is visible ',
-    slideIsVisible(slide),
-    ' slide.getBoundingClientRect() ',
-    slide.getBoundingClientRect(),
-    ' window width ',
-    window.innerWidth
-  )
   return expect(slideIsVisible(slide)).toBeTruthy()
 }
 
@@ -215,10 +207,8 @@ const videoEndHandler = () => {
 export const TestVideoAutoscrollStory: Story = {
   args: propsWithShortVideo({ onVideoEnd: videoEndHandler, delay: 10000 }),
   play: async ({ mount, args }) => {
-    console.log('starting test')
     const canvas = await mount(<Carousel {...args} />)
     const videoSlide0 = canvas.getByTestId('video-slide-0')
-    console.log('waiting for video slide to load')
     await waitFor(async () =>
       expect(videoSlide0.offsetWidth).toBeGreaterThan(500)
     )
@@ -230,7 +220,6 @@ export const TestVideoAutoscrollStory: Story = {
 
     await videoEnded
     const time = Date.now()
-    console.log('waiting for first image slide to be visible')
     await waitFor(async () => expectSlideToBeVisible(imgSlide0), {
       timeout: 20000
     })
