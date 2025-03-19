@@ -10,6 +10,7 @@ import onisCover from '@/assets/OnisQuestLandscape.png?url'
 import pgCover from '@/assets/PhantomGalaxiesLandscape.png?url'
 import wakeCover from '@/assets/TheWakeLandscape.png?url'
 import questCard from '@/assets/banners/QuestCardV2Image.png?url'
+import priceIsRightVideo from '@/assets/price_is_right_sound.mp4?url'
 
 import Carousel, { CarouselProps } from '.'
 import { ControllerProps } from './components/Controller'
@@ -41,7 +42,7 @@ const imagesAndVideosForThumbnail = [
   <ReactPlayer
     height="100%"
     width="100%"
-    url="https://youtu.be/Geg2-ru5eik?si=iKoSISEPybB_xYId"
+    url="https://youtu.be/_asNhzXq72w?si=AX1hf2pAKwtNiYs3"
     style={{ pointerEvents: 'none' }}
     playIcon={<></>}
     light={true}
@@ -58,7 +59,7 @@ const props: (props: CarouselPropsParams) => CarouselProps = ({
       <Carousel.SlideVideo
         indexInSlides={0}
         reactPlayerProps={{
-          url: 'https://youtu.be/mLyOj_QD4a4?si=HBcqzH1HI7TuB1Gd'
+          url: 'https://youtu.be/_asNhzXq72w?si=AX1hf2pAKwtNiYs3'
         }}
         slideProps={{ 'data-testid': 'video-slide-0' }}
       />
@@ -181,7 +182,7 @@ const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
       <Carousel.SlideVideo
         indexInSlides={0}
         reactPlayerProps={{
-          url: 'https://youtu.be/_asNhzXq72w?si=AX1hf2pAKwtNiYs3'
+          url: priceIsRightVideo
         }}
         slideProps={{ 'data-testid': 'video-slide-0' }}
         onEnd={onVideoEnd}
@@ -212,7 +213,6 @@ const videoEndHandler = () => {
  * @TODO check controller item state like loader bar
  */
 export const TestVideoAutoscrollStory: Story = {
-  tags: ['test-only'],
   args: propsWithShortVideo({ onVideoEnd: videoEndHandler, delay: 10000 }),
   play: async ({ mount, args }) => {
     console.log('starting test')
