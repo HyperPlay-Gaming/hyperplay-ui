@@ -25,7 +25,6 @@ let config: StorybookConfig = {
 
   typescript: {
     reactDocgen: 'react-docgen-typescript'
-  },
-  staticDirs: ['../src/assets']
+  }
 }
 module.exports = config
