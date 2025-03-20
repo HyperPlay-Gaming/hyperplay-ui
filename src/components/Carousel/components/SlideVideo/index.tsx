@@ -21,14 +21,14 @@ export function SlideVideo({
   onEnd
 }: SlideVideoInterface) {
   const {
-    play,
-    stop,
     activeIndex,
-    scrollNextSlide,
-    setSlideTimeOverride,
-    setTimeUntilSlideFinishedOverride
+    onVideoPlay,
+    onVideoPaused,
+    onVideoEnded,
+    setTimeUntilSlideFinishedOverride,
+    isVideoPlaying,
+    setSlideTimeOverride
   } = useCarousel()
-  const [isPlaying, setIsPlaying] = useState(false)
   const [videoDurationInMs, setVideoDurationInMs] = useState(5000)
 
   // this prevents the item's loader bar from using the default autoplay delay before onProgress fires on ReactPlayer
@@ -38,28 +38,17 @@ export function SlideVideo({
     }
   }, [])
 
-  const onPlay = useCallback(() => {
-    setIsPlaying(true)
-    stop()
-  }, [stop])
-
-  const onStop = useCallback(() => {
-    setIsPlaying(false)
-  }, [])
-
-  const onEnded = useCallback(() => {
-    setIsPlaying(false)
-    play()
-    scrollNextSlide()
+  const onVideoEndedHandler = useCallback(() => {
+    onVideoEnded()
     onEnd?.()
-  }, [play, scrollNextSlide, onEnd])
+  }, [onVideoEnded, onEnd])
 
   /**
    * @dev start playing when this slide is active and disable carousel rotation
    */
   useEffect(() => {
     if (indexInSlides === activeIndex) {
-      onPlay()
+      onVideoPlay()
     }
   }, [activeIndex, indexInSlides])
 
@@ -88,10 +77,10 @@ export function SlideVideo({
         }}
         width={'100%'}
         height={'100%'}
-        onPlay={onPlay}
-        onPause={onStop}
-        onEnded={onEnded}
-        playing={isPlaying}
+        onPlay={onVideoPlay}
+        onPause={onVideoPaused}
+        onEnded={onVideoEndedHandler}
+        playing={isVideoPlaying}
         onClickPreview={() => console.log('preview clicked')}
         controls={true}
         muted={true}

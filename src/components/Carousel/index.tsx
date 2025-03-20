@@ -41,6 +41,10 @@ interface CarouselContextType {
     timeInMs: number
   ) => void
   scrollNextSlide: (jump?: boolean) => void
+  onVideoPlay: () => void
+  onVideoPaused: () => void
+  onVideoEnded: () => void
+  isVideoPlaying: boolean
 }
 
 const CarouselContext = createContext<CarouselContextType | undefined>(
@@ -125,6 +129,22 @@ const Carousel = ({
     },
     [emblaApi]
   )
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+
+  const onVideoPlay = useCallback(() => {
+    setIsVideoPlaying(true)
+    autoplay.current.stop()
+  }, [autoplay])
+
+  const onVideoPaused = useCallback(() => {
+    setIsVideoPlaying(false)
+  }, [])
+
+  const onVideoEnded = useCallback(() => {
+    setIsVideoPlaying(false)
+    autoplay.current.play()
+    scrollNextSlideCallback()
+  }, [autoplay, scrollNextSlideCallback])
 
   const value = {
     activeIndex: activeSlideIndex,
@@ -144,7 +164,11 @@ const Carousel = ({
     slideTimeOverrideIndexToTimeMsMap,
     setSlideTimeOverride,
     timeUntilSlideFinishedOverrideIndexToTimeMsMap,
-    setTimeUntilSlideFinishedOverride
+    setTimeUntilSlideFinishedOverride,
+    onVideoPlay,
+    onVideoPaused,
+    onVideoEnded,
+    isVideoPlaying
   }
 
   return (

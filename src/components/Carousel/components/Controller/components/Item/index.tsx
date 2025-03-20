@@ -31,7 +31,8 @@ const Item = ({
     getTimeUntilSlideFinished,
     totalSlideTime,
     slideTimeOverrideIndexToTimeMsMap,
-    timeUntilSlideFinishedOverrideIndexToTimeMsMap
+    timeUntilSlideFinishedOverrideIndexToTimeMsMap,
+    isVideoPlaying
   } = useCarousel()
 
   let border = null
@@ -64,9 +65,12 @@ const Item = ({
       )
       animationDurationMs = timeUntilSlideFinishedMs
     }
+
     loadBar = (
       <div
-        className={styles.loader}
+        className={cn(styles.loader, {
+          [styles.videoPlaying]: isVideoPlaying
+        })}
         style={{
           // @ts-expect-error ts does not like css vars
           '--carousel-item-initial-progress': `${initialProgressPct}%`,
