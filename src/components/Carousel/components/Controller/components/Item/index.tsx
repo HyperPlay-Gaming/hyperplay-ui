@@ -46,7 +46,7 @@ const Item = ({
       Object.hasOwn(timeUntilSlideFinishedOverrideIndexToTimeMsMap, itemIndex)
     ) {
       timeUntilSlideFinishedMs =
-        timeUntilSlideFinishedOverrideIndexToTimeMsMap[itemIndex]
+        timeUntilSlideFinishedOverrideIndexToTimeMsMap[itemIndex].timeLeftInMs
     }
     let initialProgressPct = 0
     let animationDurationMs = 5000
@@ -58,11 +58,10 @@ const Item = ({
       typeof timeUntilSlideFinishedMs === 'number' &&
       thisItemSlideTotalTimeMs
     ) {
-      initialProgressPct = Math.round(
+      initialProgressPct =
         ((thisItemSlideTotalTimeMs - timeUntilSlideFinishedMs) /
           thisItemSlideTotalTimeMs) *
-          100
-      )
+        100
       animationDurationMs = timeUntilSlideFinishedMs
     }
 
@@ -71,6 +70,8 @@ const Item = ({
         className={cn(styles.loader, {
           [styles.videoPlaying]: isVideoPlaying
         })}
+        // this is necessary to reset the animation timeline for the loader
+        key={`progress-pct-${initialProgressPct}-anim-duration-${animationDurationMs}`}
         style={{
           // @ts-expect-error ts does not like css vars
           '--carousel-item-initial-progress': `${initialProgressPct}%`,

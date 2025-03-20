@@ -35,7 +35,10 @@ interface CarouselContextType {
   getTimeUntilSlideFinished?: () => number | null
   slideTimeOverrideIndexToTimeMsMap: Record<number, number>
   setSlideTimeOverride: (slideIndex: number, timeInMs: number) => void
-  timeUntilSlideFinishedOverrideIndexToTimeMsMap: Record<number, number>
+  timeUntilSlideFinishedOverrideIndexToTimeMsMap: Record<
+    number,
+    { timeLeftInMs: number; lastUpdatedMsSinceEpoch: number }
+  >
   setTimeUntilSlideFinishedOverride: (
     slideIndex: number,
     timeInMs: number
@@ -81,7 +84,9 @@ const Carousel = ({
   const [
     timeUntilSlideFinishedOverrideIndexToTimeMsMap,
     setTimeUntilSlideFinishedOverrideIndexToTimeMsMap
-  ] = useState<Record<number, number>>({})
+  ] = useState<
+    Record<number, { timeLeftInMs: number; lastUpdatedMsSinceEpoch: number }>
+  >({})
   const [
     slideTimeOverrideIndexToTimeMsMap,
     setSlideTimeOverrideIndexToTimeMsMap
@@ -100,7 +105,10 @@ const Carousel = ({
   ) => {
     setTimeUntilSlideFinishedOverrideIndexToTimeMsMap((prevState) => ({
       ...prevState,
-      [slideIndex]: timeInMs
+      [slideIndex]: {
+        timeLeftInMs: timeInMs,
+        lastUpdatedMsSinceEpoch: Date.now()
+      }
     }))
   }
 
@@ -138,7 +146,14 @@ const Carousel = ({
 
   const onVideoPaused = useCallback(() => {
     setIsVideoPlaying(false)
-  }, [])
+    const {
+      timeLeftInMs: timeLeftInMsOld,
+      lastUpdatedMsSinceEpoch: lastUpdatedMsSinceEpochOld
+    } = timeUntilSlideFinishedOverrideIndexToTimeMsMap[activeSlideIndex]
+    const newTimeLeftInMs =
+      timeLeftInMsOld - (Date.now() - lastUpdatedMsSinceEpochOld)
+    setTimeUntilSlideFinishedOverride(activeSlideIndex, newTimeLeftInMs)
+  }, [timeUntilSlideFinishedOverrideIndexToTimeMsMap])
 
   const onVideoEnded = useCallback(() => {
     setIsVideoPlaying(false)
