@@ -141,6 +141,7 @@ export {
   HyperPlayStoreLogo,
   // TODO: check size of the image
   // HyperPlayLogoColored,
+  HyperplayStoreIcon as HyperPlayLogoColored,
   HyperPlayTextLogo,
   HyperplayStoreIcon,
   HyperPlayFullTextLogo,
