@@ -27,7 +27,8 @@ export const parameters = {
       viewports: MINIMAL_VIEWPORTS,
       defaultViewport: 'tablet'
     }
-  }
+  },
+  layout: 'fullscreen'
 }
 
 export const decorators = [
