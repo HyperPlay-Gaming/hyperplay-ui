@@ -166,7 +166,7 @@ const imagesAndVideosForShortVideoThumbnail = [
 ]
 
 const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
-  controllerLayout = 'attached',
+  controllerLayout = 'detached',
   delay = 1000,
   onVideoEnd
 }: propsWithVidProps) => ({
@@ -182,11 +182,15 @@ const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
       {imgSlides}
     </>
   ),
-  delay,
+  autoplayOptions: {
+    delay
+  },
   childrenNotInCarousel: (
     <Carousel.Controller
       controllerLayout={controllerLayout}
       images={imagesAndVideosForShortVideoThumbnail}
+      showGradientBorder={false}
+      showItemLoadBar={true}
     />
   )
 })
@@ -202,14 +206,12 @@ const videoEndHandler = () => {
 /**
  * @dev tests that autoscroll stops for videos until the video is done
  * should quickly scroll to next controller item when the video finishes
- * @TODO check controller item state like loader bar
  */
 export const TestVideoAutoscrollStory: Story = {
   // @TODO figure out how to load the video in the GHA
   tags: ['skip-test'],
   args: propsWithShortVideo({ onVideoEnd: videoEndHandler, delay: 10000 }),
   play: async ({ mount, args }) => {
-    console.log('starting video autoscroll test')
     const canvas = await mount(<Carousel {...args} />)
     const videoSlide0 = canvas.getByTestId('video-slide-0')
     await waitFor(async () =>
@@ -228,6 +230,69 @@ export const TestVideoAutoscrollStory: Story = {
     })
     const timeAfter = Date.now()
     expect(timeAfter - time).toBeLessThan(1000)
+  }
+}
+
+/**
+ * @dev tests that loader stops when video is paused.
+ * navigating to a new item after pausing a video restarts the loader and autoplay
+ */
+export const TestVideoPauseAndAutoscrollStory: Story = {
+  // @TODO figure out how to load the video in the GHA
+  tags: ['skip-test'],
+  args: propsWithShortVideo({ delay: 2000 }),
+  play: async ({ mount, args, step }) => {
+    const canvas = await mount(<Carousel {...args} />)
+    const videoSlide0 = canvas.getByTestId('video-slide-0')
+    const imgSlide0 = canvas.getByTestId('img-slide-0')
+    const imgSlide1 = canvas.getByTestId('img-slide-1')
+    const item1 = canvas.getByTestId('carousel-controller-item-1')
+    await step('initialize the carousel and check initial state', async () => {
+      await waitFor(async () =>
+        expect(videoSlide0.offsetWidth).toBeGreaterThan(500)
+      )
+      await expectSlideToBeVisible(videoSlide0)
+      await expectSlideToNotBeVisible(imgSlide0)
+      await expectSlideToNotBeVisible(imgSlide1)
+    })
+
+    await step(
+      'pause the video and check that the loader is paused also',
+      async () => {
+        await wait(1000)
+        const videos = videoSlide0.querySelectorAll('video')
+        videos[0].pause()
+        const itemLoader0 = canvas.getByTestId(
+          'carousel-controller-item-loader-0'
+        )
+        await wait(1000)
+        const pausedLoaderWidthStart = itemLoader0.clientWidth
+        await wait(500)
+        expect(itemLoader0.clientWidth).toEqual(pausedLoaderWidthStart)
+      }
+    )
+
+    await step(
+      'click the next image item and check that the loader starts progressing again from 0',
+      async () => {
+        item1.click()
+        await wait(1000)
+        const itemLoader1 = canvas.getByTestId(
+          'carousel-controller-item-loader-1'
+        )
+        expect(itemLoader1).toBeVisible()
+        await expectSlideToBeVisible(imgSlide0)
+      }
+    )
+
+    await step(
+      'wait until autoplay should be finished and check that the 3rd slide is now shown',
+      async () => {
+        await wait(2000)
+        await expectSlideToNotBeVisible(imgSlide0)
+        await expectSlideToBeVisible(imgSlide1)
+      }
+    )
   }
 }
 

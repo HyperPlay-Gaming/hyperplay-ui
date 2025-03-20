@@ -78,6 +78,7 @@ const Item = ({
           '--carousel-item-initial-progress': `${initialProgressPct}%`,
           '--carousel-item-animation-duration': `${animationDurationMs}ms`
         }}
+        data-testid={`carousel-controller-item-loader-${itemIndex}`}
       />
     )
   }
