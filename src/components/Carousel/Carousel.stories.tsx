@@ -216,7 +216,8 @@ const videoEndHandler = () => {
  * @TODO check controller item state like loader bar
  */
 export const TestVideoAutoscrollStory: Story = {
-  tags: ['test-only'],
+  // @TODO figure out how to load the video in the GHA
+  tags: ['skip-test'],
   args: propsWithShortVideo({ onVideoEnd: videoEndHandler, delay: 10000 }),
   play: async ({ mount, args }) => {
     console.log('starting video autoscroll test')
@@ -231,21 +232,13 @@ export const TestVideoAutoscrollStory: Story = {
     const imgSlide1 = canvas.getByTestId('img-slide-1')
     await expectSlideToNotBeVisible(imgSlide1)
 
-    await wait(3000)
-    await window?.takeScreenshot?.()
-    await wait(1000)
-    // await Promise.race([
-    //   videoEnded,
-    //   new Promise((res) =>
-    //     setTimeout(() => res('Timeout after 10 seconds'), 8500)
-    //   )
-    // ])
-    // // const time = Date.now()
-    // // await waitFor(async () => expectSlideToBeVisible(imgSlide0), {
-    // //   timeout: 20000
-    // // })
-    // // const timeAfter = Date.now()
-    // // expect(timeAfter - time).toBeLessThan(1000)
+    await videoEnded
+    const time = Date.now()
+    await waitFor(async () => expectSlideToBeVisible(imgSlide0), {
+      timeout: 20000
+    })
+    const timeAfter = Date.now()
+    expect(timeAfter - time).toBeLessThan(1000)
   }
 }
 
