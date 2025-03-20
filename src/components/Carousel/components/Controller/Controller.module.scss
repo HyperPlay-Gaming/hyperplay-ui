@@ -1,12 +1,19 @@
-@import '../../../../styles/utilities/variables';
-@import '../../../../styles/designSystem/typography';
+@use '../../../../styles/utilities/variables' as *;
+@use '../../../../styles/designSystem/typography' as *;
 
 .controllerDetached {
-  display: none;
+  display: block;
   margin-top: var(--space-xl);
+  max-width: 100vw;
+  height: auto;
 
-  @include for-tablet-landscape-up {
-    display: block;
+  @include for-mobile-only {
+    padding: var(--space-2lg-fixed) var(--space-md-fixed);
+    overflow-x: auto;
+    .itemsPageButton {
+      display: none;
+      border: none;
+    }
   }
 }
 
@@ -17,16 +24,6 @@
   gap: var(--space-2lg-fixed);
   width: fit-content;
   transition: transform 0.2s, opacity 0.2s;
-  transform: translateY(0px);
   opacity: 1;
   z-index: 1;
-}
-
-.hidden {
-  transform: translateY(30px);
-  opacity: 0;
-}
-
-.displayNone {
-  display: none;
 }

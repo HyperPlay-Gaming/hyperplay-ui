@@ -4,14 +4,13 @@ import cn from 'classnames'
 
 import { useCarousel } from '../..'
 import styles from './Controller.module.scss'
-import BaseButton, { CarouselButtonType } from './components/BaseButton'
+import BaseButton from './components/BaseButton'
 import Item from './components/Item'
 
 export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
   images: React.ReactElement[]
   numItemsToShow?: number
   showItemLoadBar?: boolean
-  carouselButtonType?: CarouselButtonType
   classNames?: {
     rootContainer?: string
     root?: string
@@ -29,7 +28,6 @@ const Controller = ({
   numItemsToShow = 5,
   showItemLoadBar = true,
   classNames,
-  carouselButtonType,
   ...props
 }: ControllerProps) => {
   const { activeIndex, setActiveIndex } = useCarousel()
@@ -113,16 +111,16 @@ const Controller = ({
           onClick={previousItemsPage}
           className={classNames?.leftButton}
           isLeftButton={true}
-          carouselButtonType={carouselButtonType}
           disabled={disablePageButtons}
+          classNames={{ root: styles.itemsPageButton }}
         />
         {itemsToShow}
         <BaseButton
           onClick={nextItemsPage}
-          className={classNames?.rightButton}
+          className={cn(classNames?.rightButton)}
           isLeftButton={false}
-          carouselButtonType={carouselButtonType}
           disabled={disablePageButtons}
+          classNames={{ root: styles.itemsPageButton }}
         />
       </div>
     </div>

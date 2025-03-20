@@ -1,5 +1,5 @@
-@import '../../styles/utilities/variables';
-@import '../../styles/designSystem/typography';
+@use '../../styles/utilities/variables' as *;
+@use '../../styles/designSystem/typography' as *;
 
 @mixin title-mobile {
   left: var(--space-sm-fixed);

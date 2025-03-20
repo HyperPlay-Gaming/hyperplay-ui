@@ -1,10 +1,11 @@
 @use 'sass:math';
-
-////// @TODO this animation logic should removed after A/B testing is finished
+@use '../../../../../../styles/utilities/variables' as *;
 
 @function difference($a, $b) {
   @return calc(abs($a - $b) / (($a + $b) / 2));
 }
+
+$mobile-zoom: 1.6;
 
 $max-item-width: 100px;
 $max-item-height: 60px;
@@ -26,8 +27,8 @@ $scale-mid-to-min-height: calc(
 $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
 
 .itemContainer {
-  width: 96px;
-  height: 56px;
+  width: $mid-item-width;
+  height: $mid-item-height;
   background: var(--color-neutral-600);
 
   display: flex;
@@ -54,6 +55,11 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
     background: none;
     cursor: inherit;
   }
+
+  @include for-mobile-only {
+    width: calc($mid-item-width * $mobile-zoom);
+    height: calc($mid-item-height * $mobile-zoom);
+  }
 }
 
 .root:first-child,
@@ -62,8 +68,8 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
 }
 
 .imageContainer {
-  width: 96px;
-  height: 56px;
+  width: $mid-item-width;
+  height: $mid-item-height;
   border-radius: 8px;
   overflow: hidden;
 
@@ -80,13 +86,19 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
 
 /////////
 .itemContainer.noGradientBorder {
-  :not(.empty):hover::after {
+  &:not(.empty):hover::after {
     background-color: var(--color-neutral-200);
     opacity: 20%;
     z-index: 1;
     position: absolute;
     inset: 0px;
     content: '';
+  }
+  @include for-mobile-only {
+    &:not(.empty):hover::after {
+      background-color: transparent;
+      opacity: 0%;
+    }
   }
 
   transition: transform 0.3s ease-in-out;
