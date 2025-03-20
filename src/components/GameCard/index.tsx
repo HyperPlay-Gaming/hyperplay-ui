@@ -6,7 +6,8 @@ import { Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import classNames from 'classnames'
 
-import FallbackImage from '@/assets/fallback_card.jpg?url'
+// TODO: check size of the image
+// import FallbackImage from '@/assets/fallback_card.jpg?url'
 import { CheckmarkCircleOutline, PlusCircleOutline } from '@/assets/images'
 
 import * as Images from '../../assets/images'
@@ -360,16 +361,14 @@ const GameCard = ({
           <div
             className={`${imageStyles.proportions} ${grayscaleFilterClassName}`}
           >
-            {image ? (
-              image
-            ) : imageUrl ? (
-              <img src={imageUrl} />
-            ) : (
-              <img
-                src={FallbackImage}
-                style={{ width: '100%', height: '100%' }}
-              />
-            )}
+            {
+              image ? image : imageUrl ? <img src={imageUrl} /> : null
+              // TODO: check size of the image
+              // <img
+              //   src={FallbackImage}
+              //   style={{ width: '100%', height: '100%' }}
+              // />
+            }
           </div>
           <div className={styles.bottomContainer}>
             {app === 'client' ? (
