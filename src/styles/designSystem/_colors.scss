@@ -156,7 +156,7 @@
   /* For components that share styles */
   --app-background: var(--color-neutral-900);
   --background-raised: var(--color-neutral-700);
-  --color-stroke-selected: #6b2adc;
+  --color-stroke-selected: var(--color-primary-600);
 
   /* Gradients */
   --color-gradient-01-border: linear-gradient(

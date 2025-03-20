@@ -1,6 +1,8 @@
 import React from 'react'
 import 'react-loading-skeleton/dist/skeleton.css'
 
+import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport'
+
 import HyperPlayDesignProvider from '../src/components/HyperPlayDesignProvider'
 import './styles.css'
 
@@ -18,6 +20,12 @@ export const parameters = {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/
+    }
+  },
+  parameters: {
+    viewports: {
+      viewports: MINIMAL_VIEWPORTS,
+      defaultViewport: 'tablet'
     }
   }
 }

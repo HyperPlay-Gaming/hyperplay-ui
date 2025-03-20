@@ -401,3 +401,42 @@ export const TestControllerArrowDisabledStory: Story = {
     await expect(leftButton).toBeDisabled()
   }
 }
+
+/**
+ * @dev test that there is no autoscroll on mobile
+ */
+export const TestNoAutoscrollImagesMobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'mobile1' }
+  },
+  args: {
+    autoplayOptions: { delay: 2000 },
+    children: imgSlides.slice(0, 3),
+    childrenNotInCarousel: (
+      <Carousel.Controller itemsData={imagesForThumbnail.slice(0, 3)} />
+    )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const imgSlide0 = canvas.getByTestId('img-slide-0')
+    await waitFor(async () =>
+      expect(imgSlide0.offsetWidth).toBeGreaterThan(250)
+    )
+
+    await expectSlideToBeVisible(imgSlide0)
+    const imgSlide1 = canvas.getByTestId('img-slide-1')
+    await expectSlideToNotBeVisible(imgSlide1)
+    const imgSlide2 = canvas.getByTestId('img-slide-2')
+    await expectSlideToNotBeVisible(imgSlide2)
+
+    await wait(2800)
+    await expectSlideToBeVisible(imgSlide0)
+    await expectSlideToNotBeVisible(imgSlide1)
+    await expectSlideToNotBeVisible(imgSlide2)
+
+    await wait(2000)
+    await expectSlideToBeVisible(imgSlide0)
+    await expectSlideToNotBeVisible(imgSlide1)
+    await expectSlideToNotBeVisible(imgSlide2)
+  }
+}

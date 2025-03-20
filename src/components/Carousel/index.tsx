@@ -10,6 +10,7 @@ import {
   CarouselStylesNames,
   Carousel as MantineCarousel
 } from '@mantine/carousel'
+import { useMediaQuery } from '@mantine/hooks'
 import cn from 'classnames'
 import { EmblaCarouselType } from 'embla-carousel'
 import Autoplay, {
@@ -27,7 +28,6 @@ export type { ControllerProps } from './components/Controller'
 interface CarouselContextType {
   activeIndex: number
   setActiveIndex: (index: number) => void
-  emblaApi: EmblaCarouselType | null
   isRotating: () => void
   play: () => void
   stop: () => void
@@ -43,7 +43,6 @@ interface CarouselContextType {
     slideIndex: number,
     timeInMs: number
   ) => void
-  scrollNextSlide: (jump?: boolean) => void
   onVideoPlay: () => void
   onVideoPaused: () => void
   onVideoEnded: () => void
@@ -118,13 +117,20 @@ const Carousel = ({
     Autoplay({ stopOnInteraction: false, ...autoplayOptions })
   )
 
+  const isMobile = useMediaQuery('(max-width: 599px)', false, {
+    getInitialValueInEffect: true
+  })
+
   const setActiveSlideIndexAndResetAutoplay = useCallback(
     (idx: number) => {
+      if (isMobile) {
+        return
+      }
       autoplay.current?.reset()
       autoplay.current?.play()
       setActiveSlideIndex(idx)
     },
-    [setActiveSlideIndex]
+    [setActiveSlideIndex, autoplay.current, isMobile]
   )
 
   // if delay val is an object, it won't be useable in children anyways so let's return undefined in that case
@@ -161,9 +167,9 @@ const Carousel = ({
 
   const onVideoEnded = useCallback(() => {
     setIsVideoPlaying(false)
-    autoplay.current.play()
+    autoplay.current?.play()
     scrollNextSlideCallback()
-  }, [autoplay, scrollNextSlideCallback])
+  }, [autoplay.current, scrollNextSlideCallback, isMobile])
 
   const value = {
     activeIndex: activeSlideIndex,
@@ -171,10 +177,8 @@ const Carousel = ({
       setActiveSlideIndexAndResetAutoplay(index)
       emblaApi?.scrollTo(index)
     },
-    scrollNextSlide: scrollNextSlideCallback,
-    emblaApi,
     isRotating: () => autoplay.current.isPlaying(),
-    play: () => autoplay.current.play(),
+    play: () => autoplay.current?.play(),
     stop: () => {
       autoplay.current.stop()
     },
@@ -203,7 +207,7 @@ const Carousel = ({
           loop={true}
           withControls={false}
           withIndicators={true}
-          plugins={[autoplay.current]}
+          plugins={isMobile ? [] : [autoplay.current]}
           onSlideChange={(index) => setActiveSlideIndexAndResetAutoplay(index)}
           {...props}
         >
