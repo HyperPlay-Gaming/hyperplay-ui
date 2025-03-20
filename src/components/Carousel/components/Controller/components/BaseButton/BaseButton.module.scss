@@ -44,14 +44,14 @@
 
 .button-detached {
   width: 46px;
-  transform: rotate(180deg);
+  transform: rotate(180deg) translateX(-1px);
   align-items: center;
   display: flex;
   justify-content: center;
   height: 100%;
 
   &.leftButton {
-    transform: rotate(0deg);
+    transform: rotate(0deg) translateX(-1px);
   }
 }
 
