@@ -13,6 +13,12 @@ import questCard from '@/assets/banners/QuestCardV2Image.png?url'
 
 import Carousel, { CarouselProps } from '.'
 import { ControllerProps } from './components/Controller'
+import {
+  expectItemsVisibility,
+  expectSlideToBeVisible,
+  expectSlideToNotBeVisible,
+  expectSlidesVisibility
+} from './storyHelpers'
 
 const meta: Meta<typeof Carousel> = {
   title: 'Carousel/Carousel',
@@ -95,23 +101,6 @@ export const NoVideo: Story = {
       />
     )
   }
-}
-
-/**
- * @dev it is okay if slide overflows on bottom since we match width and keep the aspect ratio
- */
-function slideIsVisible(slide: HTMLElement) {
-  const box = slide.getBoundingClientRect()
-  return box.top >= 0 && box.left >= 0 && box.right <= window.innerWidth
-}
-
-async function expectSlideToBeVisible(slide: HTMLElement) {
-  await expect(slide).toBeVisible()
-  return expect(slideIsVisible(slide)).toBeTruthy()
-}
-
-async function expectSlideToNotBeVisible(slide: HTMLElement) {
-  return expect(slideIsVisible(slide)).toBeFalsy()
 }
 
 /**
@@ -242,37 +231,6 @@ export const TestVideoAutoscrollStory: Story = {
   }
 }
 
-async function expectItemsVisibility(
-  /* eslint-disable-next-line */
-  canvas: ReturnType<typeof within>,
-  isVisible: boolean[],
-  testIdPrefix = 'carousel-controller-item-'
-) {
-  for (let i = 0; i < isVisible.length; ++i) {
-    if (isVisible[i]) {
-      await expect(canvas.getByTestId(`${testIdPrefix}${i}`)).toBeDefined()
-    } else {
-      const allItemsWithId = await canvas.queryByTestId(`${testIdPrefix}${i}`)
-      await expect(allItemsWithId).toBe(null)
-    }
-  }
-}
-
-async function expectSlidesVisibility(
-  /* eslint-disable-next-line */
-  canvas: ReturnType<typeof within>,
-  isVisible: boolean[],
-  testIdPrefix = 'img-slide-'
-) {
-  for (let i = 0; i < isVisible.length; ++i) {
-    if (isVisible[i]) {
-      await expectSlideToBeVisible(canvas.getByTestId(`${testIdPrefix}${i}`))
-    } else {
-      await expectSlideToNotBeVisible(canvas.getByTestId(`${testIdPrefix}${i}`))
-    }
-  }
-}
-
 /**
  * @dev arrows can change items in the controller view but doesn't change what the user has selected.
  * this also tests autoscroll for images after using right arrow.
@@ -328,28 +286,32 @@ export const TestImageAutoscrollAfterClickStory: Story = {
       await wait(2200)
       const vis = [false, true, false, false, false]
       await expectSlidesVisibility(canvas, vis)
-      await expectItemsVisibility(canvas, lastItemShown)
+      await expectItemsVisibility(canvas, allButLastItemShown)
       for (let i = 2; i < 5; ++i) {
         await wait(2000)
         const vis_i = [false, false, false, false, false]
         vis_i[i] = true
         await expectSlidesVisibility(canvas, vis_i)
-        await expectItemsVisibility(canvas, lastItemShown)
+        if (i === 4) {
+          await expectItemsVisibility(canvas, lastItemShown)
+        } else {
+          await expectItemsVisibility(canvas, allButLastItemShown)
+        }
       }
 
-      await wait(2000)
+      await wait(1900)
       const firstItemVis = Array(5).fill(false)
       firstItemVis[0] = true
       await expectSlidesVisibility(canvas, firstItemVis)
-      await expectItemsVisibility(canvas, lastItemShown)
+      await expectItemsVisibility(canvas, allButLastItemShown)
     })
 
     await step(
       'click the right button. first 4 items are shown again',
       async () => {
         rightButton.click()
-        await wait(500)
-        expectItemsVisibility(canvas, allButLastItemShown)
+        await wait(300)
+        expectItemsVisibility(canvas, lastItemShown)
       }
     )
   }
