@@ -82,6 +82,7 @@
     "tiny-swiper": "^2.2.0",
     "typescript": "^5.7.2",
     "vite": "^6.2.0",
+    "vite-bundle-analyzer": "^0.18.0",
     "vite-plugin-dts": "^4.5.3",
     "vite-plugin-linter": "^3.0.1",
     "vite-plugin-svgr": "^4.3.0",
@@ -128,10 +129,6 @@
     ]
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/free-regular-svg-icons": "^6.4.0",
-    "@fortawesome/free-solid-svg-icons": "^6.4.0",
-    "@fortawesome/react-fontawesome": "^0.2.0",
     "@hyperplay/chains": "^0.2.9",
     "@hyperplay/utils": "^0.3.1",
     "@tabler/icons-react": "^2.46.0",

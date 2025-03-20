@@ -1,27 +1,25 @@
 import React, { HTMLProps } from 'react'
 
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Loader, LoaderProps } from '@mantine/core'
 import classNames from 'classnames'
 
 import styles from './Loading.module.scss'
 
+interface LoadingProps extends HTMLProps<HTMLDivElement> {
+  loaderProps?: LoaderProps
+}
+
 export default function Loading({
   className,
+  loaderProps,
   ...props
-}: HTMLProps<HTMLDivElement>) {
+}: LoadingProps) {
   return (
     <div
       className={classNames(styles.loadingSpinnerContainer, className)}
       {...props}
     >
-      <FontAwesomeIcon
-        size={'2x'}
-        fill="var(--color-neutral-100)"
-        icon={faSpinner}
-        aria-label="Loading"
-        className={styles.spinning}
-      />
+      <Loader size={30} color="var(--color-neutral-100)" {...loaderProps} />
     </div>
   )
 }

@@ -1,9 +1,8 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react'
 
-import { faRepeat } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import { IconRepeat } from '@tabler/icons-react'
 import classNames from 'classnames'
 
 // TODO: check size of the image
@@ -251,13 +250,7 @@ const GameCard = ({
           <ActionBar
             {...actionBarProps}
             onActionClick={onUpdateClick}
-            icon={
-              <FontAwesomeIcon
-                size={'2x'}
-                fill="var(--color-neutral-100)"
-                icon={faRepeat}
-              />
-            }
+            icon={<IconRepeat size={20} color="var(--color-neutral-100)" />}
           />
         )
       default:

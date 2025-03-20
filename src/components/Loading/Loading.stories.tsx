@@ -15,8 +15,8 @@ export const Default: Story = {}
 
 export const Big: Story = {
   args: {
-    style: {
-      fontSize: '2rem'
+    loaderProps: {
+      size: 60
     }
   }
 }
