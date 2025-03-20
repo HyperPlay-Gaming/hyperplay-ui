@@ -37,6 +37,7 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   border-radius: 8px;
   cursor: pointer;
   position: relative;
+  transition: border 0.3s ease-in;
 
   &:not(.empty).noGradientBorder {
     border: 2px solid var(--color-neutral-600);
@@ -53,7 +54,6 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
       }
     }
   }
-  transition: border 0.3s ease-in;
 
   &.noGradientBorder .imageContainer {
     border-radius: 6px;
@@ -96,6 +96,7 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
 
 /////////
 .itemContainer.noGradientBorder {
+  transition: transform 0.3s ease-in-out;
   &:not(.empty):hover::after {
     background-color: var(--color-neutral-200);
     opacity: 20%;
@@ -111,7 +112,6 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
     }
   }
 
-  transition: transform 0.3s ease-in-out;
   &.active {
     transform: scale(1.125, 1.125);
     @include for-mobile-only {
@@ -152,6 +152,6 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   align-items: center;
   justify-content: center;
   svg {
-    fill: var(--color-neutral-100);
+    stroke: var(--color-neutral-100);
   }
 }
