@@ -2,6 +2,8 @@ import React from 'react'
 
 import cn from 'classnames'
 
+import { PlayIcon } from '@/assets/images'
+
 import { useCarousel } from '../../../..'
 import styles from './Item.module.scss'
 
@@ -13,6 +15,7 @@ interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   itemIndex: number
   // these are just used to take up a slot in the controller and do not have UI/aren't clickable
   isEmptyItem?: boolean
+  isVideoSlide?: boolean
 }
 
 const Item = ({
@@ -23,6 +26,7 @@ const Item = ({
   itemIndex,
   className,
   isEmptyItem,
+  isVideoSlide: isVideoSlideProp,
   ...props
 }: ItemProps) => {
   const {
@@ -76,9 +80,18 @@ const Item = ({
       />
     )
   }
+  let playIcon = null
+  if (isVideoSlideProp) {
+    playIcon = (
+      <div className={styles.playIconContainer}>
+        <PlayIcon />
+      </div>
+    )
+  }
   let content: React.ReactNode | null = (
     <>
       <div className={styles.imageContainer}>{imageElement}</div>
+      {playIcon}
       {loadBar}
     </>
   )

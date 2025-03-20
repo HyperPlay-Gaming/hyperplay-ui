@@ -12,6 +12,7 @@ import wakeCover from '@/assets/TheWakeLandscape.png?url'
 import questCard from '@/assets/banners/QuestCardV2Image.png?url'
 
 import Carousel, { CarouselProps } from '.'
+import { ItemData } from './components/Controller'
 import {
   expectItemsVisibility,
   expectSlideToBeVisible,
@@ -36,18 +37,25 @@ const imgSlides = images.map((val, index) => (
   </Carousel.Slide>
 ))
 
-const imagesForThumbnail = images.map((val) => <img key={val} src={val} />)
+const imagesForThumbnail: ItemData[] = images.map((val) => ({
+  image: <img key={val} src={val} />
+}))
 
-const imagesAndVideosForThumbnail = [
-  <ReactPlayer
-    height="100%"
-    width="100%"
-    url="https://youtu.be/_asNhzXq72w?si=AX1hf2pAKwtNiYs3"
-    style={{ pointerEvents: 'none' }}
-    playIcon={<></>}
-    light={true}
-    key="video_hero_0"
-  />,
+const imagesAndVideosForThumbnail: ItemData[] = [
+  {
+    image: (
+      <ReactPlayer
+        height="100%"
+        width="100%"
+        url="https://youtu.be/_asNhzXq72w?si=AX1hf2pAKwtNiYs3"
+        style={{ pointerEvents: 'none' }}
+        playIcon={<></>}
+        light={true}
+        key="video_hero_0"
+      />
+    ),
+    isVideoSlide: true
+  },
   ...imagesForThumbnail
 ]
 
@@ -67,7 +75,7 @@ const props = {
   autoplayOptions: { delay: 6000 },
   childrenNotInCarousel: (
     <Carousel.Controller
-      images={imagesAndVideosForThumbnail}
+      itemsData={imagesAndVideosForThumbnail}
       showItemLoadBar={true}
     />
   )
@@ -82,7 +90,10 @@ export const NoVideo: Story = {
     autoplayOptions: { delay: 3000 },
     children: imgSlides,
     childrenNotInCarousel: (
-      <Carousel.Controller images={imagesForThumbnail} showItemLoadBar={true} />
+      <Carousel.Controller
+        itemsData={imagesForThumbnail}
+        showItemLoadBar={true}
+      />
     )
   }
 }
@@ -96,7 +107,7 @@ export const TestImageAutoscrollStory: Story = {
     autoplayOptions: { delay: 2000 },
     children: imgSlides.slice(0, 3),
     childrenNotInCarousel: (
-      <Carousel.Controller images={imagesForThumbnail.slice(0, 3)} />
+      <Carousel.Controller itemsData={imagesForThumbnail.slice(0, 3)} />
     )
   },
   play: async ({ canvasElement }) => {
@@ -133,16 +144,21 @@ type propsWithVidProps = {
   onVideoEnd?: () => void
 }
 
-const imagesAndVideosForShortVideoThumbnail = [
-  <ReactPlayer
-    height="100%"
-    width="100%"
-    url="http://localhost:6006/src/assets/tentacle-small.webm"
-    style={{ pointerEvents: 'none' }}
-    playIcon={<></>}
-    light={true}
-    key="video_hero_0"
-  />,
+const imagesAndVideosForShortVideoThumbnail: ItemData[] = [
+  {
+    image: (
+      <ReactPlayer
+        height="100%"
+        width="100%"
+        url="http://localhost:6006/src/assets/tentacle-small.webm"
+        style={{ pointerEvents: 'none' }}
+        playIcon={<></>}
+        light={true}
+        key="video_hero_0"
+      />
+    ),
+    isVideoSlide: true
+  },
   ...imagesForThumbnail
 ]
 
@@ -167,7 +183,7 @@ const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
   },
   childrenNotInCarousel: (
     <Carousel.Controller
-      images={imagesAndVideosForShortVideoThumbnail}
+      itemsData={imagesAndVideosForShortVideoThumbnail}
       showItemLoadBar={true}
     />
   )
@@ -287,7 +303,7 @@ export const TestImageAutoscrollAfterClickStory: Story = {
     children: imgSlides,
     childrenNotInCarousel: (
       <Carousel.Controller
-        images={imagesForThumbnail}
+        itemsData={imagesForThumbnail}
         numItemsToShow={4}
         showItemLoadBar={true}
       />
@@ -368,7 +384,7 @@ export const TestControllerArrowDisabledStory: Story = {
     autoplayOptions: { delay: 1000 },
     children: imgSlides,
     childrenNotInCarousel: (
-      <Carousel.Controller images={imagesForThumbnail} numItemsToShow={5} />
+      <Carousel.Controller itemsData={imagesForThumbnail} numItemsToShow={5} />
     )
   },
   play: async ({ canvasElement }) => {

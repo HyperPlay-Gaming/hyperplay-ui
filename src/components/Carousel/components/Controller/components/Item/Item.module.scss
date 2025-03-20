@@ -145,3 +145,13 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
     width: 100%;
   }
 }
+
+.playIconContainer {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    fill: var(--color-neutral-100);
+  }
+}

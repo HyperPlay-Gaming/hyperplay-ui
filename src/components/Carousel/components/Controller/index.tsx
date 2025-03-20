@@ -8,8 +8,13 @@ import styles from './Controller.module.scss'
 import BaseButton from './components/BaseButton'
 import Item from './components/Item'
 
+export interface ItemData {
+  image: React.ReactElement
+  isVideoSlide?: boolean
+}
+
 export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
-  images: React.ReactElement[]
+  itemsData: ItemData[]
   numItemsToShow?: number
   showItemLoadBar?: boolean
   classNames?: {
@@ -24,7 +29,7 @@ export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Controller = ({
-  images,
+  itemsData,
   className,
   numItemsToShow: numItemsToShowInit = 5,
   showItemLoadBar = true,
@@ -39,12 +44,12 @@ const Controller = ({
   })
   useEffect(() => {
     if (isMobile) {
-      setNumItemsToShow(images.length)
+      setNumItemsToShow(itemsData.length)
     } else {
       setNumItemsToShow(numItemsToShowInit)
     }
   }, [isMobile])
-  const maxPageIndex = Math.floor((images.length - 1) / numItemsToShow)
+  const maxPageIndex = Math.floor((itemsData.length - 1) / numItemsToShow)
   const nextItemsPage = useCallback(() => {
     let newPageIndex = itemsPageIndex + 1
     if (newPageIndex > maxPageIndex) {
@@ -81,8 +86,8 @@ const Controller = ({
 
   const itemsToShow: React.ReactNode[] = []
   for (let itemIndex = startIndex; itemIndex < endIndex; ++itemIndex) {
-    if (itemIndex < images.length) {
-      const Image = images[itemIndex]
+    if (itemIndex < itemsData.length) {
+      const Image = itemsData[itemIndex].image
       itemsToShow.push(
         <Item
           key={`hyperplay_carousel_controller_${itemIndex}`}
@@ -93,6 +98,7 @@ const Controller = ({
           showLoadBar={showItemLoadBar}
           itemIndex={itemIndex}
           className={classNames?.item}
+          isVideoSlide={itemsData[itemIndex].isVideoSlide}
         />
       )
     } else {
