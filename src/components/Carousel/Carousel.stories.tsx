@@ -85,6 +85,13 @@ export const Default: Story = {
   args: props
 }
 
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'mobile1' }
+  },
+  args: props
+}
+
 export const NoVideo: Story = {
   args: {
     autoplayOptions: { delay: 3000 },
