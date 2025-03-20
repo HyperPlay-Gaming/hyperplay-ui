@@ -312,6 +312,8 @@ export const TestImageAutoscrollAfterClickStory: Story = {
         controllerLayout={'detached'}
         images={imagesForThumbnail}
         numItemsToShow={4}
+        showGradientBorder={false}
+        showItemLoadBar={true}
       />
     )
   },
@@ -364,7 +366,7 @@ export const TestImageAutoscrollAfterClickStory: Story = {
         }
       }
 
-      await wait(1900)
+      await wait(2100)
       const firstItemVis = Array(5).fill(false)
       firstItemVis[0] = true
       await expectSlidesVisibility(canvas, firstItemVis)
