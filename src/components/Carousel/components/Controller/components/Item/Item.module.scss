@@ -44,7 +44,17 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
     .loader {
       display: block;
     }
+    @include for-mobile-only {
+      &.active {
+        border-color: var(--color-stroke-selected);
+      }
+      .loader {
+        display: none;
+      }
+    }
   }
+  transition: border 0.3s ease-in;
+
   &.noGradientBorder .imageContainer {
     border-radius: 6px;
     width: 100%;
@@ -104,6 +114,9 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   transition: transform 0.3s ease-in-out;
   &.active {
     transform: scale(1.125, 1.125);
+    @include for-mobile-only {
+      transform: none;
+    }
   }
 }
 
