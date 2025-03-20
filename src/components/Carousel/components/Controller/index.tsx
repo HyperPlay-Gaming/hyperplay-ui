@@ -49,6 +49,20 @@ const Controller = ({
       setNumItemsToShow(numItemsToShowInit)
     }
   }, [isMobile])
+
+  useEffect(() => {
+    if (isMobile) {
+      const element = document.getElementById(
+        `carousel-controller-item-id-${activeIndex}`
+      )
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth'
+        })
+      }
+    }
+  }, [isMobile, activeIndex])
+
   const maxPageIndex = Math.floor((itemsData.length - 1) / numItemsToShow)
   const nextItemsPage = useCallback(() => {
     let newPageIndex = itemsPageIndex + 1
@@ -99,6 +113,7 @@ const Controller = ({
           itemIndex={itemIndex}
           className={classNames?.item}
           isVideoSlide={itemsData[itemIndex].isVideoSlide}
+          id={`carousel-controller-item-id-${itemIndex}`}
         />
       )
     } else {
@@ -117,6 +132,7 @@ const Controller = ({
 
   return (
     <div
+      id="carousel-controller-root-container"
       className={cn(
         styles.controllerDetached,
         className,
