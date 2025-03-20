@@ -8,8 +8,14 @@
   height: auto;
 
   @include for-mobile-only {
+    margin-top: 0px;
     padding: var(--space-2lg-fixed) var(--space-md-fixed);
     overflow-x: auto;
+    -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    &::-webkit-scrollbar {
+      display: none; /* Hide scrollbar in Chrome, Safari, and Edge */
+    }
     .itemsPageButton {
       display: none;
       border: none;
