@@ -16,7 +16,6 @@ export const parameters = {
       { name: '600', value: '#282B34' }
     ]
   },
-  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -32,3 +31,4 @@ export const decorators = [
     </HyperPlayDesignProvider>
   )
 ]
+export const tags = ['autodocs']
