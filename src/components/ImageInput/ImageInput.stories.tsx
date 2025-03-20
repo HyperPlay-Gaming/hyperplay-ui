@@ -29,7 +29,9 @@ export const Default: Story = {
       <ImageInput
         {...args}
         value={file}
-        onImageDropped={setFile}
+        onImageDropped={(value) =>
+          setFile(value instanceof File ? URL.createObjectURL(value) : value)
+        }
         style={{ maxHeight: 500, display: 'inline-block', height: 500 }}
       />
     )

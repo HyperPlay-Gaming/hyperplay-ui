@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { Carousel } from '@mantine/carousel'
-import type { EmblaCarouselType } from 'embla-carousel'
+import { Carousel, Embla } from '@mantine/carousel'
 import Autoplay, { AutoplayType } from 'embla-carousel-autoplay'
 
 import Controller from './components/Controller'
@@ -31,7 +30,7 @@ const Carouselv2 = ({
   const autoplay = useRef<AutoplayType>(
     Autoplay({ delay: props.autoplayDelayInMs, stopOnInteraction: false })
   )
-  const [emblaApiRef, setEmblaApiRef] = useState<EmblaCarouselType>()
+  const [emblaApiRef, setEmblaApiRef] = useState<Embla>()
   const controllerLayout = props.controllerLayout ?? 'attached'
 
   useEffect(() => {

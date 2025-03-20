@@ -1,105 +1,215 @@
-export { ReactComponent as AmazonLogo } from './amazonLogo.svg'
-export { ReactComponent as ArrowLeft } from './ArrowLeft.svg'
-export { ReactComponent as Blockchain } from './Blockchain.svg'
-export { ReactComponent as BurgerClosedIcon } from './BurgerClosedIcon.svg'
-export { ReactComponent as BurgerOpenIcon } from './BurgerOpenIcon.svg'
-export { ReactComponent as Checkmark } from './Checkmark.svg'
-export { ReactComponent as CheckmarkCircle } from './CheckmarkCircle.svg'
-export { ReactComponent as GreenStatus } from './GreenStatus.svg'
-export { ReactComponent as CheckmarkCircleOutline } from './CheckmarkCircleOutline.svg'
-export { ReactComponent as ChevronLeft } from './ChevronLeft.svg'
-export { ReactComponent as ChevronRight } from './ChevronRight.svg'
-export { ReactComponent as CloseButton } from './CloseButton.svg'
-export { ReactComponent as CloseModalIcon } from './CloseModalIcon.svg'
-export { ReactComponent as Email } from './Email.svg'
-export { ReactComponent as Controller } from './Controller.svg'
-export { ReactComponent as Discord } from './Discord.svg'
-export { ReactComponent as DiscordFilled } from './DiscordFilled.svg'
-export { ReactComponent as XFilled } from './XFilled.svg'
-export { ReactComponent as DownArrow } from './DownArrow.svg'
-export { ReactComponent as DownloadIcon } from './DownloadIcon.svg'
-export { ReactComponent as Ellipsis } from './Ellipsis.svg'
-export { ReactComponent as EpicStoreIcon } from './EpicStoreIcon.svg'
-export { ReactComponent as EpicStoreLogo } from './EpicStoreLogo.svg'
-export { ReactComponent as EthereumIcon } from './EthereumIcon.svg'
-export { ReactComponent as Eye } from './EyeIcon.svg'
-export { ReactComponent as EyeOff } from './EyeOff.svg'
-export { ReactComponent as GogStoreLogo } from './GogStoreLogo.svg'
-export { ReactComponent as Grid } from './Grid.svg'
-export { ReactComponent as Heart } from './Heart.svg'
-export { ReactComponent as Home } from './Home.svg'
-export { ReactComponent as HyperPlayLogoIcon } from './HyperPlayLogoIcon.svg'
-export { ReactComponent as HyperPlayStoreLogo } from './HyperPlayStoreLogo.svg'
-export { ReactComponent as HyperPlayLogoColored } from './HyperPlayLogoColored.svg'
-export { ReactComponent as HyperPlayTextLogo } from './HyperPlayTextLogo.svg'
-export { ReactComponent as HyperplayStoreIcon } from './HyperplayStoreIcon.svg'
-export { ReactComponent as HyperPlayFullTextLogo } from './HyperPlayFullTextLogo.svg'
-export { ReactComponent as Info } from './InfoIcon.svg'
-export { ReactComponent as LinuxIcon } from './LinuxIcon.svg'
-export { ReactComponent as List } from './List.svg'
-export { ReactComponent as MacOSIcon } from './MacOSIcon.svg'
-export { ReactComponent as MagnifyingGlass } from './MagnifyingGlass.svg'
-export { ReactComponent as MetaMask } from './MetaMask.svg'
-export { ReactComponent as MetaMaskAdd } from './MetaMaskAdd.svg'
-export { ReactComponent as MetaMaskBrowserLogo } from './MetaMaskBrowserLogo.svg'
-export { ReactComponent as MetaMaskMobileLogo } from './MetaMaskMobileLogo.svg'
-export { ReactComponent as MetaMaskUnlock } from './MetaMaskUnlock.svg'
-export { ReactComponent as MobileHpLogo } from './MobileHpLogo.svg'
-export { ReactComponent as Page } from './Page.svg'
-export { ReactComponent as PauseIcon } from './PauseIcon.svg'
-export { ReactComponent as PlayIcon } from './PlayIcon.svg'
-export { ReactComponent as PlusCircleOutline } from './PlusCircleOutline.svg'
-export { ReactComponent as Update } from './Update.svg'
-export { ReactComponent as UpdateCircleOutline } from './UpdateCircleOutline.svg'
-export { ReactComponent as PolygonIcon } from './PolygonIcon.svg'
-export { ReactComponent as Refresh } from './Refresh.svg'
-export { ReactComponent as Resume } from './Resume.svg'
-export { ReactComponent as RightArrow } from './RightArrow.svg'
-export { ReactComponent as Settings } from './Settings.svg'
-export { ReactComponent as SteamDeckIcon } from './SteamDeckIcon.svg'
-export { ReactComponent as SteamIcon } from './SteamIcon.svg'
-export { ReactComponent as SteamLogo } from './SteamLogo.svg'
-export { ReactComponent as Token } from './Token.svg'
-export { ReactComponent as Twitter } from './Twitter.svg'
-export { ReactComponent as TwitterFilled } from './TwitterFilled.svg'
-export { ReactComponent as TrophyOutline } from './TrophyOutline.svg'
-export { ReactComponent as TxnAlert } from './TxnAlert.svg'
-export { ReactComponent as TxnError } from './TxnError.svg'
-export { ReactComponent as TxnPending } from './TxnPending.svg'
-export { ReactComponent as TxnSubmitted } from './TxnSubmitted.svg'
-export { ReactComponent as TxnSuccess } from './TxnSuccess.svg'
-export { ReactComponent as WarningIcon } from './WarningIcon.svg'
-export { ReactComponent as WebIcon } from './WebIcon.svg'
-export { ReactComponent as WindowsIcon } from './WindowsIcon.svg'
-export { ReactComponent as XCircle } from './XCircle.svg'
-export { ReactComponent as Youtube } from './Youtube.svg'
-export { ReactComponent as Trophy } from './Trophy.svg'
-export { ReactComponent as TwitchLogo } from './TwitchLogo.svg'
-export { ReactComponent as GoogleLogo } from './GoogleLogo.svg'
-export { ReactComponent as KickLogo } from './KickLogo.svg'
-export { ReactComponent as XLogo } from './XLogo.svg'
-export { ReactComponent as XLogoFilled } from './XLogoFilled.svg'
-export { ReactComponent as WalletConnectLogo } from './WalletConnectLogo.svg'
-export { ReactComponent as LinkIcon } from './LinkIcon.svg'
-export { ReactComponent as AlertTriangle } from './AlertTriangle.svg'
-export { ReactComponent as GiftBox } from './GiftBox.svg'
-export { ReactComponent as Copy } from './Copy.svg'
-export { ReactComponent as TrashCan } from './TrashCan.svg'
-export { ReactComponent as QuestIcon } from './QuestIcon.svg'
-export { ReactComponent as PlusCircle } from './PlusCircle.svg'
-export { ReactComponent as MinusCircle } from './MinusCircle.svg'
-export { ReactComponent as QuestionMark } from './QuestionMark.svg'
-export { ReactComponent as MetaMaskColored } from './MetaMaskColored.svg'
-export { ReactComponent as Wallet } from './Wallet.svg'
-export { ReactComponent as ArrowTop } from './ArrowTop.svg'
-export { ReactComponent as ArrowUpRight } from './ArrowUpRight.svg'
-export { ReactComponent as AlertBell } from './AlertBell.svg'
-export { ReactComponent as LightningBolt } from './LightningBolt.svg'
-export { ReactComponent as Clock } from './Clock.svg'
-export { ReactComponent as QuestScroll } from './QuestScroll.svg'
-export { ReactComponent as QuestScrollIcon } from './QuestScrollIcon.svg'
-export { ReactComponent as GetHyperPlay } from './GetHyperPlay.svg'
-export { ReactComponent as Diamond } from './Diamond.svg'
-export { ReactComponent as TreasureChest } from './TreasureChest.svg'
-export { ReactComponent as Line } from './Line.svg'
-export { ReactComponent as LinkExternal } from './LinkExternal.svg'
+import AlertBell from './AlertBell.svg?react'
+import AlertTriangle from './AlertTriangle.svg?react'
+import ArrowLeft from './ArrowLeft.svg?react'
+import ArrowTop from './ArrowTop.svg?react'
+import ArrowUpRight from './ArrowUpRight.svg?react'
+import Blockchain from './Blockchain.svg?react'
+import BurgerClosedIcon from './BurgerClosedIcon.svg?react'
+import BurgerOpenIcon from './BurgerOpenIcon.svg?react'
+import Checkmark from './Checkmark.svg?react'
+import CheckmarkCircle from './CheckmarkCircle.svg?react'
+import CheckmarkCircleOutline from './CheckmarkCircleOutline.svg?react'
+import ChevronLeft from './ChevronLeft.svg?react'
+import ChevronRight from './ChevronRight.svg?react'
+import Clock from './Clock.svg?react'
+import CloseButton from './CloseButton.svg?react'
+import CloseModalIcon from './CloseModalIcon.svg?react'
+import Controller from './Controller.svg?react'
+import Copy from './Copy.svg?react'
+import Diamond from './Diamond.svg?react'
+import Discord from './Discord.svg?react'
+import DiscordFilled from './DiscordFilled.svg?react'
+import DownArrow from './DownArrow.svg?react'
+import DownloadIcon from './DownloadIcon.svg?react'
+import Ellipsis from './Ellipsis.svg?react'
+import Email from './Email.svg?react'
+import EpicStoreIcon from './EpicStoreIcon.svg?react'
+import EpicStoreLogo from './EpicStoreLogo.svg?react'
+import EthereumIcon from './EthereumIcon.svg?react'
+import Eye from './EyeIcon.svg?react'
+import EyeOff from './EyeOff.svg?react'
+import GetHyperPlay from './GetHyperPlay.svg?react'
+import GiftBox from './GiftBox.svg?react'
+import GogStoreLogo from './GogStoreLogo.svg?react'
+import GoogleLogo from './GoogleLogo.svg?react'
+import GreenStatus from './GreenStatus.svg?react'
+import Grid from './Grid.svg?react'
+import Heart from './Heart.svg?react'
+import Home from './Home.svg?react'
+import HyperPlayFullTextLogo from './HyperPlayFullTextLogo.svg?react'
+// TODO: check size of the image
+// import HyperPlayLogoColored from './HyperPlayLogoColored.svg?react'
+import HyperPlayLogoIcon from './HyperPlayLogoIcon.svg?react'
+import HyperPlayStoreLogo from './HyperPlayStoreLogo.svg?react'
+import HyperPlayTextLogo from './HyperPlayTextLogo.svg?react'
+import HyperplayStoreIcon from './HyperplayStoreIcon.svg?react'
+import Info from './InfoIcon.svg?react'
+import KickLogo from './KickLogo.svg?react'
+import LightningBolt from './LightningBolt.svg?react'
+import Line from './Line.svg?react'
+import LinkExternal from './LinkExternal.svg?react'
+import LinkIcon from './LinkIcon.svg?react'
+import LinuxIcon from './LinuxIcon.svg?react'
+import List from './List.svg?react'
+import MacOSIcon from './MacOSIcon.svg?react'
+import MagnifyingGlass from './MagnifyingGlass.svg?react'
+import MetaMask from './MetaMask.svg?react'
+import MetaMaskAdd from './MetaMaskAdd.svg?react'
+import MetaMaskBrowserLogo from './MetaMaskBrowserLogo.svg?react'
+import MetaMaskColored from './MetaMaskColored.svg?react'
+import MetaMaskMobileLogo from './MetaMaskMobileLogo.svg?react'
+import MetaMaskUnlock from './MetaMaskUnlock.svg?react'
+import MinusCircle from './MinusCircle.svg?react'
+import MobileHpLogo from './MobileHpLogo.svg?react'
+import Page from './Page.svg?react'
+import PauseIcon from './PauseIcon.svg?react'
+import PlayIcon from './PlayIcon.svg?react'
+import PlusCircle from './PlusCircle.svg?react'
+import PlusCircleOutline from './PlusCircleOutline.svg?react'
+import PolygonIcon from './PolygonIcon.svg?react'
+import QuestIcon from './QuestIcon.svg?react'
+import QuestScroll from './QuestScroll.svg?react'
+import QuestScrollIcon from './QuestScrollIcon.svg?react'
+import QuestionMark from './QuestionMark.svg?react'
+import Refresh from './Refresh.svg?react'
+import Resume from './Resume.svg?react'
+import RightArrow from './RightArrow.svg?react'
+import Settings from './Settings.svg?react'
+import SteamDeckIcon from './SteamDeckIcon.svg?react'
+import SteamIcon from './SteamIcon.svg?react'
+import SteamLogo from './SteamLogo.svg?react'
+import Token from './Token.svg?react'
+import TrashCan from './TrashCan.svg?react'
+import TreasureChest from './TreasureChest.svg?react'
+import Trophy from './Trophy.svg?react'
+import TrophyOutline from './TrophyOutline.svg?react'
+import TwitchLogo from './TwitchLogo.svg?react'
+import Twitter from './Twitter.svg?react'
+import TwitterFilled from './TwitterFilled.svg?react'
+import TxnAlert from './TxnAlert.svg?react'
+import TxnError from './TxnError.svg?react'
+import TxnPending from './TxnPending.svg?react'
+import TxnSubmitted from './TxnSubmitted.svg?react'
+import TxnSuccess from './TxnSuccess.svg?react'
+import Update from './Update.svg?react'
+import UpdateCircleOutline from './UpdateCircleOutline.svg?react'
+import Wallet from './Wallet.svg?react'
+import WalletConnectLogo from './WalletConnectLogo.svg?react'
+import WarningIcon from './WarningIcon.svg?react'
+import WebIcon from './WebIcon.svg?react'
+import WindowsIcon from './WindowsIcon.svg?react'
+import XCircle from './XCircle.svg?react'
+import XFilled from './XFilled.svg?react'
+import XLogo from './XLogo.svg?react'
+import XLogoFilled from './XLogoFilled.svg?react'
+import Youtube from './Youtube.svg?react'
+import AmazonLogo from './amazonLogo.svg?react'
+
+export {
+  AmazonLogo,
+  QuestionMark,
+  ArrowLeft,
+  Blockchain,
+  BurgerClosedIcon,
+  BurgerOpenIcon,
+  Checkmark,
+  CheckmarkCircle,
+  GreenStatus,
+  CheckmarkCircleOutline,
+  ChevronLeft,
+  ChevronRight,
+  CloseButton,
+  CloseModalIcon,
+  Email,
+  Controller,
+  Discord,
+  DiscordFilled,
+  XFilled,
+  DownArrow,
+  DownloadIcon,
+  Ellipsis,
+  EpicStoreIcon,
+  EpicStoreLogo,
+  EthereumIcon,
+  Eye,
+  EyeOff,
+  GogStoreLogo,
+  Grid,
+  Heart,
+  Home,
+  HyperPlayLogoIcon,
+  HyperPlayStoreLogo,
+  // TODO: check size of the image
+  // HyperPlayLogoColored,
+  HyperPlayTextLogo,
+  HyperplayStoreIcon,
+  HyperPlayFullTextLogo,
+  Info,
+  LinuxIcon,
+  List,
+  MacOSIcon,
+  MagnifyingGlass,
+  MetaMask,
+  MetaMaskAdd,
+  MetaMaskBrowserLogo,
+  MetaMaskMobileLogo,
+  MetaMaskUnlock,
+  MobileHpLogo,
+  Page,
+  PauseIcon,
+  PlayIcon,
+  PlusCircleOutline,
+  Update,
+  UpdateCircleOutline,
+  PolygonIcon,
+  Refresh,
+  Resume,
+  RightArrow,
+  Settings,
+  SteamDeckIcon,
+  SteamIcon,
+  SteamLogo,
+  Token,
+  Twitter,
+  TwitterFilled,
+  TrophyOutline,
+  TxnAlert,
+  TxnError,
+  TxnPending,
+  TxnSubmitted,
+  TxnSuccess,
+  WarningIcon,
+  WebIcon,
+  WindowsIcon,
+  XCircle,
+  Youtube,
+  Trophy,
+  TwitchLogo,
+  GoogleLogo,
+  KickLogo,
+  XLogo,
+  XLogoFilled,
+  WalletConnectLogo,
+  LinkIcon,
+  AlertTriangle,
+  GiftBox,
+  Copy,
+  TrashCan,
+  QuestIcon,
+  PlusCircle,
+  MinusCircle,
+  MetaMaskColored,
+  Wallet,
+  ArrowTop,
+  ArrowUpRight,
+  AlertBell,
+  LightningBolt,
+  Clock,
+  QuestScroll,
+  QuestScrollIcon,
+  GetHyperPlay,
+  Diamond,
+  TreasureChest,
+  Line,
+  LinkExternal
+}

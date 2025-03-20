@@ -2,7 +2,7 @@ import React, { HTMLProps } from 'react'
 
 import cn from 'classnames'
 
-import { HyperPlayLogoColored, Wallet } from '@/assets/images'
+import { Wallet } from '@/assets/images'
 import Alert, { AlertProps } from '@/components/Alert'
 import { AuthProviderButton, getTruncatedAddress } from '@/index'
 
@@ -80,7 +80,8 @@ export default function LinkExternalAccountsModal({
         aria-label="close link accounts modal"
         onClick={onClose}
       />
-      <HyperPlayLogoColored />
+      {/* TODO: check size of the image */}
+      {/* <HyperPlayLogoColored /> */}
       <Modal.Header>
         {email ? (
           <Modal.Title>

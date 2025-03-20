@@ -15,6 +15,7 @@ const props: FooterProps = {
   linkProps: {
     privacyPolicy: { href: 'https://www.hyperplay.xyz/privacy-policy' },
     termsOfService: { href: 'https://www.hyperplay.xyz/terms-of-service' },
+    cookiePolicy: { href: 'https://www.hyperplay.xyz/cookie-policy' },
     badges: { href: 'https://github.com/HyperPlay-Gaming/branding-resources' },
     downloads: { href: 'https://www.hyperplay.xyz/downloads' },
     developerAgreement: { href: 'https://www.hyperplay.xyz/downloads' }
