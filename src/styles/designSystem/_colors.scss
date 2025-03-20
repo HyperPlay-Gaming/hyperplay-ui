@@ -30,15 +30,15 @@
   --color-secondary-900: #491461;
 
   /* Tertiary */
-  --color-tertiary-100: #d7d4fc;
-  --color-tertiary-200: #b8bdfb;
-  --color-tertiary-300: #98a0f9;
-  --color-tertiary-400: #8992f8;
-  --color-tertiary-500: #818cf8;
-  --color-tertiary-600: #6976f2;
-  --color-tertiary-700: #535ee0;
-  --color-tertiary-800: #424ac0;
-  --color-tertiary-900: #32379a;
+  --color-tertiary-100: #d0ebff;
+  --color-tertiary-200: #a5d8ff;
+  --color-tertiary-300: #86bef7;
+  --color-tertiary-400: #66a9f1;
+  --color-tertiary-500: #339af0;
+  --color-tertiary-600: #228be6;
+  --color-tertiary-700: #1c7ed6;
+  --color-tertiary-800: #1971c2;
+  --color-tertiary-900: #1864ab;
 
   /* Quaternary */
   --color-quaternary-100: #fdd0d7;
@@ -94,87 +94,83 @@
   --color-neutral-600: #222530;
   --color-neutral-700: #171a25;
   --color-neutral-800: #13141a;
-  --color-neutral-900: #0c0b0f;
+  --color-neutral-900: #060606;
   --color-neutral-1000: #000000;
 
   /* Status */
   --color-status-success: var(--color-success-400);
   --color-status-alert: var(--color-alert-400);
   --color-status-error: var(--color-error-400);
-  --color-status-info: var(--color-tertiary-400);
+  --color-status-info: var(--color-tertiary-300);
 
-  /* Brand Text */
-  --brand-text: var(--color-primary-400);
-  --brand-text-secondary: var(--color-secondary-400);
-  --brand-text-strong: var(--color-neutral-100);
-  --brand-text-weak: var(--color-neutral-300);
-  --brand-text-disabled: color-mix(
+  /* Text */
+  --text-primary: var(--color-primary-400);
+  --text-secondary: var(--color-secondary-400);
+  --text-strong: var(--color-neutral-100);
+  --text-weak: var(--color-neutral-300);
+  --text-disabled: color-mix(
     in srgb,
     var(--color-neutral-200) 20%,
     transparent
   );
-  --brand-text-error: var(--color-error-400);
-  --brand-text-warning: var(--color-alert-400);
-  --brand-text-success: var(--color-success-400);
-  --brand-text-info: var(--color-tertiary-400);
-  --brand-text-inverse-strong: var(--color-neutral-900);
-  --brand-text-inverse-weak: var(--color-neutral-600);
-  --brand-text-inverse-disabled: var(--color-neutral-500);
+  --text-error: var(--color-error-400);
+  --text-warning: var(--color-alert-400);
+  --text-success: var(--color-success-400);
+  --text-info: var(--color-tertiary-400);
+  --text-inverse-strong: var(--color-neutral-900);
+  --text-inverse-weak: var(--color-neutral-600);
+  --text-inverse-disabled: var(--color-neutral-500);
 
   /* Icon */
-  --icon-brand-strong: color-mix(
-    in srgb,
-    var(--color-primary-400) 75%,
-    transparent
-  );
+  --icon-primary: color-mix(in srgb, var(--color-primary-400) 75%, transparent);
   --icon-neutral: var(--color-neutral-100);
   --icon-secondary: var(--color-neutral-300);
   --icon-disabled: color-mix(in srgb, var(--color-neutral-200) 5%, transparent);
   --icon-error: color-mix(in srgb, var(--color-error-400) 75%, transparent);
   --icon-warning: color-mix(in srgb, var(--color-alert-400) 75%, transparent);
   --icon-success: color-mix(in srgb, var(--color-success-400) 75%, transparent);
-  --icon-info: color-mix(in srgb, var(--color-tertiary-400) 75%, transparent);
+  --icon-info: color-mix(in srgb, var(--color-tertiary-300) 75%, transparent);
   --icon-inverse: color-mix(in srgb, var(--color-neutral-800) 50%, transparent);
   --icon-inverse-strong: var(--color-neutral-800);
   --icon-inverse-weak: color-mix(
     in srgb,
-    var(--color-neutral-800) 5%,
+    var(--color-neutral-800) 8%,
     transparent
   );
 
   /* Fill */
   --fill-strong: var(--color-neutral-100);
   --fill-weak: color-mix(in srgb, var(--color-neutral-200) 20%, transparent);
-  --fill-weaker: color-mix(in srgb, var(--color-neutral-200) 3%, transparent);
-  --fill-hover: color-mix(in srgb, var(--color-neutral-200) 6%, transparent);
-  --fill-pressed: color-mix(in srgb, var(--color-neutral-200) 6%, transparent);
+  --fill-weaker: color-mix(in srgb, var(--color-neutral-200) 7%, transparent);
+  --fill-hover: color-mix(in srgb, var(--color-neutral-200) 20%, transparent);
+  --fill-pressed: color-mix(in srgb, var(--color-neutral-200) 50%, transparent);
   --fill-selected: var(--color-primary-400);
   --fill-disabled: color-mix(in srgb, var(--color-neutral-100) 6%, transparent);
   --fill-overlay: color-mix(in srgb, var(--color-neutral-600) 10%, transparent);
-  --fill-brand-strong: var(--color-primary-400);
+  --fill-brand-strong: var(--color-primary-700);
   --fill-brand-weak: color-mix(
     in srgb,
-    var(--color-primary-400) 6%,
+    var(--color-primary-400) 8%,
     transparent
   );
   --fill-error-strong: var(--color-error-400);
-  --fill-error-weak: color-mix(in srgb, var(--color-error-400) 6%, transparent);
+  --fill-error-weak: color-mix(in srgb, var(--color-error-400) 8%, transparent);
   --fill-warning-strong: var(--color-alert-400);
   --fill-warning-weak: color-mix(
     in srgb,
-    var(--color-alert-400) 6%,
+    var(--color-alert-400) 8%,
     transparent
   );
   --fill-success-strong: var(--color-success-400);
   --fill-success-weak: color-mix(
     in srgb,
-    var(--color-success-400) 6%,
+    var(--color-success-400) 8%,
     transparent
   );
   --fill-info-strong: var(--color-tertiary-400);
   --fill-info-weak: color-mix(
     in srgb,
-    var(--color-tertiary-400) 6%,
+    var(--color-tertiary-400) 8%,
     transparent
   );
   --fill-inverse-strong: var(--color-neutral-800);
@@ -188,7 +184,7 @@
   --background-overlay: var(--color-neutral-600);
   --background-sunken: var(--color-neutral-900);
   --background-alternate: var(--color-neutral-500);
-  --background-brand: var(--color-primary-400);
+  --background-brand: var(--color-primary-700);
   --background-inverse: var(--color-neutral-50);
 
   /* Gradients */
