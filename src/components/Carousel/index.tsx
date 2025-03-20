@@ -48,6 +48,7 @@ interface CarouselContextType {
   onVideoPaused: () => void
   onVideoEnded: () => void
   isVideoPlaying: boolean
+  isVideoSlide: boolean
 }
 
 const CarouselContext = createContext<CarouselContextType | undefined>(
@@ -91,6 +92,7 @@ const Carousel = ({
     slideTimeOverrideIndexToTimeMsMap,
     setSlideTimeOverrideIndexToTimeMsMap
   ] = useState<Record<number, number>>({})
+  const [videoSlides, setVideoSlides] = useState<number[]>([])
 
   const setSlideTimeOverride = (slideIndex: number, timeInMs: number) => {
     setSlideTimeOverrideIndexToTimeMsMap((prevState) => ({
@@ -119,6 +121,7 @@ const Carousel = ({
   const setActiveSlideIndexAndResetAutoplay = useCallback(
     (idx: number) => {
       autoplay.current?.reset()
+      autoplay.current?.play()
       setActiveSlideIndex(idx)
     },
     [setActiveSlideIndex]
@@ -140,6 +143,7 @@ const Carousel = ({
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
 
   const onVideoPlay = useCallback(() => {
+    setVideoSlides([activeSlideIndex])
     setIsVideoPlaying(true)
     autoplay.current.stop()
   }, [autoplay])
@@ -183,7 +187,8 @@ const Carousel = ({
     onVideoPlay,
     onVideoPaused,
     onVideoEnded,
-    isVideoPlaying
+    isVideoPlaying,
+    isVideoSlide: videoSlides.some((val) => val === activeSlideIndex)
   }
 
   return (
