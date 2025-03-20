@@ -1,8 +1,10 @@
 import React from 'react'
-import 'react-loading-skeleton/dist/skeleton.css'
+
+import '@mantine/core/styles.css'
 
 import HyperPlayDesignProvider from '../src/components/HyperPlayDesignProvider'
-import './styles.css'
+import '../src/fonts.css'
+import '../src/index.scss'
 
 export const parameters = {
   backgrounds: {

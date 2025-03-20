@@ -1,9 +1,9 @@
 import React, { Suspense } from 'react'
-import Skeleton from 'react-loading-skeleton'
 import usePromise from 'react-promise-suspense'
 
+import { Skeleton } from '@mantine/core'
+
 import preloadImages from '@/utils/preloadImages'
-import useCSSVariable from '@/utils/useCSSVariable'
 
 import styles from './Image.module.css'
 
@@ -18,19 +18,8 @@ const ImageComponent = ({ src }: ImageProps) => {
 }
 
 const Image = (props: ImageProps) => {
-  const baseColor = useCSSVariable('--color-neutral-1000')
-  const highlightColor = useCSSVariable('--color-neutral-400')
-
   return (
-    <Suspense
-      fallback={
-        <Skeleton
-          className={styles.proportions}
-          baseColor={baseColor}
-          highlightColor={highlightColor}
-        />
-      }
-    >
+    <Suspense fallback={<Skeleton className={styles.proportions} />}>
       <ImageComponent {...props} />
     </Suspense>
   )

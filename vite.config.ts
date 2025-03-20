@@ -2,7 +2,6 @@ import react from '@vitejs/plugin-react-swc'
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
 import svgr from 'vite-plugin-svgr'
 
 import packageJson from './package.json'
@@ -19,23 +18,7 @@ export default defineConfig({
     dts({
       include: ['src/']
     }),
-    svgr(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'src/styles',
-          dest: ''
-        },
-        {
-          src: 'src/fonts.css',
-          dest: ''
-        },
-        {
-          src: 'src/fonts',
-          dest: ''
-        }
-      ]
-    })
+    svgr()
   ],
   build: {
     copyPublicDir: true,
@@ -48,10 +31,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [...Object.keys(packageJson.peerDependencies)],
-      input: [
-        resolve(__dirname, './src/index.ts'),
-        resolve(__dirname, './src/assets/images/index.tsx')
-      ]
+      input: [resolve(__dirname, './src/index.ts')]
     }
   }
 })

@@ -1,8 +1,3 @@
-import 'react-loading-skeleton/dist/skeleton.css'
-
-import './fonts.css'
-import './index.scss'
-
 export { default as TransactionToast } from './components/TransactionToasts'
 export type { TransactionToastProps } from './components/TransactionToasts'
 export type { statusType as TransactionStatus } from './components/TransactionToasts'
@@ -36,7 +31,7 @@ export { default as OptionsAccordion } from './components/OptionsAccordion'
 export type { itemType as DropdownItemType } from './components/Dropdowns/Dropdown'
 
 export * as Typography from './components/Typography'
-export * as Images from './assets/images'
+// export * as Images from './assets/images'
 export { default as TokenTable } from './components/TokenTable'
 export { default as GameRequirementsTable } from './components/GameRequirementsTable'
 export { default as GameAbout } from './components/GameAbout'

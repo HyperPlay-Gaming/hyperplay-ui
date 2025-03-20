@@ -1,6 +1,0 @@
-/* By putting the imports in this file, we can ensure that they are loaded in the correct order */
-@import '@mantine/carousel/styles.css';
-@import '@mantine/core/styles.css';
-/* import HyperPlay styles after mantine to override their defaults with our design system */
-@import '../src/index.scss';
-@import '../src/fonts.css';
