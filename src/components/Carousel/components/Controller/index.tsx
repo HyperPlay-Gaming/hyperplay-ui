@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
+import { useMediaQuery } from '@mantine/hooks'
 import cn from 'classnames'
 
 import { useCarousel } from '../..'
@@ -25,13 +26,24 @@ export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
 const Controller = ({
   images,
   className,
-  numItemsToShow = 5,
+  numItemsToShow: numItemsToShowInit = 5,
   showItemLoadBar = true,
   classNames,
   ...props
 }: ControllerProps) => {
   const { activeIndex, setActiveIndex } = useCarousel()
   const [itemsPageIndex, setItemsPageIndex] = useState(0)
+  const [numItemsToShow, setNumItemsToShow] = useState(numItemsToShowInit)
+  const isMobile = useMediaQuery('(max-width: 599px)', false, {
+    getInitialValueInEffect: true
+  })
+  useEffect(() => {
+    if (isMobile) {
+      setNumItemsToShow(images.length)
+    } else {
+      setNumItemsToShow(numItemsToShowInit)
+    }
+  }, [isMobile])
   const maxPageIndex = Math.floor((images.length - 1) / numItemsToShow)
   const nextItemsPage = useCallback(() => {
     let newPageIndex = itemsPageIndex + 1
