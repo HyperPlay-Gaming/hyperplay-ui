@@ -1,4 +1,4 @@
-@import '../../styles/utilities/_variables';
+@use '../../styles/utilities/_variables';
 
 $hoverBorderThickness: 2px;
 
@@ -36,7 +36,7 @@ $hoverBorderThickness: 2px;
     @include hiddenElement();
   }
 
-  @include for-tablet-portrait-up {
+  @include variables.for-tablet-portrait-up {
     height: 334px;
     width: 216px;
   }
@@ -88,7 +88,7 @@ $hoverBorderThickness: 2px;
       color: var(--color-neutral-100);
     }
 
-    @include for-tablet-portrait-up {
+    @include variables.for-tablet-portrait-up {
       padding: 16px;
 
       h6 {

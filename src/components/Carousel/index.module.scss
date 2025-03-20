@@ -1,5 +1,5 @@
-@import '../../styles/utilities/_variables';
-@import '../../styles/designSystem/typography';
+@use '../../styles/utilities/_variables';
+@use '../../styles/designSystem/typography';
 
 .controllerAttached {
   display: none;
@@ -7,7 +7,7 @@
   bottom: var(--space-xl-fixed);
   position: absolute;
 
-  @include for-tablet-landscape-up {
+  @include variables.for-tablet-landscape-up {
     display: block;
   }
 }
@@ -16,7 +16,7 @@
   display: none;
   margin-top: var(--space-xl);
 
-  @include for-tablet-landscape-up {
+  @include variables.for-tablet-landscape-up {
     display: block;
   }
 }
@@ -31,30 +31,30 @@
   bottom: var(--space-xl-fixed);
   z-index: 2;
 
-  @include for-mobile-only {
+  @include variables.for-mobile-only {
     @include title-mobile();
   }
 
-  @include for-tablet-portrait-up {
+  @include variables.for-tablet-portrait-up {
     @include title-mobile();
   }
 
-  @include for-tablet-landscape-up {
+  @include variables.for-tablet-landscape-up {
     left: var(--space-xl-fixed);
     right: var(--space-xl-fixed);
   }
 
   > .titleText {
-    @include for-mobile-only {
-      @include h5-mixin();
+    @include variables.for-mobile-only {
+      @include typography.h5-mixin();
     }
 
-    @include for-tablet-portrait-up {
-      @include h3-mixin();
+    @include variables.for-tablet-portrait-up {
+      @include typography.h3-mixin();
     }
 
-    @include for-tablet-landscape-up {
-      @include h1-mixin();
+    @include variables.for-tablet-landscape-up {
+      @include typography.h1-mixin();
     }
   }
 }
@@ -73,7 +73,7 @@
 }
 
 .indicators {
-  @include for-tablet-landscape-up {
+  @include variables.for-tablet-landscape-up {
     display: none;
   }
 }
