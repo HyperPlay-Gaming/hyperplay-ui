@@ -2,6 +2,7 @@
   "name": "@hyperplay/ui",
   "version": "1.13.0",
   "license": "LGPL-3.0-only",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
