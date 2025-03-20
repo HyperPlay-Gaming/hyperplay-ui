@@ -13,10 +13,10 @@
   --color-primary-300: #ab82fe;
   --color-primary-400: #9469fe;
   --color-primary-500: #8151fe;
-  --color-primary-600: #713ef8;
-  --color-primary-700: #612ded;
-  --color-primary-800: #511fc3;
-  --color-primary-900: #3c138f;
+  --color-primary-600: #6b2adc;
+  --color-primary-700: #5922be;
+  --color-primary-800: #48179c;
+  --color-primary-900: #350f7b;
 
   /* Secondary */
   --color-secondary-100: #e4d0f0;
@@ -125,7 +125,11 @@
   --icon-primary: color-mix(in srgb, var(--color-primary-400) 75%, transparent);
   --icon-neutral: var(--color-neutral-100);
   --icon-secondary: var(--color-neutral-300);
-  --icon-disabled: color-mix(in srgb, var(--color-neutral-200) 5%, transparent);
+  --icon-disabled: color-mix(
+    in srgb,
+    var(--color-neutral-200) 50%,
+    transparent
+  );
   --icon-error: color-mix(in srgb, var(--color-error-400) 75%, transparent);
   --icon-warning: color-mix(in srgb, var(--color-alert-400) 75%, transparent);
   --icon-success: color-mix(in srgb, var(--color-success-400) 75%, transparent);
