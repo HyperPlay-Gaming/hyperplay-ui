@@ -123,14 +123,12 @@ const Carousel = ({
 
   const setActiveSlideIndexAndResetAutoplay = useCallback(
     (idx: number) => {
-      if (isMobile) {
-        return
-      }
       autoplay.current?.reset()
       autoplay.current?.play()
       setActiveSlideIndex(idx)
+      emblaApi?.scrollTo(idx)
     },
-    [setActiveSlideIndex, autoplay.current, isMobile]
+    [setActiveSlideIndex, autoplay.current, emblaApi]
   )
 
   // if delay val is an object, it won't be useable in children anyways so let's return undefined in that case
@@ -169,13 +167,12 @@ const Carousel = ({
     setIsVideoPlaying(false)
     autoplay.current?.play()
     scrollNextSlideCallback()
-  }, [autoplay.current, scrollNextSlideCallback, isMobile])
+  }, [autoplay.current, scrollNextSlideCallback])
 
   const value = {
     activeIndex: activeSlideIndex,
     setActiveIndex: (index: number) => {
       setActiveSlideIndexAndResetAutoplay(index)
-      emblaApi?.scrollTo(index)
     },
     isRotating: () => autoplay.current.isPlaying(),
     play: () => autoplay.current?.play(),

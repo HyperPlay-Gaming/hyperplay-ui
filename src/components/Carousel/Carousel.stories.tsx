@@ -438,5 +438,19 @@ export const TestNoAutoscrollImagesMobile: Story = {
     await expectSlideToBeVisible(imgSlide0)
     await expectSlideToNotBeVisible(imgSlide1)
     await expectSlideToNotBeVisible(imgSlide2)
+
+    const controllerItem1 = canvas.getByTestId('carousel-controller-item-1')
+    controllerItem1.click()
+    await wait(500)
+    await expectSlideToNotBeVisible(imgSlide0)
+    await expectSlideToBeVisible(imgSlide1)
+    await expectSlideToNotBeVisible(imgSlide2)
+    const controllerItem0 = canvas.getByTestId('carousel-controller-item-0')
+    await expect(
+      controllerItem1.classList.values().some((val) => val.includes('active'))
+    ).toBeTruthy()
+    await expect(
+      controllerItem0.classList.values().some((val) => val.includes('active'))
+    ).toBeFalsy()
   }
 }
