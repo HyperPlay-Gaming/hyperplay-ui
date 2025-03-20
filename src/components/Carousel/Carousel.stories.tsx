@@ -12,7 +12,6 @@ import wakeCover from '@/assets/TheWakeLandscape.png?url'
 import questCard from '@/assets/banners/QuestCardV2Image.png?url'
 
 import Carousel, { CarouselProps } from '.'
-import { ControllerProps } from './components/Controller'
 import {
   expectItemsVisibility,
   expectSlideToBeVisible,
@@ -30,10 +29,6 @@ export default meta
 type Story = StoryObj<typeof Carousel>
 
 const images = [pgCover, dtCover, wakeCover, onisCover, questCard]
-
-interface CarouselPropsParams {
-  controllerLayout?: ControllerProps['controllerLayout']
-}
 
 const imgSlides = images.map((val, index) => (
   <Carousel.Slide key={val} data-testid={`img-slide-${index}`}>
@@ -56,9 +51,7 @@ const imagesAndVideosForThumbnail = [
   ...imagesForThumbnail
 ]
 
-const props: (props: CarouselPropsParams) => CarouselProps = ({
-  controllerLayout = 'detached'
-}: CarouselPropsParams) => ({
+const props = {
   children: (
     <>
       <Carousel.SlideVideo
@@ -74,20 +67,14 @@ const props: (props: CarouselPropsParams) => CarouselProps = ({
   autoplayOptions: { delay: 6000 },
   childrenNotInCarousel: (
     <Carousel.Controller
-      controllerLayout={controllerLayout}
       images={imagesAndVideosForThumbnail}
-      showGradientBorder={false}
       showItemLoadBar={true}
     />
   )
-})
-
-export const Default: Story = {
-  args: { ...props({}) }
 }
 
-export const ControllerAttached: Story = {
-  args: { ...props({ controllerLayout: 'attached' }) }
+export const Default: Story = {
+  args: props
 }
 
 export const NoVideo: Story = {
@@ -95,10 +82,7 @@ export const NoVideo: Story = {
     autoplayOptions: { delay: 3000 },
     children: imgSlides,
     childrenNotInCarousel: (
-      <Carousel.Controller
-        controllerLayout={'detached'}
-        images={imagesForThumbnail}
-      />
+      <Carousel.Controller images={imagesForThumbnail} showItemLoadBar={true} />
     )
   }
 }
@@ -112,10 +96,7 @@ export const TestImageAutoscrollStory: Story = {
     autoplayOptions: { delay: 2000 },
     children: imgSlides.slice(0, 3),
     childrenNotInCarousel: (
-      <Carousel.Controller
-        controllerLayout={'detached'}
-        images={imagesForThumbnail.slice(0, 3)}
-      />
+      <Carousel.Controller images={imagesForThumbnail.slice(0, 3)} />
     )
   },
   play: async ({ canvasElement }) => {
@@ -147,7 +128,7 @@ export const TestImageAutoscrollStory: Story = {
   }
 }
 
-type propsWithVidProps = CarouselPropsParams & {
+type propsWithVidProps = {
   delay?: number
   onVideoEnd?: () => void
 }
@@ -166,7 +147,6 @@ const imagesAndVideosForShortVideoThumbnail = [
 ]
 
 const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
-  controllerLayout = 'detached',
   delay = 1000,
   onVideoEnd
 }: propsWithVidProps) => ({
@@ -187,9 +167,7 @@ const propsWithShortVideo: (props: propsWithVidProps) => CarouselProps = ({
   },
   childrenNotInCarousel: (
     <Carousel.Controller
-      controllerLayout={controllerLayout}
       images={imagesAndVideosForShortVideoThumbnail}
-      showGradientBorder={false}
       showItemLoadBar={true}
     />
   )
@@ -309,10 +287,8 @@ export const TestImageAutoscrollAfterClickStory: Story = {
     children: imgSlides,
     childrenNotInCarousel: (
       <Carousel.Controller
-        controllerLayout={'detached'}
         images={imagesForThumbnail}
         numItemsToShow={4}
-        showGradientBorder={false}
         showItemLoadBar={true}
       />
     )
@@ -392,11 +368,7 @@ export const TestControllerArrowDisabledStory: Story = {
     autoplayOptions: { delay: 1000 },
     children: imgSlides,
     childrenNotInCarousel: (
-      <Carousel.Controller
-        controllerLayout={'detached'}
-        images={imagesForThumbnail}
-        numItemsToShow={5}
-      />
+      <Carousel.Controller images={imagesForThumbnail} numItemsToShow={5} />
     )
   },
   play: async ({ canvasElement }) => {

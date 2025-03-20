@@ -37,7 +37,7 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   cursor: pointer;
   position: relative;
 
-  &.noGradientBorder {
+  &:not(.empty).noGradientBorder {
     border: 2px solid var(--color-neutral-600);
     overflow: hidden;
     .loader {
@@ -72,42 +72,15 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   transition: transform 0.3s ease-in-out, border-radius 0.3s ease-in-out;
 }
 
-.border {
-  width: 96px;
-  height: 56px;
-
-  background: var(--color-stroke-02);
-  border-radius: 8px;
-  transition: transform 0.3s ease-in-out;
-  z-index: 1;
-}
-
 .imageContainer img {
   width: 100%;
   height: 100%;
   transition: transform 0.3s ease-in-out;
 }
 
-.itemContainer:not(.noGradientBorder):hover .border,
-.active:not(.noGradientBorder) .border {
-  transform: scaleX($scale-mid-to-max-width) scaleY($scale-mid-to-max-height);
-}
-
-.itemContainer:not(.noGradientBorder):hover .imageContainer,
-.active:not(.noGradientBorder) .imageContainer {
-  transform: scaleX($scale-mid-to-min-width) scaleY($scale-mid-to-min-height);
-
-  border-radius: 4.7px;
-}
-
-.itemContainer:not(.noGradientBorder):hover img,
-.active:not(.noGradientBorder) img {
-  transform: scaleX($scale-mid-to-max-width) scaleY($scale-mid-to-max-height);
-}
-
 /////////
 .itemContainer.noGradientBorder {
-  &:hover::after {
+  :not(.empty):hover::after {
     background-color: var(--color-neutral-200);
     opacity: 20%;
     z-index: 1;

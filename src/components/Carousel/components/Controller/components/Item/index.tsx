@@ -9,7 +9,6 @@ interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   isActive: boolean
   imageElement: React.ReactNode | null
   onClick: () => void
-  showGradientBorder?: boolean
   showLoadBar?: boolean
   itemIndex: number
   // these are just used to take up a slot in the controller and do not have UI/aren't clickable
@@ -20,7 +19,6 @@ const Item = ({
   isActive,
   imageElement,
   onClick,
-  showGradientBorder = true,
   showLoadBar,
   itemIndex,
   className,
@@ -36,10 +34,6 @@ const Item = ({
     isVideoSlide
   } = useCarousel()
 
-  let border = null
-  if (showGradientBorder) {
-    border = <div className={styles.border} />
-  }
   let loadBar = null
   if (showLoadBar && isActive) {
     let timeUntilSlideFinishedMs = getTimeUntilSlideFinished?.()
@@ -84,7 +78,6 @@ const Item = ({
   }
   let content: React.ReactNode | null = (
     <>
-      {border}
       <div className={styles.imageContainer}>{imageElement}</div>
       {loadBar}
     </>
@@ -96,9 +89,9 @@ const Item = ({
     <div
       className={cn(
         styles.itemContainer,
+        styles.noGradientBorder,
         {
           [styles.active]: isActive,
-          [styles.noGradientBorder]: !showGradientBorder,
           [styles.empty]: isEmptyItem
         },
         className

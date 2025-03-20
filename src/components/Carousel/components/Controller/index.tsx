@@ -9,8 +9,6 @@ import Item from './components/Item'
 
 export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
   images: React.ReactElement[]
-  showGradientBorder?: boolean
-  controllerLayout?: 'attached' | 'detached'
   numItemsToShow?: number
   showItemLoadBar?: boolean
   carouselButtonType?: CarouselButtonType
@@ -27,11 +25,9 @@ export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Controller = ({
   images,
-  showGradientBorder,
-  controllerLayout = 'detached',
   className,
   numItemsToShow = 5,
-  showItemLoadBar,
+  showItemLoadBar = true,
   classNames,
   carouselButtonType,
   ...props
@@ -83,7 +79,6 @@ const Controller = ({
           imageElement={Image}
           isActive={itemIndex === activeIndex}
           onClick={() => handleClick(itemIndex)}
-          showGradientBorder={showGradientBorder}
           data-testid={`carousel-controller-item-${itemIndex}`}
           showLoadBar={showItemLoadBar}
           itemIndex={itemIndex}
@@ -107,9 +102,7 @@ const Controller = ({
   return (
     <div
       className={cn(
-        controllerLayout === 'attached'
-          ? styles.controllerAttached
-          : styles.controllerDetached,
+        styles.controllerDetached,
         className,
         classNames?.rootContainer
       )}
