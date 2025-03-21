@@ -21,50 +21,50 @@
 
   // Style variants
   &.neutral {
-    color: var(--color-neutral-400);
-    border-color: var(--color-neutral-600);
+    color: var(--text-weak);
+    border-color: var(--color-stroke-weak);
     &::before {
-      background-color: var(--color-neutral-600);
+      background-color: var(--fill-overlay);
     }
   }
 
   &.secondary {
-    color: var(--color-primary-300);
-    border-color: var(--color-primary-600);
+    color: var(--text-primary);
+    border-color: var(--color-stroke-brand-weak);
     &::before {
-      background-color: var(--color-primary-600);
+      background-color: var(--fill-brand-weak);
     }
   }
 
   &.tertiary {
-    color: var(--color-tertiary-500);
-    border-color: var(--color-tertiary-700);
+    color: var(--text-info);
+    border-color: var(--color-stroke-info-weak);
     &::before {
-      background-color: var(--color-tertiary-700);
+      background-color: var(--fill-info-weak);
     }
   }
 
   &.success {
-    color: var(--color-success-600);
-    border-color: var(--color-success-800);
+    color: var(--text-success);
+    border-color: var(--color-stroke-success-weak);
     &::before {
-      background-color: var(--color-success-800);
+      background-color: var(--fill-success-weak);
     }
   }
 
   &.warning {
-    color: var(--color-alert-300);
-    border-color: var(--color-alert-400);
+    color: var(--text-warning);
+    border-color: var(--color-stroke-warning-weak);
     &::before {
-      background-color: var(--color-alert-500);
+      background-color: var(--fill-warning-weak);
     }
   }
 
   &.error {
-    color: var(--color-error-400);
-    border-color: var(--color-error-900);
+    color: var(--text-error);
+    border-color: var(--color-stroke-error-weak);
     &::before {
-      background-color: var(--color-error-900);
+      background-color: var(--fill-error-weak);
     }
   }
 
@@ -100,32 +100,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: var(--space-md);
+    height: var(--space-md);
 
     svg {
-      width: var(--space-md);
-      height: var(--space-md);
+      width: 100%;
+      height: 100%;
       stroke: none;
       fill: none;
     }
 
-    &[data-status='success'] circle {
-      fill: var(--color-success-400);
+    &[data-status='success'] {
+      svg circle {
+        fill: var(--color-status-success);
+      }
     }
 
-    &[data-status='error'] circle {
-      fill: var(--color-error-300);
+    &[data-status='error'] {
+      svg circle {
+        fill: var(--color-status-error);
+      }
     }
 
-    &[data-status='warning'] circle {
-      fill: var(--color-alert-300);
+    &[data-status='warning'] {
+      svg circle {
+        fill: var(--color-status-warning);
+      }
     }
 
-    &[data-status='neutral'] circle {
-      fill: var(--color-neutral-400);
+    &[data-status='neutral'] {
+      svg circle {
+        fill: var(--color-status-neutral);
+      }
     }
 
-    &[data-status='tertiary'] circle {
-      fill: var(--color-tertiary-400);
+    &[data-status='tertiary'] {
+      svg circle {
+        fill: var(--color-status-tertiary);
+      }
     }
   }
 
@@ -136,7 +148,7 @@
     font-weight: var(--bold);
 
     &.neutral {
-      background-color: var(--color-neutral-400);
+      background-color: var(--color-neutral-300);
       color: var(--color-neutral-700);
     }
 
@@ -146,22 +158,22 @@
     }
 
     &.tertiary {
-      background-color: var(--color-tertiary-400);
+      background-color: var(--color-tertiary-300);
       color: var(--color-tertiary-800);
     }
 
     &.success {
-      background-color: var(--color-success-300);
+      background-color: var(--color-success-400);
       color: var(--color-success-900);
     }
 
     &.warning {
-      background-color: var(--color-alert-400);
+      background-color: var(--color-alert-500);
       color: var(--color-alert-900);
     }
 
     &.error {
-      background-color: var(--color-error-400);
+      background-color: var(--color-error-300);
       color: var(--color-error-900);
     }
   }
@@ -197,7 +209,7 @@
     }
 
     &.error {
-      background-color: var(--color-error-700);
+      background-color: var(--color-error-800);
       color: var(--color-error-100);
     }
   }
