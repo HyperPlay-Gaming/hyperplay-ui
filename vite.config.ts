@@ -16,22 +16,33 @@ export default defineConfig({
   plugins: [
     react(),
     dts({
-      include: ['src/']
+      insertTypesEntry: true
     }),
     svgr()
   ],
   build: {
-    copyPublicDir: true,
     minify: 'esbuild',
     lib: {
-      entry: resolve('src', 'index.ts'),
+      entry: {
+        index: resolve(__dirname, 'src/index.ts'),
+        styles: resolve(__dirname, 'src/styles.ts')
+      },
       name: 'HyperplayUI',
       formats: ['es'],
       fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {
       external: [...Object.keys(packageJson.peerDependencies)],
-      input: [resolve(__dirname, './src/index.ts')]
+      input: [
+        resolve(__dirname, './src/index.ts'),
+        resolve(__dirname, './src/styles.ts')
+      ],
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+        exports: 'named',
+        assetFileNames: 'styles.css'
+      }
     }
   }
 })
