@@ -12,40 +12,34 @@ type StyleType =
   | 'warning'
   | 'error'
 
-type DotColor = 'success' | 'error' | 'warning' | 'neutral' | 'tertiary'
-
-type StyleCategory =
-  | { variant: 'withIcon'; icon: React.ReactNode }
-  | {
-      variant: 'withDot'
-      dotColor: DotColor
-      dotIcon?: React.ReactNode
-    }
-
+type withIcon = React.ReactNode
+type withDot = {
+  dotColor: 'success' | 'error' | 'warning' | 'neutral' | 'tertiary'
+  dotIcon?: React.ElementType
+}
 type Dimension = 'default' | 'small'
-
 type Variant = 'outlined' | 'filled' | 'filledStrong'
 
 export interface StickerProps extends HTMLProps<HTMLDivElement> {
   styleType?: StyleType
-  styleCategory?: StyleCategory
+  withIcon?: withIcon
+  withDot?: withDot
+  dotColor?: withDot['dotColor']
   dimension?: Dimension
   variant?: Variant
 }
 
 export default function Sticker({
   styleType = 'secondary',
-  styleCategory = { variant: 'withIcon' } as StyleCategory,
-  dimension = 'default',
   variant = 'outlined',
+  dimension = 'default',
+  withIcon,
+  withDot,
   className,
   children,
   ...props
 }: StickerProps) {
-  const divClasses: Record<
-    string,
-    string | boolean | undefined | React.ReactNode
-  > = {
+  const divClasses = {
     [styles.neutral]: styleType === 'neutral',
     [styles.secondary]: styleType === 'secondary',
     [styles.tertiary]: styleType === 'tertiary',
@@ -54,8 +48,8 @@ export default function Sticker({
     [styles.error]: styleType === 'error',
     [styles.sizeDefault]: dimension === 'default',
     [styles.sizeSmall]: dimension === 'small',
-    [styles.icon]: styleCategory.variant === 'withIcon',
-    [styles.dot]: styleCategory.variant === 'withDot',
+    [styles.icon]: withIcon,
+    [styles.dot]: withDot?.dotColor,
     [styles.outlined]: variant === 'outlined',
     [styles.filled]: variant === 'filled',
     [styles.filledStrong]: variant === 'filledStrong'
@@ -66,15 +60,12 @@ export default function Sticker({
       {...props}
       className={classNames(styles.sticker, className, divClasses)}
     >
-      {styleCategory.variant === 'withIcon' && (
-        <span className={styles.icon}>{styleCategory.icon}</span>
-      )}
-      {styleCategory.variant === 'withDot' && (
-        <span
-          className={classNames(styles.dot)}
-          data-status={styleCategory.dotColor}
-        >
-          {styleCategory.dotIcon}
+      {withIcon && <span className={styles.icon}>{withIcon}</span>}
+      {withDot && (
+        <span className={styles.dot} data-status={withDot.dotColor}>
+          {withDot.dotIcon && typeof withDot.dotIcon === 'function'
+            ? React.createElement(withDot.dotIcon)
+            : null}
         </span>
       )}
       {children}
