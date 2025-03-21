@@ -94,7 +94,7 @@ export const WithStickersAndButton: Story = {
     await new Promise((resolve) => setTimeout(resolve, 2000))
 
     await userEvent.click(canvas.getByTestId('show-more-button'), {
-      delay: 2000
+      delay: 500
     })
 
     await expect(canvas.getByTestId('show-more-button')).toHaveStyle({
@@ -103,7 +103,7 @@ export const WithStickersAndButton: Story = {
 
     await new Promise((resolve) => setTimeout(resolve, 2000))
     await userEvent.click(canvas.getByTestId('show-more-button'), {
-      delay: 2000
+      delay: 500
     })
     await expect(canvas.getByTestId('show-more-button')).toHaveStyle({
       display: 'flex'
