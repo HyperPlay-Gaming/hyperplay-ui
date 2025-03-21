@@ -82,8 +82,7 @@ export const WithStickersAndButton: Story = {
     ],
     buttonLink: {
       expanded: false,
-      onClick: () => console.log('Button clicked'),
-      dataTestId: 'button'
+      onClick: () => console.log('Button clicked')
     },
     i18n: {
       showMore: 'Show more',
@@ -93,18 +92,20 @@ export const WithStickersAndButton: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    await userEvent.click(canvas.getByTestId('button'), {
-      delay: 1000
+    const button = canvas.getByTestId('button')
+    await userEvent.click(button, {
+      delay: 5000
     })
-    expect(canvas.getByTestId('button')).toHaveStyle({
+
+    expect(button).toHaveStyle({
       display: 'flex'
     })
 
-    await new Promise((resolve) => setTimeout(resolve, 1200))
-    await userEvent.click(canvas.getByTestId('button'), {
-      delay: 1000
+    await new Promise((resolve) => setTimeout(resolve, 5000))
+    await userEvent.click(button, {
+      delay: 5000
     })
-    expect(canvas.getByTestId('button')).toHaveStyle({
+    expect(button).toHaveStyle({
       display: 'flex'
     })
   }
