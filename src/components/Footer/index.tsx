@@ -18,6 +18,7 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
     brand: string
     privacyPolicy: string
     termsOfService: string
+    cookiePolicy: string
     social: string
     resources: string
     documentation: string
@@ -29,6 +30,7 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
   linkProps: {
     privacyPolicy: LinkProps
     termsOfService: LinkProps
+    cookiePolicy: LinkProps
     badges: LinkProps
     downloads: LinkProps
     developerAgreement?: LinkProps
@@ -52,6 +54,7 @@ export function Footer({
     brand: 'BRAND',
     privacyPolicy: 'PRIVACY POLICY',
     termsOfService: 'TERMS OF SERVICE',
+    cookiePolicy: 'COOKIE POLICY',
     social: 'Social',
     resources: 'RESOURCES',
     documentation: 'DOCUMENTATION',
@@ -124,6 +127,12 @@ export function Footer({
               {...linkProps.termsOfService}
             >
               {i18n.termsOfService}
+            </Link>
+            <Link
+              className={FooterSectionStyle.footer__link}
+              {...linkProps.cookiePolicy}
+            >
+              {i18n.cookiePolicy}
             </Link>
             {linkProps.developerAgreement ? (
               <Link

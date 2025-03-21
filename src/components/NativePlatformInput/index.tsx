@@ -50,6 +50,7 @@ export function NativePlatformInput({
       }}
       exeInputProps={exeInputProps.amd64}
       exeList={exeListAmd64}
+      i18n={i18n?.upload}
     />
   )
 

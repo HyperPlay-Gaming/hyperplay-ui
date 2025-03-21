@@ -8,6 +8,7 @@ export type { TransactionToastProps } from './components/TransactionToasts'
 export type { statusType as TransactionStatus } from './components/TransactionToasts'
 export { default as Button, type ButtonProps } from './components/Button'
 export { default as NavBar } from './components/NavBar'
+export * from './components/NavBar/NavBarLink'
 export { default as GameCard } from './components/GameCard'
 export type {
   GameCardState,
@@ -232,3 +233,5 @@ export * from './components/QuestDetails/components/Rewards'
 export * from './components/QuestDetails/components/Rewards/RewardsRow'
 export * from './components/QuestDetails/components/Reward'
 export { DarkContainer } from './components/DarkContainer'
+export * from './components/ContainerIcons'
+export * from './components/ContainerRaised'

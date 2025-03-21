@@ -4,7 +4,29 @@ export enum FLAG_POSITION {
   APPEND = 'append'
 }
 
-export const languageLabels: { [key: string]: string } = {
+export const locales = [
+  'de',
+  'el',
+  'en',
+  'es',
+  'fr',
+  'mt',
+  'fil',
+  'it',
+  'pl',
+  'ro',
+  'ja',
+  'ko',
+  'pt_BR',
+  'ru',
+  'uk',
+  'vi',
+  'zh_Hans'
+] as const
+
+export type SupportedLocale = (typeof locales)[number]
+
+export const languageLabels: { [key in SupportedLocale]: string } = {
   de: 'Deutsch',
   el: 'Ελληνικά',
   en: 'English',
@@ -24,7 +46,7 @@ export const languageLabels: { [key: string]: string } = {
   zh_Hans: '简体中文'
 }
 
-export const languageFlags: { [key: string]: string } = {
+export const languageFlags: { [key in SupportedLocale]: string } = {
   de: '🇩🇪',
   el: '🇬🇷',
   en: '🇬🇧',

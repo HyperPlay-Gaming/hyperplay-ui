@@ -10,7 +10,8 @@ const meta: Meta<typeof RewardERC721Deposit> = {
   component: RewardERC721Deposit,
   args: {
     onAddTokenTap: fn(),
-    onClearTokenIds: fn()
+    onClearTokenIds: fn(),
+    onManualTokenAdd: fn()
   }
 }
 

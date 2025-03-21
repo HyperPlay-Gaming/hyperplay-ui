@@ -7,7 +7,7 @@ import cyberpunkCard from '@/assets/steamCards/cyberpunkCard.jpg?url'
 import reCard from '@/assets/steamCards/residentEvilCard.jpg?url'
 
 import { QuestsSummaryTable, QuestsSummaryTableProps } from '.'
-import { itemType } from '../Dropdowns/Dropdown'
+import Dropdown, { itemType } from '../Dropdowns/Dropdown'
 import { QuestCard, QuestCardProps } from '../QuestCard'
 import SearchBar from '../SearchBar'
 import styles from './QuestsSummaryTable.stories.module.scss'
@@ -25,7 +25,6 @@ const achievementsSortOptions = [
   { text: 'Alphabetically (ASC)' },
   { text: 'Alphabetically (DES)' }
 ] as itemType[]
-const selectedSort = achievementsSortOptions[0]
 
 type Data = QuestCardProps & { id: string }
 
@@ -47,7 +46,7 @@ const games: Data[] = [
   {
     id: '3',
     image: reCard,
-    title: 'Star Wars: Knights of the Old Republic',
+    title: 'Fortnite',
     description:
       'Star Wars: Knights of the Old Republic is a game about lightsabers. Star Wars: Knights of the Old Republic is a game about lightsabers. Star Wars: Knights of the Old Republic is a game about lightsabers.'
   },
@@ -68,7 +67,7 @@ const games: Data[] = [
   {
     id: '6',
     image: '',
-    title: 'Star Wars: Knights of the Old Republic',
+    title: 'ZZZ Game',
     description:
       'Star Wars: Knights of the Old Republic is a game about lightsabers.'
   }
@@ -80,11 +79,6 @@ const gameElements = games.map(({ id, ...rest }) => (
 
 const props: QuestsSummaryTableProps = {
   pageTitle: 'Quests',
-  sortProps: {
-    options: achievementsSortOptions,
-    selected: selectedSort,
-    onItemChange: (val) => console.log(`Sort item changed to ${val}`)
-  },
   games: gameElements,
   imagesToPreload: [],
   filterProps: {
@@ -115,26 +109,49 @@ export const NoTabs: Story = {
   args: { ...props, tabs: [] }
 }
 
-export const SearchDemo: Story = {
+export const SearchAndSortDemo: Story = {
   args: { ...props, tabs: [] },
   render: (args) => {
     const [searchText, setSearchText] = useState('')
+    const [selectedSort, setSelectedSort] = useState(achievementsSortOptions[0])
     const gamesFiltered = games.filter((val) =>
       val.title?.toLowerCase().startsWith(searchText.toLowerCase())
     )
-    const gameElementsFiltered = gamesFiltered.map(({ id, ...rest }) => (
-      <QuestCard key={id} {...rest} />
-    ))
+    const gameFilteredAndSorted = gamesFiltered.sort((a, b) => {
+      if (!a.title || !b.title) {
+        return 0
+      }
+      const multiplier = selectedSort === achievementsSortOptions[0] ? 1 : -1
+      return multiplier * a.title.localeCompare(b.title)
+    })
+    const gameElementsFiltered = gameFilteredAndSorted.map(
+      ({ id, ...rest }) => <QuestCard key={id} {...rest} />
+    )
     const searchBar = (
-      <SearchBar
-        searchText={searchText}
-        setSearchText={setSearchText}
-        i18n={{ placeholder: 'Search Quest' }}
-        styles={{ container: { margin: '0px 0px 0px auto' } }}
-        suggestions={gamesFiltered
-          .filter((val) => !!val.title)
-          .map((val) => val.title!)}
-      />
+      <>
+        <div className={styles.row}>
+          <div className={styles.filters}>
+            <Dropdown
+              targetWidth={300}
+              dropdownButtonDivProps={{
+                className: `text--lg weight--regular body-sm color-neutral-100`
+              }}
+              options={achievementsSortOptions}
+              selected={selectedSort}
+              onItemChange={setSelectedSort}
+            />
+          </div>
+        </div>
+        <SearchBar
+          searchText={searchText}
+          setSearchText={setSearchText}
+          i18n={{ placeholder: 'Search Quest' }}
+          styles={{ container: { margin: '0px 0px 0px auto' } }}
+          suggestions={gamesFiltered
+            .filter((val) => !!val.title)
+            .map((val) => val.title!)}
+        />
+      </>
     )
     return (
       <QuestsSummaryTable
