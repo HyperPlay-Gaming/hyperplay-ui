@@ -23,13 +23,13 @@ interface EditorChoiceType {
   className?: string
 }
 
-interface SocialLink {
-  type: string
+interface SocialLinks {
+  IconButton: React.ElementType
   url: string
 }
 
 interface Blockchain {
-  icon: React.ReactNode
+  icon: React.ElementType
 }
 
 interface GameInfoV2i18n {
@@ -40,6 +40,11 @@ interface GameInfoV2i18n {
   addingText?: string
   notAddedToLibrary?: string
   playText?: string
+}
+
+interface BlockchainIconProps {
+  Icon: React.ElementType
+  className?: string
 }
 
 export interface GameInfoV2Props {
@@ -53,7 +58,7 @@ export interface GameInfoV2Props {
     fallback?: React.ReactNode
   }
   blockchains?: Blockchain[]
-  socialLinks?: SocialLink[]
+  socialLinks?: SocialLinks[]
   editorChoice?: EditorChoiceType
   onAddToLibraryClick: () => void
   onPlayClick?: () => void
@@ -98,6 +103,16 @@ const GameImage: React.FC<GameImageProps> = ({
   )
 }
 
+const BlockchainIcon: React.FC<BlockchainIconProps> = ({ Icon, className }) => (
+  <div className={classNames(styles.blockchainIcon, className)}>
+    {React.createElement(Icon, {
+      width: '100%',
+      height: '100%',
+      className: styles.blockchainSvg
+    })}
+  </div>
+)
+
 const GameInfoV2: React.FC<GameInfoV2Props> = ({
   title,
   version,
@@ -105,7 +120,6 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
   playerCount,
   image,
   blockchains = [],
-  socialLinks = [],
   editorChoice,
   onAddToLibraryClick,
   onPlayClick,
@@ -117,21 +131,6 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
   i18n,
   className
 }) => {
-  const renderSocialIcon = (type: string) => {
-    switch (type) {
-      case 'website':
-        return <Images.WebIcon />
-      case 'twitter':
-        return <Images.XLogo />
-      case 'discord':
-        return <Images.Discord />
-      case 'youtube':
-        return <Images.Youtube />
-      default:
-        return null
-    }
-  }
-
   const renderEditorChoice = () => {
     if (!editorChoice?.isEditorChoice) return null
 
@@ -183,72 +182,86 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
     )
   }
 
+  const renderBlockchains = () => {
+    if (blockchains.length === 0) return null
+
+    return (
+      <div className={styles.blockchains}>
+        <span className={styles.blockchainLabel}>BLOCKCHAIN(S):</span>
+        <div className={styles.blockchainIcons}>
+          {blockchains.map((blockchain, index) => (
+            <BlockchainIcon key={index} Icon={blockchain.icon} />
+          ))}
+          {blockchains.length > 5 && (
+            <div className={styles.moreBlockchains}>
+              +{blockchains.length - 5}
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={classNames(styles.container, className)}>
       <div className={styles.imageContainer}>
-        {image && (
+        {image ? (
           <GameImage
             src={image.src}
             alt={image.alt}
             fallback={image.fallback}
             className={styles.image}
           />
-        )}
+        ) : null}
       </div>
-      <div className={styles.content}>
-        {renderEditorChoice()}
 
-        <div className={styles.header}>
-          <h1 className={styles.title}>{title}</h1>
+      <div className={styles.body}>
+        <div className={styles.content}>
+          <div className={styles.header}>
+            {renderEditorChoice()}
+            <h1 className={classNames(styles.title, 'title')}>{title}</h1>
+          </div>
 
-          <div className={styles.badges}>
-            {version && (
+          <div className={styles.info}>
+            <div className={styles.badges}>
+              {version && (
+                <Sticker styleType="neutral" variant="outlined">
+                  Version {version}
+                </Sticker>
+              )}
+              {earlyAccess && (
+                <Sticker styleType="neutral" variant="outlined">
+                  Early Access
+                </Sticker>
+              )}
               <Sticker styleType="neutral" variant="outlined">
-                Version {version}
+                {title}
               </Sticker>
-            )}
-            {earlyAccess && (
-              <Sticker styleType="neutral" variant="outlined">
-                Early Access
-              </Sticker>
-            )}
-            <Sticker styleType="neutral" variant="outlined">
-              {title}
-            </Sticker>
-            {playerCount && (
-              <Sticker styleType="neutral" variant="outlined">
-                {playerCount}
-              </Sticker>
-            )}
+              {playerCount && (
+                <Sticker styleType="neutral" variant="outlined">
+                  {playerCount}
+                </Sticker>
+              )}
+            </div>
+
+            {renderBlockchains()}
           </div>
         </div>
 
-        {blockchains.length > 0 && (
-          <div className={styles.blockchains}>
-            BLOCKCHAIN(S):
-            <div className={styles.blockchainIcons}>
-              {blockchains.map((blockchain, index) => (
-                <div key={index} className={styles.blockchainIcon}>
-                  {blockchain.icon}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         <div className={styles.actions}>
           <div className={styles.socialLinks}>
-            {socialLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialLink}
-              >
-                {renderSocialIcon(link.type)}
-              </a>
-            ))}
+            <Button type="secondary" size="icon">
+              <Images.WebIcon />
+            </Button>
+            <Button type="secondary" size="icon">
+              <Images.XLogo />
+            </Button>
+            <Button type="secondary" size="icon">
+              <Images.Discord />
+            </Button>
+            <Button type="secondary" size="icon">
+              <Images.Youtube />
+            </Button>
           </div>
 
           {renderLibraryButton()}
