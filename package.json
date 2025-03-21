@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.13.1",
+  "version": "1.13.2",
   "license": "LGPL-3.0-only",
   "scripts": {
     "dev": "vite",
@@ -133,6 +133,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@hyperplay/chains": "^0.2.9",
+    "@hyperplay/ui": "^1.13.0",
     "@hyperplay/utils": "^0.3.1",
     "@tabler/icons-react": "^2.46.0",
     "@valist/sdk": "^2.9.1",

@@ -1,32 +1,69 @@
+.container {
+  display: flex;
+  max-width: 75rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2lg);
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: var(--space-lg) var(--space-lg);
+  }
+}
+
 .iconOpen {
   transform: rotate(180deg);
 }
 
 .clampedText {
   display: -webkit-box;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
   overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 4.4em;
+  line-height: 1.5em;
 }
 
-.description {
-  white-space: pre-line;
-}
-
-.readMore {
-  display: flex;
-  gap: var(--space-xs);
-  align-items: center;
-  padding: 0;
-
-  svg {
-    fill: white;
-    width: 16px;
-    height: 16px;
-  }
+.expandedText {
+  display: block;
+  max-height: none;
+  line-height: 1.5em;
 }
 
 .gameTitle {
-  padding-bottom: var(--space-md);
-  color: var(--color-neutral-200);
+  font-family: var(--title-lg);
+}
+
+.description {
+  color: var(--color-neutral-400);
+  margin: 0;
+  max-width: 100%;
+}
+
+.showMore {
+  display: flex;
+  margin: var(--space-xs) 0;
+  padding: 0;
+  justify-content: flex-start;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--color-primary-400);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+
+  &:hover {
+    color: var(--color-primary-300);
+  }
+}
+
+.stickers {
+  display: flex;
+  gap: var(--space-xs-fixed);
+  flex-wrap: wrap;
 }
