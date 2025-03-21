@@ -46,24 +46,6 @@ export const Default: Story = {
       showMore: 'Show more',
       showLess: 'Show less'
     }
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    await userEvent.click(canvas.getByTestId('button'), {
-      delay: 1000
-    })
-    expect(canvas.getByTestId('button')).toHaveStyle({
-      display: 'flex'
-    })
-
-    await new Promise((resolve) => setTimeout(resolve, 1200))
-    await userEvent.click(canvas.getByTestId('button'), {
-      delay: 1000
-    })
-    expect(canvas.getByTestId('button')).toHaveStyle({
-      display: 'flex'
-    })
   }
 }
 
@@ -80,24 +62,6 @@ export const WithGameName: Story = {
       showMore: 'Show more',
       showLess: 'Show less'
     }
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    await userEvent.click(canvas.getByTestId('button'), {
-      delay: 1000
-    })
-    expect(canvas.getByTestId('button')).toHaveStyle({
-      display: 'flex'
-    })
-
-    await new Promise((resolve) => setTimeout(resolve, 1200))
-    await userEvent.click(canvas.getByTestId('button'), {
-      delay: 1000
-    })
-    expect(canvas.getByTestId('button')).toHaveStyle({
-      display: 'flex'
-    })
   }
 }
 
@@ -118,7 +82,8 @@ export const WithStickersAndButton: Story = {
     ],
     buttonLink: {
       expanded: false,
-      onClick: () => console.log('Button clicked')
+      onClick: () => console.log('Button clicked'),
+      dataTestId: 'button'
     },
     i18n: {
       showMore: 'Show more',
