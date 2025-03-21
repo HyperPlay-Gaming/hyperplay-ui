@@ -1544,6 +1544,11 @@
   dependencies:
     axios "^1.4.0"
 
+"@hyperplay/ui@^1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@hyperplay/ui/-/ui-1.13.0.tgz#157e1e492995054d6a45be3d06badbe960e08904"
+  integrity sha512-EaOVfc26OVFtjwVhcQFgFj1GY1e/eCawUuU+DRid0RwdHeDvRtGEqp2Q429vrUUn929vtNzRgpoVpGpENbSDjQ==
+
 "@hyperplay/utils@^0.3.1":
   version "0.3.7"
   resolved "https://registry.yarnpkg.com/@hyperplay/utils/-/utils-0.3.7.tgz#d83e0726802e40693e3d7a1e36f84101e2db430c"
