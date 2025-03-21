@@ -117,7 +117,7 @@ const GameAbout = ({
           className={classNames('button-sm', styles.showMore)}
           onClick={handleShowMore}
           type="link"
-          data-testid="button"
+          data-testid="show-more-button"
         >
           {expanded ? (
             <>

@@ -91,21 +91,21 @@ export const WithStickersAndButton: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
+    await new Promise((resolve) => setTimeout(resolve, 2000))
 
-    const button = canvas.getByTestId('button')
-    await userEvent.click(button, {
-      delay: 5000
+    await userEvent.click(canvas.getByTestId('show-more-button'), {
+      delay: 2000
     })
 
-    expect(button).toHaveStyle({
+    await expect(canvas.getByTestId('show-more-button')).toHaveStyle({
       display: 'flex'
     })
 
-    await new Promise((resolve) => setTimeout(resolve, 5000))
-    await userEvent.click(button, {
-      delay: 5000
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    await userEvent.click(canvas.getByTestId('show-more-button'), {
+      delay: 2000
     })
-    expect(button).toHaveStyle({
+    await expect(canvas.getByTestId('show-more-button')).toHaveStyle({
       display: 'flex'
     })
   }
