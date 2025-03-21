@@ -29,6 +29,10 @@ export interface GameAboutProps {
     description?: string
     buttonLink?: string
   }
+  i18n?: {
+    showMore: string
+    showLess: string
+  }
 }
 
 const GameAbout = ({
@@ -38,7 +42,8 @@ const GameAbout = ({
   gameName,
   sticker,
   classnames,
-  buttonLink
+  buttonLink,
+  i18n
 }: GameAboutProps) => {
   const aboutText = useRef<HTMLParagraphElement | null>(null)
   const [isClamped, setIsClamped] = useState(false)
@@ -61,40 +66,40 @@ const GameAbout = ({
 
   return (
     <div className={classNames(styles.container, classnames?.container)}>
-      {titleSmall && (
+      {titleSmall ? (
         <div className={classNames('title-sm', classnames?.titleSmall)}>
           {titleSmall}
         </div>
-      )}
-      {titleLarge && (
+      ) : null}
+      {titleLarge ? (
         <div className={classNames('title', classnames?.titleLarge)}>
           {titleLarge}
         </div>
-      )}
+      ) : null}
 
-      {gameName && (
+      {gameName ? (
         <div className={classNames('title', classnames?.gameTitle)}>
           {gameName}
         </div>
-      )}
-      {sticker && sticker.length > 0 && (
-        <div className={classNames(styles.stickers)}>
-          {sticker.map((item, index) => (
-            <Sticker
-              key={index}
-              styleType={item.label === 'Access Gated' ? 'warning' : 'tertiary'}
-              styleCategory={
-                item.withIcon
-                  ? { variant: 'withIcon', icon: item.withIcon }
-                  : undefined
-              }
-              variant="outlined"
-            >
-              {item.label}
-            </Sticker>
-          ))}
-        </div>
-      )}
+      ) : null}
+      {sticker ? (
+        sticker.length > 0 ? (
+          <div className={classNames(styles.stickers)}>
+            {sticker.map((item, index) => (
+              <Sticker
+                key={index}
+                styleType={
+                  item.label === 'Access Gated' ? 'warning' : 'tertiary'
+                }
+                withIcon={item.withIcon}
+                variant="outlined"
+              >
+                {item.label}
+              </Sticker>
+            ))}
+          </div>
+        ) : null
+      ) : null}
 
       <p
         ref={aboutText}
@@ -107,23 +112,25 @@ const GameAbout = ({
       >
         {description}
       </p>
-      {isClamped && (
+      {isClamped ? (
         <Button
           className={classNames('button-sm', styles.showMore)}
           onClick={handleShowMore}
           type="link"
+          data-testid="button"
         >
           {expanded ? (
             <>
-              Show less <Images.DownArrow className={styles.iconOpen} />
+              {i18n?.showLess || 'Show less'}{' '}
+              <Images.DownArrow className={styles.iconOpen} />
             </>
           ) : (
             <>
-              Show more <Images.DownArrow />
+              {i18n?.showMore || 'Show more'} <Images.DownArrow />
             </>
           )}
         </Button>
-      )}
+      ) : null}
     </div>
   )
 }
