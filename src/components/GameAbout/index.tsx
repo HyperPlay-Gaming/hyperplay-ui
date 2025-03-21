@@ -20,6 +20,7 @@ export interface GameAboutProps {
   buttonLink?: {
     expanded?: boolean
     onClick?: () => void
+    dataTestId?: string
   }
   classnames?: {
     container?: string
