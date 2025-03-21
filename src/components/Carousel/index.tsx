@@ -166,7 +166,9 @@ const Carousel = ({
   const onVideoEnded = useCallback(() => {
     setIsVideoPlaying(false)
     autoplay.current?.play()
-    scrollNextSlideCallback()
+    if (!isMobile) {
+      scrollNextSlideCallback()
+    }
   }, [autoplay.current, scrollNextSlideCallback])
 
   const value = {
