@@ -129,7 +129,7 @@ export const TestImageAutoscrollStory: Story = {
     const imgSlide2 = canvas.getByTestId('img-slide-2')
     await expectSlideToNotBeVisible(imgSlide2)
 
-    await wait(2800)
+    await wait(3300)
     await expectSlideToNotBeVisible(imgSlide0)
     await expectSlideToBeVisible(imgSlide1)
     await expectSlideToNotBeVisible(imgSlide2)

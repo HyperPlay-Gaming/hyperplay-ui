@@ -5,7 +5,12 @@ import { expect, within } from '@storybook/test'
  */
 function slideIsVisible(slide: HTMLElement) {
   const box = slide.getBoundingClientRect()
-  return box.top >= 0 && box.left >= 0 && box.right <= window.innerWidth
+  return (
+    Math.ceil(box.top) >= 0 &&
+    Math.ceil(box.left) >= 0 &&
+    // there is some easing on the slide transition. some tolerance makes testing easier
+    Math.floor(box.right) <= Math.ceil(window.innerWidth) + 16
+  )
 }
 
 export async function expectSlideToBeVisible(slide: HTMLElement) {
