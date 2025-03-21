@@ -1,10 +1,46 @@
 .container {
   display: flex;
-  width: 100%;
-  gap: var(--space-2lg);
+  gap: var(--space-xl);
+  justify-content: center;
   padding: var(--space-3xl) 7.5rem;
   background-color: var(--color-neutral-900);
   border-radius: var(--space-md);
+  width: 100vw;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+}
+
+.title {
+  color: var(--color-text-100);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
 }
 
 .imageContainer {
@@ -41,12 +77,6 @@
   }
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
 .editorChoice {
   display: flex;
   align-items: center;
@@ -71,13 +101,6 @@
   gap: var(--space-md);
 }
 
-.title {
-  color: var(--color-text-100);
-  margin: 0;
-  font-size: var(--text-2xl);
-  font-weight: var(--bold);
-}
-
 .badges {
   display: flex;
   flex-wrap: wrap;
@@ -92,25 +115,50 @@
   font-size: var(--text-sm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
 
-  .blockchainIcons {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2xs);
+.blockchainLabel {
+  color: var(--color-text-300);
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+}
+
+.blockchainIcons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin-left: var(--space-xs);
+}
+
+.blockchainIcon {
+  width: var(--space-xl);
+  height: var(--space-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-background-700);
+  padding: var(--space-2xs);
+  overflow: hidden;
+
+  .blockchainSvg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
+}
 
-  .blockchainIcon {
-    width: var(--space-xl);
-    height: var(--space-xl);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
+.moreBlockchains {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-xl);
+  height: var(--space-xl);
+  border-radius: 50%;
+  background: var(--color-background-800);
+  color: var(--color-text-300);
+  font-size: var(--text-sm);
+  font-weight: var(--semibold);
 }
 
 .actions {
@@ -134,7 +182,7 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--corner-sm);
-  background-color: var(--color-background-700);
+  color: var(--color-icon-neutral);
   transition: background-color 0.2s ease;
 
   &:hover {
@@ -150,20 +198,14 @@
 
 .addButton {
   min-width: 200px;
-  background-color: var(--color-primary-400);
-
-  div {
-    align-items: center;
-    color: var(--color-neutral-700);
-  }
 
   svg {
     width: var(--space-lg);
     height: var(--space-lg);
+  }
 
-    path {
-      fill: var(--color-neutral-800);
-    }
+  path {
+    stroke: var(--icon-neutral);
   }
 
   &:disabled {
@@ -198,12 +240,11 @@
 
 .playButton {
   min-width: 200px;
-  background-color: var(--color-primary-400);
 
   div {
     align-items: center;
     justify-content: center;
-    color: var(--color-neutral-700);
+    color: var(--icon-neutral);
   }
 
   &:disabled {
