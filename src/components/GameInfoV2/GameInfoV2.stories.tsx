@@ -1,7 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import fallbackCard from '@/assets/fallback_card.jpg?url'
-import { EthereumIcon } from '@/assets/images'
+import {
+  Discord,
+  EthereumIcon,
+  PolygonIcon,
+  WebIcon,
+  XLogo,
+  Youtube
+} from '@/assets/images'
 
 import GameInfoV2 from '.'
 
@@ -27,24 +34,27 @@ const defaultArgs = {
   },
   blockchains: [
     {
-      icon: <EthereumIcon />
+      icon: EthereumIcon
+    },
+    {
+      icon: PolygonIcon
     }
   ],
   socialLinks: [
     {
-      type: 'website',
+      IconButton: WebIcon,
       url: 'https://example.com'
     },
     {
-      type: 'twitter',
+      IconButton: XLogo,
       url: 'https://twitter.com'
     },
     {
-      type: 'discord',
+      IconButton: Discord,
       url: 'https://discord.com'
     },
     {
-      type: 'youtube',
+      IconButton: Youtube,
       url: 'https://youtube.com'
     }
   ],
@@ -74,25 +84,7 @@ export const Default: Story = {
       version: '1.0.0',
       earlyAccess: 'Early Access',
       playerCount: '1-4 Players'
-    },
-    socialLinks: [
-      {
-        type: 'website',
-        url: 'https://example.com'
-      },
-      {
-        type: 'twitter',
-        url: 'https://twitter.com'
-      },
-      {
-        type: 'discord',
-        url: 'https://discord.com'
-      },
-      {
-        type: 'youtube',
-        url: 'https://youtube.com'
-      }
-    ]
+    }
   }
 }
 
@@ -112,25 +104,7 @@ export const AddingToLibrary: Story = {
       version: '1.0.0',
       earlyAccess: 'Early Access',
       playerCount: '1-4 Players'
-    },
-    socialLinks: [
-      {
-        type: 'website',
-        url: 'https://example.com'
-      },
-      {
-        type: 'twitter',
-        url: 'https://twitter.com'
-      },
-      {
-        type: 'discord',
-        url: 'https://discord.com'
-      },
-      {
-        type: 'youtube',
-        url: 'https://youtube.com'
-      }
-    ]
+    }
   }
 }
 
@@ -151,24 +125,6 @@ export const InLibrary: Story = {
       playerCount: '1-4 Players',
       addingText: 'Adding',
       notAddedToLibrary: 'Add to Library'
-    },
-    socialLinks: [
-      {
-        type: 'website',
-        url: 'https://example.com'
-      },
-      {
-        type: 'twitter',
-        url: 'https://twitter.com'
-      },
-      {
-        type: 'discord',
-        url: 'https://discord.com'
-      },
-      {
-        type: 'youtube',
-        url: 'https://youtube.com'
-      }
-    ]
+    }
   }
 }
