@@ -7,6 +7,7 @@ import { useCarousel } from '../..'
 import styles from './Controller.module.scss'
 import BaseButton from './components/BaseButton'
 import Item from './components/Item'
+import { scrollHorizontalIntoViewWithOffset } from './helpers'
 
 export interface ItemData {
   image: React.ReactElement
@@ -52,14 +53,11 @@ const Controller = ({
 
   useEffect(() => {
     if (isMobile) {
-      const element = document.getElementById(
-        `carousel-controller-item-id-${activeIndex}`
+      scrollHorizontalIntoViewWithOffset(
+        'carousel-controller-root-container',
+        `carousel-controller-item-id-${activeIndex}`,
+        16
       )
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth'
-        })
-      }
     }
   }, [isMobile, activeIndex])
 
