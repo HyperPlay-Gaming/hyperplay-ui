@@ -35,7 +35,8 @@ const Item = ({
     slideTimeOverrideIndexToTimeMsMap,
     timeUntilSlideFinishedOverrideIndexToTimeMsMap,
     isVideoPlaying,
-    isVideoSlide
+    isVideoSlide,
+    isLoading
   } = useCarousel()
 
   let loadBar = null
@@ -95,8 +96,12 @@ const Item = ({
       {loadBar}
     </>
   )
-  if (isEmptyItem) {
+  if (isEmptyItem || isLoading) {
     content = null
+  }
+  let buttonOnClick: (() => void) | undefined = onClick
+  if (isLoading) {
+    buttonOnClick = undefined
   }
   return (
     <div
@@ -105,11 +110,12 @@ const Item = ({
         styles.noGradientBorder,
         {
           [styles.active]: isActive,
-          [styles.empty]: isEmptyItem
+          [styles.empty]: isEmptyItem,
+          [styles.loading]: isLoading
         },
         className
       )}
-      onClick={onClick}
+      onClick={buttonOnClick}
       {...props}
     >
       {content}

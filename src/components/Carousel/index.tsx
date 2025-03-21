@@ -48,6 +48,8 @@ interface CarouselContextType {
   onVideoEnded: () => void
   isVideoPlaying: boolean
   isVideoSlide: boolean
+  /** Show a loading skeleton while loading */
+  isLoading?: boolean
 }
 
 const CarouselContext = createContext<CarouselContextType | undefined>(
@@ -69,6 +71,8 @@ export interface CarouselProps
   className?: string
   childrenNotInCarousel?: React.ReactNode
   autoplayOptions?: AutoplayOptionsType
+  /** Show a loading skeleton while loading */
+  isLoading?: boolean
 }
 
 const Carousel = ({
@@ -77,6 +81,7 @@ const Carousel = ({
   className,
   childrenNotInCarousel,
   autoplayOptions,
+  isLoading,
   ...props
 }: CarouselProps) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
@@ -120,6 +125,8 @@ const Carousel = ({
   const isMobile = useMediaQuery('(max-width: 599px)', false, {
     getInitialValueInEffect: true
   })
+
+  const slideAutoplayStopped = isMobile || isLoading
 
   const setActiveSlideIndexAndResetAutoplay = useCallback(
     (idx: number) => {
@@ -166,7 +173,7 @@ const Carousel = ({
   const onVideoEnded = useCallback(() => {
     setIsVideoPlaying(false)
     autoplay.current?.play()
-    if (!isMobile) {
+    if (!slideAutoplayStopped) {
       scrollNextSlideCallback()
     }
   }, [autoplay.current, scrollNextSlideCallback])
@@ -191,7 +198,25 @@ const Carousel = ({
     onVideoPaused,
     onVideoEnded,
     isVideoPlaying,
-    isVideoSlide: videoSlides.some((val) => val === activeSlideIndex)
+    isVideoSlide: videoSlides.some((val) => val === activeSlideIndex),
+    isLoading
+  }
+
+  let loaderSlideSkeleton = null
+  if (isLoading) {
+    loaderSlideSkeleton = (
+      <Carousel.Slide
+        key="carousel-loader-skeleton"
+        classNames={{ slide: styles.loading }}
+      >
+        <img width={1920} height={1080} />
+      </Carousel.Slide>
+    )
+  }
+
+  let childrenToShow = children
+  if (isLoading) {
+    childrenToShow = null
   }
 
   return (
@@ -200,17 +225,19 @@ const Carousel = ({
         <MantineCarousel
           getEmblaApi={setEmblaApi}
           classNames={{
+            root: styles.mantineCarouselRoot,
             slide: cn(styles.slide, classNames?.slide),
             indicators: styles.indicators
           }}
           loop={true}
           withControls={false}
           withIndicators={true}
-          plugins={isMobile ? [] : [autoplay.current]}
+          plugins={slideAutoplayStopped ? [] : [autoplay.current]}
           onSlideChange={(index) => setActiveSlideIndexAndResetAutoplay(index)}
           {...props}
         >
-          {children}
+          {childrenToShow}
+          {loaderSlideSkeleton}
         </MantineCarousel>
         {childrenNotInCarousel}
       </div>

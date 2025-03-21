@@ -37,7 +37,7 @@ const Controller = ({
   classNames,
   ...props
 }: ControllerProps) => {
-  const { activeIndex, setActiveIndex } = useCarousel()
+  const { activeIndex, setActiveIndex, isLoading } = useCarousel()
   const [itemsPageIndex, setItemsPageIndex] = useState(0)
   const [numItemsToShow, setNumItemsToShow] = useState(numItemsToShowInit)
   const isMobile = useMediaQuery('(max-width: 599px)', false, {
@@ -94,7 +94,7 @@ const Controller = ({
 
   const startIndex = Math.max(itemsPageIndex * numItemsToShow, 0)
   const endIndex = (itemsPageIndex + 1) * numItemsToShow
-  const disablePageButtons = maxPageIndex === 0
+  const disablePageButtons = maxPageIndex === 0 || isLoading
 
   const itemsToShow: React.ReactNode[] = []
   for (let itemIndex = startIndex; itemIndex < endIndex; ++itemIndex) {

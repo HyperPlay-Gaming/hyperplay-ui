@@ -1,5 +1,6 @@
 @use 'sass:math';
 @use '../../../../../../styles/utilities/variables' as *;
+@use '../../../../../../styles/utilities/loading' as *;
 
 @function difference($a, $b) {
   @return calc(abs($a - $b) / (($a + $b) / 2));
@@ -39,7 +40,7 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   position: relative;
   transition: border 0.3s ease-in;
 
-  &:not(.empty).noGradientBorder {
+  &:not(.empty):not(.loading).noGradientBorder {
     border: 2px solid var(--color-neutral-600);
     overflow: hidden;
     .loader {
@@ -97,7 +98,7 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
 /////////
 .itemContainer.noGradientBorder {
   transition: transform 0.3s ease-in-out;
-  &:not(.empty):hover::after {
+  &:not(.empty):not(.loading):hover::after {
     background-color: var(--color-neutral-200);
     opacity: 20%;
     z-index: 1;
@@ -106,7 +107,7 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
     content: '';
   }
   @include for-mobile-only {
-    &:not(.empty):hover::after {
+    &:not(.empty):not(.loading):hover::after {
       background-color: transparent;
       opacity: 0%;
     }
@@ -153,5 +154,12 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   justify-content: center;
   svg {
     stroke: var(--color-neutral-100);
+  }
+}
+
+.loading {
+  @include shinyLoader;
+  &:hover {
+    cursor: inherit;
   }
 }

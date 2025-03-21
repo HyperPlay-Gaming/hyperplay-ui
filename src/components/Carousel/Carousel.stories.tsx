@@ -105,6 +105,15 @@ export const NoVideo: Story = {
   }
 }
 
+export const IsLoading: Story = {
+  args: { isLoading: true, ...props },
+  render: (args) => (
+    <div style={{ width: '100vw' }}>
+      <Carousel {...args} />
+    </div>
+  )
+}
+
 /**
  * @dev tests autoscroll for images and wrapping of carousel slides after finishing
  * @TODO check controller item state like loader bar

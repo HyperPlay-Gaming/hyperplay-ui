@@ -1,5 +1,6 @@
 @use '../../styles/utilities/variables' as *;
 @use '../../styles/designSystem/typography' as *;
+@use '../../styles/utilities/loading' as *;
 
 @mixin title-mobile {
   left: var(--space-sm-fixed);
@@ -62,4 +63,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.mantineCarouselRoot {
+  width: 100%;
+}
+
+.loading {
+  @include shinyLoader;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    visibility: hidden;
+  }
 }
