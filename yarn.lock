@@ -2340,7 +2340,7 @@
   resolved "https://registry.yarnpkg.com/@storybook/addon-toolbars/-/addon-toolbars-8.6.7.tgz#d17f29e612b89d4c87cdbc7f220a6150e54fd5fa"
   integrity sha512-gR+mRs+Cc5GINZdKgE7afJLFCSMHkz40+zzdrPu6yY2P4B3UOvuQpt+zC/Er5YQ31EEjIvM6/XMQTM0i2db8AA==
 
-"@storybook/addon-viewport@8.6.7":
+"@storybook/addon-viewport@8.6.7", "@storybook/addon-viewport@^8.6.7":
   version "8.6.7"
   resolved "https://registry.yarnpkg.com/@storybook/addon-viewport/-/addon-viewport-8.6.7.tgz#331de29e9f31858e0a8697a955deadcd57dcc838"
   integrity sha512-kTrt6ByCbBIbqoRqQO9watDl5nSIKCC+R0/EmpEl6ZtzBV3l8trZHdvCHhIqOyv7nfaa7pIeTTG1GD6Gdrxk3w==

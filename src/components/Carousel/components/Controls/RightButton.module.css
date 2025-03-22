@@ -1,9 +1,0 @@
-.button {
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  transform: translateX(50%);
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
