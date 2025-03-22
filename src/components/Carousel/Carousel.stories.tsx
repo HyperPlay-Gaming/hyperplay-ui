@@ -44,34 +44,40 @@ const imagesForThumbnail: ItemData[] = images.map((val) => ({
   image: <img key={val} src={val} />
 }))
 
+const videoThumbnail = (
+  <ReactPlayer
+    height="100%"
+    width="100%"
+    url="https://youtu.be/_asNhzXq72w?si=AX1hf2pAKwtNiYs3"
+    style={{ pointerEvents: 'none' }}
+    playIcon={<></>}
+    light={true}
+    key="video_hero_0"
+  />
+)
+
 const imagesAndVideosForThumbnail: ItemData[] = [
   {
-    image: (
-      <ReactPlayer
-        height="100%"
-        width="100%"
-        url="https://youtu.be/_asNhzXq72w?si=AX1hf2pAKwtNiYs3"
-        style={{ pointerEvents: 'none' }}
-        playIcon={<></>}
-        light={true}
-        key="video_hero_0"
-      />
-    ),
+    image: videoThumbnail,
     isVideoSlide: true
   },
   ...imagesForThumbnail
 ]
 
+const videoSlide = (
+  <Carousel.SlideVideo
+    indexInSlides={0}
+    reactPlayerProps={{
+      url: 'https://youtu.be/_asNhzXq72w?si=AX1hf2pAKwtNiYs3'
+    }}
+    slideProps={{ 'data-testid': 'video-slide-0' }}
+  />
+)
+
 const props = {
   children: (
     <>
-      <Carousel.SlideVideo
-        indexInSlides={0}
-        reactPlayerProps={{
-          url: 'https://youtu.be/_asNhzXq72w?si=AX1hf2pAKwtNiYs3'
-        }}
-        slideProps={{ 'data-testid': 'video-slide-0' }}
-      />
+      {videoSlide}
       {imgSlides}
     </>
   ),
@@ -115,6 +121,99 @@ export const IsLoading: Story = {
       <Carousel {...args} />
     </div>
   )
+}
+
+const videos = [
+  'https://youtu.be/U-DtrujeD3k?si=2zM6kFtMDFDt9hOt',
+  'https://youtu.be/dNf6-Qd6z0k?si=I-c2NP3peYQ78PR6',
+  'https://youtu.be/x1SecGez6as?si=UGxnMxG2E830Y5DS'
+]
+
+const imagesAndMultipleVideosForThumbnail: ItemData[] = [
+  {
+    image: (
+      <ReactPlayer
+        height="100%"
+        width="100%"
+        url={videos[0]}
+        style={{ pointerEvents: 'none' }}
+        playIcon={<></>}
+        light={true}
+        key="video_hero_0"
+      />
+    ),
+    isVideoSlide: true
+  },
+  {
+    image: (
+      <ReactPlayer
+        height="100%"
+        width="100%"
+        url={videos[1]}
+        style={{ pointerEvents: 'none' }}
+        playIcon={<></>}
+        light={true}
+        key="video_hero_0"
+      />
+    ),
+    isVideoSlide: true
+  },
+  {
+    image: (
+      <ReactPlayer
+        height="100%"
+        width="100%"
+        url={videos[2]}
+        style={{ pointerEvents: 'none' }}
+        playIcon={<></>}
+        light={true}
+        key="video_hero_0"
+      />
+    ),
+    isVideoSlide: true
+  },
+  ...imagesForThumbnail
+]
+const propsMultipleVideos = {
+  children: (
+    <>
+      <Carousel.SlideVideo
+        indexInSlides={0}
+        reactPlayerProps={{
+          url: videos[0]
+        }}
+        slideProps={{ 'data-testid': 'video-slide-0' }}
+      />
+
+      <Carousel.SlideVideo
+        indexInSlides={1}
+        reactPlayerProps={{
+          url: videos[1]
+        }}
+        slideProps={{ 'data-testid': 'video-slide-0' }}
+      />
+
+      <Carousel.SlideVideo
+        indexInSlides={2}
+        reactPlayerProps={{
+          url: videos[2]
+        }}
+        slideProps={{ 'data-testid': 'video-slide-0' }}
+      />
+      {imgSlides}
+    </>
+  ),
+  autoplayOptions: { delay: 6000 },
+  childrenNotInCarousel: (
+    <Carousel.Controller
+      itemsData={imagesAndMultipleVideosForThumbnail}
+      showItemLoadBar={true}
+    />
+  )
+}
+
+export const MultipleVideos: Story = {
+  args: propsMultipleVideos
 }
 
 /**
@@ -548,14 +647,12 @@ export const TestVideoPauseAndResumeStory: Story = {
       }
     )
 
-    const videoControllerItem = canvas.getByTestId('carousel-controller-item-1')
-    const imgControllerItem1 = canvas.getByTestId('carousel-controller-item-2')
-
-    const videoLoaderTestId = 'carousel-controller-item-loader-1'
-
     await step(
       'click the video slide, then pause and check loader bar stopped',
       async () => {
+        const videoControllerItem = canvas.getByTestId(
+          'carousel-controller-item-1'
+        )
         await userEvent.click(videoControllerItem, { delay: 1000 })
         const videos = videoSlide0.querySelectorAll('video')
         videos[0].pause()
@@ -564,19 +661,27 @@ export const TestVideoPauseAndResumeStory: Story = {
         await expectSlideToBeVisible(videoSlide0)
         await expectSlideToNotBeVisible(imgSlide1)
 
+        const videoLoaderTestId = 'carousel-controller-item-loader-1'
         await checkThatLoaderBarStopped(canvas, videoLoaderTestId)
       }
     )
 
     await step('resume the video and click the next image item', async () => {
+      const videoLoaderTestId = 'carousel-controller-item-loader-1'
       const loaderBarWidthBefore = getLoaderBarWidth(canvas, videoLoaderTestId)
       // play video
       await userEvent.click(videoSlide0, { delay: 100 })
+      const imgControllerItem1 = canvas.getByTestId(
+        'carousel-controller-item-2'
+      )
       // click next controller item which should pause the video automatically
       await userEvent.click(imgControllerItem1, { delay: 100 })
       const timeOnSecondImageSlideInMs = 4000
       await wait(timeOnSecondImageSlideInMs)
       // click the video controller item again which should resume the video automatically
+      const videoControllerItem = canvas.getByTestId(
+        'carousel-controller-item-1'
+      )
       await userEvent.click(videoControllerItem, { delay: 100 })
       const loaderBarWidthAfter = await checkThatLoaderBarIsProgressing(
         canvas,
@@ -595,5 +700,68 @@ export const TestVideoPauseAndResumeStory: Story = {
         (percentPerSecond * timeOnSecondImageSlideInMs) / 1000
       )
     })
+  }
+}
+
+export const TestAutoplayPauseOnDocHidden: Story = {
+  args: {
+    autoplayOptions: { delay: 4000 },
+    children: imgSlides,
+    childrenNotInCarousel: (
+      <Carousel.Controller itemsData={imagesForThumbnail} />
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+    const imgSlide0 = canvas.getByTestId('img-slide-0')
+    const imgSlide1 = canvas.getByTestId('img-slide-1')
+
+    await step('verify initial slide is visible', async () => {
+      await waitFor(async () =>
+        expect(imgSlide0.offsetWidth).toBeGreaterThan(500)
+      )
+      await expectSlideToBeVisible(imgSlide0)
+      await expectSlideToNotBeVisible(imgSlide1)
+    })
+
+    await step('simulate window blur and focus', async () => {
+      // Wait for 2 seconds with window focused
+      await wait(2000)
+
+      // Simulate tab hidden
+      Object.defineProperty(document, 'visibilityState', {
+        configurable: true,
+        get: () => 'hidden'
+      })
+      document.dispatchEvent(new Event('visibilitychange'))
+
+      // Simulated tab visible
+      await wait(4000)
+      Object.defineProperty(document, 'visibilityState', {
+        configurable: true,
+        get: () => 'visible'
+      })
+      document.dispatchEvent(new Event('visibilitychange'))
+
+      // Wait another 2 seconds with window focused
+      await wait(2000)
+
+      // First slide should still be visible since autoplay pauses during blur
+      // Total time is 8s but only 4s of active autoplay time has passed
+      // With 2s delay, should still be on first slide
+      await expectSlideToBeVisible(imgSlide0)
+      await expectSlideToNotBeVisible(imgSlide1)
+    })
+
+    await step(
+      'verify slide transitions after remaining active time',
+      async () => {
+        // Wait remaining time for first transition
+        await wait(3000)
+
+        await expectSlideToNotBeVisible(imgSlide0)
+        await expectSlideToBeVisible(imgSlide1)
+      }
+    )
   }
 }

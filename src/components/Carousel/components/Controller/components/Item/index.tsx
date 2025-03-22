@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import cn from 'classnames'
 
@@ -36,8 +36,29 @@ const Item = ({
     timeUntilSlideFinishedOverrideIndexToTimeMsMap,
     isVideoSlidePlaying,
     isVideoSlide,
-    isLoading
+    isLoading,
+    activeIndex,
+    emblaApi
   } = useCarousel()
+
+  /**
+   * @dev This covers the edge case where the user leaves the tab and returns.
+   * emblaApi observes this and resets the autoplay duration when the tab regains focus.
+   * By listening to autoplay:timerset and re-rendering this component when it fires,
+   * we can be sure that we are keeping the animation time of the loader bar accurate.
+   */
+  const [itemKeyIndex, setItemKeyIndex] = useState(0)
+  useEffect(() => {
+    const timerSetListener = () => {
+      setItemKeyIndex(itemKeyIndex + 1)
+    }
+    if (activeIndex === itemIndex) {
+      emblaApi?.on('autoplay:timerset', timerSetListener)
+    }
+    return () => {
+      emblaApi?.off('autoplay:timerset', timerSetListener)
+    }
+  }, [emblaApi, activeIndex])
 
   let loadBar = null
   if (showLoadBar && isActive) {
@@ -116,6 +137,7 @@ const Item = ({
         className
       )}
       onClick={buttonOnClick}
+      key={`carousel-controller-item-${itemKeyIndex}`}
       {...props}
     >
       {content}

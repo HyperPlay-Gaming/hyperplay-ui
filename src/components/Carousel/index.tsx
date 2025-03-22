@@ -50,6 +50,7 @@ interface CarouselContextType {
   isVideoSlide: boolean
   /** Show a loading skeleton while loading */
   isLoading?: boolean
+  emblaApi: EmblaCarouselType | null
 }
 
 const CarouselContext = createContext<CarouselContextType | undefined>(
@@ -233,7 +234,8 @@ const Carousel = ({
     onVideoEnded,
     isVideoSlidePlaying,
     isVideoSlide: videoSlides.some((val) => val === activeSlideIndex),
-    isLoading
+    isLoading,
+    emblaApi
   }
 
   let loaderSlideSkeleton = null
