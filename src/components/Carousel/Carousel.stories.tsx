@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player'
 
 import { wait } from '@hyperplay/utils'
 import { Meta, StoryObj } from '@storybook/react'
-import { expect, waitFor, within } from '@storybook/test'
+import { expect, userEvent, waitFor, within } from '@storybook/test'
 
 import dtCover from '@/assets/DarkThroneLandscape.png?url'
 import onisCover from '@/assets/OnisQuestLandscape.png?url'
@@ -14,10 +14,13 @@ import questCard from '@/assets/banners/QuestCardV2Image.png?url'
 import Carousel, { CarouselProps } from '.'
 import { ItemData } from './components/Controller'
 import {
+  checkThatLoaderBarIsProgressing,
+  checkThatLoaderBarStopped,
   expectItemsVisibility,
   expectSlideToBeVisible,
   expectSlideToNotBeVisible,
-  expectSlidesVisibility
+  expectSlidesVisibility,
+  getLoaderBarWidth
 } from './storyHelpers'
 
 const meta: Meta<typeof Carousel> = {
@@ -468,5 +471,127 @@ export const TestNoAutoscrollImagesMobile: Story = {
     await expect(
       controllerItem0.classList.values().some((val) => val.includes('active'))
     ).toBeFalsy()
+  }
+}
+
+const imagesAndVideosForShortVideoThumbnailWithVideoOnSecondSlide: ItemData[] =
+  [
+    imagesForThumbnail[0],
+    {
+      image: (
+        <ReactPlayer
+          height="100%"
+          width="100%"
+          url="http://localhost:6006/src/assets/tentacle-small.webm"
+          style={{ pointerEvents: 'none' }}
+          playIcon={<></>}
+          light={true}
+          key="video_hero_0"
+        />
+      ),
+      isVideoSlide: true
+    },
+    ...imagesForThumbnail.slice(1)
+  ]
+
+const propsWithShortVideoAsSecondSlide: (
+  props: propsWithVidProps
+) => CarouselProps = ({ delay = 1000, onVideoEnd }: propsWithVidProps) => ({
+  children: (
+    <>
+      {imgSlides[0]}
+      <Carousel.SlideVideo
+        indexInSlides={1}
+        reactPlayerProps={{
+          url: 'http://localhost:6006/src/assets/tentacle-small.webm'
+        }}
+        onEnd={onVideoEnd}
+      />
+      {imgSlides.slice(1)}
+    </>
+  ),
+  autoplayOptions: {
+    delay
+  },
+  childrenNotInCarousel: (
+    <Carousel.Controller
+      itemsData={imagesAndVideosForShortVideoThumbnailWithVideoOnSecondSlide}
+      showItemLoadBar={true}
+    />
+  )
+})
+
+export const TestVideoPauseAndResumeStory: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'tablet' }
+  },
+  args: propsWithShortVideoAsSecondSlide({
+    delay: 10000
+  }),
+  play: async ({ mount, args, step }) => {
+    const canvas = await mount(<Carousel {...args} />)
+    const imgSlide0 = canvas.getByTestId('img-slide-0')
+    const videoSlide0 = canvas.getByTestId('video-slide-1')
+    const imgSlide1 = canvas.getByTestId('img-slide-1')
+
+    await step(
+      'wait for the first image to load and check initial visibilities',
+      async () => {
+        await waitFor(async () =>
+          expect(imgSlide0.offsetWidth).toBeGreaterThan(500)
+        )
+        await expectSlideToBeVisible(imgSlide0)
+        await expectSlideToNotBeVisible(videoSlide0)
+        await expectSlideToNotBeVisible(imgSlide1)
+      }
+    )
+
+    const videoControllerItem = canvas.getByTestId('carousel-controller-item-1')
+    const imgControllerItem1 = canvas.getByTestId('carousel-controller-item-2')
+
+    const videoLoaderTestId = 'carousel-controller-item-loader-1'
+
+    await step(
+      'click the video slide, then pause and check loader bar stopped',
+      async () => {
+        await userEvent.click(videoControllerItem, { delay: 1000 })
+        const videos = videoSlide0.querySelectorAll('video')
+        videos[0].pause()
+
+        await expectSlideToNotBeVisible(imgSlide0)
+        await expectSlideToBeVisible(videoSlide0)
+        await expectSlideToNotBeVisible(imgSlide1)
+
+        await checkThatLoaderBarStopped(canvas, videoLoaderTestId)
+      }
+    )
+
+    await step('resume the video and click the next image item', async () => {
+      const loaderBarWidthBefore = getLoaderBarWidth(canvas, videoLoaderTestId)
+      // play video
+      await userEvent.click(videoSlide0, { delay: 100 })
+      // click next controller item which should pause the video automatically
+      await userEvent.click(imgControllerItem1, { delay: 100 })
+      const timeOnSecondImageSlideInMs = 4000
+      await wait(timeOnSecondImageSlideInMs)
+      // click the video controller item again which should resume the video automatically
+      await userEvent.click(videoControllerItem, { delay: 100 })
+      const loaderBarWidthAfter = await checkThatLoaderBarIsProgressing(
+        canvas,
+        videoLoaderTestId
+      )
+      const loaderBarTotalWidth = 103.5
+      const loaderBarBeforePercent = Math.round(
+        (loaderBarWidthBefore / loaderBarTotalWidth) * 100
+      )
+      const loaderBarAfterPercent = Math.round(
+        (loaderBarWidthAfter / loaderBarTotalWidth) * 100
+      )
+      const percentPerSecond = Math.round((1 / 7) * 100)
+      // if more than 1 second of progress happened in the 2s we were on the image slide, the video clearly did not pause
+      expect(loaderBarAfterPercent - loaderBarBeforePercent).toBeLessThan(
+        (percentPerSecond * timeOnSecondImageSlideInMs) / 1000
+      )
+    })
   }
 }

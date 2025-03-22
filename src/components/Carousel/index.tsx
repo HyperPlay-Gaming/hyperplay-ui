@@ -43,10 +43,10 @@ interface CarouselContextType {
     slideIndex: number,
     timeInMs: number
   ) => void
-  onVideoPlay: () => void
-  onVideoPaused: () => void
-  onVideoEnded: () => void
-  isVideoPlaying: boolean
+  onVideoPlay: (slideIndex: number) => void
+  onVideoPaused: (slideIndex: number) => void
+  onVideoEnded: (slideIndex: number) => void
+  isVideoSlidePlaying: Record<number, boolean>
   isVideoSlide: boolean
   /** Show a loading skeleton while loading */
   isLoading?: boolean
@@ -151,32 +151,66 @@ const Carousel = ({
     },
     [emblaApi]
   )
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
 
-  const onVideoPlay = useCallback(() => {
-    setVideoSlides([activeSlideIndex])
-    setIsVideoPlaying(true)
-    autoplay.current.stop()
-  }, [autoplay])
+  /**
+   * @dev we keep track of each slide's video playing status to control react player.
+   * this is because multiple video slides may be present with different playing statuses per slide.
+   */
+  const [isVideoSlidePlaying, setIsVideoSlidePlaying] = useState<
+    Record<number, boolean>
+  >({})
 
-  const onVideoPaused = useCallback(() => {
-    setIsVideoPlaying(false)
-    const {
-      timeLeftInMs: timeLeftInMsOld,
-      lastUpdatedMsSinceEpoch: lastUpdatedMsSinceEpochOld
-    } = timeUntilSlideFinishedOverrideIndexToTimeMsMap[activeSlideIndex]
-    const newTimeLeftInMs =
-      timeLeftInMsOld - (Date.now() - lastUpdatedMsSinceEpochOld)
-    setTimeUntilSlideFinishedOverride(activeSlideIndex, newTimeLeftInMs)
-  }, [timeUntilSlideFinishedOverrideIndexToTimeMsMap])
+  const setVideoSlidePlaying = (slideIndex: number, isPlaying: boolean) => {
+    setIsVideoSlidePlaying((prevState) => ({
+      ...prevState,
+      [slideIndex]: isPlaying
+    }))
+  }
 
-  const onVideoEnded = useCallback(() => {
-    setIsVideoPlaying(false)
-    autoplay.current?.play()
-    if (!slideAutoplayStopped) {
-      scrollNextSlideCallback()
-    }
-  }, [autoplay.current, scrollNextSlideCallback])
+  const onVideoPlay = useCallback(
+    (slideIndex: number) => {
+      // keep each arr val unique
+      const vidSlides = new Set(videoSlides)
+      vidSlides.add(slideIndex)
+      setVideoSlides([...vidSlides.values()])
+      setVideoSlidePlaying(slideIndex, true)
+      autoplay.current.stop()
+    },
+    [autoplay, videoSlides]
+  )
+
+  const onVideoPaused = useCallback(
+    (slideIndex: number) => {
+      setVideoSlidePlaying(slideIndex, false)
+      if (
+        !Object.hasOwn(
+          timeUntilSlideFinishedOverrideIndexToTimeMsMap,
+          slideIndex
+        )
+      ) {
+        return
+      }
+      const {
+        timeLeftInMs: timeLeftInMsOld,
+        lastUpdatedMsSinceEpoch: lastUpdatedMsSinceEpochOld
+      } = timeUntilSlideFinishedOverrideIndexToTimeMsMap[slideIndex]
+      const newTimeLeftInMs =
+        timeLeftInMsOld - (Date.now() - lastUpdatedMsSinceEpochOld)
+      setTimeUntilSlideFinishedOverride(slideIndex, newTimeLeftInMs)
+    },
+    [timeUntilSlideFinishedOverrideIndexToTimeMsMap]
+  )
+
+  const onVideoEnded = useCallback(
+    (slideIndex: number) => {
+      setVideoSlidePlaying(slideIndex, false)
+      autoplay.current?.play()
+      if (!slideAutoplayStopped) {
+        scrollNextSlideCallback()
+      }
+    },
+    [autoplay.current, scrollNextSlideCallback]
+  )
 
   const value = {
     activeIndex: activeSlideIndex,
@@ -197,7 +231,7 @@ const Carousel = ({
     onVideoPlay,
     onVideoPaused,
     onVideoEnded,
-    isVideoPlaying,
+    isVideoSlidePlaying,
     isVideoSlide: videoSlides.some((val) => val === activeSlideIndex),
     isLoading
   }

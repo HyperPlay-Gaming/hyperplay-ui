@@ -10,7 +10,7 @@ export interface SlideVideoInterface {
     'data-testid': string
   }
   reactPlayerProps?: React.ComponentProps<typeof ReactPlayer>
-  indexInSlides?: number
+  indexInSlides: number
   onEnd?: () => void
 }
 
@@ -26,7 +26,7 @@ export function SlideVideo({
     onVideoPaused,
     onVideoEnded,
     setTimeUntilSlideFinishedOverride,
-    isVideoPlaying,
+    isVideoSlidePlaying,
     setSlideTimeOverride
   } = useCarousel()
   const [videoDurationInMs, setVideoDurationInMs] = useState(5000)
@@ -39,7 +39,7 @@ export function SlideVideo({
   }, [])
 
   const onVideoEndedHandler = useCallback(() => {
-    onVideoEnded()
+    onVideoEnded(indexInSlides)
     onEnd?.()
   }, [onVideoEnded, onEnd])
 
@@ -48,7 +48,9 @@ export function SlideVideo({
    */
   useEffect(() => {
     if (indexInSlides === activeIndex) {
-      onVideoPlay()
+      onVideoPlay(indexInSlides)
+    } else {
+      onVideoPaused(indexInSlides)
     }
   }, [activeIndex, indexInSlides])
 
@@ -77,10 +79,10 @@ export function SlideVideo({
         }}
         width={'100%'}
         height={'100%'}
-        onPlay={onVideoPlay}
-        onPause={onVideoPaused}
+        onPlay={() => onVideoPlay(indexInSlides)}
+        onPause={() => onVideoPaused(indexInSlides)}
         onEnded={onVideoEndedHandler}
-        playing={isVideoPlaying}
+        playing={!!isVideoSlidePlaying[indexInSlides]}
         onClickPreview={() => console.log('preview clicked')}
         controls={true}
         muted={true}

@@ -1,3 +1,4 @@
+import { wait } from '@hyperplay/utils'
 import { expect, within } from '@storybook/test'
 
 /**
@@ -49,4 +50,36 @@ export async function expectSlidesVisibility(
       await expectSlideToNotBeVisible(canvas.getByTestId(`${testIdPrefix}${i}`))
     }
   }
+}
+
+export async function checkThatLoaderBarStopped(
+  canvas: ReturnType<typeof within>,
+  loaderTestId: string
+) {
+  await wait(1000)
+  const pausedLoaderWidthBefore = getLoaderBarWidth(canvas, loaderTestId)
+  await wait(500)
+  const pausedLoaderWidthAfter = getLoaderBarWidth(canvas, loaderTestId)
+  expect(pausedLoaderWidthAfter).toEqual(pausedLoaderWidthBefore)
+  return pausedLoaderWidthAfter
+}
+
+export function getLoaderBarWidth(
+  canvas: ReturnType<typeof within>,
+  loaderTestId: string
+) {
+  const itemLoader0 = canvas.getByTestId(loaderTestId)
+  return itemLoader0.clientWidth
+}
+
+export async function checkThatLoaderBarIsProgressing(
+  canvas: ReturnType<typeof within>,
+  loaderTestId: string
+) {
+  await wait(1000)
+  const pausedLoaderWidthBefore = getLoaderBarWidth(canvas, loaderTestId)
+  await wait(500)
+  const pausedLoaderWidthAfter = getLoaderBarWidth(canvas, loaderTestId)
+  expect(pausedLoaderWidthAfter).toBeGreaterThan(pausedLoaderWidthBefore)
+  return pausedLoaderWidthAfter
 }
