@@ -39,7 +39,7 @@ const Controller = ({
   classNames,
   ...props
 }: ControllerProps) => {
-  const { activeIndex, setActiveIndex, isLoading, stop } = useCarousel()
+  const { activeIndex, setActiveIndex, isLoading } = useCarousel()
   const [itemsPageIndex, setItemsPageIndex] = useState(0)
   const [numItemsToShow, setNumItemsToShow] = useState(numItemsToShowInit)
   const isMobile = useMediaQuery('(max-width: 599px)', false, {
@@ -84,7 +84,7 @@ const Controller = ({
     (index: number) => {
       setActiveIndex(index)
     },
-    [stop, setActiveIndex]
+    [setActiveIndex]
   )
 
   // every time active index changes, scroll that controller item page into view
