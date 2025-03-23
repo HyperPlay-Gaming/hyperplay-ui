@@ -39,7 +39,7 @@ export function LoadBar({ itemIndex, className, ...props }: LoadBarProps) {
     return () => {
       emblaApi?.off('autoplay:timerset', timerSetListener)
     }
-  }, [emblaApi, activeIndex])
+  }, [emblaApi, activeIndex, itemKeyIndex])
 
   let timeUntilSlideFinishedMs = getTimeUntilSlideFinished?.()
   if (
