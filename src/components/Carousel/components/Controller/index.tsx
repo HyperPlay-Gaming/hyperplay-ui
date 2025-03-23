@@ -83,7 +83,6 @@ const Controller = ({
   const handleClick = useCallback(
     (index: number) => {
       setActiveIndex(index)
-      stop()
     },
     [stop, setActiveIndex]
   )
