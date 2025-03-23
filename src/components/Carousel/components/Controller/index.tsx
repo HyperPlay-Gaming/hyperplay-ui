@@ -39,7 +39,7 @@ const Controller = ({
   classNames,
   ...props
 }: ControllerProps) => {
-  const { activeIndex, setActiveIndex, isLoading } = useCarousel()
+  const { activeIndex, setActiveIndex, isLoading, stop } = useCarousel()
   const [itemsPageIndex, setItemsPageIndex] = useState(0)
   const [numItemsToShow, setNumItemsToShow] = useState(numItemsToShowInit)
   const isMobile = useMediaQuery('(max-width: 599px)', false, {
@@ -82,8 +82,8 @@ const Controller = ({
 
   const handleClick = useCallback(
     (index: number) => {
-      stop()
       setActiveIndex(index)
+      stop()
     },
     [stop, setActiveIndex]
   )
