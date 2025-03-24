@@ -52,7 +52,7 @@ interface CarouselContextType {
   isVideoSlide: boolean
   /** Show a loading skeleton while loading */
   isLoading?: boolean
-  emblaApi: EmblaCarouselType | null
+  emblaApi?: EmblaCarouselType
 }
 
 const CarouselContext = createContext<CarouselContextType | undefined>(
