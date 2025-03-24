@@ -97,6 +97,11 @@ export const WithStickersAndButton: Story = {
       delay: 500
     })
 
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
+    const description = canvas.getByTestId('game-about-description')
+    expect(description).toBeVisible()
+
     await expect(canvas.getByTestId('show-more-button')).toHaveStyle({
       display: 'flex'
     })
