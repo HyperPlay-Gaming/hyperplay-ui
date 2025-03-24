@@ -88,7 +88,9 @@ const Carousel = ({
   ...props
 }: CarouselProps) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
-  const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | null>(null)
+  const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | undefined>(
+    undefined
+  )
   const [
     timeUntilSlideFinishedOverrideIndexToTimeMsMap,
     setTimeUntilSlideFinishedOverrideIndexToTimeMsMap
@@ -133,10 +135,13 @@ const Carousel = ({
 
   const setActiveSlideIndexAndResetAutoplay = useCallback(
     (idx: number) => {
-      autoplay.current?.reset()
-      autoplay.current?.play()
       setActiveSlideIndex(idx)
       emblaApi?.scrollTo(idx)
+      // no autoplay on mobile
+      if (!isMobile) {
+        autoplay.current?.reset()
+        autoplay.current?.play()
+      }
     },
     [setActiveSlideIndex, autoplay.current, emblaApi]
   )
