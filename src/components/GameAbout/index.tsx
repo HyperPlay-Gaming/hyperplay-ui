@@ -109,6 +109,7 @@ const GameAbout = ({
           expanded ? styles.expandedText : styles.clampedText,
           classnames?.description
         )}
+        data-testid={'game-about-description'}
       >
         {description}
       </p>
@@ -117,7 +118,7 @@ const GameAbout = ({
           className={classNames('button-sm', styles.showMore)}
           onClick={handleShowMore}
           type="link"
-          data-testid="show-more-button"
+          data-testid={'show-more-button'}
         >
           {expanded ? (
             <>
