@@ -95,16 +95,26 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   transition: transform 0.3s ease-in-out;
 }
 
+@mixin fullscreen-tint {
+  z-index: 1;
+  position: absolute;
+  inset: 0px;
+  content: '';
+}
+
 /////////
 .itemContainer.noGradientBorder {
   transition: transform 0.3s ease-in-out;
-  &:not(.empty):not(.loading):hover::after {
-    background-color: var(--color-neutral-200);
-    opacity: 20%;
-    z-index: 1;
-    position: absolute;
-    inset: 0px;
-    content: '';
+  &:not(.empty):not(.loading)::after {
+    background-color: var(--color-neutral-900);
+    opacity: 60%;
+    @include fullscreen-tint();
+  }
+  &:not(.empty):not(.loading):hover::after,
+  &:not(.empty):not(.loading).active::after {
+    background-color: transparent;
+    opacity: 0%;
+    @include fullscreen-tint();
   }
   @include for-mobile-only {
     &:not(.empty):not(.loading):hover::after {
