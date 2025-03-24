@@ -512,11 +512,8 @@ export const TestControllerArrowDisabledStory: Story = {
       expect(imgSlide0.offsetWidth).toBeGreaterThan(500)
     )
 
-    const rightButton = canvas.getByTestId('carousel-right-button')
-    await expect(rightButton).toBeDisabled()
-
-    const leftButton = canvas.getByTestId('carousel-left-button')
-    await expect(leftButton).toBeDisabled()
+    expect(() => canvas.getByTestId('carousel-right-button')).toThrow()
+    expect(() => canvas.getByTestId('carousel-left-button')).toThrow()
   }
 }
 

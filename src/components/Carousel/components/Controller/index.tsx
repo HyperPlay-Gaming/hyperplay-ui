@@ -129,6 +129,31 @@ const Controller = ({
     }
   }
 
+  let leftButton: React.ReactNode = (
+    <BaseButton
+      onClick={previousItemsPage}
+      className={classNames?.leftButton}
+      isLeftButton={true}
+      classNames={{ root: styles.itemsPageButton }}
+    />
+  )
+  if (disablePageButtons) {
+    leftButton = null
+  }
+
+  let rightButton: React.ReactNode = (
+    <BaseButton
+      onClick={nextItemsPage}
+      className={cn(classNames?.rightButton)}
+      isLeftButton={false}
+      disabled={disablePageButtons}
+      classNames={{ root: styles.itemsPageButton }}
+    />
+  )
+  if (disablePageButtons) {
+    rightButton = null
+  }
+
   return (
     <div
       id="carousel-controller-root-container"
@@ -140,21 +165,9 @@ const Controller = ({
       {...props}
     >
       <div className={cn(styles.root, classNames?.root)}>
-        <BaseButton
-          onClick={previousItemsPage}
-          className={classNames?.leftButton}
-          isLeftButton={true}
-          disabled={disablePageButtons}
-          classNames={{ root: styles.itemsPageButton }}
-        />
+        {leftButton}
         {itemsToShow}
-        <BaseButton
-          onClick={nextItemsPage}
-          className={cn(classNames?.rightButton)}
-          isLeftButton={false}
-          disabled={disablePageButtons}
-          classNames={{ root: styles.itemsPageButton }}
-        />
+        {rightButton}
       </div>
     </div>
   )
