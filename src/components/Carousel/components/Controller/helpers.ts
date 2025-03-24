@@ -4,22 +4,26 @@ export function scrollHorizontalIntoViewWithOffset(
   offsetInPx: number
 ) {
   const element = document.getElementById(itemId)
-  if (element) {
+  const scrollableDiv = document.getElementById(containerId)
+  if (element && scrollableDiv) {
     const rect = element.getBoundingClientRect()
-    const scrollableDiv = document.getElementById(containerId)
+    const scrollableDivRect = scrollableDiv.getBoundingClientRect()
     if (scrollableDiv) {
       const paddingPx = offsetInPx
       const farRightScrollableOffset =
         scrollableDiv.scrollLeft + scrollableDiv.clientWidth - paddingPx
       const shouldScrollRight =
-        rect.right + scrollableDiv.scrollLeft > farRightScrollableOffset
+        rect.right - scrollableDivRect.x + scrollableDiv.scrollLeft >
+        farRightScrollableOffset
       const farLeftScrollableOffset = scrollableDiv.scrollLeft + paddingPx
       const shouldScrollLeft =
-        farLeftScrollableOffset > rect.left + scrollableDiv.scrollLeft
+        farLeftScrollableOffset >
+        rect.left - scrollableDivRect.x + scrollableDiv.scrollLeft
       if (shouldScrollRight) {
         scrollableDiv.scrollTo({
           left:
-            rect.right +
+            rect.right -
+            scrollableDivRect.x +
             scrollableDiv.scrollLeft +
             paddingPx -
             scrollableDiv.clientWidth,
@@ -27,7 +31,11 @@ export function scrollHorizontalIntoViewWithOffset(
         })
       } else if (shouldScrollLeft) {
         scrollableDiv.scrollTo({
-          left: rect.left + scrollableDiv.scrollLeft - paddingPx,
+          left:
+            rect.left -
+            scrollableDivRect.x +
+            scrollableDiv.scrollLeft -
+            paddingPx,
           behavior: 'smooth'
         })
       }
