@@ -55,6 +55,7 @@ interface CarouselContextType {
   /** Show a loading skeleton while loading */
   isLoading?: boolean
   emblaApi?: EmblaCarouselType
+  withControls?: boolean
 }
 
 const CarouselContext = createContext<CarouselContextType | undefined>(
@@ -87,6 +88,7 @@ const Carousel = ({
   childrenNotInCarousel,
   autoplayOptions,
   isLoading,
+  withControls = true,
   ...props
 }: CarouselProps) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
@@ -280,7 +282,7 @@ const Carousel = ({
             control: styles.control
           }}
           loop={true}
-          withControls={!isMobile}
+          withControls={!isMobile && withControls}
           withIndicators={true}
           plugins={slideAutoplayStopped ? [] : [autoplay.current]}
           onSlideChange={(index) => setActiveSlideIndexAndResetAutoplay(index)}
