@@ -2,15 +2,21 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import fallbackCard from '@/assets/fallback_card.jpg?url'
 import {
-  Discord,
-  EthereumIcon,
-  PolygonIcon,
-  WebIcon,
-  XLogo,
-  Youtube
+  Base,
+  Binance,
+  DiscordFilled,
+  Ethereum,
+  Globe,
+  Mantle,
+  Plus,
+  Polygon,
+  X,
+  YoutubeFilled
 } from '@/assets/images'
 
 import GameInfoV2 from '.'
+import Button from '../Button'
+import styles from './GameInfoV2.module.scss'
 
 const meta = {
   title: 'Components/GameInfoV2',
@@ -31,39 +37,7 @@ const defaultArgs = {
   image: {
     src: fallbackCard,
     alt: 'Game cover'
-  },
-  blockchains: [
-    {
-      icon: EthereumIcon
-    },
-    {
-      icon: PolygonIcon
-    }
-  ],
-  socialLinks: [
-    {
-      IconButton: WebIcon,
-      url: 'https://example.com'
-    },
-    {
-      IconButton: XLogo,
-      url: 'https://twitter.com'
-    },
-    {
-      IconButton: Discord,
-      url: 'https://discord.com'
-    },
-    {
-      IconButton: Youtube,
-      url: 'https://youtube.com'
-    }
-  ],
-  editorChoice: {
-    isEditorChoice: true,
-    year: 2025
-  },
-  onAddToLibraryClick: () => console.log('Add to library clicked'),
-  onPlayClick: () => console.log('Play clicked')
+  }
 }
 
 export const Default: Story = {
@@ -73,58 +47,151 @@ export const Default: Story = {
       src: 'fallback_card.jpg',
       alt: 'Game cover'
     },
-    isInLibrary: false,
-    isAddingToLibrary: false,
-    notAddedText: 'Add to Library',
-    i18n: {
-      addingText: 'Adding',
-      notAddedToLibrary: 'Add to Library',
-      playText: 'Play',
-      title: 'Game Name',
-      version: '1.0.0',
-      earlyAccess: 'Early Access',
-      playerCount: '1-4 Players'
-    }
+    blockchains: [
+      {
+        icon: Ethereum,
+        name: 'Ethereum'
+      },
+      {
+        icon: Polygon,
+        name: 'Polygon'
+      },
+      {
+        icon: Mantle,
+        name: 'Mantle'
+      },
+      {
+        icon: Base,
+        name: 'Base'
+      },
+      {
+        icon: Binance,
+        name: 'Binance'
+      }
+    ],
+    showRemainingCount: true,
+    remainingCount: 9,
+    socialLinks: [
+      {
+        IconButton: Globe,
+        url: 'https://example.com'
+      },
+      {
+        IconButton: X,
+        url: 'https://twitter.com'
+      },
+      {
+        IconButton: DiscordFilled,
+        url: 'https://discord.com'
+      },
+      {
+        IconButton: YoutubeFilled,
+        url: 'https://youtube.com'
+      }
+    ],
+    editorChoice: {
+      isEditorChoice: true,
+      year: 2025
+    },
+    actionButton: (
+      <Button
+        type="secondary"
+        size="medium"
+        leftIcon={<Plus />}
+        className={styles.addButton}
+      >
+        Add to Library
+      </Button>
+    )
   }
 }
 
-export const AddingToLibrary: Story = {
+export const noBlockchains: Story = {
   args: {
     ...defaultArgs,
     image: {
       src: 'fallback_card.jpg',
       alt: 'Game cover'
     },
-    isAddingToLibrary: true,
-    addingText: 'Adding',
-    i18n: {
-      addingText: 'Adding',
-      notAddedToLibrary: 'Add to Library',
-      title: 'Game Name',
-      version: '1.0.0',
-      earlyAccess: 'Early Access',
-      playerCount: '1-4 Players'
-    }
+    socialLinks: [
+      {
+        IconButton: Globe,
+        url: 'https://example.com'
+      },
+      {
+        IconButton: X,
+        url: 'https://twitter.com'
+      },
+      {
+        IconButton: DiscordFilled,
+        url: 'https://discord.com'
+      },
+      {
+        IconButton: YoutubeFilled,
+        url: 'https://youtube.com'
+      }
+    ],
+    editorChoice: {
+      isEditorChoice: true,
+      year: 2025
+    },
+    actionButton: (
+      <Button
+        type="secondary"
+        size="medium"
+        leftIcon={<Plus />}
+        className={styles.addButton}
+      >
+        Add to Library
+      </Button>
+    )
   }
 }
 
-export const InLibrary: Story = {
+export const noSocialLinks: Story = {
   args: {
     ...defaultArgs,
     image: {
       src: 'fallback_card.jpg',
       alt: 'Game cover'
     },
-    isInLibrary: true,
-    playText: 'Play',
-    i18n: {
-      playText: 'Play',
-      title: 'Game Name',
-      version: '1.0.0',
-      earlyAccess: 'Early Access',
-      playerCount: '1-4 Players',
-      addingText: 'Adding',
-      notAddedToLibrary: 'Add to Library'
-    }
+    blockchains: [
+      {
+        icon: Ethereum,
+        name: 'Ethereum'
+      },
+      {
+        icon: Polygon,
+        name: 'Polygon'
+      },
+      {
+        icon: Mantle,
+        name: 'Mantle'
+      },
+      {
+        icon: Base,
+        name: 'Base'
+      },
+      {
+        icon: Binance,
+        name: 'Binance'
+      }
+    ],
+    editorChoice: {
+      isEditorChoice: true,
+      year: 2025
+    },
+    showRemainingCount: true,
+    remainingCount: 9,
+    actionButton: (
+      <Button
+        type="secondary"
+        size="medium"
+        leftIcon={<Plus />}
+        className={styles.addButton}
+      >
+        Add to Library
+      </Button>
+    )
   }
 }
