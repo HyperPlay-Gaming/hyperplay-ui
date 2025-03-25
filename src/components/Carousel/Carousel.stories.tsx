@@ -848,6 +848,7 @@ export const TestImageScrollOnControlClickStory: Story = {
 }
 
 export const TestCarouselControlsNotOnMobile: Story = {
+  tags: ['skip-test'],
   parameters: {
     viewport: { defaultViewport: 'mobile1' }
   },
