@@ -495,9 +495,9 @@ export const TestImageAutoscrollAfterClickStory: Story = {
 }
 
 /**
- * @dev disable arrows if num items in controller is <= numItemsToShow
+ * @dev hide arrows if num items in controller is <= numItemsToShow
  */
-export const TestControllerArrowDisabledStory: Story = {
+export const TestControllerArrowHiddenStory: Story = {
   args: {
     autoplayOptions: { delay: 1000 },
     children: imgSlides,
@@ -512,8 +512,13 @@ export const TestControllerArrowDisabledStory: Story = {
       expect(imgSlide0.offsetWidth).toBeGreaterThan(500)
     )
 
-    expect(() => canvas.getByTestId('carousel-right-button')).toThrow()
-    expect(() => canvas.getByTestId('carousel-left-button')).toThrow()
+    await expect(
+      canvas.queryByTestId('carousel-right-button')
+    ).not.toBeInTheDocument()
+
+    await expect(
+      canvas.queryByTestId('carousel-left-button')
+    ).not.toBeInTheDocument()
   }
 }
 
