@@ -4,7 +4,6 @@ import classNames from 'classnames'
 
 import fallbackCard from '@/assets/fallback_card.jpg?url'
 import * as Images from '@/assets/images'
-import { ReactComponent as LoadingIcon2 } from '@/assets/images/loadingIcon2.svg'
 
 import Button from '../Button'
 import Sticker from '../Sticker'
@@ -28,10 +27,6 @@ interface SocialLinks {
   url: string
 }
 
-interface Blockchain {
-  icon: React.ElementType
-}
-
 interface GameInfoV2i18n {
   title: string
   version: string
@@ -40,11 +35,11 @@ interface GameInfoV2i18n {
   addingText?: string
   notAddedToLibrary?: string
   playText?: string
+  blockchainLabel?: string
 }
 
 interface BlockchainIconProps {
-  Icon: React.ElementType
-  className?: string
+  icon: React.ElementType
 }
 
 export interface GameInfoV2Props {
@@ -57,16 +52,16 @@ export interface GameInfoV2Props {
     alt: string
     fallback?: React.ReactNode
   }
-  blockchains?: Blockchain[]
+  blockchains?: Array<{
+    icon: React.ElementType
+    isHoverable?: boolean
+    name?: string
+  }>
+  showRemainingCount?: boolean
+  remainingCount?: string | number
   socialLinks?: SocialLinks[]
   editorChoice?: EditorChoiceType
-  onAddToLibraryClick: () => void
-  onPlayClick?: () => void
-  isAddingToLibrary?: boolean
-  isInLibrary?: boolean
-  notAddedText?: string
-  addingText?: string
-  playText?: string
+  actionButton?: React.ReactNode
   className?: string
   i18n?: GameInfoV2i18n
 }
@@ -103,15 +98,18 @@ const GameImage: React.FC<GameImageProps> = ({
   )
 }
 
-const BlockchainIcon: React.FC<BlockchainIconProps> = ({ Icon, className }) => (
+const BlockchainIcon: React.FC<{
+  blockchain: BlockchainIconProps
+  className?: string
+}> = ({ blockchain, className }) => (
   <div className={classNames(styles.blockchainIcon, className)}>
-    {React.createElement(Icon, {
-      width: '100%',
-      height: '100%',
+    {React.createElement(blockchain.icon, {
       className: styles.blockchainSvg
     })}
   </div>
 )
+
+const MAX_VISIBLE_BLOCKCHAINS = 5
 
 const GameInfoV2: React.FC<GameInfoV2Props> = ({
   title,
@@ -120,17 +118,14 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
   playerCount,
   image,
   blockchains = [],
+  showRemainingCount = true,
+  remainingCount = 9,
+  socialLinks,
   editorChoice,
-  onAddToLibraryClick,
-  onPlayClick,
-  isAddingToLibrary,
-  isInLibrary,
-  notAddedText,
-  addingText,
-  playText,
+  actionButton,
   i18n,
   className
-}) => {
+}): JSX.Element => {
   const renderEditorChoice = () => {
     if (!editorChoice?.isEditorChoice) return null
 
@@ -142,59 +137,23 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
     )
   }
 
-  const renderLibraryButton = () => {
-    if (isAddingToLibrary) {
-      return (
-        <Button
-          type="tertiary"
-          size="medium"
-          className={styles.addingButton}
-          leftIcon={<LoadingIcon2 />}
-        >
-          {addingText || i18n?.addingText || 'Adding to library...'}
-        </Button>
-      )
-    }
-
-    if (isInLibrary && onPlayClick) {
-      return (
-        <Button
-          onClick={onPlayClick}
-          type="secondary"
-          size="medium"
-          className={styles.playButton}
-        >
-          {playText || 'Play'}
-        </Button>
-      )
-    }
-
-    return (
-      <Button
-        onClick={onAddToLibraryClick}
-        type="secondary"
-        size="medium"
-        className={styles.addButton}
-        leftIcon={<Images.Plus />}
-      >
-        {notAddedText || i18n?.notAddedToLibrary || 'Add to library'}
-      </Button>
-    )
-  }
-
   const renderBlockchains = () => {
-    if (blockchains.length === 0) return null
+    if (!blockchains || blockchains.length === 0) return null
+
+    const visibleBlockchains = blockchains.slice(0, MAX_VISIBLE_BLOCKCHAINS)
 
     return (
       <div className={styles.blockchains}>
-        <span className={styles.blockchainLabel}>BLOCKCHAIN(S):</span>
+        <span className={styles.blockchainLabel}>
+          {i18n?.blockchainLabel || 'BLOCKCHAIN(S):'}
+        </span>
         <div className={styles.blockchainIcons}>
-          {blockchains.map((blockchain, index) => (
-            <BlockchainIcon key={index} Icon={blockchain.icon} />
+          {visibleBlockchains.map((blockchain, index) => (
+            <BlockchainIcon key={index} blockchain={blockchain} />
           ))}
-          {blockchains.length > 5 && (
-            <div className={styles.moreBlockchains}>
-              +{blockchains.length - 5}
+          {showRemainingCount && (
+            <div className={styles.more}>
+              <span className={styles.moreCount}>+{remainingCount}</span>
             </div>
           )}
         </div>
@@ -207,9 +166,9 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
       <div className={styles.imageContainer}>
         {image ? (
           <GameImage
-            src={image.src}
-            alt={image.alt}
-            fallback={image.fallback}
+            src={image?.src}
+            alt={image?.alt}
+            fallback={image?.fallback}
             className={styles.image}
           />
         ) : null}
@@ -219,29 +178,29 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
         <div className={styles.content}>
           <div className={styles.header}>
             {renderEditorChoice()}
-            <h1 className={classNames(styles.title, 'title')}>{title}</h1>
+            <span className={classNames(styles.title)}>{title}</span>
           </div>
 
           <div className={styles.info}>
             <div className={styles.badges}>
-              {version && (
+              {version ? (
                 <Sticker styleType="neutral" variant="outlined">
                   Version {version}
                 </Sticker>
-              )}
-              {earlyAccess && (
+              ) : null}
+              {earlyAccess ? (
                 <Sticker styleType="neutral" variant="outlined">
                   Early Access
                 </Sticker>
-              )}
+              ) : null}
               <Sticker styleType="neutral" variant="outlined">
                 {title}
               </Sticker>
-              {playerCount && (
+              {playerCount ? (
                 <Sticker styleType="neutral" variant="outlined">
                   {playerCount}
                 </Sticker>
-              )}
+              ) : null}
             </div>
 
             {renderBlockchains()}
@@ -250,21 +209,19 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
 
         <div className={styles.actions}>
           <div className={styles.socialLinks}>
-            <Button type="secondary" size="icon">
-              <Images.WebIcon />
-            </Button>
-            <Button type="secondary" size="icon">
-              <Images.XLogo />
-            </Button>
-            <Button type="secondary" size="icon">
-              <Images.Discord />
-            </Button>
-            <Button type="secondary" size="icon">
-              <Images.Youtube />
-            </Button>
+            {socialLinks?.map((link, index) => (
+              <Button
+                key={index}
+                type="secondary"
+                size="icon"
+                onClick={() => window.open(link.url, '_blank')}
+              >
+                <link.IconButton className={styles.socialIcon} />
+              </Button>
+            ))}
           </div>
 
-          {renderLibraryButton()}
+          {actionButton}
         </div>
       </div>
     </div>
