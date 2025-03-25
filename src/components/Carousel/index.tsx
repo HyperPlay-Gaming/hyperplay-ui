@@ -20,6 +20,8 @@ import Autoplay, {
   AutoplayType
 } from 'embla-carousel-autoplay'
 
+import { ChevronLeft, ChevronRight } from '@/assets/images'
+
 import Controller from './components/Controller'
 import { SlideVideo } from './components/SlideVideo'
 import styles from './index.module.scss'
@@ -264,19 +266,38 @@ const Carousel = ({
 
   return (
     <CarouselContext.Provider value={value}>
-      <div className={cn(styles.root, classNames?.hpCarouselRoot, className)}>
+      <div
+        className={cn(styles.root, classNames?.hpCarouselRoot, className)}
+        data-testid={'carousel-root'}
+      >
         <MantineCarousel
           getEmblaApi={setEmblaApi}
           classNames={{
             root: styles.mantineCarouselRoot,
             slide: cn(styles.slide, classNames?.slide),
-            indicators: styles.indicators
+            indicators: styles.indicators,
+            controls: styles.controls,
+            control: styles.control
           }}
           loop={true}
-          withControls={false}
+          withControls={true}
           withIndicators={true}
           plugins={slideAutoplayStopped ? [] : [autoplay.current]}
           onSlideChange={(index) => setActiveSlideIndexAndResetAutoplay(index)}
+          previousControlIcon={
+            <ChevronLeft
+              data-testid={'carousel-prev-control-icon'}
+              width={'9px'}
+              height={'15px'}
+            />
+          }
+          nextControlIcon={
+            <ChevronRight
+              data-testid={'carousel-next-control-icon'}
+              width={'9px'}
+              height={'15px'}
+            />
+          }
           {...props}
         >
           {childrenToShow}

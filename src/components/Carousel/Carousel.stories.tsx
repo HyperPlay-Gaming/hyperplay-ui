@@ -762,3 +762,82 @@ export const TestAutoplayPauseOnDocHidden: Story = {
     )
   }
 }
+
+export const TestImageScrollOnControlClickStory: Story = {
+  args: {
+    autoplayOptions: { delay: 200000 },
+    children: imgSlides,
+    childrenNotInCarousel: (
+      <Carousel.Controller
+        itemsData={imagesForThumbnail}
+        numItemsToShow={4}
+        showItemLoadBar={true}
+      />
+    )
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement)
+    const imgSlide0 = canvas.getByTestId('img-slide-0')
+    await waitFor(async () =>
+      expect(imgSlide0.offsetWidth).toBeGreaterThan(500)
+    )
+
+    const nextControlButton = canvas.getByTestId('carousel-next-control-icon')
+    const prevControlButton = canvas.getByTestId('carousel-prev-control-icon')
+
+    await step('click the next button. 2nd slide is shown', async () => {
+      await userEvent.click(nextControlButton, { delay: 100 })
+      await wait(1000)
+      await expectSlidesVisibility(
+        canvas,
+        [false, true, false, false],
+        'img-slide-'
+      )
+
+      await userEvent.click(nextControlButton, { delay: 100 })
+      await wait(1000)
+      await expectSlidesVisibility(
+        canvas,
+        [false, false, true, false],
+        'img-slide-'
+      )
+    })
+
+    await step('click the prev then next button', async () => {
+      await userEvent.click(prevControlButton, { delay: 100 })
+      await wait(1000)
+      await expectSlidesVisibility(
+        canvas,
+        [false, true, false, false],
+        'img-slide-'
+      )
+
+      await userEvent.click(nextControlButton, { delay: 100 })
+      await wait(1000)
+      await expectSlidesVisibility(
+        canvas,
+        [false, false, true, false],
+        'img-slide-'
+      )
+    })
+
+    await step('click the next button until it loops', async () => {
+      await userEvent.click(nextControlButton, { delay: 100 })
+      await wait(1000)
+      await expectSlidesVisibility(
+        canvas,
+        [false, false, false, true],
+        'img-slide-'
+      )
+
+      await userEvent.click(nextControlButton, { delay: 100 })
+      await userEvent.click(nextControlButton, { delay: 100 })
+      await wait(1000)
+      await expectSlidesVisibility(
+        canvas,
+        [true, false, false, false],
+        'img-slide-'
+      )
+    })
+  }
+}
