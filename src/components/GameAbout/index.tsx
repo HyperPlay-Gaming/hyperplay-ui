@@ -3,74 +3,135 @@ import React, { useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 
 import * as Images from '@/assets/images'
+import Button from '@/components/Button'
 
+import Sticker from '../Sticker'
 import styles from './GameAbout.module.scss'
 
 export interface GameAboutProps {
+  titleSmall?: string
+  titleLarge?: string
   description: string
   gameName?: string
+  sticker?: {
+    label: string
+    withIcon?: React.ReactNode
+  }[]
+  buttonLink?: {
+    expanded?: boolean
+    onClick?: () => void
+  }
   classnames?: {
     container?: string
-    title?: string
-    description?: string
+    titleSmall?: string
+    titleLarge?: string
     gameTitle?: string
+    description?: string
+    buttonLink?: string
+  }
+  i18n?: {
+    showMore: string
+    showLess: string
   }
 }
 
-const GameAbout = ({ description, gameName, classnames }: GameAboutProps) => {
+const GameAbout = ({
+  titleSmall,
+  titleLarge,
+  description,
+  gameName,
+  sticker,
+  classnames,
+  buttonLink,
+  i18n
+}: GameAboutProps) => {
   const aboutText = useRef<HTMLParagraphElement | null>(null)
   const [isClamped, setIsClamped] = useState(false)
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(buttonLink?.expanded || false)
 
   useEffect(() => {
     if (aboutText && aboutText.current) {
-      const { clientHeight, scrollHeight } = aboutText.current
-      console.log({ clientHeight, scrollHeight })
-      setIsClamped(scrollHeight > clientHeight)
+      const element = aboutText.current
+      const hasOverflow = element.scrollHeight > element.clientHeight
+      setIsClamped(hasOverflow || expanded)
     }
-  }, [])
+  }, [description, expanded])
+
+  const handleShowMore = () => {
+    setExpanded(!expanded)
+    if (buttonLink?.onClick) {
+      buttonLink.onClick()
+    }
+  }
 
   return (
-    <div className={classnames?.container}>
-      {gameName && (
-        <div
-          className={classNames(
-            'header',
-            styles.gameTitle,
-            classnames?.gameTitle
-          )}
-        >
+    <div className={classNames(styles.container, classnames?.container)}>
+      {titleSmall ? (
+        <div className={classNames('title-sm', classnames?.titleSmall)}>
+          {titleSmall}
+        </div>
+      ) : null}
+      {titleLarge ? (
+        <div className={classNames('title', classnames?.titleLarge)}>
+          {titleLarge}
+        </div>
+      ) : null}
+
+      {gameName ? (
+        <div className={classNames('title', classnames?.gameTitle)}>
           {gameName}
         </div>
-      )}
-      <div className={classNames('caption', classnames?.title)}>About</div>
+      ) : null}
+      {sticker ? (
+        sticker.length > 0 ? (
+          <div className={classNames(styles.stickers)}>
+            {sticker.map((item, index) => (
+              <Sticker
+                key={index}
+                styleType={
+                  item.label === 'Access Gated' ? 'warning' : 'tertiary'
+                }
+                withIcon={item.withIcon}
+                variant="outlined"
+              >
+                {item.label}
+              </Sticker>
+            ))}
+          </div>
+        ) : null
+      ) : null}
+
       <p
         ref={aboutText}
         className={classNames(
           'body-sm',
           styles.description,
-          !expanded && styles.clampedText,
+          expanded ? styles.expandedText : styles.clampedText,
           classnames?.description
         )}
+        data-testid={'game-about-description'}
       >
         {description}
       </p>
-      {isClamped && (
-        <button
-          className={classNames('body-sm', styles.readMore)}
-          onClick={() => setExpanded(!expanded)}
+      {isClamped ? (
+        <Button
+          className={classNames('button-sm', styles.showMore)}
+          onClick={handleShowMore}
+          type="link"
+          data-testid={'show-more-button'}
         >
           {expanded ? (
             <>
-              Read less <Images.DownArrow className={styles.iconOpen} />
+              {i18n?.showLess || 'Show less'}{' '}
+              <Images.DownArrow className={styles.iconOpen} />
             </>
           ) : (
             <>
-              Read more <Images.DownArrow />
+              {i18n?.showMore || 'Show more'} <Images.DownArrow />
             </>
           )}
-        </button>
-      )}
+        </Button>
+      ) : null}
     </div>
   )
 }
