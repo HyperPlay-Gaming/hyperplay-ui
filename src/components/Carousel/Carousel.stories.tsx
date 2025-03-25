@@ -869,12 +869,8 @@ export const TestCarouselControlsNotOnMobile: Story = {
       expect(imgSlide0.offsetWidth).toBeGreaterThan(300)
     )
 
-    await expect(
-      canvas.queryByTestId('carousel-prev-control-icon')
-    ).not.toBeInTheDocument()
+    await expect(canvas.queryByTestId('carousel-prev-control-icon')).toBeNull()
 
-    await expect(
-      canvas.queryByTestId('carousel-next-control-icon')
-    ).not.toBeInTheDocument()
+    await expect(canvas.queryByTestId('carousel-next-control-icon')).toBeNull()
   }
 }
