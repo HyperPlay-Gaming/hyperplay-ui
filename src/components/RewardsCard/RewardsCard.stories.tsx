@@ -21,3 +21,27 @@ const props: RewardsCardProps = {
 export const Default: Story = {
   args: { ...props }
 }
+
+export const NFTReward: Story = {
+  args: {
+    ...props,
+    reward: '+1 NFT',
+    claimsLeft: 'Unlimited'
+  }
+}
+
+export const NTxAirdrop300: Story = {
+  args: {
+    ...props,
+    reward: 'NTx Airdrop',
+    claimsLeft: '300'
+  }
+}
+
+export const NTxAirdrop600: Story = {
+  args: {
+    ...props,
+    reward: 'NTx Airdrop',
+    claimsLeft: '600'
+  }
+}
