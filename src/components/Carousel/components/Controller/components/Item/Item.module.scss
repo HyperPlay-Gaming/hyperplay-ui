@@ -138,6 +138,8 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   justify-content: center;
   svg {
     stroke: var(--color-neutral-100);
+    width: 24px;
+    height: 24px;
   }
 }
 
