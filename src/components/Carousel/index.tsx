@@ -287,18 +287,22 @@ const Carousel = ({
           plugins={slideAutoplayStopped ? [] : [autoplay.current]}
           onSlideChange={(index) => setActiveSlideIndexAndResetAutoplay(index)}
           previousControlIcon={
-            <ChevronLeft
-              data-testid={'carousel-prev-control-icon'}
-              width={'9px'}
-              height={'15px'}
-            />
+            <button type="button">
+              <ChevronLeft
+                data-testid={'carousel-prev-control-icon'}
+                width={'9px'}
+                height={'15px'}
+              />
+            </button>
           }
           nextControlIcon={
-            <ChevronRight
-              data-testid={'carousel-next-control-icon'}
-              width={'9px'}
-              height={'15px'}
-            />
+            <button type="button">
+              <ChevronRight
+                data-testid={'carousel-next-control-icon'}
+                width={'9px'}
+                height={'15px'}
+              />
+            </button>
           }
           {...props}
         >
