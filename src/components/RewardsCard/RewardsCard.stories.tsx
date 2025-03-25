@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
 
+import PremiumTicket from '@/assets/stories/premiumTicket.png'
+import xocietyNTx from '@/assets/stories/xocietyNTx.png'
 import YGGReward from '@/assets/stories/ygg.png'
 
 import RewardsCard, { RewardsCardProps } from './index'
@@ -39,6 +41,7 @@ export const Default: Story = {
 export const NFTReward: Story = {
   args: {
     ...props,
+    rewardImage: xocietyNTx,
     reward: '+1 NFT'
   },
   play: async ({ canvasElement }) => {
@@ -55,6 +58,7 @@ export const NFTReward: Story = {
 export const NTxAirdrop300: Story = {
   args: {
     ...props,
+    rewardImage: xocietyNTx,
     reward: 'NTx Airdrop',
     claimsLeft: '300'
   },
@@ -72,6 +76,7 @@ export const NTxAirdrop300: Story = {
 export const NTxAirdrop600: Story = {
   args: {
     ...props,
+    rewardImage: xocietyNTx,
     reward: 'NTx Airdrop',
     claimsLeft: '600'
   },
@@ -89,6 +94,7 @@ export const NTxAirdrop600: Story = {
 export const CustomLabels: Story = {
   args: {
     ...props,
+    rewardImage: PremiumTicket,
     reward: 'Special Reward',
     claimsLeft: '42',
     i18n: {
@@ -108,6 +114,7 @@ export const CustomLabels: Story = {
 export const WithoutClaimsLeft: Story = {
   args: {
     ...props,
+    rewardImage: PremiumTicket,
     reward: 'Premium Ticket'
   },
   play: async ({ canvasElement }) => {
