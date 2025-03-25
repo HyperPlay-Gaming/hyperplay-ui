@@ -280,7 +280,7 @@ const Carousel = ({
             control: styles.control
           }}
           loop={true}
-          withControls={true}
+          withControls={!isMobile}
           withIndicators={true}
           plugins={slideAutoplayStopped ? [] : [autoplay.current]}
           onSlideChange={(index) => setActiveSlideIndexAndResetAutoplay(index)}

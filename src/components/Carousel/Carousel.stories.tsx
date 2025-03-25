@@ -841,3 +841,35 @@ export const TestImageScrollOnControlClickStory: Story = {
     })
   }
 }
+
+export const TestCarouselControlsNotOnMobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'mobile1' }
+  },
+  args: {
+    autoplayOptions: { delay: 200000 },
+    children: imgSlides,
+    childrenNotInCarousel: (
+      <Carousel.Controller
+        itemsData={imagesForThumbnail}
+        numItemsToShow={4}
+        showItemLoadBar={true}
+      />
+    )
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const imgSlide0 = canvas.getByTestId('img-slide-0')
+    await waitFor(async () =>
+      expect(imgSlide0.offsetWidth).toBeGreaterThan(300)
+    )
+
+    await expect(
+      canvas.queryByTestId('carousel-prev-control-icon')
+    ).not.toBeInTheDocument()
+
+    await expect(
+      canvas.queryByTestId('carousel-next-control-icon')
+    ).not.toBeInTheDocument()
+  }
+}
