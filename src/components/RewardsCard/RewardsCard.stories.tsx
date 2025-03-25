@@ -8,7 +8,7 @@ import YGGReward from '@/assets/stories/ygg.png'
 import RewardsCard, { RewardsCardProps } from './index'
 
 const meta: Meta<typeof RewardsCard> = {
-  title: 'RewardsCard',
+  title: 'Quests/RewardsCard',
   component: RewardsCard
 }
 
