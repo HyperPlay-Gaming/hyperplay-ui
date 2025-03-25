@@ -279,7 +279,8 @@ const Carousel = ({
             slide: cn(styles.slide, classNames?.slide),
             indicators: styles.indicators,
             controls: styles.controls,
-            control: styles.control
+            control: styles.control,
+            viewport: styles.viewport
           }}
           loop={true}
           withControls={!isMobile && withControls}

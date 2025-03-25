@@ -64,7 +64,8 @@
   flex-direction: column;
   align-items: center;
 
-  &:hover .control {
+  &:has(.viewport:hover) .control,
+  &:has(.control:hover) .control {
     transform: translateX(0);
     visibility: visible;
     opacity: 100%;
