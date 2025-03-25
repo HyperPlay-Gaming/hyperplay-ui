@@ -1,0 +1,24 @@
+.cardBase {
+  width: 271px;
+  height: 379px;
+}
+
+.rewardsCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.content {
+  text-align: center;
+}
+
+.stickers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
