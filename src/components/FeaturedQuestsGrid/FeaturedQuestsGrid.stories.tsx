@@ -5,7 +5,6 @@ import { Meta, StoryObj } from '@storybook/react'
 import { FeaturedQuestsGrid } from './FeaturedQuestsGrid'
 import { GridContainer } from './GridContainer'
 import { Sortable, Props as SortableProps } from './Sortable'
-import './root.scss'
 
 const meta: Meta<typeof FeaturedQuestsGrid> = {
   title: 'FeaturedQuestsGrid',
