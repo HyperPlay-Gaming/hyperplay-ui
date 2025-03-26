@@ -1,0 +1,39 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  border-radius: var(--space-md-fixed);
+  border: 2px solid var(--color-neutral-600);
+  background-color: var(--color-neutral-800);
+  padding: var(--space-2lg);
+  width: 100%;
+  max-width: 1182px; // max width from design (1126px) + 48px (padding) + 8px (border)
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textContainer {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: var(--space-md);
+}
+
+.cardPlaceholder {
+  width: 175px;
+  height: 268px;
+  color: var(--color-neutral-600);
+  text-align: end;
+  padding: var(--space-md);
+  border-radius: var(--space-xs-fixed);
+  border: 2px dashed var(--color-neutral-600);
+}

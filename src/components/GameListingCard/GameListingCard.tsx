@@ -5,6 +5,7 @@ import { IconPlus, IconTrash } from '@tabler/icons-react'
 import styles from './GameListingCard.module.scss'
 
 export type GameListingCardProps = {
+  className?: string
   title: string
   image: ReactNode
   action: 'add' | 'remove' | 'none'
@@ -12,6 +13,7 @@ export type GameListingCardProps = {
 }
 
 export function GameListingCard({
+  className,
   image,
   title,
   action,
@@ -24,7 +26,7 @@ export function GameListingCard({
   }
   const actionIcon = actionIcons[action]
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${className}`}>
       <div className={styles.imageWrapper}>{image}</div>
       <div className={styles.bottom}>
         <div className={styles.title}>{title}</div>
