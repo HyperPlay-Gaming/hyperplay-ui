@@ -4,10 +4,23 @@ import type { DraggableSyntheticListeners } from '@dnd-kit/core'
 import type { Transform } from '@dnd-kit/utilities'
 import classNames from 'classnames'
 
-import droid from '@/assets/Droid.png'
-import { GameListingCard } from '@/components/GameListingCard'
-
 import styles from './Item.module.scss'
+
+export type RenderItemProps = {
+  dragOverlay: boolean
+  dragging: boolean
+  sorting: boolean
+  index: number | undefined
+  fadeIn: boolean
+  listeners: DraggableSyntheticListeners
+  ref: React.Ref<HTMLElement>
+  style: React.CSSProperties | undefined
+  transform: Transform | null
+  transition: string | null
+  value: React.ReactNode
+}
+
+export type RenderItemFunction = (args: RenderItemProps) => React.ReactElement
 
 export type ItemProps = {
   dragOverlay?: boolean
@@ -27,19 +40,7 @@ export type ItemProps = {
   wrapperStyle?: React.CSSProperties
   value: React.ReactNode
   onRemove?(): void
-  renderItem?(args: {
-    dragOverlay: boolean
-    dragging: boolean
-    sorting: boolean
-    index: number | undefined
-    fadeIn: boolean
-    listeners: DraggableSyntheticListeners
-    ref: React.Ref<HTMLElement>
-    style: React.CSSProperties | undefined
-    transform: ItemProps['transform']
-    transition: ItemProps['transition']
-    value: ItemProps['value']
-  }): React.ReactElement
+  renderItem?: RenderItemFunction
 }
 
 export const Item = React.memo(
@@ -90,8 +91,8 @@ export const Item = React.memo(
           listeners,
           ref,
           style,
-          transform,
-          transition,
+          transform: transform ?? null,
+          transition: transition ?? null,
           value
         })
       ) : (
@@ -141,18 +142,7 @@ export const Item = React.memo(
             {...props}
             tabIndex={!handle ? 0 : undefined}
           >
-            <GameListingCard
-              title={'Exquisite Quest'}
-              image={
-                <img
-                  src={droid}
-                  alt="Game"
-                  style={{ width: '100%', height: '100%' }}
-                />
-              }
-              action={'none'}
-              onAction={() => {}}
-            />
+            {value}
           </div>
         </li>
       )

@@ -3,6 +3,7 @@ import { rectSortingStrategy } from '@dnd-kit/sortable'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { GridContainer } from './GridContainer'
+import { SortableGameListingCard } from './SortableGameListingCard'
 import {
   SortableGameListingGrid,
   SortableGameListingGridProps
@@ -102,9 +103,23 @@ const mockGames = [
 
 const props: Partial<SortableGameListingGridProps> = {
   adjustScale: true,
-  Container: (props: any) => <GridContainer {...props} columns={6} />,
+  Container: (props) => <GridContainer {...props} columns={6} />,
   strategy: rectSortingStrategy,
-  itemCount: 6
+  items: mockGames.map((game) => game.id),
+  renderItem: ({ index, ref, ...dndProps }) => {
+    const { title, image, action, onAction } = mockGames[index ?? 0]
+    return (
+      <SortableGameListingCard
+        {...dndProps}
+        index={index}
+        ref={ref as React.Ref<HTMLLIElement>}
+        title={title}
+        image={image}
+        action={action}
+        onAction={onAction}
+      />
+    )
+  }
 }
 
 export const Default: Story = {

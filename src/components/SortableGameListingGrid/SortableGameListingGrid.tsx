@@ -32,18 +32,9 @@ import {
   useSortable
 } from '@dnd-kit/sortable'
 
-import { Item } from './Item'
-import { List } from './List'
+import { Item, RenderItemFunction } from './Item'
+import { List, ListProps } from './List'
 import { Wrapper } from './Wrapper'
-
-const defaultInitializer = (index: number) => index
-
-function createRange<T = number>(
-  length: number,
-  initializer: (index: number) => any = defaultInitializer
-): T[] {
-  return [...new Array(length)].map((_, index) => initializer(index))
-}
 
 export type SortableGameListingGridProps = {
   activationConstraint?: PointerActivationConstraint
@@ -51,7 +42,9 @@ export type SortableGameListingGridProps = {
   adjustScale?: boolean
   collisionDetection?: CollisionDetection
   coordinateGetter?: KeyboardCoordinateGetter
-  Container?: any // To-do: Fix me
+  Container?: (
+    props: ListProps & React.RefAttributes<HTMLUListElement>
+  ) => React.ReactNode
   dropAnimation?: DropAnimation | null
   getNewIndex?: NewIndexGetter
   handle?: boolean
@@ -59,7 +52,7 @@ export type SortableGameListingGridProps = {
   items?: UniqueIdentifier[]
   measuring?: MeasuringConfiguration
   modifiers?: Modifiers
-  renderItem?: any
+  renderItem?: RenderItemFunction
   removable?: boolean
   reorderItems?: typeof arrayMove
   strategy?: SortingStrategy
@@ -103,8 +96,7 @@ export function SortableGameListingGrid({
   getItemStyles = () => ({}),
   getNewIndex,
   handle = false,
-  itemCount = 16,
-  items: initialItems,
+  items: initialItems = [],
   isDisabled = () => false,
   measuring,
   modifiers,
@@ -116,10 +108,7 @@ export function SortableGameListingGrid({
   useDragOverlay = true,
   wrapperStyle = () => ({})
 }: SortableGameListingGridProps) {
-  const [items, setItems] = useState<UniqueIdentifier[]>(
-    () =>
-      initialItems ?? createRange<UniqueIdentifier>(itemCount, (index) => index)
-  )
+  const [items, setItems] = useState<UniqueIdentifier[]>(initialItems)
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
   const sensors = useSensors(
     useSensor(MouseSensor, {

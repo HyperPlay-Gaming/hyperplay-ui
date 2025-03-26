@@ -1,49 +1,15 @@
 import React, { useEffect } from 'react'
 
-import type { DraggableSyntheticListeners } from '@dnd-kit/core'
-import type { Transform } from '@dnd-kit/utilities'
 import classNames from 'classnames'
 
-import droid from '@/assets/Droid.png'
+import { GameListingCard, GameListingCardProps } from '../GameListingCard'
+import { ItemProps } from './Item'
+import styles from './Item/Item.module.scss'
 
-import { GameListingCard } from '../GameListingCard'
-import styles from './Item.module.scss'
+type SortableGameListingCardProps = ItemProps & GameListingCardProps
 
-export interface Props {
-  dragOverlay?: boolean
-  color?: string
-  disabled?: boolean
-  dragging?: boolean
-  handle?: boolean
-  handleProps?: unknown
-  height?: number
-  index?: number
-  fadeIn?: boolean
-  transform?: Transform | null
-  listeners?: DraggableSyntheticListeners
-  sorting?: boolean
-  style?: React.CSSProperties
-  transition?: string | null
-  wrapperStyle?: React.CSSProperties
-  value: React.ReactNode
-  onRemove?(): void
-  renderItem?(args: {
-    dragOverlay: boolean
-    dragging: boolean
-    sorting: boolean
-    index: number | undefined
-    fadeIn: boolean
-    listeners: DraggableSyntheticListeners
-    ref: React.Ref<HTMLElement>
-    style: React.CSSProperties | undefined
-    transform: Props['transform']
-    transition: Props['transition']
-    value: Props['value']
-  }): React.ReactElement
-}
-
-export const Item = React.memo(
-  React.forwardRef<HTMLLIElement, Props>(
+export const SortableGameListingCard = React.memo(
+  React.forwardRef<HTMLLIElement, SortableGameListingCardProps>(
     (
       {
         color,
@@ -64,6 +30,10 @@ export const Item = React.memo(
         transform,
         value,
         wrapperStyle,
+        title,
+        image,
+        action,
+        onAction,
         ...props
       },
       ref
@@ -90,8 +60,8 @@ export const Item = React.memo(
           listeners,
           ref,
           style,
-          transform,
-          transition,
+          transform: transform ?? null,
+          transition: transition ?? null,
           value
         })
       ) : (
@@ -142,16 +112,10 @@ export const Item = React.memo(
             tabIndex={!handle ? 0 : undefined}
           >
             <GameListingCard
-              title={'Exquisite Quest'}
-              image={
-                <img
-                  src={droid}
-                  alt="Game"
-                  style={{ width: '100%', height: '100%' }}
-                />
-              }
-              action={'none'}
-              onAction={() => {}}
+              title={title}
+              image={image}
+              action={action}
+              onAction={onAction}
             />
           </div>
         </li>
