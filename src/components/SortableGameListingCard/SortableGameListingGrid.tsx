@@ -45,7 +45,7 @@ function createRange<T = number>(
   return [...new Array(length)].map((_, index) => initializer(index))
 }
 
-export interface Props {
+export type SortableGameListingGridProps = {
   activationConstraint?: PointerActivationConstraint
   animateLayoutChanges?: AnimateLayoutChanges
   adjustScale?: boolean
@@ -92,7 +92,7 @@ const dropAnimationConfig: DropAnimation = {
   })
 }
 
-export function Sortable({
+export function SortableGameListingGrid({
   activationConstraint,
   animateLayoutChanges,
   adjustScale = false,
@@ -115,7 +115,7 @@ export function Sortable({
   style,
   useDragOverlay = true,
   wrapperStyle = () => ({})
-}: Props) {
+}: SortableGameListingGridProps) {
   const [items, setItems] = useState<UniqueIdentifier[]>(
     () =>
       initialItems ?? createRange<UniqueIdentifier>(itemCount, (index) => index)
@@ -235,7 +235,7 @@ interface SortableItemProps {
   onRemove?(id: UniqueIdentifier): void
   style(values: any): React.CSSProperties
   renderItem?(args: any): React.ReactElement
-  wrapperStyle: Props['wrapperStyle']
+  wrapperStyle: SortableGameListingGridProps['wrapperStyle']
 }
 
 export function SortableItem({

@@ -19,12 +19,9 @@ export const Default: Story = {}
 
 const props: Partial<SortableProps> = {
   adjustScale: true,
-  Container: (props: any) => <GridContainer {...props} columns={5} />,
+  Container: (props: any) => <GridContainer {...props} columns={6} />,
   strategy: rectSortingStrategy,
-  wrapperStyle: () => ({
-    width: 140,
-    height: 140
-  })
+  itemCount: 6
 }
 
 export const BasicSetup = () => <Sortable {...props} />

@@ -5,11 +5,11 @@ import type { Transform } from '@dnd-kit/utilities'
 import classNames from 'classnames'
 
 import droid from '@/assets/Droid.png'
+import { GameListingCard } from '@/components/GameListingCard'
 
-import { GameListingCard } from '../GameListingCard'
 import styles from './Item.module.scss'
 
-export interface Props {
+export type ItemProps = {
   dragOverlay?: boolean
   color?: string
   disabled?: boolean
@@ -36,14 +36,14 @@ export interface Props {
     listeners: DraggableSyntheticListeners
     ref: React.Ref<HTMLElement>
     style: React.CSSProperties | undefined
-    transform: Props['transform']
-    transition: Props['transition']
-    value: Props['value']
+    transform: ItemProps['transform']
+    transition: ItemProps['transition']
+    value: ItemProps['value']
   }): React.ReactElement
 }
 
 export const Item = React.memo(
-  React.forwardRef<HTMLLIElement, Props>(
+  React.forwardRef<HTMLLIElement, ItemProps>(
     (
       {
         color,
