@@ -6,8 +6,8 @@ import { useMediaQuery } from '@mantine/hooks'
 import cn from 'classnames'
 
 import { useCarousel } from '../..'
+import BaseButton from '../../../ArrowCircularButton'
 import styles from './Controller.module.scss'
-import BaseButton from './components/BaseButton'
 import Item from './components/Item'
 import { scrollHorizontalIntoViewWithOffset } from './helpers'
 

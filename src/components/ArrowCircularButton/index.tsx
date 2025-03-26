@@ -6,7 +6,7 @@ import cn from 'classnames'
 
 import { ChevronLeft } from '@/assets/images'
 
-import styles from './BaseButton.module.scss'
+import styles from './index.module.scss'
 
 export interface BaseButtonProps
   extends React.DetailedHTMLProps<
