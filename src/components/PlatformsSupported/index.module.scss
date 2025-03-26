@@ -1,0 +1,10 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: var(--space-xl-fixed);
+
+  svg {
+    fill: var(--color-neutral-100);
+  }
+}
