@@ -23,12 +23,10 @@ export const SortableGameListingCard = React.memo(
         index,
         listeners,
         // onRemove,
-        renderItem,
         sorting,
         style,
         transition,
         transform,
-        value,
         wrapperStyle,
         title,
         image,
@@ -50,21 +48,7 @@ export const SortableGameListingCard = React.memo(
         }
       }, [dragOverlay])
 
-      return renderItem ? (
-        renderItem({
-          dragOverlay: Boolean(dragOverlay),
-          dragging: Boolean(dragging),
-          sorting: Boolean(sorting),
-          index,
-          fadeIn: Boolean(fadeIn),
-          listeners,
-          ref,
-          style,
-          transform: transform ?? null,
-          transition: transition ?? null,
-          value
-        })
-      ) : (
+      return (
         <li
           className={classNames(
             styles.Wrapper,

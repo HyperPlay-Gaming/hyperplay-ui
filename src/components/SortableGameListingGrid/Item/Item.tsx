@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 
-import type { DraggableSyntheticListeners } from '@dnd-kit/core'
+import type {
+  DraggableSyntheticListeners,
+  UniqueIdentifier
+} from '@dnd-kit/core'
 import type { Transform } from '@dnd-kit/utilities'
 import classNames from 'classnames'
 
@@ -17,7 +20,7 @@ export type RenderItemProps = {
   style: React.CSSProperties | undefined
   transform: Transform | null
   transition: string | null
-  value: React.ReactNode
+  value: UniqueIdentifier
 }
 
 export type RenderItemFunction = (args: RenderItemProps) => React.ReactElement
@@ -38,7 +41,7 @@ export type ItemProps = {
   style?: React.CSSProperties
   transition?: string | null
   wrapperStyle?: React.CSSProperties
-  value: React.ReactNode
+  value: UniqueIdentifier
   onRemove?(): void
   renderItem?: RenderItemFunction
 }

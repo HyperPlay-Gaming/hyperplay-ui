@@ -1,5 +1,4 @@
-// import { useState } from 'react'
-import { rectSortingStrategy } from '@dnd-kit/sortable'
+import { arrayMove } from '@dnd-kit/sortable'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { GridContainer } from './GridContainer'
@@ -104,13 +103,18 @@ const mockGames = [
 const props: Partial<SortableGameListingGridProps> = {
   adjustScale: true,
   Container: (props) => <GridContainer {...props} columns={6} />,
-  strategy: rectSortingStrategy,
   items: mockGames.map((game) => game.id),
-  renderItem: ({ index, ref, ...dndProps }) => {
-    const { title, image, action, onAction } = mockGames[index ?? 0]
+  reorderItems: arrayMove,
+  renderItem: ({ index, ref, value: id, ...dndProps }) => {
+    const activeGame = mockGames.find((game) => game.id === id)
+    if (!activeGame) {
+      return <></>
+    }
+    const { title, image, action, onAction } = activeGame
     return (
       <SortableGameListingCard
         {...dndProps}
+        value={id}
         index={index}
         ref={ref as React.Ref<HTMLLIElement>}
         title={title}
