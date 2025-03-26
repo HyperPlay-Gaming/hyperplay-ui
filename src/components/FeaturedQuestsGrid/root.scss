@@ -1,0 +1,9 @@
+:root {
+  --scale: 1;
+  --scale-x: 1;
+
+  --box-shadow: 0 0 0 calc(1px / var(--scale-x, 1)) rgba(63, 63, 68, 0.05),
+    0 1px calc(3px / var(--scale-x, 1)) 0 rgba(34, 33, 81, 0.15);
+
+  --box-shadow-picked-up: 0 0 0 calc(1px / var(--scale-x, 1));
+}
