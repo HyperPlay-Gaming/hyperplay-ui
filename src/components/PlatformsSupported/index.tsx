@@ -5,6 +5,8 @@ import { SupportedPlatform } from '@valist/sdk'
 import { ContainerIcons } from '../ContainerIcons'
 import { ContainerRaised } from '../ContainerRaised'
 import { PlatformIcon } from './components/PlatformIcon'
+import { getPlatformsBuiltFor } from './helpers/getBuiltFor'
+import { getPlatformsPlayableOn } from './helpers/getPlayableOn'
 import styles from './index.module.scss'
 
 export interface PlatformsSupportedProps
@@ -34,23 +36,40 @@ export function PlatformsSupported({
   const builtForIcons: React.ReactNode[] = []
   const playableOnIcons: React.ReactNode[] = []
   if (platformsWithBuilds.length) {
-    for (const platformWithBuild of platformsWithBuilds) {
-      builtForIcons.push(<PlatformIcon platform={platformWithBuild} />)
-    }
+    getPlatformsBuiltFor(platformsWithBuilds).forEach((platform) =>
+      builtForIcons.push(<PlatformIcon platform={platform} />)
+    )
+    getPlatformsPlayableOn(platformsWithBuilds).forEach((platform) =>
+      playableOnIcons.push(<PlatformIcon platform={platform} />)
+    )
   }
 
-  return (
-    <div className={styles.root} {...props}>
+  let builtFor = null
+  if (builtForIcons.length) {
+    builtFor = (
       <ContainerRaised>
         <div className="title-sm">{i18n.builtFor}</div>
         <ContainerIcons>{builtForIcons}</ContainerIcons>
         <div className="eyebrow">{i18n.optimizedFor}</div>
       </ContainerRaised>
+    )
+  }
+
+  let playableOn = null
+  if (playableOnIcons.length) {
+    playableOn = (
       <ContainerRaised useGradientBorder={true}>
         <div className="title-sm">{i18n.playableOn}</div>
         <ContainerIcons>{playableOnIcons}</ContainerIcons>
         <div className="eyebrow">{i18n.noExtraSetupNeeded}</div>
       </ContainerRaised>
+    )
+  }
+
+  return (
+    <div className={styles.root} {...props}>
+      {builtFor}
+      {playableOn}
     </div>
   )
 }

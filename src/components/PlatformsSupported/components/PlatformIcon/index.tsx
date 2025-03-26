@@ -1,27 +1,29 @@
-import { SupportedPlatform } from '@valist/sdk'
+import {
+  LinuxIcon,
+  MacOSIcon,
+  SteamDeckIcon,
+  WebIcon,
+  WindowsIcon
+} from '@/assets/images'
 
-import { LinuxIcon, MacOSIcon, WebIcon, WindowsIcon } from '@/assets/images'
+import { Platform } from '../../types'
 
 export interface PlatformIconProps extends React.SVGAttributes<SVGElement> {
-  platform: SupportedPlatform
+  platform: Platform
 }
 
 export function PlatformIcon({ platform, ...props }: PlatformIconProps) {
   switch (platform) {
     case 'web':
       return <WebIcon {...props} />
-    case 'darwin_amd64':
-    case 'darwin_arm64':
+    case 'darwin':
       return <MacOSIcon {...props} />
-    case 'linux_amd64':
-    case 'linux_arm64':
+    case 'linux':
       return <LinuxIcon {...props} />
-    case 'windows_amd64':
-    case 'windows_arm64':
+    case 'windows':
       return <WindowsIcon {...props} />
-    case 'android_arm64':
-    case 'webgl':
-      return null
+    case 'steamdeck':
+      return <SteamDeckIcon {...props} />
     default:
       return null
   }

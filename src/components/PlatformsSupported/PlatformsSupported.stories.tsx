@@ -15,6 +15,31 @@ const props: PlatformsSupportedProps = {
   platformsWithBuilds: ['windows_amd64']
 }
 
-export const Default: Story = {
+export const OnlyWindows: Story = {
   args: { ...props }
+}
+
+export const OnlyMac: Story = {
+  args: { ...props, platformsWithBuilds: ['darwin_amd64'] }
+}
+
+export const OnlyLinux: Story = {
+  args: { ...props, platformsWithBuilds: ['linux_amd64'] }
+}
+
+export const AllPlatforms: Story = {
+  args: {
+    ...props,
+    platformsWithBuilds: [
+      'darwin_amd64',
+      'darwin_arm64',
+      'windows_amd64',
+      'windows_arm64',
+      'linux_arm64',
+      'linux_amd64',
+      'web',
+      'webgl',
+      'android_arm64'
+    ]
+  }
 }
