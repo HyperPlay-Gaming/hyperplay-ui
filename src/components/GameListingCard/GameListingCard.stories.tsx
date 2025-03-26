@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import droid from '@/assets/Droid.png'
 
-import { GameListingCard } from '.'
+import { GameListingCard } from './GameListingCard'
 
 const meta: Meta<typeof GameListingCard> = {
   title: 'GameListingCard',
