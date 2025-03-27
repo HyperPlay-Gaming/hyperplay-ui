@@ -1,0 +1,35 @@
+.metaSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+
+  .title {
+    font-size: var(--text-md);
+    font-weight: bold;
+  }
+}
+
+.stickersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.popover {
+  background-color: var(--color-neutral-700) !important;
+  border-radius: var(--space-sm);
+  padding: var(--space-sm);
+  border: none !important;
+}
+
+.hiddenItemsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.dropdown {
+  background-color: var(--color-neutral-800) !important;
+  border: none !important;
+  border-radius: var(--space-sm);
+}
