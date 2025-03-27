@@ -46,7 +46,7 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
     .loader {
       display: block;
     }
-    @include for-mobile-only {
+    @media screen and (max-width: #{$tabletLandscapeBreakpoint}) {
       &.active {
         border-color: var(--color-stroke-selected);
       }
@@ -67,7 +67,7 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
     cursor: inherit;
   }
 
-  @include for-mobile-only {
+  @media screen and (max-width: #{$tabletLandscapeBreakpoint}) {
     width: calc($mid-item-width * $mobile-zoom);
     height: calc($mid-item-height * $mobile-zoom);
   }
@@ -116,7 +116,7 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
     opacity: 0%;
     @include fullscreen-tint();
   }
-  @include for-mobile-only {
+  @media screen and (max-width: #{$tabletLandscapeBreakpoint}) {
     &:not(.empty):not(.loading):hover::after {
       background-color: transparent;
       opacity: 0%;
@@ -125,7 +125,7 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
 
   &.active {
     transform: scale(1.125, 1.125);
-    @include for-mobile-only {
+    @media screen and (max-width: #{$tabletLandscapeBreakpoint}) {
       transform: none;
     }
   }

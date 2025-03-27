@@ -45,7 +45,7 @@ const Controller = ({
   const [itemsPageIndex, setItemsPageIndex] = useState(0)
   const [numItemsToShow, setNumItemsToShow] = useState(numItemsToShowInit)
   const isMobile = useMediaQuery(
-    `(max-width: ${tabletLandscapeBreakpointPx})`,
+    `(max-width: ${tabletLandscapeBreakpointPx}px)`,
     false,
     {
       getInitialValueInEffect: true
