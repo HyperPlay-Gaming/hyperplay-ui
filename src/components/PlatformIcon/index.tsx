@@ -6,7 +6,7 @@ import {
   WindowsIcon
 } from '@/assets/images'
 
-import { Platform } from '../../types'
+import { Platform } from './types'
 
 export interface PlatformIconProps extends React.SVGAttributes<SVGElement> {
   platform: Platform

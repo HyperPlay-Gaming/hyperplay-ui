@@ -1,6 +1,6 @@
 import { SupportedPlatform } from '@valist/sdk'
 
-import { Platform } from '../types'
+import { Platform } from '../../PlatformIcon/types'
 
 export function getPlatformsPlayableOn(
   platforms: SupportedPlatform[]

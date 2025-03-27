@@ -8,7 +8,7 @@ import { Info } from '@/assets/images'
 
 import { ContainerIcons } from '../ContainerIcons'
 import { ContainerRaised } from '../ContainerRaised'
-import { PlatformIcon } from './components/PlatformIcon'
+import { PlatformIcon } from '../PlatformIcon'
 import { getPlatformsBuiltFor } from './helpers/getBuiltFor'
 import { getPlatformsPlayableOn } from './helpers/getPlayableOn'
 import styles from './index.module.scss'
