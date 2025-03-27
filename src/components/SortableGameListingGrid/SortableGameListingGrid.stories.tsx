@@ -71,37 +71,12 @@ const mockGames = [
     ),
     action: 'none' as const,
     onAction: () => console.log('Remove game 4')
-  },
-  {
-    id: '5',
-    title: 'The Witcher 3',
-    image: (
-      <img
-        src="https://picsum.photos/300/204"
-        alt="The Witcher 3"
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-      />
-    ),
-    action: 'none' as const,
-    onAction: () => console.log('Remove game 5')
-  },
-  {
-    id: '6',
-    title: 'Black Myth: Wukong',
-    image: (
-      <img
-        src="https://picsum.photos/300/205"
-        alt="Black Myth: Wukong"
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-      />
-    ),
-    action: 'none' as const,
-    onAction: () => console.log('Remove game 6')
   }
 ]
 
 const props: Partial<SortableGameListingGridProps> = {
   adjustScale: true,
+  placeholdersCount: 6,
   removable: true,
   Container: (props) => <GridContainer {...props} columns={6} />,
   items: mockGames.map((game) => game.id),

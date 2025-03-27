@@ -11,7 +11,7 @@ export type GameListingCardProps = {
   image: ReactNode
   action: 'add' | 'remove' | 'none'
   onAction: () => void
-  listeners: DraggableSyntheticListeners
+  listeners?: DraggableSyntheticListeners
 }
 
 export function GameListingCard({

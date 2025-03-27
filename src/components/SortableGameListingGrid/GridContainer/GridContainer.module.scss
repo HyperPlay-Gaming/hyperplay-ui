@@ -3,10 +3,6 @@
   display: grid;
   grid-template-columns: repeat(var(--col-count), 1fr);
   grid-gap: var(--space-md);
-  padding: var(--space-2lg);
-  border-radius: var(--space-md-fixed);
-  border: 2px solid var(--color-neutral-600);
-  background-color: var(--color-neutral-800);
 
   @media (max-width: 850px) {
     grid-template-columns: repeat(calc(var(--col-count) - 1), 1fr);

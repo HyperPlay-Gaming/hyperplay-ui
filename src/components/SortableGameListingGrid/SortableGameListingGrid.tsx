@@ -34,6 +34,7 @@ import {
 
 import { Item, type RenderItemFunction } from './Item'
 import { List, ListProps } from './List'
+import styles from './SortableGameListingGrid.module.scss'
 import { Wrapper } from './Wrapper'
 
 export type SortableGameListingGridProps = {
@@ -49,6 +50,7 @@ export type SortableGameListingGridProps = {
   getNewIndex?: NewIndexGetter
   handle?: boolean
   itemCount?: number
+  placeholdersCount?: number
   items?: UniqueIdentifier[]
   measuring?: MeasuringConfiguration
   modifiers?: Modifiers
@@ -106,7 +108,8 @@ export function SortableGameListingGrid({
   strategy = rectSortingStrategy,
   style,
   useDragOverlay = true,
-  wrapperStyle = () => ({})
+  wrapperStyle = () => ({}),
+  placeholdersCount = 0
 }: SortableGameListingGridProps) {
   const [items, setItems] = useState<UniqueIdentifier[]>(initialItems)
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
@@ -130,6 +133,8 @@ export function SortableGameListingGrid({
     ? (id: UniqueIdentifier) =>
         setItems((items) => items.filter((item) => item !== id))
     : undefined
+
+  const placeholderSpotsCount = Math.max(placeholdersCount - items.length, 0)
 
   return (
     <DndContext
@@ -173,6 +178,11 @@ export function SortableGameListingGrid({
                 useDragOverlay={useDragOverlay}
                 getNewIndex={getNewIndex}
               />
+            ))}
+            {Array.from({ length: placeholderSpotsCount }).map((_, index) => (
+              <div key={index} className={styles.cardPlaceholder}>
+                <h4>#{index + items.length + 1}</h4>
+              </div>
             ))}
           </Container>
         </SortableContext>
