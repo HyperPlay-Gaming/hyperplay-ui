@@ -28,7 +28,11 @@ function RewardsCard({
   return (
     <CardGeneric
       image={rewardImage}
-      genericClassNames={{ body: styles.rewardsCard }}
+      isReward
+      genericClassNames={{
+        body: styles.rewardsCard,
+        image: styles.rewardImage
+      }}
       className={styles.cardBase}
     >
       <div className={styles.content}>

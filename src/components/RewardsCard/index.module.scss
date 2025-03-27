@@ -1,6 +1,11 @@
 .cardBase {
   width: 271px;
   height: 379px;
+  min-width: 271px;
+  min-height: 379px;
+  justify-content: space-between;
+  background-color: var(--color-neutral-600);
+  border-radius: var(--space-xs);
 }
 
 .rewardsCard {
@@ -10,10 +15,18 @@
   padding: 16px;
   width: 100%;
   justify-content: flex-end;
+  max-height: 108px;
 }
 
 .content {
   text-align: center;
+}
+
+.rewardImage {
+  position: relative;
+  place-content: center;
+  align-self: center;
+  aspect-ratio: 3 / 4;
 }
 
 .stickers {
@@ -21,4 +34,5 @@
   flex-direction: column;
   gap: 8px;
   justify-content: center;
+  background-color: var(--color-neutral-700);
 }

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
 
+import YGGTransp from '@/assets/stories/YggIconTransparent.png'
 import PremiumTicket from '@/assets/stories/premiumTicket.png'
 import xocietyNTx from '@/assets/stories/xocietyNTx.png'
 import YGGReward from '@/assets/stories/ygg.png'
@@ -23,6 +24,26 @@ const props: RewardsCardProps = {
 
 export const Default: Story = {
   args: { ...props },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Check that the reward text is displayed correctly
+    expect(canvas.getByText('1000 YGG points')).toBeInTheDocument()
+
+    // Check that the card renders without errors
+    const stickers = canvas.getAllByRole('generic', { hidden: true })
+    expect(stickers.length).toBeGreaterThan(0)
+
+    // Check that the claims text uses the default unlimited value
+    expect(canvas.getByText('Claims left: Unlimited')).toBeInTheDocument()
+  }
+}
+
+export const WithTransparentImage: Story = {
+  args: {
+    ...props,
+    rewardImage: YGGTransp
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
