@@ -1,6 +1,8 @@
-import { MINIMAL_VIEWPORTS, ViewportStyles } from '@storybook/addon-viewport'
+import { ViewportStyles } from '@storybook/addon-viewport'
 import type { TestRunnerConfig } from '@storybook/test-runner'
 import { getStoryContext } from '@storybook/test-runner'
+
+import { ALL_VIEWPORTS } from './viewports'
 
 const DEFAULT_VIEWPORT_SIZE = { width: 1280, height: 720 }
 
@@ -9,7 +11,7 @@ const config: TestRunnerConfig = {
     // Accesses the story's parameters and retrieves the viewport used to render it
     const context = await getStoryContext(page, story)
     const viewportName = context.parameters?.viewport?.defaultViewport
-    const viewportParameter = MINIMAL_VIEWPORTS[viewportName]
+    const viewportParameter = ALL_VIEWPORTS[viewportName]
 
     if (viewportParameter) {
       const viewportStyles = viewportParameter.styles
