@@ -1,3 +1,5 @@
+@use '../../styles/utilities/variables' as *;
+
 .root {
   display: flex;
   flex-direction: row;
@@ -6,6 +8,17 @@
 
   svg {
     fill: var(--color-neutral-100);
+  }
+
+  @include for-mobile-only {
+    flex-direction: column;
+    gap: var(--space-md-fixed);
+  }
+  @include for-tablet-portrait-up {
+    gap: var(--space-md-fixed);
+  }
+  @include for-tablet-landscape-up {
+    gap: var(--space-xl-fixed);
   }
 }
 .noSetupContainer {
