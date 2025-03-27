@@ -32,10 +32,9 @@ import {
   useSortable
 } from '@dnd-kit/sortable'
 
-import { Item, type RenderItemFunction } from './Item'
-import { List, ListProps } from './List'
+import { GridContainer, GridContainerProps } from './GridContainer'
+import { SortableGameListingCard } from './SortableGameListingCard'
 import styles from './SortableGameListingGrid.module.scss'
-import { Wrapper } from './Wrapper'
 
 export type SortableGameListingGridProps = {
   activationConstraint?: PointerActivationConstraint
@@ -44,7 +43,7 @@ export type SortableGameListingGridProps = {
   collisionDetection?: CollisionDetection
   coordinateGetter?: KeyboardCoordinateGetter
   Container?: React.ComponentType<
-    ListProps & React.RefAttributes<HTMLUListElement>
+    GridContainerProps & React.RefAttributes<HTMLUListElement>
   >
   dropAnimation?: DropAnimation | null
   getNewIndex?: NewIndexGetter
@@ -57,7 +56,10 @@ export type SortableGameListingGridProps = {
   setActiveId: (activeId: UniqueIdentifier | null) => void
   measuring?: MeasuringConfiguration
   modifiers?: Modifiers
-  renderItem?: RenderItemFunction
+  getItemProps: (id: UniqueIdentifier) => {
+    title: string
+    image: string
+  }
   removable?: boolean
   reorderItems?: typeof arrayMove
   strategy?: SortingStrategy
@@ -94,7 +96,7 @@ export function SortableGameListingGrid({
   activationConstraint,
   animateLayoutChanges,
   adjustScale = false,
-  Container = List,
+  Container = GridContainer,
   collisionDetection = closestCenter,
   coordinateGetter = sortableKeyboardCoordinates,
   dropAnimation = dropAnimationConfig,
@@ -107,15 +109,14 @@ export function SortableGameListingGrid({
   measuring,
   modifiers,
   removable,
-  renderItem,
   reorderItems = arrayMove,
   strategy = rectSortingStrategy,
-  style,
   useDragOverlay = true,
   wrapperStyle = () => ({}),
   placeholdersCount = 0,
   activeId,
-  setActiveId
+  setActiveId,
+  getItemProps
 }: SortableGameListingGridProps) {
   const sensors = useSensors(
     useSensor(MouseSensor, {
@@ -169,33 +170,31 @@ export function SortableGameListingGrid({
       measuring={measuring}
       modifiers={modifiers}
     >
-      <Wrapper style={style} center>
-        <SortableContext items={items} strategy={strategy}>
-          <Container>
-            {items.map((value, index) => (
-              <SortableItem
-                key={value}
-                id={value}
-                handle={handle}
-                index={index}
-                style={getItemStyles}
-                wrapperStyle={wrapperStyle}
-                disabled={isDisabled(value)}
-                renderItem={renderItem}
-                onRemove={handleRemove}
-                animateLayoutChanges={animateLayoutChanges}
-                useDragOverlay={useDragOverlay}
-                getNewIndex={getNewIndex}
-              />
-            ))}
-            {Array.from({ length: placeholderSpotsCount }).map((_, index) => (
-              <div key={index} className={styles.cardPlaceholder}>
-                <h4>#{index + items.length + 1}</h4>
-              </div>
-            ))}
-          </Container>
-        </SortableContext>
-      </Wrapper>
+      <SortableContext items={items} strategy={strategy}>
+        <Container columns={placeholdersCount}>
+          {items.map((value, index) => (
+            <SortableItem
+              getItemProps={getItemProps}
+              key={value}
+              id={value}
+              handle={handle}
+              index={index}
+              style={getItemStyles}
+              wrapperStyle={wrapperStyle}
+              disabled={isDisabled(value)}
+              onRemove={handleRemove}
+              animateLayoutChanges={animateLayoutChanges}
+              useDragOverlay={useDragOverlay}
+              getNewIndex={getNewIndex}
+            />
+          ))}
+          {Array.from({ length: placeholderSpotsCount }).map((_, index) => (
+            <div key={index} className={styles.cardPlaceholder}>
+              <h4>#{index + items.length + 1}</h4>
+            </div>
+          ))}
+        </Container>
+      </SortableContext>
       {useDragOverlay
         ? createPortal(
             <DragOverlay
@@ -203,10 +202,10 @@ export function SortableGameListingGrid({
               dropAnimation={dropAnimation}
             >
               {activeId !== null ? (
-                <Item
+                <SortableGameListingCard
+                  getItemProps={getItemProps}
                   value={items[activeIndex]}
                   handle={handle}
-                  renderItem={renderItem}
                   wrapperStyle={wrapperStyle({
                     active: { id: activeId },
                     index: activeIndex,
@@ -242,7 +241,7 @@ interface SortableItemProps {
   useDragOverlay?: boolean
   onRemove?(id: UniqueIdentifier): void
   style(values: any): React.CSSProperties
-  renderItem?(args: any): React.ReactElement
+  getItemProps: SortableGameListingGridProps['getItemProps']
   wrapperStyle: SortableGameListingGridProps['wrapperStyle']
 }
 
@@ -255,9 +254,9 @@ export function SortableItem({
   index,
   onRemove,
   style,
-  renderItem,
   useDragOverlay,
-  wrapperStyle
+  wrapperStyle,
+  getItemProps
 }: SortableItemProps) {
   const {
     active,
@@ -278,7 +277,8 @@ export function SortableItem({
   })
 
   return (
-    <Item
+    <SortableGameListingCard
+      getItemProps={getItemProps}
       ref={setNodeRef}
       value={id}
       disabled={disabled}
@@ -292,7 +292,6 @@ export function SortableItem({
             }
           : undefined
       }
-      renderItem={renderItem}
       index={index}
       style={style({
         index,

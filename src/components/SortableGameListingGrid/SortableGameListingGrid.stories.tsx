@@ -5,7 +5,6 @@ import { arrayMove } from '@dnd-kit/sortable'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { GridContainer } from './GridContainer'
-import { SortableGameListingCard } from './SortableGameListingCard'
 import {
   SortableGameListingGrid,
   SortableGameListingGridProps
@@ -72,24 +71,12 @@ export const Default: Story = {
           }}
           activeId={activeId}
           setActiveId={setActiveId}
-          renderItem={({ index, ref, value: id, ...dndProps }) => {
+          getItemProps={(id) => {
             const activeGame = games.find((game) => game.id === id)
             if (!activeGame) {
-              return <></>
+              return { title: '', image: '' }
             }
-            const { title, image } = activeGame
-            return (
-              <SortableGameListingCard
-                {...dndProps}
-                value={id}
-                index={index}
-                ref={ref as React.Ref<HTMLLIElement>}
-                title={title}
-                image={image}
-                action={dndProps.dragOverlay ? 'none' : 'remove'}
-                onAction={console.log}
-              />
-            )
+            return activeGame
           }}
         />
         <button

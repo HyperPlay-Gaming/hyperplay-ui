@@ -4,7 +4,6 @@ import { Listing } from '@valist/sdk/dist/typesApi'
 import Button from '../Button'
 import { SortableGameListingGrid } from '../SortableGameListingGrid'
 import { GridContainer } from '../SortableGameListingGrid/GridContainer'
-import { SortableGameListingCard } from '../SortableGameListingGrid/SortableGameListingCard'
 import styles from './FeaturedQuestsGrid.module.scss'
 
 interface FeaturedQuestsGridProps {
@@ -46,24 +45,15 @@ export function FeaturedQuestsGrid({
         setItems={setItems}
         activeId={activeId}
         setActiveId={setActiveId}
-        renderItem={({ index, ref, value: id, ...dndProps }) => {
+        getItemProps={(id) => {
           const activeGame = options.find((game) => game.project_id === id)
           if (!activeGame) {
-            return <></>
+            return { title: '', image: '' }
           }
-          const { project_meta } = activeGame
-          return (
-            <SortableGameListingCard
-              {...dndProps}
-              value={id}
-              index={index}
-              ref={ref as React.Ref<HTMLLIElement>}
-              title={project_meta.name ?? ''}
-              image={project_meta.image ?? ''}
-              action={dndProps.dragOverlay ? 'none' : 'remove'}
-              onAction={console.log}
-            />
-          )
+          return {
+            title: activeGame.project_meta.name ?? '',
+            image: activeGame.project_meta.image ?? ''
+          }
         }}
       />
     </div>

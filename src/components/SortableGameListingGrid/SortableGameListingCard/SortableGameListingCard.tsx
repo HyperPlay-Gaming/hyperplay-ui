@@ -1,12 +1,60 @@
 import React, { useEffect } from 'react'
 
+import type {
+  DraggableSyntheticListeners,
+  UniqueIdentifier
+} from '@dnd-kit/core'
+import type { Transform } from '@dnd-kit/utilities'
 import classNames from 'classnames'
 
-import { GameListingCard, GameListingCardProps } from '../GameListingCard'
-import { ItemProps } from './Item'
-import styles from './Item/Item.module.scss'
+import { GameListingCard } from '@/components/GameListingCard'
 
-type SortableGameListingCardProps = ItemProps & GameListingCardProps
+import styles from './SortableGameListingCard.module.scss'
+
+export type RenderItemProps = {
+  onRemove: ItemProps['onRemove']
+  dragOverlay: boolean
+  dragging: boolean
+  sorting: boolean
+  index: number | undefined
+  fadeIn: boolean
+  listeners: DraggableSyntheticListeners
+  ref: React.Ref<HTMLElement>
+  style: React.CSSProperties | undefined
+  transform: ItemProps['transform']
+  transition: ItemProps['transition']
+  value: ItemProps['value']
+}
+
+export type RenderItemFunction = (args: RenderItemProps) => React.ReactElement
+export interface ItemProps {
+  dragOverlay?: boolean
+  color?: string
+  disabled?: boolean
+  dragging?: boolean
+  handle?: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  handleProps?: any
+  height?: number
+  index?: number
+  fadeIn?: boolean
+  transform?: Transform | null
+  listeners?: DraggableSyntheticListeners
+  sorting?: boolean
+  style?: React.CSSProperties
+  transition?: string | null
+  wrapperStyle?: React.CSSProperties
+  value: UniqueIdentifier
+  onRemove?(): void
+  renderItem: RenderItemFunction
+}
+
+type SortableGameListingCardProps = Omit<ItemProps, 'renderItem'> & {
+  getItemProps: (id: UniqueIdentifier) => {
+    title: string
+    image: string
+  }
+}
 
 export const SortableGameListingCard = React.memo(
   React.forwardRef<HTMLLIElement, SortableGameListingCardProps>(
@@ -25,10 +73,8 @@ export const SortableGameListingCard = React.memo(
         transition,
         transform,
         wrapperStyle,
-        title,
-        image,
-        action,
-        onAction,
+        getItemProps,
+        value,
         ...props
       },
       ref
@@ -46,6 +92,8 @@ export const SortableGameListingCard = React.memo(
       }, [dragOverlay])
 
       const isDragging = dragging || dragOverlay
+
+      const { title, image } = getItemProps(value)
 
       return (
         <li
@@ -96,14 +144,10 @@ export const SortableGameListingCard = React.memo(
               listeners={listeners}
               title={title}
               image={image}
-              action={isDragging ? 'none' : action}
+              action={isDragging ? 'none' : 'remove'}
               onAction={() => {
                 if (isDragging) return
-                if (action === 'remove') {
-                  onRemove?.()
-                } else {
-                  onAction?.()
-                }
+                onRemove?.()
               }}
             />
           </div>

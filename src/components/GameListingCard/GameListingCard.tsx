@@ -8,7 +8,7 @@ export type GameListingCardProps = {
   title: string
   image: string
   action: 'add' | 'remove' | 'none'
-  onAction: () => void
+  onAction?: () => void
   listeners?: DraggableSyntheticListeners
 }
 
