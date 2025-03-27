@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react'
+import React from 'react'
 import { createPortal } from 'react-dom'
 
 import {
@@ -51,7 +51,10 @@ export type SortableGameListingGridProps = {
   handle?: boolean
   itemCount?: number
   placeholdersCount?: number
-  items?: UniqueIdentifier[]
+  items: UniqueIdentifier[]
+  setItems: (items: UniqueIdentifier[]) => void
+  activeId: UniqueIdentifier | null
+  setActiveId: (activeId: UniqueIdentifier | null) => void
   measuring?: MeasuringConfiguration
   modifiers?: Modifiers
   renderItem?: RenderItemFunction
@@ -98,7 +101,8 @@ export function SortableGameListingGrid({
   getItemStyles = () => ({}),
   getNewIndex,
   handle = false,
-  items: initialItems = [],
+  items,
+  setItems,
   isDisabled = () => false,
   measuring,
   modifiers,
@@ -109,10 +113,10 @@ export function SortableGameListingGrid({
   style,
   useDragOverlay = true,
   wrapperStyle = () => ({}),
-  placeholdersCount = 0
+  placeholdersCount = 0,
+  activeId,
+  setActiveId
 }: SortableGameListingGridProps) {
-  const [items, setItems] = useState<UniqueIdentifier[]>(initialItems)
-  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
   const sensors = useSensors(
     useSensor(MouseSensor, {
       activationConstraint
@@ -126,12 +130,16 @@ export function SortableGameListingGrid({
       coordinateGetter
     })
   )
+
   const getIndex = (id: UniqueIdentifier) => items.indexOf(id)
 
   const activeIndex = activeId !== null ? getIndex(activeId) : -1
+
   const handleRemove = removable
-    ? (id: UniqueIdentifier) =>
-        setItems((items) => items.filter((item) => item !== id))
+    ? (id: UniqueIdentifier) => {
+        const newItems = items.filter((item) => item !== id)
+        setItems(newItems)
+      }
     : undefined
 
   const placeholderSpotsCount = Math.max(placeholdersCount - items.length, 0)
@@ -152,7 +160,8 @@ export function SortableGameListingGrid({
         if (over) {
           const overIndex = getIndex(over.id)
           if (activeIndex !== overIndex) {
-            setItems((items) => reorderItems(items, activeIndex, overIndex))
+            const newItems = reorderItems(items, activeIndex, overIndex)
+            setItems(newItems)
           }
         }
       }}
