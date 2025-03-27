@@ -228,6 +228,8 @@ export {
   type MarkdownDescriptionProps
 } from './components/MarkdownDescription'
 
+export { default as RewardsCard } from './components/RewardsCard'
+
 export * from './components/StreakProgress'
 export * from './components/QuestDetails/components/Rewards'
 export * from './components/QuestDetails/components/Rewards/RewardsRow'
