@@ -45,6 +45,8 @@ export const SortableGameListingCard = React.memo(
         }
       }, [dragOverlay])
 
+      const isDragging = dragging || dragOverlay
+
       return (
         <li
           className={classNames(
@@ -94,8 +96,9 @@ export const SortableGameListingCard = React.memo(
               listeners={listeners}
               title={title}
               image={image}
-              action={action}
+              action={isDragging ? 'none' : action}
               onAction={() => {
+                if (isDragging) return
                 if (action === 'remove') {
                   onRemove?.()
                 } else {
