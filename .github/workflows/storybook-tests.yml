@@ -29,6 +29,7 @@ jobs:
         run: pnpm build-storybook --quiet
       - name: Serve Storybook and run tests
         run: |
-          npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-            "npx http-server storybook-static --port 6006 --silent" \
-            "npx wait-on tcp:6006 && pnpm test-storybook"
+          pnpm add -g concurrently wait-on http-server
+          pnpm concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+            "pnpm http-server storybook-static --port 6006 --silent" \
+            "pnpm wait-on tcp:6006 && pnpm test-storybook"
