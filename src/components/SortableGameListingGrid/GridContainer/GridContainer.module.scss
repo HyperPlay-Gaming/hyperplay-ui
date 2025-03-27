@@ -3,6 +3,9 @@
   display: grid;
   grid-template-columns: repeat(var(--col-count), 1fr);
   grid-gap: var(--space-md);
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
 
   @media (max-width: 850px) {
     grid-template-columns: repeat(calc(var(--col-count) - 1), 1fr);

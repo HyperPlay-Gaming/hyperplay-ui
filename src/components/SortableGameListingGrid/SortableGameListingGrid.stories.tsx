@@ -26,46 +26,22 @@ const mockGames = [
   {
     id: '1',
     title: 'The Legend of Zelda: Breath of the Wild',
-    image: (
-      <img
-        src="https://picsum.photos/300/200"
-        alt="The Legend of Zelda: Breath of the Wild"
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-      />
-    )
+    image: 'https://picsum.photos/300/200'
   },
   {
     id: '2',
     title: 'Red Dead Redemption 2',
-    image: (
-      <img
-        src="https://picsum.photos/300/201"
-        alt="Red Dead Redemption 2"
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-      />
-    )
+    image: 'https://picsum.photos/300/202'
   },
   {
     id: '3',
     title: 'God of War',
-    image: (
-      <img
-        src="https://picsum.photos/300/202"
-        alt="God of War"
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-      />
-    )
+    image: 'https://picsum.photos/300/203'
   },
   {
     id: '4',
     title: 'Elden Ring',
-    image: (
-      <img
-        src="https://picsum.photos/300/203"
-        alt="Elden Ring"
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-      />
-    )
+    image: 'https://picsum.photos/300/204'
   }
 ]
 
@@ -83,7 +59,6 @@ export const Default: Story = {
     const [games, setGames] = useState(mockGames)
     const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
     const items = games.map((game) => game.id)
-    console.log(items)
     return (
       <div>
         <SortableGameListingGrid
@@ -124,19 +99,9 @@ export const Default: Story = {
               {
                 id: `${games.length + 1}`,
                 title: `New Game ${games.length + 1}`,
-                image: (
-                  <img
-                    src={`https://picsum.photos/300/204?random=${
-                      games.length + 1
-                    }`}
-                    alt="New Game"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover'
-                    }}
-                  />
-                )
+                image: `https://picsum.photos/300/204?random=${
+                  games.length + 1
+                }`
               }
             ])
           }}

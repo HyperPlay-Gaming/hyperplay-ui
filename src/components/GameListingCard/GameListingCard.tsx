@@ -1,5 +1,3 @@
-import { ReactNode } from 'react'
-
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
 
@@ -8,7 +6,7 @@ import styles from './GameListingCard.module.scss'
 export type GameListingCardProps = {
   className?: string
   title: string
-  image: ReactNode
+  image: string
   action: 'add' | 'remove' | 'none'
   onAction: () => void
   listeners?: DraggableSyntheticListeners
@@ -31,7 +29,13 @@ export function GameListingCard({
   return (
     <div>
       <div className={`${styles.card} ${className}`} {...listeners}>
-        <div className={styles.imageWrapper}>{image}</div>
+        <div className={styles.imageWrapper}>
+          <img
+            src={image}
+            alt="Game"
+            style={{ width: '100%', height: '100%' }}
+          />
+        </div>
         <div className={styles.bottom}>
           <div className={styles.title}>{title}</div>
         </div>
