@@ -1,6 +1,10 @@
 import { HTMLAttributes } from 'react'
 
+import { Tooltip } from '@mantine/core'
 import { SupportedPlatform } from '@valist/sdk'
+import classNames from 'classnames'
+
+import { Info } from '@/assets/images'
 
 import { ContainerIcons } from '../ContainerIcons'
 import { ContainerRaised } from '../ContainerRaised'
@@ -61,7 +65,20 @@ export function PlatformsSupported({
       <ContainerRaised useGradientBorder={true}>
         <div className="title-sm">{i18n.playableOn}</div>
         <ContainerIcons>{playableOnIcons}</ContainerIcons>
-        <div className="eyebrow">{i18n.noExtraSetupNeeded}</div>
+        <div className={styles.noSetupContainer}>
+          <div className="eyebrow">{i18n.noExtraSetupNeeded}</div>
+          <Tooltip
+            label={i18n.compatibilityInfoMessage}
+            arrowSize={14}
+            withArrow
+            position="bottom"
+            classNames={{ tooltip: classNames('caption', styles.tooltip) }}
+          >
+            <div className={styles.infoIconContainer}>
+              <Info />
+            </div>
+          </Tooltip>
+        </div>
       </ContainerRaised>
     )
   }
