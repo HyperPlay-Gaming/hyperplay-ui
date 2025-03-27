@@ -22,7 +22,7 @@ export const SortableGameListingCard = React.memo(
         // height,
         index,
         listeners,
-        // onRemove,
+        onRemove,
         sorting,
         style,
         transition,
@@ -99,7 +99,15 @@ export const SortableGameListingCard = React.memo(
               title={title}
               image={image}
               action={action}
-              onAction={onAction}
+              onAction={() => {
+                console.log('onAction', action)
+                if (action === 'remove') {
+                  console.log('remove')
+                  onRemove?.()
+                } else {
+                  onAction?.()
+                }
+              }}
             />
           </div>
         </li>

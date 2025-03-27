@@ -1,7 +1,14 @@
-import { arrayMove } from '@dnd-kit/sortable'
+import { MeasuringStrategy } from '@dnd-kit/core'
+import {
+  AnimateLayoutChanges,
+  arrayMove,
+  defaultAnimateLayoutChanges,
+  rectSortingStrategy
+} from '@dnd-kit/sortable'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { GridContainer } from './GridContainer'
+import { Sortable, Props as SortableProps } from './Sortable'
 import { SortableGameListingCard } from './SortableGameListingCard'
 import {
   SortableGameListingGrid,
@@ -110,7 +117,7 @@ const props: Partial<SortableGameListingGridProps> = {
     if (!activeGame) {
       return <></>
     }
-    const { title, image, action, onAction } = activeGame
+    const { title, image, onAction } = activeGame
     return (
       <SortableGameListingCard
         {...dndProps}
@@ -119,7 +126,7 @@ const props: Partial<SortableGameListingGridProps> = {
         ref={ref as React.Ref<HTMLLIElement>}
         title={title}
         image={image}
-        action={action}
+        action={'remove'}
         onAction={onAction}
       />
     )
@@ -128,4 +135,32 @@ const props: Partial<SortableGameListingGridProps> = {
 
 export const Default: Story = {
   render: () => <SortableGameListingGrid {...props} />
+}
+
+const sortableProps: Partial<SortableProps> = {
+  adjustScale: true,
+  removable: true,
+  Container: (props: any) => <GridContainer {...props} columns={5} />,
+  strategy: rectSortingStrategy,
+  wrapperStyle: () => ({
+    width: 140,
+    height: 140,
+    background: 'white',
+    color: 'black'
+  })
+}
+
+export const RemovableItems = () => {
+  const animateLayoutChanges: AnimateLayoutChanges = (args) =>
+    defaultAnimateLayoutChanges({ ...args, wasDragging: true })
+
+  return (
+    <Sortable
+      {...sortableProps}
+      animateLayoutChanges={animateLayoutChanges}
+      measuring={{ droppable: { strategy: MeasuringStrategy.Always } }}
+      removable
+      handle
+    />
+  )
 }

@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 
 import { IconPlus, IconTrash } from '@tabler/icons-react'
 
+import { Action } from '../SortableGameListingGrid/Action'
 import styles from './GameListingCard.module.scss'
 
 export type GameListingCardProps = {
@@ -10,6 +11,7 @@ export type GameListingCardProps = {
   image: ReactNode
   action: 'add' | 'remove' | 'none'
   onAction: () => void
+  actionButtonProps?: React.HTMLAttributes<HTMLButtonElement>
 }
 
 export function GameListingCard({
@@ -17,7 +19,8 @@ export function GameListingCard({
   image,
   title,
   action,
-  onAction
+  onAction,
+  actionButtonProps
 }: GameListingCardProps) {
   const actionIcons = {
     add: <IconPlus className={styles.icon} />,
@@ -31,9 +34,13 @@ export function GameListingCard({
       <div className={styles.bottom}>
         <div className={styles.title}>{title}</div>
         {actionIcon ? (
-          <button className={styles.action} onClick={onAction} type="button">
+          <Action
+            className={styles.action}
+            onClick={onAction}
+            {...actionButtonProps}
+          >
             {actionIcon}
-          </button>
+          </Action>
         ) : (
           <div className={styles.action} />
         )}
