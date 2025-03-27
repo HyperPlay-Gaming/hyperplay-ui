@@ -5,6 +5,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useMediaQuery } from '@mantine/hooks'
 import cn from 'classnames'
 
+import { tabletLandscapeBreakpointPx } from '@/styles/utilities/variables'
+
 import { useCarousel } from '../..'
 import BaseButton from '../../../ArrowCircularButton'
 import styles from './Controller.module.scss'
@@ -42,9 +44,13 @@ const Controller = ({
   const { activeIndex, setActiveIndex, isLoading } = useCarousel()
   const [itemsPageIndex, setItemsPageIndex] = useState(0)
   const [numItemsToShow, setNumItemsToShow] = useState(numItemsToShowInit)
-  const isMobile = useMediaQuery('(max-width: 599px)', false, {
-    getInitialValueInEffect: true
-  })
+  const isMobile = useMediaQuery(
+    `(max-width: ${tabletLandscapeBreakpointPx})`,
+    false,
+    {
+      getInitialValueInEffect: true
+    }
+  )
   useEffect(() => {
     if (isMobile) {
       setNumItemsToShow(itemsData.length)

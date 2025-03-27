@@ -7,7 +7,7 @@
   max-width: 100vw;
   height: auto;
 
-  @include for-mobile-only {
+  @media screen and (max-width: #{$tabletLandscapeBreakpoint}) {
     margin-top: 0px;
     padding: var(--space-2lg-fixed) var(--space-md-fixed);
     overflow-x: auto;

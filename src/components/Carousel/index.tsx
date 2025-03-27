@@ -21,6 +21,7 @@ import Autoplay, {
 } from 'embla-carousel-autoplay'
 
 import { ChevronLeft, ChevronRight } from '@/assets/images'
+import { tabletLandscapeBreakpointPx } from '@/styles/utilities/variables'
 
 import Controller from './components/Controller'
 import { SlideVideo } from './components/SlideVideo'
@@ -131,9 +132,13 @@ const Carousel = ({
     Autoplay({ stopOnInteraction: false, ...autoplayOptions })
   )
 
-  const isMobile = useMediaQuery('(max-width: 599px)', false, {
-    getInitialValueInEffect: true
-  })
+  const isMobile = useMediaQuery(
+    `(max-width: ${tabletLandscapeBreakpointPx}px)`,
+    false,
+    {
+      getInitialValueInEffect: true
+    }
+  )
 
   const slideAutoplayStopped = isMobile || isLoading
 
