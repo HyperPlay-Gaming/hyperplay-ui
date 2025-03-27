@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { rectSortingStrategy } from '@dnd-kit/sortable'
+import { MeasuringStrategy } from '@dnd-kit/core'
+import {
+  AnimateLayoutChanges,
+  defaultAnimateLayoutChanges,
+  rectSortingStrategy
+} from '@dnd-kit/sortable'
 import { Meta, StoryObj } from '@storybook/react'
 
 import { FeaturedQuestsGrid } from './FeaturedQuestsGrid'
@@ -19,6 +24,7 @@ export const Default: Story = {}
 
 const props: Partial<SortableProps> = {
   adjustScale: true,
+  removable: true,
   Container: (props: any) => <GridContainer {...props} columns={5} />,
   strategy: rectSortingStrategy,
   wrapperStyle: () => ({
@@ -28,3 +34,18 @@ const props: Partial<SortableProps> = {
 }
 
 export const BasicSetup = () => <Sortable {...props} />
+
+export const RemovableItems = () => {
+  const animateLayoutChanges: AnimateLayoutChanges = (args) =>
+    defaultAnimateLayoutChanges({ ...args, wasDragging: true })
+
+  return (
+    <Sortable
+      {...props}
+      animateLayoutChanges={animateLayoutChanges}
+      measuring={{ droppable: { strategy: MeasuringStrategy.Always } }}
+      removable
+      handle
+    />
+  )
+}
