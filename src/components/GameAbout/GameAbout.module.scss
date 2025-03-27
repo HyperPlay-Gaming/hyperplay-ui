@@ -42,20 +42,19 @@
   color: var(--color-neutral-400);
   margin: 0;
   max-width: 100%;
+  white-space: pre-line;
 }
 
 .showMore {
-  display: flex;
+  display: block;
+  margin: 0px auto 0px 0px;
   margin: var(--space-xs) 0;
   padding: 0;
-  justify-content: flex-start;
-  align-items: center;
   background: transparent;
   border: none;
   color: var(--color-primary-400);
   cursor: pointer;
   transition: background-color 0.2s ease;
-  width: 100%;
 
   &:hover {
     color: var(--color-primary-300);
