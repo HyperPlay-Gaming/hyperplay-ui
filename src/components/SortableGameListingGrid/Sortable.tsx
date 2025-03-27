@@ -51,7 +51,7 @@ export interface Props {
   adjustScale?: boolean
   collisionDetection?: CollisionDetection
   coordinateGetter?: KeyboardCoordinateGetter
-  Container?: any // To-do: Fix me
+  Container?: typeof List
   dropAnimation?: DropAnimation | null
   getNewIndex?: NewIndexGetter
   handle?: boolean

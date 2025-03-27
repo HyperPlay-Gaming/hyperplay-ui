@@ -17,9 +17,6 @@ export const SortableGameListingCard = React.memo(
         dragging,
         disabled,
         fadeIn,
-        handle,
-        // handleProps,
-        // height,
         index,
         listeners,
         onRemove,
@@ -84,25 +81,22 @@ export const SortableGameListingCard = React.memo(
             className={classNames(
               styles.Item,
               dragging && styles.dragging,
-              handle && styles.withHandle,
               dragOverlay && styles.dragOverlay,
               disabled && styles.disabled,
               color && styles.color
             )}
             style={style}
             data-cypress="draggable-item"
-            {...(!handle ? listeners : undefined)}
             {...props}
-            tabIndex={!handle ? 0 : undefined}
+            tabIndex={0}
           >
             <GameListingCard
+              listeners={listeners}
               title={title}
               image={image}
               action={action}
               onAction={() => {
-                console.log('onAction', action)
                 if (action === 'remove') {
-                  console.log('remove')
                   onRemove?.()
                 } else {
                   onAction?.()

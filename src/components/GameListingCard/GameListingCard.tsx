@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 
+import { DraggableSyntheticListeners } from '@dnd-kit/core'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
 
-import { Action } from '../SortableGameListingGrid/Action'
 import styles from './GameListingCard.module.scss'
 
 export type GameListingCardProps = {
@@ -11,7 +11,7 @@ export type GameListingCardProps = {
   image: ReactNode
   action: 'add' | 'remove' | 'none'
   onAction: () => void
-  actionButtonProps?: React.HTMLAttributes<HTMLButtonElement>
+  listeners: DraggableSyntheticListeners
 }
 
 export function GameListingCard({
@@ -20,7 +20,7 @@ export function GameListingCard({
   title,
   action,
   onAction,
-  actionButtonProps
+  listeners
 }: GameListingCardProps) {
   const actionIcons = {
     add: <IconPlus className={styles.icon} />,
@@ -29,22 +29,20 @@ export function GameListingCard({
   }
   const actionIcon = actionIcons[action]
   return (
-    <div className={`${styles.card} ${className}`}>
-      <div className={styles.imageWrapper}>{image}</div>
-      <div className={styles.bottom}>
-        <div className={styles.title}>{title}</div>
-        {actionIcon ? (
-          <Action
-            className={styles.action}
-            onClick={onAction}
-            {...actionButtonProps}
-          >
-            {actionIcon}
-          </Action>
-        ) : (
-          <div className={styles.action} />
-        )}
+    <div>
+      <div className={`${styles.card} ${className}`} {...listeners}>
+        <div className={styles.imageWrapper}>{image}</div>
+        <div className={styles.bottom}>
+          <div className={styles.title}>{title}</div>
+        </div>
       </div>
+      {actionIcon ? (
+        <button className={styles.action} onClick={onAction}>
+          {actionIcon}
+        </button>
+      ) : (
+        <div className={styles.action} />
+      )}
     </div>
   )
 }

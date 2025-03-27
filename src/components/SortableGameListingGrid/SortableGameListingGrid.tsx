@@ -32,7 +32,7 @@ import {
   useSortable
 } from '@dnd-kit/sortable'
 
-import { Item, RenderItemFunction } from './Item'
+import { Item, type RenderItemFunction } from './Item'
 import { List, ListProps } from './List'
 import { Wrapper } from './Wrapper'
 
@@ -42,9 +42,9 @@ export type SortableGameListingGridProps = {
   adjustScale?: boolean
   collisionDetection?: CollisionDetection
   coordinateGetter?: KeyboardCoordinateGetter
-  Container?: (
-    props: ListProps & React.RefAttributes<HTMLUListElement>
-  ) => React.ReactNode
+  Container?: React.ComponentType<
+    ListProps & React.RefAttributes<HTMLUListElement>
+  >
   dropAnimation?: DropAnimation | null
   getNewIndex?: NewIndexGetter
   handle?: boolean

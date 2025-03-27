@@ -29,6 +29,7 @@
   align-items: center;
   gap: var(--space-xs);
   padding: 0 var(--space-xs);
+  padding-right: 32px;
 }
 
 .action {
@@ -38,6 +39,9 @@
   align-items: center;
   justify-content: center;
   padding: 0;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
 }
 
 .icon {

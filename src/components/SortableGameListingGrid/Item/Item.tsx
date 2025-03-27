@@ -8,12 +8,29 @@ import { Handle } from '../Handle'
 import { Remove } from '../Remove'
 import styles from './Item.module.scss'
 
-export interface Props {
+export type RenderItemProps = {
+  onRemove: ItemProps['onRemove']
+  dragOverlay: boolean
+  dragging: boolean
+  sorting: boolean
+  index: number | undefined
+  fadeIn: boolean
+  listeners: DraggableSyntheticListeners
+  ref: React.Ref<HTMLElement>
+  style: React.CSSProperties | undefined
+  transform: ItemProps['transform']
+  transition: ItemProps['transition']
+  value: ItemProps['value']
+}
+
+export type RenderItemFunction = (args: RenderItemProps) => React.ReactElement
+export interface ItemProps {
   dragOverlay?: boolean
   color?: string
   disabled?: boolean
   dragging?: boolean
   handle?: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleProps?: any
   height?: number
   index?: number
@@ -26,23 +43,11 @@ export interface Props {
   wrapperStyle?: React.CSSProperties
   value: React.ReactNode
   onRemove?(): void
-  renderItem?(args: {
-    dragOverlay: boolean
-    dragging: boolean
-    sorting: boolean
-    index: number | undefined
-    fadeIn: boolean
-    listeners: DraggableSyntheticListeners
-    ref: React.Ref<HTMLElement>
-    style: React.CSSProperties | undefined
-    transform: Props['transform']
-    transition: Props['transition']
-    value: Props['value']
-  }): React.ReactElement
+  renderItem?: RenderItemFunction
 }
 
 export const Item = React.memo(
-  React.forwardRef<HTMLLIElement, Props>(
+  React.forwardRef<HTMLLIElement, ItemProps>(
     (
       {
         color,
@@ -52,7 +57,7 @@ export const Item = React.memo(
         fadeIn,
         handle,
         handleProps,
-        height,
+        // height,
         index,
         listeners,
         onRemove,
@@ -81,6 +86,7 @@ export const Item = React.memo(
 
       return renderItem ? (
         renderItem({
+          onRemove,
           dragOverlay: Boolean(dragOverlay),
           dragging: Boolean(dragging),
           sorting: Boolean(sorting),
