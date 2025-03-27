@@ -13,7 +13,7 @@ export default meta
 type Story = StoryObj<typeof MetaSection>
 
 // Language Supported Stories
-export const LanguageSupportedOne: Story = {
+export const OneLanguage: Story = {
   args: {
     title: 'Languages Supported',
     items: ['English'],
@@ -29,7 +29,7 @@ export const LanguageSupportedOne: Story = {
   }
 }
 
-export const LanguageSupportedFive: Story = {
+export const FiveLanguages: Story = {
   args: {
     title: 'Languages Supported',
     items: ['English', 'Chinese', 'Japanese', 'Korean', 'Spanish'],
@@ -48,7 +48,7 @@ export const LanguageSupportedFive: Story = {
   }
 }
 
-export const LanguageSupportedTwenty: Story = {
+export const TwentyLanguages: Story = {
   args: {
     title: 'Languages Supported',
     items: [
@@ -133,7 +133,7 @@ export const ControllerSupportedNo: Story = {
 }
 
 // Genres Stories
-export const GenresTwo: Story = {
+export const TwoGenres: Story = {
   args: {
     title: 'Genres',
     items: ['Third-Person Shooter', 'Action'],
@@ -153,7 +153,7 @@ export const GenresTwo: Story = {
   }
 }
 
-export const GenresSeven: Story = {
+export const SevenGenres: Story = {
   args: {
     title: 'Genres',
     items: [
