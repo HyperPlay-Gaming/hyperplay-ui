@@ -23,10 +23,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '22'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install semver package
-        run: npm install --no-save semver
+        run: pnpm add semver --global
 
       - name: Check for version bump
         id: version-check

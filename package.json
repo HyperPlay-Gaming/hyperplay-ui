@@ -3,19 +3,19 @@
   "version": "1.13.2",
   "license": "LGPL-3.0-only",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build:watch": "vite build --watch",
-    "preview": "vite preview",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "serve-storybook": "serve storybook-static",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json,.mdx ./src",
-    "lint:fix": "eslint --fix -c .eslintrc --ext .tsx,ts ./src",
-    "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
-    "prettier-fix": "prettier --write .",
-    "prettier": "prettier --check .",
-    "test-storybook": "test-storybook"
+    "dev": "pnpm vite",
+    "build": "pnpm vite build",
+    "build:watch": "pnpm vite build --watch",
+    "preview": "pnpm vite preview",
+    "storybook": "pnpm storybook dev -p 6006",
+    "build-storybook": "pnpm storybook build",
+    "serve-storybook": "pnpm serve storybook-static",
+    "lint": "pnpm eslint --ext .js,.jsx,.ts,.tsx,.json,.mdx ./src",
+    "lint:fix": "pnpm eslint --fix -c .eslintrc --ext .tsx,ts ./src",
+    "prepack": "pnpm json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
+    "prettier-fix": "pnpm prettier --write .",
+    "prettier": "pnpm prettier --check .",
+    "test-storybook": "pnpm test-storybook"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
@@ -139,5 +139,5 @@
     "@valist/sdk": "^2.9.1",
     "ethereum-blockies-base64": "^1.0.2"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "pnpm@10.0.0"
 }

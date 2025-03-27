@@ -10,12 +10,12 @@ jobs:
     uses: HyperPlay-Gaming/workflows/.github/workflows/nodejs_commands.yml@main
     with:
       node_version: '22'
-      pkg_manager: 'yarn'
-      install: 'yarn install --immutable --frozen-lockfile'
+      pkg_manager: 'pnpm'
+      install: 'pnpm install --frozen-lockfile'
       name: 'lint'
-      command_one: 'yarn lint'
+      command_one: 'pnpm lint'
       command_one_name: 'Lint code.'
-      command_two: 'yarn prettier'
+      command_two: 'pnpm prettier'
       command_two_name: 'Prettier code.'
       checkout_recursive: false
     secrets:
