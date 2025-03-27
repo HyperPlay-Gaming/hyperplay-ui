@@ -3,19 +3,19 @@
   "version": "1.13.2",
   "license": "LGPL-3.0-only",
   "scripts": {
-    "dev": "pnpm vite",
-    "build": "pnpm vite build",
-    "build:watch": "pnpm vite build --watch",
-    "preview": "pnpm vite preview",
-    "storybook": "pnpm storybook dev -p 6006",
-    "build-storybook": "pnpm storybook build",
-    "serve-storybook": "pnpm serve storybook-static",
-    "lint": "pnpm eslint --ext .js,.jsx,.ts,.tsx,.json,.mdx ./src",
-    "lint:fix": "pnpm eslint --fix -c .eslintrc --ext .tsx,ts ./src",
-    "prepack": "pnpm json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
-    "prettier-fix": "pnpm prettier --write .",
-    "prettier": "pnpm prettier --check .",
-    "test-storybook": "pnpm test-storybook"
+    "dev": "vite",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "serve-storybook": "serve storybook-static",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json,.mdx ./src",
+    "lint:fix": "eslint --fix -c .eslintrc --ext .tsx,ts ./src",
+    "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
+    "prettier-fix": "prettier --write .",
+    "prettier": "prettier --check .",
+    "test-storybook": "test-storybook"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
