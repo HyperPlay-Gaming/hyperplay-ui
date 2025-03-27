@@ -76,9 +76,9 @@ const MetaSection: React.FC<MetaSectionProps> = ({
           customClassNames?.stickersContainer
         )}
       >
-        {visibleItems.map((item, index) => (
+        {visibleItems.map((item) => (
           <Sticker
-            key={index}
+            key={item}
             styleType={visibleStickerProps.styleType}
             variant={visibleStickerProps.variant}
             dimension={visibleStickerProps.dimension}
@@ -115,9 +115,9 @@ const MetaSection: React.FC<MetaSectionProps> = ({
                   customClassNames?.hiddenItemsList
                 )}
               >
-                {hiddenItems.map((item, index) => (
+                {hiddenItems.map((item) => (
                   <Sticker
-                    key={index}
+                    key={item}
                     styleType={popoverStickerProps.styleType}
                     variant={popoverStickerProps.variant}
                     dimension={popoverStickerProps.dimension}
