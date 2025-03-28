@@ -46,6 +46,7 @@ export const AllPlatforms: Story = {
   }
 }
 
+// test that popover shows on info icon hover
 export const TestHoverI: Story = {
   args: { ...props },
   play: async ({ canvasElement }) => {
@@ -54,7 +55,28 @@ export const TestHoverI: Story = {
     userEvent.hover(infoIcon)
     await wait(500)
     const popover = canvas.getByTestId('platforms-supported-info-popover')
-    expect(popover).toBeVisible()
+    await expect(popover).toBeVisible()
     userEvent.unhover(infoIcon)
+  }
+}
+
+// expect built for to be above the playable on section when it switches to flex column for mobile
+export const TestMobileResponsive: Story = {
+  args: { ...props },
+  parameters: {
+    viewport: { defaultViewport: 'mobile1' }
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await wait(500)
+    const builtForContainer = canvas.getByTestId(
+      'platforms-supported-built-for-container'
+    )
+    const playableOnContainer = canvas.getByTestId(
+      'platforms-supported-playable-on-container'
+    )
+    await expect(builtForContainer.getBoundingClientRect().bottom).toBeLessThan(
+      playableOnContainer.getBoundingClientRect().top
+    )
   }
 }
