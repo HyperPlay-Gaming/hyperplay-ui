@@ -1,6 +1,5 @@
 .root {
   width: 100%;
-  height: 100%;
 }
 
 .container {
@@ -14,4 +13,5 @@
   z-index: auto;
   position: relative;
   border-radius: var(--space-xs-fixed);
+  height: 100%;
 }
