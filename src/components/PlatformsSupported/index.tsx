@@ -73,8 +73,13 @@ export function PlatformsSupported({
             withArrow
             position="bottom"
             classNames={{ tooltip: classNames('caption', styles.tooltip) }}
+            data-testid={'platforms-supported-info-popover'}
+            withinPortal={false}
           >
-            <div className={styles.infoIconContainer}>
+            <div
+              className={styles.infoIconContainer}
+              data-testid={'platforms-supported-info-icon'}
+            >
               <Info />
             </div>
           </Tooltip>

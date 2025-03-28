@@ -1,4 +1,6 @@
+import { wait } from '@hyperplay/utils'
 import type { Meta, StoryObj } from '@storybook/react'
+import { expect, userEvent, within } from '@storybook/test'
 
 import { PlatformsSupported, PlatformsSupportedProps } from '.'
 
@@ -41,5 +43,18 @@ export const AllPlatforms: Story = {
       'webgl',
       'android_arm64'
     ]
+  }
+}
+
+export const TestHoverI: Story = {
+  args: { ...props },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const infoIcon = canvas.getByTestId('platforms-supported-info-icon')
+    userEvent.hover(infoIcon)
+    await wait(500)
+    const popover = canvas.getByTestId('platforms-supported-info-popover')
+    expect(popover).toBeVisible()
+    userEvent.unhover(infoIcon)
   }
 }
