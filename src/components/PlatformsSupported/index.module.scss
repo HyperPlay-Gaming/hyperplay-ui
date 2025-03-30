@@ -30,6 +30,8 @@
   gap: var(--space-2xs-fixed);
   svg {
     fill: var(--color-neutral-300);
+    width: var(--space-md-fixed);
+    min-height: var(--space-md-fixed);
   }
 }
 
