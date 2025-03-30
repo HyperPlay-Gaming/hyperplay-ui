@@ -51,7 +51,10 @@ export function PlatformsSupported({
   let builtFor = null
   if (builtForIcons.length) {
     builtFor = (
-      <ContainerRaised data-testid={'platforms-supported-built-for-container'}>
+      <ContainerRaised
+        data-testid={'platforms-supported-built-for-container'}
+        classNames={{ container: styles.containerRaised }}
+      >
         <div className="title-sm">{i18n.builtFor}</div>
         <ContainerIcons>{builtForIcons}</ContainerIcons>
         <div className="eyebrow">{i18n.optimizedFor}</div>
@@ -65,6 +68,7 @@ export function PlatformsSupported({
       <ContainerRaised
         useGradientBorder={true}
         data-testid={'platforms-supported-playable-on-container'}
+        classNames={{ container: styles.containerRaised }}
       >
         <div className="title-sm">{i18n.playableOn}</div>
         <ContainerIcons>{playableOnIcons}</ContainerIcons>
