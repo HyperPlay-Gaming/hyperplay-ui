@@ -14,7 +14,8 @@ export default meta
 type Story = StoryObj<typeof PlatformsSupported>
 
 const props: PlatformsSupportedProps = {
-  platformsWithBuilds: ['windows_amd64']
+  platformsWithBuilds: ['windows_amd64'],
+  style: { margin: '16px' }
 }
 
 export const OnlyWindows: Story = {
