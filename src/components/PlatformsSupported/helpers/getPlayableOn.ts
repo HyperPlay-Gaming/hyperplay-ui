@@ -1,6 +1,7 @@
 import { SupportedPlatform } from '@valist/sdk'
 
 import { Platform } from '../../PlatformIcon/types'
+import { getPlatformsBuiltFor } from './getBuiltFor'
 import { getPlatformsFromSupportedPlatforms } from './getPlatforms'
 
 function getPlayableOn(platform: SupportedPlatform): Platform[] {
@@ -29,5 +30,12 @@ function getPlayableOn(platform: SupportedPlatform): Platform[] {
 export function getPlatformsPlayableOn(
   platforms: SupportedPlatform[]
 ): Platform[] {
-  return getPlatformsFromSupportedPlatforms(getPlayableOn, platforms)
+  const allPlatformsPlayableOn = getPlatformsFromSupportedPlatforms(
+    getPlayableOn,
+    platforms
+  )
+  const allPlatformsBuiltFor = getPlatformsBuiltFor(platforms)
+  return allPlatformsPlayableOn.filter(
+    (platform) => !allPlatformsBuiltFor.includes(platform)
+  )
 }

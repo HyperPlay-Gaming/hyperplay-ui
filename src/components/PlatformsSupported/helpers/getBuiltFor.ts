@@ -6,7 +6,7 @@ import { getPlatformsFromSupportedPlatforms } from './getPlatforms'
 function getBuiltFor(platform: SupportedPlatform): Platform[] {
   switch (platform) {
     case 'web':
-      return ['web']
+      return ['web', 'windows', 'linux', 'darwin', 'steamdeck']
     case 'darwin_amd64':
     case 'darwin_arm64':
       return ['darwin']
