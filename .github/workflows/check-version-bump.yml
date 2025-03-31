@@ -31,7 +31,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install semver package
-        run: pnpm add semver --global
+        run: npm install --no-save semver
 
       - name: Check for version bump
         id: version-check
