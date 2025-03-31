@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.13.2",
+  "version": "1.14.0",
   "license": "LGPL-3.0-only",
   "scripts": {
     "dev": "vite",
@@ -15,7 +15,7 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
     "prettier:fix": "prettier --write .",
     "prettier": "prettier --check .",
-    "test-storybook": "test-storybook"
+    "test-storybook": "test-storybook --skipTags=\"skip-test\""
   },
   "resolutions": {
     "jackspeak": "2.1.1"
@@ -34,6 +34,7 @@
     "@storybook/addon-interactions": "^8.6.7",
     "@storybook/addon-links": "^8.6.7",
     "@storybook/addon-mdx-gfm": "^8.6.7",
+    "@storybook/addon-viewport": "^8.6.7",
     "@storybook/preview-api": "^8.6.7",
     "@storybook/react": "^8.6.7",
     "@storybook/react-vite": "^8.6.7",

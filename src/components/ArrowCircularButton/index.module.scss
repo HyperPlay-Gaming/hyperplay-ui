@@ -1,0 +1,29 @@
+@use '../../styles//utilities/variables' as *;
+
+.root-detached {
+  height: 100%;
+  background-color: transparent;
+  border: 2px solid var(--color-neutral-500);
+  border-radius: 1000px;
+  aspect-ratio: 1 / 1;
+}
+
+.button-detached {
+  width: 46px;
+  transform: rotate(180deg) translateX(-1px);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+
+  &.leftButton {
+    transform: rotate(0deg) translateX(-1px);
+  }
+}
+
+.root {
+  button:disabled {
+    opacity: 50%;
+    cursor: not-allowed;
+  }
+}
