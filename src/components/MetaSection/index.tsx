@@ -1,91 +1,73 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import { Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import classNames from 'classnames'
 
-import Sticker, { StickerProps } from '../Sticker'
 import styles from './MetaSection.module.scss'
 
 interface ClassNames {
   root?: string
   title?: string
-  stickersContainer?: string
-  dropdown?: string
+  itemsContainer?: string
   popover?: string
   hiddenItemsList?: string
-}
-
-interface StickerOptions {
-  dimension?: StickerProps['dimension']
-  styleType?: StickerProps['styleType']
-  variant?: StickerProps['variant']
-  className?: string
+  moreIndicator?: string
 }
 
 export interface MetaSectionProps {
   title: string
-  items: string[]
+  items: ReactNode[]
   classNames?: ClassNames
-  stickerProps?: StickerOptions
-  hiddenStickerProps?: StickerOptions
+  maxVisibleItems?: number
+  moreIndicator?: ReactNode
 }
 
 const MetaSection: React.FC<MetaSectionProps> = ({
   title,
   items,
   classNames: customClassNames,
-  stickerProps = {},
-  hiddenStickerProps = {}
+  maxVisibleItems = 5,
+  moreIndicator
 }) => {
-  const maxVisibleItems = 5
   const visibleItems = items.slice(0, maxVisibleItems)
   const hiddenItems =
     items.length > maxVisibleItems ? items.slice(maxVisibleItems) : []
   const [showPopover, { open, close }] = useDisclosure(false)
 
-  // Default sticker props
-  const defaultStickerProps: StickerOptions = {
-    styleType: 'secondary',
-    variant: 'outlined',
-    dimension: 'default'
-  }
+  // Create the +N indicator based on the first visible item style
+  const renderMoreIndicator = () => {
+    if (moreIndicator) {
+      return moreIndicator
+    }
 
-  // Default hidden sticker props
-  const defaultHiddenStickerProps: StickerOptions = {
-    styleType: 'secondary',
-    variant: 'outlined',
-    dimension: 'small'
-  }
-
-  // Merge default props with custom props
-  const visibleStickerProps = { ...defaultStickerProps, ...stickerProps }
-  const popoverStickerProps = {
-    ...defaultHiddenStickerProps,
-    ...hiddenStickerProps
+    return (
+      <div
+        className={classNames(
+          styles.moreIndicator,
+          customClassNames?.moreIndicator
+        )}
+      >
+        +{hiddenItems.length}
+      </div>
+    )
   }
 
   return (
     <div className={classNames(styles.metaSection, customClassNames?.root)}>
-      <h6 className={classNames(styles.title, customClassNames?.title)}>
+      <h3 className={classNames(styles.title, customClassNames?.title)}>
         {title}
-      </h6>
+      </h3>
       <div
         className={classNames(
-          styles.stickersContainer,
-          customClassNames?.stickersContainer
+          styles.itemsContainer,
+          customClassNames?.itemsContainer
         )}
       >
-        {visibleItems.map((item) => (
-          <Sticker
-            key={item}
-            styleType={visibleStickerProps.styleType}
-            variant={visibleStickerProps.variant}
-            dimension={visibleStickerProps.dimension}
-            className={visibleStickerProps.className}
-          >
+        {visibleItems.map((item, index) => (
+          <div key={index} className={styles.item}>
             {item}
-          </Sticker>
+          </div>
         ))}
         {hiddenItems.length > 0 && (
           <Popover
@@ -97,15 +79,12 @@ const MetaSection: React.FC<MetaSectionProps> = ({
             }}
           >
             <Popover.Target>
-              <div onMouseEnter={open} onMouseLeave={close}>
-                <Sticker
-                  styleType={visibleStickerProps.styleType}
-                  variant={visibleStickerProps.variant}
-                  dimension={visibleStickerProps.dimension}
-                  className={visibleStickerProps.className}
-                >
-                  +{hiddenItems.length}
-                </Sticker>
+              <div
+                onMouseEnter={open}
+                onMouseLeave={close}
+                className={styles.item}
+              >
+                {renderMoreIndicator()}
               </div>
             </Popover.Target>
             <Popover.Dropdown>
@@ -115,16 +94,10 @@ const MetaSection: React.FC<MetaSectionProps> = ({
                   customClassNames?.hiddenItemsList
                 )}
               >
-                {hiddenItems.map((item) => (
-                  <Sticker
-                    key={item}
-                    styleType={popoverStickerProps.styleType}
-                    variant={popoverStickerProps.variant}
-                    dimension={popoverStickerProps.dimension}
-                    className={popoverStickerProps.className}
-                  >
+                {hiddenItems.map((item, index) => (
+                  <div key={index} className={styles.hiddenItem}>
                     {item}
-                  </Sticker>
+                  </div>
                 ))}
               </div>
             </Popover.Dropdown>

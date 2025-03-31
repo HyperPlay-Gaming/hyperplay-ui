@@ -1,25 +1,36 @@
 .metaSection {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
-
-  .title {
-    font-size: var(--text-md);
-    font-weight: bold;
-  }
 }
 
-.stickersContainer {
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: var(--color-neutral-100);
+}
+
+.itemsContainer {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
 }
 
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moreIndicator {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-100);
+  font-weight: bold;
+}
+
 .popover {
-  background-color: var(--color-neutral-700) !important;
+  background-color: var(--color-neutral-700);
   border-radius: var(--space-sm);
   padding: var(--space-sm);
-  border: none !important;
 }
 
 .hiddenItemsList {
@@ -28,8 +39,10 @@
   gap: var(--space-xs);
 }
 
-.dropdown {
-  background-color: var(--color-neutral-800) !important;
-  border: none !important;
-  border-radius: var(--space-sm);
+.hiddenItem {
+  margin-bottom: var(--space-xs);
+}
+
+.hiddenItem:last-child {
+  margin-bottom: 0;
 }
