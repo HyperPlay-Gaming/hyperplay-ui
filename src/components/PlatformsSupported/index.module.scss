@@ -39,6 +39,9 @@
   display: flex;
   align-items: center;
   justify-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .tooltip {
