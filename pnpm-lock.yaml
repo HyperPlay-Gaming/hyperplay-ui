@@ -36,8 +36,8 @@ importers:
         specifier: ^2.46.0
         version: 2.47.0(react@18.3.1)
       '@valist/sdk':
-        specifier: ^2.9.1
-        version: 2.10.11
+        specifier: ^2.10.12
+        version: 2.10.12
       ethereum-blockies-base64:
         specifier: ^1.0.2
         version: 1.0.2
@@ -2381,8 +2381,8 @@ packages:
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
 
-  '@valist/sdk@2.10.11':
-    resolution: {integrity: sha512-vnEHNr7scWR2q5Z9shchoFdXHzouBWBr8tp09YIjuqNoYXKr2zTlRLlXocYbew/8bKD11IXRut84ZVVJBYQCHQ==}
+  '@valist/sdk@2.10.12':
+    resolution: {integrity: sha512-i6zi7qw3js3NtDh/aDb986tFfSbGSu/JZmop9Lnpa9qbSDS9zsPHNlE0eLIBeJ5zpC8s3qxLuwluY3zvNtr7QA==}
 
   '@vitejs/plugin-react-swc@3.8.1':
     resolution: {integrity: sha512-aEUPCckHDcFyxpwFm0AIkbtv6PpUp3xTb9wYGFjtABynXjCYKkWoxX0AOK9NT9XCrdk6mBBUOeHQS+RKdcNO1A==}
@@ -8638,7 +8638,7 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@valist/sdk@2.10.11':
+  '@valist/sdk@2.10.12':
     dependencies:
       '@ethersproject/contracts': 5.8.0
       axios: 1.8.4
