@@ -7,7 +7,8 @@ let config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    'storybook-dark-mode'
+    'storybook-dark-mode',
+    '@storybook/addon-viewport'
   ],
 
   framework: {
@@ -25,6 +26,7 @@ let config: StorybookConfig = {
 
   typescript: {
     reactDocgen: 'react-docgen-typescript'
-  }
+  },
+  staticDirs: ['../src/assets']
 }
 module.exports = config

@@ -112,7 +112,7 @@
   }
 }
 
-@media screen and (max-width: #{$mobileBreakpoint}) {
+@media screen and (max-width: #{$tabletLandscapeBreakpoint}) {
   .footer {
     flex-direction: row;
     align-items: flex-start;
