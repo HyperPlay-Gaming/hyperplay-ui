@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.14.0",
+  "version": "1.14.1",
   "license": "LGPL-3.0-only",
   "scripts": {
     "dev": "vite",
@@ -13,7 +13,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json,.mdx ./src",
     "lint:fix": "eslint --fix -c .eslintrc --ext .tsx,ts ./src",
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
-    "prettier-fix": "prettier --write .",
+    "prettier:fix": "prettier --write .",
     "prettier": "prettier --check .",
     "test-storybook": "test-storybook --skipTags=\"skip-test\"",
     "test:unit": "vitest"
@@ -142,5 +142,5 @@
     "@valist/sdk": "^2.9.1",
     "ethereum-blockies-base64": "^1.0.2"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "pnpm@10.0.0"
 }
