@@ -110,8 +110,8 @@ export const WithRenderItem: React.FC = () => {
       searchText={searchText}
       setSearchText={setSearchText}
       i18n={{ placeholder: 'Search for games' }}
-      renderItem={(item) => {
-        const option = options.find((option) => option.name === item)
+      itemComponent={({ suggestion }) => {
+        const option = options.find((option) => option.name === suggestion)
         if (!option) return null
         return (
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
