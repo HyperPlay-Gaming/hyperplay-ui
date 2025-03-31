@@ -11,7 +11,7 @@ jobs:
     with:
       node_version: '22'
       pkg_manager: 'pnpm'
-      install: 'pnpm install --immutable --frozen-lockfile'
+      install: 'pnpm install --frozen-lockfile'
       name: 'unit test'
       command_one: 'pnpm test:unit'
       command_one_name: 'Run unit tests.'
