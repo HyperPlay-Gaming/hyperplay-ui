@@ -182,7 +182,7 @@ export const TenLanguages: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const plusSticker = await canvas.findByText('+15')
+    const plusSticker = await canvas.findByText('+5')
     expect(plusSticker).toBeInTheDocument()
   }
 }
