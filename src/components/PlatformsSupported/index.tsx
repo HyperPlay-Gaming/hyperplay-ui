@@ -19,7 +19,7 @@ export interface PlatformsSupportedProps
   i18n?: {
     builtFor?: string
     playableOn?: string
-    optimizedFor?: string
+    builtForCaption?: string
     noExtraSetupNeeded?: string
     compatibilityInfoMessage?: string
   }
@@ -30,7 +30,7 @@ export function PlatformsSupported({
   i18n = {
     builtFor: 'Built for:',
     playableOn: 'Also Playable on:',
-    optimizedFor: 'Optimized for These Platform(s)',
+    builtForCaption: 'Officially Supported Platform(s)',
     noExtraSetupNeeded: 'No Extra Setup Needed',
     compatibilityInfoMessage:
       "HyperPlay's compatibility layer allows gameplay on these platforms."
@@ -57,7 +57,7 @@ export function PlatformsSupported({
       >
         <div className="title-sm">{i18n.builtFor}</div>
         <ContainerIcons>{builtForIcons}</ContainerIcons>
-        <div className="eyebrow">{i18n.optimizedFor}</div>
+        <div className="eyebrow">{i18n.builtForCaption}</div>
       </ContainerRaised>
     )
   }
