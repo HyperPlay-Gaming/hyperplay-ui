@@ -10,10 +10,10 @@ jobs:
     uses: HyperPlay-Gaming/workflows/.github/workflows/nodejs_commands.yml@main
     with:
       node_version: '22'
-      pkg_manager: 'yarn'
-      install: 'yarn install --immutable --frozen-lockfile'
+      pkg_manager: 'pnpm'
+      install: 'pnpm install --immutable --frozen-lockfile'
       name: 'unit test'
-      command_one: 'yarn test:unit'
+      command_one: 'pnpm test:unit'
       command_one_name: 'Run unit tests.'
       checkout_recursive: false
     secrets:
