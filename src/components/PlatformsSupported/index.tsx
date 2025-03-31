@@ -29,8 +29,8 @@ export function PlatformsSupported({
   platformsWithBuilds,
   i18n = {
     builtFor: 'Built for:',
-    playableOn: 'Playable on:',
-    optimizedFor: 'Optimized for',
+    playableOn: 'Also Playable on:',
+    optimizedFor: 'Optimized for These Platform(s)',
     noExtraSetupNeeded: 'No Extra Setup Needed',
     compatibilityInfoMessage:
       "HyperPlay's compatibility layer allows gameplay on these platforms."
