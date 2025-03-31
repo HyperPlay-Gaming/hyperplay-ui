@@ -1,14 +1,7 @@
 import { SupportedPlatform } from '@valist/sdk'
 
 import { Platform } from '../../PlatformIcon/types'
-
-export function getPlatformsBuiltFor(
-  platforms: SupportedPlatform[]
-): Platform[] {
-  return Array.from(
-    new Set(platforms.flatMap((platform) => getBuiltFor(platform)))
-  )
-}
+import { getPlatformsFromSupportedPlatforms } from './getPlatforms'
 
 function getBuiltFor(platform: SupportedPlatform): Platform[] {
   switch (platform) {
@@ -30,4 +23,10 @@ function getBuiltFor(platform: SupportedPlatform): Platform[] {
     default:
       return []
   }
+}
+
+export function getPlatformsBuiltFor(
+  platforms: SupportedPlatform[]
+): Platform[] {
+  return getPlatformsFromSupportedPlatforms(getBuiltFor, platforms)
 }

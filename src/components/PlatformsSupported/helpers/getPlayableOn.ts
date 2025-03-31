@@ -1,14 +1,7 @@
 import { SupportedPlatform } from '@valist/sdk'
 
 import { Platform } from '../../PlatformIcon/types'
-
-export function getPlatformsPlayableOn(
-  platforms: SupportedPlatform[]
-): Platform[] {
-  return Array.from(
-    new Set(platforms.flatMap((platform) => getPlayableOn(platform)))
-  )
-}
+import { getPlatformsFromSupportedPlatforms } from './getPlatforms'
 
 function getPlayableOn(platform: SupportedPlatform): Platform[] {
   switch (platform) {
@@ -31,4 +24,10 @@ function getPlayableOn(platform: SupportedPlatform): Platform[] {
     default:
       return []
   }
+}
+
+export function getPlatformsPlayableOn(
+  platforms: SupportedPlatform[]
+): Platform[] {
+  return getPlatformsFromSupportedPlatforms(getPlayableOn, platforms)
 }

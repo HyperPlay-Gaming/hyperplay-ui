@@ -6,24 +6,24 @@ describe('Get playable on platforms', () => {
   it('should return all amd64 platforms for only windows amd64 native build', () => {
     expect(getPlatformsPlayableOn(['windows_amd64'])).toStrictEqual([
       'windows',
-      'linux',
       'darwin',
+      'linux',
       'steamdeck'
     ])
   })
   it('should return all arm platforms for only windows arm64 native build', () => {
     expect(getPlatformsPlayableOn(['windows_arm64'])).toStrictEqual([
       'windows',
-      'linux',
-      'darwin'
+      'darwin',
+      'linux'
     ])
   })
   it('should return all platforms for only web build', () => {
     expect(getPlatformsPlayableOn(['web'])).toStrictEqual([
-      'web',
       'windows',
-      'linux',
+      'web',
       'darwin',
+      'linux',
       'steamdeck'
     ])
   })
@@ -53,6 +53,6 @@ describe('Get playable on platforms', () => {
         'linux_arm64',
         'darwin_arm64'
       ])
-    ).toStrictEqual(['web', 'windows', 'linux', 'darwin', 'steamdeck'])
+    ).toStrictEqual(['windows', 'web', 'darwin', 'linux', 'steamdeck'])
   })
 })
