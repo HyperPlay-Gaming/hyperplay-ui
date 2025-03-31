@@ -82,7 +82,7 @@ export function PlatformsSupported({
             classNames={{ tooltip: classNames('caption', styles.tooltip) }}
             data-testid={'platforms-supported-info-popover'}
             withinPortal={false}
-            transitionProps={{ transition: 'fade-down', duration: 300 }}
+            transitionProps={{ transition: 'fade', duration: 300 }}
           >
             <div
               className={styles.infoIconContainer}
