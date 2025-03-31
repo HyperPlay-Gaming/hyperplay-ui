@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react'
 
 import { Tooltip } from '@mantine/core'
 import { SupportedPlatform } from '@valist/sdk'
-import classNames from 'classnames'
+import cn from 'classnames'
 
 import { Info } from '@/assets/images'
 
@@ -16,6 +16,9 @@ import styles from './index.module.scss'
 export interface PlatformsSupportedProps
   extends HTMLAttributes<HTMLDivElement> {
   platformsWithBuilds: SupportedPlatform[]
+  classNames?: {
+    root?: string
+  }
   i18n?: {
     builtFor?: string
     playableOn?: string
@@ -35,6 +38,8 @@ export function PlatformsSupported({
     compatibilityInfoMessage:
       "HyperPlay's compatibility layer allows gameplay on these platforms."
   },
+  classNames,
+  className,
   ...props
 }: PlatformsSupportedProps) {
   const builtForIcons: React.ReactNode[] = []
@@ -79,7 +84,7 @@ export function PlatformsSupported({
             arrowSize={14}
             withArrow
             position="bottom"
-            classNames={{ tooltip: classNames('caption', styles.tooltip) }}
+            classNames={{ tooltip: cn('caption', styles.tooltip) }}
             data-testid={'platforms-supported-info-popover'}
             withinPortal={false}
             transitionProps={{ transition: 'fade', duration: 300 }}
@@ -97,7 +102,7 @@ export function PlatformsSupported({
   }
 
   return (
-    <div className={styles.root} {...props}>
+    <div className={cn(styles.root, classNames?.root, className)} {...props}>
       {builtFor}
       {playableOn}
     </div>
