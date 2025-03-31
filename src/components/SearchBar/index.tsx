@@ -20,12 +20,15 @@ interface Props extends PopoverProps {
     dropdown?: string
     arrow?: string
     container?: string
+    dropdownList?: string
   }
   styles?: {
     dropdown?: CSSProperties
     arrow?: CSSProperties
     container?: CSSProperties
+    dropdownList?: CSSProperties
   }
+  itemComponent?: React.ComponentType<{ suggestion: string }>
 }
 
 export default function SearchBar({
@@ -37,6 +40,7 @@ export default function SearchBar({
   inputProps,
   classNames,
   styles,
+  itemComponent: ItemComponent,
   ...props
 }: Props) {
   const input = useRef<HTMLInputElement>(null)
@@ -88,7 +92,7 @@ export default function SearchBar({
             key={el}
             className={searchBarStyles.searchResult}
           >
-            {el}
+            {ItemComponent ? <ItemComponent suggestion={el} /> : el}
           </button>
         ))}
       </>
@@ -141,7 +145,13 @@ export default function SearchBar({
         </div>
       </Popover.Target>
       <Popover.Dropdown>
-        <div className={searchBarStyles.popoverDropdownList}>
+        <div
+          className={cn(
+            searchBarStyles.popoverDropdownList,
+            classNames?.dropdownList
+          )}
+          style={styles?.dropdownList}
+        >
           {searchResults}
         </div>
       </Popover.Dropdown>
