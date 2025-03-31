@@ -18,20 +18,15 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 10
-          run_install: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '22'
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install semver package
-        run: pnpm add semver --global
+        run: npm install --no-save semver
 
       - name: Check for version bump
         id: version-check
