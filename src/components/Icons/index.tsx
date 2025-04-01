@@ -4,7 +4,6 @@ import * as IconImages from '@/assets/images'
 
 const IconFill: { [key: string]: string } = {
   DownloadIcon: '#FFFFFF',
-  PlayIcon: '#FFFFFF',
   PauseIcon: '#FFFFFF',
   Checkmark: '#FFFFFF',
   DownArrow: '#FFFFFF',
@@ -54,7 +53,8 @@ const IconFill: { [key: string]: string } = {
   WindowsIcon: '#FFFFFF',
   MacOSIcon: '#FFFFFF',
   SteamDeckIcon: '#FFFFFF',
-  Line: '#FFFFFF'
+  Line: '#FFFFFF',
+  Windows11Icon: '#FFFFFF'
 }
 
 const IconStroke: { [key: string]: string } = {
@@ -66,7 +66,8 @@ const IconStroke: { [key: string]: string } = {
   LightningBolt: '#FFFFFF',
   Clock: '#FFFFFF',
   ArrowUpRight: '#FFFFFF',
-  LinkExternal: '#FFFFFF'
+  LinkExternal: '#FFFFFF',
+  PlayIcon: '#FFFFFF'
 }
 
 export default function Icons() {

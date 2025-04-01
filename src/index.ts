@@ -15,6 +15,7 @@ export type {
   SettingsButtons
 } from './components/GameCard/types'
 export { default as Carousel } from './components/Carousel'
+export type { ItemData } from './components/Carousel/components/Controller'
 export { default as Background } from './components/Background'
 export { default as CircularButton } from './components/CircularButton'
 export { default as GameInfo } from './components/GameInfo'
@@ -149,6 +150,12 @@ export {
 export { default as LayoutTabs } from './components/LayoutTabs'
 export { default as Select } from './components/Select'
 export { default as Collapse, type CollapseProps } from './components/Collapse'
+
+export {
+  default as MetaSection,
+  type MetaSectionProps
+} from './components/MetaSection'
+
 export {
   default as CollapseList,
   type CollapseListSectionProps as CollapseListProps
@@ -235,3 +242,6 @@ export * from './components/QuestDetails/components/Reward'
 export { DarkContainer } from './components/DarkContainer'
 export * from './components/ContainerIcons'
 export * from './components/ContainerRaised'
+export * from './components/PlatformsSupported'
+export * from './components/PlatformIcon'
+export { default as Sticker, type StickerProps } from './components/Sticker'

@@ -1,0 +1,60 @@
+@use '../../styles/utilities/variables' as *;
+
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: var(--space-xl-fixed);
+
+  svg {
+    fill: var(--color-neutral-100);
+    width: 24px;
+    min-height: 24px;
+  }
+
+  @include for-mobile-only {
+    flex-direction: column;
+    gap: var(--space-md-fixed);
+  }
+  @include for-tablet-portrait-up {
+    gap: var(--space-md-fixed);
+  }
+  @include for-tablet-landscape-up {
+    gap: var(--space-xl-fixed);
+  }
+}
+.noSetupContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-2xs-fixed);
+  svg {
+    fill: var(--color-neutral-300);
+    width: var(--space-md-fixed);
+    min-height: var(--space-md-fixed);
+  }
+}
+
+.infoIconContainer {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.tooltip {
+  max-width: 305px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  border-radius: var(--space-sm-fixed);
+  padding: var(--space-2lg-fixed);
+  background-color: var(--background-overlay);
+  box-shadow: 0px 8px 8px -4px rgba(124, 58, 237, 0.04),
+    0px 20px 24px -4px rgba(124, 58, 237, 0.08);
+}
+
+.containerRaised {
+  padding: calc(2.5 * var(--space-unit-fixed)) 0px;
+}
