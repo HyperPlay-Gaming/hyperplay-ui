@@ -184,8 +184,8 @@
     font-weight: var(--bold);
 
     &.neutral {
-      background-color: var(--color-neutral-600);
-      color: var(--color-neutral-300);
+      background-color: var(--fill-inverse-weak);
+      color: var(--color-stroke-strong);
     }
 
     &.secondary {
@@ -199,18 +199,18 @@
     }
 
     &.success {
-      background-color: var(--color-success-900);
-      color: var(--color-success-100);
+      background-color: var(--fill-success-strong);
+      color: var(--text-inverse-strong);
     }
 
     &.warning {
-      background-color: var(--color-alert-900);
-      color: var(--color-alert-400);
+      background-color: var(--fill-warning-strong);
+      color: var(--text-inverse-strong);
     }
 
     &.error {
-      background-color: var(--color-error-800);
-      color: var(--color-error-100);
+      background-color: var(--fill-error-strong);
+      color: var(--text-inverse-strong);
     }
   }
 
