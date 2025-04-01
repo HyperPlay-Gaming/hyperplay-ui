@@ -24,8 +24,8 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install packages
-        run: pnpm i
+      - name: Install semver package
+        run: npm install --no-save semver
 
       - name: Check for version bump
         id: version-check
