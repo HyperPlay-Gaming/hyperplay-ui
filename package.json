@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.14.3",
+  "version": "1.16.0",
   "license": "LGPL-3.0-only",
   "scripts": {
     "dev": "vite",
@@ -15,7 +15,8 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
     "prettier:fix": "prettier --write .",
     "prettier": "prettier --check .",
-    "test-storybook": "test-storybook --skipTags=\"skip-test\""
+    "test-storybook": "test-storybook --skipTags=\"skip-test\"",
+    "test:unit": "vitest"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
@@ -86,6 +87,7 @@
     "vite-plugin-linter": "^2.0.2",
     "vite-plugin-static-copy": "^0.13.0",
     "vite-plugin-svgr": "^2.4.0",
+    "vitest": "^3.0.9",
     "zod": "^3.22.4"
   },
   "peerDependencies": {
@@ -137,7 +139,7 @@
     "@hyperplay/ui": "^1.13.0",
     "@hyperplay/utils": "^0.3.1",
     "@tabler/icons-react": "^2.46.0",
-    "@valist/sdk": "^2.9.1",
+    "@valist/sdk": "^2.10.12",
     "ethereum-blockies-base64": "^1.0.2"
   },
   "packageManager": "pnpm@10.0.0"
