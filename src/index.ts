@@ -1,4 +1,3 @@
-import { MetaSectionProps } from './../dist/components/MetaSection/index.d'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import './fonts.css'
