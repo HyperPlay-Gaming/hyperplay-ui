@@ -150,19 +150,19 @@ export const TenLanguages: Story = {
       <Sticker key="es" styleType="neutral" variant="outlined">
         Spanish
       </Sticker>,
-      <Sticker key="fr" styleType="neutral" variant="filled">
+      <Sticker key="fr" styleType="neutral" variant="outlined">
         French
       </Sticker>,
-      <Sticker key="de" styleType="neutral" variant="filled">
+      <Sticker key="de" styleType="neutral" variant="outlined">
         German
       </Sticker>,
-      <Sticker key="it" styleType="neutral" variant="filled">
+      <Sticker key="it" styleType="neutral" variant="outlined">
         Italian
       </Sticker>,
-      <Sticker key="pt" styleType="neutral" variant="filled">
+      <Sticker key="pt" styleType="neutral" variant="outlined">
         Portuguese
       </Sticker>,
-      <Sticker key="ru" styleType="neutral" variant="filled">
+      <Sticker key="ru" styleType="neutral" variant="outlined">
         Russian
       </Sticker>
     ],
@@ -282,10 +282,10 @@ export const GenresWithManyStickers: Story = {
       <Sticker key="puzzle" styleType="warning" variant="outlined">
         Puzzle
       </Sticker>,
-      <Sticker key="strategy" styleType="warning" variant="filled">
+      <Sticker key="strategy" styleType="warning" variant="outlined">
         Strategy
       </Sticker>,
-      <Sticker key="simulation" styleType="warning" variant="filled">
+      <Sticker key="simulation" styleType="warning" variant="outlined">
         Simulation
       </Sticker>
     ],

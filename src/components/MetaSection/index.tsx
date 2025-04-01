@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 
 import { Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import classNames from 'classnames'
+import cx from 'classnames'
 
 import styles from './MetaSection.module.scss'
 
@@ -26,7 +26,7 @@ export interface MetaSectionProps {
 const MetaSection: React.FC<MetaSectionProps> = ({
   title,
   items,
-  classNames: customClassNames,
+  classNames,
   maxVisibleItems = 5,
   moreIndicator
 }) => {
@@ -42,28 +42,16 @@ const MetaSection: React.FC<MetaSectionProps> = ({
     }
 
     return (
-      <div
-        className={classNames(
-          styles.moreIndicator,
-          customClassNames?.moreIndicator
-        )}
-      >
+      <div className={cx(styles.moreIndicator, classNames?.moreIndicator)}>
         +{hiddenItems.length}
       </div>
     )
   }
 
   return (
-    <div className={classNames(styles.metaSection, customClassNames?.root)}>
-      <h3 className={classNames(styles.title, customClassNames?.title)}>
-        {title}
-      </h3>
-      <div
-        className={classNames(
-          styles.itemsContainer,
-          customClassNames?.itemsContainer
-        )}
-      >
+    <div className={cx(styles.metaSection, classNames?.root)}>
+      <h3 className={cx(styles.title, classNames?.title)}>{title}</h3>
+      <div className={cx(styles.itemsContainer, classNames?.itemsContainer)}>
         {visibleItems.map((item, index) => (
           <div key={index} className={styles.item}>
             {item}
@@ -75,7 +63,7 @@ const MetaSection: React.FC<MetaSectionProps> = ({
             shadow="md"
             opened={showPopover}
             classNames={{
-              dropdown: classNames(styles.popover, customClassNames?.popover)
+              dropdown: cx(styles.popover, classNames?.popover)
             }}
           >
             <Popover.Target>
@@ -89,9 +77,9 @@ const MetaSection: React.FC<MetaSectionProps> = ({
             </Popover.Target>
             <Popover.Dropdown>
               <div
-                className={classNames(
+                className={cx(
                   styles.hiddenItemsList,
-                  customClassNames?.hiddenItemsList
+                  classNames?.hiddenItemsList
                 )}
               >
                 {hiddenItems.map((item, index) => (
