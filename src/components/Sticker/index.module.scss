@@ -181,7 +181,6 @@
   &.filledStrong {
     border: none;
     border-radius: var(--corner-round, 100px);
-    font-weight: var(--bold);
 
     &.neutral {
       background-color: var(--fill-inverse-weak);
@@ -231,7 +230,7 @@
   }
 
   &.sizeDefault {
-    padding: var(--space-3xs) var(--space-xs);
+    padding: var(--space-3xs) var(--space-sm);
     font-size: var(--text-md);
 
     .icon svg,
