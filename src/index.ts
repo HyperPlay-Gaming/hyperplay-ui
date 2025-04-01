@@ -152,6 +152,7 @@ export { default as Select } from './components/Select'
 export { default as Collapse, type CollapseProps } from './components/Collapse'
 
 export { default as MetaSection } from './components/MetaSection'
+export type { MetaSectionProps } from './components/MetaSection'
 
 export {
   default as CollapseList,
