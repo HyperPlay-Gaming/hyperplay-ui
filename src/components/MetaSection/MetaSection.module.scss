@@ -21,6 +21,12 @@
   justify-content: center;
 }
 
+.lastItem {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .moreIndicator {
   font-size: var(--font-size-sm);
   color: var(--color-neutral-100);

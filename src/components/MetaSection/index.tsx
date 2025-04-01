@@ -70,7 +70,7 @@ const MetaSection: React.FC<MetaSectionProps> = ({
               <div
                 onMouseEnter={open}
                 onMouseLeave={close}
-                className={styles.item}
+                className={styles.lastItem}
               >
                 {renderMoreIndicator()}
               </div>
