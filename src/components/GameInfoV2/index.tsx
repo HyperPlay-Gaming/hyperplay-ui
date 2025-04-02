@@ -120,27 +120,31 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
               <MetaSection
                 title=""
                 items={[
-                  <Sticker key="version" styleType="neutral" variant="outlined">
+                  <Sticker
+                    key="version"
+                    styleType="neutral"
+                    variant="filledStrong"
+                  >
                     {version}
                   </Sticker>,
                   <Sticker
                     key="earlyAccess"
                     styleType="neutral"
-                    variant="outlined"
+                    variant="filledStrong"
                   >
                     {earlyAccess ? 'Early Access' : ''}
                   </Sticker>,
                   <Sticker
                     key="developer"
                     styleType="neutral"
-                    variant="outlined"
+                    variant="filledStrong"
                   >
                     {info.developer}
                   </Sticker>,
                   <Sticker
                     key="playerCount"
                     styleType="neutral"
-                    variant="outlined"
+                    variant="filledStrong"
                   >
                     {playerCount}
                   </Sticker>
