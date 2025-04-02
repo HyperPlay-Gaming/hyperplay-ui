@@ -1,27 +1,17 @@
 import React, { useRef } from 'react'
 import styles from './RewardsSection.module.scss'
-import RewardsCard from '@/components/RewardsCard'
+import RewardsCard, { RewardsCardProps } from '@/components/RewardsCard'
 import ArrowCircularButton from '../ArrowCircularButton'
-import * as Images from '@/assets/images'
 
 export interface RewardsSectionProps {
-  rewards: {
-    id: number
-    rewardImage: string
-    reward: string
-    claimsLeft?: number
-  }[]
+  rewards: RewardsCardProps[]
   i18n?: {
     header?: string
-    claimsLabel?: string
-    claimsLeftLabel?: string
   }
 }
 
 const defaultI18n = {
-  header: 'Complete Quests to Earn These Rewards',
-  claimsLabel: 'Claims left',
-  claimsLeftLabel: 'Unlimited'
+  header: 'Complete Quests to Earn These Rewards'
 }
 
 const RewardsSection = ({
@@ -66,14 +56,11 @@ const RewardsSection = ({
       <div className={styles.cardsContainer} ref={containerRef}>
         {rewards.map((reward) => (
           <RewardsCard
+            id={reward.id}
             key={reward.id}
             rewardImage={reward.rewardImage}
             claimsLeft={reward.claimsLeft}
             reward={reward.reward}
-            i18n={{
-              claimsLabel: i18n.claimsLabel,
-              claimsLeftLabel: i18n.claimsLeftLabel
-            }}
           />
         ))}
       </div>
