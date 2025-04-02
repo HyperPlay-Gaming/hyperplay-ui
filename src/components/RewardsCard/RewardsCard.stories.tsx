@@ -8,9 +8,62 @@ import YGGReward from '@/assets/stories/ygg.png'
 
 import RewardsCard, { RewardsCardProps } from './index'
 
+/**
+ * The `RewardsCard` component displays game rewards in an elegant card format with visual indicators
+ * for reward type and availability. Built on `CardGeneric`, it presents rewards with a clean,
+ * consistent interface throughout the application.
+ *
+ * ## Use Cases
+ * - Quest rewards display
+ * - Achievement rewards
+ * - Token/NFT reward showcases
+ * - In-game unlockables
+ *
+ * ## Features
+ * - Visual representation of the reward via image
+ * - Primary sticker showing reward name/type
+ * - Secondary sticker with dot indicator showing claims availability
+ * - Customizable via i18n props for localization
+ * - Responsive design that fits various layout contexts
+ *
+ * ## Accessibility
+ * - Clear visual hierarchy with distinct sections
+ * - High contrast between text and background
+ * - Semantic structure for screen readers
+ */
 const meta: Meta<typeof RewardsCard> = {
   title: 'Quests/RewardsCard',
-  component: RewardsCard
+  component: RewardsCard,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'A versatile card component for displaying game rewards with customizable claims information and internationalization support.'
+      }
+    }
+  },
+  argTypes: {
+    reward: {
+      description:
+        'The name or description of the reward (e.g., "1000 YGG Points", "+1 NFT")',
+      control: 'text'
+    },
+    rewardImage: {
+      description:
+        'The image URL representing the reward (supports various image formats)',
+      control: 'text'
+    },
+    claimsLeft: {
+      description:
+        'Number or text indicating available claims (defaults to "Unlimited" when not provided)',
+      control: 'text'
+    },
+    i18n: {
+      description:
+        'Internationalization options for customizing labels (claimsLabel and claimsLeftLabel)'
+    }
+  }
 }
 
 export default meta
