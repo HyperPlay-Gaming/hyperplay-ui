@@ -58,7 +58,7 @@ export default function Sticker({
   return (
     <div
       {...props}
-      className={classNames(styles.sticker, className, divClasses)}
+      className={classNames('body-sm', styles.sticker, className, divClasses)}
     >
       {withIcon && <span className={styles.icon}>{withIcon}</span>}
       {withDot && (

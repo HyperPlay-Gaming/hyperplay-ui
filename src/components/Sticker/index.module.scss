@@ -180,12 +180,12 @@
 
   &.filledStrong {
     border: none;
-    border-radius: var(--corner-round, 4px);
-    font-weight: var(--bold);
+    border-radius: var(--corner-round, 100px);
 
     &.neutral {
-      background-color: var(--color-neutral-600);
-      color: var(--color-neutral-300);
+      background-color: var(--fill-inverse-weak);
+      color: var(--text-weak);
+      border: 1px solid var(--color-stroke-strong);
     }
 
     &.secondary {
@@ -199,18 +199,21 @@
     }
 
     &.success {
-      background-color: var(--color-success-900);
-      color: var(--color-success-100);
+      background-color: var(--fill-success-strong);
+      color: var(--text-inverse-strong);
+      border: none;
     }
 
     &.warning {
-      background-color: var(--color-alert-900);
-      color: var(--color-alert-400);
+      background-color: var(--fill-warning-strong);
+      color: var(--text-inverse-strong);
+      border: none;
     }
 
     &.error {
-      background-color: var(--color-error-800);
-      color: var(--color-error-100);
+      background-color: var(--fill-error-strong);
+      color: var(--text-inverse-strong);
+      border: none;
     }
   }
 
@@ -227,7 +230,7 @@
   }
 
   &.sizeDefault {
-    padding: var(--space-3xs) var(--space-xs);
+    padding: var(--space-3xs) var(--space-sm);
     font-size: var(--text-md);
 
     .icon svg,
