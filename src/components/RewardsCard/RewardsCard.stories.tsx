@@ -71,6 +71,7 @@ export default meta
 type Story = StoryObj<typeof RewardsCard>
 
 const props: RewardsCardProps = {
+  id: '1',
   reward: '1000 YGG points',
   rewardImage: YGGReward
 }

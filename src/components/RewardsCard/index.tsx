@@ -6,7 +6,8 @@ import { CardGeneric } from '../CardGeneric'
 import Sticker from '../Sticker'
 import styles from './index.module.scss'
 
-export interface RewardsCardProps {
+export type RewardsCardProps = {
+  id: string | number
   reward: string
   rewardImage: string
   claimsLeft?: string | number
