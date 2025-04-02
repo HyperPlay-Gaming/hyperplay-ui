@@ -1,8 +1,6 @@
 .cardBase {
   width: 271px;
   height: 379px;
-  min-width: 271px;
-  min-height: 379px;
   justify-content: space-between;
   background-color: var(--color-neutral-600);
   border-radius: var(--space-xs);
@@ -26,7 +24,15 @@
   position: relative;
   place-content: center;
   align-self: center;
-  aspect-ratio: 3 / 4;
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: var(--space-xs);
+  }
 }
 
 .stickers {
