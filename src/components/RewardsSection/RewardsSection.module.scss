@@ -1,0 +1,67 @@
+.rewardsSection {
+  background-color: transparent;
+
+  h6 {
+    font-size: var(--text-lg);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.navigationIcons {
+  display: flex;
+  gap: 10px;
+}
+
+.iconWrapper {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: var(--color-neutral-900);
+  color: var(--color-neutral-300);
+  border: 1px solid var(--color-neutral-600);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.iconWrapper:hover {
+  background-color: var(--color-neutral-700);
+  color: var(--color-neutral-100);
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+}
+
+.cardsContainer {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.cardsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .rewardsSection {
+    padding: 0 20px;
+    width: 90vw;
+  }
+
+  .cardsContainer {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+  }
+}
