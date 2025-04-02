@@ -160,6 +160,11 @@ export const isLoading: Story = {
     editorChoice: {
       isEditorChoice: true,
       year: 2025
-    }
+    },
+    actionButton: (
+      <Button type="secondary" size="medium" className={styles.addButton}>
+        Add to Library
+      </Button>
+    )
   }
 }
