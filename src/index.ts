@@ -235,7 +235,10 @@ export {
   type MarkdownDescriptionProps
 } from './components/MarkdownDescription'
 
-export { default as RewardsCard } from './components/RewardsCard'
+export {
+  default as RewardsCard,
+  type RewardsCardProps
+} from './components/RewardsCard'
 export {
   default as RewardsSection,
   type RewardsSectionProps
