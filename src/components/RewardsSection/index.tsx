@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import styles from './RewardsSection.module.scss'
 import RewardsCard from '@/components/RewardsCard'
+import ArrowCircularButton from '../ArrowCircularButton'
 import * as Images from '@/assets/images'
 
 export interface RewardsSectionProps {
@@ -10,9 +11,23 @@ export interface RewardsSectionProps {
     reward: string
     claimsLeft?: number
   }[]
+  i18n?: {
+    header?: string
+    claimsLabel?: string
+    claimsLeftLabel?: string
+  }
 }
 
-const RewardsSection = ({ rewards }: RewardsSectionProps) => {
+const defaultI18n = {
+  header: 'Complete Quests to Earn These Rewards',
+  claimsLabel: 'Claims left',
+  claimsLeftLabel: 'Unlimited'
+}
+
+const RewardsSection = ({
+  rewards,
+  i18n = defaultI18n
+}: RewardsSectionProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   const scrollLeft = () => {
@@ -34,14 +49,18 @@ const RewardsSection = ({ rewards }: RewardsSectionProps) => {
   return (
     <div className={styles.rewardsSection}>
       <div className={styles.header}>
-        <h6>Complete Quests to Earn These Rewards</h6>
+        <h6>{i18n.header}</h6>
         <div className={styles.navigationIcons}>
-          <span className={styles.iconWrapper} onClick={scrollLeft}>
-            <Images.ChevronLeft className={styles.icon} />
-          </span>
-          <span className={styles.iconWrapper} onClick={scrollRight}>
-            <Images.ChevronRight className={styles.icon} />
-          </span>
+          <ArrowCircularButton
+            classNames={{ root: styles.leftButton }}
+            isLeftButton
+            onClick={scrollLeft}
+          />
+          <ArrowCircularButton
+            classNames={{ root: styles.rightButton }}
+            onClick={scrollRight}
+            isLeftButton={false}
+          />
         </div>
       </div>
       <div className={styles.cardsContainer} ref={containerRef}>
@@ -51,6 +70,10 @@ const RewardsSection = ({ rewards }: RewardsSectionProps) => {
             rewardImage={reward.rewardImage}
             claimsLeft={reward.claimsLeft}
             reward={reward.reward}
+            i18n={{
+              claimsLabel: i18n.claimsLabel,
+              claimsLeftLabel: i18n.claimsLeftLabel
+            }}
           />
         ))}
       </div>
