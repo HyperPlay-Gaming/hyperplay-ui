@@ -15,6 +15,7 @@ const formatIpfsUrl = (url?: string) => {
 
 export interface BlockchainsStackProps
   extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
+  title?: string
   chainId?: string[]
   maxVisible?: number
   showMoreCount?: boolean
@@ -23,6 +24,7 @@ export interface BlockchainsStackProps
 
 const BlockchainsStack = ({
   chainId = [],
+  title = 'BLOCKCHAIN(S):',
   maxVisible = 5,
   showMoreCount = true,
   className,
@@ -60,7 +62,7 @@ const BlockchainsStack = ({
 
   return (
     <div className={classNames(styles.blockchains, className)} {...props}>
-      <span className={styles.title}>BLOCKCHAIN(S):</span>
+      <span className={styles.title}>{title}</span>
       <div className={styles.blockchainIcons}>
         {visibleBlockchains.map((blockchain, index) => (
           <div key={`blockchain-${index}`} className={styles.icon}>
