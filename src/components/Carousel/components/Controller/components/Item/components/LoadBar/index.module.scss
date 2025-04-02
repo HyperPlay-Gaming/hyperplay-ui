@@ -1,0 +1,24 @@
+.loader {
+  height: 4px;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: var(--carousel-item-initial-progress);
+  background-color: var(--color-primary-300);
+  z-index: 1;
+  display: none;
+  animation: none;
+
+  &.videoPlaying {
+    animation: progress var(--carousel-item-animation-duration) linear forwards;
+  }
+}
+@keyframes progress {
+  from {
+    width: var(--carousel-item-initial-progress);
+  }
+  to {
+    width: 100%;
+  }
+}

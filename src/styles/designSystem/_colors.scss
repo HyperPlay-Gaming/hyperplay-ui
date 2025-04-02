@@ -180,6 +180,7 @@
   --fill-inverse-strong: var(--color-neutral-800);
   --fill-inverse-press: var(--color-neutral-700);
   --fill-inverse-disabled: var(--color-neutral-500);
+  --fill-inverse-weak: var(--color-neutral-700);
   --fill-white: var(--color-neutral-50);
 
   /* Background */
@@ -242,6 +243,7 @@
   /* For components that share styles */
   --app-background: var(--color-neutral-900);
   --background-raised: var(--color-neutral-700);
+  --color-stroke-selected: var(--color-primary-600);
 
   /* Gradients */
   --color-gradient-01-border: linear-gradient(

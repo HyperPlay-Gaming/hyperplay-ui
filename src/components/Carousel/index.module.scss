@@ -1,25 +1,6 @@
-@import '../../styles/utilities/_variables';
-@import '../../styles/designSystem/typography';
-
-.controllerAttached {
-  display: none;
-  right: var(--space-xl-fixed);
-  bottom: var(--space-xl-fixed);
-  position: absolute;
-
-  @include for-tablet-landscape-up {
-    display: block;
-  }
-}
-
-.controllerDetached {
-  display: none;
-  margin-top: var(--space-xl);
-
-  @include for-tablet-landscape-up {
-    display: block;
-  }
-}
+@use '../../styles/utilities/variables' as *;
+@use '../../styles/designSystem/typography' as *;
+@use '../../styles/utilities/loading' as *;
 
 @mixin title-mobile {
   left: var(--space-sm-fixed);
@@ -75,5 +56,81 @@
 .indicators {
   @include for-tablet-landscape-up {
     display: none;
+  }
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:has(.viewport:hover) .control,
+  &:has(.control:hover) .control {
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 100%;
+  }
+}
+
+.mantineCarouselRoot {
+  width: 100%;
+}
+
+.loading {
+  @include shinyLoader;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    visibility: hidden;
+  }
+}
+
+.controls {
+  top: 0px;
+  height: 100%;
+  padding: 0px;
+}
+
+.control {
+  visibility: hidden;
+  opacity: 0%;
+  padding: 0px var(--space-xl-fixed);
+  height: 100%;
+  border-radius: 0px;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  pointer-events: none;
+
+  > button {
+    z-index: 2;
+    pointer-events: auto;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  svg {
+    z-index: 2;
+  }
+
+  &:first-child {
+    transform: translateX(-100%);
+  }
+  &:nth-child(2) {
+    transform: translateX(100%);
+  }
+
+  &::before {
+    background-color: var(--color-neutral-900);
+    opacity: 20%;
+    z-index: 1;
+    position: absolute;
+    inset: 0px;
+    content: '';
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 }

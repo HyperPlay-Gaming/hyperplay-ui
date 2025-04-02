@@ -282,12 +282,12 @@ $titleFontSize: --text-xl;
   @include title-mixin();
 }
 
-$titleSmFontSize: --text-md;
+$titleSmFontSize: --text-xl;
 .title-sm {
   font-family: var(--primary-font-family);
   font-weight: var(--semibold);
   font-size: var($titleSmFontSize);
-  line-height: calc(var($titleSmFontSize) * 24 / 16);
+  line-height: calc(var($titleSmFontSize) * 24.6 / 21.33);
 }
 
 $headerFontSize: --text-3xl;
@@ -315,12 +315,12 @@ $captionSmFontSize: --text-xs;
   letter-spacing: 0.25%;
 }
 
-$eyebrowFontSize: --text-sm;
+$eyebrowFontSize: --text-md;
 .eyebrow {
   font-family: var(--secondary-font-family);
   font-size: var($eyebrowFontSize);
   font-weight: var(--semibold);
-  line-height: calc(var($captionFontSize) * 20 / 14);
+  line-height: calc(var($captionFontSize) * 20 / 16);
 }
 
 $bodyFontSize: --text-lg;
