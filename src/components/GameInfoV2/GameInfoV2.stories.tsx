@@ -1,18 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import fallbackCard from '@/assets/fallback_card.jpg?url'
-import {
-  Base,
-  Binance,
-  DiscordFilled,
-  Ethereum,
-  Globe,
-  Mantle,
-  Plus,
-  Polygon,
-  X,
-  YoutubeFilled
-} from '@/assets/images'
 
 import GameInfoV2 from '.'
 import Button from '../Button'
@@ -30,62 +18,52 @@ export default meta
 type Story = StoryObj<typeof GameInfoV2>
 
 const defaultArgs = {
+  ImageComponent: <img src={fallbackCard} className={styles.gameImage} />,
   title: 'Game Name',
   version: '0.10.88',
+  info: {
+    developer: 'Developer'
+  },
   earlyAccess: true,
-  playerCount: '1-4 Players',
-  image: {
-    src: fallbackCard,
-    alt: 'Game cover'
-  }
+  isLoading: false,
+  playerCount: '1-4 Players'
 }
 
 export const Default: Story = {
   args: {
     ...defaultArgs,
-    image: {
-      src: 'fallback_card.jpg',
-      alt: 'Game cover'
+    isLoading: false,
+    blockchains: {
+      chainId: [
+        '292',
+        '280',
+        '1789',
+        '2357',
+        '7',
+        '1',
+        '11111',
+        '1789',
+        '236',
+        '13371'
+      ],
+      maxVisible: 5,
+      showMoreCount: true
     },
-    blockchains: [
-      {
-        icon: Ethereum,
-        name: 'Ethereum'
-      },
-      {
-        icon: Polygon,
-        name: 'Polygon'
-      },
-      {
-        icon: Mantle,
-        name: 'Mantle'
-      },
-      {
-        icon: Base,
-        name: 'Base'
-      },
-      {
-        icon: Binance,
-        name: 'Binance'
-      }
-    ],
-    showRemainingCount: true,
-    remainingCount: 9,
     socialLinks: [
       {
-        IconButton: Globe,
+        type: 'website',
         url: 'https://example.com'
       },
       {
-        IconButton: X,
+        type: 'twitter',
         url: 'https://twitter.com'
       },
       {
-        IconButton: DiscordFilled,
+        type: 'discord',
         url: 'https://discord.com'
       },
       {
-        IconButton: YoutubeFilled,
+        type: 'youtube',
         url: 'https://youtube.com'
       }
     ],
@@ -94,12 +72,7 @@ export const Default: Story = {
       year: 2025
     },
     actionButton: (
-      <Button
-        type="secondary"
-        size="medium"
-        leftIcon={<Plus />}
-        className={styles.addButton}
-      >
+      <Button type="secondary" size="medium" className={styles.addButton}>
         Add to Library
       </Button>
     )
@@ -109,26 +82,23 @@ export const Default: Story = {
 export const noBlockchains: Story = {
   args: {
     ...defaultArgs,
-    image: {
-      src: 'fallback_card.jpg',
-      alt: 'Game cover'
-    },
+    isLoading: false,
     socialLinks: [
       {
-        IconButton: Globe,
-        url: 'https://example.com'
+        url: 'https://example.com',
+        type: 'website'
       },
       {
-        IconButton: X,
-        url: 'https://twitter.com'
+        url: 'https://twitter.com',
+        type: 'twitter'
       },
       {
-        IconButton: DiscordFilled,
-        url: 'https://discord.com'
+        url: 'https://discord.com',
+        type: 'discord'
       },
       {
-        IconButton: YoutubeFilled,
-        url: 'https://youtube.com'
+        url: 'https://youtube.com',
+        type: 'youtube'
       }
     ],
     editorChoice: {
@@ -136,62 +106,60 @@ export const noBlockchains: Story = {
       year: 2025
     },
     actionButton: (
-      <Button
-        type="secondary"
-        size="medium"
-        leftIcon={<Plus />}
-        className={styles.addButton}
-      >
+      <Button type="secondary" size="medium" className={styles.addButton}>
         Add to Library
       </Button>
     )
   }
 }
 
-export const noSocialLinks: Story = {
+export const isLoading: Story = {
   args: {
     ...defaultArgs,
-    image: {
-      src: 'fallback_card.jpg',
-      alt: 'Game cover'
+    isLoading: true,
+    ImageComponent: <div className={styles.imageLoading} />,
+    info: {
+      developer: 'Developer'
     },
-    blockchains: [
+    earlyAccess: true,
+    playerCount: '1-4 Players',
+    blockchains: {
+      chainId: [
+        '292',
+        '280',
+        '1789',
+        '2357',
+        '7',
+        '1',
+        '11111',
+        '1789',
+        '236',
+        '13371'
+      ],
+      maxVisible: 5,
+      showMoreCount: true
+    },
+    socialLinks: [
       {
-        icon: Ethereum,
-        name: 'Ethereum'
+        url: 'https://example.com',
+        type: 'website'
       },
       {
-        icon: Polygon,
-        name: 'Polygon'
+        url: 'https://twitter.com',
+        type: 'twitter'
       },
       {
-        icon: Mantle,
-        name: 'Mantle'
+        url: 'https://discord.com',
+        type: 'discord'
       },
       {
-        icon: Base,
-        name: 'Base'
-      },
-      {
-        icon: Binance,
-        name: 'Binance'
+        url: 'https://youtube.com',
+        type: 'youtube'
       }
     ],
     editorChoice: {
       isEditorChoice: true,
       year: 2025
-    },
-    showRemainingCount: true,
-    remainingCount: 9,
-    actionButton: (
-      <Button
-        type="secondary"
-        size="medium"
-        leftIcon={<Plus />}
-        className={styles.addButton}
-      >
-        Add to Library
-      </Button>
-    )
+    }
   }
 }
