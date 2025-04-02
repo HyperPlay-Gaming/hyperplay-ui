@@ -1,6 +1,7 @@
 .cardBase {
   width: 271px;
   height: 379px;
+  flex-shrink: 0;
   justify-content: space-between;
   background-color: var(--color-neutral-600);
   border-radius: var(--space-xs);
@@ -22,12 +23,14 @@
 
 .rewardImage {
   position: relative;
-  place-content: center;
-  align-self: center;
   width: 100%;
-  height: 100%;
+  height: 271px;
+  overflow: hidden;
 
   img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: contain;
