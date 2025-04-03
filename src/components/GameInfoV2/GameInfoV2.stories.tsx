@@ -26,7 +26,25 @@ const defaultArgs = {
   },
   earlyAccess: true,
   isLoading: false,
-  playerCount: '1-4 Players'
+  playerCount: '1-4 Players',
+  socialLinks: [
+    {
+      type: 'website',
+      url: 'https://example.com'
+    },
+    {
+      type: 'twitter',
+      url: 'https://twitter.com'
+    },
+    {
+      type: 'discord',
+      url: 'https://discord.com'
+    },
+    {
+      type: 'youtube',
+      url: 'https://youtube.com'
+    }
+  ]
 }
 
 export const Default: Story = {
@@ -49,24 +67,6 @@ export const Default: Story = {
       maxVisible: 5,
       showMoreCount: true
     },
-    socialLinks: [
-      {
-        type: 'website',
-        url: 'https://example.com'
-      },
-      {
-        type: 'twitter',
-        url: 'https://twitter.com'
-      },
-      {
-        type: 'discord',
-        url: 'https://discord.com'
-      },
-      {
-        type: 'youtube',
-        url: 'https://youtube.com'
-      }
-    ],
     editorChoice: {
       isEditorChoice: true,
       year: 2025
@@ -83,24 +83,6 @@ export const noBlockchains: Story = {
   args: {
     ...defaultArgs,
     isLoading: false,
-    socialLinks: [
-      {
-        url: 'https://example.com',
-        type: 'website'
-      },
-      {
-        url: 'https://twitter.com',
-        type: 'twitter'
-      },
-      {
-        url: 'https://discord.com',
-        type: 'discord'
-      },
-      {
-        url: 'https://youtube.com',
-        type: 'youtube'
-      }
-    ],
     editorChoice: {
       isEditorChoice: true,
       year: 2025
@@ -139,24 +121,6 @@ export const isLoading: Story = {
       maxVisible: 5,
       showMoreCount: true
     },
-    socialLinks: [
-      {
-        url: 'https://example.com',
-        type: 'website'
-      },
-      {
-        url: 'https://twitter.com',
-        type: 'twitter'
-      },
-      {
-        url: 'https://discord.com',
-        type: 'discord'
-      },
-      {
-        url: 'https://youtube.com',
-        type: 'youtube'
-      }
-    ],
     editorChoice: {
       isEditorChoice: true,
       year: 2025
