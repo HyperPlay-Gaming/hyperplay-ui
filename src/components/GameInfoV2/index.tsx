@@ -38,6 +38,13 @@ export interface GameInfoV2Props {
   actionButton?: React.ReactNode
   isLoading?: boolean
   className?: string
+  i18n?: {
+    editorChoice?: string
+    earlyAccess?: string
+    developer?: string
+    playerCount?: string
+    version?: string
+  }
 }
 
 const GameInfoV2: React.FC<GameInfoV2Props> = ({
@@ -52,7 +59,8 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
   editorChoice,
   actionButton,
   isLoading,
-  className
+  className,
+  i18n
 }): JSX.Element => {
   const [isImageLoading, setIsImageLoading] = useState(isLoading)
 
@@ -70,18 +78,13 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
     editorChoiceElement = (
       <div className={classNames(styles.editorChoice, editorChoice.className)}>
         <EditorChoice />
-        Editor&apos;s Choice {editorChoice.year || new Date().getFullYear()}
+        {i18n?.editorChoice || "Editor's Choice"}{' '}
+        {editorChoice.year || new Date().getFullYear()}
       </div>
     )
   }
 
   const socialIcons = (socialLink: string) => {
-    if (socialLink === 'website') {
-      return {
-        icon: Globe,
-        className: styles.websiteIcon
-      }
-    }
     if (socialLink === 'twitter') {
       return {
         icon: X,
@@ -99,6 +102,10 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
         icon: Youtube,
         className: styles.youtubeIcon
       }
+    }
+    return {
+      icon: Globe,
+      className: styles.websiteIcon
     }
   }
 
@@ -121,36 +128,40 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
                 title=""
                 items={[
                   <Sticker
-                    key="version"
+                    key={i18n?.version || 'Version'}
                     styleType="neutral"
                     variant="filledStrong"
                   >
                     {version}
                   </Sticker>,
+                  earlyAccess ? (
+                    <Sticker
+                      key={i18n?.earlyAccess || 'Early Access'}
+                      styleType="neutral"
+                      variant="filledStrong"
+                    >
+                      {earlyAccess ? 'Early Access' : ''}
+                    </Sticker>
+                  ) : null,
                   <Sticker
-                    key="earlyAccess"
-                    styleType="neutral"
-                    variant="filledStrong"
-                  >
-                    {earlyAccess ? 'Early Access' : ''}
-                  </Sticker>,
-                  <Sticker
-                    key="developer"
+                    key={i18n?.developer || 'Developer'}
                     styleType="neutral"
                     variant="filledStrong"
                   >
                     {info.developer}
                   </Sticker>,
-                  <Sticker
-                    key="playerCount"
-                    styleType="neutral"
-                    variant="filledStrong"
-                  >
-                    {playerCount}
-                  </Sticker>
+                  playerCount ? (
+                    <Sticker
+                      key={i18n?.playerCount || 'Player Count'}
+                      styleType="neutral"
+                      variant="filledStrong"
+                    >
+                      {playerCount}
+                    </Sticker>
+                  ) : null
                 ]}
                 classNames={{}}
-                maxVisibleItems={5}
+                maxVisibleItems={8}
                 moreIndicator={<></>}
               />
             </div>
@@ -169,14 +180,16 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
             {socialLinks?.map((link, index) => {
               const { icon: Icon } = socialIcons(link.type) ?? {}
               return (
-                <Button
+                <a
                   key={index}
-                  type="secondary"
-                  size="icon"
-                  onClick={() => window.open(link.url, '_blank')}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  {Icon ? <Icon className={styles.socialIcon} /> : null}
-                </Button>
+                  <Button type="secondary" size="icon" onClick={() => {}}>
+                    {Icon ? <Icon className={styles.socialIcon} /> : null}
+                  </Button>
+                </a>
               )
             })}
           </div>
