@@ -121,7 +121,7 @@ $game-image-height: 229.33px;
 .badges {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
+  gap: var(--space-2xs);
 }
 
 .actions {
@@ -135,50 +135,6 @@ $game-image-height: 229.33px;
     flex-wrap: wrap;
     align-items: flex-start;
     width: 100%;
-  }
-}
-
-.socialLinks {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-}
-
-.websiteIcon {
-  width: var(--space-md);
-  height: var(--space-md);
-  color: var(--icon-neutral);
-}
-
-.twitterIcon {
-  color: var(--icon-neutral);
-  width: var(--space-md);
-  height: var(--space-md);
-}
-
-.discordIcon {
-  width: var(--space-md);
-  height: var(--space-md);
-
-  svg {
-    fill: var(--icon-neutral);
-
-    path {
-      fill: var(--icon-neutral);
-    }
-  }
-}
-
-.youtubeIcon {
-  width: var(--space-md);
-  height: var(--space-md);
-
-  svg {
-    fill: var(--icon-neutral);
-
-    path {
-      fill: var(--icon-neutral);
-    }
   }
 }
 
