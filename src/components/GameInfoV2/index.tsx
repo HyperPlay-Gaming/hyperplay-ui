@@ -7,6 +7,7 @@ import { DiscordFilled, EditorChoice, Globe, X, Youtube } from '@/assets/images'
 import BlockchainsStack from '../BlockchainsStack'
 import Button from '../Button'
 import MetaSection from '../MetaSection'
+import SocialLinks from '../SocialLinks/SocialLinks'
 import Sticker from '../Sticker'
 import styles from './GameInfoV2.module.scss'
 
@@ -176,24 +177,7 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
         </div>
 
         <div className={styles.actions}>
-          <div className={styles.socialLinks}>
-            {socialLinks?.map((link, index) => {
-              const { icon: Icon } = socialIcons(link.type) ?? {}
-              return (
-                <a
-                  key={index}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button type="secondary" size="icon" onClick={() => {}}>
-                    {Icon ? <Icon className={styles.socialIcon} /> : null}
-                  </Button>
-                </a>
-              )
-            })}
-          </div>
-
+          {socialLinks && <SocialLinks socialLinks={socialLinks} />}
           {actionButton}
         </div>
       </div>
