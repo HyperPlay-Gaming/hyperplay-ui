@@ -137,3 +137,10 @@ export const isLoading: Story = {
     )
   }
 }
+
+export const ReallyLongGameTitle: Story = {
+  args: {
+    ...defaultArgs,
+    title: 'Naruto Shippuden: Ultimate Ninja Storm 4 Road To Boruto'
+  }
+}
