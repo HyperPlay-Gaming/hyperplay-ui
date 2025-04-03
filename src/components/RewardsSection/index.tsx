@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import styles from './RewardsSection.module.scss'
 import RewardsCard, { RewardsCardProps } from '@/components/RewardsCard'
 import ArrowCircularButton from '../ArrowCircularButton'
@@ -24,6 +24,28 @@ const RewardsSection = ({
   i18n = defaultI18n
 }: RewardsSectionProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [isScrollable, setIsScrollable] = useState(false)
+
+  // Check if content is scrollable on mount and window resize
+  useEffect(() => {
+    const checkScrollable = () => {
+      if (containerRef.current) {
+        const { scrollWidth, clientWidth } = containerRef.current
+        setIsScrollable(scrollWidth > clientWidth)
+      }
+    }
+
+    // Initial check
+    checkScrollable()
+
+    // Add resize listener
+    window.addEventListener('resize', checkScrollable)
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', checkScrollable)
+    }
+  }, [rewards])
 
   const scrollLeft = () => {
     if (containerRef.current) {
@@ -64,18 +86,20 @@ const RewardsSection = ({
     <div className={styles.rewardsSection}>
       <div className={styles.header}>
         <h6>{i18n.header}</h6>
-        <div className={styles.navigationIcons}>
-          <ArrowCircularButton
-            classNames={{ root: styles.leftButton }}
-            isLeftButton
-            onClick={scrollLeft}
-          />
-          <ArrowCircularButton
-            classNames={{ root: styles.rightButton }}
-            onClick={scrollRight}
-            isLeftButton={false}
-          />
-        </div>
+        {isScrollable && (
+          <div className={styles.navigationIcons}>
+            <ArrowCircularButton
+              classNames={{ root: styles.leftButton }}
+              isLeftButton
+              onClick={scrollLeft}
+            />
+            <ArrowCircularButton
+              classNames={{ root: styles.rightButton }}
+              onClick={scrollRight}
+              isLeftButton={false}
+            />
+          </div>
+        )}
       </div>
       <div className={styles.cardsContainer} ref={containerRef}>
         {rewards.map((reward) => (

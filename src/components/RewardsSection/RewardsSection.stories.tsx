@@ -23,6 +23,7 @@ import { RewardsCardProps } from '../RewardsCard'
  * ## Features
  * - Horizontal scrolling with smooth animation
  * - Left and right navigation controls with circular scrolling (loops back to beginning/end)
+ * - Navigation controls only displayed when content is scrollable
  * - Responsive layout that adapts to different screen sizes (navigation controls hidden on mobile)
  * - Consistent presentation of rewards with visual indicators for availability
  * - Clear organization with descriptive heading
@@ -40,7 +41,7 @@ const meta: Meta<typeof RewardsSection> = {
     docs: {
       description: {
         component:
-          'A horizontally scrollable section for displaying game rewards with navigation controls, designed to showcase incentives for completing quests. Features circular scrolling to navigate seamlessly from end to beginning and vice versa. Navigation controls are hidden on mobile views for a cleaner interface.'
+          'A horizontally scrollable section for displaying game rewards with navigation controls, designed to showcase incentives for completing quests. Features circular scrolling to navigate seamlessly from end to beginning and vice versa. Navigation controls are hidden on mobile views and when there are not enough items to scroll.'
       }
     }
   },
@@ -319,5 +320,39 @@ export const MobileView: Story = {
     expect(canvas.getByText('Claims left: 500')).toBeInTheDocument()
     expect(canvas.getByText('Claims left: 150')).toBeInTheDocument()
     expect(canvas.getByText('Claims left: Unlimited')).toBeInTheDocument()
+  }
+}
+
+export const FewItems: Story = {
+  args: {
+    rewards: rewardsData.slice(0, 2), // Just show 2 rewards to demonstrate hiding navigation
+    linkElement: ({ children }) => <div>{children}</div>
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'desktop' // Use a wide view to ensure we're not hiding due to mobile view
+    },
+    docs: {
+      description: {
+        story:
+          'When there are only a few items that fit within the container without scrolling, navigation buttons are automatically hidden.'
+      }
+    }
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Check that the rewards are displayed
+    expect(canvas.getByText('1000 YGG Points')).toBeInTheDocument()
+    expect(canvas.getByText('NTx Airdrop')).toBeInTheDocument()
+
+    // Check that the header is present
+    expect(
+      canvas.getByText('Complete Quests to Earn These Rewards')
+    ).toBeInTheDocument()
+
+    // Try to find navigation buttons (they should not be in the document)
+    const navigationIcons = canvas.queryAllByRole('button')
+    expect(navigationIcons.length).toBe(0)
   }
 }
