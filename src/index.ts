@@ -57,6 +57,16 @@ export { default as CheckEmail } from './components/CheckEmail'
 export { default as EmailVerified } from './components/EmailVerified'
 export { default as StoreRow } from './components/StoreRow'
 
+export {
+  default as GameInfoV2,
+  type GameInfoV2Props
+} from './components/GameInfoV2'
+
+export {
+  default as BlockchainsStack,
+  type BlockchainsStackProps
+} from './components/BlockchainsStack'
+
 export { default as AchievementCard } from './components/AchievementCard'
 export { default as AchievementNav } from './components/AchievementNav'
 export { default as AchievementProgress } from './components/AchievementProgress'
