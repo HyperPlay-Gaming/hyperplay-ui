@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 
 import classNames from 'classnames'
 
-import { DiscordFilled, EditorChoice, Globe, X, Youtube } from '@/assets/images'
+import { EditorChoice } from '@/assets/images'
 
 import BlockchainsStack from '../BlockchainsStack'
-import Button from '../Button'
 import MetaSection from '../MetaSection'
 import SocialLinks from '../SocialLinks/SocialLinks'
 import Sticker from '../Sticker'
@@ -83,31 +82,6 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
         {editorChoice.year || new Date().getFullYear()}
       </div>
     )
-  }
-
-  const socialIcons = (socialLink: string) => {
-    if (socialLink === 'twitter') {
-      return {
-        icon: X,
-        className: styles.twitterIcon
-      }
-    }
-    if (socialLink === 'discord') {
-      return {
-        icon: DiscordFilled,
-        className: styles.discordIcon
-      }
-    }
-    if (socialLink === 'youtube') {
-      return {
-        icon: Youtube,
-        className: styles.youtubeIcon
-      }
-    }
-    return {
-      icon: Globe,
-      className: styles.websiteIcon
-    }
   }
 
   return (
