@@ -1,13 +1,25 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect, within, fireEvent } from '@storybook/test'
+import React from 'react'
 
 import YGGTransp from '@/assets/stories/YggIconTransparent.png'
 import PremiumTicket from '@/assets/stories/premiumTicket.png'
 import xocietyNTx from '@/assets/stories/xocietyNTx.png'
 import YGGReward from '@/assets/stories/ygg.png'
 
-import RewardsSection from './index'
+import RewardsSection, { LinkComponentProps } from './index'
 import { RewardsCardProps } from '../RewardsCard'
+
+/**
+ * Mock Link component for stories that simulates Next.js Link or similar router links
+ */
+const MockLink = ({ href, children }: LinkComponentProps) => {
+  return (
+    <a href={href} onClick={() => console.log(`Clicked card`)}>
+      {children}
+    </a>
+  )
+}
 
 /**
  * The `RewardsSection` component displays a horizontally scrollable collection of reward cards
@@ -27,6 +39,7 @@ import { RewardsCardProps } from '../RewardsCard'
  * - Responsive layout that adapts to different screen sizes (navigation controls hidden on mobile)
  * - Consistent presentation of rewards with visual indicators for availability
  * - Clear organization with descriptive heading
+ * - Link integration with routing libraries (Next.js, React Router, etc.)
  *
  * ## Accessibility
  * - Keyboard-navigable scrolling controls
@@ -41,7 +54,7 @@ const meta: Meta<typeof RewardsSection> = {
     docs: {
       description: {
         component:
-          'A horizontally scrollable section for displaying game rewards with navigation controls, designed to showcase incentives for completing quests. Features circular scrolling to navigate seamlessly from end to beginning and vice versa. Navigation controls are hidden on mobile views and when there are not enough items to scroll.'
+          'A horizontally scrollable section for displaying game rewards with navigation controls, designed to showcase incentives for completing quests. Features circular scrolling to navigate seamlessly from end to beginning and vice versa. Navigation controls are hidden on mobile views and when there are not enough items to scroll. Integrates with link routing for navigation to quest details.'
       }
     }
   },
@@ -49,6 +62,10 @@ const meta: Meta<typeof RewardsSection> = {
     rewards: {
       description: 'Array of reward objects to display in the section',
       control: 'object'
+    },
+    linkElement: {
+      description:
+        'Component to use for navigation links. Must accept href and children props.'
     }
   }
 }
@@ -124,11 +141,17 @@ const extendedRewardsData = [
 export const Default: Story = {
   args: {
     rewards: rewardsData,
-    linkElement: ({ children }) => <div>{children}</div>
+    linkElement: MockLink
   },
   parameters: {
     viewport: {
       defaultViewport: 'desktop'
+    },
+    docs: {
+      description: {
+        story:
+          'Default implementation with proper link routing using the href prop for reward items.'
+      }
     }
   },
   play: async ({ canvasElement }) => {
@@ -155,7 +178,7 @@ export const Default: Story = {
 export const SingleReward: Story = {
   args: {
     rewards: [rewardsData[0]],
-    linkElement: ({ children }) => <div>{children}</div>
+    linkElement: MockLink
   },
   parameters: {
     viewport: {
@@ -179,7 +202,7 @@ export const SingleReward: Story = {
 export const MultipleRewards: Story = {
   args: {
     rewards: extendedRewardsData,
-    linkElement: ({ children }) => <div>{children}</div>
+    linkElement: MockLink
   },
   parameters: {
     viewport: {
@@ -234,7 +257,7 @@ export const MixedClaimsLeft: Story = {
         claimsLeft: 100
       }
     ],
-    linkElement: ({ children }) => <div>{children}</div>
+    linkElement: MockLink
   },
   parameters: {
     viewport: {
@@ -256,7 +279,7 @@ export const MixedClaimsLeft: Story = {
 export const CircularNavigation: Story = {
   args: {
     rewards: extendedRewardsData,
-    linkElement: ({ children }) => <div>{children}</div>
+    linkElement: MockLink
   },
   parameters: {
     viewport: {
@@ -293,7 +316,7 @@ export const CircularNavigation: Story = {
 export const MobileView: Story = {
   args: {
     rewards: extendedRewardsData,
-    linkElement: ({ children }) => <div>{children}</div>
+    linkElement: MockLink
   },
   parameters: {
     viewport: {
@@ -326,7 +349,7 @@ export const MobileView: Story = {
 export const FewItems: Story = {
   args: {
     rewards: rewardsData.slice(0, 2), // Just show 2 rewards to demonstrate hiding navigation
-    linkElement: ({ children }) => <div>{children}</div>
+    linkElement: MockLink
   },
   parameters: {
     viewport: {
@@ -354,5 +377,35 @@ export const FewItems: Story = {
     // Try to find navigation buttons (they should not be in the document)
     const navigationIcons = canvas.queryAllByRole('button')
     expect(navigationIcons.length).toBe(0)
+  }
+}
+
+export const WithNativeAnchor: Story = {
+  args: {
+    rewards: rewardsData.slice(0, 3),
+    linkElement: MockLink
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'desktop'
+    },
+    docs: {
+      description: {
+        story: 'Example using the native anchor tag for navigation links.'
+      }
+    }
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Check that the section renders correctly with anchors
+    expect(canvas.getByText('1000 YGG Points')).toBeInTheDocument()
+    expect(canvas.getByText('NTx Airdrop')).toBeInTheDocument()
+    expect(canvas.getByText('Premium Ticket')).toBeInTheDocument()
+
+    // Verify header is present
+    expect(
+      canvas.getByText('Complete Quests to Earn These Rewards')
+    ).toBeInTheDocument()
   }
 }

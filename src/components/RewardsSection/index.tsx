@@ -1,14 +1,26 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, ComponentType } from 'react'
 import styles from './RewardsSection.module.scss'
 import RewardsCard, { RewardsCardProps } from '@/components/RewardsCard'
 import ArrowCircularButton from '../ArrowCircularButton'
 
+/**
+ * LinkComponentProps defines the required props that a link component should have.
+ * This ensures compatibility with various link implementations like:
+ * - HTML anchor tags
+ * - Next.js Link components
+ */
+export interface LinkComponentProps {
+  href?: string
+  children?: React.ReactNode
+}
+
 export interface RewardsSectionProps {
   rewards: RewardsCardProps[]
-  linkElement: React.ComponentType<{
-    href?: string
-    children?: React.ReactNode
-  }>
+  /**
+   * Component to use for link navigation. Must accept href and children props.
+   * Compatible with Next.js Link, React Router Link, or HTML anchor.
+   */
+  linkElement: ComponentType<LinkComponentProps>
   i18n?: {
     header?: string
   }
