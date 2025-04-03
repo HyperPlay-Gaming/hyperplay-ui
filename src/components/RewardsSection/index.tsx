@@ -27,13 +27,32 @@ const RewardsSection = ({
 
   const scrollLeft = () => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({ left: -271, behavior: 'smooth' })
+      const container = containerRef.current
+      const scrollAmount = 271
+
+      // If at the beginning or close to it, scroll to the end
+      if (container.scrollLeft <= scrollAmount) {
+        container.scrollTo({ left: container.scrollWidth, behavior: 'smooth' })
+      } else {
+        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+      }
     }
   }
 
   const scrollRight = () => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({ left: 271, behavior: 'smooth' })
+      const container = containerRef.current
+      const scrollAmount = 271
+
+      // If at the end or close to it, scroll back to the beginning
+      if (
+        container.scrollLeft + container.clientWidth >=
+        container.scrollWidth - scrollAmount
+      ) {
+        container.scrollTo({ left: 0, behavior: 'smooth' })
+      } else {
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+      }
     }
   }
 
