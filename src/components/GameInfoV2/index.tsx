@@ -4,7 +4,6 @@ import classNames from 'classnames'
 
 import { EditorChoice } from '@/assets/images'
 
-import BlockchainsStack from '../BlockchainsStack'
 import MetaSection from '../MetaSection'
 import SocialLinks from '../SocialLinks/SocialLinks'
 import Sticker from '../Sticker'
@@ -24,11 +23,7 @@ export interface GameInfoV2Props {
   earlyAccess?: boolean
   playerCount?: string
   ImageComponent?: React.ReactNode
-  blockchains?: {
-    chainId: string[]
-    maxVisible?: number
-    showMoreCount?: boolean
-  }
+  blockchains?: React.ReactNode
   socialLinks?: {
     type: string
     url: string
@@ -145,13 +140,7 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
                 moreIndicator={<></>}
               />
             </div>
-            {blockchains ? (
-              <BlockchainsStack
-                chainId={blockchains.chainId}
-                maxVisible={blockchains.maxVisible}
-                showMoreCount={blockchains.showMoreCount}
-              />
-            ) : null}
+            {blockchains}
           </div>
         </div>
 
