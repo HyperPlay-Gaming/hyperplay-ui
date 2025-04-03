@@ -20,6 +20,9 @@ export interface BlockchainsStackProps
   maxVisible?: number
   showMoreCount?: boolean
   className?: string
+  // Next/Image can be passed in here to use instead of img tag
+  /* eslint-disable-next-line */
+  Image?: any
 }
 
 const BlockchainsStack = ({
@@ -28,6 +31,7 @@ const BlockchainsStack = ({
   maxVisible = 5,
   showMoreCount = true,
   className,
+  Image = 'img',
   ...props
 }: BlockchainsStackProps) => {
   const [isMoreHovered, setIsMoreHovered] = useState(false)
@@ -66,7 +70,7 @@ const BlockchainsStack = ({
       <div className={styles.blockchainIcons}>
         {visibleBlockchains.map((blockchain, index) => (
           <div key={`blockchain-${index}`} className={styles.icon}>
-            <img
+            <Image
               src={getIconSrc(blockchain.iconUrl)}
               alt={blockchain.name}
               className={styles.blockchainSvg}
@@ -101,7 +105,7 @@ const BlockchainsStack = ({
                     key={`remaining-${index}`}
                     className={styles.popoverItem}
                   >
-                    <img
+                    <Image
                       src={getIconSrc(blockchain.iconUrl)}
                       alt={blockchain.name}
                       className={styles.popoverIcons}
