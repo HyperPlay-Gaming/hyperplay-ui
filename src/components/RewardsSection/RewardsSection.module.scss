@@ -58,6 +58,12 @@
     width: 90vw;
   }
 
+  .header {
+    h6 {
+      line-height: var(--space-lg);
+    }
+  }
+
   .navigationIcons {
     display: none;
   }
