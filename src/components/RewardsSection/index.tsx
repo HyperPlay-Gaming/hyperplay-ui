@@ -5,6 +5,10 @@ import ArrowCircularButton from '../ArrowCircularButton'
 
 export interface RewardsSectionProps {
   rewards: RewardsCardProps[]
+  linkElement: React.ComponentType<{
+    href?: string
+    children?: React.ReactNode
+  }>
   i18n?: {
     header?: string
   }
@@ -16,6 +20,7 @@ const defaultI18n = {
 
 const RewardsSection = ({
   rewards,
+  linkElement: LinkElement,
   i18n = defaultI18n
 }: RewardsSectionProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -55,13 +60,16 @@ const RewardsSection = ({
       </div>
       <div className={styles.cardsContainer} ref={containerRef}>
         {rewards.map((reward) => (
-          <RewardsCard
-            id={reward.id}
-            key={reward.id}
-            rewardImage={reward.rewardImage}
-            claimsLeft={reward.claimsLeft}
-            reward={reward.reward}
-          />
+          <LinkElement key={reward.questId}>
+            <RewardsCard
+              id={reward.id}
+              key={reward.id}
+              questId={reward.questId}
+              rewardImage={reward.rewardImage}
+              claimsLeft={reward.claimsLeft}
+              reward={reward.reward}
+            />
+          </LinkElement>
         ))}
       </div>
     </div>

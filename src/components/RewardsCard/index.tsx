@@ -7,7 +7,8 @@ import Sticker from '../Sticker'
 import styles from './index.module.scss'
 
 export type RewardsCardProps = {
-  id: string | number
+  id: number
+  questId: number
   reward: string
   rewardImage: string
   claimsLeft?: string | number
