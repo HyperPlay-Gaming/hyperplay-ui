@@ -40,13 +40,15 @@ function RewardsCard({
           <Sticker styleType="neutral" dimension="default">
             {reward}
           </Sticker>
-          <Sticker
-            styleType="neutral"
-            dimension="default"
-            withDot={{ dotColor: 'success', dotIcon: DotIcon }}
-          >
-            {i18n.claimsLabel}: {claimsLeft ?? i18n.claimsLeftLabel}
-          </Sticker>
+          {claimsLeft !== undefined ? (
+            <Sticker
+              styleType="neutral"
+              dimension="default"
+              withDot={{ dotColor: 'success', dotIcon: DotIcon }}
+            >
+              {i18n.claimsLabel}: {claimsLeft ?? i18n.claimsLeftLabel}
+            </Sticker>
+          ) : null}
         </div>
       </div>
     </CardGeneric>

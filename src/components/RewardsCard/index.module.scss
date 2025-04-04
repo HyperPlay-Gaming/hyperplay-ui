@@ -1,6 +1,7 @@
 .cardBase {
   width: 271px;
-  height: 379px;
+  // should be 379px when we update it to use two stickers
+  height: 339px;
   flex-shrink: 0;
   justify-content: space-between;
   background-color: var(--color-neutral-600);
@@ -42,6 +43,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: var(--color-neutral-700);
+  align-content: flex-start;
 }
