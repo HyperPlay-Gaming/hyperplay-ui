@@ -38,6 +38,10 @@ const meta: Meta<typeof RewardsCard> = {
     i18n: {
       description:
         'Internationalization options for customizing labels (claimsLabel and claimsLeftLabel)'
+    },
+    isLoading: {
+      description: 'Shows the card in a loading state with shiny animation',
+      control: 'boolean'
     }
   }
 }
@@ -90,5 +94,17 @@ export const CryptoReward: Story = {
     i18n: {
       claimsLabel: 'Available'
     }
+  }
+}
+
+// Loading State
+export const LoadingState: Story = {
+  args: {
+    id: 4,
+    questId: 104,
+    reward: 'Loading Reward',
+    rewardImage: YGGReward,
+    claimsLeft: undefined,
+    isLoading: true
   }
 }

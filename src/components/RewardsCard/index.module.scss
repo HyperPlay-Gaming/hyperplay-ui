@@ -1,3 +1,5 @@
+@use '../../styles/utilities/loading' as *;
+
 .cardBase {
   width: 271px;
   // should be 379px when we update it to use two stickers
@@ -36,6 +38,14 @@
     height: 100%;
     object-fit: contain;
     border-radius: var(--space-xs);
+  }
+}
+
+.loading {
+  @include shinyLoader;
+
+  .rewardImage img {
+    visibility: hidden;
   }
 }
 

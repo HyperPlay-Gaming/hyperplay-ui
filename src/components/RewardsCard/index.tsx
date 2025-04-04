@@ -13,6 +13,7 @@ export type RewardsCardProps = {
   i18n?: {
     claimsLabel?: string
   }
+  isLoading?: boolean
 }
 
 function RewardsCard({
@@ -21,28 +22,32 @@ function RewardsCard({
   claimsLeft,
   i18n = {
     claimsLabel: 'Claims left'
-  }
+  },
+  isLoading = false
 }: RewardsCardProps) {
   return (
     <CardGeneric
       image={rewardImage}
       showGradientBorderAndShadow
       genericClassNames={{
-        body: styles.rewardsCard,
-        image: styles.rewardImage
+        body: isLoading ? styles.loading : styles.rewardsCard,
+        image: styles.rewardImage,
+        root: isLoading ? styles.loading : ''
       }}
       className={styles.cardBase}
     >
       <div className={styles.content}>
         <div className={styles.stickers}>
-          <Sticker
-            styleType="neutral"
-            dimension="default"
-            variant="filledStrong"
-          >
-            {reward}
-          </Sticker>
-          {claimsLeft !== undefined ? (
+          {isLoading ? null : (
+            <Sticker
+              styleType="neutral"
+              dimension="default"
+              variant="filledStrong"
+            >
+              {reward}
+            </Sticker>
+          )}
+          {claimsLeft !== undefined && !isLoading ? (
             <Sticker
               styleType="neutral"
               dimension="default"
