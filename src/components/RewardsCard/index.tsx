@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { DotIcon } from '@/assets/images'
 
 import { CardGeneric } from '../CardGeneric'
