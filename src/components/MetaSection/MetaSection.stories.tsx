@@ -1,18 +1,19 @@
 import React from 'react'
+
 import { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
 import {
-  IconDeviceGamepad,
-  IconLanguage,
   IconCategory,
-  IconFlag,
+  IconDeviceGamepad,
   IconDeviceGamepad2,
-  IconX,
-  IconPlus
+  IconFlag,
+  IconLanguage,
+  IconPlus,
+  IconX
 } from '@tabler/icons-react'
 
-import Sticker from '../Sticker'
 import Button from '../Button'
+import Sticker from '../Sticker'
 import MetaSection from './index'
 
 /**

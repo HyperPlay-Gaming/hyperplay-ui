@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import fallbackCard from '@/assets/fallback_card.jpg?url'
 
 import GameInfoV2 from '.'
+import BlockchainsStack from '../BlockchainsStack'
 import Button from '../Button'
 import styles from './GameInfoV2.module.scss'
 
@@ -51,22 +52,24 @@ export const Default: Story = {
   args: {
     ...defaultArgs,
     isLoading: false,
-    blockchains: {
-      chainId: [
-        '292',
-        '280',
-        '1789',
-        '2357',
-        '7',
-        '1',
-        '11111',
-        '1789',
-        '236',
-        '13371'
-      ],
-      maxVisible: 5,
-      showMoreCount: true
-    },
+    blockchains: (
+      <BlockchainsStack
+        chainId={[
+          '292',
+          '280',
+          '1789',
+          '2357',
+          '7',
+          '1',
+          '11111',
+          '1789',
+          '236',
+          '13371'
+        ]}
+        maxVisible={5}
+        showMoreCount={true}
+      />
+    ),
     editorChoice: {
       isEditorChoice: true,
       year: 2025
@@ -105,22 +108,24 @@ export const isLoading: Story = {
     },
     earlyAccess: true,
     playerCount: '1-4 Players',
-    blockchains: {
-      chainId: [
-        '292',
-        '280',
-        '1789',
-        '2357',
-        '7',
-        '1',
-        '11111',
-        '1789',
-        '236',
-        '13371'
-      ],
-      maxVisible: 5,
-      showMoreCount: true
-    },
+    blockchains: (
+      <BlockchainsStack
+        chainId={[
+          '292',
+          '280',
+          '1789',
+          '2357',
+          '7',
+          '1',
+          '11111',
+          '1789',
+          '236',
+          '13371'
+        ]}
+        maxVisible={5}
+        showMoreCount={true}
+      />
+    ),
     editorChoice: {
       isEditorChoice: true,
       year: 2025
@@ -130,5 +135,12 @@ export const isLoading: Story = {
         Add to Library
       </Button>
     )
+  }
+}
+
+export const ReallyLongGameTitle: Story = {
+  args: {
+    ...defaultArgs,
+    title: 'Naruto Shippuden: Ultimate Ninja Storm 4 Road To Boruto'
   }
 }

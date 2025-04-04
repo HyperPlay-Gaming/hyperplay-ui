@@ -4,7 +4,6 @@ import classNames from 'classnames'
 
 import { EditorChoice } from '@/assets/images'
 
-import BlockchainsStack from '../BlockchainsStack'
 import MetaSection from '../MetaSection'
 import SocialLinks from '../SocialLinks/SocialLinks'
 import Sticker from '../Sticker'
@@ -24,11 +23,7 @@ export interface GameInfoV2Props {
   earlyAccess?: boolean
   playerCount?: string
   ImageComponent?: React.ReactNode
-  blockchains?: {
-    chainId: string[]
-    maxVisible?: number
-    showMoreCount?: boolean
-  }
+  blockchains?: React.ReactNode
   socialLinks?: {
     type: string
     url: string
@@ -60,7 +55,13 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
   actionButton,
   isLoading,
   className,
-  i18n
+  i18n = {
+    editorChoice: "Editor's Choice",
+    version: 'Version',
+    earlyAccess: 'Early Access',
+    developer: 'Developer',
+    playerCount: 'Player Count'
+  }
 }): JSX.Element => {
   const [isImageLoading, setIsImageLoading] = useState(isLoading)
 
@@ -78,7 +79,7 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
     editorChoiceElement = (
       <div className={classNames(styles.editorChoice, editorChoice.className)}>
         <EditorChoice />
-        {i18n?.editorChoice || "Editor's Choice"}{' '}
+        {i18n.editorChoice}
         {editorChoice.year || new Date().getFullYear()}
       </div>
     )
@@ -103,7 +104,7 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
                 title=""
                 items={[
                   <Sticker
-                    key={i18n?.version || 'Version'}
+                    key={i18n.version}
                     styleType="neutral"
                     variant="filledStrong"
                   >
@@ -111,15 +112,15 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
                   </Sticker>,
                   earlyAccess ? (
                     <Sticker
-                      key={i18n?.earlyAccess || 'Early Access'}
+                      key={i18n.earlyAccess}
                       styleType="neutral"
                       variant="filledStrong"
                     >
-                      {earlyAccess ? 'Early Access' : ''}
+                      {i18n.earlyAccess}
                     </Sticker>
                   ) : null,
                   <Sticker
-                    key={i18n?.developer || 'Developer'}
+                    key={i18n.developer}
                     styleType="neutral"
                     variant="filledStrong"
                   >
@@ -127,7 +128,7 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
                   </Sticker>,
                   playerCount ? (
                     <Sticker
-                      key={i18n?.playerCount || 'Player Count'}
+                      key={i18n.playerCount}
                       styleType="neutral"
                       variant="filledStrong"
                     >
@@ -135,18 +136,11 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
                     </Sticker>
                   ) : null
                 ]}
-                classNames={{}}
                 maxVisibleItems={8}
                 moreIndicator={<></>}
               />
             </div>
-            {blockchains ? (
-              <BlockchainsStack
-                chainId={blockchains.chainId}
-                maxVisible={blockchains.maxVisible}
-                showMoreCount={blockchains.showMoreCount}
-              />
-            ) : null}
+            {blockchains}
           </div>
         </div>
 
