@@ -36,6 +36,8 @@ export {
 export { default as OptionsAccordion } from './components/OptionsAccordion'
 export type { itemType as DropdownItemType } from './components/Dropdowns/Dropdown'
 
+export { default as ArrowCircularButton } from './components/ArrowCircularButton'
+
 export * as Typography from './components/Typography'
 export * as Images from './assets/images'
 export { default as TokenTable } from './components/TokenTable'
@@ -234,6 +236,11 @@ export {
   MarkdownDescription,
   type MarkdownDescriptionProps
 } from './components/MarkdownDescription'
+
+export {
+  default as RewardsCard,
+  type RewardsCardProps
+} from './components/RewardsCard'
 
 export * from './components/StreakProgress'
 export * from './components/QuestDetails/components/Rewards'

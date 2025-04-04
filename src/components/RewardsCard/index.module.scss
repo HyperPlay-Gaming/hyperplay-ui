@@ -1,0 +1,49 @@
+.cardBase {
+  width: 271px;
+  // should be 379px when we update it to use two stickers
+  height: 339px;
+  flex-shrink: 0;
+  justify-content: space-between;
+  background-color: var(--color-neutral-600);
+  border-radius: var(--space-xs);
+}
+
+.rewardsCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  width: 100%;
+  justify-content: flex-end;
+  max-height: 108px;
+}
+
+.content {
+  text-align: center;
+}
+
+.rewardImage {
+  position: relative;
+  width: 100%;
+  height: 271px;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: var(--space-xs);
+  }
+}
+
+.stickers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: flex-start;
+  background-color: var(--color-neutral-700);
+  align-content: flex-start;
+}
