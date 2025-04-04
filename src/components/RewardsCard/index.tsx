@@ -28,7 +28,7 @@ function RewardsCard({
   return (
     <CardGeneric
       image={rewardImage}
-      isReward
+      showGradientBorderAndShadow
       genericClassNames={{
         body: styles.rewardsCard,
         image: styles.rewardImage
@@ -37,7 +37,11 @@ function RewardsCard({
     >
       <div className={styles.content}>
         <div className={styles.stickers}>
-          <Sticker styleType="neutral" dimension="default">
+          <Sticker
+            styleType="neutral"
+            dimension="default"
+            variant="filledStrong"
+          >
             {reward}
           </Sticker>
           {claimsLeft !== undefined ? (

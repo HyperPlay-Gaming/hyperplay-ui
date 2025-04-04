@@ -28,7 +28,7 @@ export interface CardGenericProps extends CardProps {
     label?: string
   }
   statusIcon?: JSX.Element
-  isReward?: boolean
+  showGradientBorderAndShadow?: boolean
   genericClassNames?: {
     root?: string
     body?: string
@@ -48,7 +48,7 @@ export function CardGeneric({
   children,
   className,
   genericClassNames,
-  isReward = false,
+  showGradientBorderAndShadow = false,
   ...rest
 }: CardGenericProps &
   ImageProps &
@@ -57,9 +57,9 @@ export function CardGeneric({
     <Card
       className={cn(
         {
-            gradientShadow: !isReward,
-            gradientBorderOnHover: !isReward
-         }
+          gradientShadow: !showGradientBorderAndShadow,
+          gradientBorderOnHover: !showGradientBorderAndShadow
+        },
         styles.card,
         genericClassNames?.root,
         className
