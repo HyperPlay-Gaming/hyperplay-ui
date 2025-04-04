@@ -1,20 +1,20 @@
 @use '../utilities/variables';
 /*
-with 1.154701 scale ratio and 16px root font size
+with 1.14 scale ratio and 14.5px root font size
 name px rem
-xs	11.99999539
-sm	13.8564038
-md	16
-lg	18.47521216
-xl	21.33334152
-2xl	24.63362567
-3xl	28.44446628
-4xl	32.84484683
-5xl	37.9259696
-6xl	43.79314592
-7xl	50.56797887
-8xl	58.39088364
-9xl	67.42399771
+xs	12
+sm	13.68
+md	14.5
+lg	16.53
+xl	18.84
+2xl	21.48
+3xl	24.49
+4xl	27.92
+5xl	31.83
+6xl	36.28
+7xl	41.36
+8xl	47.15
+9xl	53.75
 */
 
 @mixin typeSystem {
@@ -31,8 +31,8 @@ xl	21.33334152
   --extrabold: 900;
 
   /* set base values */
-  --text-scale-ratio: 1.154701;
-  font-size: 16px;
+  --text-scale-ratio: 1.14;
+  font-size: 14.5px;
 
   /* type scale */
   --text-xs: calc(1rem / (var(--text-scale-ratio) * var(--text-scale-ratio)));
@@ -186,79 +186,81 @@ button {
 }
 
 /* Elements */
-$h1FontSize: --text-9xl;
+$h1FontSize: --text-8xl;
 @mixin h1-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h1FontSize);
   font-weight: var(--bold);
-  line-height: calc(var($h1FontSize) * 76 / 67);
-  letter-spacing: -1%;
-  /** 
-   * Letter height is greater than line-height so the letters overflow.
-   * This can cause scrolling in containers that have plenty of room for content.
-   */
-  overflow: hidden;
+  line-height: 1.31; /* 76.5/58.39 */
+  letter-spacing: 0%;
 }
-
-h1 {
+h1,
+.h1 {
   @include h1-mixin();
 }
 
-$h2FontSize: --text-8xl;
+$h2FontSize: --text-7xl;
 @mixin h2-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h2FontSize);
   font-weight: var(--bold);
-  line-height: calc(var($h2FontSize) * 64 / 58);
-  letter-spacing: -1%;
+  line-height: 1.27; /* 64.4/50.57 */
+  letter-spacing: 0%;
 }
-h2 {
+h2,
+.h2 {
   @include h2-mixin();
 }
 
-$h3FontSize: --text-7xl;
+$h3FontSize: --text-6xl;
 @mixin h3-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h3FontSize);
   font-weight: var(--bold);
-  line-height: calc(var($h3FontSize) * 56 / 50);
-  letter-spacing: -1%;
+  line-height: 1.29; /* 56.6/43.7 */
+  letter-spacing: 0%;
 }
-h3 {
+h3,
+.h3 {
   @include h3-mixin();
 }
 
-$h4FontSize: --text-6xl;
+$h4FontSize: --text-5xl;
 @mixin h4-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h4FontSize);
   font-weight: var(--bold);
-  line-height: calc(var($h4FontSize) * 48 / 43);
-  letter-spacing: -1%;
+  line-height: 1.29; /* 48.9/37.93 */
+  letter-spacing: 0%;
 }
-h4 {
+h4,
+.h4 {
   @include h4-mixin();
 }
 
-$h5FontSize: --text-5xl;
+$h5FontSize: --text-4xl;
 @mixin h5-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h5FontSize);
   font-weight: var(--bold);
-  line-height: calc(var($h5FontSize) * 40 / 37);
+  line-height: 1.27; /* 41.1/32.4 */
+  letter-spacing: 0%;
 }
-h5 {
+h5,
+.h5 {
   @include h5-mixin();
 }
 
-$h6FontSize: --text-2xl;
+$h6FontSize: --text-3xl;
 @mixin h6-mixin {
   font-family: var(--primary-font-family);
   font-size: var($h6FontSize);
-  font-weight: var(--medium);
-  line-height: calc(var($h6FontSize) * 41 / 24);
+  font-weight: var(--bold);
+  line-height: 1.33; /* 37.9/28.44 */
+  letter-spacing: 0%;
 }
-h6 {
+h6,
+.h6 {
   @include h6-mixin();
 }
 
@@ -271,12 +273,13 @@ $menuFontSize: --text-md;
   letter-spacing: 1%;
 }
 
-$titleFontSize: --text-xl;
+$titleFontSize: --text-2xl;
 @mixin title-mixin {
   font-family: var(--primary-font-family);
   font-size: var($titleFontSize);
   font-weight: var(--semibold);
-  line-height: calc(var($titleFontSize) * 28 / 21);
+  line-height: 1.15; /* 28.4/24.63 */
+  letter-spacing: 0%;
 }
 .title {
   @include title-mixin();
@@ -285,9 +288,10 @@ $titleFontSize: --text-xl;
 $titleSmFontSize: --text-xl;
 .title-sm {
   font-family: var(--primary-font-family);
-  font-weight: var(--semibold);
   font-size: var($titleSmFontSize);
-  line-height: calc(var($titleSmFontSize) * 24.6 / 21.33);
+  font-weight: var(--semibold);
+  line-height: 1.15; /* 24.6/21.33 */
+  letter-spacing: 0%;
 }
 
 $headerFontSize: --text-3xl;
@@ -303,7 +307,8 @@ $captionFontSize: --text-sm;
   font-family: var(--secondary-font-family);
   font-size: var($captionFontSize);
   font-weight: var(--regular);
-  line-height: calc(var($captionFontSize) * 20 / 14);
+  line-height: 1.43; /* 19.8/13.86 */
+  letter-spacing: 0%;
 }
 
 $captionSmFontSize: --text-xs;
@@ -311,8 +316,18 @@ $captionSmFontSize: --text-xs;
   font-family: var(--secondary-font-family);
   font-size: var($captionSmFontSize);
   font-weight: var(--regular);
-  line-height: calc(var($captionSmFontSize) * 16 / 12);
-  letter-spacing: 0.25%;
+  line-height: 1.33; /* 16/12 */
+  letter-spacing: 0%;
+}
+
+$uppercaseFontSize: --text-sm;
+.uppercase {
+  font-family: var(--secondary-font-family);
+  font-size: var($uppercaseFontSize);
+  font-weight: var(--medium);
+  line-height: 1.44; /* 20/13.86 */
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 $eyebrowFontSize: --text-md;
@@ -320,7 +335,17 @@ $eyebrowFontSize: --text-md;
   font-family: var(--secondary-font-family);
   font-size: var($eyebrowFontSize);
   font-weight: var(--semibold);
-  line-height: calc(var($captionFontSize) * 20 / 16);
+  line-height: 1.25; /* 20/16 */
+  letter-spacing: 0%;
+}
+
+$eyebrowSmFontSize: --text-sm;
+.eyebrow-sm {
+  font-family: var(--secondary-font-family);
+  font-size: var($eyebrowSmFontSize);
+  font-weight: var(--semibold);
+  line-height: 1.15; /* 16/13.86 */
+  letter-spacing: 0%;
 }
 
 $bodyFontSize: --text-lg;
@@ -328,8 +353,8 @@ $bodyFontSize: --text-lg;
   font-family: var(--secondary-font-family);
   font-size: var($bodyFontSize);
   font-weight: var(--regular);
-  line-height: calc(var($bodyFontSize) * 28 / 18);
-  letter-spacing: 0.25%;
+  line-height: 1.33; /* 24.6/18.48 */
+  letter-spacing: 0%;
 }
 
 $bodySmFontSize: --text-md;
@@ -337,28 +362,29 @@ $bodySmFontSize: --text-md;
   font-family: var(--secondary-font-family);
   font-size: var($bodySmFontSize);
   font-weight: var(--regular);
-  line-height: calc(var($bodySmFontSize) * 24 / 16);
+  line-height: 1.5; /* 24/16 */
+  letter-spacing: 0%;
 }
 .body-sm {
-  @include body-sm-mixin;
+  @include body-sm-mixin();
 }
 
-$buttonFontSize: --text-xl;
+$buttonLgFontSize: --text-lg;
+.button-lg {
+  font-family: var(--secondary-font-family);
+  font-size: var($buttonLgFontSize);
+  font-weight: var(--medium);
+  line-height: 1.3; /* 24/18.48 */
+  letter-spacing: 0%;
+}
+
+$buttonFontSize: --text-md;
 .button {
   font-family: var(--secondary-font-family);
   font-size: var($buttonFontSize);
   font-weight: var(--medium);
-  line-height: calc(var($buttonFontSize) * 28 / 21);
-  letter-spacing: -1%;
-}
-
-$buttonSmFontSize: --text-md;
-.button-sm {
-  font-family: var(--secondary-font-family);
-  font-size: var($buttonSmFontSize);
-  font-weight: var(--medium);
-  line-height: calc(var($buttonSmFontSize) * 24 / 16);
-  letter-spacing: -1%;
+  line-height: 1.5; /* 24/16 */
+  letter-spacing: 0%;
 }
 
 $menuItemFontSize: --text-sm;
