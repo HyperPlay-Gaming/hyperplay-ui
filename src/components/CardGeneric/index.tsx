@@ -56,8 +56,10 @@ export function CardGeneric({
   return (
     <Card
       className={cn(
-        { ['gradientShadow']: !isReward },
-        { ['gradientBorderOnHover']: !isReward },
+        {
+            gradientShadow: !isReward,
+            gradientBorderOnHover: !isReward
+         }
         styles.card,
         genericClassNames?.root,
         className
