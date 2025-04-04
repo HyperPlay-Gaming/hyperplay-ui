@@ -6,10 +6,32 @@ import { ALL_VIEWPORTS } from './viewports'
 
 const DEFAULT_VIEWPORT_SIZE = { width: 1280, height: 720 }
 
+/**
+ * hacky but handles the error "SB_PREVIEW_API_0011 (StoryStoreAccessedBeforeInitializationError): Cannot access the Story Store until the index is ready"
+ * https://github.com/storybookjs/test-runner/issues/442#issuecomment-2697318195
+ */
+async function waitForStoryContext(
+  page: any,
+  story: any,
+  attempt = 1,
+  maxAttempts = 20
+) {
+  try {
+    return await getStoryContext(page, story)
+  } catch (e) {
+    if (attempt > maxAttempts) {
+      throw e
+    }
+    // ¯\_(ツ)_/¯ - If this is not the first attempt: add a timeout.
+    await new Promise((resolve) => setTimeout(resolve, 600))
+    return waitForStoryContext(page, story, attempt + 1)
+  }
+}
+
 const config: TestRunnerConfig = {
   async preVisit(page, story) {
     // Accesses the story's parameters and retrieves the viewport used to render it
-    const context = await getStoryContext(page, story)
+    const context = await waitForStoryContext(page, story)
     const viewportName = context.parameters?.viewport?.defaultViewport
     const viewportParameter = ALL_VIEWPORTS[viewportName]
 
