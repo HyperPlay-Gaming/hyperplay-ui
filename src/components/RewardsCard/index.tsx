@@ -9,7 +9,7 @@ export type RewardsCardProps = {
   questId: number
   reward: string
   rewardImage: string
-  claimsLeft?: string | number
+  claimsLeft?: string
   i18n?: {
     claimsLabel?: string
     claimsLeftLabel?: string
