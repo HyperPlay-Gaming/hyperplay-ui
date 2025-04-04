@@ -1,0 +1,145 @@
+@use '../../styles/utilities/loading' as *;
+$game-image-width: 172px;
+$game-image-height: 229.33px;
+
+.container {
+  display: flex;
+  gap: var(--space-xl);
+  justify-content: center;
+  align-items: space-between;
+  align-self: stretch;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: fit-content;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-md);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3xs);
+}
+
+.title {
+  color: var(--text-strong);
+  font-size: var(--text-6xl);
+  font-weight: var(--bold);
+  padding: 0;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: var(--text-4xl);
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+
+  @media (max-width: 768px) {
+    gap: var(--space-2xs);
+    flex-wrap: wrap;
+  }
+}
+
+.imageContainer {
+  flex-shrink: 0;
+  width: $game-image-width;
+  height: $game-image-height;
+  border-radius: var(--space-xs);
+  overflow: hidden;
+  background-color: var(--color-background-700);
+  position: relative;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.gameImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageLoading {
+  @include shinyLoader;
+  width: $game-image-width;
+  height: $game-image-height;
+  border-radius: var(--space-xs);
+}
+
+.editorChoice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-primary-300);
+  font-size: var(--text-md);
+  font-weight: var(--semibold);
+
+  svg {
+    width: 38px;
+    height: 20px;
+
+    path {
+      fill: var(--color-primary-300);
+    }
+  }
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 100%;
+  }
+}
+
+.addButton {
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
