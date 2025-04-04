@@ -8,9 +8,9 @@ import BlockchainIconImg from '@/assets/images/BlockchainIconImg.svg?url'
 
 import styles from './BlockchainsStack.module.scss'
 
-const formatIpfsUrl = (url?: string) => {
+const formatIpfsUrl = (ipfsBaseUrl: string, url?: string) => {
   if (!url) return ''
-  return url.replace('ipfs://', 'https://ipfs.io/ipfs/')
+  return url.replace('ipfs://', ipfsBaseUrl)
 }
 
 export interface BlockchainsStackProps
@@ -23,6 +23,7 @@ export interface BlockchainsStackProps
   // Next/Image can be passed in here to use instead of img tag
   /* eslint-disable-next-line */
   Image?: any
+  ipfsBaseUrl?: string
 }
 
 const BlockchainsStack = ({
@@ -32,6 +33,7 @@ const BlockchainsStack = ({
   showMoreCount = true,
   className,
   Image = 'img',
+  ipfsBaseUrl = 'https://ipfs.io/ipfs/',
   ...props
 }: BlockchainsStackProps) => {
   const [isMoreHovered, setIsMoreHovered] = useState(false)
@@ -40,7 +42,7 @@ const BlockchainsStack = ({
   const blockchains = chainId.map((id) => {
     const chain = chainMap[id]
     const iconUrl = chain?.icon?.[0]?.url
-      ? formatIpfsUrl(chain.icon[0].url)
+      ? formatIpfsUrl(ipfsBaseUrl, chain.icon[0].url)
       : ''
     return {
       name: chain?.chain.name || id,
