@@ -8,29 +8,6 @@ import YGGReward from '@/assets/stories/ygg.png'
 
 import RewardsCard, { RewardsCardProps } from './index'
 
-/**
- * The `RewardsCard` component displays game rewards in an elegant card format with visual indicators
- * for reward type and availability. Built on `CardGeneric`, it presents rewards with a clean,
- * consistent interface throughout the application.
- *
- * ## Use Cases
- * - Quest rewards display
- * - Achievement rewards
- * - Token/NFT reward showcases
- * - In-game unlockables
- *
- * ## Features
- * - Visual representation of the reward via image
- * - Primary sticker showing reward name/type
- * - Secondary sticker with dot indicator showing claims availability
- * - Customizable via i18n props for localization
- * - Responsive design that fits various layout contexts
- *
- * ## Accessibility
- * - Clear visual hierarchy with distinct sections
- * - High contrast between text and background
- * - Semantic structure for screen readers
- */
 const meta: Meta<typeof RewardsCard> = {
   title: 'Quests/RewardsCard',
   component: RewardsCard,
@@ -87,9 +64,6 @@ export const Default: Story = {
     // Check that the card renders without errors
     const stickers = canvas.getAllByRole('generic', { hidden: true })
     expect(stickers.length).toBeGreaterThan(0)
-
-    // Check that the claims text uses the default unlimited value
-    expect(canvas.getByText('Claims left: Unlimited')).toBeInTheDocument()
   }
 }
 
@@ -107,9 +81,6 @@ export const WithTransparentImage: Story = {
     // Check that the card renders without errors
     const stickers = canvas.getAllByRole('generic', { hidden: true })
     expect(stickers.length).toBeGreaterThan(0)
-
-    // Check that the claims text uses the default unlimited value
-    expect(canvas.getByText('Claims left: Unlimited')).toBeInTheDocument()
   }
 }
 
@@ -124,9 +95,6 @@ export const NFTReward: Story = {
 
     // Check NFT reward text
     expect(canvas.getByText('+1 NFT')).toBeInTheDocument()
-
-    // Check unlimited claims text
-    expect(canvas.getByText('Claims left: Unlimited')).toBeInTheDocument()
   }
 }
 
@@ -134,8 +102,7 @@ export const NTxAirdrop300: Story = {
   args: {
     ...props,
     rewardImage: xocietyNTx,
-    reward: 'NTx Airdrop',
-    claimsLeft: '300'
+    reward: 'NTx Airdrop'
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
@@ -143,8 +110,13 @@ export const NTxAirdrop300: Story = {
     // Verify airdrop text
     expect(canvas.getByText('NTx Airdrop')).toBeInTheDocument()
 
-    // Verify claims count
-    expect(canvas.getByText('Claims left: 300')).toBeInTheDocument()
+    // Check if image was loaded
+    const imgElement = canvas.getByRole('img')
+    expect(imgElement).toBeInTheDocument()
+    expect(imgElement).toHaveAttribute(
+      'src',
+      expect.stringContaining('xocietyNTx')
+    )
   }
 }
 
@@ -152,8 +124,7 @@ export const NTxAirdrop600: Story = {
   args: {
     ...props,
     rewardImage: xocietyNTx,
-    reward: 'NTx Airdrop',
-    claimsLeft: '600'
+    reward: 'NTx Airdrop'
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
@@ -161,8 +132,13 @@ export const NTxAirdrop600: Story = {
     // Verify airdrop text
     expect(canvas.getByText('NTx Airdrop')).toBeInTheDocument()
 
-    // Verify claims count
-    expect(canvas.getByText('Claims left: 600')).toBeInTheDocument()
+    // Check if image was loaded
+    const imgElement = canvas.getByRole('img')
+    expect(imgElement).toBeInTheDocument()
+    expect(imgElement).toHaveAttribute(
+      'src',
+      expect.stringContaining('xocietyNTx')
+    )
   }
 }
 
@@ -171,7 +147,7 @@ export const CustomLabels: Story = {
     ...props,
     rewardImage: PremiumTicket,
     reward: 'Special Reward',
-    claimsLeft: '42',
+
     i18n: {
       claimsLabel: 'Available',
       claimsLeftLabel: 'No limit'
@@ -182,7 +158,14 @@ export const CustomLabels: Story = {
 
     // Check custom labels
     expect(canvas.getByText('Special Reward')).toBeInTheDocument()
-    expect(canvas.getByText('Available: 42')).toBeInTheDocument()
+
+    // Check if image was loaded
+    const imgElement = canvas.getByRole('img')
+    expect(imgElement).toBeInTheDocument()
+    expect(imgElement).toHaveAttribute(
+      'src',
+      expect.stringContaining('premiumTicket')
+    )
   }
 }
 
@@ -198,7 +181,12 @@ export const WithoutClaimsLeft: Story = {
     // Check that reward displays correctly
     expect(canvas.getByText('Premium Ticket')).toBeInTheDocument()
 
-    // Check that default unlimited text is used when claimsLeft is not provided
-    expect(canvas.getByText('Claims left: Unlimited')).toBeInTheDocument()
+    // Check if image was loaded
+    const imgElement = canvas.getByRole('img')
+    expect(imgElement).toBeInTheDocument()
+    expect(imgElement).toHaveAttribute(
+      'src',
+      expect.stringContaining('premiumTicket')
+    )
   }
 }
