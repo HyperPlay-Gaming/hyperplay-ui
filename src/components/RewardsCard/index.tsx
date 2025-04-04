@@ -12,7 +12,6 @@ export type RewardsCardProps = {
   claimsLeft?: string
   i18n?: {
     claimsLabel?: string
-    claimsLeftLabel?: string
   }
 }
 
@@ -21,8 +20,7 @@ function RewardsCard({
   reward,
   claimsLeft,
   i18n = {
-    claimsLabel: 'Claims left',
-    claimsLeftLabel: 'Unlimited'
+    claimsLabel: 'Claims left'
   }
 }: RewardsCardProps) {
   return (
@@ -50,7 +48,7 @@ function RewardsCard({
               dimension="default"
               withDot={{ dotColor: 'success', dotIcon: DotIcon }}
             >
-              {i18n.claimsLabel}: {claimsLeft ?? i18n.claimsLeftLabel}
+              {i18n.claimsLabel}: {claimsLeft}
             </Sticker>
           ) : null}
         </div>

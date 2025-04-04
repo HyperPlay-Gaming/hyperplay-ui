@@ -88,8 +88,7 @@ export const CryptoReward: Story = {
     rewardImage: YGGReward,
     claimsLeft: undefined,
     i18n: {
-      claimsLabel: 'Available',
-      claimsLeftLabel: 'Unlimited'
+      claimsLabel: 'Available'
     }
   }
 }
