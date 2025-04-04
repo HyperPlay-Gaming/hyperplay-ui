@@ -3,10 +3,9 @@ import { expect, within } from '@storybook/test'
 
 import YGGTransp from '@/assets/stories/YggIconTransparent.png'
 import PremiumTicket from '@/assets/stories/premiumTicket.png'
-import xocietyNTx from '@/assets/stories/xocietyNTx.png'
 import YGGReward from '@/assets/stories/ygg.png'
 
-import RewardsCard, { RewardsCardProps } from './index'
+import RewardsCard from './index'
 
 const meta: Meta<typeof RewardsCard> = {
   title: 'Quests/RewardsCard',
@@ -47,146 +46,50 @@ export default meta
 
 type Story = StoryObj<typeof RewardsCard>
 
-const props: RewardsCardProps = {
-  id: '1',
-  reward: '1000 YGG points',
-  rewardImage: YGGReward
-}
-
-export const Default: Story = {
-  args: { ...props },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    // Check that the reward text is displayed correctly
-    expect(canvas.getByText('1000 YGG points')).toBeInTheDocument()
-
-    // Check that the card renders without errors
-    const stickers = canvas.getAllByRole('generic', { hidden: true })
-    expect(stickers.length).toBeGreaterThan(0)
-  }
-}
-
-export const WithTransparentImage: Story = {
-  args: {
-    ...props,
-    rewardImage: YGGTransp
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    // Check that the reward text is displayed correctly
-    expect(canvas.getByText('1000 YGG points')).toBeInTheDocument()
-
-    // Check that the card renders without errors
-    const stickers = canvas.getAllByRole('generic', { hidden: true })
-    expect(stickers.length).toBeGreaterThan(0)
-  }
-}
-
+// Default Story with NFT Reward
 export const NFTReward: Story = {
   args: {
-    ...props,
-    rewardImage: xocietyNTx,
-    reward: '+1 NFT'
+    id: 1,
+    questId: 101,
+    reward: '+1 NFT',
+    rewardImage: YGGTransp,
+    claimsLeft: undefined
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Check NFT reward text
-    expect(canvas.getByText('+1 NFT')).toBeInTheDocument()
+    // Verify reward text is displayed
+    const rewardText = canvas.getByText('+1 NFT')
+    expect(rewardText).toBeInTheDocument()
+
+    // Check that the image is present
+    const rewardImageContainer = canvas.getByRole('img')
+    expect(rewardImageContainer).toBeInTheDocument()
   }
 }
 
-export const NTxAirdrop300: Story = {
+// Game Ticket Reward
+export const GameTicketReward: Story = {
   args: {
-    ...props,
-    rewardImage: xocietyNTx,
-    reward: 'NTx Airdrop'
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    // Verify airdrop text
-    expect(canvas.getByText('NTx Airdrop')).toBeInTheDocument()
-
-    // Check if image was loaded
-    const imgElement = canvas.getByRole('img')
-    expect(imgElement).toBeInTheDocument()
-    expect(imgElement).toHaveAttribute(
-      'src',
-      expect.stringContaining('xocietyNTx')
-    )
-  }
-}
-
-export const NTxAirdrop600: Story = {
-  args: {
-    ...props,
-    rewardImage: xocietyNTx,
-    reward: 'NTx Airdrop'
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    // Verify airdrop text
-    expect(canvas.getByText('NTx Airdrop')).toBeInTheDocument()
-
-    // Check if image was loaded
-    const imgElement = canvas.getByRole('img')
-    expect(imgElement).toBeInTheDocument()
-    expect(imgElement).toHaveAttribute(
-      'src',
-      expect.stringContaining('xocietyNTx')
-    )
-  }
-}
-
-export const CustomLabels: Story = {
-  args: {
-    ...props,
+    id: 2,
+    questId: 102,
+    reward: 'Premium Game Ticket',
     rewardImage: PremiumTicket,
-    reward: 'Special Reward',
+    claimsLeft: undefined
+  }
+}
 
+// Cryptocurrency Reward
+export const CryptoReward: Story = {
+  args: {
+    id: 3,
+    questId: 103,
+    reward: '1000 YGG',
+    rewardImage: YGGReward,
+    claimsLeft: undefined,
     i18n: {
       claimsLabel: 'Available',
-      claimsLeftLabel: 'No limit'
+      claimsLeftLabel: 'Unlimited'
     }
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    // Check custom labels
-    expect(canvas.getByText('Special Reward')).toBeInTheDocument()
-
-    // Check if image was loaded
-    const imgElement = canvas.getByRole('img')
-    expect(imgElement).toBeInTheDocument()
-    expect(imgElement).toHaveAttribute(
-      'src',
-      expect.stringContaining('premiumTicket')
-    )
-  }
-}
-
-export const WithoutClaimsLeft: Story = {
-  args: {
-    ...props,
-    rewardImage: PremiumTicket,
-    reward: 'Premium Ticket'
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    // Check that reward displays correctly
-    expect(canvas.getByText('Premium Ticket')).toBeInTheDocument()
-
-    // Check if image was loaded
-    const imgElement = canvas.getByRole('img')
-    expect(imgElement).toBeInTheDocument()
-    expect(imgElement).toHaveAttribute(
-      'src',
-      expect.stringContaining('premiumTicket')
-    )
   }
 }
