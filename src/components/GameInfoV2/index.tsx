@@ -103,13 +103,15 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
               <MetaSection
                 title=""
                 items={[
-                  <Sticker
-                    key={i18n.version}
-                    styleType="neutral"
-                    variant="filledStrong"
-                  >
-                    {version}
-                  </Sticker>,
+                  version ? (
+                    <Sticker
+                      key={i18n.version}
+                      styleType="neutral"
+                      variant="filledStrong"
+                    >
+                      {version}
+                    </Sticker>
+                  ) : null,
                   earlyAccess ? (
                     <Sticker
                       key={i18n.earlyAccess}
@@ -119,13 +121,15 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
                       {i18n.earlyAccess}
                     </Sticker>
                   ) : null,
-                  <Sticker
-                    key={i18n.developer}
-                    styleType="neutral"
-                    variant="filledStrong"
-                  >
-                    {info.developer}
-                  </Sticker>,
+                  info.developer ? (
+                    <Sticker
+                      key={i18n.developer}
+                      styleType="neutral"
+                      variant="filledStrong"
+                    >
+                      {info.developer}
+                    </Sticker>
+                  ) : null,
                   playerCount ? (
                     <Sticker
                       key={i18n.playerCount}
