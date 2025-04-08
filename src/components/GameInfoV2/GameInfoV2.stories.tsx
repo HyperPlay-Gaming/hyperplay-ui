@@ -6,6 +6,7 @@ import GameInfoV2 from '.'
 import BlockchainsStack from '../BlockchainsStack'
 import Button from '../Button'
 import styles from './GameInfoV2.module.scss'
+import { chainIconsSrcOverrides } from '@/utils/chainIconSrcOverrides'
 
 const meta = {
   title: 'Components/GameInfoV2',
@@ -54,18 +55,7 @@ export const Default: Story = {
     isLoading: false,
     blockchains: (
       <BlockchainsStack
-        chainId={[
-          '292',
-          '280',
-          '1789',
-          '2357',
-          '7',
-          '1',
-          '11111',
-          '1789',
-          '236',
-          '13371'
-        ]}
+        chainId={['292', ...Object.keys(chainIconsSrcOverrides)]}
         maxVisible={5}
         showMoreCount={true}
       />

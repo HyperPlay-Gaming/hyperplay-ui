@@ -4,14 +4,8 @@ import { chainMap } from '@hyperplay/chains'
 import { Popover, Tooltip } from '@mantine/core'
 import classNames from 'classnames'
 
-import BlockchainIconImg from '@/assets/images/BlockchainIconImg.svg?url'
-
 import styles from './BlockchainsStack.module.scss'
-
-const formatIpfsUrl = (ipfsBaseUrl: string, url?: string) => {
-  if (!url) return ''
-  return url.replace('ipfs://', ipfsBaseUrl)
-}
+import BlockchainIcon from '../BlockchainIcon'
 
 export interface BlockchainsStackProps
   extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
@@ -24,6 +18,9 @@ export interface BlockchainsStackProps
   /* eslint-disable-next-line */
   Image?: any
   ipfsBaseUrl?: string
+  i18n?: {
+    chainId: string
+  }
 }
 
 const BlockchainsStack = ({
@@ -34,32 +31,20 @@ const BlockchainsStack = ({
   className,
   Image = 'img',
   ipfsBaseUrl = 'https://ipfs.io/ipfs/',
+  i18n = {
+    chainId: 'Chain id'
+  },
   ...props
 }: BlockchainsStackProps) => {
   const [isMoreHovered, setIsMoreHovered] = useState(false)
-  const [missingIcon, setMissingIcon] = useState<Record<string, boolean>>({})
 
   const blockchains = chainId.map((id) => {
     const chain = chainMap[id]
-    const iconUrl = chain?.icon?.[0]?.url
-      ? formatIpfsUrl(ipfsBaseUrl, chain.icon[0].url)
-      : ''
     return {
-      name: chain?.chain.name || id,
-      iconUrl
+      name: chain?.chain.name || `${i18n.chainId}: ${id}`,
+      chainId: id
     }
   })
-
-  const handleImageError = (iconUrl: string) => {
-    setMissingIcon((prev) => ({ ...prev, [iconUrl]: true }))
-  }
-
-  const getIconSrc = (iconUrl: string) => {
-    if (!iconUrl || missingIcon[iconUrl]) {
-      return BlockchainIconImg
-    }
-    return iconUrl
-  }
 
   const visibleBlockchains = blockchains.slice(0, maxVisible)
   const moreCount = blockchains.length - maxVisible
@@ -77,11 +62,11 @@ const BlockchainsStack = ({
             className={styles.tooltip}
           >
             <div className={styles.icon}>
-              <Image
-                src={getIconSrc(blockchain.iconUrl)}
-                alt={blockchain.name}
+              <BlockchainIcon
+                chainId={blockchain.chainId}
+                ipfsBaseUrl={ipfsBaseUrl}
+                ImageComponent={Image}
                 className={styles.blockchainSvg}
-                onError={() => handleImageError(blockchain.iconUrl)}
               />
             </div>
           </Tooltip>
@@ -113,11 +98,11 @@ const BlockchainsStack = ({
                     key={`remaining-${index}`}
                     className={styles.popoverItem}
                   >
-                    <Image
-                      src={getIconSrc(blockchain.iconUrl)}
-                      alt={blockchain.name}
+                    <BlockchainIcon
+                      chainId={blockchain.chainId}
+                      ipfsBaseUrl={ipfsBaseUrl}
+                      ImageComponent={Image}
                       className={styles.popoverIcons}
-                      onError={() => handleImageError(blockchain.iconUrl)}
                     />
                     <span className={styles.popoverBlockchainsName}>
                       {blockchain.name}
