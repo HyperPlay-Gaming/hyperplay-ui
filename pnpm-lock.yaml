@@ -13168,7 +13168,7 @@ snapshots:
       - utf-8-validate
       - zod
 
-  vite-node@3.1.1(@types/node@22.13.14)(sass@1.86.0)(sugarss@4.0.1(postcss@8.5.3))(terser@5.39.0):
+  vite-node@3.1.1(@types/node@22.14.0)(sass@1.86.3)(sugarss@4.0.1(postcss@8.5.3))(terser@5.39.0):
     dependencies:
       cac: 6.7.14
       debug: 4.4.0
