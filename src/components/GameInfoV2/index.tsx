@@ -8,6 +8,7 @@ import MetaSection from '../MetaSection'
 import SocialLinks from '../SocialLinks/SocialLinks'
 import Sticker from '../Sticker'
 import styles from './GameInfoV2.module.scss'
+import { bytesUnits, parseNumIntoReadableString } from '@hyperplay/utils'
 
 interface EditorChoiceType {
   isEditorChoice: boolean
@@ -22,6 +23,7 @@ export interface GameInfoV2Props {
   version?: string
   earlyAccess?: boolean
   playerCount?: string
+  downloadSizeInBytes?: string
   ImageComponent?: React.ReactNode
   blockchains?: React.ReactNode
   socialLinks?: {
@@ -48,6 +50,7 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
   version,
   earlyAccess,
   playerCount,
+  downloadSizeInBytes,
   ImageComponent,
   blockchains,
   socialLinks,
@@ -83,6 +86,16 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
         {editorChoice.year || new Date().getFullYear()}
       </div>
     )
+  }
+
+  let downloadSizeReadable = null
+  if (downloadSizeInBytes) {
+    downloadSizeReadable = parseNumIntoReadableString({
+      num: downloadSizeInBytes,
+      units: bytesUnits,
+      minValue: '0.0001',
+      maxValue: '1'
+    })
   }
 
   return (
@@ -137,6 +150,15 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
                       variant="filledStrong"
                     >
                       {playerCount}
+                    </Sticker>
+                  ) : null,
+                  downloadSizeReadable ? (
+                    <Sticker
+                      key={'download-size-sticker'}
+                      styleType="neutral"
+                      variant="filledStrong"
+                    >
+                      {downloadSizeReadable}
                     </Sticker>
                   ) : null
                 ]}

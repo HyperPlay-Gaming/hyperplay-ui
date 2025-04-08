@@ -70,6 +70,7 @@ export const Default: Story = {
         showMoreCount={true}
       />
     ),
+    downloadSizeInBytes: '100000000',
     editorChoice: {
       isEditorChoice: true,
       year: 2025
