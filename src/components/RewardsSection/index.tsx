@@ -7,6 +7,7 @@ import ArrowCircularButton from '../ArrowCircularButton'
 export interface RewardsSectionProps {
   rewards: RewardsCardProps[]
   Link: React.ComponentType<{ children: React.ReactNode; href: string }>
+  isLoading?: boolean
   i18n?: {
     header?: string
   }
@@ -19,6 +20,7 @@ const defaultI18n = {
 const RewardsSection = ({
   rewards,
   Link: LinkElement,
+  isLoading,
   i18n = defaultI18n
 }: RewardsSectionProps) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -98,6 +100,7 @@ const RewardsSection = ({
                     rewardImage={reward.rewardImage}
                     claimsLeft={reward.claimsLeft}
                     reward={reward.reward}
+                    isLoading={isLoading}
                   />
                 </LinkElement>
               </div>
