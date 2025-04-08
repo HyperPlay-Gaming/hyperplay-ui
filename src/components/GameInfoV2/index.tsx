@@ -79,7 +79,7 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
     editorChoiceElement = (
       <div className={classNames(styles.editorChoice, editorChoice.className)}>
         <EditorChoice />
-        {i18n.editorChoice}
+        {`${i18n.editorChoice} `}{' '}
         {editorChoice.year || new Date().getFullYear()}
       </div>
     )
