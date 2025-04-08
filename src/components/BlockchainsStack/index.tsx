@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, PropsWithChildren, useState } from 'react'
 
 import { chainMap } from '@hyperplay/chains'
-import { Popover } from '@mantine/core'
+import { Popover, Tooltip } from '@mantine/core'
 import classNames from 'classnames'
 
 import BlockchainIconImg from '@/assets/images/BlockchainIconImg.svg?url'
@@ -71,14 +71,20 @@ const BlockchainsStack = ({
       <span className={styles.title}>{title}</span>
       <div className={styles.blockchainIcons}>
         {visibleBlockchains.map((blockchain, index) => (
-          <div key={`blockchain-${index}`} className={styles.icon}>
-            <Image
-              src={getIconSrc(blockchain.iconUrl)}
-              alt={blockchain.name}
-              className={styles.blockchainSvg}
-              onError={() => handleImageError(blockchain.iconUrl)}
-            />
-          </div>
+          <Tooltip
+            key={`blockchain-${index}`}
+            label={blockchain.name}
+            className={styles.tooltip}
+          >
+            <div className={styles.icon}>
+              <Image
+                src={getIconSrc(blockchain.iconUrl)}
+                alt={blockchain.name}
+                className={styles.blockchainSvg}
+                onError={() => handleImageError(blockchain.iconUrl)}
+              />
+            </div>
+          </Tooltip>
         ))}
         {hasMoreBlockchains && showMoreCount && (
           <Popover
