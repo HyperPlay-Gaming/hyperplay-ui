@@ -28,7 +28,6 @@ function RewardsCard({
   return (
     <CardGeneric
       image={rewardImage}
-      showGradientBorderAndShadow
       genericClassNames={{
         body: isLoading ? styles.loading : styles.rewardsCard,
         image: styles.rewardImage,
