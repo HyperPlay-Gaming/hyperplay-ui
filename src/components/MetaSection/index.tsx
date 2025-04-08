@@ -52,11 +52,13 @@ const MetaSection: React.FC<MetaSectionProps> = ({
     <div className={cx(styles.metaSection, classNames?.root)}>
       <h3 className={cx(styles.title, classNames?.title)}>{title}</h3>
       <div className={cx(styles.itemsContainer, classNames?.itemsContainer)}>
-        {visibleItems.map((item, index) => (
-          <div key={index} className={styles.item}>
-            {item}
-          </div>
-        ))}
+        {visibleItems.map((item, index) =>
+          item ? (
+            <div key={index} className={styles.item}>
+              {item}
+            </div>
+          ) : null
+        )}
         {hiddenItems.length > 0 && (
           <Popover
             position="bottom"
