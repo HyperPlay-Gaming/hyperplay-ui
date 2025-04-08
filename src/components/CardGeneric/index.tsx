@@ -57,9 +57,9 @@ export function CardGeneric({
     <Card
       className={cn(
         {
-          gradientShadow: !showGradientBorderAndShadow,
           gradientBorderOnHover: !showGradientBorderAndShadow
         },
+        'gradientShadow',
         styles.card,
         genericClassNames?.root,
         className
