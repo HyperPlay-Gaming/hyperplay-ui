@@ -1,26 +1,12 @@
-import React, { useRef, useState, useEffect, ComponentType } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import useEmblaCarousel from 'embla-carousel-react'
 import styles from './RewardsSection.module.scss'
 import RewardsCard, { RewardsCardProps } from '@/components/RewardsCard'
 import ArrowCircularButton from '../ArrowCircularButton'
 
-/**
- * LinkComponentProps defines the required props that a link component should have.
- * This ensures compatibility with various link implementations like:
- * - HTML anchor tags
- * - Next.js Link components
- */
-export interface LinkComponentProps {
-  href?: string
-  children?: React.ReactNode
-}
-
 export interface RewardsSectionProps {
   rewards: RewardsCardProps[]
-  /**
-   * Component to use for link navigation. Must accept href and children props.
-   * Compatible with Next.js Link, React Router Link, or HTML anchor.
-   */
-  linkElement: ComponentType<LinkComponentProps>
+  Link: React.ComponentType<{ children: React.ReactNode; href: string }>
   i18n?: {
     header?: string
   }
@@ -32,100 +18,92 @@ const defaultI18n = {
 
 const RewardsSection = ({
   rewards,
-  linkElement: LinkElement,
+  Link: LinkElement,
   i18n = defaultI18n
 }: RewardsSectionProps) => {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'start',
+    dragFree: true,
+    loop: false
+  })
+
   const [isScrollable, setIsScrollable] = useState(false)
 
-  // Check if content is scrollable on mount and window resize
+  const scrollPrev = useCallback(() => {
+    if (!emblaApi) return
+
+    if (emblaApi.canScrollPrev()) {
+      emblaApi.scrollPrev()
+    } else {
+      // If we're at the beginning, scroll to the end
+      emblaApi.scrollTo(emblaApi.scrollSnapList().length - 1)
+    }
+  }, [emblaApi])
+
+  const scrollNext = useCallback(() => {
+    if (!emblaApi) return
+
+    if (emblaApi.canScrollNext()) {
+      emblaApi.scrollNext()
+    } else {
+      // If we're at the end, scroll to the beginning
+      emblaApi.scrollTo(0)
+    }
+  }, [emblaApi])
+
   useEffect(() => {
-    const checkScrollable = () => {
-      if (containerRef.current) {
-        const { scrollWidth, clientWidth } = containerRef.current
-        setIsScrollable(scrollWidth > clientWidth)
-      }
-    }
+    if (!emblaApi) return
 
-    // Initial check
-    checkScrollable()
-
-    // Add resize listener
-    window.addEventListener('resize', checkScrollable)
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('resize', checkScrollable)
-    }
-  }, [rewards])
-
-  const scrollLeft = () => {
-    if (containerRef.current) {
-      const container = containerRef.current
-      const scrollAmount = 271
-
-      // If at the beginning or close to it, scroll to the end
-      if (container.scrollLeft <= scrollAmount) {
-        container.scrollTo({ left: container.scrollWidth, behavior: 'smooth' })
-      } else {
-        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
-      }
-    }
-  }
-
-  const scrollRight = () => {
-    if (containerRef.current) {
-      const container = containerRef.current
-      const scrollAmount = 271
-
-      // If at the end or close to it, scroll back to the beginning
-      if (
-        container.scrollLeft + container.clientWidth >=
-        container.scrollWidth - scrollAmount
-      ) {
-        container.scrollTo({ left: 0, behavior: 'smooth' })
-      } else {
-        container.scrollBy({ left: scrollAmount, behavior: 'smooth' })
-      }
-    }
-  }
+    // Check if the carousel is scrollable
+    setIsScrollable(emblaApi.canScrollNext() || emblaApi.canScrollPrev())
+  }, [emblaApi])
 
   if (!rewards || rewards.length === 0) {
     return null
   }
 
   return (
-    <div className={styles.rewardsSection}>
-      <div className={styles.header}>
+    <div className={styles.rewardsSection} data-testid="rewards-section">
+      <div className={styles.header} data-testid="rewards-header">
         <h6>{i18n.header}</h6>
         {isScrollable && (
           <div className={styles.navigationIcons}>
             <ArrowCircularButton
               classNames={{ root: styles.leftButton }}
               isLeftButton
-              onClick={scrollLeft}
+              onClick={scrollPrev}
+              data-testid="arrow-button"
             />
             <ArrowCircularButton
               classNames={{ root: styles.rightButton }}
-              onClick={scrollRight}
+              onClick={scrollNext}
               isLeftButton={false}
+              data-testid="arrow-button"
             />
           </div>
         )}
       </div>
-      <div className={styles.cardsContainer} ref={containerRef}>
-        {rewards.map((reward) => (
-          <LinkElement key={reward.questId}>
-            <RewardsCard
-              id={reward.id}
-              key={reward.id}
-              questId={reward.questId}
-              rewardImage={reward.rewardImage}
-              claimsLeft={reward.claimsLeft}
-              reward={reward.reward}
-            />
-          </LinkElement>
-        ))}
+      <div className={styles.embla}>
+        <div className={styles.emblaViewport} ref={emblaRef}>
+          <div className={styles.emblaContainer}>
+            {rewards.map((reward) => (
+              <div className={styles.emblaSlide} key={reward.id}>
+                <LinkElement
+                  data-testid="reward-link"
+                  href={`/quests/${reward.questId}`}
+                >
+                  <RewardsCard
+                    id={reward.id}
+                    questId={reward.questId}
+                    rewardImage={reward.rewardImage}
+                    claimsLeft={reward.claimsLeft}
+                    reward={reward.reward}
+                  />
+                </LinkElement>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )
