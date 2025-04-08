@@ -1,20 +1,20 @@
 @use '../utilities/variables';
 /*
-with 1.14 scale ratio and 14.5px root font size
+with 1.154701 scale ratio and 16px root font size
 name px rem
-xs	12
-sm	13.68
-md	14.5
-lg	16.53
-xl	18.84
-2xl	21.48
-3xl	24.49
-4xl	27.92
-5xl	31.83
-6xl	36.28
-7xl	41.36
-8xl	47.15
-9xl	53.75
+xs	11.99999539
+sm	13.8564038
+md	16
+lg	18.47521216
+xl	21.33334152
+2xl	24.63362567
+3xl	28.44446628
+4xl	32.84484683
+5xl	37.9259696
+6xl	43.79314592
+7xl	50.56797887
+8xl	58.39088364
+9xl	67.42399771
 */
 
 @mixin typeSystem {
@@ -31,8 +31,8 @@ xl	18.84
   --extrabold: 900;
 
   /* set base values */
-  --text-scale-ratio: 1.14;
-  font-size: 14.5px;
+  --text-scale-ratio: 1.154701;
+  font-size: 16px;
 
   /* type scale */
   --text-xs: calc(1rem / (var(--text-scale-ratio) * var(--text-scale-ratio)));
@@ -191,7 +191,7 @@ $h1FontSize: --text-8xl;
   font-family: var(--primary-font-family);
   font-size: var($h1FontSize);
   font-weight: var(--bold);
-  line-height: 1.31; /* 76.5/58.39 */
+  line-height: 1.2;
   letter-spacing: 0%;
 }
 h1,
@@ -204,7 +204,7 @@ $h2FontSize: --text-7xl;
   font-family: var(--primary-font-family);
   font-size: var($h2FontSize);
   font-weight: var(--bold);
-  line-height: 1.27; /* 64.4/50.57 */
+  line-height: 1.2;
   letter-spacing: 0%;
 }
 h2,
@@ -217,7 +217,7 @@ $h3FontSize: --text-6xl;
   font-family: var(--primary-font-family);
   font-size: var($h3FontSize);
   font-weight: var(--bold);
-  line-height: 1.29; /* 56.6/43.7 */
+  line-height: 1.2;
   letter-spacing: 0%;
 }
 h3,
@@ -230,7 +230,7 @@ $h4FontSize: --text-5xl;
   font-family: var(--primary-font-family);
   font-size: var($h4FontSize);
   font-weight: var(--bold);
-  line-height: 1.29; /* 48.9/37.93 */
+  line-height: 1.2;
   letter-spacing: 0%;
 }
 h4,
@@ -243,7 +243,7 @@ $h5FontSize: --text-4xl;
   font-family: var(--primary-font-family);
   font-size: var($h5FontSize);
   font-weight: var(--bold);
-  line-height: 1.27; /* 41.1/32.4 */
+  line-height: 1.2;
   letter-spacing: 0%;
 }
 h5,
@@ -256,7 +256,7 @@ $h6FontSize: --text-3xl;
   font-family: var(--primary-font-family);
   font-size: var($h6FontSize);
   font-weight: var(--bold);
-  line-height: 1.33; /* 37.9/28.44 */
+  line-height: 1.5;
   letter-spacing: 0%;
 }
 h6,
@@ -278,7 +278,7 @@ $titleFontSize: --text-2xl;
   font-family: var(--primary-font-family);
   font-size: var($titleFontSize);
   font-weight: var(--semibold);
-  line-height: 1.15; /* 28.4/24.63 */
+  line-height: 1.5;
   letter-spacing: 0%;
 }
 .title {
@@ -290,7 +290,7 @@ $titleSmFontSize: --text-xl;
   font-family: var(--primary-font-family);
   font-size: var($titleSmFontSize);
   font-weight: var(--semibold);
-  line-height: 1.15; /* 24.6/21.33 */
+  line-height: 1.5;
   letter-spacing: 0%;
 }
 
@@ -299,7 +299,7 @@ $headerFontSize: --text-3xl;
   font-family: var(--primary-font-family);
   font-size: var($headerFontSize);
   font-weight: var(--bold);
-  line-height: calc(var($headerFontSize) * 32 / 28);
+  line-height: 1.5;
 }
 
 $captionFontSize: --text-sm;
@@ -307,7 +307,7 @@ $captionFontSize: --text-sm;
   font-family: var(--secondary-font-family);
   font-size: var($captionFontSize);
   font-weight: var(--regular);
-  line-height: 1.43; /* 19.8/13.86 */
+  line-height: 1.5;
   letter-spacing: 0%;
 }
 
@@ -316,7 +316,7 @@ $captionSmFontSize: --text-xs;
   font-family: var(--secondary-font-family);
   font-size: var($captionSmFontSize);
   font-weight: var(--regular);
-  line-height: 1.33; /* 16/12 */
+  line-height: 1.5;
   letter-spacing: 0%;
 }
 
@@ -325,7 +325,7 @@ $uppercaseFontSize: --text-sm;
   font-family: var(--secondary-font-family);
   font-size: var($uppercaseFontSize);
   font-weight: var(--medium);
-  line-height: 1.44; /* 20/13.86 */
+  line-height: 1.5;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -335,7 +335,7 @@ $eyebrowFontSize: --text-md;
   font-family: var(--secondary-font-family);
   font-size: var($eyebrowFontSize);
   font-weight: var(--semibold);
-  line-height: 1.25; /* 20/16 */
+  line-height: 1.5;
   letter-spacing: 0%;
 }
 
@@ -344,7 +344,7 @@ $eyebrowSmFontSize: --text-sm;
   font-family: var(--secondary-font-family);
   font-size: var($eyebrowSmFontSize);
   font-weight: var(--semibold);
-  line-height: 1.15; /* 16/13.86 */
+  line-height: 1.5;
   letter-spacing: 0%;
 }
 
@@ -353,7 +353,7 @@ $bodyFontSize: --text-lg;
   font-family: var(--secondary-font-family);
   font-size: var($bodyFontSize);
   font-weight: var(--regular);
-  line-height: 1.33; /* 24.6/18.48 */
+  line-height: 1.5;
   letter-spacing: 0%;
 }
 
@@ -362,7 +362,7 @@ $bodySmFontSize: --text-md;
   font-family: var(--secondary-font-family);
   font-size: var($bodySmFontSize);
   font-weight: var(--regular);
-  line-height: 1.5; /* 24/16 */
+  line-height: 1.5;
   letter-spacing: 0%;
 }
 .body-sm {
@@ -374,7 +374,7 @@ $buttonLgFontSize: --text-lg;
   font-family: var(--secondary-font-family);
   font-size: var($buttonLgFontSize);
   font-weight: var(--medium);
-  line-height: 1.3; /* 24/18.48 */
+  line-height: 1.5;
   letter-spacing: 0%;
 }
 
@@ -383,7 +383,7 @@ $buttonFontSize: --text-md;
   font-family: var(--secondary-font-family);
   font-size: var($buttonFontSize);
   font-weight: var(--medium);
-  line-height: 1.5; /* 24/16 */
+  line-height: 1.5;
   letter-spacing: 0%;
 }
 
