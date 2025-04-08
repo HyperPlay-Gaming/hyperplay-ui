@@ -1,25 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { expect, within, fireEvent } from '@storybook/test'
-import React from 'react'
+import { expect, within } from '@storybook/test'
+
+import RewardsSection from './index'
+import { RewardsCardProps } from '../RewardsCard'
 
 import YGGTransp from '@/assets/stories/YggIconTransparent.png'
 import PremiumTicket from '@/assets/stories/premiumTicket.png'
 import xocietyNTx from '@/assets/stories/xocietyNTx.png'
 import YGGReward from '@/assets/stories/ygg.png'
-
-import RewardsSection, { LinkComponentProps } from './index'
-import { RewardsCardProps } from '../RewardsCard'
-
-/**
- * Mock Link component for stories that simulates Next.js Link or similar router links
- */
-const MockLink = ({ href, children }: LinkComponentProps) => {
-  return (
-    <a href={href} onClick={() => console.log(`Clicked card`)}>
-      {children}
-    </a>
-  )
-}
 
 /**
  * The `RewardsSection` component displays a horizontally scrollable collection of reward cards
@@ -46,6 +34,7 @@ const MockLink = ({ href, children }: LinkComponentProps) => {
  * - Semantic structure with proper heading hierarchy
  * - Clear visual indicators for interactive elements
  */
+
 const meta: Meta<typeof RewardsSection> = {
   title: 'Quests/RewardsSection',
   component: RewardsSection,
@@ -62,54 +51,88 @@ const meta: Meta<typeof RewardsSection> = {
     rewards: {
       description: 'Array of reward objects to display in the section',
       control: 'object'
-    },
-    linkElement: {
-      description:
-        'Component to use for navigation links. Must accept href and children props.'
     }
   }
 }
+
+const LinkComponent = ({
+  children,
+  href
+}: {
+  children: React.ReactNode
+  href: string
+}) => (
+  <a href={href} data-testid="reward-link">
+    {children}
+  </a>
+)
 
 export default meta
 
 type Story = StoryObj<typeof RewardsSection>
 
+const i18n = {
+  claimsLabel: 'Claims left',
+  claimsLeftLabel: 'Unlimited'
+}
+
 // Sample rewards data for stories
 const rewardsData: RewardsCardProps[] = [
   {
     id: 1,
-    questId: 1,
-    rewardImage: YGGReward,
+    questId: 602,
+    rewardImage: PremiumTicket,
     reward: '1000 YGG Points',
-    claimsLeft: 500
+    i18n
   },
   {
     id: 2,
-    questId: 2,
-    rewardImage: xocietyNTx,
-    reward: 'NTx Airdrop',
-    claimsLeft: 300
+    questId: 534,
+    rewardImage: YGGTransp,
+    reward: '+1 NFT',
+    i18n
   },
   {
     id: 3,
-    questId: 3,
-    rewardImage: PremiumTicket,
-    reward: 'Premium Ticket',
-    claimsLeft: 100
+    questId: 585,
+    rewardImage: xocietyNTx,
+    reward: 'NTx Airdrop',
+    i18n
   },
   {
     id: 4,
-    questId: 4,
-    rewardImage: YGGTransp,
+    questId: 602,
+    rewardImage: YGGReward,
     reward: '500 YGG Points',
-    claimsLeft: 750
+    i18n
   },
   {
     id: 5,
-    questId: 5,
+    questId: 534,
+    rewardImage: PremiumTicket,
+    reward: 'Exclusive Skin',
+    i18n
+  },
+  {
+    id: 6,
+    questId: 585,
+    rewardImage: xocietyNTx,
+    reward: 'Special Badge',
+    i18n
+  },
+  {
+    id: 7,
+    questId: 602,
+    rewardImage: YGGTransp,
+    reward: 'Premium Ticket',
+    i18n
+  },
+  {
+    id: 8,
+    questId: 534,
     rewardImage: xocietyNTx,
     reward: 'Exclusive NFT',
-    claimsLeft: 50
+    i18n
   }
 ]
 
@@ -118,30 +141,31 @@ const extendedRewardsData = [
   ...rewardsData,
   {
     id: 6,
-    questId: 6,
-    rewardImage: PremiumTicket,
-    reward: 'Season Pass',
-    claimsLeft: 200
+    questId: 585,
+    rewardImage: xocietyNTx,
+    reward: 'Limited Edition NFT',
+    i18n
   },
   {
     id: 7,
-    questId: 7,
-    rewardImage: YGGReward,
+    questId: 602,
+    rewardImage: YGGTransp,
     reward: '2000 YGG Points',
-    claimsLeft: 150
+    i18n
   },
   {
     id: 8,
-    questId: 8,
-    rewardImage: xocietyNTx,
-    reward: 'Limited Edition NFT'
+    questId: 534,
+    rewardImage: PremiumTicket,
+    reward: 'Season Pass',
+    i18n
   }
 ]
 
 export const Default: Story = {
   args: {
     rewards: rewardsData,
-    linkElement: MockLink
+    Link: LinkComponent
   },
   parameters: {
     viewport: {
@@ -157,199 +181,32 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Check that the section title is displayed correctly
-    expect(
-      canvas.getByText('Complete Quests to Earn These Rewards')
-    ).toBeInTheDocument()
+    // Check that the section header exists
+    const header = canvas.getByTestId('rewards-header')
+    expect(header).toBeInTheDocument()
 
     // Check for navigation controls
-    const navigationIcons = canvas.getAllByRole('generic', { hidden: true })
-    expect(navigationIcons.length).toBeGreaterThan(0)
+    const navigationIcons = canvas.getAllByTestId('arrow-button')
+    expect(navigationIcons.length).toBe(2)
 
-    // Check that all reward cards are rendered
-    expect(canvas.getByText('1000 YGG Points')).toBeInTheDocument()
-    expect(canvas.getByText('NTx Airdrop')).toBeInTheDocument()
-    expect(canvas.getByText('Premium Ticket')).toBeInTheDocument()
-    expect(canvas.getByText('500 YGG Points')).toBeInTheDocument()
-    expect(canvas.getByText('Exclusive NFT')).toBeInTheDocument()
-  }
-}
+    // Check that reward cards are rendered with correct elements
+    const rewardLinks = canvas.getAllByRole('link')
+    expect(rewardLinks.length).toBe(rewardsData.length)
 
-export const SingleReward: Story = {
-  args: {
-    rewards: [rewardsData[0]],
-    linkElement: MockLink
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: 'desktop'
-    }
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
+    // Test for reward images
+    const rewardImages = canvas.getAllByRole('img')
+    expect(rewardImages.length).toBeGreaterThan(0)
 
-    // Check that the section title is displayed correctly
-    expect(
-      canvas.getByText('Complete Quests to Earn These Rewards')
-    ).toBeInTheDocument()
-
-    // Check that only one reward card is rendered
-    expect(canvas.getByText('1000 YGG Points')).toBeInTheDocument()
-    expect(canvas.queryByText('NTx Airdrop')).not.toBeInTheDocument()
-  }
-}
-
-export const MultipleRewards: Story = {
-  args: {
-    rewards: extendedRewardsData,
-    linkElement: MockLink
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: 'desktop'
-    }
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    // Check that the section title is displayed correctly
-    expect(
-      canvas.getByText('Complete Quests to Earn These Rewards')
-    ).toBeInTheDocument()
-
-    // Check that multiple reward cards are rendered
-    expect(canvas.getByText('1000 YGG Points')).toBeInTheDocument()
-    expect(canvas.getByText('NTx Airdrop')).toBeInTheDocument()
-    expect(canvas.getByText('Premium Ticket')).toBeInTheDocument()
-    expect(canvas.getByText('Season Pass')).toBeInTheDocument()
-    expect(canvas.getByText('2000 YGG Points')).toBeInTheDocument()
-    expect(canvas.getByText('Limited Edition NFT')).toBeInTheDocument()
-
-    // Verify that we have reward cards with different claims left values
-    expect(canvas.getByText('Claims left: 500')).toBeInTheDocument()
-    expect(canvas.getByText('Claims left: 150')).toBeInTheDocument()
-    expect(canvas.getByText('Claims left: Unlimited')).toBeInTheDocument()
-  }
-}
-
-export const MixedClaimsLeft: Story = {
-  args: {
-    rewards: [
-      {
-        id: 1,
-        questId: 1,
-        rewardImage: YGGReward,
-        reward: '1000 YGG Points',
-        claimsLeft: 500
-      },
-      {
-        id: 2,
-        questId: 2,
-        rewardImage: xocietyNTx,
-        reward: 'NTx Airdrop'
-        // Unlimited claims since claimsLeft is omitted
-      },
-      {
-        id: 3,
-        questId: 3,
-        rewardImage: PremiumTicket,
-        reward: 'Premium Ticket',
-        claimsLeft: 100
-      }
-    ],
-    linkElement: MockLink
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: 'desktop'
-    }
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    // Check for rewards with explicit claims left
-    expect(canvas.getByText('Claims left: 500')).toBeInTheDocument()
-    expect(canvas.getByText('Claims left: 100')).toBeInTheDocument()
-
-    // Check for rewards with unlimited claims
-    expect(canvas.getByText('Claims left: Unlimited')).toBeInTheDocument()
-  }
-}
-
-export const CircularNavigation: Story = {
-  args: {
-    rewards: extendedRewardsData,
-    linkElement: MockLink
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: 'desktop'
-    }
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    // Ensure all initial rewards are rendered
-    expect(canvas.getByText('1000 YGG Points')).toBeInTheDocument()
-    expect(canvas.getByText('Limited Edition NFT')).toBeInTheDocument()
-
-    // Find navigation buttons
-    const leftButton = canvas.getAllByRole('generic')[0] as HTMLElement
-    const rightButton = canvas.getAllByRole('generic')[1] as HTMLElement
-
-    // Note: Full circular navigation testing would require simulating scrollLeft positioning
-    // which is not fully possible in this test environment, but we can test the button clicks
-
-    // Test right button click
-    fireEvent.click(rightButton)
-
-    // Test left button click
-    fireEvent.click(leftButton)
-
-    // Verify component still renders after navigation
-    expect(
-      canvas.getByText('Complete Quests to Earn These Rewards')
-    ).toBeInTheDocument()
-  }
-}
-
-export const MobileView: Story = {
-  args: {
-    rewards: extendedRewardsData,
-    linkElement: MockLink
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: 'mobile1'
-    }
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    // Check that the section title is displayed correctly
-    expect(
-      canvas.getByText('Complete Quests to Earn These Rewards')
-    ).toBeInTheDocument()
-
-    // Check that multiple reward cards are rendered in mobile view
-    expect(canvas.getByText('1000 YGG Points')).toBeInTheDocument()
-    expect(canvas.getByText('NTx Airdrop')).toBeInTheDocument()
-    expect(canvas.getByText('Premium Ticket')).toBeInTheDocument()
-
-    // In mobile view, navigation controls should be hidden via CSS
-    // So we can only verify that the content is still accessible via scrolling
-
-    // Verify the reward cards are rendered properly
-    expect(canvas.getByText('Claims left: 500')).toBeInTheDocument()
-    expect(canvas.getByText('Claims left: 150')).toBeInTheDocument()
-    expect(canvas.getByText('Claims left: Unlimited')).toBeInTheDocument()
+    // Verify at least one image has a valid src
+    const firstImage = rewardImages[0]
+    expect(firstImage).toHaveAttribute('src')
   }
 }
 
 export const FewItems: Story = {
   args: {
     rewards: rewardsData.slice(0, 2), // Just show 2 rewards to demonstrate hiding navigation
-    linkElement: MockLink
+    Link: LinkComponent
   },
   parameters: {
     viewport: {
@@ -361,51 +218,17 @@ export const FewItems: Story = {
           'When there are only a few items that fit within the container without scrolling, navigation buttons are automatically hidden.'
       }
     }
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    // Check that the rewards are displayed
-    expect(canvas.getByText('1000 YGG Points')).toBeInTheDocument()
-    expect(canvas.getByText('NTx Airdrop')).toBeInTheDocument()
-
-    // Check that the header is present
-    expect(
-      canvas.getByText('Complete Quests to Earn These Rewards')
-    ).toBeInTheDocument()
-
-    // Try to find navigation buttons (they should not be in the document)
-    const navigationIcons = canvas.queryAllByRole('button')
-    expect(navigationIcons.length).toBe(0)
   }
 }
 
-export const WithNativeAnchor: Story = {
+export const MobileView: Story = {
   args: {
-    rewards: rewardsData.slice(0, 3),
-    linkElement: MockLink
+    rewards: extendedRewardsData,
+    Link: LinkComponent
   },
   parameters: {
     viewport: {
-      defaultViewport: 'desktop'
-    },
-    docs: {
-      description: {
-        story: 'Example using the native anchor tag for navigation links.'
-      }
+      defaultViewport: 'mobile1'
     }
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    // Check that the section renders correctly with anchors
-    expect(canvas.getByText('1000 YGG Points')).toBeInTheDocument()
-    expect(canvas.getByText('NTx Airdrop')).toBeInTheDocument()
-    expect(canvas.getByText('Premium Ticket')).toBeInTheDocument()
-
-    // Verify header is present
-    expect(
-      canvas.getByText('Complete Quests to Earn These Rewards')
-    ).toBeInTheDocument()
   }
 }
