@@ -4,39 +4,39 @@ export type TypographyProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>>
 export type HeadingProps = PropsWithChildren<HTMLAttributes<HTMLHeadingElement>>
 
 export const Heading1 = (props: HeadingProps) => (
-  <h1 {...props} className={`h1 ${props.className ?? ''}`}>
+  <div {...props} className={`h1 ${props.className ?? ''}`}>
     {props.children}
-  </h1>
+  </div>
 )
 
 export const Heading2 = (props: HeadingProps) => (
-  <h2 {...props} className={`h2 ${props.className ?? ''}`}>
+  <div {...props} className={`h2 ${props.className ?? ''}`}>
     {props.children}
-  </h2>
+  </div>
 )
 
 export const Heading3 = (props: HeadingProps) => (
-  <h3 {...props} className={`h3 ${props.className ?? ''}`}>
+  <div {...props} className={`h3 ${props.className ?? ''}`}>
     {props.children}
-  </h3>
+  </div>
 )
 
 export const Heading4 = (props: HeadingProps) => (
-  <h4 {...props} className={`h4 ${props.className ?? ''}`}>
+  <div {...props} className={`h4 ${props.className ?? ''}`}>
     {props.children}
-  </h4>
+  </div>
 )
 
 export const Heading5 = (props: HeadingProps) => (
-  <h5 {...props} className={`h5 ${props.className ?? ''}`}>
+  <div {...props} className={`h5 ${props.className ?? ''}`}>
     {props.children}
-  </h5>
+  </div>
 )
 
 export const Heading6 = (props: HeadingProps) => (
-  <h6 {...props} className={`h6 ${props.className ?? ''}`}>
+  <div {...props} className={`h6 ${props.className ?? ''}`}>
     {props.children}
-  </h6>
+  </div>
 )
 
 export const Menu = (props: TypographyProps) => (
