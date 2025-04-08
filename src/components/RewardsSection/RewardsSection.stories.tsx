@@ -221,6 +221,25 @@ export const FewItems: Story = {
   }
 }
 
+export const Loading: Story = {
+  args: {
+    rewards: rewardsData.slice(0, 4),
+    Link: LinkComponent,
+    isLoading: true
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'desktop'
+    },
+    docs: {
+      description: {
+        story:
+          'Loading state is indicated by a spinner or skeleton loader on the reward cards, providing visual feedback to users while data is being fetched.'
+      }
+    }
+  }
+}
+
 export const MobileView: Story = {
   args: {
     rewards: extendedRewardsData,
