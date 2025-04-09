@@ -97,10 +97,11 @@
   user-select: none;
 }
 
+$popoverPadding: var(--space-lg-fixed);
 .popover {
   background-color: var(--background-overlay);
   border: none;
-  padding: var(--space-lg);
+  padding: $popoverPadding;
   border-radius: var(--space-md);
   max-height: 80vh;
   box-shadow: 0px 20px 24px -8px rgba(124, 58, 237, 0.114);
@@ -155,7 +156,7 @@
   white-space: normal;
   overflow-wrap: break-word;
   border-radius: var(--space-sm-fixed);
-  padding: var(--space-2lg-fixed);
+  padding: $popoverPadding;
   background-color: var(--background-overlay);
   box-shadow: 0px 8px 8px -4px rgba(124, 58, 237, 0.04),
     0px 20px 24px -4px rgba(124, 58, 237, 0.08);
