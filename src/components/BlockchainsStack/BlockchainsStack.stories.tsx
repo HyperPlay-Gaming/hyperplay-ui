@@ -17,7 +17,15 @@ type Story = StoryObj<typeof BlockchainsStack>
 
 export const Default: Story = {
   args: {
-    chainId: Object.keys(chainIconsSrcOverrides),
+    chainId: [
+      '43114',
+      '1339',
+      '19011',
+      '13371',
+      '888',
+      ...Object.keys(chainIconsSrcOverrides),
+      '8453'
+    ],
     maxVisible: 5,
     showMoreCount: true
   },
