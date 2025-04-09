@@ -1,5 +1,9 @@
 import { DotIcon } from '@/assets/images'
-import { decimalUnits, parseNumIntoReadableString } from '@hyperplay/utils'
+import {
+  decimalUnits,
+  getDecimalNumberFromAmount,
+  parseNumIntoReadableString
+} from '@hyperplay/utils'
 
 import { CardGeneric } from '../CardGeneric'
 import Sticker from '../Sticker'
@@ -10,6 +14,7 @@ export type RewardsCardProps = {
   questId: number
   reward: string
   rewardImage: string
+  decimals?: number | null
   claimsLeft?: string
   i18n?: {
     claimsLabel?: string
@@ -21,22 +26,37 @@ function RewardsCard({
   rewardImage,
   reward,
   claimsLeft,
+  decimals,
   i18n = {
     claimsLabel: 'Claims left'
   },
   isLoading = false
 }: RewardsCardProps) {
-  const formatedReward = reward.match(/(?<=\+)\d+/)?.[0] || '0'
+  const amountPerUser = reward.match(/(?<=\+)\d+/)?.[0] || '0'
   const rewardName = reward.match(/(?<=\s)[a-zA-Z\s]+/)?.[0] || ''
 
-  const formatedAmount = parseNumIntoReadableString({
-    num: formatedReward,
+  let numToClaim = undefined
+  if (amountPerUser && decimals !== undefined && decimals !== null) {
+    numToClaim = getDecimalNumberFromAmount(
+      amountPerUser,
+      decimals ?? 0
+    ).toString()
+  } else {
+    numToClaim = parseNumIntoReadableString({
+      num: amountPerUser,
+      units: decimalUnits,
+      minValue: '1',
+      maxValue: '9999'
+    })
+  }
+  const parsedNumToClaim = parseNumIntoReadableString({
+    num: numToClaim,
     units: decimalUnits,
-    minValue: '1',
+    minValue: '0.0001',
     maxValue: '9999'
   })
 
-  reward = `+${formatedAmount} ${rewardName}`
+  reward = `+${parsedNumToClaim} ${rewardName}`
 
   return (
     <CardGeneric

@@ -89,6 +89,7 @@ export const CryptoRewardHugeNumber: Story = {
     id: 3,
     questId: 103,
     reward: '+200000000000000000000000 Dyno Coin',
+    decimals: 18,
     rewardImage: YGGReward,
     claimsLeft: undefined,
     i18n: {
