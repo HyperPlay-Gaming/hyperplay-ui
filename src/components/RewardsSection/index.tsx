@@ -3,6 +3,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import styles from './RewardsSection.module.scss'
 import RewardsCard, { RewardsCardProps } from '@/components/RewardsCard'
 import ArrowCircularButton from '../ArrowCircularButton'
+import { dummyData } from './constants'
 
 export interface RewardsSectionProps {
   rewards: RewardsCardProps[]
@@ -18,7 +19,7 @@ const defaultI18n = {
 }
 
 const RewardsSection = ({
-  rewards,
+  rewards = dummyData,
   Link: LinkElement,
   isLoading,
   i18n = defaultI18n
@@ -59,10 +60,6 @@ const RewardsSection = ({
     // Check if the carousel is scrollable
     setIsScrollable(emblaApi.canScrollNext() || emblaApi.canScrollPrev())
   }, [emblaApi])
-
-  if (!rewards || rewards.length === 0) {
-    return null
-  }
 
   return (
     <div className={styles.rewardsSection} data-testid="rewards-section">

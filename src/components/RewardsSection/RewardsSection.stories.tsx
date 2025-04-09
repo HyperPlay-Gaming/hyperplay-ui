@@ -233,9 +233,9 @@ export const FewItems: Story = {
   }
 }
 
-export const Loading: Story = {
+// not passing rewards so we can test the dummy data loading state
+export const LoadingWithDummyData: Story = {
   args: {
-    rewards: rewardsData.slice(0, 4),
     Link: LinkComponent,
     isLoading: true
   },
