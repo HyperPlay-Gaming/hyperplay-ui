@@ -150,7 +150,8 @@ export default function TokenTable({
             </Button>
           </td>
           <td>
-            {getTokenEnabled ? (
+            {/* if we don't have a marketplace url, then we have no url to open on get token click */}
+            {getTokenEnabled && token.marketplaceUrls?.length ? (
               <div>
                 {getTokenType(token)}
 
