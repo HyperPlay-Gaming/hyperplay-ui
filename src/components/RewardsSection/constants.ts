@@ -3,20 +3,14 @@ import { RewardsCardProps } from '../RewardsCard'
 export const dummyData: RewardsCardProps[] = [
   {
     id: 1,
-    questId: 602,
+    questId: 1,
     rewardImage: '',
-    reward: '1000 YGG Points'
+    reward: ''
   },
   {
     id: 2,
-    questId: 534,
+    questId: 2,
     rewardImage: '',
-    reward: '+1 NFT'
-  },
-  {
-    id: 3,
-    questId: 585,
-    rewardImage: '',
-    reward: 'NTx Airdrop'
+    reward: ''
   }
 ]
