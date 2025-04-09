@@ -30,11 +30,30 @@ const RewardsSection = ({
     loop: false
   })
 
+  const [isScrollable, setIsScrollable] = useState(false)
+  const [timeoutReached, setTimeoutReached] = useState(false)
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout
+
+    if (isLoading) {
+      timeoutId = setTimeout(() => {
+        setTimeoutReached(true)
+      }, 5000)
+    } else {
+      setTimeoutReached(false)
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+    }
+  }, [isLoading])
+
   if (isLoading) {
     rewards = dummyData
   }
-
-  const [isScrollable, setIsScrollable] = useState(false)
 
   const scrollPrev = useCallback(() => {
     if (!emblaApi) return
@@ -65,7 +84,7 @@ const RewardsSection = ({
     setIsScrollable(emblaApi.canScrollNext() || emblaApi.canScrollPrev())
   }, [emblaApi])
 
-  if (!rewards || rewards.length === 0) {
+  if (!rewards || rewards.length === 0 || (isLoading && timeoutReached)) {
     return null
   }
 

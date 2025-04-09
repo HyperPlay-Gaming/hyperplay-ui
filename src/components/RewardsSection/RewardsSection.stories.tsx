@@ -226,8 +226,7 @@ export const FewItems: Story = {
   }
 }
 
-// not passing rewards so we can test the dummy data loading state
-export const LoadingWithDummyData: Story = {
+export const LoadingTimeout: Story = {
   args: {
     Link: LinkComponent,
     isLoading: true
@@ -239,9 +238,23 @@ export const LoadingWithDummyData: Story = {
     docs: {
       description: {
         story:
-          'Loading state is indicated by a spinner or skeleton loader on the reward cards, providing visual feedback to users while data is being fetched.'
+          'When loading state persists beyond 5 seconds, the component returns null. This story simulates the timeout behavior by forcing the loading state to continue past the timeout threshold.'
       }
     }
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+
+    // Check that the component is rendered initially with loading state
+    let rewardsSection = canvas.queryByTestId('rewards-section')
+    expect(rewardsSection).toBeInTheDocument()
+
+    // Wait for more than 5 seconds (5500ms to be safe)
+    await new Promise((resolve) => setTimeout(resolve, 5500))
+
+    // After 5 seconds, the component should return null
+    rewardsSection = canvas.queryByTestId('rewards-section')
+    expect(rewardsSection).not.toBeInTheDocument()
   }
 }
 
