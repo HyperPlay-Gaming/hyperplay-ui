@@ -54,6 +54,10 @@
 .loading {
   @include shinyLoader;
 
+  .rewardImage {
+    height: auto;
+  }
+
   .rewardImage img {
     visibility: hidden;
   }
