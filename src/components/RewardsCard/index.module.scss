@@ -1,13 +1,18 @@
 @use '../../styles/utilities/loading' as *;
+@use '../../styles/utilities/variables' as *;
 
 .cardBase {
-  width: 271px;
-  // should be 379px when we update it to use two stickers
-  height: 339px;
+  width: 304px;
+  height: 390px;
   flex-shrink: 0;
   justify-content: space-between;
   background-color: var(--color-neutral-600);
   border-radius: var(--space-xs);
+
+  @include for-mobile-only {
+    width: 271px;
+    height: 339px;
+  }
 }
 
 .rewardsCard {
@@ -27,8 +32,13 @@
 .rewardImage {
   position: relative;
   width: 100%;
-  height: 271px;
+  height: 390px;
   overflow: hidden;
+
+  @include for-mobile-only {
+    width: 271px;
+    height: 339px;
+  }
 
   img {
     position: absolute;
