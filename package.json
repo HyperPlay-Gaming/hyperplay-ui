@@ -16,7 +16,8 @@
     "prettier:fix": "prettier --write .",
     "prettier": "prettier --check .",
     "test-storybook": "test-storybook --skipTags=\"skip-test\"",
-    "test:unit": "vitest"
+    "test:unit": "vitest",
+    "publish:beta": "pnpm build && pnpm publish --tag beta --no-git-checks"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
