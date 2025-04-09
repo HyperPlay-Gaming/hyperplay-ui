@@ -1,5 +1,5 @@
 @mixin thinGrayBorder {
-  border: 1px solid var(--color-neutral-600);
+  border: 2px solid var(--color-neutral-600);
 }
 
 .rewardsContainer {
@@ -29,7 +29,7 @@ $rewardTitleSideMargin: var(--space-2lg);
 }
 
 .separator {
-  height: 1px;
+  height: 2px;
   background-color: var(--color-neutral-600);
   margin: var(--space-md-fixed) calc(-1 * var(--space-md-fixed));
 }
