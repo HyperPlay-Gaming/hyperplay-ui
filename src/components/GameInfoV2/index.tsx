@@ -41,6 +41,7 @@ export interface GameInfoV2Props {
     developer?: string
     playerCount?: string
     version?: string
+    size?: string
   }
 }
 
@@ -63,7 +64,8 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
     version: 'Version',
     earlyAccess: 'Early Access',
     developer: 'Developer',
-    playerCount: 'Player Count'
+    playerCount: 'Player Count',
+    size: 'Size'
   }
 }): JSX.Element => {
   const [isImageLoading, setIsImageLoading] = useState(isLoading)
@@ -79,11 +81,14 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
 
   let editorChoiceElement = null
   if (editorChoice?.isEditorChoice) {
+    let choiceText = i18n.editorChoice
+    if (editorChoice.year) {
+      choiceText = `${i18n.editorChoice} ${editorChoice.year}`
+    }
     editorChoiceElement = (
       <div className={classNames(styles.editorChoice, editorChoice.className)}>
         <EditorChoice />
-        {`${i18n.editorChoice} `}{' '}
-        {editorChoice.year || new Date().getFullYear()}
+        {choiceText}
       </div>
     )
   }
@@ -158,7 +163,7 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
                       styleType="neutral"
                       variant="filledStrong"
                     >
-                      {downloadSizeReadable}
+                      {`${i18n.size} ${downloadSizeReadable}`}
                     </Sticker>
                   ) : null
                 ]}
