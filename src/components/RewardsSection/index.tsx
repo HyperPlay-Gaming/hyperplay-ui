@@ -19,7 +19,7 @@ const defaultI18n = {
 }
 
 const RewardsSection = ({
-  rewards = dummyData,
+  rewards,
   Link: LinkElement,
   isLoading,
   i18n = defaultI18n
@@ -29,6 +29,10 @@ const RewardsSection = ({
     dragFree: true,
     loop: false
   })
+
+  if (isLoading) {
+    rewards = dummyData
+  }
 
   const [isScrollable, setIsScrollable] = useState(false)
 
@@ -60,6 +64,10 @@ const RewardsSection = ({
     // Check if the carousel is scrollable
     setIsScrollable(emblaApi.canScrollNext() || emblaApi.canScrollPrev())
   }, [emblaApi])
+
+  if (!rewards || rewards.length === 0) {
+    return null
+  }
 
   return (
     <div className={styles.rewardsSection} data-testid="rewards-section">
