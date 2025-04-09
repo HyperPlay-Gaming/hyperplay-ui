@@ -20,9 +20,9 @@ interface NetworkRequirements {
 type TokenType = 'fungible' | 'semiFungible' | 'nonFungible' | 'other'
 
 interface TokenMetadata {
-  address: string
-  icon?: string
-  type?: TokenType
+  address: string | null
+  icon?: string | null
+  type?: TokenType | null
   name?: string
   marketplaceUrls?: string[]
 }
@@ -34,8 +34,8 @@ interface TokenTableProps
   > {
   contracts: ContractMetadata[]
   getTokenEnabled?: boolean
-  onTokenClick: (tokenAddress: string) => void
-  onGetTokenClick: (tokenAddress: string) => void
+  onTokenClick: (tokenAddress: string | null) => void
+  onGetTokenClick: (tokenAddress: string | null) => void
 }
 
 function getTokenTypeDisplayName(type: TokenType) {
@@ -108,8 +108,12 @@ export default function TokenTable({
   }
 
   function getTokenName(token: TokenMetadata) {
-    const addressName =
-      token.address.substring(0, 10) + (token.address.length > 10 ? '...' : '')
+    let addressName = 'Unknown'
+    if (token.address) {
+      addressName =
+        token.address.substring(0, 10) +
+        (token.address.length > 10 ? '...' : '')
+    }
     return token.name ? token?.name : addressName
   }
 
