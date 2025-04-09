@@ -14,6 +14,9 @@ import PlyrPhi from '@/assets/chainIcons/PLYR PHI.png'
 import ShrapnelSubnet from '@/assets/chainIcons/Shrapnel Subnet.png'
 import ImmutableX from '@/assets/chainIcons/immutable_zkevm_logo.png'
 
+/**
+ * @TODO pin these images on ipfs and polyfill in hp/chains with these urls
+ */
 export const chainIconsSrcOverrides: Record<string, string> = {
   '1': EthereumIcon,
   '42170': ArbNova,
