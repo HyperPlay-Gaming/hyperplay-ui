@@ -162,6 +162,15 @@ const extendedRewardsData = [
   }
 ]
 
+// 1280px width for desktop view
+const desktopViewport = {
+  name: 'desktop_1280',
+  styles: {
+    width: '1280px',
+    height: '800px'
+  }
+}
+
 export const Default: Story = {
   args: {
     rewards: rewardsData,
@@ -169,7 +178,10 @@ export const Default: Story = {
   },
   parameters: {
     viewport: {
-      defaultViewport: 'desktop'
+      viewports: {
+        desktop_1280: desktopViewport
+      },
+      defaultViewport: 'desktop_1280'
     },
     docs: {
       description: {
