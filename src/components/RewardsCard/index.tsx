@@ -1,4 +1,5 @@
 import { DotIcon } from '@/assets/images'
+import { decimalUnits, parseNumIntoReadableString } from '@hyperplay/utils'
 
 import { CardGeneric } from '../CardGeneric'
 import Sticker from '../Sticker'
@@ -25,6 +26,18 @@ function RewardsCard({
   },
   isLoading = false
 }: RewardsCardProps) {
+  const formatedReward = reward.match(/(?<=\+)\d+/)?.[0] || '0'
+  const rewardName = reward.match(/(?<=\s)[a-zA-Z\s]+/)?.[0] || ''
+
+  const formatedAmount = parseNumIntoReadableString({
+    num: formatedReward,
+    units: decimalUnits,
+    minValue: '1',
+    maxValue: '9999'
+  })
+
+  reward = `+${formatedAmount} ${rewardName}`
+
   return (
     <CardGeneric
       image={rewardImage}

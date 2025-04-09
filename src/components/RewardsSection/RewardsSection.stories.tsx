@@ -82,7 +82,7 @@ const rewardsData: RewardsCardProps[] = [
     id: 1,
     questId: 602,
     rewardImage: PremiumTicket,
-    reward: '1000 YGG Points',
+    reward: '+10000 YGG Points',
     i18n
   },
   {
@@ -96,70 +96,70 @@ const rewardsData: RewardsCardProps[] = [
     id: 3,
     questId: 585,
     rewardImage: xocietyNTx,
-    reward: 'NTx Airdrop',
+    reward: '+100000 NTx Airdrop',
     i18n
   },
   {
     id: 4,
     questId: 602,
     rewardImage: YGGReward,
-    reward: '500 YGG Points',
+    reward: '+500 YGG Points',
     i18n
   },
   {
     id: 5,
     questId: 534,
     rewardImage: PremiumTicket,
-    reward: 'Exclusive Skin',
+    reward: '+1 Exclusive Skin',
     i18n
   },
   {
     id: 6,
     questId: 585,
     rewardImage: xocietyNTx,
-    reward: 'Special Badge',
+    reward: '+300000000000 Special Badge',
     i18n
   },
   {
     id: 7,
     questId: 602,
     rewardImage: YGGTransp,
-    reward: 'Premium Ticket',
+    reward: '+10000000 Premium Ticket',
     i18n
   },
   {
     id: 8,
     questId: 534,
     rewardImage: xocietyNTx,
-    reward: 'Exclusive NFT',
+    reward: '+1 Exclusive NFT',
     i18n
   },
   {
     id: 9,
     questId: 585,
     rewardImage: xocietyNTx,
-    reward: 'Limited Edition NFT',
+    reward: '+1 Limited Edition NFT',
     i18n
   },
   {
     id: 10,
     questId: 602,
     rewardImage: YGGTransp,
-    reward: '2000 YGG Points',
+    reward: '+2000 YGG Points',
     i18n
   },
   {
     id: 11,
     questId: 534,
     rewardImage: PremiumTicket,
-    reward: 'Season Pass',
+    reward: '+1 Season Pass',
     i18n
   },
   {
     id: 12,
     questId: 585,
     rewardImage: xocietyNTx,
-    reward: 'VIP Access',
+    reward: '+1 VIP Access',
     i18n
   }
 ]

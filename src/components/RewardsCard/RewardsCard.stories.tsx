@@ -83,12 +83,12 @@ export const GameTicketReward: Story = {
   }
 }
 
-// Cryptocurrency Reward
-export const CryptoReward: Story = {
+// Crypto Reward with Large Number
+export const CryptoRewardHugeNumber: Story = {
   args: {
     id: 3,
     questId: 103,
-    reward: '1000 YGG',
+    reward: '+200000000000000000000000 Dyno Coin',
     rewardImage: YGGReward,
     claimsLeft: undefined,
     i18n: {
