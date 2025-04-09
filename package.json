@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.16.4",
+  "version": "1.17.0",
   "license": "LGPL-3.0-only",
   "scripts": {
     "dev": "vite",
@@ -16,7 +16,8 @@
     "prettier:fix": "prettier --write .",
     "prettier": "prettier --check .",
     "test-storybook": "test-storybook --skipTags=\"skip-test\"",
-    "test:unit": "vitest"
+    "test:unit": "vitest",
+    "publish:beta": "pnpm build && pnpm publish --tag beta --no-git-checks"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
