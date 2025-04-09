@@ -59,3 +59,23 @@
   height: 100%;
   gap: var(--space-xl);
 }
+
+.endDate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-2xs);
+  color: var(--color-neutral-100);
+}
+
+.futureDate {
+  color: var(--color-primary-200);
+}
+
+.pastDate {
+  color: var(--color-neutral-400);
+}
+
+.iconFuture {
+  color: var(--color-primary-200);
+}

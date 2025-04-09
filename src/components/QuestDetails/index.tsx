@@ -10,12 +10,20 @@ import Loading from '../Loading'
 import Sticker from '../Sticker'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import { IconClock } from '@tabler/icons-react'
+
+dayjs.extend(utc)
 
 export default function QuestDetails({
   title,
   description,
+  endDate,
   eligibilityComponent,
   i18n = {
+    endsOn: 'Quest ends',
+    endedOn: 'Quest ended',
     rewards: 'Claimable Rewards',
     claim: 'Claim',
     signIn: 'Sign in',
@@ -23,7 +31,8 @@ export default function QuestDetails({
     play: 'Play',
     questType: {
       'REPUTATIONAL-AIRDROP': 'Reputation',
-      PLAYSTREAK: 'Play Streak'
+      PLAYSTREAK: 'Play Streak',
+      LEADERBOARD: 'Leaderboard'
     },
     sync: 'Sync',
     claimsLeft: 'Claims left',
@@ -140,6 +149,11 @@ export default function QuestDetails({
     )
   }
 
+  const isEndDateInFuture = endDate && new Date(endDate) > new Date()
+  const utcFormattedDate = dayjs(endDate)
+    .utc()
+    .format('MM/DD [at] HH:mm [(UTC)]')
+
   let content = (
     <div className={cn(styles.rootContent, classNames?.rootContent)}>
       <div className={styles.badges}>
@@ -150,7 +164,25 @@ export default function QuestDetails({
       <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
         {description}
       </div>
-
+      {endDate && (
+        <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
+          <span className={styles.endDate}>
+            <IconClock
+              className={
+                isEndDateInFuture ? styles.iconFuture : styles.iconPast
+              }
+            />
+            <span
+              className={
+                isEndDateInFuture ? styles.futureDate : styles.pastDate
+              }
+            >
+              {isEndDateInFuture ? i18n.endsOn : i18n.endedOn}:
+            </span>
+            {utcFormattedDate}
+          </span>
+        </div>
+      )}
       {eligibilityComponent}
       {rewardsComponent}
       {errorAlert}
