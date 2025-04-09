@@ -133,31 +133,33 @@ const rewardsData: RewardsCardProps[] = [
     rewardImage: xocietyNTx,
     reward: 'Exclusive NFT',
     i18n
-  }
-]
-
-// Extended rewards data for the multiple rewards story
-const extendedRewardsData = [
-  ...rewardsData,
+  },
   {
-    id: 6,
+    id: 9,
     questId: 585,
     rewardImage: xocietyNTx,
     reward: 'Limited Edition NFT',
     i18n
   },
   {
-    id: 7,
+    id: 10,
     questId: 602,
     rewardImage: YGGTransp,
     reward: '2000 YGG Points',
     i18n
   },
   {
-    id: 8,
+    id: 11,
     questId: 534,
     rewardImage: PremiumTicket,
     reward: 'Season Pass',
+    i18n
+  },
+  {
+    id: 12,
+    questId: 585,
+    rewardImage: xocietyNTx,
+    reward: 'VIP Access',
     i18n
   }
 ]
@@ -185,10 +187,6 @@ export const Default: Story = {
     const header = canvas.getByTestId('rewards-header')
     expect(header).toBeInTheDocument()
 
-    // Check for navigation controls
-    const navigationIcons = canvas.getAllByTestId('arrow-button')
-    expect(navigationIcons.length).toBe(2)
-
     // Check that reward cards are rendered with correct elements
     const rewardLinks = canvas.getAllByRole('link')
     expect(rewardLinks.length).toBe(rewardsData.length)
@@ -200,6 +198,13 @@ export const Default: Story = {
     // Verify at least one image has a valid src
     const firstImage = rewardImages[0]
     expect(firstImage).toHaveAttribute('src')
+
+    // wait 500ms
+    await new Promise((resolve) => setTimeout(resolve, 500))
+
+    // Check for navigation controls
+    const navigationIcons = canvas.getAllByTestId('arrow-button')
+    expect(navigationIcons.length).toBe(2)
   }
 }
 
@@ -242,7 +247,7 @@ export const LoadingWithDummyData: Story = {
 
 export const MobileView: Story = {
   args: {
-    rewards: extendedRewardsData,
+    rewards: rewardsData,
     Link: LinkComponent
   },
   parameters: {
