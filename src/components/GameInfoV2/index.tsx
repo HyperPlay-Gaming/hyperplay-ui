@@ -127,7 +127,7 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
                       styleType="neutral"
                       variant="filledStrong"
                     >
-                      {version}
+                      {`${i18n.version}: ${version}`}
                     </Sticker>
                   ) : null,
                   earlyAccess ? (
@@ -163,7 +163,7 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
                       styleType="neutral"
                       variant="filledStrong"
                     >
-                      {`${i18n.size} ${downloadSizeReadable}`}
+                      {`${i18n.size}: ${downloadSizeReadable}`}
                     </Sticker>
                   ) : null
                 ]}
