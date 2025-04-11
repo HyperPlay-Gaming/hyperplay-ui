@@ -7,7 +7,8 @@ import { dummyData } from './constants'
 
 export interface RewardsSectionProps {
   rewards: RewardsCardProps[]
-  Link: React.ComponentType<{ children: React.ReactNode; href: string }>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Link: any
   isLoading?: boolean
   i18n?: {
     header?: string
@@ -27,7 +28,8 @@ const RewardsSection = ({
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start',
     dragFree: true,
-    loop: false
+    loop: false,
+    slidesToScroll: 3
   })
 
   const [isScrollable, setIsScrollable] = useState(false)

@@ -228,7 +228,7 @@ export const FewItems: Story = {
 
 export const LoadingTimeout: Story = {
   args: {
-    Link: LinkComponent,
+    Link: 'span',
     isLoading: true
   },
   parameters: {
