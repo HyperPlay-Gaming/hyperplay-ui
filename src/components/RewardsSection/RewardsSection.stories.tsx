@@ -82,7 +82,8 @@ const rewardsData: RewardsCardProps[] = [
     id: 1,
     questId: 602,
     rewardImage: PremiumTicket,
-    reward: '+10000 YGG Points',
+    rewardName: 'YGG Points',
+    amountPerUser: '10000',
     rewardType: 'ERC1155',
     i18n
   },
@@ -90,7 +91,8 @@ const rewardsData: RewardsCardProps[] = [
     id: 2,
     questId: 534,
     rewardImage: YGGTransp,
-    reward: '+1 YGG Amazing NFT',
+    rewardName: 'NFT',
+    amountPerUser: '1',
     rewardType: 'ERC721',
     i18n
   },
@@ -98,7 +100,8 @@ const rewardsData: RewardsCardProps[] = [
     id: 3,
     questId: 585,
     rewardImage: xocietyNTx,
-    reward: '+100000 NTx Airdrop',
+    rewardName: 'NTx Airdrop',
+    amountPerUser: '100000',
     rewardType: 'ERC1155',
     i18n
   },
@@ -106,7 +109,8 @@ const rewardsData: RewardsCardProps[] = [
     id: 4,
     questId: 602,
     rewardImage: YGGReward,
-    reward: '+500 YGG Points',
+    rewardName: 'YGG Points',
+    amountPerUser: '500',
     rewardType: 'ERC1155',
     i18n
   },
@@ -114,7 +118,8 @@ const rewardsData: RewardsCardProps[] = [
     id: 5,
     questId: 534,
     rewardImage: PremiumTicket,
-    reward: '+1 Exclusive Skin',
+    rewardName: 'Exclusive Skin',
+    amountPerUser: '1',
     rewardType: 'ERC1155',
     i18n
   },
@@ -122,7 +127,8 @@ const rewardsData: RewardsCardProps[] = [
     id: 6,
     questId: 585,
     rewardImage: xocietyNTx,
-    reward: '+300000000000 Special Badge',
+    rewardName: 'Special Badge',
+    amountPerUser: '300000000000',
     rewardType: 'ERC1155',
     i18n
   },
@@ -130,7 +136,8 @@ const rewardsData: RewardsCardProps[] = [
     id: 7,
     questId: 602,
     rewardImage: YGGTransp,
-    reward: '+10000000 Premium Ticket',
+    rewardName: 'Premium Ticket',
+    amountPerUser: '10000000',
     rewardType: 'ERC1155',
     i18n
   },
@@ -138,7 +145,8 @@ const rewardsData: RewardsCardProps[] = [
     id: 8,
     questId: 534,
     rewardImage: xocietyNTx,
-    reward: '+1 Exclusive NFT',
+    rewardName: 'Exclusive NFT',
+    amountPerUser: '1',
     rewardType: 'ERC721',
     i18n
   },
@@ -146,7 +154,8 @@ const rewardsData: RewardsCardProps[] = [
     id: 9,
     questId: 585,
     rewardImage: xocietyNTx,
-    reward: '+1 Limited Edition NFT',
+    rewardName: 'Limited Edition NFT',
+    amountPerUser: '1',
     rewardType: 'ERC721',
     i18n
   },
@@ -154,7 +163,8 @@ const rewardsData: RewardsCardProps[] = [
     id: 10,
     questId: 602,
     rewardImage: YGGTransp,
-    reward: '+2000 YGG Points',
+    rewardName: 'YGG Points',
+    amountPerUser: '2000',
     rewardType: 'ERC1155',
     i18n
   },
@@ -162,7 +172,8 @@ const rewardsData: RewardsCardProps[] = [
     id: 11,
     questId: 534,
     rewardImage: PremiumTicket,
-    reward: '+1 Season Pass',
+    rewardName: 'Season Pass',
+    amountPerUser: '1',
     rewardType: 'ERC1155',
     i18n
   },
@@ -170,7 +181,8 @@ const rewardsData: RewardsCardProps[] = [
     id: 12,
     questId: 585,
     rewardImage: xocietyNTx,
-    reward: '+1 VIP Access',
+    rewardName: 'VIP Access',
+    amountPerUser: '1',
     rewardType: 'ERC1155',
     i18n
   }

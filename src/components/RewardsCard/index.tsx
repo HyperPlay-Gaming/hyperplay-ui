@@ -1,5 +1,9 @@
 import { DotIcon } from '@/assets/images'
-import { decimalUnits, parseNumIntoReadableString } from '@hyperplay/utils'
+import {
+  decimalUnits,
+  getDecimalNumberFromAmount,
+  parseNumIntoReadableString
+} from '@hyperplay/utils'
 
 import { CardGeneric } from '../CardGeneric'
 import Sticker from '../Sticker'
@@ -8,10 +12,12 @@ import styles from './index.module.scss'
 export type RewardsCardProps = {
   id: number
   questId: number
-  reward: string
   rewardImage: string
   rewardType: string
-  claimsLeft?: string
+  decimals?: number | null
+  claimsLeft?: string | null
+  rewardName: string
+  amountPerUser: string | null
   i18n?: {
     claimsLabel?: string
   }
@@ -20,29 +26,44 @@ export type RewardsCardProps = {
 
 function RewardsCard({
   rewardImage,
-  reward,
   rewardType,
   claimsLeft,
+  decimals,
   i18n = {
     claimsLabel: 'Claims left'
   },
-  isLoading = false
+  isLoading = false,
+  rewardName,
+  amountPerUser
 }: RewardsCardProps) {
-  const formatedReward = reward.match(/(?<=\+)\d+/)?.[0] || '0'
-  const rewardName = reward.match(/(?<=\s)[a-zA-Z\s]+/)?.[0] || ''
-
-  const formatedAmount = parseNumIntoReadableString({
-    num: formatedReward,
-    units: decimalUnits,
-    minValue: '1',
-    maxValue: '9999'
-  })
-
-  if (rewardType === 'ERC721') {
-    reward = rewardName
-  } else {
-    reward = `+${formatedAmount} ${rewardName}`
-  }
+  let rewardText = undefined
+  
+  if (amountPerUser) {
+    let numToClaim = undefined
+    if (amountPerUser && decimals !== undefined && decimals !== null) {
+      numToClaim = getDecimalNumberFromAmount(
+        amountPerUser,
+        decimals ?? 0
+      ).toString()
+    } else {
+      numToClaim = parseNumIntoReadableString({
+        num: amountPerUser,
+        units: decimalUnits,
+        minValue: '1',
+        maxValue: '9999'
+      })
+    }
+    const parsedNumToClaim = parseNumIntoReadableString({
+      num: numToClaim,
+      units: decimalUnits,
+      minValue: '0.0001',
+      maxValue: '9999'
+    })
+    if (rewardType !== 'ERC721') {
+      rewardText = `+${parsedNumToClaim} ${rewardName}`
+    } else {
+      rewardText = rewardName}
+    }
 
   return (
     <CardGeneric
@@ -56,16 +77,16 @@ function RewardsCard({
     >
       <div className={styles.content}>
         <div className={styles.stickers}>
-          {isLoading ? null : (
+          {isLoading || !rewardText ? null : (
             <Sticker
               styleType="neutral"
               dimension="default"
               variant="filledStrong"
             >
-              {reward}
+              {rewardText}
             </Sticker>
           )}
-          {claimsLeft !== undefined && !isLoading ? (
+          {claimsLeft !== undefined && claimsLeft !== null && !isLoading ? (
             <Sticker
               styleType="neutral"
               dimension="default"

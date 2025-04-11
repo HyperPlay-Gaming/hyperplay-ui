@@ -126,7 +126,8 @@ const RewardsSection = ({
                     rewardImage={reward.rewardImage}
                     rewardType={reward.rewardType}
                     claimsLeft={reward.claimsLeft}
-                    reward={reward.reward}
+                    rewardName={reward.rewardName}
+                    amountPerUser={reward.amountPerUser}
                     isLoading={isLoading}
                   />
                 </LinkElement>

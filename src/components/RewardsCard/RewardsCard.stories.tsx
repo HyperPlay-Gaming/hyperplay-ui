@@ -55,7 +55,8 @@ export const NFTReward: Story = {
   args: {
     id: 1,
     questId: 101,
-    reward: '+1 NFT',
+    amountPerUser: 1,
+    rewardName: 'NFT',
     rewardImage: YGGTransp,
     claimsLeft: undefined
   },
@@ -77,7 +78,7 @@ export const GameTicketReward: Story = {
   args: {
     id: 2,
     questId: 102,
-    reward: 'Premium Game Ticket',
+    rewardName: 'Premium Game Ticket',
     rewardImage: PremiumTicket,
     claimsLeft: undefined
   }
@@ -88,7 +89,9 @@ export const CryptoRewardHugeNumber: Story = {
   args: {
     id: 3,
     questId: 103,
-    reward: '+200000000000000000000000 Dyno Coin',
+    amountPerUser: 200000000000000000000000,
+    rewardName: 'Dyno Coin',
+    decimals: 18,
     rewardImage: YGGReward,
     claimsLeft: undefined,
     i18n: {
@@ -102,7 +105,7 @@ export const LoadingState: Story = {
   args: {
     id: 4,
     questId: 104,
-    reward: 'Loading Reward',
+    rewardName: 'Loading Reward',
     rewardImage: YGGReward,
     claimsLeft: undefined,
     isLoading: true
