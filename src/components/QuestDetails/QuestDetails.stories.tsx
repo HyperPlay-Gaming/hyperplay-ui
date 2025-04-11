@@ -450,3 +450,17 @@ export const WithExternalSyncButton: Story = {
     ]
   }
 }
+
+export const EndDateInFuture: Story = {
+  args: {
+    ...props,
+    endDate: '2025-04-10T00:00:00.000Z'
+  }
+}
+
+export const EndDateInPast: Story = {
+  args: {
+    ...props,
+    endDate: '2020-04-08T00:00:00.000Z'
+  }
+}

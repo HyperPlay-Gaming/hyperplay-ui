@@ -1,4 +1,7 @@
-export type QuestType = 'REPUTATIONAL-AIRDROP' | 'PLAYSTREAK'
+import { Quest } from '@hyperplay/utils'
+
+export type QuestType = Quest['type']
+
 export type QuestTypeTranslations = Record<QuestType, string>
 
 export type Arch = 'amd64' | 'arm64'
