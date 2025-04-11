@@ -3,23 +3,23 @@
 
 .cardBase {
   width: 304px;
-  height: 390px;
+  height: 368px;
   flex-shrink: 0;
   justify-content: space-between;
   background-color: var(--color-neutral-600);
   border-radius: var(--space-xs);
+  margin: var(--space-2xs) 0;
 
   @include for-mobile-only {
-    width: 271px;
-    height: 339px;
+    width: 272px;
+    height: 336px;
   }
 }
 
-.rewardsCard {
+.rewardsBody {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: var(--space-md-fixed);
   width: 100%;
   justify-content: flex-end;
   max-height: 108px;
