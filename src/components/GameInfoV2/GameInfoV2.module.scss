@@ -1,4 +1,5 @@
 @use '../../styles/utilities/loading' as *;
+@use '../../styles/utilities/variables' as *;
 $game-image-width: 172px;
 $game-image-height: 229.33px;
 
@@ -10,7 +11,7 @@ $game-image-height: 229.33px;
   align-self: stretch;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: $tabletLandscapeBreakpoint) {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -23,8 +24,9 @@ $game-image-height: 229.33px;
 .body {
   display: flex;
   flex-direction: column;
+  width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: $tabletLandscapeBreakpoint) {
     flex-wrap: wrap;
     align-items: flex-start;
   }
@@ -51,7 +53,7 @@ $game-image-height: 229.33px;
   padding: 0;
   margin: 0;
 
-  @media (max-width: 768px) {
+  @media (max-width: $tabletLandscapeBreakpoint) {
     font-size: var(--text-4xl);
   }
 }
@@ -67,7 +69,7 @@ $game-image-height: 229.33px;
   flex-wrap: wrap;
   gap: var(--space-xs);
 
-  @media (max-width: 768px) {
+  @media (max-width: $tabletLandscapeBreakpoint) {
     gap: var(--space-2xs);
     flex-wrap: wrap;
   }
@@ -82,7 +84,7 @@ $game-image-height: 229.33px;
   background-color: var(--color-background-700);
   position: relative;
 
-  @media (max-width: 768px) {
+  @media (max-width: $tabletLandscapeBreakpoint) {
     display: none;
   }
 }
@@ -130,7 +132,7 @@ $game-image-height: 229.33px;
   align-items: center;
   gap: var(--space-md);
 
-  @media (max-width: 768px) {
+  @media (max-width: $tabletLandscapeBreakpoint) {
     flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -139,7 +141,7 @@ $game-image-height: 229.33px;
 }
 
 .addButton {
-  @media (max-width: 768px) {
+  @media (max-width: $tabletLandscapeBreakpoint) {
     width: 100%;
   }
 }

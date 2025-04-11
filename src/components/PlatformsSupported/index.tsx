@@ -71,7 +71,6 @@ export function PlatformsSupported({
   if (playableOnIcons.length) {
     playableOn = (
       <ContainerRaised
-        useGradientBorder={true}
         data-testid={'platforms-supported-playable-on-container'}
         classNames={{ container: styles.containerRaised }}
       >
