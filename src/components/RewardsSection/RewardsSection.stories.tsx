@@ -125,7 +125,7 @@ const rewardsData: RewardsCardProps[] = [
     rewardImage: PremiumTicket,
     rewardName: 'Exclusive Skin',
     amountPerUser: '1',
-    rewardType: 'ERC1155',
+    rewardType: 'ERC20',
     i18n
   },
   {
