@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
 
 import YGGTransp from '@/assets/stories/YggIconTransparent.png'
-import PremiumTicket from '@/assets/stories/premiumTicket.png'
 import YGGReward from '@/assets/stories/ygg.png'
 
 import RewardsCard from './index'
