@@ -53,7 +53,7 @@ const GameRequirementsTable = ({
 }: GameRequirementsTableProps) => {
   return (
     <div className={classNames(styles.container, classnames?.container)}>
-      <h1 className={classNames('title-sm', styles.title, classnames?.title)}>
+      <h1 className={classNames('title', styles.title, classnames?.title)}>
         Recommended
       </h1>
       <div className={classNames(styles.item, classnames?.item)}>
