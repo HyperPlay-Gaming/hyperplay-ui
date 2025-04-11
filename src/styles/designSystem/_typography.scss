@@ -273,11 +273,11 @@ $menuFontSize: --text-md;
   letter-spacing: 1%;
 }
 
-$titleFontSize: --text-2xl;
+$titleFontSize: --text-xl;
 @mixin title-mixin {
   font-family: var(--primary-font-family);
   font-size: var($titleFontSize);
-  font-weight: var(--semibold);
+  font-weight: var(--bold);
   line-height: 1.5;
   letter-spacing: 0%;
 }

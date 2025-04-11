@@ -60,6 +60,7 @@ const BlockchainsStack = ({
             key={`blockchain-${index}`}
             label={blockchain.name}
             className={styles.tooltip}
+            events={{ hover: true, touch: true, focus: false }}
           >
             <div className={styles.icon}>
               <BlockchainIcon
