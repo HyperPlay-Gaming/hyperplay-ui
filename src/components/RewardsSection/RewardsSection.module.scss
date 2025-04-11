@@ -7,6 +7,10 @@
   h6 {
     font-size: var(--text-xl);
   }
+
+  @include for-mobile-only {
+    width: 100vw;
+  }
 }
 
 .header {
