@@ -1,9 +1,15 @@
+@import '../../styles/utilities/_variables';
+
 .rewardsSection {
   background-color: transparent;
-  max-width: 960px;
 
   h6 {
-    font-size: var(--text-lg);
+    font-size: var(--text-xl);
+  }
+
+  @include for-mobile-only {
+    padding: 0 var(--space-md);
+    width: 90vw;
   }
 }
 
@@ -11,12 +17,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: var(--space-lg);
 }
 
 .navigationIcons {
   display: flex;
   gap: 10px;
+
+  @include for-mobile-only {
+    display: none;
+  }
 }
 
 .leftButton,
@@ -40,38 +50,20 @@
 
 .emblaContainer {
   display: flex;
-  gap: var(--space-lg);
+  gap: var(--space-2lg);
   user-select: none;
   -webkit-touch-callout: none;
   -khtml-user-select: none;
   -webkit-tap-highlight-color: transparent;
   will-change: transform;
-  margin: var(--space-xs) var(--space-2xs);
+
+  @include for-mobile-only {
+    flex-wrap: nowrap;
+  }
 }
 
 .emblaSlide {
   flex: 0 0 auto;
   min-width: 0;
   position: relative;
-}
-
-@media (max-width: 768px) {
-  .rewardsSection {
-    padding: 0 20px;
-    width: 90vw;
-  }
-
-  .header {
-    h6 {
-      line-height: var(--space-lg);
-    }
-  }
-
-  .navigationIcons {
-    display: none;
-  }
-
-  .emblaContainer {
-    flex-wrap: nowrap;
-  }
 }

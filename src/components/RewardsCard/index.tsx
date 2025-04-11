@@ -42,9 +42,9 @@ function RewardsCard({
     <CardGeneric
       image={rewardImage}
       genericClassNames={{
-        body: isLoading ? styles.loading : styles.rewardsCard,
+        root: isLoading ? styles.loading : '',
         image: styles.rewardImage,
-        root: isLoading ? styles.loading : ''
+        body: isLoading ? styles.loading : styles.rewardsBody
       }}
       className={styles.cardBase}
     >
