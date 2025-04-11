@@ -8,6 +8,14 @@
   h6 {
     font-size: var(--text-xl);
   }
+
+  @include for-tablet-portrait-up {
+    width: 98vw;
+  }
+
+  @include for-desktop-up {
+    width: 100%;
+  }
 }
 
 .header {
