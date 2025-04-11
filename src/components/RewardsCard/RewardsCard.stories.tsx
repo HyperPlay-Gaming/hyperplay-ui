@@ -20,7 +20,7 @@ const meta: Meta<typeof RewardsCard> = {
     }
   },
   argTypes: {
-    reward: {
+    rewardName: {
       description:
         'The name or description of the reward (e.g., "1000 YGG Points", "+1 NFT")',
       control: 'text'
@@ -42,6 +42,24 @@ const meta: Meta<typeof RewardsCard> = {
     isLoading: {
       description: 'Shows the card in a loading state with shiny animation',
       control: 'boolean'
+    },
+    amountPerUser: {
+      description: 'Amount of the reward per user (e.g., "1000", "1", "0.5")',
+      control: 'text'
+    },
+    decimals: {
+      description:
+        'Number of decimal places for the reward amount (e.g., 18 for ERC20 tokens)',
+      control: 'number'
+    },
+    rewardType: {
+      description: 'Type of reward (e.g., "ERC20", "ERC721", "ERC1155")',
+      control: 'text'
+    },
+    questId: {
+      description:
+        'The ID of the quest associated with the reward (used for routing)',
+      control: 'number'
     }
   }
 }
@@ -55,8 +73,9 @@ export const NFTReward: Story = {
   args: {
     id: 1,
     questId: 101,
-    amountPerUser: 1,
-    rewardName: 'NFT',
+    amountPerUser: '1',
+    rewardName: 'Premium YGG NFT',
+    rewardType: 'ERC721',
     rewardImage: YGGTransp,
     claimsLeft: undefined
   },
@@ -89,7 +108,7 @@ export const CryptoRewardHugeNumber: Story = {
   args: {
     id: 3,
     questId: 103,
-    amountPerUser: 200000000000000000000000,
+    amountPerUser: '200000000000000000000000',
     rewardName: 'Dyno Coin',
     decimals: 18,
     rewardImage: YGGReward,
