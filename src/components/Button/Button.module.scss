@@ -160,26 +160,28 @@ $colorDirection: to top;
   }
 }
 
+$iconSecondaryBorderThickness: 1px;
+
 .icon.secondary {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--color-neutral-800);
-  border: solid 2px var(--color-stroke-01);
+  border: solid $iconSecondaryBorderThickness var(--color-stroke-01);
   padding: var(--space-sm-fixed);
   aspect-ratio: 1/1;
 
   &:hover:not(:disabled) {
     background: none;
-    background-color: var(--color-neutral-700);
-    border: solid 2px var(--color-neutral-500);
+    background-color: var(--fill-hover);
+    border: solid $iconSecondaryBorderThickness var(--color-neutral-500);
     opacity: 100%;
   }
 
   &:active {
     background: none;
     background-color: var(--color-neutral-900);
-    border: solid 2px var(--color-neutral-700);
+    border: solid $iconSecondaryBorderThickness var(--color-neutral-700);
   }
 }
 

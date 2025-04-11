@@ -118,14 +118,7 @@ const RewardsSection = ({
                   data-testid="reward-link"
                   href={`/quests/${reward.questId}`}
                 >
-                  <RewardsCard
-                    id={reward.id}
-                    questId={reward.questId}
-                    rewardImage={reward.rewardImage}
-                    claimsLeft={reward.claimsLeft}
-                    reward={reward.reward}
-                    isLoading={isLoading}
-                  />
+                  <RewardsCard isLoading={isLoading} {...reward} />
                 </LinkElement>
               </div>
             ))}

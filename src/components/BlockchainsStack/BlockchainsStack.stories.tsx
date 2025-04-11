@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { expect, userEvent, within } from '@storybook/test'
 
 import BlockchainsStack from '.'
+import { chainIconsSrcOverrides } from '@/utils/chainIconSrcOverrides'
 
 const meta = {
   title: 'Components/BlockchainsStack',
@@ -17,16 +18,13 @@ type Story = StoryObj<typeof BlockchainsStack>
 export const Default: Story = {
   args: {
     chainId: [
-      '9901',
-      '11111',
-      '1789',
-      '2357',
-      '200',
-      '210',
-      '1',
-      '1789',
-      '2357',
-      '13371'
+      '43114',
+      '1339',
+      '19011',
+      '13371',
+      '888',
+      ...Object.keys(chainIconsSrcOverrides),
+      '8453'
     ],
     maxVisible: 5,
     showMoreCount: true
