@@ -2,14 +2,11 @@
 
 .rewardsSection {
   background-color: transparent;
-  width: 100%;
+  width: 100vw;
+  max-width: 1156px;
 
   h6 {
     font-size: var(--text-xl);
-  }
-
-  @include for-mobile-only {
-    width: 100vw;
   }
 }
 
