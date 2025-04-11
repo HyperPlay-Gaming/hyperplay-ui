@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.18.3",
+  "version": "1.18.3-alpha.1",
   "license": "LGPL-3.0-only",
   "scripts": {
     "dev": "vite",
@@ -54,6 +54,7 @@
     "@vitejs/plugin-react-swc": "^3.1.0",
     "babel-loader": "^8.3.0",
     "classnames": "^2.3.2",
+    "dayjs": "^1.11.13",
     "embla-carousel-autoplay": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
     "eslint": "^8.33.0",
@@ -96,6 +97,7 @@
     "@mantine/core": "^7.16.3",
     "@mantine/dropzone": "^7.16.3",
     "@mantine/hooks": "^7.16.3",
+    "dayjs": "^1.11.13",
     "embla-carousel-autoplay": ">=8.5.2",
     "embla-carousel-react": ">=8.5.2",
     "react": "^18.0.0",
