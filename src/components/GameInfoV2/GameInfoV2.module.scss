@@ -23,6 +23,7 @@ $game-image-height: 229.33px;
 .body {
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   @media (max-width: 768px) {
     flex-wrap: wrap;
