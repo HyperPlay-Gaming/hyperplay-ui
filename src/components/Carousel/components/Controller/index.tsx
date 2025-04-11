@@ -122,6 +122,10 @@ const Controller = ({
         />
       )
     } else {
+      // if there is only 1 page, then don't render any empty
+      if (maxPageIndex === 0) {
+        continue
+      }
       itemsToShow.push(
         <Item
           key={`hyperplay_carousel_controller_empty_${itemIndex}`}

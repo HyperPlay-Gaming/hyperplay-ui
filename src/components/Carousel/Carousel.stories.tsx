@@ -497,6 +497,20 @@ export const TestImageAutoscrollAfterClickStory: Story = {
 /**
  * @dev hide arrows if num items in controller is <= numItemsToShow
  */
+export const ControllerArrowHiddenStory: Story = {
+  args: {
+    autoplayOptions: { delay: 1000 },
+    children: imgSlides,
+    childrenNotInCarousel: (
+      <Carousel.Controller itemsData={imagesForThumbnail} numItemsToShow={8} />
+    ),
+    style: { maxWidth: 1000 }
+  }
+}
+
+/**
+ * @dev hide arrows if num items in controller is <= numItemsToShow
+ */
 export const TestControllerArrowHiddenStory: Story = {
   args: {
     autoplayOptions: { delay: 1000 },
