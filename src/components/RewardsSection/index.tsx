@@ -84,7 +84,7 @@ const RewardsSection = ({
 
     // Check if the carousel is scrollable
     setIsScrollable(emblaApi.canScrollNext() || emblaApi.canScrollPrev())
-  }, [emblaApi])
+  }, [emblaApi, rewards.length])
 
   if (!rewards || rewards.length === 0 || (isLoading && timeoutReached)) {
     return null
