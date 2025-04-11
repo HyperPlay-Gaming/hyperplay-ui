@@ -20,7 +20,7 @@
     gap: var(--space-md-fixed);
   }
   @include for-tablet-landscape-up {
-    gap: var(--space-xl-fixed);
+    gap: var(--space-2lg-fixed);
   }
 }
 .noSetupContainer {
