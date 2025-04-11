@@ -124,6 +124,7 @@ const RewardsSection = ({
                     id={reward.id}
                     questId={reward.questId}
                     rewardImage={reward.rewardImage}
+                    rewardType={reward.rewardType}
                     claimsLeft={reward.claimsLeft}
                     reward={reward.reward}
                     isLoading={isLoading}

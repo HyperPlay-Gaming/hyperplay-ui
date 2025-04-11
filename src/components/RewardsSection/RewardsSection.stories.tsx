@@ -83,13 +83,15 @@ const rewardsData: RewardsCardProps[] = [
     questId: 602,
     rewardImage: PremiumTicket,
     reward: '+10000 YGG Points',
+    rewardType: 'ERC1155',
     i18n
   },
   {
     id: 2,
     questId: 534,
     rewardImage: YGGTransp,
-    reward: '+1 NFT',
+    reward: '+1 YGG Amazing NFT',
+    rewardType: 'ERC721',
     i18n
   },
   {
@@ -97,6 +99,7 @@ const rewardsData: RewardsCardProps[] = [
     questId: 585,
     rewardImage: xocietyNTx,
     reward: '+100000 NTx Airdrop',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -104,6 +107,7 @@ const rewardsData: RewardsCardProps[] = [
     questId: 602,
     rewardImage: YGGReward,
     reward: '+500 YGG Points',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -111,6 +115,7 @@ const rewardsData: RewardsCardProps[] = [
     questId: 534,
     rewardImage: PremiumTicket,
     reward: '+1 Exclusive Skin',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -118,6 +123,7 @@ const rewardsData: RewardsCardProps[] = [
     questId: 585,
     rewardImage: xocietyNTx,
     reward: '+300000000000 Special Badge',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -125,6 +131,7 @@ const rewardsData: RewardsCardProps[] = [
     questId: 602,
     rewardImage: YGGTransp,
     reward: '+10000000 Premium Ticket',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -132,6 +139,7 @@ const rewardsData: RewardsCardProps[] = [
     questId: 534,
     rewardImage: xocietyNTx,
     reward: '+1 Exclusive NFT',
+    rewardType: 'ERC721',
     i18n
   },
   {
@@ -139,6 +147,7 @@ const rewardsData: RewardsCardProps[] = [
     questId: 585,
     rewardImage: xocietyNTx,
     reward: '+1 Limited Edition NFT',
+    rewardType: 'ERC721',
     i18n
   },
   {
@@ -146,6 +155,7 @@ const rewardsData: RewardsCardProps[] = [
     questId: 602,
     rewardImage: YGGTransp,
     reward: '+2000 YGG Points',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -153,6 +163,7 @@ const rewardsData: RewardsCardProps[] = [
     questId: 534,
     rewardImage: PremiumTicket,
     reward: '+1 Season Pass',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -160,6 +171,7 @@ const rewardsData: RewardsCardProps[] = [
     questId: 585,
     rewardImage: xocietyNTx,
     reward: '+1 VIP Access',
+    rewardType: 'ERC1155',
     i18n
   }
 ]

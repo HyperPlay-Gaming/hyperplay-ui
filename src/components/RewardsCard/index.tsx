@@ -10,6 +10,7 @@ export type RewardsCardProps = {
   questId: number
   reward: string
   rewardImage: string
+  rewardType: string
   claimsLeft?: string
   i18n?: {
     claimsLabel?: string
@@ -20,6 +21,7 @@ export type RewardsCardProps = {
 function RewardsCard({
   rewardImage,
   reward,
+  rewardType,
   claimsLeft,
   i18n = {
     claimsLabel: 'Claims left'
@@ -36,7 +38,11 @@ function RewardsCard({
     maxValue: '9999'
   })
 
-  reward = `+${formatedAmount} ${rewardName}`
+  if (rewardType === 'ERC721') {
+    reward = rewardName
+  } else {
+    reward = `+${formatedAmount} ${rewardName}`
+  }
 
   return (
     <CardGeneric
