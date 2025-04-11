@@ -273,7 +273,7 @@ $menuFontSize: --text-md;
   letter-spacing: 1%;
 }
 
-$titleFontSize: --text-2xl;
+$titleFontSize: --text-xl;
 @mixin title-mixin {
   font-family: var(--primary-font-family);
   font-size: var($titleFontSize);
@@ -384,6 +384,15 @@ $buttonFontSize: --text-md;
   font-size: var($buttonFontSize);
   font-weight: var(--medium);
   line-height: 1.5;
+  letter-spacing: 0%;
+}
+
+$buttonSmFontSize: --text-sm;
+.button-sm {
+  font-family: var(--secondary-font-family);
+  font-size: var($buttonSmFontSize);
+  font-weight: var(--medium);
+  line-height: 1.2;
   letter-spacing: 0%;
 }
 
