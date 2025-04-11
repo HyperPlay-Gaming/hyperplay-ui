@@ -2,6 +2,7 @@
 
 .rewardsSection {
   background-color: transparent;
+  width: 100%;
 
   h6 {
     font-size: var(--text-xl);
@@ -22,18 +23,10 @@
 
 .navigationIcons {
   display: flex;
-  gap: 10px;
+  gap: var(--space-xs);
 
   @include for-mobile-only {
     display: none;
-  }
-}
-
-.leftButton,
-.rightButton {
-  &[disabled] {
-    opacity: 0.5;
-    cursor: not-allowed;
   }
 }
 
@@ -56,6 +49,7 @@
   -khtml-user-select: none;
   -webkit-tap-highlight-color: transparent;
   will-change: transform;
+  margin-left: var(--space-3xs);
 
   @include for-mobile-only {
     flex-wrap: nowrap;
