@@ -62,7 +62,7 @@ function RewardsCard({
       minValue: '0.0001',
       maxValue: '9999'
     })
-    if (rewardType === 'ERC721') {
+    if (rewardType === 'ERC721' || rewardType === 'ERC20') {
       rewardText = rewardName
     } else {
       rewardText = `+${parsedNumToClaim} ${rewardName}`
