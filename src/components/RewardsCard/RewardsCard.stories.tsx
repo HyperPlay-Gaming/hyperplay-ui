@@ -68,7 +68,7 @@ export default meta
 
 type Story = StoryObj<typeof RewardsCard>
 
-// Default Story with NFT Reward
+// Default Story with NFT Reward - Tests that ERC721 type shows only the name without amount
 export const NFTReward: Story = {
   args: {
     id: 1,
@@ -82,24 +82,17 @@ export const NFTReward: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Verify reward text is displayed
-    const rewardText = canvas.getByText('+1 NFT')
+    // Verify reward text is displayed without the amount prefix
+    const rewardText = canvas.getByText('Premium YGG NFT')
     expect(rewardText).toBeInTheDocument()
+
+    // Ensure the text doesn't contain the amount prefix
+    const rewardTextContent = rewardText.textContent
+    expect(rewardTextContent).not.toContain('+1')
 
     // Check that the image is present
     const rewardImageContainer = canvas.getByRole('img')
     expect(rewardImageContainer).toBeInTheDocument()
-  }
-}
-
-// Game Ticket Reward
-export const GameTicketReward: Story = {
-  args: {
-    id: 2,
-    questId: 102,
-    rewardName: 'Premium Game Ticket',
-    rewardImage: PremiumTicket,
-    claimsLeft: undefined
   }
 }
 
