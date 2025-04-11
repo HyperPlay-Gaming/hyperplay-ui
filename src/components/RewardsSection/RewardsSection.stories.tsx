@@ -114,8 +114,9 @@ const rewardsData: RewardsCardProps[] = [
     questId: 602,
     rewardImage: YGGReward,
     rewardName: 'YGG Points',
-    amountPerUser: '500',
+    amountPerUser: '500000',
     rewardType: 'ERC1155',
+    decimals: null,
     i18n
   },
   {

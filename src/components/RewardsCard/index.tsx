@@ -28,7 +28,7 @@ function RewardsCard({
   rewardImage,
   rewardType,
   claimsLeft,
-  decimals = 0,
+  decimals,
   i18n = {
     claimsLabel: 'Claims left'
   },
@@ -37,6 +37,9 @@ function RewardsCard({
   amountPerUser
 }: RewardsCardProps) {
   let rewardText = rewardName
+  if (decimals === undefined || decimals === null) {
+    decimals = 0
+  }
 
   if (amountPerUser) {
     let numToClaim = undefined
