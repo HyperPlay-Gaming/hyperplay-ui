@@ -77,6 +77,7 @@ function RewardsCard({
         image: styles.rewardImage,
         body: isLoading ? styles.loading : styles.rewardsBody
       }}
+      showGradientBorderAndShadow={isLoading}
       className={styles.cardBase}
     >
       <div className={styles.content}>
