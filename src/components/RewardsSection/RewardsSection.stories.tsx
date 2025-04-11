@@ -79,19 +79,25 @@ const i18n = {
 // Sample rewards data for stories
 const rewardsData: RewardsCardProps[] = [
   {
-    id: 1,
-    questId: 602,
-    rewardImage: PremiumTicket,
-    rewardName: 'YGG Points',
-    amountPerUser: '10000',
-    i18n
+    id: 3,
+    questId: 103,
+    amountPerUser: '200000000000000000000000',
+    rewardName: 'Dyno Coin',
+    decimals: 18,
+    rewardImage: YGGReward,
+    claimsLeft: undefined,
+    rewardType: 'ERC1155',
+    i18n: {
+      claimsLabel: 'Available'
+    }
   },
   {
     id: 2,
     questId: 534,
     rewardImage: YGGTransp,
-    rewardName: 'NFT',
+    rewardName: 'Premium Super NFT',
     amountPerUser: '1',
+    rewardType: 'ERC721',
     i18n
   },
   {
@@ -100,6 +106,7 @@ const rewardsData: RewardsCardProps[] = [
     rewardImage: xocietyNTx,
     rewardName: 'NTx Airdrop',
     amountPerUser: '100000',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -108,6 +115,7 @@ const rewardsData: RewardsCardProps[] = [
     rewardImage: YGGReward,
     rewardName: 'YGG Points',
     amountPerUser: '500',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -116,6 +124,7 @@ const rewardsData: RewardsCardProps[] = [
     rewardImage: PremiumTicket,
     rewardName: 'Exclusive Skin',
     amountPerUser: '1',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -124,6 +133,7 @@ const rewardsData: RewardsCardProps[] = [
     rewardImage: xocietyNTx,
     rewardName: 'Special Badge',
     amountPerUser: '300000000000',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -132,6 +142,7 @@ const rewardsData: RewardsCardProps[] = [
     rewardImage: YGGTransp,
     rewardName: 'Premium Ticket',
     amountPerUser: '10000000',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -140,6 +151,7 @@ const rewardsData: RewardsCardProps[] = [
     rewardImage: xocietyNTx,
     rewardName: 'Exclusive NFT',
     amountPerUser: '1',
+    rewardType: 'ERC721',
     i18n
   },
   {
@@ -148,6 +160,7 @@ const rewardsData: RewardsCardProps[] = [
     rewardImage: xocietyNTx,
     rewardName: 'Limited Edition NFT',
     amountPerUser: '1',
+    rewardType: 'ERC721',
     i18n
   },
   {
@@ -156,6 +169,7 @@ const rewardsData: RewardsCardProps[] = [
     rewardImage: YGGTransp,
     rewardName: 'YGG Points',
     amountPerUser: '2000',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -164,6 +178,7 @@ const rewardsData: RewardsCardProps[] = [
     rewardImage: PremiumTicket,
     rewardName: 'Season Pass',
     amountPerUser: '1',
+    rewardType: 'ERC1155',
     i18n
   },
   {
@@ -172,6 +187,7 @@ const rewardsData: RewardsCardProps[] = [
     rewardImage: xocietyNTx,
     rewardName: 'VIP Access',
     amountPerUser: '1',
+    rewardType: 'ERC1155',
     i18n
   }
 ]
@@ -240,7 +256,7 @@ export const FewItems: Story = {
 
 export const LoadingTimeout: Story = {
   args: {
-    Link: LinkComponent,
+    Link: 'span',
     isLoading: true
   },
   parameters: {

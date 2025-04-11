@@ -7,7 +7,8 @@ import { dummyData } from './constants'
 
 export interface RewardsSectionProps {
   rewards: RewardsCardProps[]
-  Link: React.ComponentType<{ children: React.ReactNode; href: string }>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Link: any
   isLoading?: boolean
   i18n?: {
     header?: string
@@ -27,7 +28,8 @@ const RewardsSection = ({
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start',
     dragFree: true,
-    loop: false
+    loop: false,
+    slidesToScroll: 3
   })
 
   const [isScrollable, setIsScrollable] = useState(false)
@@ -82,7 +84,7 @@ const RewardsSection = ({
 
     // Check if the carousel is scrollable
     setIsScrollable(emblaApi.canScrollNext() || emblaApi.canScrollPrev())
-  }, [emblaApi])
+  }, [emblaApi, rewards.length])
 
   if (!rewards || rewards.length === 0 || (isLoading && timeoutReached)) {
     return null
@@ -118,7 +120,17 @@ const RewardsSection = ({
                   data-testid="reward-link"
                   href={`/quests/${reward.questId}`}
                 >
-                  <RewardsCard isLoading={isLoading} {...reward} />
+                  <RewardsCard
+                    id={reward.id}
+                    questId={reward.questId}
+                    rewardImage={reward.rewardImage}
+                    rewardType={reward.rewardType}
+                    claimsLeft={reward.claimsLeft}
+                    rewardName={reward.rewardName}
+                    amountPerUser={reward.amountPerUser}
+                    isLoading={isLoading}
+                    decimals={reward.decimals}
+                  />
                 </LinkElement>
               </div>
             ))}
