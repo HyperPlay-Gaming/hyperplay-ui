@@ -13,6 +13,7 @@ export type RewardsCardProps = {
   id: number
   questId: number
   rewardImage: string
+  rewardType: string
   decimals?: number | null
   claimsLeft?: string | null
   rewardName: string
@@ -25,6 +26,7 @@ export type RewardsCardProps = {
 
 function RewardsCard({
   rewardImage,
+  rewardType,
   claimsLeft,
   decimals,
   i18n = {
@@ -34,13 +36,17 @@ function RewardsCard({
   rewardName,
   amountPerUser
 }: RewardsCardProps) {
-  let rewardText = undefined
+  let rewardText = rewardName
+  if (decimals === undefined || decimals === null) {
+    decimals = 0
+  }
+
   if (amountPerUser) {
     let numToClaim = undefined
     if (amountPerUser && decimals !== undefined && decimals !== null) {
       numToClaim = getDecimalNumberFromAmount(
         amountPerUser,
-        decimals ?? 0
+        decimals
       ).toString()
     } else {
       numToClaim = parseNumIntoReadableString({
@@ -56,18 +62,22 @@ function RewardsCard({
       minValue: '0.0001',
       maxValue: '9999'
     })
-
-    rewardText = `+${parsedNumToClaim} ${rewardName}`
+    if (rewardType === 'ERC721' || rewardType === 'ERC20') {
+      rewardText = rewardName
+    } else {
+      rewardText = `+${parsedNumToClaim} ${rewardName}`
+    }
   }
 
   return (
     <CardGeneric
       image={rewardImage}
       genericClassNames={{
-        body: isLoading ? styles.loading : styles.rewardsCard,
+        root: isLoading ? styles.loading : '',
         image: styles.rewardImage,
-        root: isLoading ? styles.loading : ''
+        body: isLoading ? styles.loading : styles.rewardsBody
       }}
+      showGradientBorderAndShadow={isLoading}
       className={styles.cardBase}
     >
       <div className={styles.content}>

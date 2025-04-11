@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
 
 import YGGTransp from '@/assets/stories/YggIconTransparent.png'
-import PremiumTicket from '@/assets/stories/premiumTicket.png'
 import YGGReward from '@/assets/stories/ygg.png'
 
 import RewardsCard from './index'
@@ -20,7 +19,7 @@ const meta: Meta<typeof RewardsCard> = {
     }
   },
   argTypes: {
-    reward: {
+    rewardName: {
       description:
         'The name or description of the reward (e.g., "1000 YGG Points", "+1 NFT")',
       control: 'text'
@@ -42,6 +41,24 @@ const meta: Meta<typeof RewardsCard> = {
     isLoading: {
       description: 'Shows the card in a loading state with shiny animation',
       control: 'boolean'
+    },
+    amountPerUser: {
+      description: 'Amount of the reward per user (e.g., "1000", "1", "0.5")',
+      control: 'text'
+    },
+    decimals: {
+      description:
+        'Number of decimal places for the reward amount (e.g., 18 for ERC20 tokens)',
+      control: 'number'
+    },
+    rewardType: {
+      description: 'Type of reward (e.g., "ERC20", "ERC721", "ERC1155")',
+      control: 'text'
+    },
+    questId: {
+      description:
+        'The ID of the quest associated with the reward (used for routing)',
+      control: 'number'
     }
   }
 }
@@ -50,37 +67,31 @@ export default meta
 
 type Story = StoryObj<typeof RewardsCard>
 
-// Default Story with NFT Reward
+// Default Story with NFT Reward - Tests that ERC721 type shows only the name without amount
 export const NFTReward: Story = {
   args: {
     id: 1,
     questId: 101,
-    amountPerUser: 1,
-    rewardName: 'NFT',
+    amountPerUser: '1',
+    rewardName: 'Premium YGG NFT',
+    rewardType: 'ERC721',
     rewardImage: YGGTransp,
     claimsLeft: undefined
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    // Verify reward text is displayed
-    const rewardText = canvas.getByText('+1 NFT')
+    // Verify reward text is displayed without the amount prefix
+    const rewardText = canvas.getByText('Premium YGG NFT')
     expect(rewardText).toBeInTheDocument()
+
+    // Ensure the text doesn't contain the amount prefix
+    const rewardTextContent = rewardText.textContent
+    expect(rewardTextContent).not.toContain('+1')
 
     // Check that the image is present
     const rewardImageContainer = canvas.getByRole('img')
     expect(rewardImageContainer).toBeInTheDocument()
-  }
-}
-
-// Game Ticket Reward
-export const GameTicketReward: Story = {
-  args: {
-    id: 2,
-    questId: 102,
-    rewardName: 'Premium Game Ticket',
-    rewardImage: PremiumTicket,
-    claimsLeft: undefined
   }
 }
 
@@ -89,9 +100,9 @@ export const CryptoRewardHugeNumber: Story = {
   args: {
     id: 3,
     questId: 103,
-    amountPerUser: 200000000000000000000000,
+    amountPerUser: '200000000000000000000000',
     rewardName: 'Dyno Coin',
-    decimals: 18,
+    decimals: null,
     rewardImage: YGGReward,
     claimsLeft: undefined,
     i18n: {
