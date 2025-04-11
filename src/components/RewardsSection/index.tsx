@@ -129,6 +129,7 @@ const RewardsSection = ({
                     rewardName={reward.rewardName}
                     amountPerUser={reward.amountPerUser}
                     isLoading={isLoading}
+                    decimals={reward.decimals}
                   />
                 </LinkElement>
               </div>

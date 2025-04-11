@@ -79,19 +79,23 @@ const i18n = {
 // Sample rewards data for stories
 const rewardsData: RewardsCardProps[] = [
   {
-    id: 1,
-    questId: 602,
-    rewardImage: PremiumTicket,
-    rewardName: 'YGG Points',
-    amountPerUser: '10000',
+    id: 3,
+    questId: 103,
+    amountPerUser: '200000000000000000000000',
+    rewardName: 'Dyno Coin',
+    decimals: 18,
+    rewardImage: YGGReward,
+    claimsLeft: undefined,
     rewardType: 'ERC1155',
-    i18n
+    i18n: {
+      claimsLabel: 'Available'
+    }
   },
   {
     id: 2,
     questId: 534,
     rewardImage: YGGTransp,
-    rewardName: 'NFT',
+    rewardName: 'Premium Super NFT',
     amountPerUser: '1',
     rewardType: 'ERC721',
     i18n

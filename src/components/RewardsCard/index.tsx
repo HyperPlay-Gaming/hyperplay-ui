@@ -28,7 +28,7 @@ function RewardsCard({
   rewardImage,
   rewardType,
   claimsLeft,
-  decimals,
+  decimals = 0,
   i18n = {
     claimsLabel: 'Claims left'
   },
@@ -36,14 +36,14 @@ function RewardsCard({
   rewardName,
   amountPerUser
 }: RewardsCardProps) {
-  let rewardText = undefined
-  
+  let rewardText = rewardName
+
   if (amountPerUser) {
     let numToClaim = undefined
     if (amountPerUser && decimals !== undefined && decimals !== null) {
       numToClaim = getDecimalNumberFromAmount(
         amountPerUser,
-        decimals ?? 0
+        decimals
       ).toString()
     } else {
       numToClaim = parseNumIntoReadableString({
@@ -59,11 +59,12 @@ function RewardsCard({
       minValue: '0.0001',
       maxValue: '9999'
     })
-    if (rewardType !== 'ERC721') {
-      rewardText = `+${parsedNumToClaim} ${rewardName}`
+    if (rewardType === 'ERC721') {
+      rewardText = rewardName
     } else {
-      rewardText = rewardName}
+      rewardText = `+${parsedNumToClaim} ${rewardName}`
     }
+  }
 
   return (
     <CardGeneric
