@@ -16,7 +16,7 @@ export const Default = () => (
         windows: true,
         web: true
       },
-      cpu: 'Intel Core i5 / AMD Ryzen 3600',
+      cpu: 'Intel i3 or AMD Ryzen series and above, with AVX2 instruction set supportAMD Ryzen (supports AVX2)',
       gpu: 'GeForce 600 series',
       memory: '8 GB RAM',
       disk: '300 MB available space'
