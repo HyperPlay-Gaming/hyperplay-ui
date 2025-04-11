@@ -7,11 +7,6 @@
   h6 {
     font-size: var(--text-xl);
   }
-
-  @include for-mobile-only {
-    padding: 0 var(--space-md);
-    width: 90vw;
-  }
 }
 
 .header {
