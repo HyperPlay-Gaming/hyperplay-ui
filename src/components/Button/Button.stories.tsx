@@ -46,9 +46,6 @@ const meta: Meta<typeof Button> = {
     disabled: {
       control: 'boolean'
     },
-    active: {
-      control: 'boolean'
-    },
     focusVisible: {
       control: 'boolean'
     }
@@ -59,49 +56,35 @@ export default meta
 
 type Story = StoryObj<typeof Button>
 
-// Brand Large Button with Hover Test
-export const PrimaryLarge: Story = {
-  args: {
-    type: 'primary',
-    size: 'large',
-    children: 'Primary Button'
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const button = canvas.getByRole('button')
-
-    // Wait before hover test
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    // Get initial background color
-    const initialStyle = getComputedStyle(button)
-    const initialBgColor = initialStyle.backgroundColor
-
-    // Simulate hover with longer delay
-    await userEvent.hover(button, { delay: 1000 })
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    const hoverStyle = getComputedStyle(button)
-    const hoverBgColor = hoverStyle.backgroundColor
-    await expect(hoverBgColor).toBe(initialBgColor)
-
-    // Wait before unhover test
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    // Simulate unhover with longer delay
-    await userEvent.unhover(button, { delay: 1000 })
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    const finalStyle = getComputedStyle(button)
-    const finalBgColor = finalStyle.backgroundColor
-    await expect(finalBgColor).toBe(initialBgColor)
-  }
-}
-
 // Large Buttons
 export const Large: Story = {
   args: {
     type: 'primary',
     size: 'large',
     children: 'Large Button'
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const button = canvas.getByRole('button')
+
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
+    const initialStyle = getComputedStyle(button)
+    const initialBgColor = initialStyle.backgroundColor
+
+    await userEvent.hover(button, { delay: 1000 })
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    const hoverStyle = getComputedStyle(button)
+    const hoverBgColor = hoverStyle.backgroundColor
+    await expect(hoverBgColor).toBe(initialBgColor)
+
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
+    await userEvent.unhover(button, { delay: 1000 })
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    const finalStyle = getComputedStyle(button)
+    const finalBgColor = finalStyle.backgroundColor
+    await expect(finalBgColor).toBe(initialBgColor)
   }
 }
 
