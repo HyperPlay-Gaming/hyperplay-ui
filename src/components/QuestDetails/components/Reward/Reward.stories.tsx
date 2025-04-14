@@ -4,6 +4,7 @@ import RewardImage from '@/assets/RewardImage.png'
 
 import { QuestReward } from '../../types'
 import { Reward } from './index'
+import { within, expect } from '@storybook/test'
 
 const meta: Meta<typeof Reward> = {
   title: 'Quests/QuestDetails/Reward',
@@ -93,5 +94,9 @@ export const ClaimNotAvailable: Story = {
     reward: { ...defaultReward },
     i18n: defaultI18n,
     claimNotAvailable: true
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    expect(canvas.getByRole('button', { name: 'Claim' })).toBeDisabled()
   }
 }
