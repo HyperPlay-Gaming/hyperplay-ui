@@ -25,6 +25,7 @@ import { Reward } from './components/Reward'
 import { Rewards } from './components/Rewards'
 import { RewardsRow } from './components/Rewards/RewardsRow'
 import { QuestDetailsProps, QuestReward } from './types'
+import dayjs from 'dayjs'
 
 const meta: Meta<typeof QuestDetails> = {
   title: 'Quests/QuestDetails',
@@ -454,7 +455,7 @@ export const WithExternalSyncButton: Story = {
 export const EndDateInFuture: Story = {
   args: {
     ...props,
-    endDate: '2025-04-10T00:00:00.000Z'
+    endDate: dayjs().add(7, 'day').toISOString()
   }
 }
 
