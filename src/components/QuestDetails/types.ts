@@ -1,7 +1,7 @@
 import { HTMLProps, ReactNode } from 'react'
 import { Options as MarkdownOptions } from 'react-markdown'
 
-import { QuestTypeTranslations } from '@/common/types'
+import { QuestTypeTranslations, QuestType } from '@/common/types'
 
 import { InfoAlertProps } from '../AlertCard'
 import { StreakProgressI18n } from '../StreakProgress'
@@ -45,6 +45,8 @@ export interface QuestDetailsTranslations {
   rewards: string
   claim: string
   signIn: string
+  endsOn: string
+  endedOn: string
   questType: QuestTypeTranslations
   streakProgressI18n?: StreakProgressI18n
   secondCTAText?: string
@@ -64,6 +66,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   rewardsComponent: ReactNode
   onSignInClick: () => void
   onConnectSteamAccountClick: () => void
+  endDate?: string | null
   showSecondCTA?: boolean
   ctaComponent?: React.ReactNode
   isQuestsPage?: boolean
@@ -84,7 +87,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   alertProps?: InfoAlertProps
   errorMessage?: string
   isSignedIn: boolean
-  questType: 'PLAYSTREAK' | 'REPUTATIONAL-AIRDROP'
+  questType: QuestType
   markdownOptions?: MarkdownOptions
   steamAccountIsLinked?: boolean
 }

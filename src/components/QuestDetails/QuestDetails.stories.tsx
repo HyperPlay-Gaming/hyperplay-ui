@@ -25,6 +25,7 @@ import { Reward } from './components/Reward'
 import { Rewards } from './components/Rewards'
 import { RewardsRow } from './components/Rewards/RewardsRow'
 import { QuestDetailsProps, QuestReward } from './types'
+import dayjs from 'dayjs'
 
 const meta: Meta<typeof QuestDetails> = {
   title: 'Quests/QuestDetails',
@@ -448,5 +449,19 @@ export const WithExternalSyncButton: Story = {
         key={'playstreakEligibility'}
       />
     ]
+  }
+}
+
+export const EndDateInFuture: Story = {
+  args: {
+    ...props,
+    endDate: dayjs().add(7, 'day').toISOString()
+  }
+}
+
+export const EndDateInPast: Story = {
+  args: {
+    ...props,
+    endDate: '2020-04-08T00:00:00.000Z'
   }
 }
