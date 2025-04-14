@@ -175,7 +175,7 @@ const RewardsSection = ({
       ref={containerRef}
     >
       <div className={styles.header} data-testid="rewards-header">
-        <h6>{i18n.header}</h6>
+        <div className="title">{i18n.header}</div>
         {isScrollable && (
           <div className={styles.navigationIcons}>
             <ArrowCircularButton

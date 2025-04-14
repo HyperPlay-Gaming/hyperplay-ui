@@ -9,7 +9,7 @@ export default {
 
 export const Default = () => {
   return (
-    <div style={{ width: '500px' }}>
+    <div>
       <TokenTable
         contracts={[
           {
@@ -47,7 +47,7 @@ export const Default = () => {
 
 export const GetTokenEnabled = () => {
   return (
-    <div style={{ width: '500px' }}>
+    <div>
       <TokenTable
         getTokenEnabled={true}
         contracts={[
