@@ -51,6 +51,13 @@
   background-color: var(--background-base);
   margin-left: -0.5rem;
   overflow: auto;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    z-index: 10;
+  }
 
   &:first-child {
     margin-left: 0;
@@ -84,16 +91,18 @@
 
 .moreCount {
   color: var(--text-weak);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   font-weight: var(--medium);
   line-height: 1;
   user-select: none;
+  transform: translateX(-1px);
 }
 
+$popoverPadding: var(--space-lg-fixed);
 .popover {
   background-color: var(--background-overlay);
   border: none;
-  padding: var(--space-lg);
+  padding: $popoverPadding;
   border-radius: var(--space-md);
   max-height: 80vh;
   box-shadow: 0px 20px 24px -8px rgba(124, 58, 237, 0.114);
@@ -139,6 +148,18 @@
 
 .popoverBlockchainsName {
   color: var(--text-strong);
-  font-size: var(--text-md);
+  font-size: var(--text-xs);
   font-weight: var(--medium);
+}
+
+.tooltip {
+  max-width: 305px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  border-radius: var(--space-sm-fixed);
+  padding: $popoverPadding;
+  background-color: var(--background-overlay);
+  box-shadow: 0px 8px 8px -4px rgba(124, 58, 237, 0.04),
+    0px 20px 24px -4px rgba(124, 58, 237, 0.08);
+  color: var(--text-strong);
 }

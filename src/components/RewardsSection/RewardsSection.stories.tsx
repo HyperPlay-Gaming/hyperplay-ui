@@ -79,87 +79,116 @@ const i18n = {
 // Sample rewards data for stories
 const rewardsData: RewardsCardProps[] = [
   {
-    id: 1,
-    questId: 602,
-    rewardImage: PremiumTicket,
-    reward: '+10000 YGG Points',
-    i18n
+    id: 3,
+    questId: 103,
+    amountPerUser: '200000000000000000000000',
+    rewardName: 'Dyno Coin',
+    decimals: 18,
+    rewardImage: YGGReward,
+    claimsLeft: undefined,
+    rewardType: 'ERC1155',
+    i18n: {
+      claimsLabel: 'Available'
+    }
   },
   {
     id: 2,
     questId: 534,
     rewardImage: YGGTransp,
-    reward: '+1 NFT',
+    rewardName: 'Premium Super NFT',
+    amountPerUser: '1',
+    rewardType: 'ERC721',
     i18n
   },
   {
     id: 3,
     questId: 585,
     rewardImage: xocietyNTx,
-    reward: '+100000 NTx Airdrop',
+    rewardName: 'NTx Airdrop',
+    amountPerUser: '100000',
+    rewardType: 'ERC1155',
     i18n
   },
   {
     id: 4,
     questId: 602,
     rewardImage: YGGReward,
-    reward: '+500 YGG Points',
+    rewardName: 'YGG Points',
+    amountPerUser: '500000',
+    rewardType: 'ERC1155',
+    decimals: null,
     i18n
   },
   {
     id: 5,
     questId: 534,
     rewardImage: PremiumTicket,
-    reward: '+1 Exclusive Skin',
+    rewardName: 'Exclusive Skin',
+    amountPerUser: '1',
+    rewardType: 'ERC20',
     i18n
   },
   {
     id: 6,
     questId: 585,
     rewardImage: xocietyNTx,
-    reward: '+300000000000 Special Badge',
+    rewardName: 'Special Badge',
+    amountPerUser: '300000000000',
+    rewardType: 'ERC1155',
     i18n
   },
   {
     id: 7,
     questId: 602,
     rewardImage: YGGTransp,
-    reward: '+10000000 Premium Ticket',
+    rewardName: 'Premium Ticket',
+    amountPerUser: '10000000',
+    rewardType: 'ERC1155',
     i18n
   },
   {
     id: 8,
     questId: 534,
     rewardImage: xocietyNTx,
-    reward: '+1 Exclusive NFT',
+    rewardName: 'Exclusive NFT',
+    amountPerUser: '1',
+    rewardType: 'ERC721',
     i18n
   },
   {
     id: 9,
     questId: 585,
     rewardImage: xocietyNTx,
-    reward: '+1 Limited Edition NFT',
+    rewardName: 'Limited Edition NFT',
+    amountPerUser: '1',
+    rewardType: 'ERC721',
     i18n
   },
   {
     id: 10,
     questId: 602,
     rewardImage: YGGTransp,
-    reward: '+2000 YGG Points',
+    rewardName: 'YGG Points',
+    amountPerUser: '2000',
+    rewardType: 'ERC1155',
     i18n
   },
   {
     id: 11,
     questId: 534,
     rewardImage: PremiumTicket,
-    reward: '+1 Season Pass',
+    rewardName: 'Season Pass',
+    amountPerUser: '1',
+    rewardType: 'ERC1155',
     i18n
   },
   {
     id: 12,
     questId: 585,
     rewardImage: xocietyNTx,
-    reward: '+1 VIP Access',
+    rewardName: 'VIP Access',
+    amountPerUser: '1',
+    rewardType: 'ERC1155',
     i18n
   }
 ]
@@ -228,7 +257,7 @@ export const FewItems: Story = {
 
 export const LoadingTimeout: Story = {
   args: {
-    Link: LinkComponent,
+    Link: 'span',
     isLoading: true
   },
   parameters: {
