@@ -9,7 +9,12 @@
   }
 
   @include for-tablet-portrait-up {
+    width: 90vw;
+  }
+
+  @include for-tablet-landscape-up {
     max-width: 945px;
+    width: 100vw;
   }
 
   @include for-desktop-up {
