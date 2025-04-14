@@ -88,7 +88,7 @@ export function Reward({
 
   let claimButton = null
 
-  if (claimNotAvailable) {
+  if (claimNotAvailable || reward.isClaimed) {
     claimButton = (
       <Tooltip
         withArrow
@@ -159,7 +159,7 @@ export function Reward({
           </div>
           {numClaimsLeftComponent}
         </div>
-        {!reward.isClaimed && !hideClaim ? claimButton : null}
+        {!hideClaim ? claimButton : null}
       </div>
     </div>
   )
