@@ -1,10 +1,9 @@
 @use '../../styles/utilities/gradientBorder' as *;
+@import '../../styles/designSystem/_typography.scss';
 
 $colorDirection: to top;
 
 .base {
-  font-size: var(--text-md);
-  border-radius: var(--space-xs-fixed);
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   cursor: pointer;
   position: relative;
@@ -31,16 +30,20 @@ $colorDirection: to top;
 
 .large {
   padding: var(--space-md) var(--space-2lg);
+  border-radius: var(--space-md-fixed);
+  font-size: var(--text-lg);
 }
 
 .medium {
   padding: var(--space-sm) var(--space-md);
-  font-size: var(--text-sm);
+  border-radius: var(--space-xs-fixed);
+  font-size: var(--text-md);
 }
 
 .small {
-  padding: var(--space-xs) var(--space-sm);
-  font-size: var(--text-xs);
+  padding: var(--space-sm) var(--space-sm);
+  border-radius: var(--space-xs-fixed);
+  font-size: var(--text-sm);
 }
 
 .content {
@@ -49,7 +52,9 @@ $colorDirection: to top;
   display: flex;
   align-items: center;
   justify-content: center;
-  /*removed gap, seems like it is being overwritten by another style*/
+  gap: var(
+    --space-xs
+  ) !important; // used important here to override the default gap that was being applied automatically
 }
 
 .brand {
@@ -641,6 +646,7 @@ $colorDirection: to top;
   align-items: center;
   background-color: var(--color-neutral-800);
   border: solid 2px var(--color-stroke-01);
+  border-radius: var(--space-xs);
   padding: var(--space-sm-fixed);
   aspect-ratio: 1/1;
 
@@ -655,6 +661,12 @@ $colorDirection: to top;
     background: none;
     background-color: var(--color-neutral-900);
     border: solid 2px var(--color-neutral-700);
+  }
+
+  & span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
