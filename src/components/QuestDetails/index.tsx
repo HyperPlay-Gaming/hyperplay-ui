@@ -11,11 +11,9 @@ import Sticker from '../Sticker'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
 import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
+
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import { IconClock } from '@tabler/icons-react'
-
-dayjs.extend(utc)
 dayjs.extend(localizedFormat)
 
 export default function QuestDetails({
@@ -152,7 +150,7 @@ export default function QuestDetails({
   }
 
   const isEndDateInFuture = endDate && new Date(endDate) > new Date()
-  const utcFormattedDate = dayjs(endDate).utc().format('lll [(UTC)]')
+  const utcFormattedDate = dayjs(endDate).format('lll')
 
   let content = (
     <div className={cn(styles.rootContent, classNames?.rootContent)}>
