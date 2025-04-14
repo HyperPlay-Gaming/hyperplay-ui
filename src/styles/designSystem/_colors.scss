@@ -107,6 +107,7 @@
   --text-primary: var(--color-primary-400);
   --text-secondary: var(--color-secondary-400);
   --text-strong: var(--color-neutral-100);
+  --text-brand: var(--color-primary-300);
   --text-weak: var(--color-neutral-300);
   --text-disabled: color-mix(
     in srgb,
@@ -124,6 +125,7 @@
   /* Icon */
   --icon-primary: color-mix(in srgb, var(--color-primary-400) 75%, transparent);
   --icon-neutral: var(--color-neutral-100);
+  --icon-brand: var(--color-primary-300);
   --icon-secondary: var(--color-neutral-300);
   --icon-disabled: color-mix(
     in srgb,
