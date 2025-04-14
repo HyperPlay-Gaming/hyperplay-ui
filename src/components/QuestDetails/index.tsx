@@ -12,9 +12,11 @@ import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
 import { IconClock } from '@tabler/icons-react'
 
 dayjs.extend(utc)
+dayjs.extend(localizedFormat)
 
 export default function QuestDetails({
   title,
@@ -150,9 +152,7 @@ export default function QuestDetails({
   }
 
   const isEndDateInFuture = endDate && new Date(endDate) > new Date()
-  const utcFormattedDate = dayjs(endDate)
-    .utc()
-    .format('MM/DD [at] HH:mm [(UTC)]')
+  const utcFormattedDate = dayjs(endDate).utc().format('lll [(UTC)]')
 
   let content = (
     <div className={cn(styles.rootContent, classNames?.rootContent)}>
@@ -168,9 +168,7 @@ export default function QuestDetails({
         <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
           <span className={styles.endDate}>
             <IconClock
-              className={
-                isEndDateInFuture ? styles.iconFuture : styles.iconPast
-              }
+              className={isEndDateInFuture ? styles.iconFuture : undefined}
             />
             <span
               className={
