@@ -4,12 +4,19 @@ import styles from './RewardsSection.module.scss'
 import RewardsCard, { RewardsCardProps } from '@/components/RewardsCard'
 import ArrowCircularButton from '../ArrowCircularButton'
 import { dummyData } from './constants'
+import cx from 'classnames'
 
+type ClassNames = {
+  root?: string
+  container?: string
+  slide?: string
+}
 export interface RewardsSectionProps {
   rewards: RewardsCardProps[]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Link: any
   isLoading?: boolean
+  classNames?: ClassNames
   i18n?: {
     header?: string
   }
@@ -37,6 +44,7 @@ const RewardsSection = ({
   rewards,
   Link: LinkElement,
   isLoading,
+  classNames,
   i18n = defaultI18n
 }: RewardsSectionProps) => {
   const [visibleSlides, setVisibleSlides] = useState(3)
@@ -162,7 +170,7 @@ const RewardsSection = ({
 
   return (
     <div
-      className={styles.rewardsSection}
+      className={cx(styles.rewardsSection, classNames?.root)}
       data-testid="rewards-section"
       ref={containerRef}
     >
@@ -187,9 +195,12 @@ const RewardsSection = ({
       </div>
       <div className={styles.embla}>
         <div className={styles.emblaViewport} ref={emblaRef}>
-          <div className={styles.emblaContainer}>
+          <div className={cx(styles.emblaContainer, classNames?.container)}>
             {rewards.map((reward) => (
-              <div className={styles.emblaSlide} key={reward.id}>
+              <div
+                className={cx(styles.emblaSlide, classNames?.slide)}
+                key={reward.id}
+              >
                 <LinkElement
                   data-testid="reward-link"
                   href={`/quests/${reward.questId}`}

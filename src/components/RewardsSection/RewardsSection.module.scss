@@ -3,18 +3,18 @@
 .rewardsSection {
   background-color: transparent;
   width: 100vw;
-  max-width: 1156px;
 
   h6 {
     font-size: var(--text-xl);
   }
 
   @include for-tablet-portrait-up {
-    width: 98vw;
+    max-width: 945px;
   }
 
   @include for-desktop-up {
     width: 100%;
+    max-width: 1156px;
   }
 }
 
