@@ -8,8 +8,7 @@ $colorDirection: to top;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: color 0.1s ease-in-out, background-color 0.25s ease-in-out,
-    border 0.25s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:active {
     color: var(--color-neutral-200);
@@ -31,19 +30,19 @@ $colorDirection: to top;
 .large {
   padding: var(--space-md) var(--space-2lg);
   border-radius: var(--space-md-fixed);
-  font-size: var(--text-lg);
+  font-size: var($buttonLgFontSize);
 }
 
 .medium {
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--space-xs-fixed);
-  font-size: var(--text-md);
+  font-size: var($buttonFontSize);
 }
 
 .small {
-  padding: var(--space-sm) var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
   border-radius: var(--space-xs-fixed);
-  font-size: var(--text-sm);
+  font-size: var($buttonSmFontSize);
 }
 
 .content {
@@ -58,7 +57,6 @@ $colorDirection: to top;
 }
 
 .brand {
-  border-radius: var(--space-sm);
   background-color: transparent;
   position: relative;
 
@@ -307,13 +305,6 @@ $colorDirection: to top;
     color: var(--text-inverse-disabled);
     border: none;
   }
-
-  &.medium {
-    padding: var(--space-sm) var(--space-md);
-  }
-  &.small {
-    padding: var(--space-xs) var(--space-sm);
-  }
 }
 
 .secondary-neutral {
@@ -364,13 +355,6 @@ $colorDirection: to top;
       display: none;
     }
   }
-
-  &.medium {
-    padding: var(--space-sm) var(--space-md);
-  }
-  &.small {
-    padding: var(--space-xs) var(--space-sm);
-  }
 }
 
 .tertiary-neutral {
@@ -420,13 +404,6 @@ $colorDirection: to top;
     &::before {
       display: none;
     }
-  }
-
-  &.medium {
-    padding: var(--space-sm) var(--space-md);
-  }
-  &.small {
-    padding: var(--space-xs) var(--space-sm);
   }
 }
 
@@ -524,13 +501,6 @@ $colorDirection: to top;
     background-color: var(--fill-disabled);
     border: none;
   }
-
-  &.medium {
-    padding: var(--space-sm) var(--space-md);
-  }
-  &.small {
-    padding: var(--space-xs) var(--space-sm);
-  }
 }
 
 .danger-secondary {
@@ -578,13 +548,6 @@ $colorDirection: to top;
     background-color: transparent;
     opacity: 3;
   }
-
-  &.medium {
-    padding: var(--space-sm) var(--space-md);
-  }
-  &.small {
-    padding: var(--space-xs) var(--space-sm);
-  }
 }
 
 .danger-tertiary {
@@ -630,13 +593,6 @@ $colorDirection: to top;
     color: var(--text-error-disabled);
     background-color: transparent;
     opacity: 0.4;
-  }
-
-  &.medium {
-    padding: var(--space-sm) var(--space-md);
-  }
-  &.small {
-    padding: var(--space-xs) var(--space-sm);
   }
 }
 
@@ -740,10 +696,6 @@ $colorDirection: to top;
   &[disabled] {
     opacity: 1;
     color: var(--color-neutral-400);
-  }
-
-  &.small {
-    padding: var(--space-3xs-fixed) var(--space-lg-fixed);
   }
 }
 
