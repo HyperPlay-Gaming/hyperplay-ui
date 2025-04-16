@@ -1,78 +1,160 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { HTMLProps } from 'react'
-
+import React from 'react'
 import classNames from 'classnames'
-
-import { CloseButton, RightArrow, WarningIcon } from '@/assets/images'
+import { RightArrow } from '@/assets/images'
 import Button from '@/components/Button'
-
 import styles from './index.module.scss'
+import { ReactComponent as CloseButton } from '@/assets/images/CloseButton.svg'
 
-type Variants = 'warning' | 'danger'
+type Tone =
+  | 'error'
+  | 'warning'
+  | 'success'
+  | 'information'
+  | 'neutral'
+  | 'brand'
+type Size = 'small' | 'large'
+type Layout = 'horizontal' | 'vertical'
 
-export interface InfoAlertProps extends HTMLProps<HTMLDivElement> {
+export interface InfoAlertProps {
   title: string
   message: string
-  actionText?: string
   onClose?: () => void
-  onActionClick?: () => void
-  variant: Variants
+  tone: Tone
+  size?: Size
+  layout?: Layout
   isOpen?: boolean
   showClose?: boolean
-  icon?: JSX.Element
+  closeButton?: React.ReactNode
+  showIcon?: boolean
+  icon?: React.ReactNode
+  iconContainer?: boolean
+  listItems?: string[]
+  link?: {
+    text: string
+    onClick: () => void
+  }
+  buttons?: {
+    primary?: {
+      text: string
+      onClick: () => void
+    }
+    secondary?: {
+      text: string
+      onClick: () => void
+    }
+    tertiary?: {
+      text: string
+      onClick: () => void
+    }
+  }
+  noBorderLeft?: boolean
+  className?: string
 }
 
 export default function Alert({
   title,
   message,
-  actionText,
   onClose = () => {},
-  onActionClick = () => {},
-  variant,
+  tone,
+  size = 'small',
+  layout = 'horizontal',
   isOpen = true,
   showClose = true,
+  closeButton = <CloseButton />,
+  showIcon = true,
   icon,
+  iconContainer = false,
+  listItems,
+  link,
+  buttons,
+  noBorderLeft = false,
+  className,
   ...props
 }: InfoAlertProps) {
+  if (!isOpen) return null
+
   return (
     <div
-      className={classNames(styles.container, styles[variant], {
-        [styles.closed]: !isOpen
-      })}
+      className={classNames(
+        styles.container,
+        styles[tone],
+        styles[size],
+        styles[layout],
+        {
+          [styles.noBorderLeft]: noBorderLeft,
+          [styles.iconContainer]: iconContainer
+        },
+        className
+      )}
       {...props}
     >
-      <div className={styles.icon}>{icon ?? <WarningIcon />}</div>
-      <div className={styles.text}>
-        <div className={classNames('button', styles.title)}>{title}</div>
-        <div
-          className={classNames(
-            {
-              'body-small': variant === 'warning',
-              body: variant === 'danger'
-            },
-            styles.message
-          )}
-        >
-          {message}
-        </div>
-      </div>
-      {showClose ? (
-        <div className={styles.close}>
-          <CloseButton onClick={onClose} />
-        </div>
-      ) : null}
-      {actionText && (
-        <div className={styles.action}>
-          <Button
-            rightIcon={<RightArrow />}
-            onClick={onActionClick}
-            type="link"
-            size="small"
-          >
-            {actionText}
-          </Button>
-        </div>
+      {showClose && (
+        <button onClick={onClose} className={styles.closeButton}>
+          {closeButton}
+        </button>
       )}
+      {showIcon && <div className={styles.icon}>{icon}</div>}
+      <div className={styles.content}>
+        <div className={styles.header}>
+          <div className={styles.title}>{title}</div>
+        </div>
+        <div className={styles.message}>{message}</div>
+
+        {listItems && (
+          <ul className={styles.list}>
+            {listItems.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        )}
+
+        {link && (
+          <div className={styles.link}>
+            {/* Buttons will be updated to use the new button component */}
+            <Button
+              type="tertiary"
+              size="small"
+              onClick={link.onClick}
+              rightIcon={<RightArrow />}
+            >
+              {link.text}
+            </Button>
+          </div>
+        )}
+
+        {buttons && (
+          <div className={styles.buttonGroup}>
+            {buttons.primary && (
+              <Button
+                type="primary"
+                size="small"
+                onClick={buttons.primary.onClick}
+              >
+                {buttons.primary.text}
+              </Button>
+            )}
+            {buttons.secondary && (
+              <Button
+                type="secondary"
+                size="small"
+                onClick={buttons.secondary.onClick}
+              >
+                {buttons.secondary.text}
+              </Button>
+            )}
+            {buttons.tertiary && (
+              <Button
+                type="tertiary"
+                size="small"
+                onClick={buttons.tertiary.onClick}
+              >
+                {buttons.tertiary.text}
+              </Button>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
