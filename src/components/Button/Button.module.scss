@@ -3,6 +3,11 @@
 
 $colorDirection: to top;
 
+// need specificity to be 0,1,1 or higher so moved this out of base
+button.base {
+  opacity: 100%;
+}
+
 .base {
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   cursor: pointer;
@@ -144,6 +149,7 @@ $colorDirection: to top;
   &:hover:not(:disabled) {
     &::before {
       z-index: 1;
+      opacity: 100%;
     }
   }
 
