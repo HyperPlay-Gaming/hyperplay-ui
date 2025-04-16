@@ -20,7 +20,8 @@ export default function QuestLog({
     active: 'Active',
     type: {
       'REPUTATIONAL-AIRDROP': 'Reputation',
-      PLAYSTREAK: 'Play Streak'
+      PLAYSTREAK: 'Play Streak',
+      LEADERBOARD: 'Leaderboard'
     },
     pointsClaimed: 'Points Claimed'
   },
