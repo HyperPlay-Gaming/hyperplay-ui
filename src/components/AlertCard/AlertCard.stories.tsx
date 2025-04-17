@@ -6,19 +6,20 @@ import {
   WarningIcon,
   CheckmarkCircleOutline,
   InfoIcon,
-  Triangule,
+  Triangle,
   LightningOutlined
 } from '@/assets/images'
 import AlertCard from '.'
 
-const meta: Meta<typeof AlertCard> = {
+const meta = {
   title: 'AlertCard',
   component: AlertCard,
   parameters: {
     layout: 'centered'
   },
+  tags: ['autodocs'],
   argTypes: {
-    tone: {
+    variant: {
       control: 'select',
       options: [
         'error',
@@ -50,126 +51,98 @@ const meta: Meta<typeof AlertCard> = {
       control: 'boolean'
     }
   }
-}
+} satisfies Meta<typeof AlertCard>
 
 export default meta
-
 type Story = StoryObj<typeof AlertCard>
 
-const defaultProps = {
-  title: 'Heading',
-  message:
-    'Lorem ipsum dolor sit amet, con sec tetur adipiscing elit dolor sit. Lorem ipsum dolor sit amet elit.',
-  onClose: () => {}
-}
-
-export const Error: Story = {
+export const Primary: Story = {
   args: {
-    ...defaultProps,
-    tone: 'error',
+    title: 'Heading',
+    message:
+      'Lorem ipsum dolor sit amet, con sec tetur adipiscing elit dolor sit. Lorem ipsum dolor sit amet elit.',
+    variant: 'neutral',
     size: 'large',
     showClose: true,
     noBorderLeft: false,
     layout: 'horizontal',
+    icon: <InfoIcon />,
+    onClose: () => {}
+  }
+}
+
+export const Error: Story = {
+  args: {
+    ...Primary.args,
+    variant: 'error',
     icon: <AlertOctagon />
   }
 }
 
 export const Warning: Story = {
   args: {
-    ...defaultProps,
-    tone: 'warning',
-    size: 'large',
-    showClose: true,
-    noBorderLeft: false,
-    layout: 'horizontal',
+    ...Primary.args,
+    variant: 'warning',
     icon: <WarningIcon />
   }
 }
 
 export const Success: Story = {
   args: {
-    ...defaultProps,
-    tone: 'success',
-    size: 'large',
-    showClose: true,
-    noBorderLeft: false,
-    layout: 'horizontal',
+    ...Primary.args,
+    variant: 'success',
     icon: <CheckmarkCircleOutline />
   }
 }
 
 export const Information: Story = {
   args: {
-    ...defaultProps,
-    tone: 'information',
-    size: 'large',
-    showClose: true,
-    noBorderLeft: false,
-    layout: 'horizontal',
+    ...Primary.args,
+    variant: 'information',
     icon: <InfoIcon />
   }
 }
 
 export const Neutral: Story = {
   args: {
-    ...defaultProps,
-    tone: 'neutral',
-    size: 'large',
-    showClose: true,
-    noBorderLeft: false,
-    layout: 'horizontal',
-    icon: <Triangule />
+    ...Primary.args,
+    variant: 'neutral',
+    icon: <Triangle />
   }
 }
 
 export const Brand: Story = {
   args: {
-    ...defaultProps,
-    tone: 'brand',
-    size: 'large',
-    showClose: true,
-    noBorderLeft: false,
-    layout: 'horizontal',
+    ...Primary.args,
+    variant: 'brand',
     icon: <LightningOutlined />
   }
 }
 
 export const WithList: Story = {
   args: {
-    ...defaultProps,
-    tone: 'neutral',
+    ...Primary.args,
     listItems: [
       'Check if the game is properly installed',
       'Verify your internet connection',
       'Make sure your system meets the minimum requirements'
-    ],
-    showClose: true,
-    noBorderLeft: false,
-    layout: 'horizontal',
-    icon: <InfoIcon />
+    ]
   }
 }
 
 export const WithLink: Story = {
   args: {
-    ...defaultProps,
-    tone: 'neutral',
+    ...Primary.args,
     link: {
-      text: 'Learn More',
+      text: 'Learn more',
       onClick: () => console.log('Link clicked')
-    },
-    showClose: true,
-    noBorderLeft: false,
-    layout: 'horizontal',
-    icon: <InfoIcon />
+    }
   }
 }
 
 export const WithButtons: Story = {
   args: {
-    ...defaultProps,
-    tone: 'neutral',
+    ...Primary.args,
     buttons: {
       primary: {
         text: 'Primary',
@@ -183,38 +156,28 @@ export const WithButtons: Story = {
         text: 'Tertiary',
         onClick: () => console.log('Tertiary clicked')
       }
-    },
-    showClose: true,
-    noBorderLeft: false,
-    layout: 'horizontal',
-    icon: <InfoIcon />
+    }
   }
 }
 
-// Old stories (keeping for compatibility)
+export const SizeSmall: Story = {
+  args: {
+    ...Primary.args,
+    message:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer maximus metus vitae tempus viverra. Maecenas aliquam urna eu ante fringilla accumsan. Nunc condimentum mauris nec suscipit cursus. Vivamus nibh sapien, efficitur non convallis et, rhoncus at tortor. Fusce gravida fermentum mauris et dictum. Ut odio dui, viverra ut imperdiet euismod, imperdiet non orci. Etiam maximus congue ante. Morbi elementum, odio non congue malesuada, lectus nulla pharetra ex, eget varius leo lorem non justo.',
+    variant: 'neutral',
+    size: 'small',
+    icon: <WarningIcon />
+  }
+}
 
-export const WarningAlertCard = () => (
-  <AlertCard
-    title="How to report a problem?"
-    message="Join our discord and look for the channel that matches your operation system. Share the content of the logs displayed here, and include a clear description of the problem with any relevant information and details."
-    tone="warning"
-    buttons={{
-      tertiary: {
-        text: 'Button CTA',
-        onClick: () => {}
-      }
-    }}
-    onClose={() => {}}
-    icon={<InfoIcon />}
-  />
-)
-
-export const ErrorAlertCard = () => (
-  <AlertCard
-    title="How to report a problem?"
-    message="Join our discord and look for the channel that matches your operation system. Share the content of the logs displayed here, and include a clear description of the problem with any relevant information and details."
-    onClose={() => {}}
-    tone="error"
-    icon={<InfoIcon />}
-  />
-)
+export const SizeLarge: Story = {
+  args: {
+    ...Primary.args,
+    message:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer maximus metus vitae tempus viverra. Maecenas aliquam urna eu ante fringilla accumsan. Nunc condimentum mauris nec suscipit cursus. Vivamus nibh sapien, efficitur non convallis et, rhoncus at tortor. Fusce gravida fermentum mauris et dictum. Ut odio dui, viverra ut imperdiet euismod, imperdiet non orci. Etiam maximus congue ante. Morbi elementum, odio non congue malesuada, lectus nulla pharetra ex, eget varius leo lorem non justo.',
+    variant: 'neutral',
+    size: 'large',
+    icon: <InfoIcon />
+  }
+}
