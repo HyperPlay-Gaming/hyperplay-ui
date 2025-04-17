@@ -29,7 +29,7 @@ export interface InfoAlertProps extends React.HTMLAttributes<HTMLDivElement> {
   showIcon?: boolean
   icon?: React.ReactNode
   iconContainer?: boolean
-  listItems?: string[]
+  listItems?: string[] | null
   link?: {
     text: string
     onClick: () => void
@@ -89,29 +89,28 @@ export default function Alert({
       )}
       {...props}
     >
-      {showClose && (
+      {showClose ? (
         <button type="button" onClick={onClose} className={styles.closeButton}>
           {closeButton}
         </button>
-      )}
-      {showIcon && <div className={styles.icon}>{icon}</div>}
+      ) : null}
+      {showIcon ? <div className={styles.icon}>{icon}</div> : null}
       <div className={styles.content}>
         <div className={styles.header}>
           <div className={styles.title}>{title}</div>
         </div>
         <div className={styles.message}>{message}</div>
 
-        {listItems && (
+        {listItems ? (
           <ul className={styles.list}>
             {listItems.map((item, index) => (
               <li key={index}>{item}</li>
             ))}
           </ul>
-        )}
+        ) : null}
 
-        {link && (
+        {link ? (
           <div className={styles.link}>
-            {/* Buttons will be updated to use the new button component */}
             <Button
               type="tertiary"
               size="small"
@@ -121,9 +120,9 @@ export default function Alert({
               {link.text}
             </Button>
           </div>
-        )}
+        ) : null}
 
-        {buttons && (
+        {buttons ? (
           <div className={styles.buttonGroup}>
             {buttons.primary && (
               <Button
@@ -153,7 +152,7 @@ export default function Alert({
               </Button>
             )}
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   )
