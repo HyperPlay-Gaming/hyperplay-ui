@@ -11,15 +11,15 @@ $border-width: 1px;
   display: flex;
   gap: var(--space-sm);
   border-radius: var(--space-xs); // 8px
-  border: $border-width solid transparent !important;
+  border: $border-width solid;
   position: relative;
 
   &.noBorderLeft {
-    border-left-width: $border-width !important;
+    border-left-width: $border-width;
   }
 
   &:not(.noBorderLeft) {
-    border-left-width: 4px !important;
+    border-left-width: 4px;
   }
 
   .title {
@@ -86,20 +86,20 @@ $border-width: 1px;
 // Warning variant
 .warning {
   background: var(--fill-warning-weak);
-  border-color: var(--color-stroke-warning-weak) !important;
+  border-color: var(--color-stroke-warning-weak);
 
   &:not(.noBorderLeft) {
-    border-left-color: var(--color-stroke-warning-strong) !important;
+    border-left-color: var(--color-stroke-warning-strong);
   }
 }
 
 // Error variant
 .error {
   background: var(--fill-error-weak);
-  border-color: var(--color-stroke-error-weak) !important;
+  border-color: var(--color-stroke-error-weak);
 
   &:not(.noBorderLeft) {
-    border-left-color: var(--color-stroke-error-strong) !important;
+    border-left-color: var(--color-stroke-error-strong);
   }
 
   .icon {
@@ -112,40 +112,40 @@ $border-width: 1px;
 // Success variant
 .success {
   background: var(--fill-success-weak);
-  border-color: var(--color-stroke-success-weak) !important;
+  border-color: var(--color-stroke-success-weak);
 
   &:not(.noBorderLeft) {
-    border-left-color: var(--color-stroke-success-strong) !important;
+    border-left-color: var(--color-stroke-success-strong);
   }
 }
 
 // Information variant
 .information {
   background: var(--fill-info-weak);
-  border-color: var(--color-stroke-info-weak) !important;
+  border-color: var(--color-stroke-info-weak);
 
   &:not(.noBorderLeft) {
-    border-left-color: var(--color-stroke-info-strong) !important;
+    border-left-color: var(--color-stroke-info-strong);
   }
 }
 
 // Neutral variant
 .neutral {
   background: var(--fill-weaker);
-  border-color: var(--color-stroke-weak) !important;
+  border-color: var(--color-stroke-weak);
 
   &:not(.noBorderLeft) {
-    border-left-color: var(--color-stroke-strong) !important;
+    border-left-color: var(--color-stroke-strong);
   }
 }
 
 // Brand variant
 .brand {
   background: var(--fill-brand-weak);
-  border-color: var(--color-stroke-brand-weak) !important;
+  border-color: var(--color-stroke-brand-weak);
 
   &:not(.noBorderLeft) {
-    border-left-color: var(--color-stroke-brand-strong) !important;
+    border-left-color: var(--color-stroke-brand-strong);
   }
 }
 
