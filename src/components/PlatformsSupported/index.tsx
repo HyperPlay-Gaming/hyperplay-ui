@@ -87,6 +87,7 @@ export function PlatformsSupported({
             data-testid={'platforms-supported-info-popover'}
             withinPortal={false}
             transitionProps={{ transition: 'fade', duration: 300 }}
+            events={{ hover: true, touch: true, focus: false }}
           >
             <div
               className={styles.infoIconContainer}
