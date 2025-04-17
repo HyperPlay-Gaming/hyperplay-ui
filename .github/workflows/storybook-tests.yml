@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Install Playwright
-        run: pnpm install playwright -g
+        run: pnpm install playwright@1.51.1 -g
       - name: setup playwright
         run: npx playwright@1.51.1 install --with-deps
       - name: Build Storybook
