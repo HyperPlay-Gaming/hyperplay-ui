@@ -83,7 +83,7 @@ $border-width: 1px;
   gap: var(--space-sm);
 }
 
-// Warning tone
+// Warning variant
 .warning {
   background: var(--fill-warning-weak);
   border-color: var(--color-stroke-warning-weak) !important;
@@ -93,7 +93,7 @@ $border-width: 1px;
   }
 }
 
-// Error tone
+// Error variant
 .error {
   background: var(--fill-error-weak);
   border-color: var(--color-stroke-error-weak) !important;
@@ -109,7 +109,7 @@ $border-width: 1px;
   }
 }
 
-// Success tone
+// Success variant
 .success {
   background: var(--fill-success-weak);
   border-color: var(--color-stroke-success-weak) !important;
@@ -119,7 +119,7 @@ $border-width: 1px;
   }
 }
 
-// Information tone
+// Information variant
 .information {
   background: var(--fill-info-weak);
   border-color: var(--color-stroke-info-weak) !important;
@@ -129,7 +129,7 @@ $border-width: 1px;
   }
 }
 
-// Neutral tone
+// Neutral variant
 .neutral {
   background: var(--fill-weaker);
   border-color: var(--color-stroke-weak) !important;
@@ -139,7 +139,7 @@ $border-width: 1px;
   }
 }
 
-// Brand tone
+// Brand variant
 .brand {
   background: var(--fill-brand-weak);
   border-color: var(--color-stroke-brand-weak) !important;
