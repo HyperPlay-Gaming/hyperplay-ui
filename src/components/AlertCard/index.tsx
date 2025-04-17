@@ -12,7 +12,7 @@ type Variants = 'warning' | 'danger'
 
 export interface InfoAlertProps extends HTMLProps<HTMLDivElement> {
   title: string
-  message: string
+  message: React.ReactNode
   actionText?: string
   onClose?: () => void
   onActionClick?: () => void
