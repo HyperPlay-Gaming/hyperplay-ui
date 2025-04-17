@@ -6,7 +6,7 @@ import Button from '@/components/Button'
 import styles from './index.module.scss'
 import { ReactComponent as CloseButton } from '@/assets/images/CloseButton.svg'
 
-type Tone =
+type Variant =
   | 'error'
   | 'warning'
   | 'success'
@@ -16,11 +16,11 @@ type Tone =
 type Size = 'small' | 'large'
 type Layout = 'horizontal' | 'vertical'
 
-export interface InfoAlertProps {
+export interface InfoAlertProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string
-  message: string
+  message: React.ReactNode
   onClose?: () => void
-  tone: Tone
+  variant: Variant
   size?: Size
   layout?: Layout
   isOpen?: boolean
@@ -56,7 +56,7 @@ export default function Alert({
   title,
   message,
   onClose = () => {},
-  tone,
+  variant,
   size = 'small',
   layout = 'horizontal',
   isOpen = true,
@@ -78,7 +78,7 @@ export default function Alert({
     <div
       className={classNames(
         styles.container,
-        styles[tone],
+        styles[variant],
         styles[size],
         styles[layout],
         {
@@ -90,7 +90,7 @@ export default function Alert({
       {...props}
     >
       {showClose && (
-        <button onClick={onClose} className={styles.closeButton}>
+        <button type="button" onClick={onClose} className={styles.closeButton}>
           {closeButton}
         </button>
       )}
