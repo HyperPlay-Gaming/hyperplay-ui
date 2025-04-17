@@ -101,7 +101,7 @@ button.base {
     &::after {
       background-color: var(--fill-hover);
       color: var(--text-strong);
-      opacity: 3;
+      opacity: 100%;
     }
   }
 
@@ -110,6 +110,7 @@ button.base {
     &::after {
       background-color: var(--fill-pressed);
       color: var(--text-strong);
+      opacity: 100%;
     }
   }
 
@@ -158,6 +159,7 @@ button.base {
     &::before {
       background-color: var(--fill-pressed);
       z-index: 1;
+      opacity: 100%;
     }
   }
 
@@ -193,8 +195,8 @@ button.base {
 
   &:hover:not(:disabled) {
     &::before {
-      opacity: 1;
       z-index: 1;
+      opacity: 100%;
     }
   }
 
@@ -202,7 +204,7 @@ button.base {
   &.active {
     &::before {
       background-color: var(--fill-pressed);
-      opacity: 1;
+      opacity: 100%;
       z-index: 1;
     }
   }
@@ -243,7 +245,7 @@ button.base {
 
   &:hover:not(:disabled) {
     &::before {
-      opacity: 1;
+      opacity: 100%;
       z-index: 1;
     }
   }
@@ -252,7 +254,7 @@ button.base {
   &.active {
     &::before {
       background-color: var(--fill-pressed);
-      opacity: 1;
+      opacity: 100%;
       z-index: 1;
     }
   }
@@ -286,6 +288,7 @@ button.base {
 
   &:focus-visible,
   &.focusVisible {
+    background-color: var(--color-neutral-900);
     outline: 2px solid var(--color-stroke-focus);
     outline-offset: 2px;
   }
@@ -293,6 +296,7 @@ button.base {
   &:hover:not(:disabled) {
     &::before {
       z-index: 1;
+      opacity: 100%;
     }
   }
 
@@ -301,7 +305,7 @@ button.base {
     &::before {
       background-color: var(--color-neutral-900);
       z-index: 1;
-      opacity: 1;
+      opacity: 100%;
     }
   }
 
@@ -337,7 +341,7 @@ button.base {
 
   &:hover:not(:disabled) {
     &::before {
-      opacity: 1;
+      opacity: 100%;
       z-index: 1;
     }
   }
@@ -346,7 +350,7 @@ button.base {
   &.active {
     &::before {
       background-color: var(--fill-pressed);
-      opacity: 1;
+      opacity: 100%;
       z-index: 1;
     }
   }
@@ -387,7 +391,7 @@ button.base {
 
   &:hover:not(:disabled) {
     &::before {
-      opacity: 1;
+      opacity: 100%;
       z-index: 1;
     }
   }
@@ -396,7 +400,7 @@ button.base {
   &.active {
     &::before {
       background-color: var(--fill-pressed);
-      opacity: 1;
+      opacity: 100%;
       z-index: 1;
     }
   }
@@ -414,54 +418,67 @@ button.base {
 }
 
 .secondaryGradient {
-  --gradient-thickness-px: 1px;
-  --color-direction: to top;
-  background-clip: padding-box;
-  outline: none;
+  background-color: transparent;
+  position: relative;
 
-  @include gradientBorderHidden(
-    linear-gradient(
-      var(--color-direction),
-      var(--color-secondary-500),
-      var(--color-tertiary-700)
-    ),
-    1px
-  );
-
-  &:after {
-    background-clip: padding-box;
+  &::before {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
-    color: var(--color-neutral-100);
-    border: solid 1.5px transparent;
-    border-radius: var(--gradient-border-radius);
-    background-color: var(--color-neutral-800);
-    top: 0;
-    left: 0;
-    z-index: 0;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(180deg, #1c6cb7 0%, #a31ae3 100%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    z-index: 1;
   }
 
-  &:before {
-    @include showGradientBorder(1px);
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: calc(var(--space-sm) - 1px);
+    z-index: -1;
+    transition: background-color 0.2s ease;
+  }
+
+  > div {
+    position: relative;
+    z-index: 2;
+  }
+
+  &:focus-visible,
+  &.focusVisible {
+    outline: 2px solid var(--color-stroke-focus);
+    outline-offset: 2px;
+  }
+
+  &:hover:not(:disabled) {
+    &::after {
+      background-color: var(--fill-hover);
+      color: var(--text-strong);
+      opacity: 100%;
+    }
+  }
+
+  &:active,
+  &.active {
+    &::after {
+      background-color: var(--fill-pressed);
+      color: var(--text-strong);
+      opacity: 100%;
+    }
   }
 
   &:disabled,
   &[disabled] {
-    --gradient-border: linear-gradient(
-      var(--color-direction),
-      rgba(42, 16, 81, 1) 0%,
-      rgba(24, 31, 59, 1) 100%
-    ) !important;
-
-    opacity: 1;
-    color: var(--color-neutral-600);
-  }
-
-  &:active {
-    background-color: var(--color-neutral-600);
-    color: var(--color-neutral-300);
+    border: 1px solid var(--color-stroke-disabled);
+    color: var(--text-disabled);
+    background-color: transparent;
+    opacity: 3;
+    &::before {
+      display: none;
+    }
   }
 }
 
@@ -488,9 +505,9 @@ button.base {
   }
 
   &:hover:not(:disabled) {
-    color: var(--text-inverse-disabled);
     &::before {
       z-index: 1;
+      opacity: 100%;
     }
   }
 
@@ -499,6 +516,7 @@ button.base {
     &::before {
       background-color: var(--fill-pressed);
       z-index: 1;
+      opacity: 100%;
     }
   }
 
@@ -535,6 +553,7 @@ button.base {
     &::before {
       background-color: var(--fill-hover);
       z-index: 1;
+      opacity: 100%;
     }
   }
 
@@ -542,7 +561,7 @@ button.base {
   &.active {
     &::before {
       background-color: var(--fill-pressed);
-      opacity: 1;
+      opacity: 100%;
       z-index: 1;
     }
   }
@@ -552,7 +571,6 @@ button.base {
     border: 1px solid var(--color-stroke-disabled);
     color: var(--text-disabled);
     background-color: transparent;
-    opacity: 3;
   }
 }
 
@@ -580,7 +598,7 @@ button.base {
 
   &:hover:not(:disabled) {
     &::before {
-      opacity: 0.15;
+      opacity: 100%;
       z-index: 1;
     }
   }
@@ -588,8 +606,8 @@ button.base {
   &:active,
   &.active {
     &::before {
-      background-color: var(--fill-error-pressed);
-      opacity: 0.3;
+      background-color: var(--fill-pressed);
+      opacity: 100%;
       z-index: 1;
     }
   }
@@ -598,7 +616,6 @@ button.base {
   &[disabled] {
     color: var(--text-error-disabled);
     background-color: transparent;
-    opacity: 0.4;
   }
 }
 
@@ -638,13 +655,31 @@ button.base {
   color: var(--color-alert-400);
 
   &:hover:not(:disabled) {
-    color: var(--color-alert-300);
-    border: solid 1.5px var(--color-alert-300);
-    opacity: 100%;
+    background-color: var(--fill-hover);
+    &::before {
+      opacity: 100%;
+      z-index: 1;
+    }
   }
 
-  &:active {
-    color: var(--color-alert-300);
+  &:active,
+  &.active {
+    background-color: var(--fill-pressed);
+    &::before {
+      opacity: 100%;
+      z-index: 1;
+    }
+  }
+
+  &:disabled,
+  &[disabled] {
+    border: 1px solid var(--color-stroke-disabled);
+    color: var(--text-disabled);
+    background-color: transparent;
+    opacity: 3;
+    &::before {
+      display: none;
+    }
   }
 }
 
@@ -653,13 +688,13 @@ button.base {
   background: transparent;
   background-color: transparent;
   box-shadow: none;
-  color: var(--color-primary-200);
+  color: var(--color-primary-300);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
   border-radius: 0;
 
   svg path {
-    fill: var(--button-svg-path-fill, var(--color-primary-200));
+    fill: var(--button-svg-path-fill, var(--color-primary-300));
     transition: fill 0.25s ease-out;
   }
 
@@ -669,15 +704,22 @@ button.base {
     width: 100%;
     transform: scaleX(0);
     height: 1px;
-    bottom: 2px;
+    bottom: 1px;
     left: 0;
-    background-color: #ff83e2;
+    background-color: var(--text-brand);
     transform-origin: bottom right;
     transition: transform 0.25s ease-out, background-color 0.25s ease-out;
+    transform: scaleX(1);
+    transform-origin: bottom left;
+
+    svg path {
+      fill: var(--button-svg-path-fill-hover, var(--text-brand));
+    }
+    opacity: 100%;
   }
 
   &:hover:not(:disabled) .content {
-    color: #ff83e2;
+    color: var(--color-primary-200);
 
     &:after {
       transform: scaleX(1);
@@ -685,7 +727,7 @@ button.base {
     }
 
     svg path {
-      fill: var(--button-svg-path-fill-hover, #ff83e2);
+      fill: var(--button-svg-path-fill-hover, var(--color-primary-200));
     }
     opacity: 100%;
   }
@@ -710,14 +752,29 @@ button.base {
   margin: 0;
   color: var(--color-neutral-100);
 
+  .content {
+    padding-bottom: 2px;
+    line-height: normal;
+  }
+
   &:hover:not(:disabled) .content {
     color: var(--color-neutral-100);
   }
 
+  .content:before {
+    background-color: none;
+    border: none;
+
+    svg path {
+      fill: none;
+    }
+    opacity: 0;
+  }
+
   .content:after {
-    background-color: white;
-    height: 2px;
-    bottom: 0px;
+    display: none;
+    height: 0;
+    position: static;
   }
 
   &:active,
@@ -726,10 +783,6 @@ button.base {
 
     &:hover:not(:disabled) .content {
       color: var(--color-secondary-100);
-
-      &:after {
-        background-color: var(--color-secondary-100);
-      }
     }
   }
 }
