@@ -27,3 +27,21 @@ export const ErrorAlertCard = () => (
     variant="danger"
   />
 )
+
+export const JSXMessageAlertCard = () => (
+  <AlertCard
+    title="Security Warning"
+    message={
+      <>
+        {`Third-party downloaders bypass HyperPlay's security review. `}
+        <strong>
+          {`Proceed only if you trust this game development studio.`}
+        </strong>
+      </>
+    }
+    actionText="Learn More"
+    onClose={() => {}}
+    onActionClick={() => {}}
+    variant="warning"
+  />
+)
