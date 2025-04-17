@@ -85,9 +85,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
         className={styles.content}
         style={{ gap: `var(--space-${spacing}-fixed)` }}
       >
-        {leftIcon && <span className={styles.icon}>{leftIcon}</span>}
-        <span className={styles.text}>{children}</span>
-        {rightIcon && <span className={styles.icon}>{rightIcon}</span>}
+        {leftIcon}
+        {children}
+        {rightIcon}
       </div>
     </button>
   )
