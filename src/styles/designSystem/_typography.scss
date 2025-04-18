@@ -387,6 +387,15 @@ $buttonFontSize: --text-md;
   letter-spacing: 0%;
 }
 
+$buttonSmFontSize: --text-sm;
+.button-sm {
+  font-family: var(--secondary-font-family);
+  font-size: var($buttonSmFontSize);
+  font-weight: var(--medium);
+  line-height: 1.2;
+  letter-spacing: 0%;
+}
+
 $menuItemFontSize: --text-sm;
 .menu-item {
   font-size: var($menuItemFontSize);
