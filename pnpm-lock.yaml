@@ -30,7 +30,6 @@ importers:
         specifier: ^1.13.0
         version: 1.19.2(@mantine/carousel@7.17.4(@mantine/core@7.17.4(@mantine/hooks@7.17.4(react@18.3.1))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.17.4(react@18.3.1))(embla-carousel-react@8.6.0(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/core@7.17.4(@mantine/hooks@7.17.4(react@18.3.1))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/dropzone@7.17.4(@mantine/core@7.17.4(@mantine/hooks@7.17.4(react@18.3.1))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.17.4(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.17.4(react@18.3.1))(dayjs@1.11.13)(embla-carousel-autoplay@8.6.0(embla-carousel@8.6.0))(embla-carousel-react@8.6.0(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-markdown@9.1.0(@types/react@18.3.20)(react@18.3.1))(react@18.3.1)
       '@hyperplay/utils':
-        specifier: ^0.3.10
         specifier: ^0.3.13
         version: 0.3.13
       '@tabler/icons-react':
