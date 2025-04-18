@@ -126,7 +126,8 @@ export const WithList: Story = {
       'Check if the game is properly installed',
       'Verify your internet connection',
       'Make sure your system meets the minimum requirements'
-    ]
+    ],
+    icon: <LightningOutlined />
   }
 }
 
@@ -136,7 +137,8 @@ export const WithLink: Story = {
     link: {
       text: 'Learn more',
       onClick: () => console.log('Link clicked')
-    }
+    },
+    icon: <LightningOutlined />
   }
 }
 
@@ -156,7 +158,8 @@ export const WithButtons: Story = {
         text: 'Tertiary',
         onClick: () => console.log('Tertiary clicked')
       }
-    }
+    },
+    icon: <LightningOutlined />
   }
 }
 
@@ -167,7 +170,7 @@ export const SizeSmall: Story = {
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer maximus metus vitae tempus viverra. Maecenas aliquam urna eu ante fringilla accumsan. Nunc condimentum mauris nec suscipit cursus. Vivamus nibh sapien, efficitur non convallis et, rhoncus at tortor. Fusce gravida fermentum mauris et dictum. Ut odio dui, viverra ut imperdiet euismod, imperdiet non orci. Etiam maximus congue ante. Morbi elementum, odio non congue malesuada, lectus nulla pharetra ex, eget varius leo lorem non justo.',
     variant: 'neutral',
     size: 'small',
-    icon: <WarningIcon />
+    icon: <LightningOutlined />
   }
 }
 
@@ -178,6 +181,6 @@ export const SizeLarge: Story = {
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer maximus metus vitae tempus viverra. Maecenas aliquam urna eu ante fringilla accumsan. Nunc condimentum mauris nec suscipit cursus. Vivamus nibh sapien, efficitur non convallis et, rhoncus at tortor. Fusce gravida fermentum mauris et dictum. Ut odio dui, viverra ut imperdiet euismod, imperdiet non orci. Etiam maximus congue ante. Morbi elementum, odio non congue malesuada, lectus nulla pharetra ex, eget varius leo lorem non justo.',
     variant: 'neutral',
     size: 'large',
-    icon: <InfoIcon />
+    icon: <LightningOutlined />
   }
 }
