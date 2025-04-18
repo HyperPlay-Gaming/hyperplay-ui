@@ -80,7 +80,6 @@ button.base {
     content: '';
     position: absolute;
     inset: 1px;
-    border-radius: calc(var(--space-sm) - 1px);
     z-index: -1;
     transition: background-color 0.2s ease;
   }
@@ -438,7 +437,6 @@ button.base {
     content: '';
     position: absolute;
     inset: 1px;
-    border-radius: calc(var(--space-sm) - 1px);
     z-index: -1;
     transition: background-color 0.2s ease;
   }
