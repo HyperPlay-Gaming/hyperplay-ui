@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react'
 import classNames from 'classnames'
-import { RightArrow } from '@/assets/images'
 import Button from '@/components/Button'
 import styles from './index.module.scss'
 import { ReactComponent as CloseButton } from '@/assets/images/CloseButton.svg'
@@ -111,12 +110,7 @@ export default function Alert({
 
         {link ? (
           <div className={styles.link}>
-            <Button
-              type="tertiary"
-              size="small"
-              onClick={link.onClick}
-              rightIcon={<RightArrow />}
-            >
+            <Button type="link" size="small" onClick={link.onClick}>
               {link.text}
             </Button>
           </div>
