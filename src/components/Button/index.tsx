@@ -12,11 +12,17 @@ import styles from './Button.module.scss'
 export interface ButtonProps
   extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
   type?:
+    | 'brand'
     | 'primary'
     | 'secondary'
     | 'tertiary'
+    | 'primary-neutral'
+    | 'secondary-neutral'
+    | 'tertiary-neutral'
     | 'link'
     | 'danger'
+    | 'danger-secondary'
+    | 'danger-tertiary'
     | 'menuItem'
     | 'alert'
     | 'secondaryGradient'
@@ -27,6 +33,8 @@ export interface ButtonProps
   rightIcon?: React.ReactNode
   active?: boolean
   disabled?: boolean
+  focusVisible?: boolean
+  hover?: boolean
   spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
@@ -43,6 +51,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     className: propClassName,
     spacing = 'md',
     style,
+    focusVisible,
+    hover,
     ...props
   }: ButtonProps,
   ref
@@ -53,6 +63,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       ref={ref}
       type={htmlType}
       style={style}
+      data-testid="button"
       className={classNames(
         styles.base,
         styles[type],
@@ -61,7 +72,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
         {
           [styles.link]: type === 'menuItem',
           'menu-item': type === 'menuItem',
-          [styles.active]: active
+          [styles.active]: active,
+          [styles.focusVisible]: focusVisible,
+          [styles.hover]: hover,
+          hover: hover
         },
         propClassName
       )}
