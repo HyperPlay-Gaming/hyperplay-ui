@@ -195,12 +195,9 @@ $border-width: 1px;
 }
 
 .link {
-  margin-left: 0;
   button {
-    color: var(--text-brand);
-    & svg {
-      color: var(--icon-brand);
-    }
+    margin-left: calc(var(--space-xl) * -1);
+    padding-left: var(--space-xl);
   }
 }
 
