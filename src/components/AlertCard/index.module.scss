@@ -35,7 +35,6 @@ $border-width: 1px;
     svg {
       width: var(--space-2lg);
       height: var(--space-2lg);
-      color: var(--icon-neutral);
     }
   }
 
@@ -91,6 +90,12 @@ $border-width: 1px;
   &:not(.noBorderLeft) {
     border-left-color: var(--color-stroke-warning-strong);
   }
+
+  .icon {
+    svg {
+      color: var(--icon-warning);
+    }
+  }
 }
 
 // Error variant
@@ -118,6 +123,12 @@ $border-width: 1px;
   &:not(.noBorderLeft) {
     border-left-color: var(--color-stroke-success-strong);
   }
+
+  .icon {
+    svg {
+      color: var(--icon-success);
+    }
+  }
 }
 
 // Information variant
@@ -127,6 +138,12 @@ $border-width: 1px;
 
   &:not(.noBorderLeft) {
     border-left-color: var(--color-stroke-info-strong);
+  }
+
+  .icon {
+    svg {
+      color: var(--icon-info);
+    }
   }
 }
 
@@ -138,6 +155,13 @@ $border-width: 1px;
   &:not(.noBorderLeft) {
     border-left-color: var(--color-stroke-strong);
   }
+
+  .icon {
+    svg {
+      color: var(--icon-secondary);
+      fill: none;
+    }
+  }
 }
 
 // Brand variant
@@ -147,6 +171,12 @@ $border-width: 1px;
 
   &:not(.noBorderLeft) {
     border-left-color: var(--color-stroke-brand-strong);
+  }
+
+  .icon {
+    svg {
+      color: var(--icon-neutral);
+    }
   }
 }
 
@@ -199,10 +229,12 @@ $border-width: 1px;
   button {
     margin-left: calc(var(--space-xl) * -1);
     padding-left: var(--space-xl);
+    padding-top: var(--space-md);
   }
 }
 
 .buttonGroup {
   display: flex;
   gap: var(--space-xs);
+  padding-top: var(--space-md);
 }
