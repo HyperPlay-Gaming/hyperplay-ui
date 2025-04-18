@@ -22,7 +22,6 @@ button.base {
   &:disabled,
   &[disabled] {
     cursor: not-allowed;
-    opacity: 3;
   }
 
   border-image-source: linear-gradient(
@@ -172,7 +171,7 @@ button.base {
 }
 
 .secondary {
-  color: var(--text-primary);
+  color: var(--text-brand);
   border: 1px solid var(--color-stroke-brand-strong);
   background: transparent;
   position: relative;
@@ -204,6 +203,7 @@ button.base {
   &.active {
     &::before {
       background-color: var(--fill-pressed);
+      color: var(--text-brand);
       opacity: 100%;
       z-index: 1;
     }
@@ -222,7 +222,7 @@ button.base {
 }
 
 .tertiary {
-  color: var(--text-primary);
+  color: var(--text-brand);
   background: transparent;
   border: none;
   position: relative;
@@ -245,6 +245,7 @@ button.base {
 
   &:hover:not(:disabled) {
     &::before {
+      color: var(--text-brand);
       opacity: 100%;
       z-index: 1;
     }
@@ -515,6 +516,7 @@ button.base {
   &.active {
     &::before {
       background-color: var(--fill-pressed);
+      color: var(--text-inverse-strong);
       z-index: 1;
       opacity: 100%;
     }
@@ -552,6 +554,7 @@ button.base {
   &:hover:not(:disabled) {
     &::before {
       background-color: var(--fill-hover);
+      color: var(--text-error);
       z-index: 1;
       opacity: 100%;
     }
@@ -598,6 +601,7 @@ button.base {
 
   &:hover:not(:disabled) {
     &::before {
+      color: var(--text-error);
       opacity: 100%;
       z-index: 1;
     }
