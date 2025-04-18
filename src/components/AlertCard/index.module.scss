@@ -105,6 +105,7 @@ $border-width: 1px;
   .icon {
     svg {
       color: var(--icon-error);
+      fill: none;
     }
   }
 }
