@@ -287,11 +287,7 @@
     var(--color-primary-400) 75%,
     transparent
   );
-  --color-stroke-brand-weak: color-mix(
-    in srgb,
-    var(--color-primary-400) 15%,
-    transparent
-  );
+  --color-stroke-brand-weak: var(--color-primary-400);
   --color-stroke-selected: var(--color-primary-400);
   --color-stroke-focus: color-mix(
     in srgb,
