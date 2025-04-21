@@ -1,26 +1,139 @@
 .base {
-  padding: var(--space-xs) var(--space-md);
-  border-radius: 8px;
-  color: var(--color-neutral-700);
   display: flex;
   align-items: center;
-  background-color: var(--color-status-info);
-  gap: var(--space-xs);
-  font-weight: var(--medium);
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-sm) var(--space-2lg);
+  border-bottom: 1px solid;
+  gap: var(--space-2lg);
+
+  @media (max-width: 768px) {
+    padding: var(--space-sm) var(--space-lg);
+  }
 }
 
+.icon {
+  width: var(--space-2lg);
+  height: var(--space-2lg);
+  min-width: var(--space-lg);
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: var(--space-sm);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: var(--space-sm);
+
+  & p {
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.message {
+  color: var(--text-strong);
+}
+
+.button {
+  justify-self: flex-end;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+  width: var(--space-2lg);
+  height: var(--space-2lg);
+  color: var(--icon-neutral);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--fill-hover);
+  }
+
+  @media (max-width: 768px) {
+    align-self: flex-start;
+  }
+}
+
+// Danger variant
 .danger {
-  background-color: var(--color-status-error);
+  background: var(--fill-error-weak);
+  border-color: var(--color-stroke-error-weak);
+
+  .icon {
+    color: var(--icon-error);
+    fill: none;
+  }
 }
 
+// Warning variant
 .warning {
-  background-color: var(--color-status-alert);
+  background: var(--fill-warning-weak);
+  border-color: var(--color-stroke-warning-weak);
+
+  .icon {
+    color: var(--icon-warning);
+    fill: none;
+  }
 }
 
+// Success variant
 .success {
-  background-color: var(--color-status-success);
+  background: var(--fill-success-weak);
+  border-color: var(--color-stroke-success-weak);
+
+  .icon {
+    color: var(--icon-success);
+    fill: currentColor;
+  }
 }
 
+// Info variant
 .info {
-  background-color: var(--color-status-info);
+  background: var(--fill-info-weak);
+  border-color: var(--color-stroke-info-weak);
+
+  .icon {
+    color: var(--icon-info);
+    fill: currentColor;
+  }
+}
+
+// Neutral variant
+.neutral {
+  background: var(--background-base);
+  border-color: var(--color-stroke-weak);
+
+  .icon {
+    color: var(--icon-secondary);
+    fill: none;
+  }
+}
+
+// Brand variant
+.brand {
+  background: var(--fill-brand-weak);
+  border-color: var(--color-stroke-brand-weak);
+
+  .icon {
+    color: var(--icon-brand);
+    fill: none;
+  }
 }
