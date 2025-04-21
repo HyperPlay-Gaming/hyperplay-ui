@@ -58,7 +58,14 @@ const IconsStack = ({
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
               >
-                <span className={styles.moreText}>+{i18n.more}</span>
+                <span
+                  style={{
+                    cursor: remaining.length ? 'pointer' : 'default'
+                  }}
+                  className={styles.moreText}
+                >
+                  +{i18n.more}
+                </span>
               </div>
             </Popover.Target>
             {remaining.length ? (
