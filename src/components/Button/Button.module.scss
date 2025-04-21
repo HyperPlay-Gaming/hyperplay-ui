@@ -44,7 +44,7 @@ button.base {
 }
 
 .small {
-  padding: var(--space-sm) var(--space-lg);
+  padding: var(--space-xs) var(--space-lg);
   border-radius: var(--space-xs-fixed);
   font-size: var($buttonSmFontSize);
 }
