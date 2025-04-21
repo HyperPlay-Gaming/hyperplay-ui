@@ -34,7 +34,24 @@ export const Default: Story = {
       <CoinbaseWallet key="coinbase" />
     ],
     maxVisible: 7,
-    showMore: false,
+    showMore: true,
     forceShowMore: true
+  }
+}
+
+export const WithTitleAndMaxThree: Story = {
+  args: {
+    title: 'Wallets:',
+    icons: [
+      <MetaMaskWallet key="metaMask" />,
+      <RoninWallet key="ronin" />,
+      <TrustWallet key="trust" />,
+      <PhantomWallet key="phantom" />,
+      <OKXWallet key="okx" />,
+      <SequenceWallet key="sequence" />,
+      <CoinbaseWallet key="coinbase" />
+    ],
+    maxVisible: 3,
+    showMore: true
   }
 }
