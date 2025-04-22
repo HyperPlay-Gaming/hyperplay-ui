@@ -66,7 +66,7 @@
 .popoverContent {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .popoverItem {
@@ -80,4 +80,16 @@
   &:hover {
     background-color: var(--color-background-700);
   }
+}
+
+.tooltip {
+  max-width: 305px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  border-radius: var(--space-sm-fixed);
+  padding: var(--space-lg-fixed);
+  background-color: var(--background-overlay);
+  box-shadow: 0px 8px 8px -4px rgba(124, 58, 237, 0.04),
+    0px 20px 24px -4px rgba(124, 58, 237, 0.08);
+  color: var(--text-strong);
 }

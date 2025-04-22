@@ -1,16 +1,28 @@
-import React, { HTMLAttributes, useState } from 'react'
-import { Popover } from '@mantine/core'
-import classNames from 'classnames'
+import React, { useState } from 'react'
+import { Popover, Tooltip } from '@mantine/core'
+import cx from 'classnames'
 
 import styles from './IconsStack.module.scss'
 
-export interface IconsStackProps extends HTMLAttributes<HTMLDivElement> {
+export interface IconItem {
+  title: string
+  icon: React.ReactNode
+}
+
+export interface IconsStackClassNames {
+  root?: string
+  iconsContainer?: string
+  popover?: string
+  popoverDropdown?: string
+}
+
+export interface IconsStackProps {
   title?: string
-  icons: React.ReactNode[]
+  icons: IconItem[]
   maxVisible?: number
   showMore?: boolean
   forceShowMore?: boolean
-  className?: string
+  classNames?: IconsStackClassNames
   i18n?: {
     more: string
   }
@@ -22,7 +34,7 @@ const IconsStack = ({
   maxVisible = 7,
   showMore = true,
   forceShowMore = false,
-  className,
+  classNames,
   i18n = { more: 'More' },
   ...props
 }: IconsStackProps) => {
@@ -34,13 +46,18 @@ const IconsStack = ({
   const shouldShowMore = forceShowMore || (hasMore && showMore)
 
   return (
-    <div className={classNames(styles.iconsStack, className)} {...props}>
+    <div className={cx(styles.iconsStack, classNames?.root)} {...props}>
       {title ? <span className={styles.title}>{title}</span> : null}
-      <div className={styles.iconsContainer}>
-        {visibleIcons.map((icon, idx) => (
-          <div key={idx} className={styles.icon}>
-            {icon}
-          </div>
+      <div className={cx(styles.iconsContainer, classNames?.iconsContainer)}>
+        {visibleIcons.map((iconItem, index) => (
+          <Tooltip
+            key={`icon-${index}`}
+            label={iconItem.title}
+            className={styles.tooltip}
+            events={{ hover: true, touch: true, focus: false }}
+          >
+            <div className={styles.icon}>{iconItem.icon}</div>
+          </Tooltip>
         ))}
         {shouldShowMore && (
           <Popover
@@ -48,13 +65,14 @@ const IconsStack = ({
             position="top"
             withArrow
             classNames={{
-              dropdown: styles.popover,
+              dropdown: cx(styles.popover, classNames?.popover),
               arrow: styles.popoverArrow
             }}
           >
             <Popover.Target>
               <div
                 className={styles.more}
+                data-testid="icons-more-button"
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
               >
@@ -71,9 +89,18 @@ const IconsStack = ({
             {remaining.length ? (
               <Popover.Dropdown>
                 <div className={styles.popoverContent}>
-                  {remaining.map((icon, idx) => (
-                    <div key={idx} className={styles.popoverItem}>
-                      <div className={styles.popoverIcon}>{icon}</div>
+                  {remaining.map((iconItem, index) => (
+                    <div
+                      key={`remaining-${index}`}
+                      className={cx(
+                        styles.popoverItem,
+                        classNames?.popoverDropdown
+                      )}
+                    >
+                      <div className={styles.popoverIcon}>{iconItem.icon}</div>
+                      <span className={styles.popoverIconName}>
+                        {iconItem.title}
+                      </span>
                     </div>
                   ))}
                 </div>

@@ -116,7 +116,7 @@ export { ReactComponent as InfoIcon } from './InfoIcon.svg'
 
 export { ReactComponent as MetaMaskWallet } from './MetamaskWallet.svg'
 export { ReactComponent as RoninWallet } from './RoninWallet.svg'
-export { ReactComponent as CoinbaseWallet } from './CoinBaseWallet.svg'
+export { ReactComponent as CoinBaseWallet } from './CoinBaseWallet.svg'
 export { ReactComponent as TrustWallet } from './TrustWallet.svg'
 export { ReactComponent as PhantomWallet } from './PhantomWallet.svg'
 export { ReactComponent as SequenceWallet } from './SequenceWallet.svg'
