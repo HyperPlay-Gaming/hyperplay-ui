@@ -87,7 +87,7 @@ export function QuestCard({
             <div
               className={cn(
                 styles.description,
-                'body',
+                'eyebrow',
                 classNames?.description
               )}
             >
@@ -96,7 +96,11 @@ export function QuestCard({
           ) : null}
           {questName ? (
             <div
-              className={cn(styles.questName, 'title', classNames?.questName)}
+              className={cn(
+                styles.questName,
+                'title-sm',
+                classNames?.questName
+              )}
             >
               {questName}
             </div>
@@ -118,7 +122,11 @@ export function QuestCard({
                 />
               </div>
               <div
-                className={cn(styles.currencyName, classNames?.currencyName)}
+                className={cn(
+                  styles.currencyName,
+                  'body-sm',
+                  classNames?.currencyName
+                )}
               >
                 {currencyName}
               </div>
