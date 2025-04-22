@@ -9,7 +9,10 @@ import styles from './QuestCardStory.module.scss'
 
 const meta: Meta<typeof QuestCard> = {
   title: 'Quests/QuestCard',
-  component: QuestCard
+  component: QuestCard,
+  parameters: {
+    layout: 'centered'
+  }
 }
 
 export default meta
@@ -17,10 +20,11 @@ export default meta
 type Story = StoryObj<typeof QuestCard>
 
 const props: QuestCardProps = {
-  image: cupheadCard,
-  title: 'Forgotten Playland',
+  image: questCardV2Image,
   description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  questType: 'Quest Type',
+  gameTitle: 'Game Title'
 }
 
 export const Default: Story = {
@@ -29,27 +33,23 @@ export const Default: Story = {
 
 export const Detailed: Story = {
   args: {
-    image: questCardV2Image,
-    rewardImage: cupheadCard,
-    questType: 'Quest Type',
-    gameTitle: 'Game Title',
-    questName: 'Quest Name',
+    ...props,
     currencyAmount: '+200',
-    currencyName: 'Symbol of Luminant',
+    currencyName: 'The Eternal Symbol of the Luminant Realms',
+    rewardImage: cupheadCard,
     classNames: {
-      root: styles.root
+      root: styles.root,
+      image: styles.oddSizedImage
     }
   }
 }
 
 export const WithoutCredits: Story = {
   args: {
-    image: questCardV2Image,
+    ...props,
+    currencyAmount: undefined,
+    currencyName: 'The Eternal Symbol of the Luminant Realms',
     rewardImage: cupheadCard,
-    questType: 'Quest Type',
-    gameTitle: 'Game Title',
-    questName: 'Quest Name',
-    currencyName: 'Symbol of Luminant',
     classNames: {
       root: styles.root
     }
@@ -58,11 +58,10 @@ export const WithoutCredits: Story = {
 
 export const WithoutCurrencySection: Story = {
   args: {
-    image: questCardV2Image,
-    rewardImage: cupheadCard,
-    questType: 'Quest Type',
-    gameTitle: 'Game Title',
-    questName: 'Quest Name',
+    ...props,
+    currencyAmount: undefined,
+    currencyName: undefined,
+    rewardImage: undefined,
     classNames: {
       root: styles.root
     }
@@ -71,12 +70,8 @@ export const WithoutCurrencySection: Story = {
 
 export const WithoutQuestType: Story = {
   args: {
-    image: questCardV2Image,
-    rewardImage: cupheadCard,
-    gameTitle: 'Game Title',
-    questName: 'Quest Name',
-    currencyAmount: '+200',
-    currencyName: 'Symbol of Luminant',
+    ...props,
+    questType: undefined,
     classNames: {
       root: styles.root,
       image: styles.oddSizedImage
@@ -86,12 +81,12 @@ export const WithoutQuestType: Story = {
 
 export const WithoutGameTitleAndDescriptipn: Story = {
   args: {
-    image: questCardV2Image,
+    ...props,
+    gameTitle: undefined,
+    description: undefined,
     rewardImage: cupheadCard,
-    gameTitle: 'Game Title',
-    description: 'Quest Name',
     currencyAmount: '+200',
-    currencyName: 'Symbol of Luminant',
+    currencyName: 'The Eternal Symbol of the Luminant Realms',
     classNames: {
       root: styles.root
     }
@@ -100,12 +95,7 @@ export const WithoutGameTitleAndDescriptipn: Story = {
 
 export const OddSize: Story = {
   args: {
-    image: questCardV2Image,
-    rewardImage: cupheadCard,
-    gameTitle: 'Game Title',
-    description: 'Quest Name',
-    currencyAmount: '+200',
-    currencyName: 'Symbol of Luminant',
+    ...props,
     classNames: {
       root: styles.root
     }
@@ -114,12 +104,7 @@ export const OddSize: Story = {
 
 export const CardWithDivProps: Story = {
   args: {
-    image: questCardV2Image,
-    rewardImage: cupheadCard,
-    gameTitle: 'Game Title',
-    description: 'Quest Name',
-    currencyAmount: '+200',
-    currencyName: 'Symbol of Luminant',
+    ...props,
     classNames: {
       root: styles.root
     },
