@@ -14,6 +14,7 @@ export interface RewardERC20_721Props extends TokenRewardInput {
   tokenType: 'ERC20' | 'ERC721'
   marketplaceUrlInputProps?: TextInputProps
   i18n?: FormRewardsI18n
+  hideAmountPerUser?: boolean
 }
 
 export function RewardERC20_721({
@@ -22,7 +23,8 @@ export function RewardERC20_721({
   amountPerUserInputProps,
   marketplaceUrlInputProps,
   tokenType,
-  i18n = DEFAULT_FORM_REWARDS_i18n
+  i18n = DEFAULT_FORM_REWARDS_i18n,
+  hideAmountPerUser = false
 }: RewardERC20_721Props) {
   let tokenInput = (
     <TextInput
@@ -52,7 +54,7 @@ export function RewardERC20_721({
         />
         {tokenInput}
       </div>
-      {tokenType === 'ERC20' ? (
+      {tokenType === 'ERC20' || !hideAmountPerUser ? (
         <TextInput
           label={i18n.label.amountPerUser}
           placeholder={i18n.placeholder.amountPerUser}
