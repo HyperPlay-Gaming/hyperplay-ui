@@ -1,0 +1,94 @@
+.iconsStack {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.title {
+  color: var(--text-weak);
+  font-size: var(--text-sm);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: var(--semibold);
+}
+
+.iconsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--transparent);
+  background-color: var(--background-base);
+  margin-left: -0.5rem;
+  overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    z-index: 100;
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.moreText {
+  font-size: var(--text-sm);
+  font-weight: var(--medium);
+  line-height: 1;
+  padding-left: var(--space-2xs);
+  user-select: none;
+}
+
+.popover {
+  background-color: var(--background-overlay);
+  border: none;
+  border-radius: var(--space-md);
+  max-height: fit-content;
+  box-shadow: 0px 20px 24px -8px rgba(124, 58, 237, 0.114);
+  min-width: fit-content;
+}
+
+.popoverArrow {
+  background-color: var(--background-overlay);
+  border: none;
+}
+
+.popoverContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.popoverItem {
+  display: flex;
+  align-items: center;
+  padding: var(--space-xs);
+  gap: var(--space-xs);
+  border-radius: var(--space-2xs);
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--color-background-700);
+  }
+}
+
+.tooltip {
+  max-width: 305px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  border-radius: var(--space-sm-fixed);
+  padding: var(--space-lg-fixed);
+  background-color: var(--background-overlay);
+  box-shadow: 0px 8px 8px -4px rgba(124, 58, 237, 0.04),
+    0px 20px 24px -4px rgba(124, 58, 237, 0.08);
+  color: var(--text-strong);
+}
