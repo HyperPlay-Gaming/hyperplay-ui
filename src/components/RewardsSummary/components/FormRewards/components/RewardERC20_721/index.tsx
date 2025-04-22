@@ -34,7 +34,7 @@ export function RewardERC20_721({
     />
   )
 
-  if (tokenType === 'ERC20') {
+  if (tokenType === 'ERC20' && !hideAmountPerUser) {
     tokenInput = (
       <NumberInput
         label={i18n.label.decimals}
@@ -54,7 +54,7 @@ export function RewardERC20_721({
         />
         {tokenInput}
       </div>
-      {tokenType === 'ERC20' || !hideAmountPerUser ? (
+      {tokenType === 'ERC20' && !hideAmountPerUser ? (
         <TextInput
           label={i18n.label.amountPerUser}
           placeholder={i18n.placeholder.amountPerUser}
