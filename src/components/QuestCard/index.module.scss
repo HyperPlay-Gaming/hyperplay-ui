@@ -18,7 +18,7 @@ $border: 2px var(--color-neutral-600) solid;
 
 .content {
   display: flex;
-  max-height: 146px;
+  max-height: 6.25rem;
   flex-direction: column;
   justify-content: flex-start;
   align-items: space-between;
@@ -76,10 +76,9 @@ $border: 2px var(--color-neutral-600) solid;
   flex-direction: row;
   gap: var(--space-2xs);
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   padding-top: var(--space-xs);
-  align-self: flex-end;
-  width: 100%;
+  width: 225px;
 }
 
 .questCurrency {
@@ -87,7 +86,7 @@ $border: 2px var(--color-neutral-600) solid;
   width: 100%;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--space-xs);
   flex: 1 0 0;
 }
@@ -95,7 +94,7 @@ $border: 2px var(--color-neutral-600) solid;
 .amount {
   color: var(--text-success);
   font-weight: var(--semibold);
-  padding-top: var(--space-lg);
+  padding-top: var(--space-md);
 }
 
 .questName {
@@ -117,7 +116,7 @@ $border: 2px var(--color-neutral-600) solid;
   max-width: 8.75rem;
 
   .avatarWithName:only-child & {
-    max-width: 100%;
+    max-width: 210px;
   }
 }
 
