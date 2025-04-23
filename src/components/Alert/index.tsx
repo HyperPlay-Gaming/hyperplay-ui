@@ -26,9 +26,8 @@ const icons: Record<Variants, typeof AlertTriangle> = {
 
 export interface AlertProps extends HTMLProps<HTMLDivElement> {
   variant?: Variants
-  message?: string
+  message: string
   button?: React.ReactNode
-  closeButton?: React.ReactNode
   classNames?: {
     root?: string
     title?: string
@@ -45,7 +44,6 @@ const Alert = ({
   message,
   button,
   onClose,
-  closeButton,
   classNames,
   className,
   ...props
@@ -74,13 +72,14 @@ const Alert = ({
           </Button>
         ) : null}
       </div>
-      <CloseButton
+      <button
         type="button"
         className={cs(styles.closeButton, classNames?.closeButton)}
+        onClick={onClose}
         aria-label="Close"
       >
-        {closeButton}
-      </CloseButton>
+        <CloseButton />
+      </button>
     </div>
   )
 }
