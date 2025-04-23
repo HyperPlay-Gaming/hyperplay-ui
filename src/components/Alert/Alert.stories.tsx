@@ -11,6 +11,12 @@ const meta = {
       table: {
         disable: true
       }
+    },
+    showClose: {
+      control: 'boolean'
+    },
+    button: {
+      control: 'text'
     }
   }
 } satisfies Meta<typeof Alert>
@@ -22,8 +28,7 @@ type Story = StoryObj<typeof Alert>
 const props = {
   message: 'Lorem ipsum dolor sit amet consec tetur adipiscing elit',
   closeButton: <CloseButton />,
-  onClose: () => {},
-  button: 'Label'
+  onClose: () => {}
 }
 
 export const Danger: Story = {

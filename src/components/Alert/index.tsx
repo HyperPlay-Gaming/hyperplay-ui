@@ -28,6 +28,7 @@ export interface AlertProps extends HTMLProps<HTMLDivElement> {
   variant?: Variants
   message: string
   button?: React.ReactNode
+  showClose?: boolean
   classNames?: {
     root?: string
     title?: string
@@ -43,6 +44,7 @@ const Alert = ({
   variant = 'info',
   message,
   button,
+  showClose = true,
   onClose,
   classNames,
   className,
@@ -72,14 +74,16 @@ const Alert = ({
           </Button>
         ) : null}
       </div>
-      <button
-        type="button"
-        className={cs(styles.closeButton, classNames?.closeButton)}
-        onClick={onClose}
-        aria-label="Close"
-      >
-        <CloseButton />
-      </button>
+      {showClose ? (
+        <button
+          type="button"
+          className={cs(styles.closeButton, classNames?.closeButton)}
+          onClick={onClose}
+          aria-label="Close"
+        >
+          <CloseButton />
+        </button>
+      ) : null}
     </div>
   )
 }
