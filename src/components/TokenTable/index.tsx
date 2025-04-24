@@ -281,8 +281,8 @@ export default function TokenTable({
                     <Menu trigger="hover" position="top-start">
                       <Menu.Target>
                         <div className={`caption-sm ${styles.infoText}`}>
-                          <Info fill="var(--color-neutral-400)" />
-                          Token gated access
+                          <Info fill="var(--color-neutral-400)" width={16} />
+                          <div className="caption-sm">Token gated access</div>
                         </div>
                       </Menu.Target>
                       <Menu.Dropdown className={styles.infoDropdown}>
