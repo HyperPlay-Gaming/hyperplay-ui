@@ -56,7 +56,7 @@ export default function Alert({
   message,
   onClose = () => {},
   variant,
-  size = 'small',
+  size = 'large',
   layout = 'horizontal',
   isOpen = true,
   showClose = true,
