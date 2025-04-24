@@ -15,7 +15,7 @@ $textColor: var(--color-neutral-100);
 .item {
   background-color: $bgColor;
   color: $textColor;
-  border: 1.5px solid var(--color-stroke-01);
+  border: 1px solid var(--color-stroke-strong);
 
   &[data-active] {
     background-color: $bgColor;
