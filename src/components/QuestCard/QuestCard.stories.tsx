@@ -44,6 +44,22 @@ export const Detailed: Story = {
   }
 }
 
+export const QuestTitle: Story = {
+  args: {
+    ...props,
+    currencyAmount: '+200',
+    currencyName: 'The Eternal Symbol of the Luminant Realms',
+    questName:
+      'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    description: '',
+    rewardImage: cupheadCard,
+    classNames: {
+      root: styles.root,
+      image: styles.oddSizedImage
+    }
+  }
+}
+
 export const WithoutCredits: Story = {
   args: {
     ...props,
