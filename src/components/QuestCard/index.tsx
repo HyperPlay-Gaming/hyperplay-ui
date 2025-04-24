@@ -2,6 +2,8 @@ import cn from 'classnames'
 
 import { CardGeneric, CardGenericProps } from '../CardGeneric'
 import styles from './index.module.scss'
+import { Tooltip } from '@mantine/core'
+import { useEffect, useRef, useState } from 'react'
 
 export interface QuestCardProps
   extends Omit<React.ComponentPropsWithoutRef<'div'>, keyof CardGenericProps> {
@@ -50,6 +52,31 @@ export function QuestCard({
 }: QuestCardProps) {
   const classes: Record<string, boolean> = {}
   classes[styles.selected] = !!selected
+  const textRef = useRef<HTMLDivElement>(null)
+  const [showTooltip, setShowTooltip] = useState(false)
+  const currencyNameRef = useRef<HTMLDivElement>(null)
+  const [showCurrencyName, setShowCurrencyName] = useState(false)
+
+  // @TODO refactor into hook
+  useEffect(() => {
+    const el = textRef.current
+    if (el) {
+      const isOverflowing =
+        el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight
+      setShowTooltip(isOverflowing)
+    }
+  }, [description])
+
+  // @TODO refactor into hook
+  useEffect(() => {
+    const el = currencyNameRef.current
+    if (el) {
+      const isOverflowing =
+        el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight
+      setShowCurrencyName(isOverflowing)
+    }
+  }, [currencyName])
+
   return (
     <CardGeneric
       className={cn(styles.card, className)}
@@ -84,15 +111,26 @@ export function QuestCard({
             </div>
           ) : null}
           {description ? (
-            <div
-              className={cn(
-                styles.description,
-                'eyebrow',
-                classNames?.description
-              )}
+            <Tooltip
+              arrowSize={16}
+              position="bottom"
+              arrowPosition="center"
+              withArrow
+              label={description}
+              className={cn(styles.tooltip, { [styles.show]: showTooltip })}
+              events={{ hover: true, touch: true, focus: false }}
             >
-              {description}
-            </div>
+              <div
+                className={cn(
+                  styles.description,
+                  'eyebrow',
+                  classNames?.description
+                )}
+                ref={textRef}
+              >
+                {description}
+              </div>
+            </Tooltip>
           ) : null}
           {questName ? (
             <div
@@ -121,15 +159,28 @@ export function QuestCard({
                   className={cn(styles.avatar, classNames?.avatar)}
                 />
               </div>
-              <div
-                className={cn(
-                  styles.currencyName,
-                  'body-sm',
-                  classNames?.currencyName
-                )}
+              <Tooltip
+                arrowSize={16}
+                position="bottom"
+                arrowPosition="center"
+                withArrow
+                label={currencyName}
+                className={cn(styles.tooltip, {
+                  [styles.show]: showCurrencyName
+                })}
+                events={{ hover: true, touch: true, focus: false }}
               >
-                {currencyName}
-              </div>
+                <div
+                  ref={currencyNameRef}
+                  className={cn(
+                    styles.currencyName,
+                    'body-sm',
+                    classNames?.currencyName
+                  )}
+                >
+                  {currencyName}
+                </div>
+              </Tooltip>
             </div>
 
             {currencyAmount && (
