@@ -57,6 +57,7 @@ export function QuestCard({
   const currencyNameRef = useRef<HTMLDivElement>(null)
   const [showCurrencyName, setShowCurrencyName] = useState(false)
 
+  // @TODO refactor into hook
   useEffect(() => {
     const el = textRef.current
     if (el) {
@@ -66,6 +67,7 @@ export function QuestCard({
     }
   }, [description])
 
+  // @TODO refactor into hook
   useEffect(() => {
     const el = currencyNameRef.current
     if (el) {
