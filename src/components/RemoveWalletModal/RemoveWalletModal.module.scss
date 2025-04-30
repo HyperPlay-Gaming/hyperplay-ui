@@ -5,19 +5,20 @@
 
 .footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: var(--space-md);
   width: fit-content;
-  margin: auto;
 }
 
 .iconContainer {
-  background: var(--color-error-400);
+  background: var(--fill-error-weak);
   border-radius: 50%;
 }
 
 .icon {
-  stroke: var(--color-neutral-800);
+  path {
+    color: var(--icon-error);
+  }
 }
 
 .form {

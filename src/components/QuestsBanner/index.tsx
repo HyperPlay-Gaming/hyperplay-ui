@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Carousel } from '@mantine/carousel'
 import cn from 'classnames'
 import Autoplay, { AutoplayType } from 'embla-carousel-autoplay'
-import { EmblaCarouselType } from 'embla-carousel-react'
+import useEmblaCarousel from 'embla-carousel-react'
 
 import { Line } from '@/assets/images'
 import Button from '@/components/Button'
@@ -61,7 +61,9 @@ export const QuestsBanner = ({
   const autoplay = useRef<AutoplayType>(
     Autoplay({ delay: autoplayDelayInMs, stopOnInteraction: false })
   )
-  const [emblaApiRef, setEmblaApiRef] = useState<EmblaCarouselType>()
+  //corrected emblaApiRef type
+  const [, emblaApi] = useEmblaCarousel()
+  const [emblaApiRef, setEmblaApiRef] = useState(emblaApi)
 
   const handlePageChange = (pageIndex: number) => {
     emblaApiRef?.scrollTo(pageIndex)
@@ -143,16 +145,18 @@ export const QuestsBanner = ({
                         classNames?.contentText
                       )}
                     >
-                      <h2
+                      <div
                         className={cn(
+                          'h5',
                           styles.bannerTitle,
                           classNames?.bannerTitle
                         )}
                       >
                         {title}
-                      </h2>
+                      </div>
                       <div
                         className={cn(
+                          'body',
                           styles.bannerDescription,
                           classNames?.bannerDescription
                         )}
@@ -161,7 +165,8 @@ export const QuestsBanner = ({
                       </div>
                     </div>
                     <Button
-                      type="secondary"
+                      type="primary"
+                      size="medium"
                       onClick={onButtonTap}
                       className={cn(
                         styles.bannerButton,
