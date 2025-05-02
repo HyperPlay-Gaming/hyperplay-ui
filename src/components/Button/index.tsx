@@ -38,6 +38,33 @@ export interface ButtonProps
   spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
+export function getButtonsClassNames({
+  type = 'primary',
+  size = 'medium',
+  active,
+  className: propClassName,
+  focusVisible,
+  hover
+}: ButtonProps & {
+  className?: string
+}) {
+  return classNames(
+    styles.base,
+    styles[type],
+    styles[size],
+    size === 'small' ? 'button-sm' : 'button',
+    {
+      [styles.link]: type === 'menuItem',
+      'menu-item': type === 'menuItem',
+      [styles.active]: active,
+      [styles.focusVisible]: focusVisible,
+      [styles.hover]: hover,
+      hover: hover
+    },
+    propClassName
+  )
+}
+
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     type = 'primary',
