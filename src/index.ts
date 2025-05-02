@@ -268,3 +268,5 @@ export * from './components/PlatformIcon'
 export { default as Sticker, type StickerProps } from './components/Sticker'
 
 export { default as IconsStack } from './components/IconsStack'
+
+export { getButtonsClassNames } from './components/Button'
