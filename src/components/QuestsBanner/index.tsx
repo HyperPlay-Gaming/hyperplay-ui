@@ -3,7 +3,11 @@ import { useEffect, useRef, useState } from 'react'
 import { Carousel } from '@mantine/carousel'
 import cn from 'classnames'
 import Autoplay, { AutoplayType } from 'embla-carousel-autoplay'
+<<<<<<< HEAD
 import useEmblaCarousel from 'embla-carousel-react'
+=======
+import { EmblaCarouselType } from 'embla-carousel'
+>>>>>>> 1a4d86c3d3fef164cf5cc2e5a1ebeaa06fd73a40
 
 import { Line } from '@/assets/images'
 import Button from '@/components/Button'
@@ -41,7 +45,6 @@ export interface QuestsBannerProps {
     activateIndicator?: string
   }
   list?: QuestsBannerSlideItemProp[]
-  totalPages: number
   canAutoRotate?: boolean
   autoplayDelayInMs?: number
   carousel?: QuestsBannerCarouselWidth
@@ -51,15 +54,18 @@ export interface QuestsBannerProps {
 export const QuestsBanner = ({
   classNames,
   list = [],
-  totalPages,
   canAutoRotate = true,
   autoplayDelayInMs = 6000,
   carousel,
   onPageChangeTap
 }: QuestsBannerProps) => {
   const [currentPage, setCurrentPage] = useState(0)
+  const hasMoreThanOneItem = list.length > 1
   const autoplay = useRef<AutoplayType>(
-    Autoplay({ delay: autoplayDelayInMs, stopOnInteraction: false })
+    Autoplay({
+      delay: autoplayDelayInMs,
+      stopOnInteraction: false
+    })
   )
   //corrected emblaApiRef type
   const [, emblaApi] = useEmblaCarousel()
@@ -72,14 +78,14 @@ export const QuestsBanner = ({
   }
 
   useEffect(() => {
-    if (emblaApiRef) {
+    if (emblaApiRef && hasMoreThanOneItem) {
       if (canAutoRotate) {
         autoplay.current.play()
       } else {
         autoplay.current.stop()
       }
     }
-  }, [emblaApiRef, canAutoRotate])
+  }, [emblaApiRef, canAutoRotate, hasMoreThanOneItem])
 
   return (
     <div
@@ -106,23 +112,25 @@ export const QuestsBanner = ({
       <div className={cn(styles.content, classNames?.content)}>
         <div className={cn(styles.carouselWrapper)}>
           <Carousel
-            getEmblaApi={(embla) => setEmblaApiRef(embla)}
+            getEmblaApi={(embla) =>
+              hasMoreThanOneItem ? setEmblaApiRef(embla) : undefined
+            }
             classNames={{
               slide: cn(styles.slide, classNames?.slide)
             }}
             onSlideChange={(index) => {
               setCurrentPage(index)
             }}
-            plugins={[autoplay.current]}
+            plugins={hasMoreThanOneItem ? [autoplay.current] : []}
             onMouseEnter={() => {
-              if (canAutoRotate) {
-                autoplay.current.stop()
+              if (canAutoRotate && hasMoreThanOneItem) {
+                autoplay.current?.stop()
               }
             }}
             onMouseLeave={() => {
-              if (canAutoRotate) {
-                autoplay.current.stop()
-                autoplay.current.play()
+              if (canAutoRotate && hasMoreThanOneItem) {
+                autoplay.current?.stop()
+                autoplay.current?.play()
               }
             }}
             withControls={false}
@@ -187,7 +195,7 @@ export const QuestsBanner = ({
             classNames?.paginitionContainer
           )}
         >
-          {Array.from({ length: totalPages }).map((_, index) => (
+          {Array.from({ length: list.length }).map((_, index) => (
             <Line
               onClick={() => handlePageChange(index)}
               className={cn(
