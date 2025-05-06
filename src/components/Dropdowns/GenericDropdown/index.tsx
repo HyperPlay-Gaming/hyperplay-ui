@@ -25,13 +25,13 @@ const GenericButton = forwardRef<HTMLButtonElement, GenericButtonProps>(
     return (
       <Button
         htmlType="button"
-        type="tertiary"
+        type="tertiary-neutral"
         rightIcon={<DownArrow fill="var(--color-neutral-400)" />}
         className={`${styles.genericButton} ${className}`}
         {...props}
         ref={ref}
       >
-        <div className="title" style={{ width: '100%' }} {...divProps}>
+        <div className="title-sm" style={{ width: '100%' }} {...divProps}>
           {props.text}
         </div>
       </Button>
