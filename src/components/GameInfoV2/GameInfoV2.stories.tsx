@@ -66,7 +66,7 @@ export const Default: Story = {
       year: 2025
     },
     actionButton: (
-      <Button type="secondary" size="medium" className={styles.addButton}>
+      <Button type="primary" size="medium" className={styles.addButton}>
         Add to Library
       </Button>
     )
