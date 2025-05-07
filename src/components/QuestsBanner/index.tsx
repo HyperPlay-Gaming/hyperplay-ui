@@ -72,14 +72,14 @@ export const QuestsBanner = ({
   }
 
   useEffect(() => {
-    if (emblaApiRef) {
+    if (emblaApiRef && hasMoreThanOneItem) {
       if (canAutoRotate) {
         autoplay.current.play()
       } else {
         autoplay.current.stop()
       }
     }
-  }, [emblaApiRef, canAutoRotate])
+  }, [emblaApiRef, canAutoRotate, hasMoreThanOneItem])
 
   return (
     <div
@@ -106,21 +106,23 @@ export const QuestsBanner = ({
       <div className={cn(styles.content, classNames?.content)}>
         <div className={cn(styles.carouselWrapper)}>
           <Carousel
-            getEmblaApi={(embla) => setEmblaApiRef(embla)}
+            getEmblaApi={(embla) =>
+              hasMoreThanOneItem ? setEmblaApiRef(embla) : undefined
+            }
             classNames={{
               slide: cn(styles.slide, classNames?.slide)
             }}
             onSlideChange={(index) => {
               setCurrentPage(index)
             }}
-            plugins={[autoplay.current]}
+            plugins={hasMoreThanOneItem ? [autoplay.current] : []}
             onMouseEnter={() => {
-              if (canAutoRotate) {
+              if (canAutoRotate && hasMoreThanOneItem) {
                 autoplay.current.stop()
               }
             }}
             onMouseLeave={() => {
-              if (canAutoRotate) {
+              if (canAutoRotate && hasMoreThanOneItem) {
                 autoplay.current.stop()
                 autoplay.current.play()
               }
