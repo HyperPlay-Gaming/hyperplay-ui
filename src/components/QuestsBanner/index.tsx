@@ -14,8 +14,9 @@ export interface QuestsBannerSlideItemProp {
   bannerImageUrl: string
   title: string
   description: string
-  buttonText: string
-  onButtonTap: () => void
+  buttonText?: string
+  onButtonTap?: () => void
+  buttonContainer?: React.ReactNode
 }
 
 export interface QuestsBannerCarouselWidth {
@@ -131,7 +132,16 @@ export const QuestsBanner = ({
             withIndicators={false}
           >
             {list?.map(
-              ({ title, description, buttonText, onButtonTap }, index) => (
+              (
+                {
+                  title,
+                  description,
+                  buttonText,
+                  onButtonTap,
+                  buttonContainer
+                },
+                index
+              ) => (
                 <Carousel.Slide
                   key={index}
                   className={cn(
@@ -164,16 +174,20 @@ export const QuestsBanner = ({
                         {description}
                       </div>
                     </div>
-                    <Button
-                      type="secondary"
-                      onClick={onButtonTap}
-                      className={cn(
-                        styles.bannerButton,
-                        classNames?.bannerButton
-                      )}
-                    >
-                      {buttonText}
-                    </Button>
+                    {buttonContainer ? (
+                      buttonContainer
+                    ) : (
+                      <Button
+                        type="secondary"
+                        onClick={onButtonTap}
+                        className={cn(
+                          styles.bannerButton,
+                          classNames?.bannerButton
+                        )}
+                      >
+                        {buttonText}
+                      </Button>
+                    )}
                   </div>
                 </Carousel.Slide>
               )
@@ -186,18 +200,20 @@ export const QuestsBanner = ({
             classNames?.paginitionContainer
           )}
         >
-          {Array.from({ length: list.length }).map((_, index) => (
-            <Line
-              onClick={() => handlePageChange(index)}
-              className={cn(
-                styles.line,
-                classNames?.indicator,
-                index === currentPage ? styles.activateIndicator : '',
-                index === currentPage ? classNames?.activateIndicator : ''
-              )}
-              key={`quests-banner-pagination-${index}`}
-            />
-          ))}
+          {hasMoreThanOneItem
+            ? Array.from({ length: list.length }).map((_, index) => (
+                <Line
+                  onClick={() => handlePageChange(index)}
+                  className={cn(
+                    styles.line,
+                    classNames?.indicator,
+                    index === currentPage ? styles.activateIndicator : '',
+                    index === currentPage ? classNames?.activateIndicator : ''
+                  )}
+                  key={`quests-banner-pagination-${index}`}
+                />
+              ))
+            : null}
         </div>
       </div>
     </div>
