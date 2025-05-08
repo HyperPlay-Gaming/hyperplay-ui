@@ -68,7 +68,7 @@ export default function UpdatesSubscriptionModal({
         <AlertBell className={styles.icon} width={20} height={20} />
       </Modal.HeadingIcon>
       <Modal.Header>
-        <Modal.Title>{i18n?.title}</Modal.Title>
+        <Modal.Title className="title">{i18n?.title}</Modal.Title>
         <Modal.Body className="body-sm">{i18n?.body}</Modal.Body>
       </Modal.Header>
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -85,13 +85,13 @@ export default function UpdatesSubscriptionModal({
           <Button
             disabled={loading}
             aria-label={loading ? 'loading' : undefined}
-            type={loading ? 'tertiary' : 'secondary'}
+            type={loading ? 'secondary' : 'primary'}
             htmlType="submit"
             className={cn(loading && styles.loadingButton)}
           >
             {loading ? <Loading /> : i18n?.submitButtonLabel}
           </Button>
-          <Button type="link" htmlType="button" onClick={props.onCancel}>
+          <Button type="secondary" htmlType="button" onClick={props.onCancel}>
             {i18n?.cancelButtonLabel}
           </Button>
         </div>

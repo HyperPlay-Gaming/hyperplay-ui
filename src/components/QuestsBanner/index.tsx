@@ -42,6 +42,7 @@ export interface QuestsBannerProps {
     activateIndicator?: string
   }
   list?: QuestsBannerSlideItemProp[]
+  totalPages: number
   canAutoRotate?: boolean
   autoplayDelayInMs?: number
   carousel?: QuestsBannerCarouselWidth
@@ -59,11 +60,9 @@ export const QuestsBanner = ({
   const [currentPage, setCurrentPage] = useState(0)
   const hasMoreThanOneItem = list.length > 1
   const autoplay = useRef<AutoplayType>(
-    Autoplay({
-      delay: autoplayDelayInMs,
-      stopOnInteraction: false
-    })
+    Autoplay({ delay: autoplayDelayInMs, stopOnInteraction: false })
   )
+
   const [emblaApiRef, setEmblaApiRef] = useState<EmblaCarouselType>()
 
   const handlePageChange = (pageIndex: number) => {
@@ -119,13 +118,13 @@ export const QuestsBanner = ({
             plugins={hasMoreThanOneItem ? [autoplay.current] : []}
             onMouseEnter={() => {
               if (canAutoRotate && hasMoreThanOneItem) {
-                autoplay.current?.stop()
+                autoplay.current.stop()
               }
             }}
             onMouseLeave={() => {
               if (canAutoRotate && hasMoreThanOneItem) {
-                autoplay.current?.stop()
-                autoplay.current?.play()
+                autoplay.current.stop()
+                autoplay.current.play()
               }
             }}
             withControls={false}
@@ -157,16 +156,18 @@ export const QuestsBanner = ({
                         classNames?.contentText
                       )}
                     >
-                      <h2
+                      <div
                         className={cn(
+                          'h5',
                           styles.bannerTitle,
                           classNames?.bannerTitle
                         )}
                       >
                         {title}
-                      </h2>
+                      </div>
                       <div
                         className={cn(
+                          'body',
                           styles.bannerDescription,
                           classNames?.bannerDescription
                         )}
@@ -178,7 +179,8 @@ export const QuestsBanner = ({
                       buttonContainer
                     ) : (
                       <Button
-                        type="secondary"
+                        type="primary"
+                        size="medium"
                         onClick={onButtonTap}
                         className={cn(
                           styles.bannerButton,

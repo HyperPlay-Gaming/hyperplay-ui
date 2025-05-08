@@ -86,9 +86,7 @@ export default function OptionsDropdown(props: OptionsDropdownProps) {
 
   x.push(
     <Button type="tertiary" size="small" onClick={clearOptions}>
-      <div className="button-sm" style={{ color: 'var(--color-neutral-100)' }}>
-        Clear filter
-      </div>
+      <div className="button-sm">Clear filter</div>
     </Button>
   )
 

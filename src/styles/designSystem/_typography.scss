@@ -285,7 +285,7 @@ $titleFontSize: --text-xl;
   @include title-mixin();
 }
 
-$titleSmFontSize: --text-xl;
+$titleSmFontSize: --text-lg;
 .title-sm {
   font-family: var(--primary-font-family);
   font-size: var($titleSmFontSize);

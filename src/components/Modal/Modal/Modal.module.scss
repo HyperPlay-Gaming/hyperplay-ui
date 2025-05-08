@@ -4,7 +4,7 @@
   padding: var(--space-xl) calc(var(--space-xl) * 1.25);
   gap: var(--space-2lg);
   border-radius: var(--space-md);
-  background: var(--color-neutral-800);
+  background: var(--background-base);
   width: 100%;
   position: relative;
 }
@@ -26,15 +26,11 @@
 }
 
 .title {
-  color: white;
-  font-size: var(--text-xl);
-  line-height: calc(var(--text-xl) * 1.25);
-  font-weight: var(--bold);
-  letter-spacing: -0.16px;
+  color: var(--text-strong);
 }
 
 .subtitle {
-  color: var(--color-neutral-400);
+  color: var(--text-weak);
   margin-top: 0;
   margin-bottom: 0;
 }

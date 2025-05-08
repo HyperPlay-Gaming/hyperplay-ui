@@ -76,7 +76,7 @@ const Login = ({
             <Button
               disabled={loading}
               aria-label={loading ? 'loading' : undefined}
-              type={loading ? 'tertiary' : 'secondary'}
+              type={loading ? 'secondary' : 'primary'}
               htmlType="submit"
               size="medium"
               className={cn(loading && styles.loadingButton)}

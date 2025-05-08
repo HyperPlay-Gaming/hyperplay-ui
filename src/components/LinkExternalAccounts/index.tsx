@@ -87,7 +87,7 @@ export default function LinkExternalAccountsModal({
             {i18n.hi} {email}
           </Modal.Title>
         ) : null}
-        <Modal.Title>{i18n.title}</Modal.Title>
+        <Modal.Title className="title">{i18n.title}</Modal.Title>
       </Modal.Header>
       {alert && <Alert {...alert}></Alert>}
       <div className={styles.providersContainer}>
