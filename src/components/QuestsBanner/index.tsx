@@ -64,7 +64,6 @@ export const QuestsBanner = ({
   )
 
   const [emblaApiRef, setEmblaApiRef] = useState<EmblaCarouselType>()
-  const hasMoreThanOneItem = list.length > 1
 
   const handlePageChange = (pageIndex: number) => {
     emblaApiRef?.scrollTo(pageIndex)
@@ -180,8 +179,6 @@ export const QuestsBanner = ({
                       buttonContainer
                     ) : (
                       <Button
-                        type="primary"
-                        size="medium"
                         type="primary"
                         size="medium"
                         onClick={onButtonTap}
