@@ -437,7 +437,6 @@ button.base {
     content: '';
     position: absolute;
     inset: 1px;
-    z-index: -1;
     transition: background-color 0.2s ease;
   }
 
