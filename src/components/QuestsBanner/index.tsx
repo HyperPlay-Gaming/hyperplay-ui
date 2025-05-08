@@ -52,7 +52,6 @@ export interface QuestsBannerProps {
 export const QuestsBanner = ({
   classNames,
   list = [],
-  totalPages,
   canAutoRotate = true,
   autoplayDelayInMs = 6000,
   carousel,
@@ -65,6 +64,7 @@ export const QuestsBanner = ({
   //corrected emblaApiRef type
   const [, emblaApi] = useEmblaCarousel()
   const [emblaApiRef, setEmblaApiRef] = useState(emblaApi)
+  const hasMoreThanOneItem = list.length > 1
 
   const handlePageChange = (pageIndex: number) => {
     emblaApiRef?.scrollTo(pageIndex)
@@ -178,7 +178,8 @@ export const QuestsBanner = ({
                       buttonContainer
                     ) : (
                       <Button
-                        type="secondary"
+                        type="primary"
+                        size="medium"
                         onClick={onButtonTap}
                         className={cn(
                           styles.bannerButton,
