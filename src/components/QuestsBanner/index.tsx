@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Carousel } from '@mantine/carousel'
 import cn from 'classnames'
 import Autoplay, { AutoplayType } from 'embla-carousel-autoplay'
-import useEmblaCarousel from 'embla-carousel-react'
+import { EmblaCarouselType } from 'embla-carousel'
 
 import { Line } from '@/assets/images'
 import Button from '@/components/Button'
@@ -58,12 +58,12 @@ export const QuestsBanner = ({
   onPageChangeTap
 }: QuestsBannerProps) => {
   const [currentPage, setCurrentPage] = useState(0)
+  const hasMoreThanOneItem = list.length > 1
   const autoplay = useRef<AutoplayType>(
     Autoplay({ delay: autoplayDelayInMs, stopOnInteraction: false })
   )
-  //corrected emblaApiRef type
-  const [, emblaApi] = useEmblaCarousel()
-  const [emblaApiRef, setEmblaApiRef] = useState(emblaApi)
+
+  const [emblaApiRef, setEmblaApiRef] = useState<EmblaCarouselType>()
   const hasMoreThanOneItem = list.length > 1
 
   const handlePageChange = (pageIndex: number) => {
@@ -73,14 +73,14 @@ export const QuestsBanner = ({
   }
 
   useEffect(() => {
-    if (emblaApiRef) {
+    if (emblaApiRef && hasMoreThanOneItem) {
       if (canAutoRotate) {
         autoplay.current.play()
       } else {
         autoplay.current.stop()
       }
     }
-  }, [emblaApiRef, canAutoRotate])
+  }, [emblaApiRef, canAutoRotate, hasMoreThanOneItem])
 
   return (
     <div
@@ -107,21 +107,23 @@ export const QuestsBanner = ({
       <div className={cn(styles.content, classNames?.content)}>
         <div className={cn(styles.carouselWrapper)}>
           <Carousel
-            getEmblaApi={(embla) => setEmblaApiRef(embla)}
+            getEmblaApi={(embla) =>
+              hasMoreThanOneItem ? setEmblaApiRef(embla) : undefined
+            }
             classNames={{
               slide: cn(styles.slide, classNames?.slide)
             }}
             onSlideChange={(index) => {
               setCurrentPage(index)
             }}
-            plugins={[autoplay.current]}
+            plugins={hasMoreThanOneItem ? [autoplay.current] : []}
             onMouseEnter={() => {
-              if (canAutoRotate) {
+              if (canAutoRotate && hasMoreThanOneItem) {
                 autoplay.current.stop()
               }
             }}
             onMouseLeave={() => {
-              if (canAutoRotate) {
+              if (canAutoRotate && hasMoreThanOneItem) {
                 autoplay.current.stop()
                 autoplay.current.play()
               }
@@ -178,6 +180,8 @@ export const QuestsBanner = ({
                       buttonContainer
                     ) : (
                       <Button
+                        type="primary"
+                        size="medium"
                         type="primary"
                         size="medium"
                         onClick={onButtonTap}
