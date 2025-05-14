@@ -13,9 +13,13 @@ import { TokenIdRowProps } from './components/RewardERC721Deposit/components/Tok
 import RewardERC1155Deposit from './components/RewardERC1155Deposit'
 import { RewardDeposit } from './index'
 
-type Story = StoryObj<typeof RewardDeposit>
+type RewardDepositStoryProps = React.ComponentProps<typeof RewardDeposit> & {
+  questType?: 'PLAYSTREAK' | 'LEADERBOARD'
+}
 
-const meta: Meta<typeof RewardDeposit> = {
+type Story = StoryObj<typeof RewardDeposit & { questType?: string }>
+
+const meta: Meta<RewardDepositStoryProps> = {
   title: 'Quests/RewardDeposit',
   component: RewardDeposit,
   args: {
@@ -48,7 +52,7 @@ type ERC20Form = z.infer<typeof erc20Schema>
 const formatAmount = (amount: number) => amount.toLocaleString('en-US')
 
 export const ERC20PendingDeposit: Story = {
-  render: (args) => {
+  render: (args: RewardDepositStoryProps) => {
     const isLeaderboard = args.questType === 'LEADERBOARD'
     if (isLeaderboard) args.amountPerPlayer = undefined
 
@@ -100,7 +104,7 @@ export const ERC20PendingDeposit: Story = {
 }
 
 export const ERC20Deposited: Story = {
-  render: (args) => {
+  render: (args: RewardDepositStoryProps) => {
     const isLeaderboard = args.questType === 'LEADERBOARD'
     if (isLeaderboard) args.amountPerPlayer = undefined
 
@@ -154,9 +158,10 @@ export const ERC721PendingDeposit: Story = {
     tokenName: 'AZUKI',
     amountPerPlayer: undefined
   },
-  render: (args) => {
+  render: (args: RewardDepositStoryProps, context) => {
     const isLeaderboard = args.questType === 'LEADERBOARD'
-    if (isLeaderboard) args.amountPerPlayer = undefined
+    const componentProps = { ...args }
+    if (isLeaderboard) componentProps.amountPerPlayer = undefined
 
     const mockedOwnedTokenIds = new Map<number, boolean>(
       [1, 2, 3, 4, 5].map((id) => [id, true])
@@ -230,12 +235,11 @@ export const ERC721PendingDeposit: Story = {
     }))
 
     const totalPlayerReach = tokenIds.length
-
-    const message = `A total of ${totalPlayerReach} players be each able to claim 1 ${args.tokenName} for successfully completing this Quest.`
+    const message = `A total of ${totalPlayerReach} players be each able to claim 1 ${componentProps.tokenName} for successfully completing this Quest.`
 
     return (
       <RewardDeposit
-        {...args}
+        {...componentProps}
         playerReach={totalPlayerReach ? totalPlayerReach.toString() : '-'}
         DepositComponent={
           <RewardERC721Deposit
@@ -279,14 +283,17 @@ export const ERC721Deposited: Story = {
     tokenName: 'AZUKI',
     amountPerPlayer: undefined
   },
-  render: (args) => {
+  render: (args: RewardDepositStoryProps, context) => {
     const isLeaderboard = args.questType === 'LEADERBOARD'
+    const componentProps = { ...args }
+    componentProps.amountPerPlayer = undefined
+
     const tokenIdsList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    const message = `A total of ${tokenIdsList.length} players will each be able to claim 1 ${args.tokenName} for successfully completing this Quest.`
+    const message = `A total of ${tokenIdsList.length} players will each be able to claim 1 ${componentProps.tokenName} for successfully completing this Quest.`
 
     return (
       <RewardDeposit
-        {...args}
+        {...componentProps}
         state="DEPOSITED"
         playerReach={tokenIdsList.length.toString()}
         DepositComponent={
@@ -423,9 +430,10 @@ export const ERC1155PendingDeposit: Story = {
     tokenName: mockedErc1155RewardsTokens.map((token) => token.name).join(', '),
     marketplaceUrl: 'https://opensea.io/collection/azuki'
   },
-  render: (args) => {
+  render: (args: RewardDepositStoryProps, context) => {
     const isLeaderboard = args.questType === 'LEADERBOARD'
-    if (isLeaderboard) args.amountPerPlayer = undefined
+    const componentProps = { ...args }
+    if (isLeaderboard) componentProps.amountPerPlayer = undefined
 
     const form = useForm<ERC1155Form>({
       initialValues: {
@@ -443,7 +451,7 @@ export const ERC1155PendingDeposit: Story = {
 
     return (
       <RewardDeposit
-        {...args}
+        {...componentProps}
         extraFields={Object.fromEntries(
           mockedErc1155RewardsTokens.map((token) => [
             `Amount Per Player (${token.name})`,
@@ -482,9 +490,10 @@ export const ERC1155Deposited: Story = {
     tokenName: 'GOLD, SILVER',
     marketplaceUrl: 'https://opensea.io/collection/azuki'
   },
-  render: (args) => {
+  render: (args: RewardDepositStoryProps, context) => {
     const isLeaderboard = args.questType === 'LEADERBOARD'
-    if (isLeaderboard) args.amountPerPlayer = undefined
+    const componentProps = { ...args }
+    if (isLeaderboard) componentProps.amountPerPlayer = undefined
 
     const tokenOneName = 'GOLD'
     const tokenTwoName = 'SILVER'
@@ -499,7 +508,7 @@ export const ERC1155Deposited: Story = {
 
     return (
       <RewardDeposit
-        {...args}
+        {...componentProps}
         state="DEPOSITED"
         message={!isLeaderboard ? depositMessage : undefined}
         extraFields={{
