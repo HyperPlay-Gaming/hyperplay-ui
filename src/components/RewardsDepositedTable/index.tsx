@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { TokenType } from '@/common/types'
+import { QuestType, TokenType } from '@/common/types'
 import { getTruncatedAddress } from '@/utils/addressUtils'
 import { getTruncatedUrl } from '@/utils/urlUtil'
 
@@ -32,6 +32,7 @@ export interface RewardsDepositedTableProps {
   marketplaceUrl?: string
   extraFields?: Record<string, string>
   i18n?: RewardDepositedTableI18nProp
+  questType?: QuestType
 }
 
 export const defaultI18n: RewardDepositedTableI18nProp = {
@@ -60,7 +61,8 @@ export function RewardsDepositedTable({
   totalClaimables,
   marketplaceUrl,
   extraFields,
-  i18n = defaultI18n
+  i18n = defaultI18n,
+  questType = 'PLAYSTREAK'
 }: RewardsDepositedTableProps) {
   return (
     <table className={styles.root}>
@@ -96,7 +98,7 @@ export function RewardsDepositedTable({
           <td>{i18n.tokenName}</td>
           <td>{tokenName}</td>
         </tr>
-        {amountPerPlayer !== undefined && (
+        {amountPerPlayer !== undefined && questType !== 'LEADERBOARD' && (
           <tr>
             <td>{i18n.amountPerPlayer}</td>
             <td>{amountPerPlayer}</td>

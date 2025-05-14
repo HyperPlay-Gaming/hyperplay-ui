@@ -25,7 +25,15 @@ const meta: Meta<typeof RewardDeposit> = {
     tokenContractAddress: '0x216e17c29c175c043CF218a9105Aa1b6fa6dB31A',
     rewardType: 'erc20',
     tokenName: 'USDC',
-    amountPerPlayer: 10
+    amountPerPlayer: 10,
+    questType: 'PLAYSTREAK'
+  },
+  argTypes: {
+    questType: {
+      control: 'select',
+      options: ['PLAYSTREAK', 'LEADERBOARD'],
+      description: 'Type of quest'
+    }
   }
 }
 
@@ -60,7 +68,11 @@ export const ERC20PendingDeposit: Story = {
     return (
       <RewardDeposit
         {...args}
-        message={depositingAmount > 0 ? message : undefined}
+        message={
+          depositingAmount > 0 && args.questType !== 'LEADERBOARD'
+            ? message
+            : undefined
+        }
         DepositComponent={
           <RewardERC20Deposit
             totalPlayerReachNumberInputProps={form.getInputProps('playerReach')}
@@ -97,7 +109,7 @@ export const ERC20Deposited: Story = {
       <RewardDeposit
         {...args}
         state="DEPOSITED"
-        message={message}
+        message={args.questType === 'LEADERBOARD' ? undefined : message}
         DepositComponent={
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ color: 'var(--color-neutral-400)' }}>
@@ -216,7 +228,11 @@ export const ERC721PendingDeposit: Story = {
         playerReach={totalPlayerReach ? totalPlayerReach.toString() : '-'}
         DepositComponent={
           <RewardERC721Deposit
-            message={totalPlayerReach > 0 ? message : undefined}
+            message={
+              totalPlayerReach > 0 && args.questType !== 'LEADERBOARD'
+                ? message
+                : undefined
+            }
             defaultTokenIdsListVisibilityState={true}
             onAddTokenTap={onAddToken}
             tokenIdsList={tokenIdsList}
@@ -254,6 +270,8 @@ export const ERC721Deposited: Story = {
   },
   render: (args) => {
     const tokenIdsList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    const message = `A total of ${tokenIdsList.length} players will each be able to claim 1 ${args.tokenName} for successfully completing this Quest.`
+
     return (
       <RewardDeposit
         {...args}
@@ -270,9 +288,9 @@ export const ERC721Deposited: Story = {
               gap: 16
             }}
           >
-            <RewardDepositMessage
-              message={`A total of ${tokenIdsList.length} players will each be able to claim 1 ${args.tokenName} for successfully completing this Quest.`}
-            />
+            {args.questType !== 'LEADERBOARD' && (
+              <RewardDepositMessage message={message} />
+            )}
             <RewardDepositTokenList
               tokenCount={tokenIdsList.length}
               visibleByDefault={true}
@@ -465,7 +483,7 @@ export const ERC1155Deposited: Story = {
       <RewardDeposit
         {...args}
         state="DEPOSITED"
-        message={depositMessage}
+        message={args.questType === 'LEADERBOARD' ? undefined : depositMessage}
         extraFields={{
           [`Amount Per Play: ${tokenOneName}`]: '1',
           [`Amount Per Play: ${tokenTwoName}`]: '1'
