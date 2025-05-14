@@ -60,8 +60,7 @@ export function RewardsDepositedTable({
   totalClaimables,
   marketplaceUrl,
   extraFields,
-  i18n = defaultI18n,
-  questType = 'PLAYSTREAK'
+  i18n = defaultI18n
 }: RewardsDepositedTableProps) {
   return (
     <table className={styles.root}>
