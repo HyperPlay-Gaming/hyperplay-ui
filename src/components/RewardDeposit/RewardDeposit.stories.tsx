@@ -74,9 +74,13 @@ export const ERC20PendingDeposit: Story = {
             : undefined
         }
         DepositComponent={
-          <RewardERC20Deposit
-            totalPlayerReachNumberInputProps={form.getInputProps('playerReach')}
-          />
+          args.questType === 'LEADERBOARD' ? undefined : (
+            <RewardERC20Deposit
+              totalPlayerReachNumberInputProps={form.getInputProps(
+                'playerReach'
+              )}
+            />
+          )
         }
         ActionComponent={
           <RewardDepositActions
@@ -111,12 +115,14 @@ export const ERC20Deposited: Story = {
         state="DEPOSITED"
         message={args.questType === 'LEADERBOARD' ? undefined : message}
         DepositComponent={
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span style={{ color: 'var(--color-neutral-400)' }}>
-              Total Player Reach
-            </span>
-            <span>{playerReach}</span>
-          </div>
+          args.questType === 'LEADERBOARD' ? undefined : (
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: 'var(--color-neutral-400)' }}>
+                Total Player Reach
+              </span>
+              <span>{playerReach}</span>
+            </div>
+          )
         }
       />
     )
@@ -438,16 +444,18 @@ export const ERC1155PendingDeposit: Story = {
           ])
         )}
         DepositComponent={
-          <RewardERC1155Deposit
-            tokenInputsProps={mockedErc1155RewardsTokens.map(
-              (token, index) => ({
-                label: `Total Player Reach: ${token.name}`,
-                ...form.getInputProps(`tokenIds.${index}.playerReach`),
-                placeholder: '0',
-                allowNegative: false
-              })
-            )}
-          />
+          args.questType === 'LEADERBOARD' ? undefined : (
+            <RewardERC1155Deposit
+              tokenInputsProps={mockedErc1155RewardsTokens.map(
+                (token, index) => ({
+                  label: `Total Player Reach: ${token.name}`,
+                  ...form.getInputProps(`tokenIds.${index}.playerReach`),
+                  placeholder: '0',
+                  allowNegative: false
+                })
+              )}
+            />
+          )
         }
         ActionComponent={
           <RewardDepositActions
@@ -483,25 +491,33 @@ export const ERC1155Deposited: Story = {
       <RewardDeposit
         {...args}
         state="DEPOSITED"
-        message={args.questType === 'LEADERBOARD' ? undefined : depositMessage}
+        message={args.questType !== 'LEADERBOARD' ? depositMessage : undefined}
         extraFields={{
           [`Amount Per Play: ${tokenOneName}`]: '1',
           [`Amount Per Play: ${tokenTwoName}`]: '1'
         }}
         DepositComponent={
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: 'var(--color-neutral-400)' }}>
-                Total Player Reach ({tokenOneName})
-              </span>
-              <span>{tokenOneReach}</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: 'var(--color-neutral-400)' }}>
-                Total Player Reach ({tokenTwoName})
-              </span>
-              <span>{tokenTwoReach}</span>
-            </div>
+            {args.questType !== 'LEADERBOARD' && (
+              <>
+                <div
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
+                  <span style={{ color: 'var(--color-neutral-400)' }}>
+                    Total Player Reach ({tokenOneName})
+                  </span>
+                  <span>{tokenOneReach}</span>
+                </div>
+                <div
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
+                  <span style={{ color: 'var(--color-neutral-400)' }}>
+                    Total Player Reach ({tokenTwoName})
+                  </span>
+                  <span>{tokenTwoReach}</span>
+                </div>
+              </>
+            )}
           </div>
         }
       />
