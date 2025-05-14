@@ -49,6 +49,9 @@ const formatAmount = (amount: number) => amount.toLocaleString('en-US')
 
 export const ERC20PendingDeposit: Story = {
   render: (args) => {
+    const isLeaderboard = args.questType === 'LEADERBOARD'
+    if (isLeaderboard) args.amountPerPlayer = undefined
+
     const form = useForm<ERC20Form>({
       validate: zodResolver(erc20Schema)
     })
@@ -68,13 +71,9 @@ export const ERC20PendingDeposit: Story = {
     return (
       <RewardDeposit
         {...args}
-        message={
-          depositingAmount > 0 && args.questType !== 'LEADERBOARD'
-            ? message
-            : undefined
-        }
+        message={depositingAmount > 0 && !isLeaderboard ? message : undefined}
         DepositComponent={
-          args.questType === 'LEADERBOARD' ? undefined : (
+          isLeaderboard ? undefined : (
             <RewardERC20Deposit
               totalPlayerReachNumberInputProps={form.getInputProps(
                 'playerReach'
@@ -102,6 +101,9 @@ export const ERC20PendingDeposit: Story = {
 
 export const ERC20Deposited: Story = {
   render: (args) => {
+    const isLeaderboard = args.questType === 'LEADERBOARD'
+    if (isLeaderboard) args.amountPerPlayer = undefined
+
     const playerReach = 100
     const message = `A total of ${formatAmount(playerReach)} player${
       playerReach > 1 ? 's' : ''
@@ -113,9 +115,9 @@ export const ERC20Deposited: Story = {
       <RewardDeposit
         {...args}
         state="DEPOSITED"
-        message={args.questType === 'LEADERBOARD' ? undefined : message}
+        message={!isLeaderboard ? message : undefined}
         DepositComponent={
-          args.questType === 'LEADERBOARD' ? undefined : (
+          isLeaderboard ? undefined : (
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: 'var(--color-neutral-400)' }}>
                 Total Player Reach
@@ -153,6 +155,9 @@ export const ERC721PendingDeposit: Story = {
     amountPerPlayer: undefined
   },
   render: (args) => {
+    const isLeaderboard = args.questType === 'LEADERBOARD'
+    if (isLeaderboard) args.amountPerPlayer = undefined
+
     const mockedOwnedTokenIds = new Map<number, boolean>(
       [1, 2, 3, 4, 5].map((id) => [id, true])
     )
@@ -275,6 +280,7 @@ export const ERC721Deposited: Story = {
     amountPerPlayer: undefined
   },
   render: (args) => {
+    const isLeaderboard = args.questType === 'LEADERBOARD'
     const tokenIdsList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     const message = `A total of ${tokenIdsList.length} players will each be able to claim 1 ${args.tokenName} for successfully completing this Quest.`
 
@@ -294,9 +300,7 @@ export const ERC721Deposited: Story = {
               gap: 16
             }}
           >
-            {args.questType !== 'LEADERBOARD' && (
-              <RewardDepositMessage message={message} />
-            )}
+            {!isLeaderboard && <RewardDepositMessage message={message} />}
             <RewardDepositTokenList
               tokenCount={tokenIdsList.length}
               visibleByDefault={true}
@@ -420,6 +424,9 @@ export const ERC1155PendingDeposit: Story = {
     marketplaceUrl: 'https://opensea.io/collection/azuki'
   },
   render: (args) => {
+    const isLeaderboard = args.questType === 'LEADERBOARD'
+    if (isLeaderboard) args.amountPerPlayer = undefined
+
     const form = useForm<ERC1155Form>({
       initialValues: {
         tokenIds: mockedErc1155RewardsTokens.map((token) => ({
@@ -444,7 +451,7 @@ export const ERC1155PendingDeposit: Story = {
           ])
         )}
         DepositComponent={
-          args.questType === 'LEADERBOARD' ? undefined : (
+          isLeaderboard ? undefined : (
             <RewardERC1155Deposit
               tokenInputsProps={mockedErc1155RewardsTokens.map(
                 (token, index) => ({
@@ -476,6 +483,9 @@ export const ERC1155Deposited: Story = {
     marketplaceUrl: 'https://opensea.io/collection/azuki'
   },
   render: (args) => {
+    const isLeaderboard = args.questType === 'LEADERBOARD'
+    if (isLeaderboard) args.amountPerPlayer = undefined
+
     const tokenOneName = 'GOLD'
     const tokenTwoName = 'SILVER'
 
@@ -491,14 +501,14 @@ export const ERC1155Deposited: Story = {
       <RewardDeposit
         {...args}
         state="DEPOSITED"
-        message={args.questType !== 'LEADERBOARD' ? depositMessage : undefined}
+        message={!isLeaderboard ? depositMessage : undefined}
         extraFields={{
           [`Amount Per Play: ${tokenOneName}`]: '1',
           [`Amount Per Play: ${tokenTwoName}`]: '1'
         }}
         DepositComponent={
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {args.questType !== 'LEADERBOARD' && (
+            {!isLeaderboard && (
               <>
                 <div
                   style={{ display: 'flex', justifyContent: 'space-between' }}

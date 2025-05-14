@@ -98,7 +98,7 @@ export function RewardsDepositedTable({
           <td>{i18n.tokenName}</td>
           <td>{tokenName}</td>
         </tr>
-        {amountPerPlayer !== undefined && questType !== 'LEADERBOARD' && (
+        {amountPerPlayer !== undefined && (
           <tr>
             <td>{i18n.amountPerPlayer}</td>
             <td>{amountPerPlayer}</td>
