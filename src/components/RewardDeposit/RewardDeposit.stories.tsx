@@ -158,7 +158,7 @@ export const ERC721PendingDeposit: Story = {
     tokenName: 'AZUKI',
     amountPerPlayer: undefined
   },
-  render: (args: RewardDepositStoryProps, context) => {
+  render: (args: RewardDepositStoryProps) => {
     const isLeaderboard = args.questType === 'LEADERBOARD'
     const componentProps = { ...args }
     if (isLeaderboard) componentProps.amountPerPlayer = undefined
@@ -283,7 +283,7 @@ export const ERC721Deposited: Story = {
     tokenName: 'AZUKI',
     amountPerPlayer: undefined
   },
-  render: (args: RewardDepositStoryProps, context) => {
+  render: (args: RewardDepositStoryProps) => {
     const isLeaderboard = args.questType === 'LEADERBOARD'
     const componentProps = { ...args }
     componentProps.amountPerPlayer = undefined
@@ -430,7 +430,7 @@ export const ERC1155PendingDeposit: Story = {
     tokenName: mockedErc1155RewardsTokens.map((token) => token.name).join(', '),
     marketplaceUrl: 'https://opensea.io/collection/azuki'
   },
-  render: (args: RewardDepositStoryProps, context) => {
+  render: (args: RewardDepositStoryProps) => {
     const isLeaderboard = args.questType === 'LEADERBOARD'
     const componentProps = { ...args }
     if (isLeaderboard) componentProps.amountPerPlayer = undefined
@@ -490,7 +490,7 @@ export const ERC1155Deposited: Story = {
     tokenName: 'GOLD, SILVER',
     marketplaceUrl: 'https://opensea.io/collection/azuki'
   },
-  render: (args: RewardDepositStoryProps, context) => {
+  render: (args: RewardDepositStoryProps) => {
     const isLeaderboard = args.questType === 'LEADERBOARD'
     const componentProps = { ...args }
     if (isLeaderboard) componentProps.amountPerPlayer = undefined
