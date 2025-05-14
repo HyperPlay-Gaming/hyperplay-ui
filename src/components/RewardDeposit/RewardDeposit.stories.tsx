@@ -13,9 +13,13 @@ import { TokenIdRowProps } from './components/RewardERC721Deposit/components/Tok
 import RewardERC1155Deposit from './components/RewardERC1155Deposit'
 import { RewardDeposit } from './index'
 
-type Story = StoryObj<typeof RewardDeposit>
+type RewardDepositStoryProps = React.ComponentProps<typeof RewardDeposit> & {
+  questType?: 'PLAYSTREAK' | 'LEADERBOARD'
+}
 
-const meta: Meta<typeof RewardDeposit> = {
+type Story = StoryObj<typeof RewardDeposit & { questType?: string }>
+
+const meta: Meta<RewardDepositStoryProps> = {
   title: 'Quests/RewardDeposit',
   component: RewardDeposit,
   args: {
@@ -25,7 +29,15 @@ const meta: Meta<typeof RewardDeposit> = {
     tokenContractAddress: '0x216e17c29c175c043CF218a9105Aa1b6fa6dB31A',
     rewardType: 'erc20',
     tokenName: 'USDC',
-    amountPerPlayer: 10
+    amountPerPlayer: 10,
+    questType: 'PLAYSTREAK'
+  },
+  argTypes: {
+    questType: {
+      control: 'select',
+      options: ['PLAYSTREAK', 'LEADERBOARD'],
+      description: 'Type of quest'
+    }
   }
 }
 
@@ -40,7 +52,10 @@ type ERC20Form = z.infer<typeof erc20Schema>
 const formatAmount = (amount: number) => amount.toLocaleString('en-US')
 
 export const ERC20PendingDeposit: Story = {
-  render: (args) => {
+  render: (args: RewardDepositStoryProps) => {
+    const isLeaderboard = args.questType === 'LEADERBOARD'
+    if (isLeaderboard) args.amountPerPlayer = undefined
+
     const form = useForm<ERC20Form>({
       validate: zodResolver(erc20Schema)
     })
@@ -60,11 +75,15 @@ export const ERC20PendingDeposit: Story = {
     return (
       <RewardDeposit
         {...args}
-        message={depositingAmount > 0 ? message : undefined}
+        message={depositingAmount > 0 && !isLeaderboard ? message : undefined}
         DepositComponent={
-          <RewardERC20Deposit
-            totalPlayerReachNumberInputProps={form.getInputProps('playerReach')}
-          />
+          isLeaderboard ? undefined : (
+            <RewardERC20Deposit
+              totalPlayerReachNumberInputProps={form.getInputProps(
+                'playerReach'
+              )}
+            />
+          )
         }
         ActionComponent={
           <RewardDepositActions
@@ -85,7 +104,10 @@ export const ERC20PendingDeposit: Story = {
 }
 
 export const ERC20Deposited: Story = {
-  render: (args) => {
+  render: (args: RewardDepositStoryProps) => {
+    const isLeaderboard = args.questType === 'LEADERBOARD'
+    if (isLeaderboard) args.amountPerPlayer = undefined
+
     const playerReach = 100
     const message = `A total of ${formatAmount(playerReach)} player${
       playerReach > 1 ? 's' : ''
@@ -97,14 +119,16 @@ export const ERC20Deposited: Story = {
       <RewardDeposit
         {...args}
         state="DEPOSITED"
-        message={message}
+        message={!isLeaderboard ? message : undefined}
         DepositComponent={
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span style={{ color: 'var(--color-neutral-400)' }}>
-              Total Player Reach
-            </span>
-            <span>{playerReach}</span>
-          </div>
+          isLeaderboard ? undefined : (
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: 'var(--color-neutral-400)' }}>
+                Total Player Reach
+              </span>
+              <span>{playerReach}</span>
+            </div>
+          )
         }
       />
     )
@@ -134,7 +158,11 @@ export const ERC721PendingDeposit: Story = {
     tokenName: 'AZUKI',
     amountPerPlayer: undefined
   },
-  render: (args) => {
+  render: (args: RewardDepositStoryProps) => {
+    const isLeaderboard = args.questType === 'LEADERBOARD'
+    const componentProps = { ...args }
+    if (isLeaderboard) componentProps.amountPerPlayer = undefined
+
     const mockedOwnedTokenIds = new Map<number, boolean>(
       [1, 2, 3, 4, 5].map((id) => [id, true])
     )
@@ -207,16 +235,19 @@ export const ERC721PendingDeposit: Story = {
     }))
 
     const totalPlayerReach = tokenIds.length
-
-    const message = `A total of ${totalPlayerReach} players be each able to claim 1 ${args.tokenName} for successfully completing this Quest.`
+    const message = `A total of ${totalPlayerReach} players be each able to claim 1 ${componentProps.tokenName} for successfully completing this Quest.`
 
     return (
       <RewardDeposit
-        {...args}
+        {...componentProps}
         playerReach={totalPlayerReach ? totalPlayerReach.toString() : '-'}
         DepositComponent={
           <RewardERC721Deposit
-            message={totalPlayerReach > 0 ? message : undefined}
+            message={
+              totalPlayerReach > 0 && args.questType !== 'LEADERBOARD'
+                ? message
+                : undefined
+            }
             defaultTokenIdsListVisibilityState={true}
             onAddTokenTap={onAddToken}
             tokenIdsList={tokenIdsList}
@@ -252,11 +283,17 @@ export const ERC721Deposited: Story = {
     tokenName: 'AZUKI',
     amountPerPlayer: undefined
   },
-  render: (args) => {
+  render: (args: RewardDepositStoryProps) => {
+    const isLeaderboard = args.questType === 'LEADERBOARD'
+    const componentProps = { ...args }
+    componentProps.amountPerPlayer = undefined
+
     const tokenIdsList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    const message = `A total of ${tokenIdsList.length} players will each be able to claim 1 ${componentProps.tokenName} for successfully completing this Quest.`
+
     return (
       <RewardDeposit
-        {...args}
+        {...componentProps}
         state="DEPOSITED"
         playerReach={tokenIdsList.length.toString()}
         DepositComponent={
@@ -270,9 +307,7 @@ export const ERC721Deposited: Story = {
               gap: 16
             }}
           >
-            <RewardDepositMessage
-              message={`A total of ${tokenIdsList.length} players will each be able to claim 1 ${args.tokenName} for successfully completing this Quest.`}
-            />
+            {!isLeaderboard && <RewardDepositMessage message={message} />}
             <RewardDepositTokenList
               tokenCount={tokenIdsList.length}
               visibleByDefault={true}
@@ -395,7 +430,11 @@ export const ERC1155PendingDeposit: Story = {
     tokenName: mockedErc1155RewardsTokens.map((token) => token.name).join(', '),
     marketplaceUrl: 'https://opensea.io/collection/azuki'
   },
-  render: (args) => {
+  render: (args: RewardDepositStoryProps) => {
+    const isLeaderboard = args.questType === 'LEADERBOARD'
+    const componentProps = { ...args }
+    if (isLeaderboard) componentProps.amountPerPlayer = undefined
+
     const form = useForm<ERC1155Form>({
       initialValues: {
         tokenIds: mockedErc1155RewardsTokens.map((token) => ({
@@ -412,7 +451,7 @@ export const ERC1155PendingDeposit: Story = {
 
     return (
       <RewardDeposit
-        {...args}
+        {...componentProps}
         extraFields={Object.fromEntries(
           mockedErc1155RewardsTokens.map((token) => [
             `Amount Per Player (${token.name})`,
@@ -420,16 +459,18 @@ export const ERC1155PendingDeposit: Story = {
           ])
         )}
         DepositComponent={
-          <RewardERC1155Deposit
-            tokenInputsProps={mockedErc1155RewardsTokens.map(
-              (token, index) => ({
-                label: `Total Player Reach: ${token.name}`,
-                ...form.getInputProps(`tokenIds.${index}.playerReach`),
-                placeholder: '0',
-                allowNegative: false
-              })
-            )}
-          />
+          isLeaderboard ? undefined : (
+            <RewardERC1155Deposit
+              tokenInputsProps={mockedErc1155RewardsTokens.map(
+                (token, index) => ({
+                  label: `Total Player Reach: ${token.name}`,
+                  ...form.getInputProps(`tokenIds.${index}.playerReach`),
+                  placeholder: '0',
+                  allowNegative: false
+                })
+              )}
+            />
+          )
         }
         ActionComponent={
           <RewardDepositActions
@@ -449,7 +490,11 @@ export const ERC1155Deposited: Story = {
     tokenName: 'GOLD, SILVER',
     marketplaceUrl: 'https://opensea.io/collection/azuki'
   },
-  render: (args) => {
+  render: (args: RewardDepositStoryProps) => {
+    const isLeaderboard = args.questType === 'LEADERBOARD'
+    const componentProps = { ...args }
+    if (isLeaderboard) componentProps.amountPerPlayer = undefined
+
     const tokenOneName = 'GOLD'
     const tokenTwoName = 'SILVER'
 
@@ -463,27 +508,35 @@ export const ERC1155Deposited: Story = {
 
     return (
       <RewardDeposit
-        {...args}
+        {...componentProps}
         state="DEPOSITED"
-        message={depositMessage}
+        message={!isLeaderboard ? depositMessage : undefined}
         extraFields={{
           [`Amount Per Play: ${tokenOneName}`]: '1',
           [`Amount Per Play: ${tokenTwoName}`]: '1'
         }}
         DepositComponent={
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: 'var(--color-neutral-400)' }}>
-                Total Player Reach ({tokenOneName})
-              </span>
-              <span>{tokenOneReach}</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: 'var(--color-neutral-400)' }}>
-                Total Player Reach ({tokenTwoName})
-              </span>
-              <span>{tokenTwoReach}</span>
-            </div>
+            {!isLeaderboard && (
+              <>
+                <div
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
+                  <span style={{ color: 'var(--color-neutral-400)' }}>
+                    Total Player Reach ({tokenOneName})
+                  </span>
+                  <span>{tokenOneReach}</span>
+                </div>
+                <div
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
+                  <span style={{ color: 'var(--color-neutral-400)' }}>
+                    Total Player Reach ({tokenTwoName})
+                  </span>
+                  <span>{tokenTwoReach}</span>
+                </div>
+              </>
+            )}
           </div>
         }
       />
