@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { QuestType, TokenType } from '@/common/types'
+import { TokenType } from '@/common/types'
 import { getTruncatedAddress } from '@/utils/addressUtils'
 import { getTruncatedUrl } from '@/utils/urlUtil'
 
@@ -32,7 +32,6 @@ export interface RewardsDepositedTableProps {
   marketplaceUrl?: string
   extraFields?: Record<string, string>
   i18n?: RewardDepositedTableI18nProp
-  questType?: QuestType
 }
 
 export const defaultI18n: RewardDepositedTableI18nProp = {
