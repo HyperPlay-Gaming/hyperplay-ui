@@ -26,6 +26,7 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
     getTheApp: string
     getHyperPlayApp: string
     developerAgreement?: string
+    careers?: string
   }
   linkProps: {
     privacyPolicy: LinkProps
@@ -40,6 +41,7 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
     showGetTheApp?: boolean
     showBrandLink?: boolean
     showMetaMaskLink?: boolean
+    showCareersLink?: boolean
   }
 }
 
@@ -61,13 +63,15 @@ export function Footer({
     badges: 'BADGES',
     getTheApp: 'Get the App',
     getHyperPlayApp: 'Get HyperPlay Apps',
-    developerAgreement: 'DEVELOPER AGREEMENT'
+    developerAgreement: 'DEVELOPER AGREEMENT',
+    careers: 'CAREERS'
   },
   flags = {
     showLangSelector: false,
     showGetTheApp: true,
     showBrandLink: true,
-    showMetaMaskLink: true
+    showMetaMaskLink: true,
+    showCareersLink: true
   },
   ...props
 }: FooterProps) {
@@ -114,6 +118,16 @@ export function Footer({
                 rel="noopener noreferrer"
               >
                 {i18n.brand}
+              </a>
+            ) : null}
+            {flags.showCareersLink ? (
+              <a
+                className={FooterSectionStyle.footer__link}
+                href="https://jobs.ashbyhq.com/windranger?departmentId=d4a6dd89-7856-4045-921b-e982d346249c"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {i18n.careers}
               </a>
             ) : null}
             <Link
