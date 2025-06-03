@@ -29,7 +29,8 @@ const props: FooterProps = {
     showLangSelector: true,
     showGetTheApp: true,
     showBrandLink: true,
-    showMetaMaskLink: true
+    showMetaMaskLink: true,
+    showCareersLink: true
   }
 }
 
