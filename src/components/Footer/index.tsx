@@ -35,6 +35,7 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
     badges: LinkProps
     downloads: LinkProps
     developerAgreement?: LinkProps
+    careers?: LinkProps
   }
   flags: {
     showLangSelector: boolean
@@ -121,14 +122,12 @@ export function Footer({
               </a>
             ) : null}
             {flags.showCareersLink ? (
-              <a
+              <Link
                 className={FooterSectionStyle.footer__link}
-                href="https://jobs.ashbyhq.com/windranger?departmentId=d4a6dd89-7856-4045-921b-e982d346249c"
-                target="_blank"
-                rel="noopener noreferrer"
+                {...linkProps.careers}
               >
                 {i18n.careers}
-              </a>
+              </Link>
             ) : null}
             <Link
               className={FooterSectionStyle.footer__link}
