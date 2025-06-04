@@ -18,7 +18,10 @@ const props: FooterProps = {
     badges: { href: 'https://github.com/HyperPlay-Gaming/branding-resources' },
     cookiePolicy: { href: 'https://www.hyperplay.xyz/cookie-policy' },
     downloads: { href: 'https://www.hyperplay.xyz/downloads' },
-    developerAgreement: { href: 'https://www.hyperplay.xyz/downloads' }
+    developerAgreement: { href: 'https://www.hyperplay.xyz/downloads' },
+    careers: {
+      href: 'https://jobs.ashbyhq.com/windranger?departmentId=d4a6dd89-7856-4045-921b-e982d346249c'
+    }
   },
   langSelectorProps: {
     i18n: {
