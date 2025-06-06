@@ -36,7 +36,7 @@ const MetaSection: React.FC<MetaSectionProps> = ({
   const [showPopover, { open, close }] = useDisclosure(false)
 
   // Create the +N indicator based on the first visible item style
-  const renderMoreIndicator = () => {
+  const renderMoreIndicator = (): ReactNode => {
     if (moreIndicator) {
       return moreIndicator
     }
