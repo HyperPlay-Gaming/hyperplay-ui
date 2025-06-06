@@ -1,7 +1,7 @@
-@import '../../styles/designSystem/spacing';
-@import '../../styles/designSystem/colors';
-@import '../../styles/designSystem/typography';
-@import '../../styles/utilities/_variables';
+@use '../../styles/designSystem/spacing' as *;
+@use '../../styles/designSystem/colors' as *;
+@use '../../styles/designSystem/typography' as *;
+@use '../../styles/utilities/_variables' as *;
 
 .root {
   max-width: 420px;
