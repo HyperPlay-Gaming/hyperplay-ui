@@ -1,9 +1,4 @@
-import React, {
-  HTMLAttributes,
-  PropsWithChildren,
-  useEffect,
-  useState
-} from 'react'
+import React, { HTMLAttributes, useEffect, useState } from 'react'
 
 import cn from 'classnames'
 
@@ -22,7 +17,7 @@ export interface CollapseClassNamesProp {
 }
 
 export interface CollapseProps
-  extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
+  extends Omit<HTMLAttributes<HTMLButtonElement>, 'onToggle'> {
   title: string
   subtitle?: string
   isOpen?: boolean

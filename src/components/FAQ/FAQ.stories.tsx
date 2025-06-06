@@ -78,18 +78,22 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    const toggleFirstItem = canvas.getByText(props.faqList[0].question)
+    const toggleFirstItem = canvas.getByText(
+      props.faqList[0].question as string
+    )
     await userEvent.click(toggleFirstItem)
 
-    expect(canvas.getByText(props.faqList[0].answer)).toBeVisible()
+    expect(canvas.getByText(props.faqList[0].answer as string)).toBeVisible()
 
     const seeMoreButton = canvas.getByRole('button', { name: /See more/i })
     await userEvent.click(seeMoreButton)
 
-    const toggleInsideSeeMore = canvas.getByText(props.faqList[4].question)
+    const toggleInsideSeeMore = canvas.getByText(
+      props.faqList[4].question as string
+    )
     await userEvent.click(toggleInsideSeeMore)
 
-    expect(canvas.getByText(props.faqList[4].answer)).toBeVisible()
+    expect(canvas.getByText(props.faqList[4].answer as string)).toBeVisible()
 
     const seeLessButton = canvas.getByRole('button', { name: /See less/i })
     await userEvent.click(seeLessButton)

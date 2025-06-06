@@ -26,6 +26,7 @@ const list = [
 const props: QuestsBannerProps = {
   classNames: {},
   list,
+  totalPages: list.length,
   onPageChangeTap: (pageIndex: number) =>
     console.log(`Page changed to ${pageIndex}`)
 }
