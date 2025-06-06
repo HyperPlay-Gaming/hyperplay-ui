@@ -27,7 +27,7 @@ export interface CardGenericProps extends CardProps {
      */
     label?: string
   }
-  statusIcon?: JSX.Element
+  statusIcon?: React.JSX.Element
   showGradientBorderAndShadow?: boolean
   genericClassNames?: {
     root?: string

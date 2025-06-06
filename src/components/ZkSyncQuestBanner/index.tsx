@@ -10,7 +10,7 @@ import styles from './index.module.scss'
 export interface ZkSyncQuestBannerProps extends HTMLProps<HTMLDivElement> {
   i18n?: {
     title?: string
-    description?: JSX.Element
+    description?: React.JSX.Element
     buttonText?: string
   }
   link: string
