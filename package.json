@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.27.0-beta.1",
+  "version": "1.27.0",
   "license": "LGPL-3.0-only",
   "scripts": {
     "dev": "vite",
@@ -101,9 +101,9 @@
     "dayjs": "^1.11.13",
     "embla-carousel-autoplay": ">=8.5.2",
     "embla-carousel-react": ">=8.5.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-markdown": "9.0.1"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-markdown": "10.1.0"
   },
   "module": "dist/index.es.js",
   "files": [
