@@ -22,10 +22,10 @@
     "paths": {
       "react-vite-library": ["src/index.ts"],
       "@/*": ["src/*"],
-      "tests/*": ["./tests/*"]
+      "tests/*": ["src/tests/*"]
     }
   },
-  "include": ["src", "./tests/setup.ts", "./tests/utils/*"],
+  "include": ["src", "src/tests/setup.ts", "src/tests/utils/*"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["vite.config.ts", "node_modules", "node_modules/.pnpm/**"]
 }

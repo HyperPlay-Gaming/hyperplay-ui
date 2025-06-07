@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { expect, userEvent, within } from '@storybook/test'
 
 import { GameSelector } from '.'
-import { wait } from '../../../tests/utils/wait'
+import { wait } from '../../tests/utils/wait'
 import LongListOfGameDetails from './storyData.json'
 import { GameDetails, GameSelectorProps } from './types'
 
