@@ -1,25 +1,18 @@
-import Markdown, { Options as MarkdownProps } from 'react-markdown'
-
-import cn from 'classnames'
+import Markdown, { Options } from 'react-markdown'
 
 import Button from '@/components/Button'
 
 import styles from './MarkdownDescription.module.scss'
 
-export interface MarkdownDescriptionProps extends MarkdownProps {
-  classNames?: {
-    root?: string
-  }
-}
+export type MarkdownDescriptionProps = Options
 
 export const MarkdownDescription = ({
   children,
-  classNames,
   allowedElements = [],
   components = {},
   ...rest
 }: MarkdownDescriptionProps) => {
-  const markdownComponentsProp: MarkdownProps['components'] = {
+  const markdownComponentsProp: MarkdownDescriptionProps['components'] = {
     a: ({ href: markdownLinkHref, children, ...link }) => (
       <a
         target="_blank"
@@ -40,34 +33,34 @@ export const MarkdownDescription = ({
     ...components
   }
 
-  const markdownAllowedElementsProp: MarkdownProps['allowedElements'] = [
-    'p',
-    'strong',
-    'b',
-    'a',
-    'i',
-    'em',
-    'ul',
-    'ol',
-    'li',
-    'blockquote',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'pre',
-    'code',
-    'hr',
-    'br',
-    ...(allowedElements || [])
-  ]
+  const markdownAllowedElementsProp: MarkdownDescriptionProps['allowedElements'] =
+    [
+      'p',
+      'strong',
+      'b',
+      'a',
+      'i',
+      'em',
+      'ul',
+      'ol',
+      'li',
+      'blockquote',
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'h5',
+      'h6',
+      'pre',
+      'code',
+      'hr',
+      'br',
+      ...(allowedElements || [])
+    ]
 
   return (
     <Markdown
       {...rest}
-      className={cn(styles.root, classNames?.root)}
       components={markdownComponentsProp}
       allowedElements={markdownAllowedElementsProp}
     >

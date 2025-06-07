@@ -109,8 +109,7 @@ export const WithErrorCodeOpenedDefault: Story = {
     codeInputProps: {
       error: 'Verification failed. Please try again.',
       rightSection: <XCircle width={20} height={20} />
-    },
-    defaultManualOtpOpen: true
+    }
   },
   render: (args) => (
     <div style={{ display: 'flex', justifyContent: 'center' }}>

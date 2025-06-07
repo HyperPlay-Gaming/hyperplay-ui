@@ -1,6 +1,6 @@
-@import '../../styles/designSystem/spacing';
-@import '../../styles/designSystem/colors';
-@import '../../styles/designSystem/typography';
+@use '../../styles/designSystem/spacing' as *;
+@use '../../styles/designSystem/colors' as *;
+@use '../../styles/designSystem/typography' as *;
 
 .root {
   max-width: 600px;

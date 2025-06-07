@@ -1,5 +1,5 @@
-@import '../../styles/overrides';
-@import '../../styles/utilities/_variables';
+@use '../../styles/overrides' as *;
+@use '../../styles/utilities/_variables' as *;
 
 .container {
   border-radius: var(--space-md);

@@ -41,7 +41,7 @@ export interface QuestsSummaryTableProps
     list?: string
     gamesTable?: string
   }
-  searchBar?: JSX.Element
+  searchBar?: React.JSX.Element
 }
 
 export function QuestsSummaryTable({

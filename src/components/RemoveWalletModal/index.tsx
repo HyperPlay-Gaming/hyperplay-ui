@@ -40,7 +40,7 @@ export default function RemoveWalletModal({
       confirmationText: ''
     },
     validate: {
-      confirmationText: (value) =>
+      confirmationText: (value: string) =>
         value === i18n.confirmationText ? null : i18n.errorLabel
     }
   })

@@ -24,7 +24,7 @@ import {
 
 export interface GameCardProps
   extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
-  image?: JSX.Element
+  image?: React.JSX.Element
   imageUrl?: string
   title: string
   onFavoriteClick: React.MouseEventHandler<HTMLButtonElement>

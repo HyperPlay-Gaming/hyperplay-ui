@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.27.0",
+  "version": "1.28.0",
   "license": "LGPL-3.0-only",
   "scripts": {
     "dev": "vite",
@@ -17,7 +17,8 @@
     "prettier": "prettier --check .",
     "test-storybook": "test-storybook --skipTags=\"skip-test\"",
     "test:unit": "vitest",
-    "publish:beta": "pnpm build && pnpm publish --tag beta --no-git-checks"
+    "publish:beta": "pnpm build && pnpm publish --tag beta --no-git-checks",
+    "codecheck": "tsc --noEmit"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
@@ -86,7 +87,7 @@
     "tiny-swiper": "^2.2.0",
     "typescript": "^5.7.2",
     "vite": "^4.2.1",
-    "vite-plugin-dts": "^1.7.3",
+    "vite-plugin-dts": "^4.5.4",
     "vite-plugin-linter": "^2.0.2",
     "vite-plugin-static-copy": "^0.13.0",
     "vite-plugin-svgr": "^2.4.0",
@@ -142,8 +143,10 @@
     "@hyperplay/chains": "^0.5.0",
     "@hyperplay/utils": "^0.3.13",
     "@tabler/icons-react": "^3.34.0",
+    "@types/lodash": "^4.17.17",
     "@valist/sdk": "^2.10.14",
-    "ethereum-blockies-base64": "^1.0.2"
+    "ethereum-blockies-base64": "^1.0.2",
+    "lodash": "^4.17.21"
   },
   "packageManager": "pnpm@10.0.0"
 }

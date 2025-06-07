@@ -6,7 +6,7 @@ import styles from './404.module.scss'
 
 export interface _404Props {
   message: string
-  action?: JSX.Element
+  action?: React.JSX.Element
   i18n?: {
     oops?: string
   }
@@ -15,7 +15,7 @@ export interface _404Props {
 export default function _404({
   i18n = { oops: 'Oops!!! 😵' },
   ...props
-}: _404Props): JSX.Element {
+}: _404Props): React.JSX.Element {
   return (
     <Grid>
       <Grid.Col>

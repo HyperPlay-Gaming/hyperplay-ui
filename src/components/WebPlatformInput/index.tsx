@@ -10,7 +10,7 @@ export interface WebPlatformInputProps {
 
 export function WebPlatformInput({
   textInputProps
-}: WebPlatformInputProps): JSX.Element {
+}: WebPlatformInputProps): React.JSX.Element {
   return (
     <PlatformContainer platformName="web">
       <TextInput

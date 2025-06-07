@@ -29,7 +29,7 @@ export interface ButtonProps
   style?: React.CSSProperties
   size?: 'small' | 'medium' | 'large' | 'icon'
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type']
-  leftIcon?: JSX.Element
+  leftIcon?: React.JSX.Element
   rightIcon?: React.ReactNode
   active?: boolean
   disabled?: boolean

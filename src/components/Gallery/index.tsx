@@ -27,7 +27,7 @@ const getThumbSrc = (asset: Asset) => {
   return asset.src
 }
 
-export default function Gallery(props: GalleryProps): JSX.Element {
+export default function Gallery(props: GalleryProps): React.JSX.Element {
   const [currentAsset, setCurrentAsset] = useState<Asset | null>(null)
 
   useEffect(() => {

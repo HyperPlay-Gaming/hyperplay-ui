@@ -1,5 +1,5 @@
 @use 'sass:math';
-@import '../../styles/utilities/_variables';
+@use '../../styles/utilities/_variables' as *;
 
 .root {
   display: flex;

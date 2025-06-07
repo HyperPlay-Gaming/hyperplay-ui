@@ -9,7 +9,9 @@ export interface CheckboxListProps {
   }[]
 }
 
-export default function CheckboxList(props: CheckboxListProps): JSX.Element {
+export default function CheckboxList(
+  props: CheckboxListProps
+): React.JSX.Element {
   return (
     <>
       {props?.items?.map((item, index) => (

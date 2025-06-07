@@ -12,7 +12,7 @@ const useInterval = (
   delay?: number | null
 ): IntervalControls => {
   const savedCallback = useRef<() => void>(() => {})
-  const intervalId = useRef<number | undefined>(undefined)
+  const intervalId = useRef<NodeJS.Timeout | undefined>(undefined)
   const isPaused = useRef<boolean>(false)
   const currentDelay = useRef<number | null>(delay || 0)
 

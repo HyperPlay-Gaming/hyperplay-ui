@@ -22,7 +22,7 @@ export interface GameInfoProps
     windows: boolean
     web: boolean
   }
-  action?: JSX.Element
+  action?: React.JSX.Element
 }
 
 const GameInfo = ({

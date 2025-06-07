@@ -357,8 +357,7 @@ export const WithAlert: Story = {
       title: 'Claim Failed',
       message:
         "Please try once more. If it still doesn't work, create a Discord support ticket.",
-      actionText: 'Create Discord Ticket',
-      variant: 'danger'
+      variant: 'error'
     }
   }
 }

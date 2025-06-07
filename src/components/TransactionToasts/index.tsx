@@ -17,7 +17,7 @@ export interface TransactionToastProps extends ToastGenericPropsAbstract {
 }
 
 export default function TransactionToast(props: TransactionToastProps) {
-  function getTxnImage(status: statusType): JSX.Element {
+  function getTxnImage(status: statusType): React.JSX.Element {
     switch (status) {
       case 'pending':
         return <TxnPending />
