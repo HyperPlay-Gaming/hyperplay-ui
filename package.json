@@ -87,7 +87,7 @@
     "tiny-swiper": "^2.2.0",
     "typescript": "^5.7.2",
     "vite": "^4.2.1",
-    "vite-plugin-dts": "^1.7.3",
+    "vite-plugin-dts": "^4.5.4",
     "vite-plugin-linter": "^2.0.2",
     "vite-plugin-static-copy": "^0.13.0",
     "vite-plugin-svgr": "^2.4.0",

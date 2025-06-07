@@ -17,6 +17,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "declarationMap": true,
+    "rootDir": "src",
     "baseUrl": ".",
     "paths": {
       "react-vite-library": ["src/index.ts"],
