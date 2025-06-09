@@ -18,7 +18,9 @@ export default function List({ children, className, ...props }: ListProps) {
     count === 1 && firstChild?.type.toString() === 'Symbol(react.fragment)'
   if (childIsOneReactFragment) {
     // get the react fragment's children
+    //@ts-expect-error @todo fix types
     childrenList = firstChild?.props.children
+    //@ts-expect-error @todo fix types
     count = React.Children.count(firstChild?.props.children)
   }
 

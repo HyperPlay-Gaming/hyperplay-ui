@@ -67,7 +67,7 @@ const GameInfoV2: React.FC<GameInfoV2Props> = ({
     playerCount: 'Player Count',
     size: 'Size'
   }
-}): JSX.Element => {
+}): React.JSX.Element => {
   const [isImageLoading, setIsImageLoading] = useState(isLoading)
 
   useEffect(() => {

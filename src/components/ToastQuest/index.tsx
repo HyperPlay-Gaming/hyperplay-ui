@@ -54,7 +54,11 @@ export function ToastQuest({
     </>
   )
 
-  function SubtextWithToggle({ subtextText }: { subtextText: JSX.Element }) {
+  function SubtextWithToggle({
+    subtextText
+  }: {
+    subtextText: React.JSX.Element
+  }) {
     return (
       <div className={classNames('caption', styles.subtextRow)}>
         {subtextText}

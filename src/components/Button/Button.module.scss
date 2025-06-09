@@ -1,5 +1,5 @@
 @use '../../styles/utilities/gradientBorder' as *;
-@import '../../styles/designSystem/_typography.scss';
+@use '../../styles/designSystem/_typography.scss' as *;
 
 $colorDirection: to top;
 

@@ -1,5 +1,5 @@
-@import '../../styles/designSystem/typography';
-@import '../../styles/designSystem/spacing';
+@use '../../styles/designSystem/typography' as *;
+@use '../../styles/designSystem/spacing' as *;
 
 .table {
   border-collapse: collapse;

@@ -29,7 +29,7 @@ export function PlatformContainer({
   children,
   className,
   ...props
-}: PlatformContainerProps): JSX.Element {
+}: PlatformContainerProps): React.JSX.Element {
   const platformDisplayName = platformLabels[platformName]
   const platformIcon = platformImages[platformName]
 

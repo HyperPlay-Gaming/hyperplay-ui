@@ -29,6 +29,7 @@ export const Default: Story = {
       <ImageInput
         {...args}
         value={file}
+        // @ts-expect-error @todo fix type
         onImageDropped={setFile}
         style={{ maxHeight: 500, display: 'inline-block', height: 500 }}
       />
