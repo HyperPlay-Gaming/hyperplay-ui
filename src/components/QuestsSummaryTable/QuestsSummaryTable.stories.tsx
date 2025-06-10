@@ -143,7 +143,6 @@ export const SearchAndSortDemo: Story = {
           </div>
         </div>
         <SearchBar
-          searchText={searchText}
           setSearchText={setSearchText}
           i18n={{ placeholder: 'Search Quest' }}
           styles={{ container: { margin: '0px 0px 0px auto' } }}
