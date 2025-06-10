@@ -59,7 +59,6 @@ export const Default: React.FC = () => {
   return (
     <SearchBar
       suggestions={filteredItems}
-      searchText={searchText}
       setSearchText={setSearchText}
       i18n={{ placeholder: 'Search for games' }}
     />
@@ -115,7 +114,6 @@ export const WithRenderItem: Story = {
           dropdownList: styles.searchResult
         }}
         suggestions={filteredItems.map((item) => item.name)}
-        searchText={searchText}
         setSearchText={setSearchText}
         i18n={{ placeholder: 'Search for games' }}
         itemComponent={({ suggestion }) => {

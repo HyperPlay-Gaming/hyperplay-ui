@@ -1,5 +1,6 @@
-import React, { CSSProperties, useEffect, useRef } from 'react'
+import React, { CSSProperties, useCallback, useRef } from 'react'
 
+import debounce from 'lodash/debounce'
 import { Popover, PopoverProps } from '@mantine/core'
 import cn from 'classnames'
 
@@ -8,9 +9,8 @@ import { CloseButton, MagnifyingGlass } from '@/assets/images'
 import searchBarStyles from './SearchBar.module.scss'
 
 interface Props extends PopoverProps {
-  searchText: string
-  setSearchText: (text: string) => void
   onClickSuggestion?: (suggestion: string) => void
+  setSearchText: (text: string) => void
   suggestions?: string[]
   i18n: {
     placeholder: string
@@ -32,9 +32,8 @@ interface Props extends PopoverProps {
 }
 
 export default function SearchBar({
-  searchText,
-  setSearchText,
   i18n: { placeholder },
+  setSearchText,
   suggestions,
   onClickSuggestion,
   inputProps,
@@ -45,41 +44,33 @@ export default function SearchBar({
 }: Props) {
   const input = useRef<HTMLInputElement>(null)
 
-  useEffect(() => {
-    if (input.current) {
-      const element = input.current
-      element.value = searchText
-      const handler = () => {
-        setSearchText(element.value)
+  const setInputValue = useCallback(
+    (val: string) => {
+      if (input.current) {
+        input.current.value = val
+        setSearchText(val)
+        input.current.focus()
       }
-      element.addEventListener('input', handler)
-      return () => {
-        element.removeEventListener('input', handler)
-      }
-    }
-    return
-  }, [input])
+    },
+    [input]
+  )
 
   const clearSearch: React.MouseEventHandler<HTMLButtonElement> = () => {
-    if (input.current) {
-      input.current.value = ''
-      setSearchText('')
-      input.current.focus()
-    }
+    setInputValue('')
   }
 
-  const showClearButton = searchText.length > 0
+  const searchTextValue = input.current?.value
+  const showClearButton = (searchTextValue?.length ?? 0) > 0
   const gameList = suggestions ?? []
 
   const handleOnClickSuggestion = (suggestion: string) => {
     if (onClickSuggestion) {
       onClickSuggestion(suggestion)
-      if (input.current) input.current.value = ''
-      setSearchText('')
       return
     }
-    if (input.current) input.current.value = suggestion
-    setSearchText(suggestion)
+    if (input.current) {
+      setInputValue(suggestion)
+    }
   }
 
   let searchResults = null
@@ -97,7 +88,7 @@ export default function SearchBar({
         ))}
       </>
     )
-  } else if (searchText) {
+  } else if (searchTextValue) {
     searchResults = <div>No results</div>
   }
 
@@ -131,17 +122,22 @@ export default function SearchBar({
             type="text"
             placeholder={placeholder}
             {...inputProps}
+            onInput={debounce((ev) => {
+              if (inputProps?.onChange) {
+                inputProps.onChange(ev)
+              }
+              setSearchText(ev.target.value)
+            }, 350)}
             className={cn('body-sm', inputProps?.className)}
-            value={searchText}
           />
-          {showClearButton && (
+          {showClearButton ? (
             <button
               className={searchBarStyles.clearButton}
               onClick={clearSearch}
             >
               <CloseButton fill="var(--color-neutral-400)" />
             </button>
-          )}
+          ) : null}
         </div>
       </Popover.Target>
       <Popover.Dropdown>
