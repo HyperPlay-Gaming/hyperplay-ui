@@ -289,6 +289,10 @@ const Carousel = ({
           }}
           loop={true}
           withControls={!isMobile && withControls}
+          // @ts-expect-error fixes the <button> cannot be a descendant of <button> hydration error
+          previousControlProps={{ component: 'div' }}
+          // @ts-expect-error fixes the <button> cannot be a descendant of <button> hydration error
+          nextControlProps={{ component: 'div' }}
           withIndicators={true}
           plugins={slideAutoplayStopped ? [] : [autoplay.current]}
           onSlideChange={(index) => setActiveSlideIndexAndResetAutoplay(index)}

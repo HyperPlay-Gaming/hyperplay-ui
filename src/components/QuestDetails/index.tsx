@@ -155,8 +155,8 @@ export default function QuestDetails({
   let content = (
     <div className={cn(styles.rootContent, classNames?.rootContent)}>
       <div className={styles.badges}>
-        <p className={cn(classNames?.content)}>{gameNameSticker}</p>
-        <p className={cn(classNames?.content)}>{sticker}</p>
+        <div className={cn(classNames?.content)}>{gameNameSticker}</div>
+        <div className={cn(classNames?.content)}>{sticker}</div>
       </div>
       <div className={cn('title', styles.title)}>{title}</div>
       <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
