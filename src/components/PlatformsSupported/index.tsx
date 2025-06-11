@@ -46,10 +46,20 @@ export function PlatformsSupported({
   const playableOnIcons: React.ReactNode[] = []
   if (platformsWithBuilds.length) {
     getPlatformsBuiltFor(platformsWithBuilds).forEach((platform) =>
-      builtForIcons.push(<PlatformIcon platform={platform} />)
+      builtForIcons.push(
+        <PlatformIcon
+          platform={platform}
+          key={`platforms-built-for-${platform}`}
+        />
+      )
     )
     getPlatformsPlayableOn(platformsWithBuilds).forEach((platform) =>
-      playableOnIcons.push(<PlatformIcon platform={platform} />)
+      playableOnIcons.push(
+        <PlatformIcon
+          platform={platform}
+          key={`platforms-playable-on-for-${platform}`}
+        />
+      )
     )
   }
 
