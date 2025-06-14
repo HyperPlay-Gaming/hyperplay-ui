@@ -416,6 +416,29 @@ export const DescriptionCustomElement: Story = {
     )
   }
 }
+const listsDescription = `### Let's Reach Level 200
+
+**Objective:**
+- Aim to reach level 200 on your new character.
+
+**Reward:**
+- Claim a rare gift upon reaching level 200!
+
+**Details:**
+- Embark on your journey and level up your new character.
+- Keep progressing until you reach the prestigious level 200.
+- Once you achieve this milestone, you'll be rewarded with a rare and exclusive gift to enhance your gameplay.
+
+**Good luck, adventurer!**
+
+For more details, visit [hyperplay](https://www.hyperplay.xyz).`
+
+export const WithLists: Story = {
+  args: {
+    ...props,
+    description: <MarkdownDescription>{listsDescription}</MarkdownDescription>
+  }
+}
 
 export const isClaimed: Story = {
   args: {
