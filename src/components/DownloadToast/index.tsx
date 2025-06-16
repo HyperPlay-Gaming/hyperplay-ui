@@ -2,7 +2,8 @@ import React from 'react'
 
 import { getETAStringFromMs } from '@hyperplay/utils'
 
-import { CloseButton, PauseIcon, PlayIcon, XCircle } from '@/assets/images'
+import { CloseButton, PauseIcon, Resume, PlayIcon } from '@/assets/images'
+import Button from '@/components/Button'
 
 import DownloadToastStyles from './index.module.scss'
 import { size } from './utils'
@@ -77,39 +78,36 @@ export default function DownloadToast(props: DownloadToastType) {
   function getActionButton(status: downloadStatus) {
     if (status === 'done')
       return (
-        <button
-          className={DownloadToastStyles.playDownloadButton}
-          onClick={props.onPlayClick}
-        >
-          <PlayIcon fill="var(--color-success-400)" />
-        </button>
+        <Button type="primary" size="small" onClick={props.onPlayClick}>
+          <PlayIcon className={DownloadToastStyles.playIcon} />
+          <span>Play</span>
+        </Button>
       )
     if (status === 'showOnlyCancel') return null
     if (status === 'inExtraction') return null
     if (status === 'inProgress')
       return (
-        <button
-          className={DownloadToastStyles.pauseDownloadButton}
-          onClick={props.onPauseClick}
-        >
-          <PauseIcon fill="var(--color-tertiary-400)" />
-        </button>
+        <Button type="secondary" size="small" onClick={props.onPauseClick}>
+          <PauseIcon className={DownloadToastStyles.pauseIcon} />
+          <span>Pause</span>
+        </Button>
       )
     if (status === 'paused')
       return (
-        <button
-          className={DownloadToastStyles.playDownloadButton}
-          onClick={props.onStartClick}
-        >
-          <PlayIcon fill="var(--color-success-400)" />
-        </button>
+        <Button type="secondary" size="small" onClick={props.onStartClick}>
+          <Resume className={DownloadToastStyles.resumeIcon} />
+          <span>Resume</span>
+        </Button>
       )
   }
   return (
     <div className={DownloadToastStyles.downloadToastContainer}>
       <div className={DownloadToastStyles.topBar}>
-        <div className="title">{props.statusText ?? 'Downloading'}</div>
-        <button onClick={props.onCloseClick}>
+        <div className="title-sm">{props.statusText ?? 'Downloading'}</div>
+        <button
+          onClick={props.onCloseClick}
+          className={DownloadToastStyles.closeButton}
+        >
           <CloseButton />
         </button>
       </div>
@@ -118,7 +116,7 @@ export default function DownloadToast(props: DownloadToastType) {
           <img src={props.imgUrl} className={DownloadToastStyles.gameImage} />
         </div>
         <div className={DownloadToastStyles.detailsContainer}>
-          <div className={`title-sm ${DownloadToastStyles.gameTitle}`}>
+          <div className={`body-sm ${DownloadToastStyles.gameTitle}`}>
             {props.gameTitle}
           </div>
           <div className={DownloadToastStyles.statusContainer}>
@@ -142,12 +140,10 @@ export default function DownloadToast(props: DownloadToastType) {
       </div>
       <div className={DownloadToastStyles.manageDownloadContainer}>
         {props.status !== 'done' ? (
-          <button
-            className={DownloadToastStyles.stopDownloadButton}
-            onClick={props.onCancelClick}
-          >
-            <XCircle />
-          </button>
+          <Button type="danger" size="small" onClick={props.onCancelClick}>
+            <CloseButton className={DownloadToastStyles.cancelIcon} />
+            <span>Cancel</span>
+          </Button>
         ) : null}
         {getActionButton(props.status)}
       </div>
