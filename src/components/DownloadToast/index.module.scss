@@ -12,7 +12,7 @@ $toastPaddings: var(--space-2lg);
 .topBar {
   display: flex;
   justify-content: space-between;
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-lg);
 }
 
 .topBar svg {
@@ -33,13 +33,16 @@ $toastPaddings: var(--space-2lg);
 }
 
 .gameTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: var(--space-3xs);
 }
 
 .statusContainer {
   display: flex;
   justify-content: space-between;
-  margin-bottom: var(--space-2xs);
+  margin-top: var(--space-2xs);
 }
 
 .detailsContainer {
@@ -50,7 +53,7 @@ $progressBarBorderRadius: var(--space-2xs);
 
 .progressBar {
   --download-progress-bar-percentage: 0%;
-  height: var(--text-xl);
+  height: var(--space-xs);
   width: 100%;
   background-image: linear-gradient(
     90deg,
@@ -62,17 +65,15 @@ $progressBarBorderRadius: var(--space-2xs);
 }
 
 .percentCompletedText {
-  position: absolute;
-  left: 5%;
-  top: 0%;
-  color: var(--color-neutral-900);
+  padding-left: var(--space-2xs);
+  color: var(--text-strong);
 }
 
 .manageDownloadContainer {
-  margin: var(--space-lg) 0 0 0;
+  margin: var(--space-xs) 0 0 0;
   display: flex;
   justify-content: flex-end;
-  gap: var(--space-xs);
+  gap: var(--space-2lg);
 }
 
 .stopDownloadButton {
@@ -106,28 +107,4 @@ $progressBarBorderRadius: var(--space-2xs);
     width: var(--space-2lg);
     height: var(--space-2lg);
   }
-}
-
-.pauseIcon {
-  fill: var(--color-primary-400);
-  width: var(--space-lg);
-  height: var(--space-lg);
-}
-
-.resumeIcon {
-  fill: var(--color-primary-400);
-  width: var(--space-lg);
-  height: var(--space-lg);
-}
-
-.playIcon {
-  stroke: var(--icon-neutral);
-  width: var(--space-lg);
-  height: var(--space-lg);
-}
-
-.cancelIcon {
-  fill: var(--icon-inverse-strong);
-  width: var(--space-2lg);
-  height: var(--space-2lg);
 }
