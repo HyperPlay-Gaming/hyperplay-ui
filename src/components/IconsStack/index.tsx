@@ -31,7 +31,7 @@ export interface IconsStackProps {
 const IconsStack = ({
   title,
   icons,
-  maxVisible = 7,
+  maxVisible = 8,
   showMore = true,
   forceShowMore = false,
   classNames,
