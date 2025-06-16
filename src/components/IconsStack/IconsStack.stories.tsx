@@ -7,7 +7,8 @@ import {
   TrustWallet,
   PhantomWallet,
   SequenceWallet,
-  OKXWallet
+  OKXWallet,
+  GateWallet
 } from '@/assets/images'
 import { expect, userEvent, within } from '@storybook/test'
 
@@ -32,14 +33,15 @@ const walletIcons = [
   { title: 'Trust Wallet', icon: <TrustWallet /> },
   { title: 'Phantom Wallet', icon: <PhantomWallet /> },
   { title: 'Sequence Wallet', icon: <SequenceWallet /> },
-  { title: 'OKX Wallet', icon: <OKXWallet /> }
+  { title: 'OKX Wallet', icon: <OKXWallet /> },
+  { title: 'GateWallet', icon: <GateWallet /> }
 ]
 
 export const Default: Story = {
   args: {
     title: 'WALLETS:',
     icons: walletIcons,
-    maxVisible: 5,
+    maxVisible: 8,
     showMore: true
   },
   play: async ({ canvasElement }) => {
@@ -81,7 +83,7 @@ export const WithoutTitle: Story = {
 export const ForceShowMore: Story = {
   args: {
     icons: walletIcons,
-    maxVisible: 7,
+    maxVisible: 8,
     showMore: true,
     forceShowMore: true,
     classNames: {
