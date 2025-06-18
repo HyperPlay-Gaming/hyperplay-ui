@@ -2,10 +2,29 @@ import React from 'react'
 
 import { getETAStringFromMs } from '@hyperplay/utils'
 
-import { CloseButton, PauseIcon, PlayIcon, XCircle } from '@/assets/images'
+import { CloseButton } from '@/assets/images'
+import Button from '@/components/Button'
 
 import DownloadToastStyles from './index.module.scss'
 import { size } from './utils'
+
+export interface DownloadToastI18nProp {
+  play: string
+  pause: string
+  resume: string
+  cancel: string
+  downloading: string
+  of: string
+}
+
+export const defaultI18n: DownloadToastI18nProp = {
+  play: 'Play',
+  pause: 'Pause',
+  resume: 'Resume',
+  cancel: 'Cancel',
+  downloading: 'Downloading',
+  of: 'of'
+}
 
 export type downloadStatus =
   | 'inProgress'
@@ -27,9 +46,12 @@ interface DownloadToastType {
   onPlayClick: () => void
   status: downloadStatus
   statusText?: string
+  i18n?: DownloadToastI18nProp
 }
 
 export default function DownloadToast(props: DownloadToastType) {
+  const i18n = { ...defaultI18n, ...props.i18n }
+
   // check that percent completed <= 100
   let percentCompleted =
     props.downloadSizeInBytes > 0
@@ -77,39 +99,33 @@ export default function DownloadToast(props: DownloadToastType) {
   function getActionButton(status: downloadStatus) {
     if (status === 'done')
       return (
-        <button
-          className={DownloadToastStyles.playDownloadButton}
-          onClick={props.onPlayClick}
-        >
-          <PlayIcon fill="var(--color-success-400)" />
-        </button>
+        <Button type="primary" size="small" onClick={props.onPlayClick}>
+          <span>{i18n.play}</span>
+        </Button>
       )
     if (status === 'showOnlyCancel') return null
     if (status === 'inExtraction') return null
     if (status === 'inProgress')
       return (
-        <button
-          className={DownloadToastStyles.pauseDownloadButton}
-          onClick={props.onPauseClick}
-        >
-          <PauseIcon fill="var(--color-tertiary-400)" />
-        </button>
+        <Button type="primary" size="small" onClick={props.onPauseClick}>
+          <span>{i18n.pause}</span>
+        </Button>
       )
     if (status === 'paused')
       return (
-        <button
-          className={DownloadToastStyles.playDownloadButton}
-          onClick={props.onStartClick}
-        >
-          <PlayIcon fill="var(--color-success-400)" />
-        </button>
+        <Button type="primary" size="small" onClick={props.onStartClick}>
+          <span>{i18n.resume}</span>
+        </Button>
       )
   }
   return (
     <div className={DownloadToastStyles.downloadToastContainer}>
       <div className={DownloadToastStyles.topBar}>
-        <div className="title">{props.statusText ?? 'Downloading'}</div>
-        <button onClick={props.onCloseClick}>
+        <div className="title">{props.statusText ?? i18n.downloading}</div>
+        <button
+          onClick={props.onCloseClick}
+          className={DownloadToastStyles.closeButton}
+        >
           <CloseButton />
         </button>
       </div>
@@ -118,36 +134,34 @@ export default function DownloadToast(props: DownloadToastType) {
           <img src={props.imgUrl} className={DownloadToastStyles.gameImage} />
         </div>
         <div className={DownloadToastStyles.detailsContainer}>
-          <div className={`title-sm ${DownloadToastStyles.gameTitle}`}>
+          <div className={`eyebrow ${DownloadToastStyles.gameTitle}`}>
             {props.gameTitle}
-          </div>
-          <div className={DownloadToastStyles.statusContainer}>
-            <div className={DownloadToastStyles.downloadNumberContainer}>
-              <div className="eyebrow">{downloadedString}</div>
-              <div className="eyebrow">{` / `}</div>
-              <div className="eyebrow">{`${downloadSizeString}`}</div>
+            <div
+              className={`eyebrow ${DownloadToastStyles.percentCompletedText}`}
+            >
+              {percentCompletedStr}%
             </div>
-
-            <div className="eyebrow">ETA: {etaString}</div>
           </div>
+
           <div
             className={DownloadToastStyles.progressBar}
             style={progressBarStyle}
-          >
-            <div className={`menu ${DownloadToastStyles.percentCompletedText}`}>
-              {percentCompletedStr}%
+          ></div>
+          <div className={DownloadToastStyles.statusContainer}>
+            <div className="caption-sm">ETA: {etaString}</div>
+            <div className={DownloadToastStyles.downloadNumberContainer}>
+              <div className="caption-sm">{downloadedString}</div>
+              <div className="caption-sm">{` ${i18n.of} `}</div>
+              <div className="caption-sm">{`${downloadSizeString}`}</div>
             </div>
           </div>
         </div>
       </div>
       <div className={DownloadToastStyles.manageDownloadContainer}>
         {props.status !== 'done' ? (
-          <button
-            className={DownloadToastStyles.stopDownloadButton}
-            onClick={props.onCancelClick}
-          >
-            <XCircle />
-          </button>
+          <Button type="tertiary" size="small" onClick={props.onCancelClick}>
+            <span>{i18n.cancel}</span>
+          </Button>
         ) : null}
         {getActionButton(props.status)}
       </div>
