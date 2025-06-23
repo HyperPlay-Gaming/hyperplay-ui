@@ -4,7 +4,7 @@ import { Tooltip } from '@mantine/core'
 import { SupportedPlatform } from '@valist/sdk'
 import cn from 'classnames'
 
-import { Info } from '@/assets/images'
+import { InfoIcon } from '@/assets/images'
 
 import { ContainerIcons } from '../ContainerIcons'
 import { ContainerRaised } from '../ContainerRaised'
@@ -103,7 +103,7 @@ export function PlatformsSupported({
               className={styles.infoIconContainer}
               data-testid={'platforms-supported-info-icon'}
             >
-              <Info />
+              <InfoIcon />
             </div>
           </Tooltip>
         </div>

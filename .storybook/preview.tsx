@@ -1,10 +1,12 @@
 import React from 'react'
-import 'react-loading-skeleton/dist/skeleton.css'
+
+import '@mantine/core/styles.css'
 
 import { Preview } from '@storybook/react'
 
 import HyperPlayDesignProvider from '../src/components/HyperPlayDesignProvider'
-import './styles.css'
+import '../src/fonts.css'
+import '../src/index.scss'
 import { ALL_VIEWPORTS } from './viewports'
 
 export const preview: Preview = {

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect, userEvent, within } from '@storybook/test'
 
-import { AlertTriangle, Info } from '@/assets/images'
+import { AlertTriangle, InfoIcon } from '@/assets/images'
 
 import GameAbout from '.'
 
@@ -77,7 +77,7 @@ export const WithStickersAndButton: Story = {
       },
       {
         label: 'On-chain assets available',
-        withIcon: <Info data-icon="info" />
+        withIcon: <InfoIcon data-icon="info" />
       }
     ],
     buttonLink: {

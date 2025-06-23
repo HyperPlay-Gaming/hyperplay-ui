@@ -1,12 +1,12 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react'
 
-import { faRepeat } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import { IconRepeat } from '@tabler/icons-react'
 import classNames from 'classnames'
 
-import FallbackImage from '@/assets/fallback_card.jpg?url'
+// TODO: check size of the image
+// import FallbackImage from '@/assets/fallback_card.jpg?url'
 import { CheckmarkCircleOutline, PlusCircleOutline } from '@/assets/images'
 
 import * as Images from '../../assets/images'
@@ -250,13 +250,7 @@ const GameCard = ({
           <ActionBar
             {...actionBarProps}
             onActionClick={onUpdateClick}
-            icon={
-              <FontAwesomeIcon
-                size={'2x'}
-                fill="var(--color-neutral-100)"
-                icon={faRepeat}
-              />
-            }
+            icon={<IconRepeat size={20} color="var(--color-neutral-100)" />}
           />
         )
       default:
@@ -360,16 +354,14 @@ const GameCard = ({
           <div
             className={`${imageStyles.proportions} ${grayscaleFilterClassName}`}
           >
-            {image ? (
-              image
-            ) : imageUrl ? (
-              <img src={imageUrl} />
-            ) : (
-              <img
-                src={FallbackImage}
-                style={{ width: '100%', height: '100%' }}
-              />
-            )}
+            {
+              image ? image : imageUrl ? <img src={imageUrl} /> : null
+              // TODO: check size of the image
+              // <img
+              //   src={FallbackImage}
+              //   style={{ width: '100%', height: '100%' }}
+              // />
+            }
           </div>
           <div className={styles.bottomContainer}>
             {app === 'client' ? (

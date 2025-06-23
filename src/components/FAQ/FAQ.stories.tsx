@@ -15,7 +15,7 @@ export default meta
 
 const DESCRIPTION_MOCK =
   'Here to answer any questions you have, if there are some missing reach out to'
-const props: FAQProps = {
+const props = {
   faqList: [
     {
       question: 'What is a Reward Contract?',

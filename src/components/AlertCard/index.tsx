@@ -3,7 +3,7 @@ import React from 'react'
 import classNames from 'classnames'
 import Button from '@/components/Button'
 import styles from './index.module.scss'
-import { ReactComponent as CloseButton } from '@/assets/images/CloseButton.svg'
+import { CloseButton } from '@/assets/images'
 
 type Variant =
   | 'error'

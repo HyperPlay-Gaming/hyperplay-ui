@@ -5,7 +5,7 @@ import { Menu } from '@mantine/core'
 // backend types
 import { ContractMetadata } from '@valist/sdk/dist/typesApi'
 
-import { Blockchain, DownArrow, Info, Token } from '@/assets/images'
+import { Blockchain, DownArrow, InfoIcon, Token } from '@/assets/images'
 
 import Button from '../Button'
 import styles from './TokenTable.module.scss'
@@ -249,7 +249,7 @@ export default function TokenTable({
                     <Menu trigger="hover" position="top-start">
                       <Menu.Target>
                         <div className={`caption-sm ${styles.infoText}`}>
-                          <Info fill="var(--color-neutral-400)" />
+                          <InfoIcon fill="var(--color-neutral-400)" />
                           Network fee
                         </div>
                       </Menu.Target>
@@ -281,7 +281,10 @@ export default function TokenTable({
                     <Menu trigger="hover" position="top-start">
                       <Menu.Target>
                         <div className={`caption-sm ${styles.infoText}`}>
-                          <Info fill="var(--color-neutral-400)" width={16} />
+                          <InfoIcon
+                            fill="var(--color-neutral-400)"
+                            width={16}
+                          />
                           <div className="caption-sm">Token gated access</div>
                         </div>
                       </Menu.Target>

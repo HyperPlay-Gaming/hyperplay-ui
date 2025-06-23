@@ -1,8 +1,7 @@
 import React from 'react'
 
-import { faX } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Menu } from '@mantine/core'
+import { IconX } from '@tabler/icons-react'
 import classNames from 'classnames'
 
 import * as Images from '@/assets/images'
@@ -89,7 +88,7 @@ export default function AchievementNav({
 }: AchievementNavProps) {
   const xIcon = (
     <div>
-      <FontAwesomeIcon icon={faX}></FontAwesomeIcon>
+      <IconX size={20} />
     </div>
   )
   const gameComponents = gamesAdded.map((game) => (
