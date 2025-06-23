@@ -43,7 +43,7 @@ import HyperPlayLogoIcon from './HyperPlayLogoIcon.svg?react'
 import HyperPlayStoreLogo from './HyperPlayStoreLogo.svg?react'
 import HyperPlayTextLogo from './HyperPlayTextLogo.svg?react'
 import HyperplayStoreIcon from './HyperplayStoreIcon.svg?react'
-import Info from './InfoIcon.svg?react'
+import InfoIcon from './InfoIcon.svg?react'
 import KickLogo from './KickLogo.svg?react'
 import LightningBolt from './LightningBolt.svg?react'
 import Line from './Line.svg?react'
@@ -104,6 +104,23 @@ import XLogo from './XLogo.svg?react'
 import XLogoFilled from './XLogoFilled.svg?react'
 import Youtube from './Youtube.svg?react'
 import AmazonLogo from './amazonLogo.svg?react'
+import DotIcon from './DotIcon.svg?react'
+import EditorChoice from './EditorChoice.svg?react'
+import Globe from './Globe.svg?react'
+import X from './X.svg?react'
+import BlockchainIconImg from './BlockchainIconImg.svg?react'
+import Windows11Icon from './Windows11Icon.svg?react'
+import AlertOctagon from './AlertOctagon.svg?react'
+import Triangle from './Triangle.svg?react'
+import LightningOutlined from './LightningOutlined.svg?react'
+import MetaMaskWallet from './MetamaskWallet.svg?react'
+import RoninWallet from './RoninWallet.svg?react'
+import CoinBaseWallet from './CoinBaseWallet.svg?react'
+import TrustWallet from './TrustWallet.svg?react'
+import PhantomWallet from './PhantomWallet.svg?react'
+import SequenceWallet from './SequenceWallet.svg?react'
+import OKXWallet from './OKXWallet.svg?react'
+import GateWallet from './GateWallet.svg?react'
 
 export {
   AmazonLogo,
@@ -145,7 +162,7 @@ export {
   HyperPlayTextLogo,
   HyperplayStoreIcon,
   HyperPlayFullTextLogo,
-  Info,
+  InfoIcon,
   LinuxIcon,
   List,
   MacOSIcon,
@@ -212,5 +229,22 @@ export {
   Diamond,
   TreasureChest,
   Line,
-  LinkExternal
+  LinkExternal,
+  DotIcon,
+  EditorChoice,
+  Globe,
+  X,
+  BlockchainIconImg,
+  Windows11Icon,
+  AlertOctagon,
+  Triangle,
+  LightningOutlined,
+  MetaMaskWallet,
+  RoninWallet,
+  CoinBaseWallet,
+  TrustWallet,
+  PhantomWallet,
+  SequenceWallet,
+  OKXWallet,
+  GateWallet
 }

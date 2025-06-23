@@ -5,7 +5,7 @@ import { Menu } from '@mantine/core'
 // backend types
 import { ContractMetadata } from '@valist/sdk/dist/typesApi'
 
-import { Blockchain, DownArrow, Info, Token } from '@/assets/images'
+import { Blockchain, DownArrow, InfoIcon, Token } from '@/assets/images'
 
 import Button from '../Button'
 import styles from './TokenTable.module.scss'
@@ -20,9 +20,9 @@ interface NetworkRequirements {
 type TokenType = 'fungible' | 'semiFungible' | 'nonFungible' | 'other'
 
 interface TokenMetadata {
-  address: string
-  icon?: string
-  type?: TokenType
+  address: string | null
+  icon?: string | null
+  type?: TokenType | null
   name?: string
   marketplaceUrls?: string[]
 }
@@ -34,8 +34,8 @@ interface TokenTableProps
   > {
   contracts: ContractMetadata[]
   getTokenEnabled?: boolean
-  onTokenClick: (tokenAddress: string) => void
-  onGetTokenClick: (tokenAddress: string) => void
+  onTokenClick: (tokenAddress: string | null) => void
+  onGetTokenClick: (tokenAddress: string | null) => void
 }
 
 function getTokenTypeDisplayName(type: TokenType) {
@@ -108,8 +108,12 @@ export default function TokenTable({
   }
 
   function getTokenName(token: TokenMetadata) {
-    const addressName =
-      token.address.substring(0, 10) + (token.address.length > 10 ? '...' : '')
+    let addressName = 'Unknown'
+    if (token.address) {
+      addressName =
+        token.address.substring(0, 10) +
+        (token.address.length > 10 ? '...' : '')
+    }
     return token.name ? token?.name : addressName
   }
 
@@ -146,7 +150,8 @@ export default function TokenTable({
             </Button>
           </td>
           <td>
-            {getTokenEnabled ? (
+            {/* if we don't have a marketplace url, then we have no url to open on get token click */}
+            {getTokenEnabled && token.marketplaceUrls?.length ? (
               <div>
                 {getTokenType(token)}
 
@@ -244,7 +249,7 @@ export default function TokenTable({
                     <Menu trigger="hover" position="top-start">
                       <Menu.Target>
                         <div className={`caption-sm ${styles.infoText}`}>
-                          <Info fill="var(--color-neutral-400)" />
+                          <InfoIcon fill="var(--color-neutral-400)" />
                           Network fee
                         </div>
                       </Menu.Target>
@@ -276,8 +281,11 @@ export default function TokenTable({
                     <Menu trigger="hover" position="top-start">
                       <Menu.Target>
                         <div className={`caption-sm ${styles.infoText}`}>
-                          <Info fill="var(--color-neutral-400)" />
-                          Token gated access
+                          <InfoIcon
+                            fill="var(--color-neutral-400)"
+                            width={16}
+                          />
+                          <div className="caption-sm">Token gated access</div>
                         </div>
                       </Menu.Target>
                       <Menu.Dropdown className={styles.infoDropdown}>

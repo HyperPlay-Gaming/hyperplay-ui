@@ -1,0 +1,33 @@
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.websiteIcon {
+  color: var(--icon-neutral);
+}
+
+.twitterIcon {
+  color: var(--icon-neutral);
+}
+
+.discordIcon {
+  color: var(--icon-neutral);
+
+  svg {
+    path {
+      fill: var(--icon-neutral);
+    }
+  }
+}
+
+.youtubeIcon {
+  color: var(--icon-neutral);
+
+  svg {
+    path {
+      fill: var(--icon-neutral);
+    }
+  }
+}

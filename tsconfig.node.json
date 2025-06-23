@@ -1,14 +1,3 @@
-// {
-//   "compilerOptions": {
-//     "composite": true,
-//     "module": "ESNext",
-//     "moduleResolution": "Node",
-//     "allowSyntheticDefaultImports": true,
-//     "rootDir": "./"
-//   },
-//   "include": ["vite.config.ts", "rollup.config.ts", "scripts"]
-// }
-
 {
   "compilerOptions": {
     "composite": true,
@@ -18,5 +7,5 @@
     "resolveJsonModule": true
   },
   "include": ["package.json"],
-  "exclude": ["vite.config.ts"]
+  "exclude": ["vite.config.ts", "node_modules"]
 }

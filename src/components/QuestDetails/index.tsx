@@ -10,12 +10,20 @@ import Loading from '../Loading'
 import Sticker from '../Sticker'
 import styles from './index.module.scss'
 import { QuestDetailsProps } from './types'
+import dayjs from 'dayjs'
+
+import localizedFormat from 'dayjs/plugin/localizedFormat'
+import { IconClock } from '@tabler/icons-react'
+dayjs.extend(localizedFormat)
 
 export default function QuestDetails({
   title,
   description,
+  endDate,
   eligibilityComponent,
   i18n = {
+    endsOn: 'Quest ends',
+    endedOn: 'Quest ended',
     rewards: 'Claimable Rewards',
     claim: 'Claim',
     signIn: 'Sign in',
@@ -23,7 +31,8 @@ export default function QuestDetails({
     play: 'Play',
     questType: {
       'REPUTATIONAL-AIRDROP': 'Reputation',
-      PLAYSTREAK: 'Play Streak'
+      PLAYSTREAK: 'Play Streak',
+      LEADERBOARD: 'Leaderboard'
     },
     sync: 'Sync',
     claimsLeft: 'Claims left',
@@ -140,17 +149,36 @@ export default function QuestDetails({
     )
   }
 
+  const isEndDateInFuture = endDate && new Date(endDate) > new Date()
+  const utcFormattedDate = dayjs(endDate).format('lll')
+
   let content = (
     <div className={cn(styles.rootContent, classNames?.rootContent)}>
       <div className={styles.badges}>
-        <p className={cn(classNames?.content)}>{gameNameSticker}</p>
-        <p className={cn(classNames?.content)}>{sticker}</p>
+        <div className={cn(classNames?.content)}>{gameNameSticker}</div>
+        <div className={cn(classNames?.content)}>{sticker}</div>
       </div>
       <div className={cn('title', styles.title)}>{title}</div>
       <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
         {description}
       </div>
-
+      {endDate && (
+        <div className={cn('body-sm', 'color-neutral-400', styles.description)}>
+          <span className={styles.endDate}>
+            <IconClock
+              className={isEndDateInFuture ? styles.iconFuture : undefined}
+            />
+            <span
+              className={
+                isEndDateInFuture ? styles.futureDate : styles.pastDate
+              }
+            >
+              {isEndDateInFuture ? i18n.endsOn : i18n.endedOn}:
+            </span>
+            {utcFormattedDate}
+          </span>
+        </div>
+      )}
       {eligibilityComponent}
       {rewardsComponent}
       {errorAlert}

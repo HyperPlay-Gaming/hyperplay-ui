@@ -4,14 +4,14 @@ import React, { HTMLAttributes } from 'react'
 
 import { Tooltip, TooltipProps } from '@mantine/core'
 import { useClipboard } from '@mantine/hooks'
-import { IconCopy, TablerIconsProps } from '@tabler/icons-react'
+import { IconCopy, IconProps } from '@tabler/icons-react'
 import cn from 'classnames'
 
 import styles from './ButtonCopy.module.scss'
 
 export interface ButtonCopyProps extends HTMLAttributes<HTMLButtonElement> {
   tooltipProps?: TooltipProps
-  iconProps?: TablerIconsProps
+  iconProps?: IconProps
   text: string
   i18n?: {
     copy?: string

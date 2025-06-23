@@ -10,6 +10,7 @@ export type {
   SettingsButtons
 } from './components/GameCard/types'
 export { default as Carousel } from './components/Carousel'
+export type { ItemData } from './components/Carousel/components/Controller'
 export { default as Background } from './components/Background'
 export { default as CircularButton } from './components/CircularButton'
 export { default as GameInfo } from './components/GameInfo'
@@ -29,6 +30,8 @@ export {
 } from './components/Dropdowns'
 export { default as OptionsAccordion } from './components/OptionsAccordion'
 export type { itemType as DropdownItemType } from './components/Dropdowns/Dropdown'
+
+export { default as ArrowCircularButton } from './components/ArrowCircularButton'
 
 export * as Typography from './components/Typography'
 export * as Images from './assets/images'
@@ -50,6 +53,16 @@ export { default as LinkExternalAccounts } from './components/LinkExternalAccoun
 export { default as CheckEmail } from './components/CheckEmail'
 export { default as EmailVerified } from './components/EmailVerified'
 export { default as StoreRow } from './components/StoreRow'
+
+export {
+  default as GameInfoV2,
+  type GameInfoV2Props
+} from './components/GameInfoV2'
+
+export {
+  default as BlockchainsStack,
+  type BlockchainsStackProps
+} from './components/BlockchainsStack'
 
 export { default as AchievementCard } from './components/AchievementCard'
 export { default as AchievementNav } from './components/AchievementNav'
@@ -144,6 +157,12 @@ export {
 export { default as LayoutTabs } from './components/LayoutTabs'
 export { default as Select } from './components/Select'
 export { default as Collapse, type CollapseProps } from './components/Collapse'
+
+export {
+  default as MetaSection,
+  type MetaSectionProps
+} from './components/MetaSection'
+
 export {
   default as CollapseList,
   type CollapseListSectionProps as CollapseListProps
@@ -218,10 +237,16 @@ export type { TokenIdRowProps as RewardERC721DepositTokenRowProps } from './comp
 
 export { QuestsBanner, type QuestsBannerProps } from './components/QuestsBanner'
 export * from './components/PointsBalance'
+export { MarkdownDescription } from './components/MarkdownDescription'
+
 export {
-  MarkdownDescription,
-  type MarkdownDescriptionProps
-} from './components/MarkdownDescription'
+  default as RewardsCard,
+  type RewardsCardProps
+} from './components/RewardsCard'
+export {
+  default as RewardsSection,
+  type RewardsSectionProps
+} from './components/RewardsSection'
 
 export * from './components/StreakProgress'
 export * from './components/QuestDetails/components/Rewards'
@@ -230,3 +255,8 @@ export * from './components/QuestDetails/components/Reward'
 export { DarkContainer } from './components/DarkContainer'
 export * from './components/ContainerIcons'
 export * from './components/ContainerRaised'
+export * from './components/PlatformsSupported'
+export * from './components/PlatformIcon'
+export { default as Sticker, type StickerProps } from './components/Sticker'
+
+export { default as IconsStack } from './components/IconsStack'

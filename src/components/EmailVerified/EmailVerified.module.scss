@@ -1,20 +1,23 @@
-@use '../../styles/designSystem/spacing';
-@use '../../styles/designSystem/colors';
+@use '../../styles/designSystem/spacing' as *;
+@use '../../styles/designSystem/colors' as *;
 
 .root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   max-width: 600px;
 }
 
 .emailRoundedIcon {
-  background: var(--color-status-success);
+  background: var(--fill-success-strong);
 }
 
 .icon {
-  fill: var(--color-neutral-900);
+  fill: var(--icon-inverse-strong);
 }
 
 .button {
-  width: 100%;
+  display: flex;
+  justify-content: center;
   max-width: 218px;
-  margin: auto;
 }

@@ -9,6 +9,7 @@ import Loading from '@/components/Loading'
 
 import { QuestReward } from '../../types'
 import styles from './index.module.scss'
+import { Tooltip } from '@mantine/core'
 
 export interface RewardI18n {
   claimsLeft: string
@@ -21,11 +22,13 @@ export interface RewardProps extends HTMLProps<HTMLDivElement> {
   reward: QuestReward
   onClaim: () => void
   hideClaim?: boolean
+  claimNotAvailable?: boolean
   i18n?: {
     claimsLeft: string
     viewReward: string
     claimed: string
     claim: string
+    claimNotAvailable: string
   }
 }
 
@@ -35,11 +38,13 @@ export function Reward({
     claimsLeft: 'Claims left',
     viewReward: 'View Reward',
     claimed: 'Claimed',
-    claim: 'Claim'
+    claim: 'Claim',
+    claimNotAvailable: "This reward isn't available to claim right now."
   },
   className,
   onClaim,
   hideClaim,
+  claimNotAvailable,
   ...props
 }: RewardProps) {
   let numClaimsLeftComponent = null
@@ -81,6 +86,47 @@ export function Reward({
     formattedNumToClaim = `+${parsedNumToClaim}`
   }
 
+  let claimButton = null
+
+  if (claimNotAvailable || reward.isClaimed) {
+    claimButton = (
+      <Tooltip
+        withArrow
+        arrowSize={12}
+        label={i18n.claimNotAvailable}
+        position="bottom"
+        classNames={{ tooltip: classNames(styles.tooltip, 'caption') }}
+      >
+        <Button
+          disabled
+          type="secondaryGradient"
+          size="small"
+          htmlType="button"
+          className={styles.claimButton}
+        >
+          {i18n.claim}
+        </Button>
+      </Tooltip>
+    )
+  } else {
+    claimButton = (
+      <Button
+        disabled={reward.claimPending}
+        onClick={onClaim}
+        type="secondaryGradient"
+        size="small"
+        htmlType="button"
+        className={styles.claimButton}
+      >
+        {reward.claimPending ? (
+          <Loading className={styles.spinner} />
+        ) : (
+          i18n.claim
+        )}
+      </Button>
+    )
+  }
+
   return (
     <div
       className={classNames(styles.container, className)}
@@ -113,22 +159,7 @@ export function Reward({
           </div>
           {numClaimsLeftComponent}
         </div>
-        {!reward.isClaimed && !hideClaim ? (
-          <Button
-            disabled={reward.claimPending}
-            onClick={onClaim}
-            type="secondaryGradient"
-            size="small"
-            htmlType="button"
-            className={styles.claimButton}
-          >
-            {reward.claimPending ? (
-              <Loading className={styles.spinner} />
-            ) : (
-              i18n.claim
-            )}
-          </Button>
-        ) : null}
+        {!hideClaim ? claimButton : null}
       </div>
     </div>
   )

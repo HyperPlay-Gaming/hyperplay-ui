@@ -1,7 +1,7 @@
 $mobilePadding: 25px;
 
 $mobileSmallBreakpoint: 360px;
-$mobileBreakpoint: 950px;
+$tabletLandscapeBreakpoint: 950px;
 $laptopBreakpoint: 1350px;
 
 @mixin for-mobile-only {
@@ -15,7 +15,7 @@ $laptopBreakpoint: 1350px;
   }
 }
 @mixin for-tablet-landscape-up {
-  @media (min-width: $mobileBreakpoint) {
+  @media (min-width: $tabletLandscapeBreakpoint) {
     @content;
   }
 }

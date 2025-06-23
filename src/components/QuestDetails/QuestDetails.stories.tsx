@@ -25,6 +25,7 @@ import { Reward } from './components/Reward'
 import { Rewards } from './components/Rewards'
 import { RewardsRow } from './components/Rewards/RewardsRow'
 import { QuestDetailsProps, QuestReward } from './types'
+import dayjs from 'dayjs'
 
 const meta: Meta<typeof QuestDetails> = {
   title: 'Quests/QuestDetails',
@@ -356,8 +357,7 @@ export const WithAlert: Story = {
       title: 'Claim Failed',
       message:
         "Please try once more. If it still doesn't work, create a Discord support ticket.",
-      actionText: 'Create Discord Ticket',
-      variant: 'danger'
+      variant: 'error'
     }
   }
 }
@@ -416,6 +416,29 @@ export const DescriptionCustomElement: Story = {
     )
   }
 }
+const listsDescription = `### Let's Reach Level 200
+
+**Objective:**
+- Aim to reach level 200 on your new character.
+
+**Reward:**
+- Claim a rare gift upon reaching level 200!
+
+**Details:**
+- Embark on your journey and level up your new character.
+- Keep progressing until you reach the prestigious level 200.
+- Once you achieve this milestone, you'll be rewarded with a rare and exclusive gift to enhance your gameplay.
+
+**Good luck, adventurer!**
+
+For more details, visit [hyperplay](https://www.hyperplay.xyz).`
+
+export const WithLists: Story = {
+  args: {
+    ...props,
+    description: <MarkdownDescription>{listsDescription}</MarkdownDescription>
+  }
+}
 
 export const isClaimed: Story = {
   args: {
@@ -448,5 +471,19 @@ export const WithExternalSyncButton: Story = {
         key={'playstreakEligibility'}
       />
     ]
+  }
+}
+
+export const EndDateInFuture: Story = {
+  args: {
+    ...props,
+    endDate: dayjs().add(7, 'day').toISOString()
+  }
+}
+
+export const EndDateInPast: Story = {
+  args: {
+    ...props,
+    endDate: '2020-04-08T00:00:00.000Z'
   }
 }

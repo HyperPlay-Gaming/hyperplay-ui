@@ -7,37 +7,38 @@
   * do not have to check this global scss file when picking every color.
   */
   /* Primary */
-  --color-primary-100: #e8d0fd;
-  --color-primary-200: #cea2fc;
-  --color-primary-300: #9469fe;
-  --color-primary-400: #9150ee;
-  --color-primary-500: #661ae3;
-  --color-primary-600: #4e13c3;
-  --color-primary-700: #3a0da3;
-  --color-primary-800: #280883;
-  --color-primary-900: #1c046c;
+
+  --color-primary-100: #d8c9fe;
+  --color-primary-200: #c2a6fe;
+  --color-primary-300: #ab82fe;
+  --color-primary-400: #9469fe;
+  --color-primary-500: #8151fe;
+  --color-primary-600: #6b2adc;
+  --color-primary-700: #5922be;
+  --color-primary-800: #48179c;
+  --color-primary-900: #350f7b;
 
   /* Secondary */
-  --color-secondary-100: #fbd0fd;
-  --color-secondary-200: #f1a2fc;
-  --color-secondary-300: #de73f6;
-  --color-secondary-400: #c650ee;
-  --color-secondary-500: #a31ae3;
-  --color-secondary-600: #7f13c3;
-  --color-secondary-700: #5f0da3;
-  --color-secondary-800: #440883;
-  --color-secondary-900: #30046c;
+  --color-secondary-100: #e4d0f0;
+  --color-secondary-200: #d3b3e7;
+  --color-secondary-300: #c190dd;
+  --color-secondary-400: #ae62d2;
+  --color-secondary-500: #9c4bc4;
+  --color-secondary-600: #8735ae;
+  --color-secondary-700: #722896;
+  --color-secondary-800: #631e8a;
+  --color-secondary-900: #491461;
 
   /* Tertiary */
-  --color-tertiary-100: #d7faff;
-  --color-tertiary-200: #aff1ff;
-  --color-tertiary-300: #88e3ff;
-  --color-tertiary-400: #6ad2ff;
-  --color-tertiary-500: #39b8ff;
-  --color-tertiary-600: #2990db;
-  --color-tertiary-700: #1c6cb7;
-  --color-tertiary-800: #124d93;
-  --color-tertiary-900: #0a367a;
+  --color-tertiary-100: #d0ebff;
+  --color-tertiary-200: #a5d8ff;
+  --color-tertiary-300: #86bef7;
+  --color-tertiary-400: #66a9f1;
+  --color-tertiary-500: #339af0;
+  --color-tertiary-600: #228be6;
+  --color-tertiary-700: #1c7ed6;
+  --color-tertiary-800: #1971c2;
+  --color-tertiary-900: #1864ab;
 
   /* Quaternary */
   --color-quaternary-100: #fdd0d7;
@@ -51,38 +52,37 @@
   --color-quaternary-900: #6c0466;
 
   /* Success */
-  --color-success-100: #cdfed9;
-  --color-success-200: #9bfdbd;
-  --color-success-300: #69faa9;
-  --color-success-400: #40ffba;
-  --color-success-400-20: #40ffba20;
-  --color-success-500: #08ef9c;
-  --color-success-600: #05cd99;
-  --color-success-700: #04ac90;
-  --color-success-800: #028a82;
-  --color-success-900: #016e72;
+  --color-success-100: #c6f5e1;
+  --color-success-200: #a3f0d0;
+  --color-success-300: #81ebbf;
+  --color-success-400: #6ee7b7;
+  --color-success-500: #5cd4a5;
+  --color-success-600: #4ab893;
+  --color-success-700: #389b7e;
+  --color-success-800: #267e68;
+  --color-success-900: #146152;
 
   /* Alert */
-  --color-alert-100: #ffedd3;
-  --color-alert-200: #ffd7a7;
-  --color-alert-300: #ffbb7b;
-  --color-alert-400: #fbab4d;
-  --color-alert-500: #ff7324;
-  --color-alert-600: #db531a;
-  --color-alert-700: #b73912;
-  --color-alert-800: #93230b;
-  --color-alert-900: #7a1306;
+  --color-alert-100: #fde8b8;
+  --color-alert-200: #fcdb90;
+  --color-alert-300: #fcce68;
+  --color-alert-400: #fbbf24;
+  --color-alert-500: #e2a90f;
+  --color-alert-600: #c9930d;
+  --color-alert-700: #b07d0b;
+  --color-alert-800: #976709;
+  --color-alert-900: #7e5107;
 
   /* Error */
-  --color-error-100: #fde0d0;
-  --color-error-200: #fcbaa2;
-  --color-error-300: #f68a73;
-  --color-error-400: #ff6976;
-  --color-error-500: #e31a1a;
-  --color-error-600: #c31322;
-  --color-error-700: #a30d27;
-  --color-error-800: #830828;
-  --color-error-900: #6c0429;
+  --color-error-100: #fdced5;
+  --color-error-200: #fcb3bd;
+  --color-error-300: #fb98a6;
+  --color-error-400: #fb7185;
+  --color-error-500: #f95a71;
+  --color-error-600: #e54a60;
+  --color-error-700: #d13a4f;
+  --color-error-800: #bd2a3e;
+  --color-error-900: #a91a2d;
 
   /* Neutrals */
   --color-neutral-50: #ffffff;
@@ -94,36 +94,125 @@
   --color-neutral-600: #222530;
   --color-neutral-700: #171a25;
   --color-neutral-800: #13141a;
-  --color-neutral-800-60: #13141a9a;
-  --color-neutral-900: #0c0b0f;
+  --color-neutral-900: #060606;
   --color-neutral-1000: #000000;
 
   /* Status */
   --color-status-success: var(--color-success-400);
   --color-status-alert: var(--color-alert-400);
   --color-status-error: var(--color-error-400);
-  --color-status-info: var(--color-tertiary-400);
+  --color-status-info: var(--color-tertiary-300);
+
+  /* Text */
+  --text-primary: var(--color-primary-400);
+  --text-secondary: var(--color-secondary-400);
+  --text-strong: var(--color-neutral-100);
+  --text-brand: var(--color-primary-300);
+  --text-weak: var(--color-neutral-300);
+  --text-disabled: color-mix(
+    in srgb,
+    var(--color-neutral-200) 20%,
+    transparent
+  );
+  --text-error: var(--color-error-400);
+  --text-warning: var(--color-alert-400);
+  --text-success: var(--color-success-400);
+  --text-info: var(--color-tertiary-400);
+  --text-inverse-strong: var(--color-neutral-900);
+  --text-inverse-weak: var(--color-neutral-600);
+  --text-inverse-disabled: var(--color-neutral-500);
+
+  /* Icon */
+  --icon-primary: color-mix(in srgb, var(--color-primary-400) 75%, transparent);
+  --icon-neutral: var(--color-neutral-100);
+  --icon-brand: var(--color-primary-300);
+  --icon-secondary: var(--color-neutral-300);
+  --icon-disabled: color-mix(
+    in srgb,
+    var(--color-neutral-200) 50%,
+    transparent
+  );
+  --icon-error: color-mix(in srgb, var(--color-error-400) 75%, transparent);
+  --icon-warning: color-mix(in srgb, var(--color-alert-400) 75%, transparent);
+  --icon-success: color-mix(in srgb, var(--color-success-400) 75%, transparent);
+  --icon-info: color-mix(in srgb, var(--color-tertiary-300) 75%, transparent);
+  --icon-inverse: color-mix(in srgb, var(--color-neutral-800) 50%, transparent);
+  --icon-inverse-strong: var(--color-neutral-800);
+  --icon-inverse-weak: color-mix(
+    in srgb,
+    var(--color-neutral-800) 8%,
+    transparent
+  );
+
+  /* Fill */
+  --fill-strong: var(--color-neutral-100);
+  --fill-weak: color-mix(in srgb, var(--color-neutral-200) 20%, transparent);
+  --fill-weaker: color-mix(in srgb, var(--color-neutral-200) 7%, transparent);
+  --fill-hover: color-mix(in srgb, var(--color-neutral-200) 20%, transparent);
+  --fill-pressed: color-mix(in srgb, var(--color-neutral-200) 50%, transparent);
+  --fill-selected: var(--color-primary-400);
+  --fill-disabled: color-mix(in srgb, var(--color-neutral-100) 6%, transparent);
+  --fill-overlay: color-mix(in srgb, var(--color-neutral-600) 10%, transparent);
+  --fill-brand-strong: var(--color-primary-700);
+  --fill-brand-weak: color-mix(
+    in srgb,
+    var(--color-primary-400) 8%,
+    transparent
+  );
+  --fill-error-strong: var(--color-error-400);
+  --fill-error-weak: color-mix(in srgb, var(--color-error-400) 8%, transparent);
+  --fill-warning-strong: var(--color-alert-400);
+  --fill-warning-weak: color-mix(
+    in srgb,
+    var(--color-alert-400) 8%,
+    transparent
+  );
+  --fill-success-strong: var(--color-success-400);
+  --fill-success-weak: color-mix(
+    in srgb,
+    var(--color-success-400) 8%,
+    transparent
+  );
+  --fill-info-strong: var(--color-tertiary-400);
+  --fill-info-weak: color-mix(
+    in srgb,
+    var(--color-tertiary-400) 8%,
+    transparent
+  );
+  --fill-inverse-strong: var(--color-neutral-800);
+  --fill-inverse-press: var(--color-neutral-700);
+  --fill-inverse-disabled: var(--color-neutral-500);
+  --fill-inverse-weak: var(--color-neutral-700);
+  --fill-white: var(--color-neutral-50);
+
+  /* Background */
+  --background-base: var(--color-neutral-800);
+  --background-raised: var(--color-neutral-700);
+  --background-overlay: var(--color-neutral-600);
+  --background-sunken: var(--color-neutral-900);
+  --background-alternate: var(--color-neutral-500);
+  --background-brand: var(--color-primary-700);
+  --background-inverse: var(--color-neutral-50);
 
   /* Gradients */
-  /* Color */
   --color-gradient-01: linear-gradient(180deg, #3c71f3 0%, #b923ff 100%);
   --color-gradient-02: linear-gradient(
     282.64deg,
-    #b923ff 9.95%,
-    #3c71f3 88.32%
+    #a31ae3 9.95%,
+    #1c6cb7 88.32%
   );
-  --color-gradient-03: linear-gradient(284.72deg, #a11ede 3.43%, #2d5bcc 70.8%);
-  --color-gradient-04: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
-  --color-gradient-05: linear-gradient(294.78deg, #fc00ff 24.81%, #00dbde 100%);
-  --color-gradient-06: linear-gradient(111.16deg, #7f00ff 0%, #e100ff 77.52%);
+  --color-gradient-03: linear-gradient(284.72deg, #a31ae3 3.43%, #1c6cb7 70.8%);
+  --color-gradient-04: linear-gradient(90deg, #1c6cb7 0%, #04befe 100%);
+  --color-gradient-05: linear-gradient(294.78deg, #ae62d2 24.81%, #6ee7b7 100%);
+  --color-gradient-06: linear-gradient(111.16deg, #a31ae3 0%, #9469fe 77.52%);
   --color-gradient-07: linear-gradient(
     112.97deg,
-    #fc00ff 0%,
-    #504cf3 26.64%,
-    #1dbbed 52.48%,
-    #02ffd1 76.34%
+    #a31ae3 0%,
+    #9469fe 26.64%,
+    #1c6cb7 52.48%,
+    #6ee7b7 76.34%
   );
-  --color-gradient-08: linear-gradient(90deg, #34004d, #00257f);
+  --color-gradient-08: linear-gradient(90deg, #3c138f, #32379a);
 
   /* Monochrome */
   --ui-color-mono-gradient-01: linear-gradient(
@@ -156,22 +245,23 @@
   /* For components that share styles */
   --app-background: var(--color-neutral-900);
   --background-raised: var(--color-neutral-700);
+  --color-stroke-selected: var(--color-primary-600);
 
   /* Gradients */
   --color-gradient-01-border: linear-gradient(
     178.77deg,
-    #3c71f3 0.05%,
-    #b923ff 104.48%
+    #1c6cb7 0.05%,
+    #a31ae3 104.48%
   );
   --color-gradient-02-border: linear-gradient(
     282.64deg,
-    #b923ff 9.95%,
-    #3c71f3 88.32%
+    #a31ae3 9.95%,
+    #1c6cb7 88.32%
   );
   --color-gradient-03-border: linear-gradient(
     284.72deg,
-    #a11ede 3.43%,
-    #2d5bcc 70.8%
+    #a31ae3 3.43%,
+    #1c6cb7 70.8%
   );
 
   --color-gradient-steam-01: linear-gradient(
@@ -181,8 +271,8 @@
   );
 
   /* OLD - UNSURE IF STILL NEEDED 4.20.23 - USED BY BUTTON COMPONENT */
-  --color-gradient-primary: #3c71f3;
-  --color-gradient-secondary: #b923ff;
+  --color-gradient-primary: #1c6cb7;
+  --color-gradient-secondary: #a31ae3;
   --color-gradient-default-rotation: 90;
   --color-gradient-hover-rotation: 180;
   --color-gradient-active-rotation: 270;
@@ -190,7 +280,74 @@
   --color-gradient-active-secondary-offset: 96.35%;
 
   /* Stroke */
-  --color-stroke-01: #282b34;
+  --color-stroke-strong: var(--color-neutral-500);
+  --color-stroke-weak: var(--color-neutral-600);
+  --color-stroke-brand-strong: color-mix(
+    in srgb,
+    var(--color-primary-400) 75%,
+    transparent
+  );
+  --color-stroke-brand-weak: var(--color-primary-400);
+  --color-stroke-selected: var(--color-primary-400);
+  --color-stroke-focus: color-mix(
+    in srgb,
+    var(--color-primary-400) 75%,
+    transparent
+  );
+  --color-stroke-disabled: var(--color-neutral-700);
+
+  --color-stroke-error-strong: color-mix(
+    in srgb,
+    var(--color-error-400) 75%,
+    transparent
+  );
+  --color-stroke-error-weak: color-mix(
+    in srgb,
+    var(--color-error-400) 15%,
+    transparent
+  );
+  --color-stroke-warning-strong: color-mix(
+    in srgb,
+    var(--color-alert-400) 75%,
+    transparent
+  );
+  --color-stroke-warning-weak: color-mix(
+    in srgb,
+    var(--color-alert-400) 15%,
+    transparent
+  );
+  --color-stroke-success-strong: color-mix(
+    in srgb,
+    var(--color-success-400) 75%,
+    transparent
+  );
+  --color-stroke-success-weak: color-mix(
+    in srgb,
+    var(--color-success-400) 15%,
+    transparent
+  );
+  --color-stroke-info-strong: color-mix(
+    in srgb,
+    var(--color-tertiary-400) 75%,
+    transparent
+  );
+  --color-stroke-info-weak: color-mix(
+    in srgb,
+    var(--color-tertiary-400) 15%,
+    transparent
+  );
+  --color-stroke-inverse-strong: var(--color-neutral-900);
+  --color-stroke-inverse-weak: color-mix(
+    in srgb,
+    var(--color-neutral-700) 75%,
+    transparent
+  );
+  --color-stroke-inverse-disabled: color-mix(
+    in srgb,
+    var(--color-neutral-700) 5%,
+    transparent
+  );
+  --color-stroke-01: var(--color-neutral-600);
   --color-stroke-02: linear-gradient(
     86.63deg,
     #4126e8 2.98%,

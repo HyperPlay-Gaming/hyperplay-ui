@@ -1,4 +1,4 @@
-@use '../../../styles/designSystem/typography';
+@use '../../../styles/designSystem/typography' as *;
 
 .selected {
   color: var(--color-secondary-200);

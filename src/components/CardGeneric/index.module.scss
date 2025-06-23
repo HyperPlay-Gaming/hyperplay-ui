@@ -1,4 +1,4 @@
-@use '../../styles/overrides';
+@use '../../styles/overrides' as *;
 
 .card {
   overflow: visible;
@@ -39,7 +39,7 @@
 }
 
 .mantineOverRide {
-  @include overrides.broken-image-fix();
+  @include broken-image-fix();
 }
 
 .achievementImage {

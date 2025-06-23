@@ -5,27 +5,28 @@ import TreasureChestImage from '@/assets/banners/TreasureChest.png?url'
 
 import { QuestsBanner, QuestsBannerProps } from '.'
 
+const list = [
+  {
+    bannerImageUrl: CreditsCreditsImage,
+    title: 'Win Game7 Credits',
+    description:
+      'Dive into HyperPlay’s top games with 7-day streak challenges. Each activity encourages you to engage with a different game, showcasing the best of web3 gaming. Your playtime matters!',
+    buttonText: 'View G7 Quests',
+    onButtonTap: () => alert('View Quests clicked!')
+  },
+  {
+    bannerImageUrl: TreasureChestImage,
+    title: 'Introducing Quests',
+    description: 'You can now earn rewards for completing Quests on HyperPlay.',
+    buttonText: 'View Quests',
+    onButtonTap: () => alert('View Quests clicked!')
+  }
+]
+
 const props: QuestsBannerProps = {
   classNames: {},
-  list: [
-    {
-      bannerImageUrl: CreditsCreditsImage,
-      title: 'Win Game7 Credits',
-      description:
-        'Dive into HyperPlay’s top games with 7-day streak challenges. Each activity encourages you to engage with a different game, showcasing the best of web3 gaming. Your playtime matters!',
-      buttonText: 'View G7 Quests',
-      onButtonTap: () => alert('View Quests clicked!')
-    },
-    {
-      bannerImageUrl: TreasureChestImage,
-      title: 'Introducing Quests',
-      description:
-        'You can now earn rewards for completing Quests on HyperPlay.',
-      buttonText: 'View Quests',
-      onButtonTap: () => alert('View Quests clicked!')
-    }
-  ],
-  totalPages: 2,
+  list,
+  totalPages: list.length,
   onPageChangeTap: (pageIndex: number) =>
     console.log(`Page changed to ${pageIndex}`)
 }
@@ -65,4 +66,8 @@ export const Tablet: Story = {
       defaultViewport: 'tablet'
     }
   }
+}
+
+export const SinglePage: Story = {
+  args: { ...props, list: [list[0]] }
 }

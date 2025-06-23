@@ -1,4 +1,4 @@
-@use '../../styles/designSystem/typography';
+@use '../../styles/designSystem/typography' as *;
 
 .root {
   @extend .body-sm;

@@ -1,4 +1,4 @@
-@use '../../styles/utilities/_variables';
+@use '../../styles/utilities/_variables' as *;
 
 $hoverBorderThickness: 2px;
 
@@ -14,8 +14,10 @@ $hoverBorderThickness: 2px;
 .root {
   box-sizing: border-box;
   position: relative;
-  height: 309px;
-  width: 200px;
+  // default size for mobile devices. See below for tablet and desktop
+  // Same width applies on the store page when loading the gamecard grid.
+  height: 278px;
+  width: 180px;
   cursor: pointer;
 
   &:hover .border {
@@ -36,7 +38,7 @@ $hoverBorderThickness: 2px;
     @include hiddenElement();
   }
 
-  @include variables.for-tablet-portrait-up {
+  @include for-tablet-portrait-up {
     height: 334px;
     width: 216px;
   }
@@ -88,7 +90,7 @@ $hoverBorderThickness: 2px;
       color: var(--color-neutral-100);
     }
 
-    @include variables.for-tablet-portrait-up {
+    @include for-tablet-portrait-up {
       padding: 16px;
 
       h6 {
@@ -123,6 +125,10 @@ $hoverBorderThickness: 2px;
   @include visibleElement();
   transition: 0.1s;
   position: relative;
+
+  @include for-mobile-only {
+    font-size: var(--text-md) !important;
+  }
 }
 
 .title {

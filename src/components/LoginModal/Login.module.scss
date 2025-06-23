@@ -8,7 +8,7 @@
 }
 
 .icon {
-  fill: var(--color-neutral-100);
+  fill: var(--icon-neutral);
 }
 
 .recommendedLabel {
@@ -16,13 +16,13 @@
 }
 
 .emailRoundedIcon {
-  background: var(--color-primary-500);
+  background: var(--fill-brand-strong);
 }
 
 .buttonContainer {
   display: flex;
   gap: var(--space-sm);
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .form {

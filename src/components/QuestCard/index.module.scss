@@ -12,17 +12,17 @@ $border: 2px var(--color-neutral-600) solid;
 .image {
   border: $border;
   border-bottom: 0px;
-  max-height: 150px;
+  max-height: 156.75px;
   object-fit: cover;
 }
 
 .content {
   display: flex;
-  height: 100px;
+  max-height: 6.25rem;
   flex-direction: column;
   justify-content: flex-start;
   align-items: space-between;
-  gap: var(--space-xs);
+  gap: var(--space-2xs);
 }
 
 .header {
@@ -39,24 +39,26 @@ $border: 2px var(--color-neutral-600) solid;
 
 .title {
   margin-bottom: var(--space-sm);
-  color: var(--color-neutral-400);
+  color: var(--text-weak);
 }
 
 .description {
-  color: var(--color-neutral-100);
+  color: var(--text-strong);
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  max-height: 1.5em;
+  line-height: 1.5;
+  width: 100%;
 }
 
 .subtitle {
   display: flex;
   align-items: center;
   align-self: stretch;
-  color: var(--color-neutral-400);
+  color: var(--text-weak);
 }
 
 .questsDetails {
@@ -72,11 +74,11 @@ $border: 2px var(--color-neutral-600) solid;
 .avatarWithName {
   display: flex;
   flex-direction: row;
-  gap: var(--space-xs);
+  gap: var(--space-2xs);
   align-items: flex-start;
-  justify-content: center;
-  padding-top: var(--space-lg);
-  align-self: flex-end;
+  justify-content: flex-start;
+  padding-top: var(--space-xs);
+  width: 225px;
 }
 
 .questCurrency {
@@ -84,34 +86,39 @@ $border: 2px var(--color-neutral-600) solid;
   width: 100%;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--space-xs);
   flex: 1 0 0;
 }
 
 .amount {
-  font-size: var(--text-sm);
-  color: var(--color-success-100);
+  color: var(--text-success);
   font-weight: var(--semibold);
-  padding-top: var(--space-lg);
+  padding-top: var(--space-md);
 }
 
 .questName {
-  font-size: var(--text-lg);
-  font-weight: var(--semibold);
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
   -webkit-line-clamp: 1;
   line-clamp: 1;
   -webkit-box-orient: vertical;
   align-self: flex-start;
+  width: 100%;
+  display: -webkit-box;
 }
 
 .currencyName {
-  color: var(--color-neutral-300);
-  font-size: var(--text-md);
+  color: var(--text-weak);
   padding-top: var(--space-3xs);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 8.75rem;
+
+  .avatarWithName:only-child & {
+    max-width: 210px;
+  }
 }
 
 .questType {
@@ -132,4 +139,21 @@ $border: 2px var(--color-neutral-600) solid;
   height: 100%;
   object-fit: cover;
   aspect-ratio: 16/9;
+}
+
+.tooltip {
+  max-width: 305px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  border-radius: var(--space-sm-fixed);
+  padding: var(--space-lg-fixed);
+  background-color: var(--background-overlay);
+  box-shadow: 0px 8px 8px -4px rgba(124, 58, 237, 0.04),
+    0px 20px 24px -4px rgba(124, 58, 237, 0.08);
+  color: var(--text-strong);
+  display: none;
+
+  &.show {
+    display: block;
+  }
 }

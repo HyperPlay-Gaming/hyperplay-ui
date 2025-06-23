@@ -4,7 +4,7 @@ import { CardProps, ImageProps, Popover } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import cn from 'classnames'
 
-import * as Images from '@/assets/images'
+import { InfoIcon } from '@/assets/images'
 
 import AchievementProgress, {
   AchievementProgressTextProps
@@ -117,11 +117,7 @@ export default function AchievementCard({
             onMouseLeave={close}
             className={styles.popoverButton}
           >
-            <Images.Info
-              height={16}
-              width={16}
-              fill="var(--color-neutral-400)"
-            />
+            <InfoIcon height={16} width={16} fill="var(--color-neutral-400)" />
           </button>
         </Popover.Target>
         <Popover.Dropdown className={styles.popover}>

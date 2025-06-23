@@ -8,7 +8,7 @@ type ActionBarProps = {
   onSettingsClick: React.MouseEventHandler<HTMLButtonElement>
   onFavoriteClick: React.MouseEventHandler<HTMLButtonElement>
   onActionClick: React.MouseEventHandler<HTMLButtonElement>
-  icon: JSX.Element
+  icon: React.JSX.Element
   favorited?: boolean
   showSettings: boolean
   actionDisabled?: boolean

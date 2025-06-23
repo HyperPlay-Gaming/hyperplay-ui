@@ -35,7 +35,7 @@ export function NativePlatformInput({
   i18n,
   exeListAmd64,
   exeListArm64
-}: PlatformInputProps): JSX.Element {
+}: PlatformInputProps): React.JSX.Element {
   const platformDisplayName = platformLabels[platformName]
   const amdLabel = `${platformDisplayName} (Intel / amd64)`
   const amdPlatformUpload = (

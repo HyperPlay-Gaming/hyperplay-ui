@@ -26,6 +26,7 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
     getTheApp: string
     getHyperPlayApp: string
     developerAgreement?: string
+    careers?: string
   }
   linkProps: {
     privacyPolicy: LinkProps
@@ -34,12 +35,14 @@ export interface FooterProps extends HTMLProps<HTMLDivElement> {
     badges: LinkProps
     downloads: LinkProps
     developerAgreement?: LinkProps
+    careers?: LinkProps
   }
   flags: {
     showLangSelector: boolean
     showGetTheApp?: boolean
     showBrandLink?: boolean
     showMetaMaskLink?: boolean
+    showCareersLink?: boolean
   }
 }
 
@@ -61,13 +64,15 @@ export function Footer({
     badges: 'BADGES',
     getTheApp: 'Get the App',
     getHyperPlayApp: 'Get HyperPlay Apps',
-    developerAgreement: 'DEVELOPER AGREEMENT'
+    developerAgreement: 'DEVELOPER AGREEMENT',
+    careers: 'CAREERS'
   },
   flags = {
     showLangSelector: false,
     showGetTheApp: true,
     showBrandLink: true,
-    showMetaMaskLink: true
+    showMetaMaskLink: true,
+    showCareersLink: true
   },
   ...props
 }: FooterProps) {
@@ -115,6 +120,14 @@ export function Footer({
               >
                 {i18n.brand}
               </a>
+            ) : null}
+            {flags.showCareersLink ? (
+              <Link
+                className={FooterSectionStyle.footer__link}
+                {...linkProps.careers}
+              >
+                {i18n.careers}
+              </Link>
             ) : null}
             <Link
               className={FooterSectionStyle.footer__link}

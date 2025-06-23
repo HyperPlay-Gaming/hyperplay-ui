@@ -1,5 +1,5 @@
 @use 'sass:math';
-@use '../../styles/utilities/_variables';
+@use '../../styles/utilities/_variables' as *;
 
 .root {
   display: flex;
@@ -10,7 +10,7 @@
   margin: 0 auto;
   gap: 84px;
 
-  @include variables.for-mobile-only {
+  @include for-mobile-only {
     width: auto;
   }
 }
@@ -25,7 +25,7 @@
   flex-wrap: wrap;
   width: 100%;
 
-  @include variables.for-desktop-up {
+  @include for-desktop-up {
     width: auto;
   }
 
@@ -46,7 +46,7 @@
   gap: var(--space-sm);
   text-transform: uppercase;
 
-  @include variables.for-desktop-up {
+  @include for-desktop-up {
     min-width: 8.75rem;
   }
 }
@@ -68,7 +68,7 @@
   gap: 10px;
   align-self: stretch;
 
-  @include variables.for-tablet-portrait-up {
+  @include for-tablet-portrait-up {
     gap: var(--space-xs);
   }
 }
@@ -84,7 +84,7 @@
   text-transform: uppercase;
   min-height: 36px;
 
-  @include variables.for-desktop-up {
+  @include for-desktop-up {
     font-size: var(--text-xs);
     line-height: calc(var(--text-xs) * 16 / 12);
     min-height: auto;
@@ -104,7 +104,7 @@
   text-align: left;
   width: 100%;
 
-  @include variables.for-desktop-up {
+  @include for-desktop-up {
     font-size: var(--text-xs);
     line-height: calc(var(--text-xs) * 16 / 12);
     text-align: center;
@@ -112,7 +112,7 @@
   }
 }
 
-@media screen and (max-width: #{variables.$mobileBreakpoint}) {
+@media screen and (max-width: #{$tabletLandscapeBreakpoint}) {
   .footer {
     flex-direction: row;
     align-items: flex-start;

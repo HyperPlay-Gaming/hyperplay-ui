@@ -40,7 +40,7 @@ export default function RemoveWalletModal({
       confirmationText: ''
     },
     validate: {
-      confirmationText: (value) =>
+      confirmationText: (value: string) =>
         value === i18n.confirmationText ? null : i18n.errorLabel
     }
   })
@@ -73,10 +73,10 @@ export default function RemoveWalletModal({
           {...form.getInputProps('confirmationText')}
         />
         <div className={styles.footer}>
-          <Button type="tertiary" htmlType="button">
+          <Button type="primary" htmlType="button">
             {i18n?.cancelButtonLabel}
           </Button>
-          <Button type="danger" htmlType="submit">
+          <Button type="danger-tertiary" htmlType="submit">
             {i18n?.confirmButtonLabel}
           </Button>
         </div>

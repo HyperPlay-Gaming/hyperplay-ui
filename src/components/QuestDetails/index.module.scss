@@ -3,6 +3,7 @@
   max-width: 700px;
   height: 100%;
   margin: var(--space-xl) var(--space-xs);
+  border: 2px solid var(--color-neutral-600);
 }
 
 .badges {
@@ -18,7 +19,6 @@
 }
 
 .description {
-  white-space: pre-wrap;
   text-wrap: wrap;
   line-height: var(--space-xl);
 }
@@ -58,4 +58,24 @@
   flex-direction: column;
   height: 100%;
   gap: var(--space-xl);
+}
+
+.endDate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-2xs);
+  color: var(--color-neutral-100);
+}
+
+.futureDate {
+  color: var(--text-brand);
+}
+
+.pastDate {
+  color: var(--color-neutral-400);
+}
+
+.iconFuture {
+  color: var(--icon-brand);
 }

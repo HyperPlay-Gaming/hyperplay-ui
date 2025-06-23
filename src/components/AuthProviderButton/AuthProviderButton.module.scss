@@ -1,5 +1,5 @@
-@use '../../styles/designSystem/spacing';
-@use '../../styles/designSystem/colors';
+@use '../../styles/designSystem/spacing' as *;
+@use '../../styles/designSystem/colors' as *;
 
 .content {
   display: flex;

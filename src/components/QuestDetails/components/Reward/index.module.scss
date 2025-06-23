@@ -143,3 +143,10 @@ $imgSize: 120px;
   width: 16px;
   height: 16px;
 }
+
+.tooltip {
+  padding: var(--space-lg);
+  border-radius: var(--space-sm);
+  background-color: var(--color-neutral-600);
+  color: var(--text-strong);
+}

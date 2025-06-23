@@ -1,112 +1,332 @@
-import React, { useEffect, useRef, useState } from 'react'
+'use client'
 
-import { Carousel, Embla } from '@mantine/carousel'
-import Autoplay, { AutoplayType } from 'embla-carousel-autoplay'
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useRef,
+  useState
+} from 'react'
+
+import {
+  CarouselStylesNames,
+  Carousel as MantineCarousel
+} from '@mantine/carousel'
+import { useMediaQuery } from '@mantine/hooks'
+import cn from 'classnames'
+import { EmblaCarouselType } from 'embla-carousel'
+import Autoplay, {
+  AutoplayOptionsType,
+  AutoplayType
+} from 'embla-carousel-autoplay'
+
+import { ChevronLeft, ChevronRight } from '@/assets/images'
+import { tabletLandscapeBreakpointPx } from '@/styles/utilities/variables'
 
 import Controller from './components/Controller'
+import { SlideVideo } from './components/SlideVideo'
 import styles from './index.module.scss'
 
-export interface SlideData {
-  slideElement: JSX.Element
-  thumbnail?: JSX.Element
-  button?: JSX.Element
-  key?: string
+export type { SlideVideoInterface } from './components/SlideVideo'
+export type { ControllerProps } from './components/Controller'
+
+interface CarouselContextType {
+  activeIndex: number
+  setActiveIndex: (index: number) => void
+  isRotating: () => void
+  play: () => void
+  stop: () => void
+  totalSlideTime?: number
+  getTimeUntilSlideFinished?: () => number | null
+  slideTimeOverrideIndexToTimeMsMap: Record<number, number>
+  setSlideTimeOverride: (slideIndex: number, timeInMs: number) => void
+  timeUntilSlideFinishedOverrideIndexToTimeMsMap: Record<
+    number,
+    { timeLeftInMs: number; lastUpdatedMsSinceEpoch: number }
+  >
+  setTimeUntilSlideFinishedOverride: (
+    slideIndex: number,
+    timeInMs: number
+  ) => void
+  onVideoPlay: (slideIndex: number) => void
+  onVideoPaused: (slideIndex: number) => void
+  onVideoEnded: (slideIndex: number) => void
+  isVideoSlidePlaying: Record<number, boolean>
+  isVideoSlide: boolean
+  /** Show a loading skeleton while loading */
+  isLoading?: boolean
+  emblaApi?: EmblaCarouselType
+  withControls?: boolean
 }
 
-export interface Carouselv2Props {
-  items: SlideData[]
-  autoplayDelayInMs: number
-  controllerLayout?: 'attached' | 'detached'
-  canAutoRotate?: boolean
-  onThumbnailHandler?: (index: number) => void
+const CarouselContext = createContext<CarouselContextType | undefined>(
+  undefined
+)
+
+export const useCarousel = () => {
+  const context = useContext(CarouselContext)
+  if (!context) {
+    throw new Error('useCarousel must be used within a CarouselProvider')
+  }
+  return context
 }
 
-const Carouselv2 = ({
-  canAutoRotate = true,
-  onThumbnailHandler,
+export interface CarouselProps
+  extends React.ComponentProps<typeof MantineCarousel> {
+  // need to narrow type here for TS
+  classNames?: Partial<Record<CarouselStylesNames | 'hpCarouselRoot', string>>
+  className?: string
+  childrenNotInCarousel?: React.ReactNode
+  autoplayOptions?: AutoplayOptionsType
+  /** Show a loading skeleton while loading */
+  isLoading?: boolean
+}
+
+const Carousel = ({
+  classNames,
+  children,
+  className,
+  childrenNotInCarousel,
+  autoplayOptions,
+  isLoading,
+  withControls = true,
   ...props
-}: Carouselv2Props) => {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const autoplay = useRef<AutoplayType>(
-    Autoplay({ delay: props.autoplayDelayInMs, stopOnInteraction: false })
+}: CarouselProps) => {
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0)
+  const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | undefined>(
+    undefined
   )
-  const [emblaApiRef, setEmblaApiRef] = useState<Embla>()
-  const controllerLayout = props.controllerLayout ?? 'attached'
+  const [
+    timeUntilSlideFinishedOverrideIndexToTimeMsMap,
+    setTimeUntilSlideFinishedOverrideIndexToTimeMsMap
+  ] = useState<
+    Record<number, { timeLeftInMs: number; lastUpdatedMsSinceEpoch: number }>
+  >({})
+  const [
+    slideTimeOverrideIndexToTimeMsMap,
+    setSlideTimeOverrideIndexToTimeMsMap
+  ] = useState<Record<number, number>>({})
+  const [videoSlides, setVideoSlides] = useState<number[]>([])
 
-  useEffect(() => {
-    if (emblaApiRef) {
-      if (canAutoRotate) {
-        autoplay.current.play()
-      } else {
-        autoplay.current.stop()
+  const setSlideTimeOverride = (slideIndex: number, timeInMs: number) => {
+    setSlideTimeOverrideIndexToTimeMsMap((prevState) => ({
+      ...prevState,
+      [slideIndex]: timeInMs
+    }))
+  }
+
+  const setTimeUntilSlideFinishedOverride = (
+    slideIndex: number,
+    timeInMs: number
+  ) => {
+    setTimeUntilSlideFinishedOverrideIndexToTimeMsMap((prevState) => ({
+      ...prevState,
+      [slideIndex]: {
+        timeLeftInMs: timeInMs,
+        lastUpdatedMsSinceEpoch: Date.now()
       }
-    }
-  }, [emblaApiRef, canAutoRotate])
+    }))
+  }
 
-  function getSlides() {
-    return props.items.map((item) => (
-      <Carousel.Slide key={item.key}>
-        {item.slideElement}
-        {item.button && <div className={styles.title}>{item.button}</div>}
+  const autoplay = useRef<AutoplayType>(
+    Autoplay({ stopOnInteraction: false, ...autoplayOptions })
+  )
+
+  const isMobile = useMediaQuery(
+    `(max-width: ${tabletLandscapeBreakpointPx}px)`,
+    false,
+    {
+      getInitialValueInEffect: true
+    }
+  )
+
+  const slideAutoplayStopped = isMobile || isLoading
+
+  const setActiveSlideIndexAndResetAutoplay = useCallback(
+    (idx: number) => {
+      setActiveSlideIndex(idx)
+      emblaApi?.scrollTo(idx)
+      // no autoplay on mobile
+      if (!isMobile) {
+        autoplay.current?.reset()
+        autoplay.current?.play()
+      }
+    },
+    [setActiveSlideIndex, autoplay.current, emblaApi]
+  )
+
+  // if delay val is an object, it won't be useable in children anyways so let's return undefined in that case
+  const delayValOrObj = autoplay.current.options.delay?.valueOf()
+  let delayNum: number | undefined = undefined
+  if (typeof delayValOrObj === 'number') {
+    delayNum = delayValOrObj
+  }
+
+  const scrollNextSlideCallback = useCallback(
+    (jump?: boolean) => {
+      emblaApi?.scrollNext(jump)
+    },
+    [emblaApi]
+  )
+
+  /**
+   * @dev we keep track of each slide's video playing status to control react player.
+   * this is because multiple video slides may be present with different playing statuses per slide.
+   */
+  const [isVideoSlidePlaying, setIsVideoSlidePlaying] = useState<
+    Record<number, boolean>
+  >({})
+
+  const setVideoSlidePlaying = (slideIndex: number, isPlaying: boolean) => {
+    setIsVideoSlidePlaying((prevState) => ({
+      ...prevState,
+      [slideIndex]: isPlaying
+    }))
+  }
+
+  const onVideoPlay = useCallback(
+    (slideIndex: number) => {
+      // keep each arr val unique
+      const vidSlides = new Set(videoSlides)
+      vidSlides.add(slideIndex)
+      setVideoSlides([...vidSlides.values()])
+      setVideoSlidePlaying(slideIndex, true)
+      autoplay.current.stop()
+    },
+    [autoplay, videoSlides]
+  )
+
+  const onVideoPaused = useCallback(
+    (slideIndex: number) => {
+      setVideoSlidePlaying(slideIndex, false)
+      if (
+        !Object.hasOwn(
+          timeUntilSlideFinishedOverrideIndexToTimeMsMap,
+          slideIndex
+        )
+      ) {
+        return
+      }
+      const {
+        timeLeftInMs: timeLeftInMsOld,
+        lastUpdatedMsSinceEpoch: lastUpdatedMsSinceEpochOld
+      } = timeUntilSlideFinishedOverrideIndexToTimeMsMap[slideIndex]
+      const newTimeLeftInMs =
+        timeLeftInMsOld - (Date.now() - lastUpdatedMsSinceEpochOld)
+      setTimeUntilSlideFinishedOverride(slideIndex, newTimeLeftInMs)
+    },
+    [timeUntilSlideFinishedOverrideIndexToTimeMsMap]
+  )
+
+  const onVideoEnded = useCallback(
+    (slideIndex: number) => {
+      setVideoSlidePlaying(slideIndex, false)
+      autoplay.current?.play()
+      if (!slideAutoplayStopped) {
+        scrollNextSlideCallback()
+      }
+    },
+    [autoplay.current, scrollNextSlideCallback]
+  )
+
+  const value = {
+    activeIndex: activeSlideIndex,
+    setActiveIndex: (index: number) => {
+      setActiveSlideIndexAndResetAutoplay(index)
+    },
+    isRotating: () => autoplay.current.isPlaying(),
+    play: () => autoplay.current?.play(),
+    stop: () => {
+      autoplay.current.stop()
+    },
+    totalSlideTime: delayNum,
+    getTimeUntilSlideFinished: autoplay.current.timeUntilNext,
+    slideTimeOverrideIndexToTimeMsMap,
+    setSlideTimeOverride,
+    timeUntilSlideFinishedOverrideIndexToTimeMsMap,
+    setTimeUntilSlideFinishedOverride,
+    onVideoPlay,
+    onVideoPaused,
+    onVideoEnded,
+    isVideoSlidePlaying,
+    isVideoSlide: videoSlides.some((val) => val === activeSlideIndex),
+    isLoading,
+    emblaApi
+  }
+
+  let loaderSlideSkeleton = null
+  if (isLoading) {
+    loaderSlideSkeleton = (
+      <Carousel.Slide
+        key="carousel-loader-skeleton"
+        classNames={{ slide: styles.loading }}
+      >
+        <img width={1920} height={1080} />
       </Carousel.Slide>
-    ))
+    )
+  }
+
+  let childrenToShow = children
+  if (isLoading) {
+    childrenToShow = null
   }
 
   return (
-    <div className={styles.carouselWrapper}>
-      <Carousel
-        getEmblaApi={(embla) => setEmblaApiRef(embla)}
-        classNames={{
-          slide: styles.slide,
-          indicators: styles.indicators
-        }}
-        plugins={[autoplay.current]}
-        onMouseEnter={() => {
-          console.log('canAutoRotate onMouseEnter', canAutoRotate)
-          if (canAutoRotate) {
-            autoplay.current.stop()
-          }
-        }}
-        onMouseLeave={() => {
-          console.log('canAutoRotate onMouseLeave', canAutoRotate)
-          if (canAutoRotate) {
-            // Internally it is checking if timer is set, and since it can be, it will make .reset() never work
-            autoplay.current.stop()
-            autoplay.current.play()
-          }
-        }}
-        onSlideChange={(index) => {
-          console.log('onSlideChange', index)
-          setActiveIndex(index)
-        }}
-        loop={true}
-        withControls={false}
-        withIndicators={true}
-      >
-        {getSlides()}
-      </Carousel>
+    <CarouselContext.Provider value={value}>
       <div
-        className={
-          controllerLayout === 'attached'
-            ? styles.controllerAttached
-            : styles.controllerDetached
-        }
+        className={cn(styles.root, classNames?.hpCarouselRoot, className)}
+        data-testid={'carousel-root'}
       >
-        <Controller
-          images={props.items.map(({ slideElement, thumbnail }) =>
-            thumbnail ? thumbnail : slideElement
-          )}
-          onChange={(index) => {
-            emblaApiRef?.scrollTo(index)
-            console.log('Controller onChange scrollTo', index)
-
-            onThumbnailHandler?.(index)
+        <MantineCarousel
+          getEmblaApi={setEmblaApi}
+          classNames={{
+            root: styles.mantineCarouselRoot,
+            slide: cn(styles.slide, classNames?.slide),
+            indicators: styles.indicators,
+            controls: styles.controls,
+            control: styles.control,
+            viewport: styles.viewport
           }}
-          activeIndex={activeIndex}
-        />
+          loop={true}
+          withControls={!isMobile && withControls}
+          // @ts-expect-error fixes the <button> cannot be a descendant of <button> hydration error
+          previousControlProps={{ component: 'div' }}
+          // @ts-expect-error fixes the <button> cannot be a descendant of <button> hydration error
+          nextControlProps={{ component: 'div' }}
+          withIndicators={true}
+          plugins={slideAutoplayStopped ? [] : [autoplay.current]}
+          onSlideChange={(index) => setActiveSlideIndexAndResetAutoplay(index)}
+          previousControlIcon={
+            <button type="button">
+              <ChevronLeft
+                data-testid={'carousel-prev-control-icon'}
+                width={'9px'}
+                height={'15px'}
+              />
+            </button>
+          }
+          nextControlIcon={
+            <button type="button">
+              <ChevronRight
+                data-testid={'carousel-next-control-icon'}
+                width={'9px'}
+                height={'15px'}
+              />
+            </button>
+          }
+          {...props}
+        >
+          {childrenToShow}
+          {loaderSlideSkeleton}
+        </MantineCarousel>
+        {childrenNotInCarousel}
       </div>
-    </div>
+    </CarouselContext.Provider>
   )
 }
 
-export default Carouselv2
+Carousel.Slide = MantineCarousel.Slide
+Carousel.Controller = Controller
+Carousel.SlideVideo = SlideVideo
+
+export default Carousel

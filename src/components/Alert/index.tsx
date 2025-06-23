@@ -1,36 +1,51 @@
 import React, { HTMLProps } from 'react'
 
 import {
-  IconAlertCircle,
-  IconAlertTriangle,
-  IconCircleCheck
-} from '@tabler/icons-react'
-import cs from 'classnames'
+  AlertTriangle,
+  CheckmarkCircleOutline,
+  InfoIcon,
+  AlertOctagon,
+  LightningOutlined,
+  CloseButton
+} from '@/assets/images'
 
+import cs from 'classnames'
+import Button from '@/components/Button'
 import styles from './index.module.scss'
 
-type Variants = 'warning' | 'danger' | 'info' | 'success'
+type Variants = 'warning' | 'danger' | 'info' | 'success' | 'neutral' | 'brand'
 
-const icons: Record<Variants, typeof IconAlertCircle> = {
-  warning: IconAlertTriangle,
-  danger: IconAlertCircle,
-  info: IconCircleCheck,
-  success: IconCircleCheck
+const icons: Record<Variants, typeof AlertTriangle> = {
+  warning: AlertTriangle,
+  danger: AlertOctagon,
+  info: InfoIcon,
+  success: CheckmarkCircleOutline,
+  neutral: LightningOutlined,
+  brand: LightningOutlined
 }
 
 export interface AlertProps extends HTMLProps<HTMLDivElement> {
   variant?: Variants
   message: string
+  button?: React.ReactNode
+  showClose?: boolean
   classNames?: {
     root?: string
+    title?: string
     message?: string
     icon?: string
+    button?: string
+    closeButton?: string
   }
+  onClose?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const Alert = ({
   variant = 'info',
   message,
+  button,
+  showClose = true,
+  onClose,
   classNames,
   className,
   ...props
@@ -41,8 +56,34 @@ const Alert = ({
       className={cs(styles.base, styles[variant], className, classNames?.root)}
       {...props}
     >
-      {Icon && <Icon className={cs(styles.icon, classNames?.icon)} />}
-      <span className={cs(classNames?.message)}>{message}</span>
+      <div className={styles.container}>
+        <div className={styles.content}>
+          <Icon className={cs(styles.icon, classNames?.icon)} />
+          <p className={cs(styles.message, 'eyebrow', classNames?.message)}>
+            {message}
+          </p>
+        </div>
+        {button ? (
+          <Button
+            type="secondary-neutral"
+            size="small"
+            onClick={onClose}
+            className={styles.button}
+          >
+            {button}
+          </Button>
+        ) : null}
+      </div>
+      {showClose ? (
+        <button
+          type="button"
+          className={cs(styles.closeButton, classNames?.closeButton)}
+          onClick={onClose}
+          aria-label="Close"
+        >
+          <CloseButton />
+        </button>
+      ) : null}
     </div>
   )
 }

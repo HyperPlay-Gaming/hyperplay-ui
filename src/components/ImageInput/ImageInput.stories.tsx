@@ -29,9 +29,8 @@ export const Default: Story = {
       <ImageInput
         {...args}
         value={file}
-        onImageDropped={(value) =>
-          setFile(value instanceof File ? URL.createObjectURL(value) : value)
-        }
+        // @ts-expect-error @todo fix type
+        onImageDropped={setFile}
         style={{ maxHeight: 500, display: 'inline-block', height: 500 }}
       />
     )

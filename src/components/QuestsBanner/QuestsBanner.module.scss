@@ -93,31 +93,12 @@ $bannerCarouselWidth: 747px;
   overflow: hidden;
 }
 
-.active {
-}
-
-.inactive {
-}
-
 .bannerTitle {
-  color: var(--color-neutral-100);
-  font-family: var(--primary-font-family);
-  font-size: var(--text-5xl);
-  font-style: normal;
-  font-weight: var(--bold);
-  line-height: calc(var(--text-5xl) * 40 / 36);
+  color: var(--text-strong);
 }
 
 .bannerDescription {
-  color: var(--color-neutral-100);
-  font-family: var(--secondary-font-family);
-  font-size: var(--text-lg);
-  font-style: normal;
-  font-weight: var(--regular);
-  line-height: calc(var(--text-lg) * 28 / 18);
-}
-
-.bannerButton {
+  color: var(--text-weak);
 }
 
 .bannerImage {

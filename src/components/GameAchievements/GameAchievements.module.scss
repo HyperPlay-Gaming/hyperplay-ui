@@ -1,5 +1,5 @@
-@use '../../styles/overrides';
-@use '../../styles/utilities/_variables';
+@use '../../styles/overrides' as *;
+@use '../../styles/utilities/_variables' as *;
 
 .container {
   border-radius: var(--space-md);
@@ -89,7 +89,7 @@
     min-height: 80px;
     width: 80px;
     object-fit: cover;
-    @include overrides.broken-image-fix();
+    @include broken-image-fix();
   }
 
   .fallback {
@@ -177,7 +177,7 @@
   overflow: hidden;
   max-width: 460px;
 
-  @include variables.for-steamdeck-down {
+  @include for-steamdeck-down {
     max-width: 230px;
   }
 }

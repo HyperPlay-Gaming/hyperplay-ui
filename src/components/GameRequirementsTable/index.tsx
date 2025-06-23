@@ -24,7 +24,12 @@ interface Requirements extends SystemRequirements {
 
 export interface GameRequirementsTableProps {
   requirements: Requirements
-  classnames?: { container?: string; title?: string; item?: string }
+  classnames?: {
+    container?: string
+    title?: string
+    item?: string
+    table?: string
+  }
 }
 
 const SupportedPlatforms = ({
@@ -53,47 +58,51 @@ const GameRequirementsTable = ({
 }: GameRequirementsTableProps) => {
   return (
     <div className={classNames(styles.container, classnames?.container)}>
-      <h1 className={classNames('title-sm', styles.title, classnames?.title)}>
+      <h1 className={classNames('title', styles.title, classnames?.title)}>
         Recommended
       </h1>
-      <div className={classNames(styles.item, classnames?.item)}>
-        <span className={classNames('caption', styles.item__title)}>OS</span>
-        <span className={classNames('caption', styles.item__value)}>
-          <SupportedPlatforms platforms={requirements.platforms} />
-        </span>
-      </div>
-      <div className={classNames(styles.item, classnames?.item)}>
-        <span className={classNames('caption', styles.item__title)}>
-          Processor
-        </span>
-        <span className={classNames('caption', styles.item__value)}>
-          {requirements.cpu}
-        </span>
-      </div>
-      <div className={classNames(styles.item, classnames?.item)}>
-        <span className={classNames('caption', styles.item__title)}>
-          Memory
-        </span>
-        <span className={classNames('caption', styles.item__value)}>
-          {requirements.memory}
-        </span>
-      </div>
-      <div className={classNames(styles.item, classnames?.item)}>
-        <span className={classNames('caption', styles.item__title)}>
-          Graphics
-        </span>
-        <span className={classNames('caption', styles.item__value)}>
-          {requirements.gpu}
-        </span>
-      </div>
-      <div className={classNames(styles.item, classnames?.item)}>
-        <span className={classNames('caption', styles.item__title)}>
-          Storage
-        </span>
-        <span className={classNames('caption', styles.item__value)}>
-          {requirements.disk}
-        </span>
-      </div>
+      <table className={classNames(styles.table, classnames?.table)}>
+        <tbody>
+          <tr className={classNames(styles.item, classnames?.item)}>
+            <td className={classNames('caption', styles.item__title)}>OS</td>
+            <td className={classNames('caption', styles.item__value)}>
+              <SupportedPlatforms platforms={requirements.platforms} />
+            </td>
+          </tr>
+          <tr className={classNames(styles.item, classnames?.item)}>
+            <td className={classNames('caption', styles.item__title)}>
+              Processor
+            </td>
+            <td className={classNames('caption', styles.item__value)}>
+              {requirements.cpu}
+            </td>
+          </tr>
+          <tr className={classNames(styles.item, classnames?.item)}>
+            <td className={classNames('caption', styles.item__title)}>
+              Memory
+            </td>
+            <td className={classNames('caption', styles.item__value)}>
+              {requirements.memory}
+            </td>
+          </tr>
+          <tr className={classNames(styles.item, classnames?.item)}>
+            <td className={classNames('caption', styles.item__title)}>
+              Graphics
+            </td>
+            <td className={classNames('caption', styles.item__value)}>
+              {requirements.gpu}
+            </td>
+          </tr>
+          <tr className={classNames(styles.item, classnames?.item)}>
+            <td className={classNames('caption', styles.item__title)}>
+              Storage
+            </td>
+            <td className={classNames('caption', styles.item__value)}>
+              {requirements.disk}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   )
 }

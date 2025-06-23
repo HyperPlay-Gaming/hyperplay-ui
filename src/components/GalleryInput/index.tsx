@@ -16,7 +16,7 @@ export interface GalleryInputProps {
 }
 
 export default function GalleryInput(props: GalleryInputProps) {
-  const openRef = useRef<() => void>()
+  const openRef = useRef<() => void>(null)
   const [files, setFiles] = useState<Array<File | string>>(props.value ?? [])
   const [index, setIndex] = useState<number>(0)
 
