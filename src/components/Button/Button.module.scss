@@ -712,10 +712,6 @@ button.base {
     transition: transform 0.25s ease-out, background-color 0.25s ease-out;
     transform: scaleX(1);
     transform-origin: bottom left;
-
-    svg path {
-      fill: var(--button-svg-path-fill-hover, var(--text-brand));
-    }
     opacity: 100%;
   }
 
@@ -725,10 +721,6 @@ button.base {
     &:after {
       transform: scaleX(1);
       transform-origin: bottom left;
-    }
-
-    svg path {
-      fill: var(--button-svg-path-fill-hover, var(--color-primary-200));
     }
     opacity: 100%;
   }
@@ -762,9 +754,6 @@ button.base {
   .content:before {
     background-color: none;
     border: none;
-    svg path {
-      fill: none;
-    }
     opacity: 0;
   }
 
