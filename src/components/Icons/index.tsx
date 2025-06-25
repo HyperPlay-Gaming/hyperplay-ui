@@ -68,7 +68,8 @@ const IconStroke: { [key: string]: string } = {
   ArrowUpRight: '#FFFFFF',
   LinkExternal: '#FFFFFF',
   PlayIcon: '#FFFFFF',
-  QuestionMarkRounded: '#FFFFFF'
+  QuestionMarkRounded: '#FFFFFF',
+  SupportChatIcon: '#FFFFFF'
 }
 
 export default function Icons() {
