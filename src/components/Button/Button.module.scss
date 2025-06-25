@@ -620,15 +620,25 @@ button.base {
   }
 }
 
-.icon.secondary {
+.icon {
+  padding: var(--space-sm-fixed);
+  border-radius: var(--space-xs);
+  font-size: var($buttonFontSize);
+  aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  & span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.icon.secondary {
   background-color: var(--color-neutral-800);
   border: solid 2px var(--color-stroke-01);
-  border-radius: var(--space-xs);
-  padding: var(--space-sm-fixed);
-  aspect-ratio: 1/1;
 
   &:hover:not(:disabled) {
     background: none;
@@ -641,12 +651,6 @@ button.base {
     background: none;
     background-color: var(--color-neutral-900);
     border: solid 2px var(--color-neutral-700);
-  }
-
-  & span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 
