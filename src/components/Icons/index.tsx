@@ -67,7 +67,8 @@ const IconStroke: { [key: string]: string } = {
   Clock: '#FFFFFF',
   ArrowUpRight: '#FFFFFF',
   LinkExternal: '#FFFFFF',
-  PlayIcon: '#FFFFFF'
+  PlayIcon: '#FFFFFF',
+  QuestionMarkRounded: '#FFFFFF'
 }
 
 export default function Icons() {
