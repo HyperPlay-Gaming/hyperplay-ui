@@ -10,7 +10,7 @@ import {
   OKXWallet,
   GateWallet
 } from '@/assets/images'
-import { expect, userEvent, within } from '@storybook/test'
+import { expect, userEvent, waitFor, within } from '@storybook/test'
 
 import storyStyles from './IconsStackStories.module.scss'
 
@@ -46,7 +46,9 @@ export const Default: Story = {
   },
   play: async ({ canvasElement }) => {
     const moreButton = within(canvasElement)
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    await waitFor(async () =>
+      expect(moreButton.getByTestId('icons-more-button')).toBeInTheDocument()
+    )
 
     await userEvent.hover(moreButton.getByTestId('icons-more-button'), {
       delay: 800
