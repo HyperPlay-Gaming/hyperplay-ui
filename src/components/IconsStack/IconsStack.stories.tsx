@@ -41,7 +41,7 @@ export const Default: Story = {
   args: {
     title: 'WALLETS:',
     icons: walletIcons,
-    maxVisible: 8,
+    maxVisible: 5,
     showMore: true
   },
   play: async ({ canvasElement }) => {
