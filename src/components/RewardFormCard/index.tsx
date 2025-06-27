@@ -20,9 +20,19 @@ export interface RewardFormCardProps extends ContainerInteractiveProps {
   tokenTypeInputProps?: SelectProps
   rewardImageProps?: RewardImageInputProps
   RewardContract?: ReactNode
+  children?: ReactNode
 }
 
-function RewardFormCard({ classNames, ...props }: RewardFormCardProps) {
+function RewardFormCard({
+  classNames,
+  networkInputProps,
+  tokenContractAddressInputProps,
+  tokenTypeInputProps,
+  rewardImageProps,
+  RewardContract,
+  children,
+  ...containerProps
+}: RewardFormCardProps) {
   return (
     <ContainerInteractive
       classNames={{
@@ -30,13 +40,13 @@ function RewardFormCard({ classNames, ...props }: RewardFormCardProps) {
         title: cn(styles.title, classNames?.title),
         root: cn(styles.root, classNames?.root)
       }}
-      {...props}
+      {...containerProps}
     >
-      <Select {...props.networkInputProps} />
-      {props.RewardContract}
+      <Select {...networkInputProps} />
+      {RewardContract}
       <div className={styles.split}>
         <div>
-          <RewardImageInput label="Reward Image" {...props.rewardImageProps} />
+          <RewardImageInput label="Reward Image" {...rewardImageProps} />
           <span className="text--sm color-neutral-400 text--semibold">
             Requirements:
           </span>
@@ -47,9 +57,9 @@ function RewardFormCard({ classNames, ...props }: RewardFormCardProps) {
           </ul>
         </div>
         <div className={styles.inputs}>
-          <TextInput {...props.tokenContractAddressInputProps} />
-          <Select {...props.tokenTypeInputProps} />
-          {props.children}
+          <TextInput {...tokenContractAddressInputProps} />
+          <Select {...tokenTypeInputProps} />
+          {children}
         </div>
       </div>
     </ContainerInteractive>
