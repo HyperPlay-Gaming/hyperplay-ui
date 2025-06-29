@@ -13,7 +13,7 @@ type OptionsType = { [key: string]: { [key: string]: boolean } }
 interface OptionsAccordionProps
   extends Omit<AccordionProps<boolean>, 'children'> {
   options: OptionsType
-  setOptions: React.Dispatch<React.SetStateAction<OptionsType>>
+  setOptions: (options: OptionsType) => void
   classNames?: Partial<
     Record<
       AccordionStylesNames | 'checkboxBody' | 'optionRow' | 'panelList',
@@ -38,10 +38,10 @@ export default function OptionsAccordion({
 
     updatedOptions[optionTitle][onlyOption] = true
 
-    setOptions((currentOptions) => ({
-      ...currentOptions,
+    setOptions({
+      ...options,
       ...updatedOptions
-    }))
+    })
   }
 
   function clearOptions(optionTitle: string) {
@@ -49,10 +49,10 @@ export default function OptionsAccordion({
     for (const opt in options[optionTitle]) {
       updatedOptions[optionTitle][opt] = false
     }
-    setOptions((currentOptions) => ({
-      ...currentOptions,
+    setOptions({
+      ...options,
       ...updatedOptions
-    }))
+    })
   }
 
   function makeAccordionItem(option: string) {
@@ -77,10 +77,10 @@ export default function OptionsAccordion({
               const updatedOption: OptionsType = {}
               updatedOption[option] = options[option]
               updatedOption[option][val] = ev.target.checked
-              setOptions((currentOptions) => ({
-                ...currentOptions,
+              setOptions({
+                ...options,
                 ...updatedOption
-              }))
+              })
             }}
             data-testid={`${val}-checkbox`}
           >
