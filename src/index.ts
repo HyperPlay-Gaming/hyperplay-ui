@@ -33,7 +33,7 @@ export {
   GenericDropdown,
   OptionsDropdown
 } from './components/Dropdowns'
-export { default as OptionsAccordion } from './components/OptionsAccordion'
+export * from './components/OptionsAccordion'
 export type { itemType as DropdownItemType } from './components/Dropdowns/Dropdown'
 
 export { default as ArrowCircularButton } from './components/ArrowCircularButton'
