@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { StoryObj } from '@storybook/react'
 
-import OptionsAccordion, { OptionsType, PanelOptions } from '.'
+import { OptionsAccordion, OptionsType, PanelOptions } from '.'
 
 export default {
   title: 'OptionsAccordion',

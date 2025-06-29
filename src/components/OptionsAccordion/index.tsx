@@ -27,7 +27,7 @@ interface OptionsAccordionProps
   >
 }
 
-export default function OptionsAccordion({
+export function OptionsAccordion({
   options,
   setOptions,
   classNames,
