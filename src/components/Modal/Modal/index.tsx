@@ -16,7 +16,9 @@ const Header = ({ className, ...props }: HTMLProps<HTMLDivElement>) => {
 }
 
 const Body = ({ className, ...props }: HTMLProps<HTMLHeadingElement>) => {
-  return <p className={cn('body', styles.subtitle, className)} {...props}></p>
+  return (
+    <div className={cn('body', styles.subtitle, className)} {...props}></div>
+  )
 }
 
 const HeadingIcon = ({ className, ...props }: HTMLProps<HTMLDivElement>) => {
