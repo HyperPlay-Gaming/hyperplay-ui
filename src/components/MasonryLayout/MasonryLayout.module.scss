@@ -1,3 +1,5 @@
+@use '../../styles/utilities/variables' as *;
+
 .masonryGrid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -6,8 +8,14 @@
   width: 100%;
   max-width: 1396px;
   max-height: 391px;
-  margin: 0 auto;
   background: transparent;
+
+  @include for-mobile-only {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    max-height: none;
+  }
 }
 
 .mediumImagesContainer {
@@ -18,6 +26,13 @@
   max-width: 690px;
   max-height: 391px;
   background: transparent;
+
+  @include for-mobile-only {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    max-height: none;
+  }
 }
 
 .largeImage,
@@ -65,17 +80,20 @@
   border-radius: var(--space-xs);
   width: 690px;
   aspect-ratio: 16 / 9;
+
+  @include for-mobile-only {
+    max-width: 343px;
+  }
 }
 
 .mediumImage {
   border-radius: var(--space-xs);
   width: 341px;
   aspect-ratio: 16 / 9;
-}
 
-.masonryGrid > .mediumImage:nth-child(2),
-.masonryGrid > .mediumImage:nth-child(3) {
-  margin-bottom: var(--space-xs);
+  @include for-mobile-only {
+    max-width: 343px;
+  }
 }
 
 .masonryGrid > .mediumImage:nth-child(2) {
