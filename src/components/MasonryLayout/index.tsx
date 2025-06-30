@@ -1,21 +1,13 @@
 import React from 'react'
 import styles from './MasonryLayout.module.scss'
 import gameImage from '@/assets/banners/QuestCardV2Image.png?url'
-import Image from 'next/image'
 
 export interface MasonryLayoutProps {
   imageUrl?: React.ReactNode
 }
 
 const MasonryLayout = ({ imageUrl }: MasonryLayoutProps) => {
-  const image = imageUrl || (
-    <Image
-      src={gameImage}
-      alt="game image"
-      fill
-      style={{ objectFit: 'cover' }}
-    />
-  )
+  const image = imageUrl || gameImage
 
   return (
     <div className={styles.masonryGrid}>
