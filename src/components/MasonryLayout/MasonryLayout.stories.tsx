@@ -18,6 +18,6 @@ type Story = StoryObj<typeof MasonryLayout>
 
 export const Default: Story = {
   args: {
-    imageUrl: gameImage
+    imageUrl: <img src={gameImage} alt="game image" />
   }
 }
