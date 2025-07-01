@@ -47,7 +47,7 @@ export const WithBlockquotes: Story = {
 
 **Important Notice:**
 
-> This is a blockquote with red text! Use blockquotes to highlight important information.
+> This is a blockquote with colored text! Use blockquotes to highlight important information.
 
 > You can also use blockquotes for multiple paragraphs.
 > 
