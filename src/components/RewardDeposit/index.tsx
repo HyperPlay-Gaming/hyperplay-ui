@@ -44,7 +44,18 @@ export function RewardDeposit({
   i18n = defaultI18n,
   message,
   warning,
-  ...props
+  DepositComponent,
+  ActionComponent,
+  playerReach,
+  network,
+  tokenContractAddress,
+  rewardType,
+  tokenName,
+  amountPerPlayer,
+  totalClaimables,
+  marketplaceUrl,
+  extraFields,
+  ...containerProps
 }: RewardDepositProps) {
   let tag: ReactElement
 
@@ -70,27 +81,40 @@ export function RewardDeposit({
     )
   }
 
+  const tableProps = {
+    playerReach,
+    network,
+    tokenContractAddress,
+    rewardType,
+    tokenName,
+    amountPerPlayer,
+    totalClaimables,
+    marketplaceUrl,
+    extraFields,
+    i18n
+  }
+
   return (
     <ContainerInteractive
       title={title}
       tag={tag}
       classNames={{ root: styles.root, title: styles.title }}
-      {...props}
+      {...containerProps}
     >
-      {props.DepositComponent}
+      {DepositComponent}
       {message && (
         <div className={styles.messageContainer}>
           <span className={styles.message}>{message}</span>
         </div>
       )}
-      <RewardsDepositedTable {...props} />
+      <RewardsDepositedTable {...tableProps} />
       {warning && (
         <div className={styles.warningContainer}>
           <IconExclamationCircle size={20} />
           <span className={styles.warningMessage}>{warning}</span>
         </div>
       )}
-      {props.ActionComponent}
+      {ActionComponent}
     </ContainerInteractive>
   )
 }
