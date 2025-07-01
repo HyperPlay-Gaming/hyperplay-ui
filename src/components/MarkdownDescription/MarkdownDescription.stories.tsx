@@ -40,3 +40,21 @@ export const WithLists: Story = {
 For more details, visit [hyperplay](https://www.hyperplay.xyz).`
   }
 }
+
+export const WithBlockquotes: Story = {
+  args: {
+    children: `### Quest Information
+
+**Important Notice:**
+
+> This is a blockquote with colored text! Use blockquotes to highlight important information.
+
+> You can also use blockquotes for multiple paragraphs.
+> 
+> Just like this one with **bold text** and [links](https://hyperplay.xyz) inside!
+
+**Regular text** continues here in the normal color.
+
+For more details, visit [hyperplay](https://www.hyperplay.xyz).`
+  }
+}
