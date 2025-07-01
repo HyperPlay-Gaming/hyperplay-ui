@@ -54,6 +54,7 @@ export interface GameCardProps
   addedText?: string
   enableRemoveButton?: boolean
   i18n: GameCardi18n
+  isLoading?: boolean
 }
 
 export interface GameCardi18n {
@@ -125,6 +126,8 @@ const GameCard = ({
   addedText,
   enableRemoveButton,
   i18n = i18nDefault,
+  isLoading,
+  className,
   ...props
 }: GameCardProps) => {
   const [showPopover, { open, close }] = useDisclosure(false)
@@ -350,13 +353,30 @@ const GameCard = ({
       ? styles.grayscaleFilter
       : ''
   return (
-    <div className={styles.root} {...props}>
-      <div className={styles.border} />
-      <div className={`${styles.card}`}>
+    <div
+      className={classNames(styles.root, className, {
+        [styles.loading]: isLoading
+      })}
+      {...props}
+    >
+      <div
+        className={classNames(styles.border, {
+          [styles.loading]: isLoading
+        })}
+      />
+      <div
+        className={classNames(styles.card, {
+          [styles.loading]: isLoading
+        })}
+      >
         {showSettings ? (
           <div className={styles.settingsMenu}>{getSettingsItems()}</div>
         ) : null}
-        <div className={styles.content}>
+        <div
+          className={classNames(styles.content, {
+            [styles.loading]: isLoading
+          })}
+        >
           <div
             className={`${imageStyles.proportions} ${grayscaleFilterClassName}`}
           >

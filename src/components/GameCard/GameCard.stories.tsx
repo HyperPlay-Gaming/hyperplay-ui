@@ -77,6 +77,10 @@ export const HyperPlayCard: Story = {
   args: { ...props }
 }
 
+export const HyperPlayCardLoading: Story = {
+  args: { ...props, isLoading: true }
+}
+
 export const MoonBlasters: Story = {
   args: { ...props, imageUrl: MoonBlastersCover, title: 'Moon Blasters' }
 }

@@ -1,4 +1,5 @@
 @use '../../styles/utilities/_variables' as *;
+@use '../../styles/utilities/loading' as *;
 
 $hoverBorderThickness: 2px;
 
@@ -55,6 +56,10 @@ $hoverBorderThickness: 2px;
   z-index: -1;
   opacity: 0;
   transition: opacity 0.5s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &.loading {
+    display: none;
+  }
 }
 
 .card {
@@ -97,6 +102,10 @@ $hoverBorderThickness: 2px;
         width: 180px;
       }
     }
+
+    &.loading {
+      display: none;
+    }
   }
 
   &:hover {
@@ -105,6 +114,10 @@ $hoverBorderThickness: 2px;
 
   &:hover .content {
     inset: -$hoverBorderThickness;
+  }
+
+  &.loading {
+    @include shinyLoader;
   }
 }
 
@@ -281,4 +294,8 @@ $settingsMenuWidth: 75%;
   background-color: var(--color-neutral-800);
   padding: var(--space-2xs);
   border-radius: var(--space-3xs);
+}
+
+.loading {
+  pointer-events: none;
 }
