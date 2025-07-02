@@ -1,0 +1,144 @@
+@use '../../styles/utilities/_variables' as *;
+
+.horizontalCard {
+  display: flex;
+  align-items: center;
+  padding: var(--space-md);
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.brand {
+  position: relative;
+  border-radius: var(--radius-md, 0.5rem);
+  border: 1.5px solid var(--color-stroke-brand-weak);
+  background: linear-gradient(
+    0deg,
+    rgba(163, 26, 227, 0.16) 0%,
+    rgba(28, 108, 183, 0.16) 100%
+  );
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(180deg, #1c6cb7 0%, #a31ae3 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 1;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+  &:hover {
+    border-color: transparent;
+  }
+}
+
+.neutral {
+  background-color: var(--background-base);
+  border: 1.5px solid var(--color-stroke-weak);
+  border-radius: var(--space-xs);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(180deg, #1c6cb7 0%, #a31ae3 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 1;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+  &:hover {
+    border-color: transparent;
+  }
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: var(--space-md);
+  gap: var(--space-md);
+}
+
+.large {
+  min-width: 28.375rem;
+
+  img {
+    max-width: 120px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--space-xs);
+  }
+}
+
+.small {
+  min-width: 28.375rem;
+  min-height: 100px;
+  padding: var(--space-xs);
+
+  .content {
+    gap: var(--space-2xs);
+
+    .title {
+      font-size: var(--text-lg);
+    }
+  }
+
+  img {
+    max-width: 60px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--space-xs);
+  }
+}
+
+.gameImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orderNumber {
+  display: flex;
+  align-items: flex-start;
+  align-self: flex-start;
+}
+
+.brand .orderNumber {
+  color: var(--text-brand);
+}
+.neutral .orderNumber {
+  color: var(--text-weak);
+}
+
+.small .orderNumber {
+  align-items: center;
+  align-self: center;
+}
