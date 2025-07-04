@@ -2,8 +2,7 @@ import React from 'react'
 
 import styles from './HorizontalCard.module.scss'
 
-import Button from '../Button'
-import Sticker from '../Sticker'
+import classNames from 'classnames'
 
 export interface HorizontalCardProps {
   gameImage?: React.JSX.Element
@@ -12,7 +11,6 @@ export interface HorizontalCardProps {
   button?: React.ReactNode
   title: string
   orderNumber?: string
-  onButtonClick?: React.MouseEventHandler<HTMLButtonElement>
   onCardClick: React.MouseEventHandler<HTMLDivElement>
   tone?: 'brand' | 'neutral'
   size?: 'large' | 'small'
@@ -24,7 +22,6 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
   badge,
   button,
   orderNumber,
-  onButtonClick,
   onCardClick,
   tone = 'neutral',
   size = 'large'
@@ -36,29 +33,23 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
   return (
     <>
       <div
-        className={[styles.horizontalCard, styles[tone], styles[size]].join(
-          ' '
+        className={classNames(
+          styles.horizontalCard,
+          styles[tone],
+          styles[size]
         )}
         onClick={onCardClick}
       >
         <div className={styles.gameImage}>{image}</div>
         <div className={styles.content}>
-          <div className={['title', styles.title].join(' ')}>{title}</div>
-          {badge ? (
-            <div className={styles.badge}>
-              <Sticker>{badge}</Sticker>
-            </div>
-          ) : null}
-          {button ? (
-            <div className={styles.button}>
-              <Button type="secondary" size="small" onClick={onButtonClick}>
-                {button}
-              </Button>
-            </div>
-          ) : null}
+          <div className={classNames(styles.title, 'title')}>{title}</div>
+          {badge && <div className={styles.badge}>{badge}</div>}
+          {button && <div className={styles.button}>{button}</div>}
         </div>
         {orderNumber ? (
-          <div className={`h6 ${styles.orderNumber}`}>{orderNumber}</div>
+          <div className={classNames(styles.orderNumber, 'h6')}>
+            {orderNumber}
+          </div>
         ) : null}
       </div>
     </>
