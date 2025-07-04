@@ -9,7 +9,7 @@
   overflow: hidden;
 
   @include for-mobile-only {
-    width: 100%;
+    width: 100% !important;
     max-width: 100vw;
     overflow: hidden;
   }
@@ -102,7 +102,9 @@
 }
 
 .large {
+  width: 100% !important;
   min-width: 17.75rem;
+
   img {
     max-width: 120px;
     width: 100%;
@@ -113,7 +115,7 @@
 }
 
 .small {
-  width: 100%;
+  width: 100% !important;
   min-width: 17.75rem;
   padding: var(--space-xs);
 
