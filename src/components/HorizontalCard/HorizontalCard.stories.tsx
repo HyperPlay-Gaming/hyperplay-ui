@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import HorizontalCard, { HorizontalCardProps } from '.'
+import Button from '../Button'
+import Sticker from '../Sticker'
 
 const meta: Meta<typeof HorizontalCard> = {
   title: 'Components/HorizontalCard',
@@ -26,14 +28,6 @@ const meta: Meta<typeof HorizontalCard> = {
       control: 'text',
       description: 'The title text'
     },
-    badge: {
-      control: 'text',
-      description: 'Badge text to display'
-    },
-    button: {
-      control: 'text',
-      description: 'Button text to display'
-    },
     orderNumber: {
       control: 'text',
       description: 'Order number to display'
@@ -57,18 +51,20 @@ export const Default: Story = {
 export const WithBadge: Story = {
   args: {
     ...defaultProps,
-    badge: 'First-Person Shooter',
-    tone: 'neutral',
-    size: 'large'
+    badge: <Sticker>First-Person Shooter</Sticker>,
+    tone: 'neutral'
   }
 }
 
 export const WithButton: Story = {
   args: {
     ...defaultProps,
-    button: 'View Game',
     tone: 'neutral',
-    size: 'large'
+    button: (
+      <Button type="secondary" size="small">
+        View Game
+      </Button>
+    )
   }
 }
 
@@ -76,8 +72,7 @@ export const WithOrderNumber: Story = {
   args: {
     ...defaultProps,
     orderNumber: '#1',
-    tone: 'neutral',
-    size: 'large'
+    tone: 'neutral'
   }
 }
 
