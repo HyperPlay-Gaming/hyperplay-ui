@@ -18,6 +18,60 @@ type Story = StoryObj<typeof MasonryLayout>
 
 export const Default: Story = {
   args: {
-    imageUrl: <img src={gameImage} alt="game image" />
+    images: [
+      <img key="0" src={gameImage} alt="game image" />,
+      <img key="1" src={gameImage} alt="game image" />,
+      <img key="2" src={gameImage} alt="game image" />,
+      <img key="3" src={gameImage} alt="game image" />,
+      <img key="4" src={gameImage} alt="game image" />
+    ]
+  }
+}
+
+export const fiveImages: Story = {
+  args: {
+    images: [
+      <img key="0" src={gameImage} alt="game image" />,
+      <img key="1" src={gameImage} alt="game image" />,
+      <img key="2" src={gameImage} alt="game image" />,
+      <img key="3" src={gameImage} alt="game image" />,
+      <img key="4" src={gameImage} alt="game image" />
+    ]
+  }
+}
+
+export const fourImages: Story = {
+  args: {
+    images: [
+      <img key="0" src={gameImage} alt="game image" />,
+      <img key="1" src={gameImage} alt="game image" />,
+      <img key="2" src={gameImage} alt="game image" />,
+      <img key="3" src={gameImage} alt="game image" />
+    ]
+  }
+}
+
+export const threeImages: Story = {
+  args: {
+    images: [
+      <img key="0" src={gameImage} alt="game image" />,
+      <img key="1" src={gameImage} alt="game image" />,
+      <img key="2" src={gameImage} alt="game image" />
+    ]
+  }
+}
+
+export const twoImages: Story = {
+  args: {
+    images: [
+      <img key="0" src={gameImage} alt="game image" />,
+      <img key="1" src={gameImage} alt="game image" />
+    ]
+  }
+}
+
+export const oneImage: Story = {
+  args: {
+    images: [<img key="0" src={gameImage} alt="game image" />]
   }
 }
