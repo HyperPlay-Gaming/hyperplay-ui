@@ -1,6 +1,5 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import './fonts.css'
 import './index.scss'
 
 export { default as TransactionToast } from './components/TransactionToasts'
