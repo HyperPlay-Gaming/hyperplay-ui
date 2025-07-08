@@ -28,6 +28,10 @@ const meta: Meta<typeof HorizontalCard> = {
       control: 'text',
       description: 'The title text'
     },
+    children: {
+      control: false,
+      description: 'Content to display below the title (badge, button, etc.)'
+    },
     orderNumber: {
       control: 'text',
       description: 'Order number to display'
@@ -51,7 +55,7 @@ export const Default: Story = {
 export const WithBadge: Story = {
   args: {
     ...defaultProps,
-    badge: <Sticker>First-Person Shooter</Sticker>,
+    children: <Sticker>Action</Sticker>,
     tone: 'neutral'
   }
 }
@@ -60,7 +64,7 @@ export const WithButton: Story = {
   args: {
     ...defaultProps,
     tone: 'neutral',
-    button: (
+    children: (
       <Button type="secondary" size="small">
         View Game
       </Button>
