@@ -4,11 +4,11 @@ import styles from './HorizontalCard.module.scss'
 
 import classNames from 'classnames'
 
-export interface HorizontalCardProps {
+export interface HorizontalCardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   gameImage?: React.JSX.Element
   imageUrl?: string
-  badge?: React.ReactNode
-  button?: React.ReactNode
+  children?: React.ReactNode
   title: string
   orderNumber?: string
   onCardClick: React.MouseEventHandler<HTMLDivElement>
@@ -19,16 +19,13 @@ export interface HorizontalCardProps {
 const HorizontalCard: React.FC<HorizontalCardProps> = ({
   gameImage,
   title,
-  badge,
-  button,
+  children,
   orderNumber,
   onCardClick,
   tone = 'neutral',
   size = 'large'
 }) => {
-  const image = gameImage || (
-    <img src="/MoonBlastersCover.png" alt="Game Image" />
-  )
+  const image = gameImage || <img src="/fallback_card.jpg" alt="Game Image" />
 
   return (
     <>
@@ -43,8 +40,7 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
         <div className={styles.gameImage}>{image}</div>
         <div className={styles.content}>
           <div className={classNames(styles.title, 'title')}>{title}</div>
-          {badge && <div className={styles.badge}>{badge}</div>}
-          {button && <div className={styles.button}>{button}</div>}
+          {children ? <div className={styles.children}>{children}</div> : null}
         </div>
         {orderNumber ? (
           <div className={classNames(styles.orderNumber, 'h6')}>
