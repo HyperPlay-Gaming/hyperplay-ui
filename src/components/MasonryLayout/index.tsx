@@ -3,79 +3,72 @@ import styles from './MasonryLayout.module.scss'
 
 import classNames from 'classnames'
 
-export interface MasonryLayoutProps {
+export interface MasonryLayoutProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   images?: React.ReactNode[]
   imageUrl?: string
 }
 
-const MasonryLayout = ({ images }: MasonryLayoutProps) => {
-  if (!images || images.length < 1 || images.length > 5) return null
+const MasonryLayout = ({ images, ...props }: MasonryLayoutProps) => {
+  if (!images || images.length < 1) return null
 
-  const gridClass =
-    images.length === 5
-      ? [styles.masonryGrid, styles['masonryGrid--5']]
-      : images.length === 4
-      ? [styles.masonryGrid, styles['masonryGrid--4']]
-      : images.length === 3
-      ? [styles.masonryGrid, styles['masonryGrid--3']]
-      : images.length === 2
-      ? [styles.masonryGrid, styles['masonryGrid--2']]
-      : images.length === 1
-      ? [styles.masonryGrid, styles['masonryGrid--1']]
-      : [styles.masonryGrid]
+  //If more than 5 images, it uses the 5-image layout and show only first 5
+  const displayImages = images.length > 5 ? images.slice(0, 5) : images
+  const imageCount = displayImages.length
 
-  switch (images.length) {
-    case 5:
-      return (
-        <div className={classNames(...gridClass)}>
-          <div className={styles.largeImage}>{images[0]}</div>
-          <div className={styles.smallImagesContainer}>
-            <div className={styles.smallImage}>{images[1]}</div>
-            <div className={styles.smallImage}>{images[2]}</div>
-            <div className={styles.smallImage}>{images[3]}</div>
-            <div className={styles.smallImage}>{images[4]}</div>
-          </div>
-        </div>
-      )
-    case 4:
-      return (
-        <div className={classNames(...gridClass)}>
-          {images.map((img, i) => (
-            <div className={styles.smallImage} key={i}>
-              {img}
-            </div>
-          ))}
-        </div>
-      )
-    case 3:
-      return (
-        <div className={classNames(...gridClass)}>
-          {images.map((img, i) => (
-            <div className={styles.mediumImage} key={i}>
-              {img}
-            </div>
-          ))}
-        </div>
-      )
-    case 2:
-      return (
-        <div className={classNames(...gridClass)}>
-          {images.map((img, i) => (
-            <div className={styles.largeImage} key={i}>
-              {img}
-            </div>
-          ))}
-        </div>
-      )
-    case 1:
-      return (
-        <div className={classNames(...gridClass)}>
-          <div className={styles.largeImage}>{images[0]}</div>
-        </div>
-      )
-    default:
-      return null
+  const getGridClasses = () => {
+    const baseClasses = [styles.masonryGrid]
+    const gridClass = styles[`masonryGrid--${imageCount}`]
+    if (gridClass) {
+      baseClasses.push(gridClass)
+    }
+    return baseClasses
   }
+
+  const renderLayout = () => {
+    if (imageCount === 1) {
+      return <div className={styles.mediumImage}>{displayImages[0]}</div>
+    } else if (imageCount === 2) {
+      return displayImages.map((img, i) => (
+        <div className={styles.mediumImage} key={i}>
+          {img}
+        </div>
+      ))
+    } else if (imageCount === 3) {
+      return displayImages.map((img, i) => (
+        <div className={styles.mediumImage} key={i}>
+          {img}
+        </div>
+      ))
+    } else if (imageCount === 4) {
+      return displayImages.map((img, i) => (
+        <div className={styles.smallImage} key={i}>
+          {img}
+        </div>
+      ))
+    } else if (imageCount === 5) {
+      return (
+        <>
+          <div className={styles.largeImage}>{displayImages[0]}</div>
+          <div className={styles.smallImagesContainer}>
+            {displayImages.slice(1).map((img, i) => (
+              <div className={styles.smallImage} key={i + 1}>
+                {img}
+              </div>
+            ))}
+          </div>
+        </>
+      )
+    }
+
+    return null
+  }
+
+  return (
+    <div className={classNames(getGridClasses())} {...props}>
+      {renderLayout()}
+    </div>
+  )
 }
 
 export default MasonryLayout
