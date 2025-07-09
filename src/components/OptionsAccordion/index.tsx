@@ -9,11 +9,16 @@ import styles from './OptionsAccordion.module.scss'
 
 // first key is accordion panel title, second is each option for that panel
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-type OptionsType = { [key: string]: { [key: string]: boolean } }
+export interface Option {
+  selected: boolean
+  displayName?: string
+}
+export type PanelOptions = Record<string, Option>
+export type OptionsType = Record<string, PanelOptions>
 interface OptionsAccordionProps
   extends Omit<AccordionProps<boolean>, 'children'> {
   options: OptionsType
-  setOptions: React.Dispatch<React.SetStateAction<OptionsType>>
+  setOptions: (options: OptionsType) => void
   classNames?: Partial<
     Record<
       AccordionStylesNames | 'checkboxBody' | 'optionRow' | 'panelList',
@@ -22,7 +27,7 @@ interface OptionsAccordionProps
   >
 }
 
-export default function OptionsAccordion({
+export function OptionsAccordion({
   options,
   setOptions,
   classNames,
@@ -32,27 +37,27 @@ export default function OptionsAccordion({
     const updatedOptions: OptionsType = options
     for (const optTitle in options) {
       for (const opt in options[optTitle]) {
-        updatedOptions[optTitle][opt] = false
+        updatedOptions[optTitle][opt].selected = false
       }
     }
 
-    updatedOptions[optionTitle][onlyOption] = true
+    updatedOptions[optionTitle][onlyOption].selected = true
 
-    setOptions((currentOptions) => ({
-      ...currentOptions,
+    setOptions({
+      ...options,
       ...updatedOptions
-    }))
+    })
   }
 
   function clearOptions(optionTitle: string) {
     const updatedOptions: OptionsType = options
     for (const opt in options[optionTitle]) {
-      updatedOptions[optionTitle][opt] = false
+      updatedOptions[optionTitle][opt].selected = false
     }
-    setOptions((currentOptions) => ({
-      ...currentOptions,
+    setOptions({
+      ...options,
       ...updatedOptions
-    }))
+    })
   }
 
   function makeAccordionItem(option: string) {
@@ -72,15 +77,15 @@ export default function OptionsAccordion({
         >
           <Checkbox
             type="secondary"
-            checked={options[option][val]}
+            checked={options[option][val].selected}
             onChange={(ev) => {
               const updatedOption: OptionsType = {}
               updatedOption[option] = options[option]
-              updatedOption[option][val] = ev.target.checked
-              setOptions((currentOptions) => ({
-                ...currentOptions,
+              updatedOption[option][val].selected = ev.target.checked
+              setOptions({
+                ...options,
                 ...updatedOption
-              }))
+              })
             }}
             data-testid={`${val}-checkbox`}
           >
@@ -90,7 +95,7 @@ export default function OptionsAccordion({
                 classNames?.checkboxBody ? classNames?.checkboxBody : 'body'
               )}
             >
-              {val}
+              {options[option][val].displayName ?? val}
             </div>
           </Checkbox>
           <Button

@@ -182,7 +182,11 @@ export default function QuestDetails({
       {eligibilityComponent}
       {rewardsComponent}
       {errorAlert}
-      <div className={styles.ctaContainer}>
+      <div
+        className={cn(styles.ctaContainer, {
+          [styles.isQuestsPage]: isQuestsPage
+        })}
+      >
         {ctaComponent ?? (
           <>
             {secondCTA}

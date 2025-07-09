@@ -30,6 +30,11 @@ export const MarkdownDescription = ({
         </Button>
       </a>
     ),
+    blockquote: ({ children, ...props }) => (
+      <blockquote className={styles.blockquote} {...props}>
+        {children}
+      </blockquote>
+    ),
     ...components
   }
 

@@ -1,6 +1,5 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import './fonts.css'
 import './index.scss'
 
 export { default as TransactionToast } from './components/TransactionToasts'
@@ -33,7 +32,7 @@ export {
   GenericDropdown,
   OptionsDropdown
 } from './components/Dropdowns'
-export { default as OptionsAccordion } from './components/OptionsAccordion'
+export * from './components/OptionsAccordion'
 export type { itemType as DropdownItemType } from './components/Dropdowns/Dropdown'
 
 export { default as ArrowCircularButton } from './components/ArrowCircularButton'
@@ -263,6 +262,6 @@ export * from './components/ContainerRaised'
 export * from './components/PlatformsSupported'
 export * from './components/PlatformIcon'
 export { default as Sticker, type StickerProps } from './components/Sticker'
-
 export { default as IconsStack } from './components/IconsStack'
+export { default as MasonryLayout } from './components/MasonryLayout'
 export { default as HorizontalCard } from './components/HorizontalCard'
