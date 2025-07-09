@@ -258,5 +258,5 @@ export * from './components/ContainerRaised'
 export * from './components/PlatformsSupported'
 export * from './components/PlatformIcon'
 export { default as Sticker, type StickerProps } from './components/Sticker'
-
 export { default as IconsStack } from './components/IconsStack'
+export { default as MasonryLayout } from './components/MasonryLayout'

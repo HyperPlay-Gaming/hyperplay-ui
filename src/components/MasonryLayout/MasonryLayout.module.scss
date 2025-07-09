@@ -1,0 +1,169 @@
+@use '../../styles/utilities/variables' as *;
+
+// Card base
+.largeImage,
+.mediumImage,
+.smallImage {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  border-radius: var(--space-xs);
+  transition: transform 0.25s cubic-bezier(0.4, 0.2, 0.2, 1);
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(0.98);
+    z-index: 3;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(
+      180deg,
+      var(--color-tertiary-800) 0%,
+      var(--color-secondary-600) 100%
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 2;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+.largeImage img,
+.mediumImage img,
+.smallImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  top: 0;
+  left: 0;
+}
+
+// GRID 5
+.masonryGrid--5 {
+  display: grid;
+  width: 100%;
+  background: transparent;
+  gap: var(--space-md);
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  @include for-mobile-only {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+
+    @include for-tablet-landscape-up {
+      gap: var(--space-2xs);
+    }
+  }
+
+  .smallImagesContainer {
+    display: grid;
+    align-items: stretch;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xs);
+    width: 100%;
+
+    @include for-mobile-only {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.masonryGrid--5 > .largeImage {
+  display: flex;
+  align-items: stretch;
+  grid-row: 1 / span 2;
+  grid-column: 1 / 2;
+}
+
+.masonryGrid--5 > .smallImagesContainer {
+  grid-row: 1 / span 2;
+  grid-column: 2 / span 2;
+}
+
+// GRID 4
+.masonryGrid--4 {
+  display: grid;
+  width: 100%;
+  gap: var(--space-xs);
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+
+  @include for-mobile-only {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+}
+
+// GRID 3
+.masonryGrid--3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: var(--space-xs);
+  width: 100%;
+
+  @include for-mobile-only {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+}
+
+// GRID 2
+.masonryGrid--2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: var(--space-xs);
+  width: 100%;
+
+  @include for-mobile-only {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+}
+
+// GRID 1
+.masonryGrid--1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: var(--space-xs);
+  width: 100%;
+
+  @include for-mobile-only {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+}
+
+.masonryGrid--4 > .smallImage,
+.masonryGrid--3 > .mediumImage,
+.masonryGrid--2 > .largeImage,
+.masonryGrid--1 > .largeImage {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  min-width: 0;
+  min-height: 0;
+}
