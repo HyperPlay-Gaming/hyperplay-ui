@@ -39,7 +39,10 @@ export default defineConfig({
       ]
     }),
     banner((chunk) => {
-      if (!ROLLUP_EXCLUDE_USE_CLIENT.includes(chunk.fileName)) {
+      if (
+        !ROLLUP_EXCLUDE_USE_CLIENT.includes(chunk.fileName) &&
+        !chunk.fileName.includes('node_modules')
+      ) {
         return "'use client';\n"
       }
 

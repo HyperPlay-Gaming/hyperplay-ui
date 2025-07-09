@@ -136,7 +136,7 @@ importers:
         specifier: ^8.3.0
         version: 8.4.1(@babel/core@7.28.0)(webpack@5.100.0(@swc/core@1.12.11)(esbuild@0.25.6))
       classnames:
-        specifier: ^2.3.2
+        specifier: ^2.5.1
         version: 2.5.1
       dayjs:
         specifier: ^1.11.13
