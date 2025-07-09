@@ -1,5 +1,3 @@
-'use client'
-
 import { useForm } from '@mantine/form'
 
 import { AlertTriangle } from '@/assets/images'
