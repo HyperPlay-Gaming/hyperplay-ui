@@ -1,7 +1,36 @@
-@use './designSystem/_buttons.scss';
-@use './designSystem/_colors.scss';
-@use './designSystem/_typography.scss';
-@use './designSystem/_spacing.scss';
-@use './utilities/_variables.scss';
-@use './_overrides.scss';
-@use './utilities/gradientBorder';
+@use './designSystem/_buttons.scss' as *;
+@use './designSystem/_colors.scss' as *;
+@use './designSystem/_typography.scss' as *;
+@use './designSystem/_spacing.scss' as *;
+@use './utilities/_variables.scss' as *;
+@use './_overrides.scss' as *;
+@use './utilities/gradientBorder' as *;
+
+:root {
+  @include typeSystem;
+  @include spacingSystem;
+  @include colorSystem;
+
+  overflow-y: overlay;
+  /* Effects */
+  --blur-light: 4px;
+  --blur-strong: 16px;
+
+  --nav-bar-height: 92.6px;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+
+  // Mantine Overrides
+  --mantine-color-error: var(--color-error-400);
+}
+
+.circle {
+  border-radius: 50%;
+  background-color: var(--color-neutral-400);
+  width: 4px;
+  height: 4px;
+}

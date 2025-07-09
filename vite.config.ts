@@ -4,8 +4,10 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import svgr from 'vite-plugin-svgr'
+import banner from 'rollup-plugin-banner2'
 
 import packageJson from './package.json'
+import { ROLLUP_EXCLUDE_USE_CLIENT } from './rollup-exclude-use-client'
 
 export default defineConfig({
   publicDir: 'public',
@@ -17,7 +19,7 @@ export default defineConfig({
   plugins: [
     react(),
     dts({
-      include: ['src/']
+      outDir: 'dist/src'
     }),
     svgr(),
     viteStaticCopy({
@@ -35,6 +37,13 @@ export default defineConfig({
           dest: ''
         }
       ]
+    }),
+    banner((chunk) => {
+      if (!ROLLUP_EXCLUDE_USE_CLIENT.includes(chunk.fileName)) {
+        return "'use client';\n"
+      }
+
+      return undefined
     })
   ],
   build: {
@@ -45,13 +54,20 @@ export default defineConfig({
       name: 'HyperplayUI',
       formats: ['es']
     },
-    ssr: resolve('src', 'ssr.ts'),
     rollupOptions: {
       external: [...Object.keys(packageJson.peerDependencies)],
       input: [
-        resolve(__dirname, './src/index.ts'),
         resolve(__dirname, './src/assets/images/index.tsx'),
-        resolve(__dirname, './src/ssr.ts')
+        resolve(__dirname, './src/index.ts')
+      ],
+      output: [
+        {
+          format: 'es',
+          entryFileNames: '[name].mjs',
+          dir: resolve(__dirname, 'dist'),
+          preserveModules: true,
+          sourcemap: true
+        }
       ]
     }
   }

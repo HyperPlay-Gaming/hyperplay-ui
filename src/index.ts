@@ -1,7 +1,3 @@
-import 'react-loading-skeleton/dist/skeleton.css'
-
-import './index.scss'
-
 export { default as TransactionToast } from './components/TransactionToasts'
 export type { TransactionToastProps } from './components/TransactionToasts'
 export type { statusType as TransactionStatus } from './components/TransactionToasts'
