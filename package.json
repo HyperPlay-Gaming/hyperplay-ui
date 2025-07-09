@@ -128,7 +128,7 @@
     "./index.css": "./dist/index.css",
     "./utilities/_loading.scss": "./dist/styles/utilities/_loading.scss"
   },
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "eslintConfig": {
     "extends": [
       "react-app",
