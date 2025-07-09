@@ -1,6 +1,6 @@
 {
   "name": "@hyperplay/ui",
-  "version": "1.30.14",
+  "version": "1.31.0-omega.7",
   "license": "LGPL-3.0-only",
   "scripts": {
     "dev": "vite",
@@ -113,10 +113,10 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
+      "import": "./dist/index2.mjs",
       "types": "./dist/index.d.ts"
     },
-    "./images.js": "./dist/index.es2.js",
+    "./images.js": "./dist/index.mjs",
     "./fonts.css": "./dist/fonts.css",
     "./style.css": "./dist/style.css",
     "./designSystem/_buttons.scss": "./dist/styles/designSystem/_buttons.scss",
@@ -126,7 +126,11 @@
     "./utilities/_variables.scss": "./dist/styles/utilities/_variables.scss",
     "./styles": "./dist/styles",
     "./index.css": "./dist/index.css",
-    "./utilities/_loading.scss": "./dist/styles/utilities/_loading.scss"
+    "./utilities/_loading.scss": "./dist/styles/utilities/_loading.scss",
+    "./ssr": {
+      "import": "./dist/ssr.mjs",
+      "types": "./dist/ssr.d.ts"
+    }
   },
   "types": "dist/index.d.ts",
   "eslintConfig": {

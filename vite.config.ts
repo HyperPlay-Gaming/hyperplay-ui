@@ -43,14 +43,15 @@ export default defineConfig({
     lib: {
       entry: resolve('src', 'index.ts'),
       name: 'HyperplayUI',
-      formats: ['es'],
-      fileName: (format) => `index.${format}.js`
+      formats: ['es']
     },
+    ssr: resolve('src', 'ssr.ts'),
     rollupOptions: {
       external: [...Object.keys(packageJson.peerDependencies)],
       input: [
         resolve(__dirname, './src/index.ts'),
-        resolve(__dirname, './src/assets/images/index.tsx')
+        resolve(__dirname, './src/assets/images/index.tsx'),
+        resolve(__dirname, './src/ssr.ts')
       ]
     }
   }
