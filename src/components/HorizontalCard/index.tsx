@@ -2,6 +2,8 @@ import React from 'react'
 
 import styles from './HorizontalCard.module.scss'
 
+import fallbackImage from '@/assets/fallback_card.jpg?url'
+
 import classNames from 'classnames'
 
 export interface HorizontalCardProps
@@ -23,9 +25,10 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
   orderNumber,
   onCardClick,
   tone = 'neutral',
-  size = 'large'
+  size = 'large',
+  ...props
 }) => {
-  const image = gameImage || <img src="/fallback_card.jpg" alt="Game Image" />
+  const image = gameImage || <img src={fallbackImage} alt="Game Image" />
 
   return (
     <>
@@ -36,6 +39,7 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
           styles[size]
         )}
         onClick={onCardClick}
+        {...props}
       >
         <div className={styles.gameImage}>{image}</div>
         <div className={styles.content}>

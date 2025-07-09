@@ -12,10 +12,9 @@
 
 .brand {
   position: relative;
-  border-radius: var(--radius-md, 0.5rem);
+  border-radius: var(--space-xs);
   border: 1.5px solid var(--color-stroke-brand-weak);
   background: linear-gradient(
-    0deg,
     rgba(163, 26, 227, 0.16) 0%,
     rgba(28, 108, 183, 0.16) 100%
   );
@@ -30,47 +29,48 @@
     background: linear-gradient(180deg, #1c6cb7 0%, #a31ae3 100%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
+    -webkit-mask-composite: add;
     mask-composite: exclude;
-    pointer-events: none;
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity 0.1s;
     z-index: 1;
   }
 
   &:hover::before {
     opacity: 1;
   }
+
   &:hover {
     border-color: transparent;
   }
 }
 
 .neutral {
+  position: relative;
+  border-radius: var(--space-xs);
   background-color: var(--background-base);
   border: 1.5px solid var(--color-stroke-weak);
-  border-radius: var(--space-xs);
 
   &::before {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 1.5px;
+    padding: 1px;
     background: linear-gradient(180deg, #1c6cb7 0%, #a31ae3 100%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
+    -webkit-mask-composite: add;
     mask-composite: exclude;
-    pointer-events: none;
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity 0.1s;
     z-index: 1;
   }
 
   &:hover::before {
     opacity: 1;
   }
+
   &:hover {
     border-color: transparent;
   }
