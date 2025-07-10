@@ -13,7 +13,7 @@ import * as Images from '../../assets/images'
 import styles from './GameCard.module.scss'
 import ActionBar from './components/ActionBar'
 import DownloadBar from './components/DownloadBar'
-import imageStyles from './components/Image/Image.module.css'
+import imageStyles from './components/Image/Image.module.scss'
 import StoreLogo from './components/StoreLogo'
 import {
   GameCardState,

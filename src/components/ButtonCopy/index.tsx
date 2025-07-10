@@ -1,5 +1,3 @@
-'use client'
-
 import React, { HTMLAttributes } from 'react'
 
 import { Tooltip, TooltipProps } from '@mantine/core'

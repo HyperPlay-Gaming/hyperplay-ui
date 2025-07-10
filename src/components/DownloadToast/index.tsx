@@ -26,7 +26,7 @@ export const defaultI18n: DownloadToastI18nProp = {
   of: 'of'
 }
 
-export type downloadStatus =
+export type DownloadStatus =
   | 'inProgress'
   | 'paused'
   | 'showOnlyCancel'
@@ -44,7 +44,7 @@ interface DownloadToastType {
   onStartClick: () => void
   onCloseClick: () => void
   onPlayClick: () => void
-  status: downloadStatus
+  status: DownloadStatus
   statusText?: string
   i18n?: DownloadToastI18nProp
 }
@@ -96,7 +96,7 @@ export default function DownloadToast(props: DownloadToastType) {
     '--download-progress-bar-percentage': `${percentCompleted}%`
   } as React.CSSProperties
 
-  function getActionButton(status: downloadStatus) {
+  function getActionButton(status: DownloadStatus) {
     if (status === 'done')
       return (
         <Button type="primary" size="small" onClick={props.onPlayClick}>

@@ -1,3 +1,4 @@
+@use '../../../../styles/utilities/loading' as *;
 .proportions {
   flex: 1;
   overflow: hidden;
@@ -10,4 +11,8 @@
     object-fit: cover;
     aspect-ratio: 1/1;
   }
+}
+
+.loading {
+  @include shinyLoader;
 }
