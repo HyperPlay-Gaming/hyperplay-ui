@@ -36,6 +36,10 @@ const meta: Meta<typeof HorizontalCard> = {
     orderNumber: {
       control: 'text',
       description: 'Order number to display'
+    },
+    noHover: {
+      control: 'boolean',
+      description: 'Disable hover effects on the card'
     }
   }
 }
@@ -94,6 +98,19 @@ export const AsLink: Story = {
       <Sticker>Action</Sticker>
     </HorizontalCardLink>
   )
+}
+
+export const NoHover: Story = {
+  args: {
+    ...defaultProps,
+    noHover: true,
+    children: (
+      <Button type="secondary" size="small" onClick={() => {}}>
+        Go to App Store
+      </Button>
+    ),
+    tone: 'neutral'
+  }
 }
 
 type Story = StoryObj<typeof HorizontalCard>

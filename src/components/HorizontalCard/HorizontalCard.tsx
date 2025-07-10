@@ -17,6 +17,7 @@ export interface HorizontalCardProps
   onButtonClick?: React.MouseEventHandler<HTMLButtonElement>
   tone?: 'brand' | 'neutral'
   size?: 'large' | 'small'
+  noHover?: boolean
 }
 
 const HorizontalCard: React.FC<HorizontalCardProps> = ({
@@ -27,6 +28,7 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
   onCardClick,
   tone = 'neutral',
   size = 'large',
+  noHover = false,
   ...props
 }) => {
   const image = gameImage || <img src={fallbackImage} alt="Game Image" />
@@ -37,7 +39,8 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
         className={classNames(
           styles.horizontalCard,
           styles[tone],
-          styles[size]
+          styles[size],
+          { [styles.noHover]: noHover }
         )}
         onClick={onCardClick}
         {...props}
