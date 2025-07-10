@@ -1,16 +1,17 @@
-import React, {
-  ButtonHTMLAttributes,
-  HTMLAttributes,
-  PropsWithChildren,
-  forwardRef
-} from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 
 import classNames from 'classnames'
 
 import styles from './Button.module.scss'
 
 export interface ButtonProps
-  extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
+  extends Omit<
+    React.DetailedHTMLProps<
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    >,
+    'type'
+  > {
   type?:
     | 'brand'
     | 'primary'
@@ -26,41 +27,35 @@ export interface ButtonProps
     | 'menuItem'
     | 'alert'
     | 'secondaryGradient'
-  style?: React.CSSProperties
   size?: 'small' | 'medium' | 'large' | 'icon'
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type']
   leftIcon?: React.JSX.Element
   rightIcon?: React.ReactNode
   active?: boolean
-  disabled?: boolean
   focusVisible?: boolean
   hover?: boolean
   spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  {
-    type = 'primary',
-    size = 'medium',
-    leftIcon,
-    rightIcon,
-    children,
-    active,
-    disabled,
-    htmlType,
-    className: propClassName,
-    spacing = 'md',
-    style,
-    focusVisible,
-    hover,
-    ...props
-  }: ButtonProps,
-  ref
-) {
+export default function Button({
+  type = 'primary',
+  size = 'medium',
+  leftIcon,
+  rightIcon,
+  children,
+  active,
+  disabled,
+  htmlType,
+  className: propClassName,
+  spacing = 'md',
+  style,
+  focusVisible,
+  hover,
+  ...props
+}: ButtonProps) {
   return (
     <button
       disabled={disabled}
-      ref={ref}
       type={htmlType}
       style={style}
       data-testid="button"
@@ -91,6 +86,4 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       </div>
     </button>
   )
-})
-
-export default Button
+}

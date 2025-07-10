@@ -1,5 +1,3 @@
-'use client'
-
 import { PlatformContainer } from '../PlatformContainer'
 import TextInput, { TextInputProps } from '../TextInput'
 import styles from './WebPlatformInput.module.scss'

@@ -2,5 +2,5 @@
 @import '@mantine/carousel/styles.css';
 @import '@mantine/core/styles.css';
 /* import HyperPlay styles after mantine to override their defaults with our design system */
-@import '../src/index.scss';
+@import '../src/styles/index.scss';
 @import '../src/fonts.css';
