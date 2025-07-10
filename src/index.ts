@@ -18,7 +18,10 @@ export * from './components/Modal'
 export { default as AlertCard } from './components/AlertCard'
 export { default as Alert } from './components/Alert'
 export type { AlertProps } from './components/Alert'
-export { default as DownloadToast } from './components/DownloadToast'
+export {
+  default as DownloadToast,
+  type DownloadStatus
+} from './components/DownloadToast'
 export { default as Checkbox, type CheckboxProps } from './components/Checkbox'
 export * from './components/Tabs'
 export type { TabsTypes } from './components/Tabs'
@@ -64,7 +67,10 @@ export {
   type BlockchainsStackProps
 } from './components/BlockchainsStack'
 
-export { default as AchievementCard } from './components/AchievementCard'
+export {
+  default as AchievementCard,
+  type AchievementCardProps
+} from './components/AchievementCard'
 export { default as AchievementNav } from './components/AchievementNav'
 export { default as AchievementProgress } from './components/AchievementProgress'
 export { default as AchievementsInfo } from './components/AchievementsInfo'
