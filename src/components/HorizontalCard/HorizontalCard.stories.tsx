@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import HorizontalCard, { HorizontalCardProps } from '.'
+import HorizontalCard, { HorizontalCardProps } from './HorizontalCard'
+import { HorizontalCardLink } from './HorizontalCardLink'
 import Button from '../Button'
 import Sticker from '../Sticker'
 
@@ -38,7 +39,6 @@ const meta: Meta<typeof HorizontalCard> = {
     }
   }
 }
-
 const defaultProps: HorizontalCardProps = {
   title: 'Moon Blasters',
   onCardClick: () => {},
@@ -65,7 +65,7 @@ export const WithButton: Story = {
     ...defaultProps,
     tone: 'neutral',
     children: (
-      <Button type="secondary" size="small">
+      <Button type="secondary" size="small" onClick={() => {}}>
         View Game
       </Button>
     )
@@ -78,6 +78,22 @@ export const WithOrderNumber: Story = {
     orderNumber: '#1',
     tone: 'neutral'
   }
+}
+
+export const AsLink: Story = {
+  render: () => (
+    <HorizontalCardLink
+      title="Moon Blasters"
+      tone="neutral"
+      size="large"
+      linkProps={{
+        href: '/game/moon-blasters',
+        className: ''
+      }}
+    >
+      <Sticker>Action</Sticker>
+    </HorizontalCardLink>
+  )
 }
 
 type Story = StoryObj<typeof HorizontalCard>
