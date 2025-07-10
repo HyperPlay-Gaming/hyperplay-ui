@@ -1,49 +1,59 @@
 import React from 'react'
 
-import styles from './HorizontalCard.module.scss'
+import classNames from 'classnames'
 
 import fallbackImage from '@/assets/fallback_card.jpg?url'
 
-import classNames from 'classnames'
+import styles from './HorizontalCard.module.scss'
 
-export interface HorizontalCardProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface HorizontalCardProps {
   gameImage?: React.JSX.Element
   imageUrl?: string
   children?: React.ReactNode
   title: string
   orderNumber?: string
-  onCardClick: React.MouseEventHandler<HTMLDivElement>
+  onCardClick?: React.MouseEventHandler<HTMLDivElement>
   onButtonClick?: React.MouseEventHandler<HTMLButtonElement>
   tone?: 'brand' | 'neutral'
   size?: 'large' | 'small'
   noHover?: boolean
+  cardComponent?: React.ElementType
+  href?: string
+  type?: string
+  target?: string
+  rel?: string
 }
 
-const HorizontalCard: React.FC<HorizontalCardProps> = ({
-  gameImage,
-  title,
-  children,
-  orderNumber,
-  onCardClick,
-  tone = 'neutral',
-  size = 'large',
-  noHover = false,
-  ...props
-}) => {
-  const image = gameImage || <img src={fallbackImage} alt="Game Image" />
+const HorizontalCard = React.forwardRef<HTMLDivElement, HorizontalCardProps>(
+  (props, ref) => {
+    const {
+      cardComponent: CardComponent = 'div',
+      gameImage,
+      title,
+      children,
+      orderNumber,
+      onCardClick,
+      tone = 'neutral',
+      size = 'large',
+      noHover = false,
+      ...rest
+    } = props
 
-  return (
-    <>
-      <div
+    const image = gameImage || <img src={fallbackImage} alt="Game Image" />
+
+    return (
+      <CardComponent
+        ref={ref}
         className={classNames(
           styles.horizontalCard,
           styles[tone],
           styles[size],
-          { [styles.noHover]: noHover }
+          {
+            [styles.noHover]: noHover
+          }
         )}
         onClick={onCardClick}
-        {...props}
+        {...rest}
       >
         <div className={styles.gameImage}>{image}</div>
         <div className={styles.content}>
@@ -55,9 +65,11 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
             {orderNumber}
           </div>
         ) : null}
-      </div>
-    </>
-  )
-}
+      </CardComponent>
+    )
+  }
+)
+
+HorizontalCard.displayName = 'HorizontalCard'
 
 export default HorizontalCard

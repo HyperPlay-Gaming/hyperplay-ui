@@ -169,6 +169,8 @@
 }
 
 .noHover {
+  cursor: default;
+
   &.brand:hover::before,
   &.neutral:hover::before {
     opacity: 0;

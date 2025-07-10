@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import HorizontalCard, { HorizontalCardProps } from './HorizontalCard'
-import { HorizontalCardLink } from './HorizontalCardLink'
 import Button from '../Button'
 import Sticker from '../Sticker'
 
@@ -84,22 +83,6 @@ export const WithOrderNumber: Story = {
   }
 }
 
-export const AsLink: Story = {
-  render: () => (
-    <HorizontalCardLink
-      title="Moon Blasters"
-      tone="neutral"
-      size="large"
-      linkProps={{
-        href: '/game/moon-blasters',
-        className: ''
-      }}
-    >
-      <Sticker>Action</Sticker>
-    </HorizontalCardLink>
-  )
-}
-
 export const NoHover: Story = {
   args: {
     ...defaultProps,
@@ -110,6 +93,44 @@ export const NoHover: Story = {
       </Button>
     ),
     tone: 'neutral'
+  }
+}
+
+export const AsButton: Story = {
+  render: () => (
+    <HorizontalCard
+      cardComponent="button"
+      title="Clickable Button Card"
+      tone="brand"
+      size="large"
+      type="button"
+    >
+      <Sticker>Interactive</Sticker>
+    </HorizontalCard>
+  )
+}
+
+export const AsLink: Story = {
+  render: () => {
+    const Link = ({ href, children, ...props }: React.ComponentProps<'a'>) => (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    )
+
+    return (
+      <HorizontalCard
+        cardComponent={Link}
+        title="Link Card"
+        tone="neutral"
+        size="large"
+        href="/game/link-example"
+      >
+        <Button type="secondary" size="small" onClick={() => {}}>
+          Go to App Store
+        </Button>
+      </HorizontalCard>
+    )
   }
 }
 
