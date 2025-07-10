@@ -16,6 +16,6 @@ jobs:
       pkg_manager_add_dev_dep: 'pnpm add -D'
       install: 'pnpm install --frozen-lockfile'
       build: 'pnpm build'
-      publish: 'pnpm publish'
+      publish: 'npm publish'
     secrets:
       NPM_TOKEN: '${{ secrets.NPM_TOKEN }}'
