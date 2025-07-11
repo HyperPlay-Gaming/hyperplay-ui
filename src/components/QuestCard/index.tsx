@@ -5,8 +5,7 @@ import styles from './index.module.scss'
 import { Tooltip } from '@mantine/core'
 import { useShowTooltipOnOverflow } from '@/utils/useShowTooltipOnOverflow'
 
-export interface QuestCardProps
-  extends Omit<React.ComponentPropsWithoutRef<'div'>, keyof CardGenericProps> {
+export interface QuestCardProps extends CardGenericProps {
   title?: string
   image: string
   description?: string

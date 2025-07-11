@@ -1,13 +1,20 @@
 import { DetailedHTMLProps, ImgHTMLAttributes } from 'react'
 
-import { Card, CardProps, Image, ImageProps } from '@mantine/core'
+import {
+  Card,
+  CardProps,
+  Image,
+  ImageProps,
+  PolymorphicComponentProps
+} from '@mantine/core'
 import cn from 'classnames'
 
 import FallbackImage from '@/assets/fallback_achievement.svg?url'
 
 import styles from './index.module.scss'
 
-export interface CardGenericProps extends CardProps {
+export interface CardGenericProps
+  extends PolymorphicComponentProps<'div', CardProps> {
   image: string
   /**
    * Props to pass to the image component
