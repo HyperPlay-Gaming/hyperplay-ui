@@ -4,7 +4,7 @@ import { expect } from '@storybook/test'
 import questCardV2Image from '@/assets/banners/QuestCardV2Image.png?url'
 import cupheadCard from '@/assets/steamCards/cupheadCard.jpg?url'
 
-import { QuestCard, QuestCardProps } from '.'
+import { QuestCard } from '.'
 import styles from './QuestCardStory.module.scss'
 
 const meta: Meta<typeof QuestCard> = {
@@ -17,9 +17,10 @@ const meta: Meta<typeof QuestCard> = {
 
 export default meta
 
-type Story = StoryObj<typeof QuestCard>
+type Story = StoryObj<typeof meta>
 
-const props: QuestCardProps = {
+type PropsType = React.ComponentProps<typeof QuestCard>
+const props: PropsType = {
   image: questCardV2Image,
   description:
     'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -130,5 +131,15 @@ export const CardWithDivProps: Story = {
     const firstDiv = canvasElement.querySelector('.gradientShadow')
 
     expect(firstDiv).toHaveAttribute('id', args.id)
+  }
+}
+
+export const LinkCard: Story = {
+  args: {
+    ...props,
+    component: 'a',
+    classNames: {
+      root: styles.root
+    }
   }
 }

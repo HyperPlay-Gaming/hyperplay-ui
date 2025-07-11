@@ -3,9 +3,9 @@ import { DetailedHTMLProps, ImgHTMLAttributes } from 'react'
 import {
   Card,
   CardProps,
+  createPolymorphicComponent,
   Image,
-  ImageProps,
-  PolymorphicComponentProps
+  ImageProps
 } from '@mantine/core'
 import cn from 'classnames'
 
@@ -13,8 +13,7 @@ import FallbackImage from '@/assets/fallback_achievement.svg?url'
 
 import styles from './index.module.scss'
 
-export interface CardGenericProps
-  extends PolymorphicComponentProps<'div', CardProps> {
+export interface CardGenericProps extends CardProps {
   image: string
   /**
    * Props to pass to the image component
@@ -44,64 +43,64 @@ export interface CardGenericProps
   }
 }
 
-export function CardGeneric({
-  image,
-  imageProps = {},
-  showLabel = false,
-  i18n = {
-    label: 'Label'
-  },
-  statusIcon,
-  children,
-  className,
-  genericClassNames,
-  showGradientBorderAndShadow = false,
-  ...rest
-}: CardGenericProps &
-  ImageProps &
-  Omit<React.ComponentPropsWithoutRef<'div'>, keyof CardGenericProps>) {
-  return (
-    <Card
-      className={cn(
-        {
-          gradientShadow: !showGradientBorderAndShadow,
-          gradientBorderOnHover: !showGradientBorderAndShadow
-        },
-        styles.card,
-        genericClassNames?.root,
-        className
-      )}
-      {...rest}
-      unstyled
-    >
-      <Card.Section
-        pos="relative"
+export const CardGeneric = createPolymorphicComponent<'div', CardGenericProps>(
+  ({
+    image,
+    imageProps = {},
+    showLabel = false,
+    i18n = {
+      label: 'Label'
+    },
+    statusIcon,
+    children,
+    className,
+    genericClassNames,
+    showGradientBorderAndShadow = false,
+    ...rest
+  }: CardGenericProps) => {
+    return (
+      <Card
         className={cn(
-          styles.image,
-          styles.mantineOverRide,
-          genericClassNames?.image
+          {
+            gradientShadow: !showGradientBorderAndShadow,
+            gradientBorderOnHover: !showGradientBorderAndShadow
+          },
+          styles.card,
+          genericClassNames?.root,
+          className
         )}
+        {...rest}
+        unstyled
       >
-        <Image
-          src={image}
-          fallbackSrc={FallbackImage}
-          {...imageProps}
-          className={styles.achievementImage}
-        />
-        {showLabel && (
-          <div
-            className={cn(styles.label, 'eyebrow', genericClassNames?.label)}
-          >
-            {i18n.label}
-          </div>
-        )}
-      </Card.Section>
+        <Card.Section
+          pos="relative"
+          className={cn(
+            styles.image,
+            styles.mantineOverRide,
+            genericClassNames?.image
+          )}
+        >
+          <Image
+            src={image}
+            fallbackSrc={FallbackImage}
+            {...imageProps}
+            className={styles.achievementImage}
+          />
+          {showLabel && (
+            <div
+              className={cn(styles.label, 'eyebrow', genericClassNames?.label)}
+            >
+              {i18n.label}
+            </div>
+          )}
+        </Card.Section>
 
-      {statusIcon}
+        {statusIcon}
 
-      <div className={cn(styles.cardBody, genericClassNames?.body)}>
-        {children}
-      </div>
-    </Card>
-  )
-}
+        <div className={cn(styles.cardBody, genericClassNames?.body)}>
+          {children}
+        </div>
+      </Card>
+    )
+  }
+)
