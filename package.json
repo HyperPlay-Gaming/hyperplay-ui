@@ -69,6 +69,7 @@
     "json": "^11.0.0",
     "keen-slider": "^6.8.5",
     "next": "^15.3.3",
+    "playwright": "^1.54.0",
     "postcss": "^8.4.32",
     "postcss-preset-mantine": "^1.11.1",
     "postcss-simple-vars": "^7.0.1",
