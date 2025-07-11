@@ -21,8 +21,6 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Install Playwright
-        run: pnpm install playwright -g
       - name: setup playwright
         run: npx playwright install --with-deps
       - name: Build Storybook
