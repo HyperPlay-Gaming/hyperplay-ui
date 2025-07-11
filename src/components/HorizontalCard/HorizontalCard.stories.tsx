@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import HorizontalCard, { HorizontalCardProps } from '.'
+import HorizontalCard, { HorizontalCardProps } from './HorizontalCard'
 import Button from '../Button'
 import Sticker from '../Sticker'
 
@@ -35,10 +35,13 @@ const meta: Meta<typeof HorizontalCard> = {
     orderNumber: {
       control: 'text',
       description: 'Order number to display'
+    },
+    noHover: {
+      control: 'boolean',
+      description: 'Disable hover effects on the card'
     }
   }
 }
-
 const defaultProps: HorizontalCardProps = {
   title: 'Moon Blasters',
   onCardClick: () => {},
@@ -65,7 +68,7 @@ export const WithButton: Story = {
     ...defaultProps,
     tone: 'neutral',
     children: (
-      <Button type="secondary" size="small">
+      <Button type="secondary" size="small" onClick={() => {}}>
         View Game
       </Button>
     )
@@ -77,6 +80,57 @@ export const WithOrderNumber: Story = {
     ...defaultProps,
     orderNumber: '#1',
     tone: 'neutral'
+  }
+}
+
+export const NoHover: Story = {
+  args: {
+    ...defaultProps,
+    noHover: true,
+    children: (
+      <Button type="secondary" size="small" onClick={() => {}}>
+        Go to App Store
+      </Button>
+    ),
+    tone: 'neutral'
+  }
+}
+
+export const AsButton: Story = {
+  render: () => (
+    <HorizontalCard
+      cardComponent="button"
+      title="Clickable Button Card"
+      tone="brand"
+      size="large"
+      type="button"
+    >
+      <Sticker>Interactive</Sticker>
+    </HorizontalCard>
+  )
+}
+
+export const AsLink: Story = {
+  render: () => {
+    const Link = ({ href, children, ...props }: React.ComponentProps<'a'>) => (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    )
+
+    return (
+      <HorizontalCard
+        cardComponent={Link}
+        title="Link Card"
+        tone="neutral"
+        size="large"
+        href="/game/link-example"
+      >
+        <Button type="secondary" size="small" onClick={() => {}}>
+          Go to App Store
+        </Button>
+      </HorizontalCard>
+    )
   }
 }
 
