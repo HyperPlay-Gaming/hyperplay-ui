@@ -47,13 +47,13 @@ const HorizontalCard = React.forwardRef<HTMLDivElement, HorizontalCardProps>(
       <CardComponent
         ref={ref}
         className={classNames(
-          className,
           styles.horizontalCard,
           styles[tone],
           styles[size],
           {
             [styles.noHover]: noHover
-          }
+          },
+          className
         )}
         onClick={onCardClick}
         {...rest}
