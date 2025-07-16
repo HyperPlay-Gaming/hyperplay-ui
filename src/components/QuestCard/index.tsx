@@ -33,6 +33,8 @@ export interface QuestCardProps
     avatarContainer?: string
     questDetails?: string
     avatar?: string
+    content?: string
+    header?: string
   }
 }
 
@@ -73,8 +75,8 @@ export function QuestCard({
       showLabel={Boolean(questType)}
       {...rest}
     >
-      <div className={cn(styles.content)}>
-        <div className={cn(styles.header)}>
+      <div className={cn(styles.content, classNames?.content)}>
+        <div className={cn(styles.header, classNames?.header)}>
           {title ? (
             <div className={cn(styles.title, 'menu-item', classNames?.title)}>
               {title}
