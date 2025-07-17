@@ -181,11 +181,11 @@ export const QuestCard = createPolymorphicComponent<'div', QuestCardProps>(
                 </Tooltip>
               </div>
 
-              {currencyAmount && (
+              {currencyAmount ? (
                 <div className={cn(styles.amount, classNames?.currencyAmount)}>
                   {currencyAmount}
                 </div>
-              )}
+              ) : null}
             </div>
           ) : null}
         </div>
