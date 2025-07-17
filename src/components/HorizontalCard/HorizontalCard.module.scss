@@ -101,7 +101,8 @@
   align-items: center;
   gap: var(--space-sm);
 
-  & > button {
+  button,
+  a {
     pointer-events: auto;
     position: relative;
     z-index: 2;
@@ -110,7 +111,6 @@
 
 .large {
   width: 100%;
-  min-width: 17.75rem;
 
   img {
     max-width: 120px;

@@ -12,6 +12,7 @@ export interface HorizontalCardProps {
   children?: React.ReactNode
   title: string
   orderNumber?: string
+  className?: string
   onCardClick?: React.MouseEventHandler<HTMLDivElement>
   onButtonClick?: React.MouseEventHandler<HTMLButtonElement>
   tone?: 'brand' | 'neutral'
@@ -36,6 +37,7 @@ const HorizontalCard = React.forwardRef<HTMLDivElement, HorizontalCardProps>(
       tone = 'neutral',
       size = 'large',
       noHover = false,
+      className,
       ...rest
     } = props
 
@@ -50,7 +52,8 @@ const HorizontalCard = React.forwardRef<HTMLDivElement, HorizontalCardProps>(
           styles[size],
           {
             [styles.noHover]: noHover
-          }
+          },
+          className
         )}
         onClick={onCardClick}
         {...rest}
