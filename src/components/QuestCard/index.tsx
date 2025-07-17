@@ -62,59 +62,60 @@ export const QuestCard = createPolymorphicComponent<'div', QuestCardProps>(
     const { elementRef: questNameRef, showTooltip: showQuestName } =
       useShowTooltipOnOverflow()
 
-  return (
-    <CardGeneric
-      className={cn(styles.card, className)}
-      genericClassNames={{
-        body: cn(styles.body, classes),
-        image: cn(styles.image, classNames?.image),
-        root: cn(styles.root, classNames?.root),
-        label: cn(styles.questType, classNames?.questType)
-      }}
-      i18n={{
-        label: questType
-      }}
-      showLabel={Boolean(questType)}
-      {...rest}
-    >
-      <div className={cn(styles.content, classNames?.content)}>
-        <div className={cn(styles.header, classNames?.header)}>
-          {title ? (
-            <div className={cn(styles.title, 'menu-item', classNames?.title)}>
-              {title}
-            </div>
-          ) : null}
-          {gameTitle ? (
-            <div
-              className={cn(
-                styles.subtitle,
-                'caption-sm',
-                classNames?.subtitle
-              )}
-            >
-              {gameTitle}
-            </div>
-          ) : null}
-          {description ? (
-            <Tooltip
-              arrowSize={16}
-              position="bottom"
-              arrowPosition="center"
-              withArrow
-              label={description}
-              className={cn(styles.tooltip, { [styles.show]: showTooltip })}
-              events={{ hover: true, touch: true, focus: false }}
-            >
+    return (
+      <CardGeneric
+        className={cn(styles.card, className)}
+        genericClassNames={{
+          body: cn(styles.body, classes),
+          image: cn(styles.image, classNames?.image),
+          root: cn(styles.root, classNames?.root),
+          label: cn(styles.questType, classNames?.questType)
+        }}
+        i18n={{
+          label: questType
+        }}
+        showLabel={Boolean(questType)}
+        {...rest}
+      >
+        <div className={cn(styles.content, classNames?.content)}>
+          <div className={cn(styles.header, classNames?.header)}>
+            {title ? (
+              <div className={cn(styles.title, 'menu-item', classNames?.title)}>
+                {title}
+              </div>
+            ) : null}
+            {gameTitle ? (
               <div
                 className={cn(
-                  styles.description,
-                  'eyebrow',
-                  classNames?.description
+                  styles.subtitle,
+                  'caption-sm',
+                  classNames?.subtitle
                 )}
-                ref={textRef}
               >
-                {description}
+                {gameTitle}
               </div>
+            ) : null}
+            {description ? (
+              <Tooltip
+                arrowSize={16}
+                position="bottom"
+                arrowPosition="center"
+                withArrow
+                label={description}
+                className={cn(styles.tooltip, { [styles.show]: showTooltip })}
+                events={{ hover: true, touch: true, focus: false }}
+              >
+                <div
+                  className={cn(
+                    styles.description,
+                    'eyebrow',
+                    classNames?.description
+                  )}
+                  ref={textRef}
+                >
+                  {description}
+                </div>
+              </Tooltip>
             ) : null}
             {gameTitle ? (
               <div
