@@ -117,39 +117,6 @@ export const QuestCard = createPolymorphicComponent<'div', QuestCardProps>(
                 </div>
               </Tooltip>
             ) : null}
-            {gameTitle ? (
-              <div
-                className={cn(
-                  styles.subtitle,
-                  'caption-sm',
-                  classNames?.subtitle
-                )}
-              >
-                {gameTitle}
-              </div>
-            ) : null}
-            {description ? (
-              <Tooltip
-                arrowSize={16}
-                position="bottom"
-                arrowPosition="center"
-                withArrow
-                label={description}
-                className={cn(styles.tooltip, { [styles.show]: showTooltip })}
-                events={{ hover: true, touch: true, focus: false }}
-              >
-                <div
-                  className={cn(
-                    styles.description,
-                    'eyebrow',
-                    classNames?.description
-                  )}
-                  ref={textRef}
-                >
-                  {description}
-                </div>
-              </Tooltip>
-            ) : null}
             {questName ? (
               <Tooltip
                 arrowSize={16}
