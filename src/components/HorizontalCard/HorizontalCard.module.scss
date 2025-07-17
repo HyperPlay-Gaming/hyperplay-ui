@@ -13,7 +13,7 @@
 .brand {
   position: relative;
   border-radius: var(--space-xs);
-  border: 1.5px solid var(--color-stroke-brand-weak);
+  border: 2px solid var(--color-stroke-brand-weak);
   background: linear-gradient(
     rgba(163, 26, 227, 0.16) 0%,
     rgba(28, 108, 183, 0.16) 100%
@@ -25,7 +25,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 1.5px;
+    padding: 2px;
     background: linear-gradient(180deg, #1c6cb7 0%, #a31ae3 100%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
@@ -49,7 +49,7 @@
   position: relative;
   border-radius: var(--space-xs);
   background-color: var(--background-base);
-  border: 1.5px solid var(--color-stroke-weak);
+  border: 2px solid var(--color-stroke-weak);
 
   &::before {
     content: '';
