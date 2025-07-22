@@ -1,23 +1,18 @@
 @use '../../styles//utilities/variables' as *;
 
-.root-detached {
-  height: 100%;
+.button-detached {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   background-color: transparent;
   border: 2px solid var(--color-neutral-500);
-  border-radius: 1000px;
-  aspect-ratio: 1 / 1;
-}
-
-.button-detached {
-  width: 46px;
-  transform: rotate(180deg) translateX(-1px);
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  transform: rotate(180deg);
 
   &.leftButton {
-    transform: rotate(0deg) translateX(-1px);
+    transform: rotate(0deg);
   }
 }
 

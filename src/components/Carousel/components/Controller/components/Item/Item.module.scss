@@ -11,21 +11,11 @@ $mobile-zoom: 1.25;
 $max-item-width: 100px;
 $max-item-height: 60px;
 
-$mid-item-width: 96px;
-$mid-item-height: 56px;
+$mid-item-width: 160px;
+$mid-item-height: 90px;
 
 $min-item-width: 92px;
 $min-item-height: 52px;
-
-$scale-mid-to-max-height: calc(
-  1 + difference($mid-item-height, $max-item-height)
-);
-$scale-mid-to-max-width: calc(1 + difference($mid-item-width, $max-item-width));
-
-$scale-mid-to-min-height: calc(
-  1 - difference($mid-item-height, $min-item-height)
-);
-$scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
 
 .itemContainer {
   width: $mid-item-width;
@@ -120,13 +110,6 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
     &:not(.empty):not(.loading):hover::after {
       background-color: transparent;
       opacity: 0%;
-    }
-  }
-
-  &.active {
-    transform: scale(1.125, 1.125);
-    @media screen and (max-width: #{$tabletLandscapeBreakpoint}) {
-      transform: none;
     }
   }
 }

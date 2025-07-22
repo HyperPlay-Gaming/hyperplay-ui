@@ -61,14 +61,16 @@
 
 .root {
   display: flex;
-  flex-direction: column;
-  align-items: center;
 
   &:has(.viewport:hover) .control,
   &:has(.control:hover) .control {
     transform: translateX(0);
     visibility: visible;
     opacity: 100%;
+  }
+
+  @include for-mobile-only {
+    height: 443px;
   }
 }
 

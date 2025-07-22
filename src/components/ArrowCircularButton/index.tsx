@@ -2,7 +2,7 @@ import React from 'react'
 
 import cn from 'classnames'
 
-import { ChevronLeft } from '@/assets/images'
+import { ArrowTop } from '@/assets/images'
 
 import styles from './index.module.scss'
 
@@ -26,32 +26,21 @@ const BaseButton = ({
   ...props
 }: BaseButtonProps) => {
   return (
-    <div
+    <button
+      onClick={onClick}
+      data-testid={`carousel-${isLeftButton ? 'left' : 'right'}-button`}
       className={cn(
-        styles.root,
         {
           [styles.leftButton]: isLeftButton,
-          [styles[`root-detached`]]: true
+          [styles[`button-detached`]]: true
         },
-        classNames?.root
+        classNames?.button,
+        className
       )}
+      {...props}
     >
-      <button
-        onClick={onClick}
-        data-testid={`carousel-${isLeftButton ? 'left' : 'right'}-button`}
-        className={cn(
-          {
-            [styles.leftButton]: isLeftButton,
-            [styles[`button-detached`]]: true
-          },
-          classNames?.button,
-          className
-        )}
-        {...props}
-      >
-        <ChevronLeft width={'9px'} height={'15px'} />
-      </button>
-    </div>
+      <ArrowTop width={24} height={24} />
+    </button>
   )
 }
 

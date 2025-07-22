@@ -11,6 +11,8 @@ import styles from './Controller.module.scss'
 import Item from './components/Item'
 import { scrollHorizontalIntoViewWithOffset } from './helpers'
 
+export const DEFAULT_NUM_ITEMS_TO_SHOW = 5
+
 export interface ItemData {
   image: React.ReactElement
   isVideoSlide?: boolean
@@ -34,7 +36,7 @@ export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
 const Controller = ({
   itemsData,
   className,
-  numItemsToShow: numItemsToShowInit = 5,
+  numItemsToShow: numItemsToShowInit = DEFAULT_NUM_ITEMS_TO_SHOW,
   showItemLoadBar = true,
   classNames,
   ...props
