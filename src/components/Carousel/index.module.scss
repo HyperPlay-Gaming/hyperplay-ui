@@ -46,6 +46,10 @@
     height: 100%;
     object-fit: cover;
   }
+
+  @include for-mobile-only {
+    height: 100%;
+  }
 }
 
 .carouselWrapper {
@@ -54,8 +58,18 @@
 }
 
 .indicators {
+  bottom: calc(var(--space-xl-fixed) * -1);
+
   @include for-tablet-landscape-up {
     display: none;
+  }
+}
+
+.indicator {
+  background-color: var(--fill-weak);
+
+  &[data-active='true'] {
+    background-color: var(--color-primary-500);
   }
 }
 
@@ -71,11 +85,31 @@
 
   @include for-mobile-only {
     height: 443px;
+    border-radius: var(--Corner-radius-sm, 8px);
+    border: 2px solid var(--color-neutral-600);
+    margin-bottom: var(--space-xl-fixed);
   }
 }
 
 .mantineCarouselRoot {
   width: 100%;
+
+  @include for-mobile-only {
+    height: 100%;
+  }
+}
+
+.viewport {
+  @include for-mobile-only {
+    height: 100%;
+    border-radius: var(--Corner-radius-sm, 8px);
+  }
+}
+
+.container {
+  @include for-mobile-only {
+    height: 100%;
+  }
 }
 
 .loading {

@@ -281,9 +281,11 @@ const Carousel = ({
             root: styles.mantineCarouselRoot,
             slide: cn(styles.slide, classNames?.slide),
             indicators: styles.indicators,
+            indicator: styles.indicator,
             controls: styles.controls,
             control: styles.control,
-            viewport: styles.viewport
+            viewport: styles.viewport,
+            container: styles.container
           }}
           loop={true}
           withControls={!isMobile && withControls}
