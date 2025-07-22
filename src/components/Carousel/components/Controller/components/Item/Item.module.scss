@@ -6,16 +6,8 @@
   @return calc(abs($a - $b) / (($a + $b) / 2));
 }
 
-$mobile-zoom: 1.25;
-
-$max-item-width: 100px;
-$max-item-height: 60px;
-
 $mid-item-width: 160px;
 $mid-item-height: 90px;
-
-$min-item-width: 92px;
-$min-item-height: 52px;
 
 .itemContainer {
   width: $mid-item-width;
@@ -55,11 +47,6 @@ $min-item-height: 52px;
   &.empty {
     background: none;
     cursor: inherit;
-  }
-
-  @media screen and (max-width: #{$tabletLandscapeBreakpoint}) {
-    width: calc($mid-item-width * $mobile-zoom);
-    height: calc($mid-item-height * $mobile-zoom);
   }
 }
 

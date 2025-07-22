@@ -58,10 +58,11 @@
 }
 
 .indicators {
+  display: none;
   bottom: calc(var(--space-xl-fixed) * -1);
 
-  @include for-tablet-landscape-up {
-    display: none;
+  @include for-mobile-only {
+    display: flex;
   }
 }
 
