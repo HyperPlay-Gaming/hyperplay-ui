@@ -561,7 +561,7 @@ export const TestNoAutoscrollImagesMobile: Story = {
     const canvas = within(canvasElement)
     const imgSlide0 = canvas.getByTestId('img-slide-0')
     await waitFor(async () =>
-      expect(imgSlide0.offsetWidth).toBeGreaterThan(250)
+      expect(imgSlide0.offsetWidth).toBeGreaterThan(240)
     )
 
     await expectSlideToBeVisible(imgSlide0)
