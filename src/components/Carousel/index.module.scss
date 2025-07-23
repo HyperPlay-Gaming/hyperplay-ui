@@ -86,7 +86,7 @@
 
   @include for-mobile-only {
     height: 443px;
-    border-radius: var(--Corner-radius-sm, 8px);
+    border-radius: var(--space-sm-fixed);
     border: 2px solid var(--color-neutral-600);
     margin-bottom: var(--space-xl-fixed);
   }
@@ -103,7 +103,7 @@
 .viewport {
   height: 100%;
   @include for-mobile-only {
-    border-radius: var(--Corner-radius-sm, 8px);
+    border-radius: var(--space-sm-fixed);
   }
 }
 
