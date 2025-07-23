@@ -1,5 +1,7 @@
 import React, { HTMLProps } from 'react'
 
+import { Popover } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import classNames from 'classnames'
 
 import styles from './index.module.scss'
@@ -27,6 +29,23 @@ export interface StickerProps extends HTMLProps<HTMLDivElement> {
   dotColor?: withDot['dotColor']
   dimension?: Dimension
   variant?: Variant
+  showTooltip?: boolean
+}
+
+// This was the only way to override the mantine styles
+const popoverStyles = {
+  dropdown: {
+    backgroundColor: 'var(--background-overlay)',
+    border: 'none',
+    borderRadius: 'var(--space-sm)',
+    padding: 'var(--space-xs) var(--space-sm)',
+    color: 'var(--text-strong)',
+    boxShadow: '0px 20px 24px -8px rgba(124, 58, 237, 0.114)'
+  },
+  arrow: {
+    backgroundColor: 'var(--background-overlay)',
+    border: 'none'
+  }
 }
 
 export default function Sticker({
@@ -37,8 +56,10 @@ export default function Sticker({
   withDot,
   className,
   children,
+  showTooltip = false,
   ...props
 }: StickerProps) {
+  const [showPopover, { open, close }] = useDisclosure(false)
   const divClasses = {
     [styles.neutral]: styleType === 'neutral',
     [styles.secondary]: styleType === 'secondary',
@@ -68,7 +89,30 @@ export default function Sticker({
             : null}
         </span>
       )}
-      {children}
+      {showTooltip ? (
+        <Popover
+          position="top"
+          withArrow
+          opened={showPopover}
+          offset={{ mainAxis: 16 }}
+          styles={popoverStyles}
+        >
+          <Popover.Target>
+            <span
+              className={styles.text}
+              onMouseEnter={open}
+              onMouseLeave={close}
+            >
+              {children}
+            </span>
+          </Popover.Target>
+          <Popover.Dropdown>
+            <div className="caption-sm">{children}</div>
+          </Popover.Dropdown>
+        </Popover>
+      ) : (
+        <span className={styles.text}>{children}</span>
+      )}
     </div>
   )
 }
