@@ -2,6 +2,9 @@ import React from 'react'
 
 import * as Images from '../../../../assets/images'
 import styles from '../../GameCard.module.scss'
+import actionStyles from './index.module.scss'
+import classNames from 'classnames'
+import { SupportedPlatform } from '@valist/sdk'
 
 type ActionBarProps = {
   title: string
@@ -12,6 +15,7 @@ type ActionBarProps = {
   favorited?: boolean
   showSettings: boolean
   actionDisabled?: boolean
+  platformsAvailable?: SupportedPlatform[]
 }
 
 const ActionBar = ({
@@ -22,11 +26,30 @@ const ActionBar = ({
   icon,
   favorited,
   showSettings,
-  actionDisabled = false
+  actionDisabled = false,
+  platformsAvailable
 }: ActionBarProps) => {
+  const platformIcons: React.ReactNode[] = []
+  if (platformsAvailable?.some((val) => val.includes('darwin'))) {
+    platformIcons.push(<Images.MacOSIcon fill="white" />)
+  }
+  if (platformsAvailable?.some((val) => val.includes('linux'))) {
+    platformIcons.push(<Images.LinuxIcon fill="white" />)
+  }
+  if (platformsAvailable?.some((val) => val.includes('windows'))) {
+    platformIcons.push(<Images.Windows11Icon fill="white" />)
+  }
+  if (platformsAvailable?.some((val) => val === 'web')) {
+    platformIcons.push(<Images.WebIcon fill="white" />)
+  }
   return (
     <>
-      <div className={`${styles.title} title`}>{title}</div>
+      <div className={styles.bottomSection}>
+        <div className={classNames(styles.title, 'title-sm')}>{title}</div>
+        <div className={actionStyles.platformIconsContainer}>
+          {...platformIcons}
+        </div>
+      </div>
       <div className={styles.actionButtonContainer}>
         <button style={{ paddingLeft: '0px' }} onClick={onSettingsClick}>
           <Images.Ellipsis
