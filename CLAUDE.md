@@ -5,6 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Development Commands
 
 ### Core Development
+
 ```bash
 # Start development server
 pnpm dev
@@ -23,6 +24,7 @@ pnpm build-storybook
 ```
 
 ### Code Quality
+
 ```bash
 # Run ESLint
 pnpm lint
@@ -41,6 +43,7 @@ pnpm codecheck
 ```
 
 ### Testing
+
 ```bash
 # Run unit tests with Vitest
 pnpm test:unit
@@ -50,6 +53,7 @@ pnpm test-storybook
 ```
 
 ### Publishing
+
 ```bash
 # Publish beta version
 pnpm publish:beta
@@ -102,6 +106,7 @@ src/
 ### Responsive Design
 
 The library uses a mobile-first approach with predefined breakpoints:
+
 - `for-mobile-only`: max-width 599px
 - `for-tablet-portrait-up`: min-width 600px
 - `for-desktop-up`: min-width 1200px
@@ -112,6 +117,7 @@ Use the mixins from `_variables.scss` rather than hardcoding media queries.
 ### Build Configuration
 
 The library is built as an ES module with:
+
 - TypeScript declarations generated via `vite-plugin-dts`
 - 'use client' directive automatically added for Next.js compatibility
 - Assets (fonts, styles) copied to dist folder
