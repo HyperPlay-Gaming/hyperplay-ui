@@ -87,7 +87,7 @@
   @include for-mobile-only {
     height: 443px;
     border-radius: var(--space-sm-fixed);
-    border: 2px solid var(--color-neutral-600);
+    border: 2px solid var(--color-stroke-weak);
     margin-bottom: var(--space-xl-fixed);
   }
 }
