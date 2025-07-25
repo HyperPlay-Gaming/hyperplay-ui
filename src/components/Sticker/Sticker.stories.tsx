@@ -86,35 +86,14 @@ export const SmallWithDot: Story = {
 export const LongText: Story = {
   args: {
     styleType: 'secondary',
-    dimension: 'default',
-    variant: 'outlined',
-    children:
-      'A very long text that should be applied ellipsis when it exceeds the maximum width of 180px'
-  }
-}
-
-export const LongTextWithIcon: Story = {
-  args: {
-    styleType: 'secondary',
-    withIcon: <AlertTriangle />,
-    dimension: 'default',
-    variant: 'filled',
-    children:
-      'A very long text with icon that should also be truncated appropriately'
-  }
-}
-
-export const LongTextWithDot: Story = {
-  args: {
-    styleType: 'secondary',
     withDot: {
       dotColor: 'success',
       dotIcon: DotIcon
     },
     dimension: 'default',
     variant: 'filledStrong',
-    children:
-      'An example of a very long text with dot that demonstrates the truncation behavior'
+    children: 'Long text to test the truncation behavior',
+    style: { width: '180px' }
   }
 }
 
@@ -123,7 +102,8 @@ export const WithTooltip: Story = {
     styleType: 'secondary',
     dimension: 'default',
     variant: 'outlined',
-    children: 'A very long text to test the tooltip',
+    children: 'Long text to test the truncation behavior',
+    style: { width: '180px' },
     showTooltip: true
   }
 }
