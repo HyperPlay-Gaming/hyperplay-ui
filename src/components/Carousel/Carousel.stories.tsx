@@ -25,7 +25,14 @@ import {
 
 const meta: Meta<typeof Carousel> = {
   title: 'Carousel/Carousel',
-  component: Carousel
+  component: Carousel,
+  decorators: [
+    (Story) => (
+      <div style={{ padding: 36, backgroundColor: 'black' }}>
+        <Story />
+      </div>
+    )
+  ]
 }
 
 export default meta
@@ -94,6 +101,20 @@ export const Default: Story = {
   args: props
 }
 
+export const AttachedControls: Story = {
+  args: {
+    ...props,
+    attachControlsToCarousel: true,
+    childrenNotInCarousel: (
+      <Carousel.Controller
+        itemsData={imagesAndVideosForThumbnail}
+        showItemLoadBar={true}
+        isAttached={true}
+      />
+    )
+  }
+}
+
 export const Mobile: Story = {
   parameters: {
     viewport: { defaultViewport: 'mobile1' }
@@ -117,7 +138,7 @@ export const NoVideo: Story = {
 export const IsLoading: Story = {
   args: { isLoading: true, ...props },
   render: (args) => (
-    <div style={{ width: '100vw' }}>
+    <div style={{ width: '100%' }}>
       <Carousel {...args} />
     </div>
   )

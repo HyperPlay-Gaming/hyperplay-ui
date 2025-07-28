@@ -78,6 +78,7 @@ export interface CarouselProps
   autoplayOptions?: AutoplayOptionsType
   /** Show a loading skeleton while loading */
   isLoading?: boolean
+  attachControlsToCarousel?: boolean
 }
 
 const Carousel = ({
@@ -88,6 +89,7 @@ const Carousel = ({
   autoplayOptions,
   isLoading,
   withControls = true,
+  attachControlsToCarousel = false,
   ...props
 }: CarouselProps) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0)
@@ -272,18 +274,33 @@ const Carousel = ({
   return (
     <CarouselContext.Provider value={value}>
       <div
-        className={cn(styles.root, classNames?.hpCarouselRoot, className)}
+        className={cn(
+          attachControlsToCarousel ? styles.attachedRoot : styles.root,
+          classNames?.hpCarouselRoot,
+          className
+        )}
         data-testid={'carousel-root'}
       >
         <MantineCarousel
           getEmblaApi={setEmblaApi}
           classNames={{
-            root: styles.mantineCarouselRoot,
-            slide: cn(styles.slide, classNames?.slide),
-            indicators: styles.indicators,
+            root: cn(styles.mantineCarouselRoot, {
+              [styles.attachedMantineCarouselRoot]: attachControlsToCarousel
+            }),
+            slide: cn(styles.slide, classNames?.slide, {
+              [styles.attachedSlide]: attachControlsToCarousel
+            }),
+            indicators: cn(styles.indicators, {
+              [styles.attachedIndicators]: attachControlsToCarousel
+            }),
+            indicator: cn({
+              [styles.attachedIndicator]: attachControlsToCarousel
+            }),
             controls: styles.controls,
             control: styles.control,
-            viewport: styles.viewport
+            viewport: cn(styles.viewport, {
+              [styles.attachedViewport]: attachControlsToCarousel
+            })
           }}
           loop={true}
           withControls={!isMobile && withControls}

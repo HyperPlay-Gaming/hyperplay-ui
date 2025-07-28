@@ -18,6 +18,7 @@ export interface ItemData {
 
 export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
   itemsData: ItemData[]
+  isAttached?: boolean
   numItemsToShow?: number
   showItemLoadBar?: boolean
   classNames?: {
@@ -35,6 +36,7 @@ const Controller = ({
   itemsData,
   className,
   numItemsToShow: numItemsToShowInit = 5,
+  isAttached = false,
   showItemLoadBar = true,
   classNames,
   ...props
@@ -116,6 +118,7 @@ const Controller = ({
           itemIndex={itemIndex}
           className={classNames?.item}
           isVideoSlide={itemsData[itemIndex].isVideoSlide}
+          isAttached={isAttached}
           id={`carousel-controller-item-id-${itemIndex}`}
         />
       )
@@ -166,13 +169,21 @@ const Controller = ({
     <div
       id="carousel-controller-root-container"
       className={cn(
-        styles.controllerDetached,
+        isAttached ? styles.controllerAttached : styles.controllerDetached,
         className,
         classNames?.rootContainer
       )}
       {...props}
     >
-      <div className={cn(styles.root, classNames?.root)}>
+      <div
+        className={cn(
+          styles.root,
+          {
+            [styles.rootAttached]: isAttached
+          },
+          classNames?.root
+        )}
+      >
         {leftButton}
         {itemsToShow}
         {rightButton}
