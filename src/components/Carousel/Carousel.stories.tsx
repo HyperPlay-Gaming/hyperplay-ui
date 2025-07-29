@@ -144,6 +144,26 @@ export const IsLoading: Story = {
   )
 }
 
+export const IsLoadingAttached: Story = {
+  args: {
+    isLoading: true,
+    ...props,
+    attachControlsToCarousel: true,
+    childrenNotInCarousel: (
+      <Carousel.Controller
+        itemsData={imagesAndVideosForThumbnail}
+        showItemLoadBar={true}
+        isAttached={true}
+      />
+    )
+  },
+  render: (args) => (
+    <div style={{ width: '100%' }}>
+      <Carousel {...args} />
+    </div>
+  )
+}
+
 const videos = [
   'https://youtu.be/U-DtrujeD3k?si=2zM6kFtMDFDt9hOt',
   'https://youtu.be/dNf6-Qd6z0k?si=I-c2NP3peYQ78PR6',
