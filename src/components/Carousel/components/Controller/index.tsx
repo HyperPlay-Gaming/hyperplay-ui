@@ -142,6 +142,7 @@ const Controller = ({
           onClick={() => console.warn('empty item clicked')}
           itemIndex={itemIndex}
           isEmptyItem={true}
+          isAttached={isAttached}
         />
       )
     }
