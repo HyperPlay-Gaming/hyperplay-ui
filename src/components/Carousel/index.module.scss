@@ -78,7 +78,7 @@
   background-color: var(--fill-weak);
 
   &[data-active='true'] {
-    background-color: var(--color-primary-500);
+    background-color: var(--color-stroke-selected);
   }
 }
 
