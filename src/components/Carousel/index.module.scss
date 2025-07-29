@@ -69,7 +69,7 @@
   bottom: calc(var(--space-xl-fixed) * -1);
   display: none;
 
-  @include for-mobile-up {
+  @include for-mobile-only {
     display: flex;
   }
 }
@@ -118,6 +118,7 @@
 }
 
 .attachedViewport {
+  display: flex;
   height: 100%;
   @include for-mobile-only {
     border-radius: var(--space-sm-fixed);

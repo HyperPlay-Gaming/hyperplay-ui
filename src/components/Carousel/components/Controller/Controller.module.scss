@@ -65,3 +65,15 @@
   gap: var(--space-sm-fixed);
   flex: 1;
 }
+
+.attachedLeftButton {
+  transform: rotate(90deg);
+}
+
+.attachedRightButton {
+  transform: rotate(270deg);
+}
+
+.leftButton {
+  transform: rotate(0deg);
+}

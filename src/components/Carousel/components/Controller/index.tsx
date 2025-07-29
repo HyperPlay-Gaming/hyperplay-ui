@@ -16,6 +16,9 @@ export interface ItemData {
   isVideoSlide?: boolean
 }
 
+const DEFAULT_NUM_ITEMS_TO_SHOW = 5
+const DEFAULT_NUM_ITEMS_TO_SHOW_TABLET = 3
+
 export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
   itemsData: ItemData[]
   isAttached?: boolean
@@ -53,7 +56,11 @@ const Controller = ({
   )
   useEffect(() => {
     if (isMobile) {
-      setNumItemsToShow(itemsData.length)
+      setNumItemsToShow(
+        isAttached
+          ? DEFAULT_NUM_ITEMS_TO_SHOW_TABLET
+          : DEFAULT_NUM_ITEMS_TO_SHOW
+      )
     } else {
       setNumItemsToShow(numItemsToShowInit)
     }
@@ -143,7 +150,10 @@ const Controller = ({
   let leftButton: React.ReactNode = (
     <BaseButton
       onClick={previousItemsPage}
-      className={classNames?.leftButton}
+      className={cn(
+        classNames?.leftButton,
+        isAttached ? styles.attachedLeftButton : styles.leftButton
+      )}
       isLeftButton={true}
       classNames={{ root: styles.itemsPageButton }}
     />
@@ -155,7 +165,10 @@ const Controller = ({
   let rightButton: React.ReactNode = (
     <BaseButton
       onClick={nextItemsPage}
-      className={cn(classNames?.rightButton)}
+      className={cn(
+        classNames?.rightButton,
+        isAttached && styles.attachedRightButton
+      )}
       isLeftButton={false}
       disabled={disablePageButtons}
       classNames={{ root: styles.itemsPageButton }}
