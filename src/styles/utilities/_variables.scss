@@ -9,6 +9,11 @@ $laptopBreakpoint: 1350px;
     @content;
   }
 }
+@mixin for-mobile-up {
+  @media (min-width: $mobileSmallBreakpoint) {
+    @content;
+  }
+}
 @mixin for-tablet-portrait-up {
   @media (min-width: 600px) {
     @content;

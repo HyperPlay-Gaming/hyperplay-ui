@@ -16,8 +16,12 @@ export interface ItemData {
   isVideoSlide?: boolean
 }
 
+const DEFAULT_NUM_ITEMS_TO_SHOW = 5
+const DEFAULT_NUM_ITEMS_TO_SHOW_TABLET = 3
+
 export interface ControllerProps extends React.HTMLAttributes<HTMLDivElement> {
   itemsData: ItemData[]
+  isAttached?: boolean
   numItemsToShow?: number
   showItemLoadBar?: boolean
   classNames?: {
@@ -35,6 +39,7 @@ const Controller = ({
   itemsData,
   className,
   numItemsToShow: numItemsToShowInit = 5,
+  isAttached = false,
   showItemLoadBar = true,
   classNames,
   ...props
@@ -51,7 +56,11 @@ const Controller = ({
   )
   useEffect(() => {
     if (isMobile) {
-      setNumItemsToShow(itemsData.length)
+      setNumItemsToShow(
+        isAttached
+          ? DEFAULT_NUM_ITEMS_TO_SHOW_TABLET
+          : DEFAULT_NUM_ITEMS_TO_SHOW
+      )
     } else {
       setNumItemsToShow(numItemsToShowInit)
     }
@@ -116,6 +125,7 @@ const Controller = ({
           itemIndex={itemIndex}
           className={classNames?.item}
           isVideoSlide={itemsData[itemIndex].isVideoSlide}
+          isAttached={isAttached}
           id={`carousel-controller-item-id-${itemIndex}`}
         />
       )
@@ -132,6 +142,7 @@ const Controller = ({
           onClick={() => console.warn('empty item clicked')}
           itemIndex={itemIndex}
           isEmptyItem={true}
+          isAttached={isAttached}
         />
       )
     }
@@ -140,7 +151,10 @@ const Controller = ({
   let leftButton: React.ReactNode = (
     <BaseButton
       onClick={previousItemsPage}
-      className={classNames?.leftButton}
+      className={cn(
+        classNames?.leftButton,
+        isAttached ? styles.attachedLeftButton : styles.leftButton
+      )}
       isLeftButton={true}
       classNames={{ root: styles.itemsPageButton }}
     />
@@ -152,7 +166,10 @@ const Controller = ({
   let rightButton: React.ReactNode = (
     <BaseButton
       onClick={nextItemsPage}
-      className={cn(classNames?.rightButton)}
+      className={cn(
+        classNames?.rightButton,
+        isAttached && styles.attachedRightButton
+      )}
       isLeftButton={false}
       disabled={disablePageButtons}
       classNames={{ root: styles.itemsPageButton }}
@@ -166,13 +183,21 @@ const Controller = ({
     <div
       id="carousel-controller-root-container"
       className={cn(
-        styles.controllerDetached,
+        isAttached ? styles.controllerAttached : styles.controllerDetached,
         className,
         classNames?.rootContainer
       )}
       {...props}
     >
-      <div className={cn(styles.root, classNames?.root)}>
+      <div
+        className={cn(
+          styles.root,
+          {
+            [styles.rootAttached]: isAttached
+          },
+          classNames?.root
+        )}
+      >
         {leftButton}
         {itemsToShow}
         {rightButton}

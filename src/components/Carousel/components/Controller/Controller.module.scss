@@ -23,6 +23,27 @@
   }
 }
 
+.controllerAttached {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  height: auto;
+  justify-content: space-between;
+  padding: var(--space-md);
+  background-color: var(--background-base);
+  border-top-right-radius: var(--space-sm-fixed);
+  border-bottom-right-radius: var(--space-sm-fixed);
+
+  @include for-mobile-only {
+    display: none;
+  }
+}
+
+.itemsPageButton {
+  width: 48px;
+  height: 48px;
+}
+
 .root {
   position: relative;
   display: flex;
@@ -32,4 +53,27 @@
   transition: transform 0.2s, opacity 0.2s;
   opacity: 1;
   z-index: 1;
+}
+
+.rootAttached {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm-fixed);
+  flex: 1;
+}
+
+.attachedLeftButton {
+  transform: rotate(90deg);
+}
+
+.attachedRightButton {
+  transform: rotate(270deg);
+}
+
+.leftButton {
+  transform: rotate(0deg);
 }
