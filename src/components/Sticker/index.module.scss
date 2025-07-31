@@ -8,7 +8,14 @@
   border: 1px solid transparent;
   position: relative;
   z-index: 1;
-  font-size: var(--text-md);
+  font-size: var(--text-sm);
+  flex-wrap: nowrap;
+  width: 100%;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
 
   &::before {
     content: '';
@@ -139,6 +146,13 @@
         fill: var(--color-status-tertiary);
       }
     }
+  }
+
+  .text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
   }
 
   // Variants

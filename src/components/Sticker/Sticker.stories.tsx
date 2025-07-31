@@ -6,7 +6,10 @@ import Sticker from '.'
 
 const meta: Meta<typeof Sticker> = {
   title: 'Sticker',
-  component: Sticker
+  component: Sticker,
+  parameters: {
+    layout: 'centered'
+  }
 }
 
 export default meta
@@ -76,5 +79,31 @@ export const SmallWithDot: Story = {
     dimension: 'small',
     variant: 'outlined',
     children: 'Label'
+  }
+}
+
+//Text Truncation
+export const LongText: Story = {
+  args: {
+    styleType: 'secondary',
+    withDot: {
+      dotColor: 'success',
+      dotIcon: DotIcon
+    },
+    dimension: 'default',
+    variant: 'filledStrong',
+    children: 'Long text to test the truncation behavior',
+    style: { width: '180px' }
+  }
+}
+
+export const WithTooltip: Story = {
+  args: {
+    styleType: 'secondary',
+    dimension: 'default',
+    variant: 'outlined',
+    children: 'Long text to test the truncation behavior',
+    style: { width: '180px' },
+    showTooltip: true
   }
 }
