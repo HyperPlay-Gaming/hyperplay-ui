@@ -17,6 +17,7 @@ interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   // these are just used to take up a slot in the controller and do not have UI/aren't clickable
   isEmptyItem?: boolean
   isVideoSlide?: boolean
+  isAttached?: boolean
 }
 
 const Item = ({
@@ -28,6 +29,7 @@ const Item = ({
   className,
   isEmptyItem,
   isVideoSlide: isVideoSlideProp,
+  isAttached = false,
   ...props
 }: ItemProps) => {
   const { isLoading } = useCarousel()
@@ -64,7 +66,10 @@ const Item = ({
         styles.itemContainer,
         styles.noGradientBorder,
         {
-          [styles.active]: isActive,
+          [styles.attached]: isAttached
+        },
+        {
+          [styles.active]: isActive && !isAttached,
           [styles.empty]: isEmptyItem,
           [styles.loading]: isLoading
         },
