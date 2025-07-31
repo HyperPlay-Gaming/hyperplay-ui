@@ -35,7 +35,16 @@ const props: GameCardProps = {
   onSettingsClick: () => console.log('settings button clicked'),
   onUpdateClick: () => console.log('update button clicked'),
   onResumeClick: () => console.log('resume button clicked'),
-  i18n: i18nDefault
+  i18n: i18nDefault,
+  platformsAvailable: [
+    'android_arm64',
+    'darwin_amd64',
+    'darwin_arm64',
+    'linux_386',
+    'web',
+    'windows_amd64',
+    'windows_386'
+  ]
 }
 
 const meta: Meta<typeof GameCard> = {
