@@ -34,7 +34,7 @@ $hoverBorderThickness: 2px;
     @include visibleElement();
   }
 
-  &:hover .bottomSection {
+  &:hover .title {
     @include hiddenElement();
   }
 
@@ -119,25 +119,19 @@ $hoverBorderThickness: 2px;
 
 @mixin gameTitle {
   text-overflow: ellipsis;
+  overflow: hidden;
   white-space: nowrap;
+  @include bottomElement();
+  @include visibleElement();
+  transition: 0.1s;
+  position: relative;
 
   @include for-mobile-only {
     font-size: var(--text-md) !important;
   }
 }
 
-.bottomSection {
-  position: relative;
-  @include visibleElement();
-  transition: 0.2s;
-  overflow: hidden;
-  display: flex;
-  gap: var(--space-xs);
-  flex-direction: column;
-}
-
 .title {
-  text-align: center;
   @include gameTitle();
 }
 

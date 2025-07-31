@@ -21,7 +21,6 @@ import {
   Runner,
   SettingsButtons
 } from './types'
-import { SupportedPlatform } from '@valist/sdk'
 
 export interface GameCardProps
   extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
@@ -55,7 +54,6 @@ export interface GameCardProps
   addedText?: string
   enableRemoveButton?: boolean
   i18n: GameCardi18n
-  platformsAvailable?: SupportedPlatform[]
 }
 
 export interface GameCardi18n {
@@ -127,7 +125,6 @@ const GameCard = ({
   addedText,
   enableRemoveButton,
   i18n = i18nDefault,
-  platformsAvailable,
   ...props
 }: GameCardProps) => {
   const [showPopover, { open, close }] = useDisclosure(false)
@@ -139,8 +136,7 @@ const GameCard = ({
       title: title,
       favorited: favorited,
       showSettings: showSettings,
-      actionDisabled: actionDisabled,
-      platformsAvailable
+      actionDisabled: actionDisabled
     }
     switch (state) {
       case 'QUEUED':
@@ -185,15 +181,7 @@ const GameCard = ({
       case 'NOT_SUPPORTED':
         return (
           <>
-            <div
-              className={classNames(
-                styles.title,
-                styles.bottomSection,
-                'title-sm'
-              )}
-            >
-              {title}
-            </div>
+            <div className={`${styles.title} title-sm`}>{title}</div>
             <div className={styles.actionButtonContainer}>
               <div className="title-sm">Unsupported</div>
             </div>
