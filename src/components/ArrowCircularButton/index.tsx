@@ -30,7 +30,6 @@ const BaseButton = ({
       className={cn(
         styles.root,
         {
-          [styles.leftButton]: isLeftButton,
           [styles[`root-detached`]]: true
         },
         classNames?.root
@@ -41,7 +40,6 @@ const BaseButton = ({
         data-testid={`carousel-${isLeftButton ? 'left' : 'right'}-button`}
         className={cn(
           {
-            [styles.leftButton]: isLeftButton,
             [styles[`button-detached`]]: true
           },
           classNames?.button,

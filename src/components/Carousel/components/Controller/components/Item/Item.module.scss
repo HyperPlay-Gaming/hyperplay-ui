@@ -17,6 +17,10 @@ $mid-item-height: 56px;
 $min-item-width: 92px;
 $min-item-height: 52px;
 
+// Different width for attached items
+$attached-item-width: 160px;
+$attached-item-height: 90px;
+
 $scale-mid-to-max-height: calc(
   1 + difference($mid-item-height, $max-item-height)
 );
@@ -39,6 +43,12 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   cursor: pointer;
   position: relative;
   transition: border 0.3s ease-in;
+
+  // Override width for attached items
+  &.attached {
+    width: $attached-item-width;
+    height: $attached-item-height;
+  }
 
   &:not(.empty):not(.loading).noGradientBorder {
     border: 2px solid var(--color-neutral-600);
@@ -67,9 +77,11 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
     cursor: inherit;
   }
 
-  @media screen and (max-width: #{$tabletLandscapeBreakpoint}) {
-    width: calc($mid-item-width * $mobile-zoom);
-    height: calc($mid-item-height * $mobile-zoom);
+  &:not(.attached) {
+    @media screen and (max-width: #{$tabletLandscapeBreakpoint}) {
+      width: calc($mid-item-width * $mobile-zoom);
+      height: calc($mid-item-height * $mobile-zoom);
+    }
   }
 }
 
@@ -87,6 +99,12 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
   z-index: 1;
   position: absolute;
   transition: transform 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+}
+
+// Override imageContainer width for attached items
+.itemContainer.attached .imageContainer {
+  width: $attached-item-width;
+  height: $attached-item-height;
 }
 
 .imageContainer img {
