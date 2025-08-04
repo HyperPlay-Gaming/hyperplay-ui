@@ -23,6 +23,14 @@ export interface HorizontalCardProps {
   type?: string
   target?: string
   rel?: string
+  classNames?: {
+    wrapper?: string
+    gameImage?: string
+    content?: string
+    title?: string
+    children?: string
+    orderNumber?: string
+  }
 }
 
 const HorizontalCard = React.forwardRef<HTMLDivElement, HorizontalCardProps>(
@@ -38,6 +46,7 @@ const HorizontalCard = React.forwardRef<HTMLDivElement, HorizontalCardProps>(
       size = 'large',
       noHover = false,
       className,
+      classNames: customClassNames,
       ...rest
     } = props
 
@@ -53,18 +62,46 @@ const HorizontalCard = React.forwardRef<HTMLDivElement, HorizontalCardProps>(
           {
             [styles.noHover]: noHover
           },
-          className
+          className,
+          customClassNames?.wrapper
         )}
         onClick={onCardClick}
         {...rest}
       >
-        <div className={styles.gameImage}>{image}</div>
-        <div className={styles.content}>
-          <div className={classNames(styles.title, 'title')}>{title}</div>
-          {children ? <div className={styles.children}>{children}</div> : null}
+        <div
+          className={classNames(styles.gameImage, customClassNames?.gameImage)}
+        >
+          {image}
+        </div>
+        <div className={classNames(styles.content, customClassNames?.content)}>
+          <div
+            className={classNames(
+              styles.title,
+              'title',
+              customClassNames?.title
+            )}
+          >
+            {title}
+          </div>
+          {children ? (
+            <div
+              className={classNames(
+                styles.children,
+                customClassNames?.children
+              )}
+            >
+              {children}
+            </div>
+          ) : null}
         </div>
         {orderNumber ? (
-          <div className={classNames(styles.orderNumber, 'h6')}>
+          <div
+            className={classNames(
+              styles.orderNumber,
+              'h6',
+              customClassNames?.orderNumber
+            )}
+          >
             {orderNumber}
           </div>
         ) : null}

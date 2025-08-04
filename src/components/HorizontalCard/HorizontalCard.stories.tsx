@@ -96,20 +96,6 @@ export const NoHover: Story = {
   }
 }
 
-export const AsButton: Story = {
-  render: () => (
-    <HorizontalCard
-      cardComponent="button"
-      title="Clickable Button Card"
-      tone="brand"
-      size="large"
-      type="button"
-    >
-      <Sticker>Interactive</Sticker>
-    </HorizontalCard>
-  )
-}
-
 export const AsLink: Story = {
   render: () => {
     const Link = ({ href, children, ...props }: React.ComponentProps<'a'>) => (
