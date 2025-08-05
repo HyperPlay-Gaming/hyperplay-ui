@@ -5,6 +5,7 @@ export { default as Button, type ButtonProps } from './components/Button'
 export { default as NavBar } from './components/NavBar'
 export * from './components/NavBar/NavBarLink'
 export { default as HorizontalCard } from './components/HorizontalCard/HorizontalCard'
+export type { HorizontalCardProps } from './components/HorizontalCard/HorizontalCard'
 export { default as GameCard } from './components/GameCard'
 export type {
   GameCardState,
