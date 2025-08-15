@@ -26,7 +26,7 @@
 }
 
 .menuDropdown {
-  background-color: var(--color-neutral-800);
+  background-color: transparent;
   color: var(--color-neutral-400);
   border: none;
   padding: 0px;
@@ -53,6 +53,7 @@
 
 .genericButton {
   text-align: left;
+  border-top: 1px solid var(--color-stroke-weak);
 }
 
 .genericButton[aria-expanded='true'] {
