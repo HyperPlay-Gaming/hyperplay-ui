@@ -1,7 +1,7 @@
-$switchHeight: 28px;
-$switchPadding: 3px;
-$borderThickness: 1px;
-$switchWidth: 60px + 2 * $borderThickness;
+$switchHeight: 24px;
+$switchPadding: 2px;
+$borderThickness: 0.2px;
+$switchWidth: 48px + 2 * $borderThickness;
 $thumbDiameter: $switchHeight - (2 * $switchPadding);
 $lengthToTranslate: ($switchWidth - 2 * $borderThickness) -
   ($thumbDiameter + 2 * $switchPadding + 2 * $borderThickness);
@@ -9,10 +9,11 @@ $switchHeightWithBorder: $switchHeight + 2 * $borderThickness;
 
 /* The switch - the box around the slider */
 .switch {
-  position: relative;
   display: flex;
-  height: $switchHeightWithBorder;
+  align-items: center;
+  position: relative;
   cursor: pointer;
+  gap: var(--space-2xs);
 
   /* Hide default HTML checkbox */
   input {
@@ -23,29 +24,29 @@ $switchHeightWithBorder: $switchHeight + 2 * $borderThickness;
 
   &:hover {
     input:checked + .slider {
-      background-color: var(--color-primary-400);
-      border: $borderThickness solid var(--color-primary-400);
+      background-color: var(--fill-selected);
+      border: $borderThickness solid var(--fill-selected);
     }
     input:not(:checked) + .slider {
-      background-color: var(--color-neutral-700);
-      border: $borderThickness solid var(--color-neutral-500);
+      background-color: var(--background-overlay);
+      border: $borderThickness solid var(--color-stroke-weak);
     }
     input:not(:checked) + .slider:before {
-      background-color: var(--color-primary-400);
+      background-color: var(--background-overlay);
     }
     input:disabled:checked + .slider {
-      background-color: var(--color-primary-500);
-      border: $borderThickness solid var(--color-primary-500);
+      background-color: var(--fill-inverse-strong);
+      border: $borderThickness solid var(--color-stroke-weak);
     }
     input:not(:checked):disabled + .slider {
       background-color: var(--color-neutral-800);
       border: $borderThickness solid var(--color-stroke-01);
     }
     input:not(:checked) + .slider:before {
-      background-color: var(--color-primary-400);
+      background-color: var(--background-overlay);
     }
     input:not(:checked):disabled + .slider:before {
-      background-color: var(--color-primary-500);
+      background-color: var(--background-overlay);
     }
   }
 
@@ -54,8 +55,8 @@ $switchHeightWithBorder: $switchHeight + 2 * $borderThickness;
   }
 
   input:checked + .slider {
-    background-color: var(--color-primary-500);
-    border: $borderThickness solid var(--color-primary-500);
+    background-color: var(--fill-selected);
+    border: $borderThickness solid var(--fill-selected);
   }
 }
 
@@ -78,7 +79,8 @@ $switchHeightWithBorder: $switchHeight + 2 * $borderThickness;
     width: calc($thumbDiameter);
     left: $switchPadding;
     bottom: $switchPadding;
-    background-color: var(--color-primary-500);
+    background-color: var(--background-overlay);
+    border: 1px solid var(--color-stroke-strong);
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
@@ -98,7 +100,7 @@ input.inputCheckbox:disabled:checked + .slider {
 }
 
 input.inputCheckbox:checked + .slider:before {
-  background-color: var(--color-neutral-100);
+  background-color: var(--background-overlay);
 }
 
 input.inputCheckbox:checked + .slider:before {
@@ -108,6 +110,7 @@ input.inputCheckbox:checked + .slider:before {
 }
 
 .switchContainer {
-  width: 60px;
+  width: 48px;
+  height: var(--space-2lg);
   position: relative;
 }

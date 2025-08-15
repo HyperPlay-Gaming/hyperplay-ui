@@ -60,7 +60,7 @@ export const Default: React.FC = () => {
     <SearchBar
       suggestions={filteredItems}
       setSearchText={setSearchText}
-      i18n={{ placeholder: 'Search for games' }}
+      i18n={{ placeholder: 'Search' }}
     />
   )
 }

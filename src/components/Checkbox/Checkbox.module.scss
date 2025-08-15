@@ -8,6 +8,7 @@
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
+  gap: var(--space-3xs);
 }
 
 .container:has(> input:disabled) {
@@ -42,7 +43,7 @@
 /* Primary/Default */
 /* When the checkbox is checked */
 .container input:checked ~ .checkmark {
-  background-color: var(--color-primary-500);
+  background-color: var(--color-primary-300);
 }
 
 /* Hide the checkmark svg when unchecked */
@@ -54,50 +55,50 @@
 .checkmark {
   height: 24px;
   width: 24px;
-  background-color: var(--color-primary-500);
+  background-color: var(--fill-inverse-strong);
   border-radius: var(--space-3xs);
-  border: 1px solid var(--color-primary-400);
+  border: 1px solid var(--color-stroke-strong);
   display: inline-flex;
   justify-content: center;
   align-content: center;
-  --checkbox-checkmark-color: var(--color-neutral-100);
+  --checkbox-checkmark-color: var(--fill-inverse-strong);
 }
 
 /* On mouse hover */
 .container input:hover ~ .checkmark {
-  background-color: var(--color-secondary-400);
-  border: 1px solid var(--color-secondary-200);
+  background-color: var(--color-primary-300);
+  border: 1px solid var(--color-primary-200);
 }
 
 /* Add a 1 px border so checkbox size doesn't change between enabled and disabled states */
 .container input:disabled ~ .checkmark {
-  background-color: var(--color-neutral-700);
-  border: 1px solid var(--color-neutral-700);
-  --checkbox-checkmark-color: var(--color-neutral-400);
+  background-color: var(--fill-inverse-strong);
+  border: 1px solid var(--color-stroke-disabled);
+  --checkbox-checkmark-color: var(--color-stroke-strong);
 }
 
 /* Secondary */
 .container input:checked ~ .checkmark.secondary {
-  background-color: var(--color-neutral-800);
+  background-color: var(--color-primary-300);
   border: 1px solid var(--color-primary-500);
 }
 
 .container input:not(:checked) ~ .checkmark.secondary {
-  background-color: var(--color-neutral-800);
-  border: 1px solid var(--color-neutral-500);
+  background-color: var(--fill-inverse-strong);
+  border: 1px solid var(--color-stroke-strong);
 }
 
 .container input:hover ~ .checkmark.secondary {
-  background-color: var(--color-neutral-600);
-  border: 1px solid var(--color-secondary-200);
+  background-color: var(--fill-inverse-strong);
+  border: 1px solid var(--color-primary-200);
 
-  --checkbox-checkmark-color: var(--color-secondary-200);
+  --checkbox-checkmark-color: var(--color-primary-200);
 }
 
 .container input:disabled ~ .checkmark.secondary {
-  background-color: var(--color-neutral-900);
-  border: 1px solid var(--color-neutral-700);
-  --checkbox-checkmark-color: var(--color-neutral-400);
+  background-color: var(--fill-inverse-strong);
+  border: 1px solid var(--color-stroke-disabled);
+  --checkbox-checkmark-color: var(--color-stroke-strong);
 }
 
 /* Icon */
@@ -108,19 +109,19 @@
 }
 
 .container input:not(:checked) ~ .checkmark.icon {
-  background-color: var(--color-neutral-800);
-  border: 1px solid var(--color-neutral-600);
+  background-color: var(--fill-inverse-strong);
+  border: 1px solid var(--color-stroke-weak);
 }
 
 .container input:hover ~ .checkmark.icon {
   background-color: transparent;
-  border: 1px solid var(--color-secondary-200);
+  border: 1px solid var(--color-primary-200);
 
-  --checkbox-checkmark-color: var(--color-secondary-200);
+  --checkbox-checkmark-color: var(--color-primary-200);
 }
 
 .container input:disabled ~ .checkmark.icon {
   background-color: transparent;
   border: 1px solid transparent;
-  --checkbox-checkmark-color: var(--color-neutral-400);
+  --checkbox-checkmark-color: var(--color-stroke-strong);
 }

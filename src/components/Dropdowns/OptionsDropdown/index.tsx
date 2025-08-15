@@ -60,7 +60,7 @@ export default function OptionsDropdown(props: OptionsDropdownProps) {
           >
             <div
               className="body"
-              style={{ paddingLeft: 'var(--space-sm)', margin: 'auto 0px' }}
+              style={{ paddingLeft: 'var(--space-2xs)', margin: 'auto 0px' }}
             >
               {val}
             </div>

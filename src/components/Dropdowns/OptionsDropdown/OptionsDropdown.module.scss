@@ -1,6 +1,7 @@
 .menuItem {
   button {
     visibility: hidden;
+    background: transparent;
   }
 
   &:hover button {

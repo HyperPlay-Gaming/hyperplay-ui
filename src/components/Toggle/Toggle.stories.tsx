@@ -4,13 +4,14 @@ import Toggle from '.'
 
 export default {
   title: 'Toggle',
-  component: Toggle
+  component: Toggle,
+  layout: 'centered'
 }
 
 export const Default = () => {
   return (
     <Toggle onChange={(e) => console.log('toggle changed', e.target.checked)}>
-      <h6>Downloaded</h6>
+      <div className="body">Downloaded</div>
     </Toggle>
   )
 }

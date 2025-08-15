@@ -4,9 +4,9 @@
   align-items: center;
   justify-content: center;
   height: 42px;
-  border-radius: 100px;
-  background: var(--color-neutral-900);
-  border: solid 1px var(--color-stroke-01);
+  border-radius: var(--space-xs);
+  background: var(--fill-inverse-strong);
+  border: solid 1px var(--color-stroke-weak);
   z-index: 1;
 
   input {
@@ -16,7 +16,7 @@
     color: var(--color-neutral-100);
     font-size: var(--text-md);
     &::placeholder {
-      color: var(--color-neutral-400);
+      color: var(--text-weak);
     }
 
     &:focus-within {
