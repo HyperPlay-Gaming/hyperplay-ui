@@ -115,7 +115,7 @@ export default function SearchBar({
           style={styles?.container}
         >
           <button className={searchBarStyles.searchButton}>
-            <MagnifyingGlass fill="var(--color-neutral-400)" />
+            <MagnifyingGlass fill="var(--icon-neutral)" />
           </button>
           <input
             ref={input}

@@ -1,11 +1,11 @@
 .root {
-  margin-bottom: 35;
+  margin-bottom: var(--space-2xs);
 }
 
 .input {
   background-color: transparent;
   &:checked {
-    background-color: var(--color-success-500);
+    background-color: var(--fill-selected);
   }
 }
 
