@@ -4,6 +4,7 @@
 
 .menuDropdown > div > div > * {
   color: var(--color-neutral-400);
+  background-color: var(--color-neutral-400);
 }
 
 // cannot put this padding in .menuDropdown without breaking the dropdown = target width mantine calcs
@@ -17,7 +18,7 @@
 }
 
 .menuDropdown *[data-hovered='true'] {
-  background-color: var(--color-neutral-600);
+  background-color: var(--background-raised);
 }
 
 .menuDropdown *[data-hovered='true'] > div > div > *:first-child,
@@ -26,8 +27,8 @@
 }
 
 .menuDropdown {
-  background-color: transparent;
-  color: var(--color-neutral-400);
+  background-color: var(--background-base);
+  color: var(--text-weak);
   border: none;
   padding: 0px;
   border-radius: 0 0 var(--space-sm) var(--space-sm);
