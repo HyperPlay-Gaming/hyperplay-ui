@@ -69,7 +69,8 @@ const Item = ({
           [styles.attached]: isAttached
         },
         {
-          [styles.active]: isActive && !isAttached,
+          [styles.active]: isActive,
+          [styles.attachedActive]: isActive && isAttached,
           [styles.empty]: isEmptyItem,
           [styles.loading]: isLoading
         },

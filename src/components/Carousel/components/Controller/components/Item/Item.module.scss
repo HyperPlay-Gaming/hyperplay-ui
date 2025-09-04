@@ -141,11 +141,21 @@ $scale-mid-to-min-width: calc(1 - difference($mid-item-width, $min-item-width));
     }
   }
 
+  &:not(.empty):not(.loading).attachedActive::after {
+    background-color: transparent;
+    opacity: 0%;
+    @include fullscreen-tint();
+  }
+
   &.active {
     transform: scale(1.125, 1.125);
     @media screen and (max-width: #{$tabletLandscapeBreakpoint}) {
       transform: none;
     }
+  }
+
+  &.attachedActive {
+    transform: scale(1.05, 1.05);
   }
 }
 
