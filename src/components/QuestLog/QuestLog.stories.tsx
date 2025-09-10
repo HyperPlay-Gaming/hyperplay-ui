@@ -131,3 +131,10 @@ export const NoPoints: Story = {
     style: { maxHeight: 950 }
   }
 }
+
+export const NoQuests: Story = {
+  args: {
+    ...props,
+    quests: []
+  }
+}
