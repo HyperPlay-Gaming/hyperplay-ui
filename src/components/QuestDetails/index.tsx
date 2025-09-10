@@ -117,12 +117,13 @@ export default function QuestDetails({
   ) : null
 
   // Back Button
-  const backButton = gameTitle ? (
+  const backButton = onBackClick ? (
     <div
       className={styles.backButton}
       onClick={onBackClick}
       role="button"
       tabIndex={0}
+      aria-label="Go back"
     >
       <IconSquareChevronLeftFilled size={32} />
     </div>
