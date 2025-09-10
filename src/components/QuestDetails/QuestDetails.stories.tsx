@@ -491,34 +491,13 @@ export const EndDateInPast: Story = {
 
 export const WithBackButton: Story = {
   args: {
-    ...props,
-    onBackClick: () => {
-      alert(
-        'Back button clicked! This would typically navigate back or close a modal.'
-      )
-    }
+    ...props
   },
   parameters: {
     docs: {
       description: {
         story:
           'This story demonstrates the back button functionality. The back button is only visible on mobile devices (screens < 768px). Click the back button to see the callback in action.'
-      }
-    }
-  }
-}
-
-export const WithoutBackButton: Story = {
-  args: {
-    ...props,
-    gameTitle: undefined, // No game title means no back button
-    onBackClick: () => console.log('This should not be called')
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'This story shows the component without a back button (when gameTitle is not provided).'
       }
     }
   }
