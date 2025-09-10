@@ -116,8 +116,8 @@ export default function QuestDetails({
     </Sticker>
   ) : null
 
-  // Back Button
-  const backButton = onBackClick ? (
+  // Back Button - Always render, CSS will handle visibility
+  const backButton = (
     <div
       className={styles.backButton}
       onClick={onBackClick}
@@ -127,7 +127,7 @@ export default function QuestDetails({
     >
       <IconSquareChevronLeftFilled size={32} />
     </div>
-  ) : null
+  )
 
   let primaryCTAButtonType: ButtonProps['type'] = 'secondary'
   if (showSync && onSyncClick) {
