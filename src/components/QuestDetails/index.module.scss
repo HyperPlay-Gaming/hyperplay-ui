@@ -4,13 +4,15 @@
   height: 100%;
   margin: var(--space-xl) var(--space-xs);
   border: 2px solid var(--color-neutral-600);
+  overflow: hidden;
 }
 
 .badges {
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: center;
   gap: var(--space-xs);
+  flex-wrap: wrap;
 }
 
 .claimButton {
@@ -60,8 +62,19 @@
 .rootContent {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
   gap: var(--space-xl);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 2px;
+  margin-right: -2px;
+
+  // Mobile responsive adjustments
+  @media (max-width: 767px) {
+    gap: var(--space-lg);
+    padding-right: 0;
+    margin-right: 0;
+  }
 }
 
 .endDate {
@@ -82,4 +95,14 @@
 
 .iconFuture {
   color: var(--icon-brand);
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+
+  // Hide on desktop, show only on mobile
+  @media (min-width: 768px) {
+    display: none;
+  }
 }

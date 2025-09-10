@@ -149,6 +149,7 @@ const props: QuestDetailsProps = {
   onSignInClick: () => console.log('sign in clicked!'),
   onConnectSteamAccountClick: () =>
     console.log('connect steam account clicked!'),
+  onBackClick: () => console.log('back button clicked!'),
   questType: 'REPUTATIONAL-AIRDROP',
   rewardsComponent
 }
@@ -485,5 +486,40 @@ export const EndDateInPast: Story = {
   args: {
     ...props,
     endDate: '2020-04-08T00:00:00.000Z'
+  }
+}
+
+export const WithBackButton: Story = {
+  args: {
+    ...props,
+    onBackClick: () => {
+      alert(
+        'Back button clicked! This would typically navigate back or close a modal.'
+      )
+    }
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'This story demonstrates the back button functionality. The back button is only visible on mobile devices (screens < 768px). Click the back button to see the callback in action.'
+      }
+    }
+  }
+}
+
+export const WithoutBackButton: Story = {
+  args: {
+    ...props,
+    gameTitle: undefined, // No game title means no back button
+    onBackClick: () => console.log('This should not be called')
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'This story shows the component without a back button (when gameTitle is not provided).'
+      }
+    }
   }
 }
