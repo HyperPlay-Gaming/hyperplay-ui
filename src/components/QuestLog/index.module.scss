@@ -51,7 +51,8 @@ $containerPadding: var(--space-2lg-fixed);
   flex-shrink: 0;
   flex-basis: auto;
 
-  margin: var(--space-md) calc(-1 * $containerPadding) 0px calc(-1 * $containerPadding);
+  margin: var(--space-md) calc(-1 * $containerPadding) 0px
+    calc(-1 * $containerPadding);
   padding: var(--space-md) $containerPadding 0px $containerPadding;
 }
 
@@ -77,9 +78,9 @@ $containerPadding: var(--space-2lg-fixed);
 
 .emptyStateMessage {
   border-radius: 0.5rem;
-  border: 1px solid #282B34;
-  background: #13141A;
-  color: #B0C1D5;
+  border: 1px solid #282b34;
+  background: #13141a;
+  color: #b0c1d5;
   font-size: var(--font-size-md);
   text-align: center;
   padding: var(--space-lg) var(--space-xl);
