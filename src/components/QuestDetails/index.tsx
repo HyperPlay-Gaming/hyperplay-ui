@@ -13,7 +13,7 @@ import { QuestDetailsProps } from './types'
 import dayjs from 'dayjs'
 
 import localizedFormat from 'dayjs/plugin/localizedFormat'
-import { IconClock } from '@tabler/icons-react'
+import { IconClock, IconSquareChevronLeftFilled } from '@tabler/icons-react'
 dayjs.extend(localizedFormat)
 
 export default function QuestDetails({
@@ -42,6 +42,7 @@ export default function QuestDetails({
   },
   onSignInClick,
   onConnectSteamAccountClick,
+  onBackClick,
   onPlayClick,
   onSecondCTAClick,
   isQuestsPage,
@@ -115,6 +116,18 @@ export default function QuestDetails({
     </Sticker>
   ) : null
 
+  // Back Button
+  const backButton = gameTitle ? (
+    <div
+      className={styles.backButton}
+      onClick={onBackClick}
+      role="button"
+      tabIndex={0}
+    >
+      <IconSquareChevronLeftFilled size={32} />
+    </div>
+  ) : null
+
   let primaryCTAButtonType: ButtonProps['type'] = 'secondary'
   if (showSync && onSyncClick) {
     buttonText = i18n.sync ?? 'Sync'
@@ -155,6 +168,7 @@ export default function QuestDetails({
   let content = (
     <div className={cn(styles.rootContent, classNames?.rootContent)}>
       <div className={styles.badges}>
+        {backButton}
         <div className={cn(classNames?.content)}>{gameNameSticker}</div>
         <div className={cn(classNames?.content)}>{sticker}</div>
       </div>

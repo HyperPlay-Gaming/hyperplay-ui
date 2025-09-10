@@ -66,6 +66,7 @@ export interface QuestDetailsProps extends HTMLProps<HTMLDivElement> {
   rewardsComponent: ReactNode
   onSignInClick: () => void
   onConnectSteamAccountClick: () => void
+  onBackClick?: () => void
   endDate?: string | null
   showSecondCTA?: boolean
   ctaComponent?: React.ReactNode

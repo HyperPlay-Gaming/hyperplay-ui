@@ -23,7 +23,8 @@ export default function QuestLog({
       PLAYSTREAK: 'Play Streak',
       LEADERBOARD: 'Leaderboard'
     },
-    pointsClaimed: 'Points Claimed'
+    pointsClaimed: 'Points Claimed',
+    noQuestsAvailable: 'No Quests Available'
   },
   className,
   pointsProps,
@@ -57,6 +58,12 @@ export default function QuestLog({
   let tab1Content = null
   if (loading) {
     tab1Content = <Loading className={styles.loader} />
+  } else if (quests.length === 0) {
+    tab1Content = (
+      <div className={styles.emptyState}>
+        <div className={styles.emptyStateMessage}>{i18n.noQuestsAvailable}</div>
+      </div>
+    )
   } else {
     let readyForClaim = null
     let activeText = null
@@ -83,6 +90,12 @@ export default function QuestLog({
   let tab2Content = null
   if (loading) {
     tab2Content = <Loading className={styles.loader} />
+  } else if (claimedQuests.length === 0) {
+    tab2Content = (
+      <div className={styles.emptyState}>
+        <div className={styles.emptyStateMessage}>{i18n.noQuestsAvailable}</div>
+      </div>
+    )
   } else {
     tab2Content = (
       <div>

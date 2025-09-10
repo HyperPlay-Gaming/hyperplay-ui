@@ -24,6 +24,7 @@ export interface QuestLogTranslations {
   type: QuestTypeTranslations
   pointsBalance?: PointsBalanceTranslations
   pointsClaimed: string
+  noQuestsAvailable: string
 }
 
 export interface QuestLogProps extends HTMLProps<HTMLDivElement> {
