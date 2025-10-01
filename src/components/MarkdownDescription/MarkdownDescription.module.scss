@@ -1,4 +1,6 @@
 @use '../../styles/designSystem/typography' as *;
+@use '../../styles/designSystem/spacing' as *;
+@use '../../styles/designSystem/colors' as *;
 
 .root {
   @extend .body-sm;
@@ -14,6 +16,36 @@
 }
 
 .blockquote {
-  color: #fbbf24;
+  color: var(--color-alert-400);
   margin: var(--space-md) 0;
+}
+
+.eth-address {
+  padding: var(--space-3xs) var(--space-2xs);
+  border-radius: var(--space-2xs);
+  font-weight: var(--semibold);
+  background: var(--fill-brand-weak);
+  color: var(--text-brand);
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Courier New',
+    monospace;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: var(--fill-hover);
+  }
+
+  &:visited {
+    color: var(--text-brand);
+  }
+}
+
+.number-token {
+  padding: var(--space-3xs) var(--space-2xs);
+  border-radius: var(--space-2xs);
+  background: var(--fill-success-weak);
+  color: var(--text-success);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--medium);
 }
