@@ -140,7 +140,7 @@ const renderEthAddress = (
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Ethereum address ${item.content} (opens in new tab)`}
-      title={`View on Etherscan: ${item.content}`}
+      title={`View address: ${item.content}`}
     >
       {item.content}
     </a>
@@ -200,70 +200,7 @@ export const renderHighlightedText = (
 }
 
 /**
- * LRU cache implementation using Map (maintains insertion order)
+ * Simple memoized version using React's built-in memoization
+ * For small text snippets, direct processing is fast enough
  */
-class LRUCache<K, V> {
-  private readonly maxSize: number
-  private cache: Map<K, V>
-
-  constructor(maxSize = 100) {
-    this.maxSize = maxSize
-    this.cache = new Map()
-  }
-
-  get(key: K): V | undefined {
-    if (!this.cache.has(key)) return undefined
-
-    // Move to end (most recently used)
-    const value = this.cache.get(key)!
-    this.cache.delete(key)
-    this.cache.set(key, value)
-    return value
-  }
-
-  set(key: K, value: V): void {
-    // Remove if exists to update position
-    if (this.cache.has(key)) {
-      this.cache.delete(key)
-    }
-
-    // Remove oldest if at capacity
-    if (this.cache.size >= this.maxSize) {
-      const [firstKey] = this.cache.keys()
-      if (firstKey !== undefined) {
-        this.cache.delete(firstKey)
-      }
-    }
-
-    this.cache.set(key, value)
-  }
-}
-
-/**
- * Cache instance for memoization
- */
-const cache = new LRUCache<string, HighlightedText[]>(100)
-
-/**
- * Creates stable cache key using template literals
- */
-const createCacheKey = (text: string, options: HighlighterOptions): string =>
-  `${text}::${JSON.stringify(options)}`
-
-/**
- * Memoized version of highlightText with LRU cache
- */
-export const memoizedHighlightText = (
-  text: string,
-  options: HighlighterOptions = {}
-): HighlightedText[] => {
-  const cacheKey = createCacheKey(text, options)
-  const cached = cache.get(cacheKey)
-
-  if (cached) return cached
-
-  const result = highlightText(text, options)
-  cache.set(cacheKey, result)
-
-  return result
-}
+export const memoizedHighlightText = highlightText

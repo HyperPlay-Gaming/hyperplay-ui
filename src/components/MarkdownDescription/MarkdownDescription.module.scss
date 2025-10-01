@@ -24,8 +24,8 @@
   padding: var(--space-3xs) var(--space-2xs);
   border-radius: var(--space-2xs);
   font-weight: var(--semibold);
-  background: var(--fill-brand-weak);
-  color: var(--text-brand);
+  background: var(--color-primary-600);
+  color: var(--color-primary-100);
   font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Courier New',
     monospace;
   font-size: var(--text-sm);
@@ -33,19 +33,19 @@
   transition: background-color 0.2s ease;
 
   &:hover {
-    background: var(--fill-hover);
+    background: var(--color-primary-700);
   }
 
   &:visited {
-    color: var(--text-brand);
+    color: var(--color-primary-100);
   }
 }
 
 .number-token {
   padding: var(--space-3xs) var(--space-2xs);
   border-radius: var(--space-2xs);
-  background: var(--fill-success-weak);
-  color: var(--text-success);
+  background: var(--color-primary-600);
+  color: var(--color-primary-100);
   font-variant-numeric: tabular-nums;
   font-weight: var(--medium);
 }

@@ -30,22 +30,41 @@ export const MarkdownDescription = ({
   enableHighlighting = true,
   ...rest
 }: MarkdownDescriptionProps) => {
+  // Merge highlighter options with CSS module classes
+  const mergedHighlightOptions = useMemo(
+    () => ({
+      ...highlightOptions,
+      className: {
+        ethAddress: styles['eth-address'],
+        number: styles['number-token'],
+        ...highlightOptions.className
+      }
+    }),
+    [highlightOptions]
+  )
   // Memoized text component for highlighting
   const textComponent = useCallback(
-    ({ children, ...props }: any) => {
-      if (!enableHighlighting || typeof children !== 'string') {
-        return <span {...props}>{children}</span>
+    (props: { children?: React.ReactNode; value?: string }) => {
+      const textContent =
+        props.value ||
+        (typeof props.children === 'string' ? props.children : '')
+
+      if (!enableHighlighting || !textContent) {
+        return <>{textContent}</>
       }
 
-      const highlightedText = memoizedHighlightText(children, highlightOptions)
+      const highlightedText = memoizedHighlightText(
+        textContent,
+        mergedHighlightOptions
+      )
       const renderedText = renderHighlightedText(
         highlightedText,
-        highlightOptions
+        mergedHighlightOptions
       )
 
-      return <span {...props}>{renderedText}</span>
+      return <>{renderedText}</>
     },
-    [enableHighlighting, highlightOptions]
+    [enableHighlighting, mergedHighlightOptions]
   )
 
   // Memoized components to prevent unnecessary re-renders
@@ -75,9 +94,36 @@ export const MarkdownDescription = ({
           </blockquote>
         ),
         text: textComponent,
+        // Also handle other text-containing elements
+        p: ({ children, ...props }) => {
+          if (!enableHighlighting) {
+            return <p {...props}>{children}</p>
+          }
+
+          // Process text content in paragraphs
+          const processedChildren = React.Children.map(
+            children,
+            (child): React.ReactNode => {
+              if (typeof child === 'string') {
+                const highlightedText = memoizedHighlightText(
+                  child,
+                  mergedHighlightOptions
+                )
+                const renderedText = renderHighlightedText(
+                  highlightedText,
+                  mergedHighlightOptions
+                )
+                return renderedText
+              }
+              return child
+            }
+          )
+
+          return <p {...props}>{processedChildren}</p>
+        },
         ...components
       }),
-      [textComponent, components]
+      [textComponent, components, enableHighlighting, mergedHighlightOptions]
     )
 
   const markdownAllowedElementsProp: MarkdownDescriptionProps['allowedElements'] =
