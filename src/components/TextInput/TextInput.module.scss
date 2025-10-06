@@ -18,3 +18,10 @@
 .section {
   position: relative;
 }
+
+.input {
+  display: flex;
+  align-items: center;
+  padding: var(--space-xs) var(--space-md);
+  height: var(--space-md);
+}
